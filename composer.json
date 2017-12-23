@@ -1,0 +1,41 @@
+{
+    "name": "appwilio/cdek-sdk",
+    "keywords": ["CDEK", "sdk", "delivery"],
+    "homepage": "https://github.com/appwilio/cdek-sdk",
+    "description": "CDEK API SDK (cdek.ru)",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Roman Sokharev",
+            "email": "greabock17@gmail.com",
+            "role": "Creator"
+        },
+        {
+            "name": "JhaoDa",
+            "email": "jhaoda@gmail.com",
+            "role": "Developer"
+        }
+    ],
+    "support": {
+        "email": "jhaoda@gmail.com",
+        "issues": "https://github.com/appwilio/cdek-sdk/issues"
+    },
+    "require": {
+        "php": ">=7.1",
+        "jms/serializer": "^1.8",
+        "guzzlehttp/guzzle": "^6.3"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^6.3",
+        "illuminate/support": "5.1.* || 5.2.* || 5.3.* || 5.4.* || 5.5.*"
+    },
+    "autoload": {
+        "psr-4": {
+            "Appwilio\\CdekSDK\\": "src/"
+        }
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit"
+    }
+}

@@ -13,84 +13,70 @@ declare(strict_types=1);
 
 namespace Appwilio\CdekSDK\Requests;
 
-class CalculationRequest implements CdekJsonRequest
+use Appwilio\CdekSDK\Contracts\JsonRequest;
+use Appwilio\CdekSDK\Requests\Concerns\RequestCore;
+
+/**
+ * Class CalculationRequest
+ *
+ * @package Appwilio\CdekSDK\Requests
+ */
+class CalculationRequest implements JsonRequest
 {
+    use RequestCore;
+
     public const MODE_DOOR_DOOR = 1;
     public const MODE_DOOR_WAREHOUSE = 2;
     public const MODE_WAREHOUSE_DOOR = 3;
     public const MODE_WAREHOUSE_WAREHOUSE = 4;
 
     protected const METHOD = 'POST';
-    protected const ADDRESS = 'http://api.cdek.ru/calculator/calculate_price_by_json.php';
+    protected const ADDRESS = 'https://api.cdek.ru/calculator/calculate_price_by_json.php';
 
     protected $senderCityId;
     protected $senderCityPostCode;
 
-    /** @var \DateTime */
-    protected $dateExecute;
-    protected $authLogin;
-    protected $secure;
-    protected $receiverCityId;
-    protected $receiverCityPostCode;
+    protected $goods;
+    protected $modeId;
     protected $tariffId;
     protected $tariffList = [];
-    protected $modeId;
-    protected $goods;
+    protected $receiverCityId;
+    protected $receiverCityPostCode;
 
-    public function date(\DateTimeInterface $date): CdekRequest
+    public static function withAuthorization(): CalculationRequest
     {
-        $this->dateExecute = $date;
-
-        return $this;
+        return new CalculationAuthorizedRequest();
     }
 
-    public function credentials(string $account, string $secure): CdekRequest
-    {
-        $this->authLogin = $account;
-        $this->secure = $secure;
-
-        return $this;
-    }
-
-    public function getAddress(): string
-    {
-        return static::ADDRESS;
-    }
-
-    public function getMethod(): string
-    {
-        return static::METHOD;
-    }
-
-    public function setSenderCityId($id): self
+    public function setSenderCityId($id)
     {
         $this->senderCityId = $id;
 
         return $this;
     }
 
-    public function setReceiverCityId($id): self
+    public function setReceiverCityId($id)
     {
         $this->receiverCityId = $id;
 
         return $this;
     }
 
-    public function setSenderCityPostCode($code): self
+    public function setSenderCityPostCode($code)
     {
         $this->senderCityPostCode = $code;
 
         return $this;
     }
 
-    public function setReceiverCityPostCode($code): self
+    public function setReceiverCityPostCode($code)
     {
         $this->receiverCityPostCode = $code;
 
         return $this;
     }
 
-    public function setTariffId($id): self
+    public function setTariffId($id)
     {
         $this->tariffList = null;
 
@@ -99,7 +85,7 @@ class CalculationRequest implements CdekJsonRequest
         return $this;
     }
 
-    public function addTariffToList($id, $priority): self
+    public function addTariffToList($id, $priority)
     {
         $this->tariffId = null;
 
@@ -108,7 +94,7 @@ class CalculationRequest implements CdekJsonRequest
         return $this;
     }
 
-    public function setModeId($id): self
+    public function setModeId($id)
     {
         $this->modeId = $id;
 
@@ -122,21 +108,18 @@ class CalculationRequest implements CdekJsonRequest
         return $this;
     }
 
-    public function getBody()
+    public function getBody(): array
     {
         return array_filter([
-            'dateExecute'          => $this->dateExecute->format('Y-m-d'),
-            'authLogin'            => $this->authLogin,
-            'secure'               => $this->secure,
+            'version'              => '1.0',
+            'goods'                => $this->goods,
+            'modeId'               => $this->modeId,
+            'tariffId'             => $this->tariffId,
+            'tariffList'           => $this->tariffList,
             'senderCityId'         => $this->senderCityId,
             'senderCityPostCode'   => $this->senderCityPostCode,
             'receiverCityId'       => $this->receiverCityId,
             'receiverCityPostCode' => $this->receiverCityPostCode,
-            'tariffId'             => $this->tariffId,
-            'tariffList'           => $this->tariffList,
-            'modeId'               => $this->modeId,
-            'goods'                => $this->goods,
-            'version'              => '1.0',
         ]);
     }
 }

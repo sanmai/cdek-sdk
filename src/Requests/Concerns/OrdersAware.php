@@ -11,27 +11,25 @@
 
 declare(strict_types=1);
 
-namespace Appwilio\CdekSDK\Common;
+namespace Appwilio\CdekSDK\Requests\Concerns;
 
-class WeightLimit
+use Appwilio\CdekSDK\Common\Order;
+
+trait OrdersAware
 {
-    use Fillable;
+    /**
+     * @JMS\XmlList(entry = "Order", inline = true)
+     * @JMS\Type("array<Appwilio\CdekSDK\Common\Order>")
+     *
+     * @var Order[]|array
+     */
+    protected $orders = [];
 
     /**
-     * @JMS\XmlAttribute
-     * @JMS\SerializedName("WeightMin")
-     * @JMS\Type("int")
-     *
-     * @var int
+     * @return Order[]|array
      */
-    public $WeightMin;
-
-    /**
-     * @JMS\XmlAttribute
-     * @JMS\SerializedName("WeightMax")
-     * @JMS\Type("int")
-     *
-     * @var int
-     */
-    public $WeightMax;
+    public function getOrders()
+    {
+        return $this->orders;
+    }
 }

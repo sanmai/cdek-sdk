@@ -11,9 +11,10 @@
 
 declare(strict_types=1);
 
-namespace Appwilio\CdekSDK\Requests;
+namespace Appwilio\CdekSDK\Contracts;
 
-interface CdekParamRequest extends CdekRequest
+interface Request
 {
-    public function getParams(): array;
+    public function getMethod(): string;
+    public function getAddress(): string;
 }

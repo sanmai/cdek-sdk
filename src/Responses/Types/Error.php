@@ -11,27 +11,33 @@
 
 declare(strict_types=1);
 
-namespace Appwilio\CdekSDK\Common;
+namespace Appwilio\CdekSDK\Responses\Types;
 
-class WeightLimit
+use JMS\Serializer\Annotation as JMS;
+
+class Error
 {
-    use Fillable;
-
     /**
-     * @JMS\XmlAttribute
-     * @JMS\SerializedName("WeightMin")
      * @JMS\Type("int")
      *
      * @var int
      */
-    public $WeightMin;
+    protected $code;
 
     /**
-     * @JMS\XmlAttribute
-     * @JMS\SerializedName("WeightMax")
-     * @JMS\Type("int")
+     * @JMS\Type("string")
      *
-     * @var int
+     * @var string
      */
-    public $WeightMax;
+    protected $text;
+
+    public function getCode(): int
+    {
+        return $this->code;
+    }
+
+    public function getText(): string
+    {
+        return $this->text;
+    }
 }

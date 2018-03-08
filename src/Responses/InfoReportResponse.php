@@ -16,6 +16,11 @@ namespace Appwilio\CdekSDK\Responses;
 use Appwilio\CdekSDK\Common\Order;
 use JMS\Serializer\Annotation as JMS;
 
+/**
+ * Class InfoReportResponse
+ *
+ * @package Appwilio\CdekSDK\Responses
+ */
 class InfoReportResponse
 {
     /**

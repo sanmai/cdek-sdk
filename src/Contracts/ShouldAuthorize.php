@@ -11,14 +11,10 @@
 
 declare(strict_types=1);
 
-namespace Appwilio\CdekSDK\Common;
+namespace Appwilio\CdekSDK\Contracts;
 
-use JMS\Serializer\XmlDeserializationVisitor;
-
-trait CollectErrors
+interface ShouldAuthorize
 {
-    public function errors(XmlDeserializationVisitor $visitor)
-    {
-
-    }
+    public function date(\DateTimeInterface $date): ShouldAuthorize;
+    public function credentials(string $account, string $secure): ShouldAuthorize;
 }

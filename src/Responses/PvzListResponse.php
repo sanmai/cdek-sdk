@@ -17,9 +17,9 @@ use Appwilio\CdekSDK\Common\Pvz;
 use JMS\Serializer\Annotation as JMS;
 
 /**
- * Class PvzList
+ * Class PvzListResponse
  *
- * @package Appwilio\CdekSDK\Responses\PvzList
+ * @package Appwilio\CdekSDK\Responses
  */
 class PvzListResponse
 {
@@ -29,5 +29,10 @@ class PvzListResponse
      *
      * @var Pvz[];
      */
-    public $pvzs = [];
+    private $items = [];
+
+    public function getItems(): array
+    {
+        return $this->items;
+    }
 }

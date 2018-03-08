@@ -117,4 +117,9 @@ class Package
     {
         return $this->SizeC;
     }
+
+    public function getVolumeWeight(): float
+    {
+        return ($this->SizeA * $this->SizeB * $this->SizeC) / 5000;
+    }
 }

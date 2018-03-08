@@ -45,9 +45,9 @@ class Order
     /**
      * @JMS\XmlAttribute
      * @JMS\SerializedName("DispatchNumber")
-     * @JMS\Type("int")
+     * @JMS\Type("string")
      *
-     * @var int
+     * @var string
      */
     protected $DispatchNumber;
 
@@ -122,15 +122,6 @@ class Order
      * @var string
      */
     protected $Comment;
-
-    /**
-     * @JMS\XmlAttribute
-     * @JMS\SerializedName("SellerName")
-     * @JMS\Type("string")
-     *
-     * @var string
-     */
-    protected $SellerName;
 
     /**
      * @JMS\SerializedName("Call")
@@ -334,6 +325,15 @@ class Order
     protected $SendCity;
 
     /**
+     * @JMS\XmlAttribute
+     * @JMS\SerializedName("SendCityName")
+     * @JMS\Type("string")
+     *
+     * @var string
+     */
+    protected $SendCityName;
+
+    /**
      * @JMS\SerializedName("RecCity")
      * @JMS\Type("Appwilio\CdekSDK\Common\City")
      *
@@ -342,12 +342,58 @@ class Order
     protected $RecCity;
 
     /**
+     * @JMS\XmlAttribute
+     * @JMS\SerializedName("RecCityName")
+     * @JMS\Type("string")
+     *
+     * @var string
+     */
+    protected $RecCityName;
+
+    /**
+     * @JMS\XmlAttribute
      * @JMS\SerializedName("Msg")
      * @JMS\Type("string")
      *
      * @var string
      */
     protected $Msg;
+
+    /**
+     * @JMS\XmlAttribute
+     * @JMS\SerializedName("SellerName")
+     * @JMS\Type("string")
+     *
+     * @var string
+     */
+    protected $SellerName;
+
+    /**
+     * @JMS\XmlAttribute
+     * @JMS\SerializedName("ShipperAddress")
+     * @JMS\Type("string")
+     *
+     * @var string
+     */
+    protected $SellerAddress;
+
+    /**
+     * @JMS\XmlAttribute
+     * @JMS\SerializedName("ShipperName")
+     * @JMS\Type("string")
+     *
+     * @var string
+     */
+    protected $ShipperName;
+
+    /**
+     * @JMS\XmlAttribute
+     * @JMS\SerializedName("SellerAddress")
+     * @JMS\Type("string")
+     *
+     * @var string
+     */
+    protected $ShipperAddress;
 
     public function callCourier(CallCourier $call)
     {
@@ -386,7 +432,7 @@ class Order
         return $this->Number;
     }
 
-    public function getDispatchNumber(): int
+    public function getDispatchNumber(): string
     {
         return $this->DispatchNumber;
     }
@@ -397,7 +443,7 @@ class Order
      * @JMS\SerializedName("SendCityCode")
      * @JMS\Type("integer")
      *
-     * @return null|int
+     * @return int|null
      */
     public function getSendCityCode(): ?int
     {
@@ -423,7 +469,7 @@ class Order
      * @JMS\SerializedName("RecCityCode")
      * @JMS\Type("integer")
      *
-     * @return null|int
+     * @return int|null
      */
     public function getRecCityCode(): ?int
     {

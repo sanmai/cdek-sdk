@@ -11,7 +11,7 @@
 
 declare(strict_types=1);
 
-namespace Appwilio\CdekSDK\Responses;
+namespace Appwilio\CdekSDK\Responses\Types;
 
 class Message
 {

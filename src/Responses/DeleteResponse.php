@@ -13,6 +13,11 @@ declare(strict_types=1);
 
 namespace Appwilio\CdekSDK\Responses;
 
+/**
+ * Class DeleteResponse
+ *
+ * @package Appwilio\CdekSDK\Responses
+ */
 class DeleteResponse extends DeliveryResponse
 {
 

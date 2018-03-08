@@ -11,20 +11,20 @@
 
 declare(strict_types=1);
 
-namespace Appwilio\CdekSDK\Requests;
+namespace Appwilio\CdekSDK\Requests\Concerns;
 
-use JMS\Serializer\Annotation as JMS;
+use Appwilio\CdekSDK\Contracts\ShouldAuthorize;
 
-trait XmlRequestRoot
+trait Authorized
 {
     /**
      * @JMS\XmlAttribute
      * @JMS\SerializedName("Date")
      * @JMS\Type("DateTimeImmutable<'Y-m-d'>")
      *
-     * @var \DateTime
+     * @var \DateTimeImmutable
      */
-    public $Date;
+    public $date;
 
     /**
      * @JMS\XmlAttribute
@@ -33,7 +33,7 @@ trait XmlRequestRoot
      *
      * @var string
      */
-    public $Account;
+    public $account;
 
     /**
      * @JMS\XmlAttribute
@@ -41,32 +41,22 @@ trait XmlRequestRoot
      *
      * @var string
      */
-    public $Secure;
+    public $secure;
 
-    public function date(\DateTimeInterface $date): CdekRequest
+    public function date(\DateTimeInterface $date): ShouldAuthorize
     {
-        $this->Date = $date;
+        $this->date = $date;
 
-        /** @var CdekRequest $this */
+        /** @var ShouldAuthorize $this */
         return $this;
     }
 
-    public function credentials(string $account, string $secure): CdekRequest
+    public function credentials(string $account, string $secure): ShouldAuthorize
     {
-        $this->Account = $account;
-        $this->Secure = $secure;
+        $this->account = $account;
+        $this->secure = $secure;
 
-        /** @var CdekRequest $this */
+        /** @var ShouldAuthorize $this */
         return $this;
-    }
-
-    public function getAddress(): string
-    {
-        return static::ADDRESS;
-    }
-
-    public function getMethod(): string
-    {
-        return static::METHOD;
     }
 }

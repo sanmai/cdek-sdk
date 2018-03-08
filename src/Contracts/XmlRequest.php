@@ -11,9 +11,9 @@
 
 declare(strict_types=1);
 
-namespace Appwilio\CdekSDK\Requests;
+namespace Appwilio\CdekSDK\Contracts;
 
-interface CdekXmlRequest extends CdekRequest
+interface XmlRequest extends Request
 {
 
 }

@@ -11,18 +11,9 @@
 
 declare(strict_types=1);
 
-namespace Appwilio\CdekSDK\Requests;
+namespace Appwilio\CdekSDK\Contracts;
 
-use JMS\Serializer\Annotation as JMS;
-
-/**
- * Class DeleteRequest
- *
- * @JMS\XmlRoot(name="DeleteRequest")
- *
- * @package Appwilio\CdekSDK\Requests
- */
-class DeleteRequest extends DeliveryRequest
+interface ParamRequest extends Request
 {
-    protected const ADDRESS = 'https://integration.cdek.ru/delete_orders.php';
+    public function getParams(): array;
 }

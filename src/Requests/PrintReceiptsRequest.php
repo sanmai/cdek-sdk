@@ -14,7 +14,7 @@ declare(strict_types=1);
 namespace Appwilio\CdekSDK\Requests;
 
 use Appwilio\CdekSDK\Common\Order;
-use Appwilio\CdekSDK\Common\ChangePeriod;
+use Appwilio\CdekSDK\Common\Fillable;
 use Appwilio\CdekSDK\Contracts\XmlRequest;
 use Appwilio\CdekSDK\Contracts\ShouldAuthorize;
 use Appwilio\CdekSDK\Requests\Concerns\Authorized;
@@ -23,37 +23,45 @@ use Appwilio\CdekSDK\Requests\Concerns\RequestCore;
 use JMS\Serializer\Annotation as JMS;
 
 /**
- * Class InfoReportRequest
+ * Class PrintReceiptRequest
  *
- * @JMS\XmlRoot(name="InfoRequest")
+ * @JMS\XmlRoot(name="OrdersPrint")
  *
  * @package Appwilio\CdekSDK\Requests
  */
-class InfoReportRequest implements XmlRequest, ShouldAuthorize
+class PrintReceiptsRequest implements XmlRequest, ShouldAuthorize
 {
-    use Authorized, OrdersAware, RequestCore;
+    use Authorized, Fillable, OrdersAware, RequestCore;
 
     protected const METHOD = 'POST';
-    protected const ADDRESS = 'https://integration.cdek.ru/info_report.php';
-
-    /**
-     * @JMS\SerializedName("ChangePeriod")
-     * @JMS\Type("string")
-     * @var ChangePeriod|null
-     */
-    protected $ChangePeriod;
+    protected const ADDRESS = 'https://integration.cdek.ru/orders_print.php';
 
     public function addOrder(Order $order)
     {
-        $this->orders[] = $order;
+        $this->orders[$order->getDispatchNumber()] = $order;
 
         return $this;
     }
 
-    public function setChangePeriod(ChangePeriod $period)
+    /**
+     * @JMS\XmlAttribute
+     * @JMS\SerializedName("OrderCount")
+     * @JMS\Type("int")
+     * @JMS\VirtualProperty()
+     */
+    public function getOrderCount()
     {
-        $this->ChangePeriod = $period;
+        return \count($this->orders);
+    }
 
-        return $this;
+    /**
+     * @JMS\XmlAttribute
+     * @JMS\SerializedName("CopyCount")
+     * @JMS\Type("int")
+     * @JMS\VirtualProperty()
+     */
+    public function getCopyCount()
+    {
+        return 2;
     }
 }

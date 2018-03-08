@@ -14,14 +14,19 @@ declare(strict_types=1);
 namespace Appwilio\CdekSDK\Responses;
 
 use JMS\Serializer\Annotation as JMS;
-use Appwilio\CdekSDK\Responses\CalculateResponse\Error;
-use Appwilio\CdekSDK\Responses\CalculateResponse\Result;
+use Appwilio\CdekSDK\Responses\Types\Error;
+use Appwilio\CdekSDK\Responses\Types\Result;
 
+/**
+ * Class CalculationResponse
+ *
+ * @package Appwilio\CdekSDK\Responses
+ */
 class CalculationResponse
 {
     /**
      * @JMS\SerializedName("result")
-     * @JMS\Type("Appwilio\CdekSDK\Responses\CalculateResponse\Result")
+     * @JMS\Type("Appwilio\CdekSDK\Responses\Types\Result")
      *
      * @var Result
      */
@@ -29,7 +34,7 @@ class CalculationResponse
 
     /**
      * @JMS\SerializedName("error")
-     * @JMS\Type("array<Appwilio\CdekSDK\Responses\CalculateResponse\Error>")
+     * @JMS\Type("array<Appwilio\CdekSDK\Responses\Types\Error>")
      *
      * @var array|Error[]
      */
@@ -56,8 +61,6 @@ class CalculationResponse
             return $this->result->{$name}(...$arguments);
         }
 
-        $class = static::class;
-
-        throw new \BadMethodCallException("Method [$name] not found in [$class].");
+        throw new \BadMethodCallException(sprintf('Method [%s] not found in [%s].', $name, __CLASS__));
     }
 }

@@ -17,36 +17,46 @@ use JMS\Serializer\Serializer;
 use JMS\Serializer\SerializerBuilder;
 use JMS\Serializer\Handler\HandlerRegistry;
 use GuzzleHttp\Client as GuzzleClient;
-use Appwilio\CdekSDK\Requests\CdekRequest;
-use Appwilio\CdekSDK\Requests\DeleteRequest;
-use Appwilio\CdekSDK\Requests\CdekXmlRequest;
-use Appwilio\CdekSDK\Requests\PvzListRequest;
-use Appwilio\CdekSDK\Requests\CdekJsonRequest;
-use Appwilio\CdekSDK\Requests\DeliveryRequest;
-use Appwilio\CdekSDK\Requests\CdekParamRequest;
-use Appwilio\CdekSDK\Requests\InfoReportRequest;
-use Appwilio\CdekSDK\Requests\CalculationRequest;
-use Appwilio\CdekSDK\Responses\CalculationResponse;
-use Appwilio\CdekSDK\Responses\DeleteResponse;
-use Appwilio\CdekSDK\Responses\PvzListResponse;
-use Appwilio\CdekSDK\Responses\DeliveryResponse;
-use Appwilio\CdekSDK\Responses\InfoReportResponse;
-use Appwilio\CdekSDK\Requests\StatusReportRequest;
-use Appwilio\CdekSDK\Responses\StatusReportResponse;
+use Psr\Http\Message\ResponseInterface;
+use Appwilio\CdekSDK\Contracts\Request;
+use Appwilio\CdekSDK\Contracts\XmlRequest;
+use Appwilio\CdekSDK\Contracts\JsonRequest;
+use Appwilio\CdekSDK\Contracts\ParamRequest;
+use Appwilio\CdekSDK\Contracts\ShouldAuthorize;
 use Appwilio\CdekSDK\Serialization\NullableDateTimeHandler;
 
+/**
+ * Class CdekClient
+ *
+ * @method Responses\DeleteResponse       sendDeleteRequest(Requests\DeleteRequest $request)
+ * @method Responses\PvzListResponse      sendPvzListRequest(Requests\PvzListRequest $request)
+ * @method Responses\DeliveryResponse     sendDeliveryRequest(Requests\DeliveryRequest $request)
+ * @method Responses\InfoReportResponse   sendInfoReportRequest(Requests\InfoReportRequest $request)
+ * @method Responses\CalculationResponse  sendCalculationRequest(Requests\CalculationRequest $request)
+ * @method Responses\StatusReportResponse sendStatusReportRequest(Requests\StatusReportRequest $request)
+ * @method ResponseInterface              sendPrintReceiptsRequest(Requests\PrintReceiptsRequest $request)
+ *
+ * @package Appwilio\CdekSDK
+ */
 class CdekClient
 {
-    protected $maps = [
+    private const TEXT_RESPONSE_TYPES = [
+        'text/xml',
+        'application/json',
+    ];
+
+    private $maps = [
         'xml'  => [
-            DeleteRequest::class       => DeleteResponse::class,
-            PvzListRequest::class      => PvzListResponse::class,
-            DeliveryRequest::class     => DeliveryResponse::class,
-            InfoReportRequest::class   => InfoReportResponse::class,
-            StatusReportRequest::class => StatusReportResponse::class,
+            Requests\DeleteRequest::class        => Responses\DeleteResponse::class,
+            Requests\PvzListRequest::class       => Responses\PvzListResponse::class,
+            Requests\DeliveryRequest::class      => Responses\DeliveryResponse::class,
+            Requests\InfoReportRequest::class    => Responses\InfoReportResponse::class,
+            Requests\StatusReportRequest::class  => Responses\StatusReportResponse::class,
+            Requests\PrintReceiptsRequest::class => Responses\PrintReceiptsResponse::class
         ],
         'json' => [
-            CalculationRequest::class => CalculationResponse::class,
+            Requests\CalculationRequest::class           => Responses\CalculationResponse::class,
+            Requests\CalculationAuthorizedRequest::class => Responses\CalculationResponse::class,
         ],
     ];
 
@@ -74,9 +84,13 @@ class CdekClient
         })->build();
     }
 
-    protected function sendRequest(CdekRequest $request): string
+    public function sendRequest(Request $request)
     {
-        $this->initRequest($request);
+        if ($request instanceof ShouldAuthorize) {
+            $date = new \DateTimeImmutable();
+
+            $request->date($date)->credentials($this->account, $this->getSecure($date));
+        }
 
         $response = $this->http->request(
             $request->getMethod(),
@@ -84,83 +98,80 @@ class CdekClient
             $this->extractOptions($request)
         );
 
-        return $response->getBody()->getContents();
+        return $this->deserialize($request, $response);
     }
 
-    public function sendPvzListRequest(PvzListRequest $request): PvzListResponse
+    public function __call($name, $arguments)
     {
-        return $this->process($request);
-    }
-
-    public function sendStatusReportRequest(StatusReportRequest $request): StatusReportResponse
-    {
-        return $this->process($request);
-    }
-
-    public function sendCalculationRequest(CalculationRequest $request): CalculationResponse
-    {
-        return $this->process($request);
-    }
-
-    private function extractOptions($request): array
-    {
-        if ($request instanceof CdekParamRequest) {
-            return ['form_params' => $request->getParams()];
+        if (0 === strpos($name, 'send')) {
+            return $this->sendRequest(...$arguments);
         }
 
-        if ($request instanceof CdekXmlRequest) {
-            return ['form_params' => ['xml_request' => $this->serializer->serialize($request, 'xml')]];
+        throw new \BadMethodCallException(sprintf('Method [%s] not found in [%s].', $name, __CLASS__));
+    }
+
+    private function deserialize(Request $request, ResponseInterface $response)
+    {
+        if (! $this->isTextResponse($response)) {
+            return $response;
         }
 
-        if ($request instanceof CdekJsonRequest) {
-            return [
-                'body'    => json_encode($request->getBody()),
-                'headers' => ['Content-Type' => 'application/json'],
-            ];
-        }
+        $class = \get_class($request);
 
-        return [];
-    }
-
-    public function sendDeliveryRequest(DeliveryRequest $request): DeliveryResponse
-    {
-        return $this->process($request);
-    }
-
-    public function sendInfoReportRequest(InfoReportRequest $request): InfoReportResponse
-    {
-        return $this->process($request);
-    }
-
-    public function sendDeleteRequest($request): DeleteResponse
-    {
-        return $this->process($request);
-    }
-
-    public function process($request)
-    {
-        $class = get_class($request);
-
-        $response = $this->sendRequest($request);
-
-        foreach ($this->maps as $dataType => $map) {
+        foreach ($this->maps as $format => $map) {
             if (array_key_exists($class, $map)) {
-                return $this->serializer->deserialize($response, $map[$class], $dataType);
+                return $this->serializer->deserialize((string) $response->getBody(), $map[$class], $format);
             }
         }
 
         throw new \Exception("Class [$class] not mapped.");
     }
 
-    private function initRequest(CdekRequest $request): void
-    {
-        $date = new \DateTimeImmutable();
-
-        $request->date($date)->credentials($this->account, $this->getSecure($date));
-    }
-
     private function getSecure(\DateTimeInterface $date): string
     {
         return md5($date->format('Y-m-d')."&{$this->password}");
+    }
+
+    private function isTextResponse(ResponseInterface $response): bool
+    {
+        $header = $response->hasHeader('Content-Type')
+            ? $response->getHeader('Content-Type')[0]
+            : '';
+
+        return 0 === strpos($header, 'text/xml') || 0 === strpos($header, 'application/json');
+    }
+
+    private function extractOptions(Request $request): array
+    {
+        if ($request instanceof ParamRequest) {
+            if ($request->getMethod() === 'GET') {
+                return [
+                    'query' => $request->getParams()
+                ];
+            }
+
+            return [
+                'form_params' => $request->getParams()
+            ];
+        }
+
+        if ($request instanceof XmlRequest) {
+            return [
+                'form_params' => [
+                    'xml_request' => $this->serializer->serialize($request, 'xml')
+                ]
+            ];
+        }
+
+        if ($request instanceof JsonRequest) {
+            return [
+                'body'    => json_encode($request->getBody()),
+                'headers' => [
+                    'Content-Type' => 'application/json'
+                ],
+            ];
+        }
+
+        return [];
     }
 }

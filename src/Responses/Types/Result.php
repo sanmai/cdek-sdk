@@ -11,7 +11,7 @@
 
 declare(strict_types=1);
 
-namespace Appwilio\CdekSDK\Responses\CalculateResponse;
+namespace Appwilio\CdekSDK\Responses\Types;
 
 use JMS\Serializer\Annotation as JMS;
 

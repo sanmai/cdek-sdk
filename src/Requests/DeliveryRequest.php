@@ -15,21 +15,26 @@ namespace Appwilio\CdekSDK\Requests;
 
 use Appwilio\CdekSDK\Common\Order;
 use Appwilio\CdekSDK\Common\Fillable;
+use Appwilio\CdekSDK\Contracts\XmlRequest;
+use Appwilio\CdekSDK\Contracts\ShouldAuthorize;
+use Appwilio\CdekSDK\Requests\Concerns\Authorized;
+use Appwilio\CdekSDK\Requests\Concerns\RequestCore;
+use Appwilio\CdekSDK\Requests\Concerns\OrdersAware;
 use JMS\Serializer\Annotation as JMS;
 
 /**
  * Class DeliveryRequest
  *
- * @package Appwilio\CdekSDK\Requests\DeliveryRequest
- *
  * @JMS\XmlRoot(name="DeliveryRequest")
+ *
+ * @package Appwilio\CdekSDK\Requests
  */
-class DeliveryRequest implements CdekXmlRequest
+class DeliveryRequest implements XmlRequest, ShouldAuthorize
 {
-    use XmlRequestRoot, Fillable;
+    use Authorized, Fillable, OrdersAware, RequestCore;
 
     protected const METHOD = 'POST';
-    protected const ADDRESS = 'http://int.cdek.ru/new_orders.php';
+    protected const ADDRESS = 'https://integration.cdek.ru/new_orders.php';
 
     /**
      * @JMS\XmlAttribute
@@ -38,15 +43,7 @@ class DeliveryRequest implements CdekXmlRequest
      *
      * @var string
      */
-    protected $Number;
-
-    /**
-     * @JMS\XmlList(entry="Order", inline=true)
-     * @JMS\Type("array<Appwilio\CdekSDK\Common\Order>")
-     *
-     * @var array|Order[]
-     */
-    protected $orders = [];
+    protected $number;
 
     /**
      * @JMS\XmlAttribute
@@ -59,23 +56,15 @@ class DeliveryRequest implements CdekXmlRequest
         return \count($this->orders);
     }
 
-    public function addOrder(Order $order): self
+    public function addOrder(Order $order)
     {
         $this->orders[$order->getNumber()] = $order;
 
         return $this;
     }
 
-    /**
-     * @return Order[]|array
-     */
-    public function getOrders()
-    {
-        return $this->orders;
-    }
-
     public function getNumber(): string
     {
-        return $this->Number;
+        return $this->number;
     }
 }

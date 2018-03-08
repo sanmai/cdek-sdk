@@ -15,21 +15,25 @@ namespace Appwilio\CdekSDK\Requests;
 
 use Appwilio\CdekSDK\Common\Order;
 use Appwilio\CdekSDK\Common\ChangePeriod;
+use Appwilio\CdekSDK\Contracts\XmlRequest;
+use Appwilio\CdekSDK\Contracts\ShouldAuthorize;
+use Appwilio\CdekSDK\Requests\Concerns\Authorized;
+use Appwilio\CdekSDK\Requests\Concerns\RequestCore;
 use JMS\Serializer\Annotation as JMS;
 
 /**
- * Class StatusReport
- *
- * @package Appwilio\CdekSDK\Requests\StatusReport
+ * Class StatusReportRequest
  *
  * @JMS\XmlRoot(name="StatusReport")
+ *
+ * @package Appwilio\CdekSDK\Requests
  */
-class StatusReportRequest implements CdekXmlRequest
+class StatusReportRequest implements XmlRequest, ShouldAuthorize
 {
     protected const METHOD = 'POST';
-    protected const ADDRESS = 'http://int.cdek.ru/status_report_h.php';
+    protected const ADDRESS = 'https://integration.cdek.ru/status_report_h.php';
 
-    use XmlRequestRoot;
+    use Authorized, RequestCore;
 
     /**
      * @JMS\XmlAttribute

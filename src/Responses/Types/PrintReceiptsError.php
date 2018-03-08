@@ -11,33 +11,37 @@
 
 declare(strict_types=1);
 
-namespace Appwilio\CdekSDK\Responses\CalculateResponse;
+namespace Appwilio\CdekSDK\Responses\Types;
 
 use JMS\Serializer\Annotation as JMS;
 
-class Error
+class PrintReceiptsError
 {
     /**
+     * @JMS\XmlAttribute
+     * @JMS\SerializedName("ErrorCode")
+     * @JMS\Type("string")
+     *
+     * @var string
+     */
+    protected $code;
+
+    /**
+     * @JMS\XmlAttribute
+     * @JMS\SerializedName("Msg")
      * @JMS\Type("string")
      *
      * @var string
      */
     protected $text;
 
-    /**
-     * @JMS\Type("int")
-     *
-     * @var int
-     */
-    protected $code;
+    public function getCode(): string
+    {
+        return $this->code;
+    }
 
     public function getText(): string
     {
         return $this->text;
-    }
-
-    public function getCode(): int
-    {
-        return $this->code;
     }
 }

@@ -13,14 +13,24 @@ declare(strict_types=1);
 
 namespace Appwilio\CdekSDK\Requests;
 
-class PvzListRequest implements CdekParamRequest
+use Appwilio\CdekSDK\Contracts\ParamRequest;
+use Appwilio\CdekSDK\Requests\Concerns\RequestCore;
+
+/**
+ * Class PvzListRequest
+ *
+ * @package Appwilio\CdekSDK\Requests
+ */
+class PvzListRequest implements ParamRequest
 {
+    use RequestCore;
+
     public const TYPE_PVZ = 'PVZ';
     public const TYPE_ALL = 'ALL';
     public const TYPE_POSTOMAT = 'POSTOMAT';
 
     protected const METHOD = 'GET';
-    protected const ADDRESS = 'http://int.cdek.ru/pvzlist.php';
+    protected const ADDRESS = 'https://integration.cdek.ru/pvzlist.php';
 
     /** @var string */
     protected $type = self::TYPE_PVZ;
@@ -112,16 +122,6 @@ class PvzListRequest implements CdekParamRequest
         return $this;
     }
 
-    public function getMethod(): string
-    {
-        return self::METHOD;
-    }
-
-    public function getAddress(): string
-    {
-        return self::ADDRESS;
-    }
-
     public function getParams(): array
     {
         return [
@@ -135,15 +135,5 @@ class PvzListRequest implements CdekParamRequest
             'allowedcod'     => $this->codAllowed,
             'isdressingroom' => $this->dressingRoom,
         ];
-    }
-
-    public function date(\DateTimeInterface $date): CdekRequest
-    {
-        return $this;
-    }
-
-    public function credentials(string $account, string $secure): CdekRequest
-    {
-        return $this;
     }
 }

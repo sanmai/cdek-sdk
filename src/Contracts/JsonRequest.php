@@ -11,14 +11,9 @@
 
 declare(strict_types=1);
 
-namespace Appwilio\CdekSDK\Requests;
+namespace Appwilio\CdekSDK\Contracts;
 
-interface CdekRequest
+interface JsonRequest extends Request
 {
-    public function getMethod(): string;
-    public function getAddress(): string;
-
-    public function date(\DateTimeInterface $date): self;
-
-    public function credentials(string $account, string $secure): self;
+    public function getBody(): array;
 }

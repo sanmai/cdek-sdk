@@ -11,9 +11,17 @@
 
 declare(strict_types=1);
 
-namespace Appwilio\CdekSDK\Requests;
+namespace Appwilio\CdekSDK\Requests\Concerns;
 
-interface CdekJsonRequest extends CdekRequest
+trait RequestCore
 {
-    public function getBody();
+    public function getAddress(): string
+    {
+        return static::ADDRESS;
+    }
+
+    public function getMethod(): string
+    {
+        return static::METHOD;
+    }
 }

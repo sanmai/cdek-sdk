@@ -14,8 +14,14 @@ declare(strict_types=1);
 namespace Appwilio\CdekSDK\Responses;
 
 use Appwilio\CdekSDK\Common\Order;
+use Appwilio\CdekSDK\Responses\Types\Message;
 use JMS\Serializer\Annotation as JMS;
 
+/**
+ * Class DeliveryResponse
+ *
+ * @package Appwilio\CdekSDK\Responses
+ */
 class DeliveryResponse
 {
     /**
@@ -28,6 +34,8 @@ class DeliveryResponse
 
     /**
      * @JMS\Exclude
+     *
+     * @var array|Message[]
      */
     protected $messages;
 
@@ -48,7 +56,7 @@ class DeliveryResponse
             return (bool) $order->getMessage();
         });
 
-        foreach ($messages as $message){
+        foreach ($messages as $message) {
             $this->messages[] = new Message($message->getMessage());
         }
 
@@ -57,7 +65,7 @@ class DeliveryResponse
         });
     }
 
-    public function getMessages()
+    public function getMessages(): array
     {
         return $this->messages;
     }

@@ -17,9 +17,9 @@ use Appwilio\CdekSDK\Common\Order;
 use JMS\Serializer\Annotation as JMS;
 
 /**
- * Class StatusReport
+ * Class StatusReportResponse
  *
- * @package Appwilio\CdekSDK\Responses\StatusReport
+ * @package Appwilio\CdekSDK\Responses
  */
 class StatusReportResponse
 {

@@ -40,11 +40,6 @@ use Appwilio\CdekSDK\Serialization\NullableDateTimeHandler;
  */
 class CdekClient
 {
-    private const TEXT_RESPONSE_TYPES = [
-        'text/xml',
-        'application/json',
-    ];
-
     private $maps = [
         'xml'  => [
             Requests\DeleteRequest::class        => Responses\DeleteResponse::class,

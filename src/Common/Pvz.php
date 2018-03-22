@@ -24,9 +24,9 @@ class Pvz
     /**
      * @JMS\XmlAttribute
      * @JMS\SerializedName("Code")
-     * @JMS\Type("int")
+     * @JMS\Type("string")
      *
-     * @var int
+     * @var string
      */
     public $Code;
 

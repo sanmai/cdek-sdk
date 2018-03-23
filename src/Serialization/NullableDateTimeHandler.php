@@ -26,4 +26,13 @@ class NullableDateTimeHandler extends DateHandler
 
         return parent::deserializeDateTimeFromXml($visitor, $data, $type);
     }
+
+    public function deserializeDateTimeImmutableFromXml(XmlDeserializationVisitor $visitor, $data, array $type)
+    {
+        if ((string) $data === '') {
+            return null;
+        }
+
+        return parent::deserializeDateTimeImmutableFromXml($visitor, $data, $type);
+    }
 }

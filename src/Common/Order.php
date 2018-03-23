@@ -150,9 +150,9 @@ class Order
     /**
      * @JMS\XmlAttribute
      * @JMS\SerializedName("DeliveryDate")
-     * @JMS\Type("DateTime<'Y-m-d\TH:i:sP'>")
+     * @JMS\Type("DateTimeImmutable<'Y-m-d\TH:i:sP'>")
      *
-     * @var \DateTime
+     * @var \DateTimeImmutable|null
      */
     public $DeliveryDate;
 
@@ -413,6 +413,8 @@ class Order
     public function setAddress(Address $address)
     {
         $this->Address = $address;
+
+        return $this;
     }
 
     public function addPackage(Package $package)
@@ -429,12 +431,12 @@ class Order
 
     public function getNumber(): string
     {
-        return $this->Number;
+        return (string) $this->Number;
     }
 
     public function getDispatchNumber(): string
     {
-        return $this->DispatchNumber;
+        return (string) $this->DispatchNumber;
     }
 
     /**
@@ -491,47 +493,47 @@ class Order
 
     public function getRecipientName(): string
     {
-        return $this->RecipientName;
+        return (string) $this->RecipientName;
     }
 
     public function getDeliveryRecipientCost(): float
     {
-        return $this->DeliveryRecipientCost;
+        return (float) $this->DeliveryRecipientCost;
     }
 
     public function getTariffTypeCode(): int
     {
-        return $this->TariffTypeCode;
+        return (int) $this->TariffTypeCode;
     }
 
     public function getPhone(): string
     {
-        return $this->Phone;
+        return (string) $this->Phone;
     }
 
     public function getRecipientEmail(): string
     {
-        return $this->RecipientEmail;
+        return (string) $this->RecipientEmail;
     }
 
     public function getRecipientCurrency(): string
     {
-        return $this->RecipientCurrency;
+        return (string) $this->RecipientCurrency;
     }
 
     public function getItemsCurrency(): string
     {
-        return $this->ItemsCurrency;
+        return (string) $this->ItemsCurrency;
     }
 
     public function getComment(): string
     {
-        return $this->Comment;
+        return (string) $this->Comment;
     }
 
     public function getSellerName(): string
     {
-        return $this->SellerName;
+        return (string) $this->SellerName;
     }
 
     public function getAddress(): Address
@@ -596,12 +598,12 @@ class Order
 
     public function getWeight(): float
     {
-        return $this->Weight;
+        return (float) $this->Weight;
     }
 
     public function getDeliverySum(): float
     {
-        return $this->DeliverySum;
+        return (float) $this->DeliverySum;
     }
 
     public function getDateLastChange(): \DateTimeImmutable
@@ -611,27 +613,27 @@ class Order
 
     public function getCashOnDeliv(): float
     {
-        return $this->CashOnDeliv;
+        return (float) $this->CashOnDeliv;
     }
 
     public function getCashOnDelivFac(): float
     {
-        return $this->CashOnDelivFac;
+        return (float) $this->CashOnDelivFac;
     }
 
     public function getDeliveryMode(): int
     {
-        return $this->DeliveryMode;
+        return (int) $this->DeliveryMode;
     }
 
     public function getPvzCode(): string
     {
-        return $this->PvzCode;
+        return (string) $this->PvzCode;
     }
 
     public function getDeliveryVariant(): string
     {
-        return $this->DeliveryVariant;
+        return (string) $this->DeliveryVariant;
     }
 
     public function getSenderCity(): City
@@ -646,6 +648,6 @@ class Order
 
     public function getMessage(): string
     {
-        return $this->Msg;
+        return (string) $this->Msg;
     }
 }

@@ -95,7 +95,7 @@ class Pvz
 
     /**
      * @JMS\XmlAttribute
-     * @JMS\SerializedName("CoordX")
+     * @JMS\SerializedName("coordX")
      * @JMS\Type("float")
      *
      * @var float

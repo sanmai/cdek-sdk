@@ -17,6 +17,7 @@ use JMS\Serializer\Annotation as JMS;
 
 /**
  * Class Pvz
+ *
  * @package Appwilio\CdekSDK\Common
  */
 class Pvz
@@ -41,33 +42,6 @@ class Pvz
 
     /**
      * @JMS\XmlAttribute
-     * @JMS\SerializedName("CityCode")
-     * @JMS\Type("int")
-     *
-     * @var int
-     */
-    public $CityCode;
-
-    /**
-     * @JMS\XmlAttribute
-     * @JMS\SerializedName("City")
-     * @JMS\Type("string")
-     *
-     * @var string
-     */
-    public $City;
-
-    /**
-     * @JMS\XmlAttribute
-     * @JMS\SerializedName("WorkTime")
-     * @JMS\Type("string")
-     *
-     * @var string
-     */
-    public $WorkTime;
-
-    /**
-     * @JMS\XmlAttribute
      * @JMS\SerializedName("Address")
      * @JMS\Type("string")
      *
@@ -77,12 +51,39 @@ class Pvz
 
     /**
      * @JMS\XmlAttribute
+     * @JMS\SerializedName("AddressComment")
+     * @JMS\Type("string")
+     *
+     * @var string
+     */
+    public $AddressComment;
+
+    /**
+     * @JMS\XmlAttribute
+     * @JMS\SerializedName("FullAddress")
+     * @JMS\Type("string")
+     *
+     * @var string
+     */
+    public $FullAddress;
+
+    /**
+     * @JMS\XmlAttribute
      * @JMS\SerializedName("Phone")
      * @JMS\Type("string")
      *
      * @var string
      */
     public $Phone;
+
+    /**
+     * @JMS\XmlAttribute
+     * @JMS\SerializedName("Email")
+     * @JMS\Type("string")
+     *
+     * @var string
+     */
+    public $Email;
 
     /**
      * @JMS\XmlAttribute
@@ -122,6 +123,15 @@ class Pvz
 
     /**
      * @JMS\XmlAttribute
+     * @JMS\SerializedName("CountryName")
+     * @JMS\Type("string")
+     *
+     * @var string
+     */
+    public $CountryName;
+
+    /**
+     * @JMS\XmlAttribute
      * @JMS\SerializedName("RegionCode")
      * @JMS\Type("int")
      *
@@ -140,12 +150,21 @@ class Pvz
 
     /**
      * @JMS\XmlAttribute
-     * @JMS\SerializedName("FullAddress")
+     * @JMS\SerializedName("CityCode")
+     * @JMS\Type("int")
+     *
+     * @var int
+     */
+    public $CityCode;
+
+    /**
+     * @JMS\XmlAttribute
+     * @JMS\SerializedName("City")
      * @JMS\Type("string")
      *
      * @var string
      */
-    public $FullAddress;
+    public $City;
 
     /**
      * @JMS\XmlAttribute
@@ -200,6 +219,24 @@ class Pvz
      * @var string
      */
     public $Site;
+
+    /**
+     * @JMS\XmlAttribute
+     * @JMS\SerializedName("Type")
+     * @JMS\Type("string")
+     *
+     * @var string
+     */
+    public $Type;
+
+    /**
+     * @JMS\XmlAttribute
+     * @JMS\SerializedName("WorkTime")
+     * @JMS\Type("string")
+     *
+     * @var string
+     */
+    public $WorkTime;
 
     /**
      * @JMS\XmlAttribute

@@ -3,7 +3,7 @@
 /**
  * This file is part of Cdek SDK package.
  *
- * © Appwilio (http://appwilio.com), greabock (https://github.com/greabock), JhaoDa (https://github.com/jhaoda)
+ * © Appwilio (http://appwilio.com), greabock (https://github.com/greabock), JhaoDa (https://github.com/jhaoda), Volga (https://github.com/Volga)
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -370,7 +370,7 @@ class Order
 
     /**
      * @JMS\XmlAttribute
-     * @JMS\SerializedName("ShipperAddress")
+     * @JMS\SerializedName("SellerAddress")
      * @JMS\Type("string")
      *
      * @var string
@@ -388,12 +388,20 @@ class Order
 
     /**
      * @JMS\XmlAttribute
-     * @JMS\SerializedName("SellerAddress")
+     * @JMS\SerializedName("ShipperAddress")
      * @JMS\Type("string")
      *
      * @var string
      */
     protected $ShipperAddress;
+
+    /**
+     * @JMS\SerializedName("Sender")
+     * @JMS\Type("Appwilio\CdekSDK\Common\Sender")
+     *
+     * @var Sender
+     */
+    protected $Sender;
 
     public function callCourier(CallCourier $call)
     {
@@ -413,6 +421,13 @@ class Order
     public function setAddress(Address $address)
     {
         $this->Address = $address;
+
+        return $this;
+    }
+
+    public function setSender(Sender $sender)
+    {
+        $this->Sender = $sender;
 
         return $this;
     }

@@ -66,7 +66,7 @@ class Package
 
     /**
      * @JMS\XmlAttribute
-     * @JMS\SerializedName("$SizeC")
+     * @JMS\SerializedName("SizeC")
      * @JMS\Type("int")
      *
      * @var int

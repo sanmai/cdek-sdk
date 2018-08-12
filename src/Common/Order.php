@@ -266,7 +266,7 @@ class Order
     /**
      * @JMS\XmlAttribute
      * @JMS\SerializedName("DateLastChange")
-     * @JMS\Type("DateTimeImmutable<'Y-m-d\TH:i:sP'>")
+     * @JMS\Type("DateTimeImmutable<'Y-m-d H:i:s'>")
      *
      * @var \DateTimeImmutable
      */

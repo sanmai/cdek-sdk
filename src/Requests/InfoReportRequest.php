@@ -38,7 +38,7 @@ class InfoReportRequest implements XmlRequest, ShouldAuthorize
 
     /**
      * @JMS\SerializedName("ChangePeriod")
-     * @JMS\Type("string")
+     * @JMS\Type("Appwilio\CdekSDK\Common\ChangePeriod")
      * @var ChangePeriod|null
      */
     protected $ChangePeriod;

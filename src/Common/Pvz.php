@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace Appwilio\CdekSDK\Common;
 
@@ -22,6 +22,8 @@ use JMS\Serializer\Annotation as JMS;
  */
 class Pvz
 {
+    private const BOOLEAN_FIELDS = ['IsDressingRoom', 'AllowedCod', 'HaveCashless'];
+
     /**
      * @JMS\XmlAttribute
      * @JMS\SerializedName("Code")
@@ -169,27 +171,27 @@ class Pvz
     /**
      * @JMS\XmlAttribute
      * @JMS\SerializedName("IsDressingRoom")
-     * @JMS\Type("int")
+     * @JMS\Type("string")
      *
-     * @var int
+     * @var bool
      */
     public $IsDressingRoom;
 
     /**
      * @JMS\XmlAttribute
      * @JMS\SerializedName("HaveCashless")
-     * @JMS\Type("int")
+     * @JMS\Type("string")
      *
-     * @var int
+     * @var bool
      */
     public $HaveCashless;
 
     /**
      * @JMS\XmlAttribute
      * @JMS\SerializedName("AllowedCod")
-     * @JMS\Type("int")
+     * @JMS\Type("string")
      *
-     * @var int
+     * @var bool
      */
     public $AllowedCod;
 
@@ -246,4 +248,14 @@ class Pvz
      * @var  WeightLimit
      */
     public $WeightLimit;
+
+    /**
+     * @JMS\PostDeserialize
+     */
+    public function postDeserialize()
+    {
+        foreach (self::BOOLEAN_FIELDS as $field) {
+            $this->$field = $this->$field === 'есть';
+        }
+    }
 }

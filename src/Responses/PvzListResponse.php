@@ -31,6 +31,9 @@ class PvzListResponse
      */
     private $items = [];
 
+    /**
+     * @return Pvz[]
+     */
     public function getItems(): array
     {
         return $this->items;

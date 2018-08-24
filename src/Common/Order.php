@@ -62,12 +62,21 @@ class Order
 
     /**
      * @JMS\XmlAttribute
-     * @JMS\SerializedName("RecipientName")
+     * @JMS\SerializedName("RecipientEmail")
      * @JMS\Type("string")
      *
      * @var string
      */
     protected $RecipientEmail;
+
+    /**
+     * @JMS\XmlAttribute
+     * @JMS\SerializedName("RecipientCurrency")
+     * @JMS\Type("string")
+     *
+     * @var string
+     */
+    protected $RecipientCurrency;
 
     /**
      * @JMS\XmlAttribute
@@ -98,15 +107,6 @@ class Order
 
     /**
      * @JMS\XmlAttribute
-     * @JMS\SerializedName("RecipientCurrency")
-     * @JMS\Type("string")
-     *
-     * @var string
-     */
-    protected $RecipientCurrency;
-
-    /**
-     * @JMS\XmlAttribute
      * @JMS\SerializedName("ItemsCurrency")
      * @JMS\Type("string")
      *
@@ -124,52 +124,10 @@ class Order
     protected $Comment;
 
     /**
-     * @JMS\SerializedName("Call")
-     * @JMS\Type("Appwilio\CdekSDK\Common\Call")
-     *
-     * @var Call
-     */
-    public $Call;
-
-    /**
-     * @JMS\SerializedName("ReturnOrder")
-     * @JMS\Type("Appwilio\CdekSDK\Common\Order")
-     * @var Order
-     */
-    public $ReturnOrder;
-
-    /**
-     * @JMS\XmlAttribute
-     * @JMS\SerializedName("ActNumber")
-     * @JMS\Type("int")
-     *
-     * @var int
-     */
-    public $ActNumber;
-
-    /**
-     * @JMS\XmlAttribute
-     * @JMS\SerializedName("DeliveryDate")
-     * @JMS\Type("DateTimeImmutable<'Y-m-d\TH:i:sP'>")
-     *
-     * @var \DateTimeImmutable|null
-     */
-    public $DeliveryDate;
-
-    /**
-     * @JMS\XmlAttribute
-     * @JMS\SerializedName("ReturnDispatchNumber")
-     * @JMS\Type("int")
-     *
-     * @var int
-     */
-    public $ReturnDispatchNumber;
-
-    /**
      * @JMS\SerializedName("Status")
      * @JMS\Type("Appwilio\CdekSDK\Common\Status")
      *
-     * @var Status
+     * @var Status|null
      */
     protected $Status;
 
@@ -198,6 +156,14 @@ class Order
     protected $Address;
 
     /**
+     * @JMS\XmlList(entry="Attempt", inline=true)
+     * @JMS\Type("array<Appwilio\CdekSDK\Common\Attempt>")
+     *
+     * @var array|Attempt[]
+     */
+    protected $attempts = [];
+
+    /**
      * @JMS\XmlList(entry="AddedService", inline=true)
      * @JMS\Type("array<Appwilio\CdekSDK\Common\AdditionalService>")
      * @var array|AdditionalService[]
@@ -219,14 +185,6 @@ class Order
      * @var array|Attempt[]
      */
     protected $scheduleAttempts = [];
-
-    /**
-     * @JMS\XmlList(entry="Attempt", inline=true)
-     * @JMS\Type("array<Appwilio\CdekSDK\Common\Attempt>")
-     *
-     * @var array|Attempt[]
-     */
-    public $attempts = [];
 
     /**
      * @JMS\XmlList(entry="Package", inline=true)
@@ -394,6 +352,48 @@ class Order
      * @var string
      */
     protected $ShipperAddress;
+
+    /**
+     * @JMS\SerializedName("Call")
+     * @JMS\Type("Appwilio\CdekSDK\Common\Call")
+     *
+     * @var Call
+     */
+    public $Call;
+
+    /**
+     * @JMS\SerializedName("ReturnOrder")
+     * @JMS\Type("Appwilio\CdekSDK\Common\Order")
+     * @var Order
+     */
+    public $ReturnOrder;
+
+    /**
+     * @JMS\XmlAttribute
+     * @JMS\SerializedName("ActNumber")
+     * @JMS\Type("int")
+     *
+     * @var int
+     */
+    public $ActNumber;
+
+    /**
+     * @JMS\XmlAttribute
+     * @JMS\SerializedName("DeliveryDate")
+     * @JMS\Type("DateTimeImmutable<'Y-m-d\TH:i:sP'>")
+     *
+     * @var \DateTimeImmutable|null
+     */
+    public $DeliveryDate;
+
+    /**
+     * @JMS\XmlAttribute
+     * @JMS\SerializedName("ReturnDispatchNumber")
+     * @JMS\Type("int")
+     *
+     * @var int
+     */
+    public $ReturnDispatchNumber;
 
     public function callCourier(CallCourier $call)
     {
@@ -573,7 +573,7 @@ class Order
         return $this->courierCalls;
     }
 
-    public function getStatus(): Status
+    public function getStatus(): ?Status
     {
         return $this->Status;
     }

@@ -122,4 +122,9 @@ class Package
     {
         return ($this->SizeA * $this->SizeB * $this->SizeC) / 5000;
     }
+
+    public function getItems(): array
+    {
+        return $this->items;
+    }
 }

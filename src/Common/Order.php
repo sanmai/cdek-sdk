@@ -283,12 +283,12 @@ class Order
 
     /**
      * @JMS\XmlAttribute
-     * @JMS\SerializedName("CashOnDelivFac")
+     * @JMS\SerializedName("CashOnDelivFact")
      * @JMS\Type("float")
      *
      * @var float
      */
-    protected $CashOnDelivFac;
+    protected $CashOnDelivFact;
 
     /**
      * @JMS\XmlAttribute
@@ -306,6 +306,15 @@ class Order
      * @var string
      */
     protected $PvzCode;
+
+    /**
+     * @JMS\XmlAttribute
+     * @JMS\SerializedName("pvzCode")
+     * @JMS\Type("string")
+     *
+     * @var string
+     */
+    protected $pvzCode;
 
     /**
      * @JMS\XmlAttribute
@@ -631,9 +640,9 @@ class Order
         return (float) $this->CashOnDeliv;
     }
 
-    public function getCashOnDelivFac(): float
+    public function getCashOnDelivFact(): float
     {
-        return (float) $this->CashOnDelivFac;
+        return (float) $this->CashOnDelivFact;
     }
 
     public function getDeliveryMode(): int
@@ -643,7 +652,7 @@ class Order
 
     public function getPvzCode(): string
     {
-        return (string) $this->PvzCode;
+        return (string) ($this->PvzCode ?: $this->pvzCode);
     }
 
     public function getDeliveryVariant(): string

@@ -81,6 +81,14 @@ class Result
      */
     protected $currency;
 
+    /**
+     * @JMS\SerializedName("services")
+     * @JMS\Type("array")
+     *
+     * @var null|array
+     */
+    protected $services;
+
     public function getPrice(): ?float
     {
         return $this->price;
@@ -119,5 +127,13 @@ class Result
     public function getDeliveryDateMax(): ?\DateTimeImmutable
     {
         return $this->deliveryDateMax;
+    }
+
+    /**
+     * @return array|null
+     */
+    public function getAdditionalServices(): ?array
+    {
+        return $this->services;
     }
 }

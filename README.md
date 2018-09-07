@@ -1,8 +1,6 @@
 # SDK для СДЭК
 
-[![Total Downloads](https://poser.pugx.org/appwilio/cdek-sdk/downloads)](https://packagist.org/packages/appwilio/cdek-sdk)
-[![Latest Stable Version](https://poser.pugx.org/appwilio/cdek-sdk/version)](https://packagist.org/packages/appwilio/cdek-sdk)
-[![License](https://poser.pugx.org/appwilio/cdek-sdk/license)](https://packagist.org/packages/appwilio/cdek-sdk)
+[![Build Status](https://travis-ci.org/sanmai/cdek-sdk.svg?branch=master)](https://travis-ci.org/sanmai/cdek-sdk)
 
 ### Это будет самое полное SDK для cdek.ru
 

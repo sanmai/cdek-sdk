@@ -27,7 +27,6 @@
         "guzzlehttp/guzzle": "^6.3"
     },
     "require-dev": {
-        "illuminate/support": "5.1.* || 5.2.* || 5.3.* || 5.4.* || 5.5.*",
         "phpunit/phpunit": ">=6",
         "php-coveralls/php-coveralls": "^2.0",
         "friendsofphp/php-cs-fixer": "^2.11",

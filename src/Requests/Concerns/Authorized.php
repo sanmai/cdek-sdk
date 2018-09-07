@@ -42,6 +42,9 @@ trait Authorized
      */
     public $secure;
 
+    /**
+     * @suppress PhanTypeMismatchReturn
+     */
     public function date(\DateTimeInterface $date): ShouldAuthorize
     {
         $this->date = $date;
@@ -50,6 +53,9 @@ trait Authorized
         return $this;
     }
 
+    /**
+     * @suppress PhanTypeMismatchReturn
+     */
     public function credentials(string $account, string $secure): ShouldAuthorize
     {
         $this->account = $account;

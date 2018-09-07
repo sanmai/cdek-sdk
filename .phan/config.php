@@ -216,7 +216,9 @@ return [
 
     // Add any issue types (such as 'PhanUndeclaredMethod')
     // to this black-list to inhibit them from being reported.
-    'suppress_issue_types' => [],
+    'suppress_issue_types' => [
+        'PhanUnreferencedUseNormal',
+    ],
 
     // A regular expression to match files to be excluded
     // from parsing and analysis and will not be read at all.
@@ -290,19 +292,10 @@ return [
     // your application should be included in this list.
     'directory_list' => [
         'src',
-        'vendor/codacy/coverage/src',
-        'vendor/friendsofphp/php-cs-fixer/src',
         'vendor/guzzlehttp/guzzle/src',
-        'vendor/illuminate/support',
-        'vendor/infection/infection/src',
         'vendor/jms/serializer/src',
-        'vendor/league/pipeline/src',
-        'vendor/mockery/mockery/library',
-        'vendor/phan/phan/src/Phan',
-        'vendor/php-coveralls/php-coveralls/src',
-        'vendor/phpstan/phpstan/src',
         'vendor/phpunit/phpunit/src',
-        'vendor/vimeo/psalm/src/Psalm',
+        'vendor/psr/http-message/src',
     ],
 
     // A list of individual files to include in analysis

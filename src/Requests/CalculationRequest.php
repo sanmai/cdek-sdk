@@ -88,13 +88,21 @@ class CalculationRequest implements JsonRequest
 
     public function setTariffId($id)
     {
-        $this->tariffList = null;
+        $this->tariffList = [];
 
         $this->tariffId = $id;
 
         return $this;
     }
 
+    /**
+     * @suppress PhanUnusedPublicMethodParameter
+     *
+     * @param mixed $id
+     * @param mixed $priority
+     *
+     * @return \Appwilio\CdekSDK\Requests\CalculationRequest
+     */
     public function addTariffToList($id, $priority)
     {
         $this->tariffId = null;

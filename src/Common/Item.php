@@ -81,6 +81,11 @@ class Item
      */
     protected $DelivAmount;
 
+    /**
+     * @suppress PhanUnusedPublicMethodParameter
+     *
+     * @return \Appwilio\CdekSDK\Common\Item
+     */
     public static function create(string $WareKey, float $Cost, float $Payment, int $Weight, int $Amount, string $Comment)
     {
         return new static(compact('WareKey', 'Cost', 'Payment', 'Weight', 'Amount', 'Comment'));

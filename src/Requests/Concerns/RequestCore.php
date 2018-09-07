@@ -14,11 +14,13 @@ namespace Appwilio\CdekSDK\Requests\Concerns;
 
 trait RequestCore
 {
+    /** @suppress PhanUndeclaredConstant */
     public function getAddress(): string
     {
         return static::ADDRESS;
     }
 
+    /** @suppress PhanUndeclaredConstant */
     public function getMethod(): string
     {
         return static::METHOD;

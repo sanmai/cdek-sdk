@@ -31,7 +31,6 @@
         "php-coveralls/php-coveralls": "^2.0",
         "friendsofphp/php-cs-fixer": "^2.11",
         "codacy/coverage": "^1.4",
-        "league/pipeline": "^1.0|^0.3",
         "phan/phan": "^0.12",
         "infection/infection": "~0.8",
         "phpstan/phpstan": "~0.9",

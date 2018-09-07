@@ -1,0 +1,21 @@
+sudo: false
+
+language: php
+php:
+  - 7.0
+  - 7.1
+  - 7.2
+
+cache:
+  directories:
+    - $HOME/.composer
+    - build/cache
+
+install:
+  - pecl install ast
+  - composer install --prefer-dist
+
+script:
+  - make ci --keep-going COMPOSER='/bin/sh -c composer'
+  - composer validate
+

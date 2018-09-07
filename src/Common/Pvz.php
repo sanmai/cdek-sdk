@@ -22,7 +22,7 @@ use JMS\Serializer\Annotation as JMS;
  */
 class Pvz
 {
-    private const BOOLEAN_FIELDS = ['IsDressingRoom', 'AllowedCod', 'HaveCashless'];
+    const BOOLEAN_FIELDS = ['IsDressingRoom', 'AllowedCod', 'HaveCashless'];
 
     /**
      * @JMS\XmlAttribute

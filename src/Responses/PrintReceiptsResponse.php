@@ -50,7 +50,7 @@ class PrintReceiptsResponse
     /**
      * @JMS\PostDeserialize
      */
-    public function filter(): void
+    public function filter()
     {
         $this->errors = array_merge($this->orders, $this->ordersPrint);
 

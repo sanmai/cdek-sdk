@@ -46,7 +46,10 @@ class City
      */
     protected $Name;
 
-    public function getCode(): ?int
+    /**
+     * @return int|null
+     */
+    public function getCode()
     {
         return $this->Code;
     }

@@ -21,7 +21,11 @@ class Message
     /** @var string|null */
     private $errorCode;
 
-    public function __construct(string $text, ?string $errorCode = null)
+    /**
+     * @param string $text
+     * @param string|null $errorCode
+     */
+    public function __construct(string $text, $errorCode = null)
     {
         $this->text = $text;
         $this->errorCode = $errorCode;

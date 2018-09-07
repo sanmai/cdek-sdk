@@ -89,42 +89,66 @@ class Result
      */
     protected $services;
 
-    public function getPrice(): ?float
+    /**
+     * @return null|float
+     */
+    public function getPrice()
     {
         return $this->price;
     }
 
-    public function getDeliveryPeriodMin(): ?int
+    /**
+     * @return null|int
+     */
+    public function getDeliveryPeriodMin()
     {
         return $this->deliveryPeriodMin;
     }
 
-    public function getDeliveryPeriodMax(): ?int
+    /**
+     * @return null|int
+     */
+    public function getDeliveryPeriodMax()
     {
         return $this->deliveryPeriodMax;
     }
 
-    public function getTariffId(): ?int
+    /**
+     * @return null|int
+     */
+    public function getTariffId()
     {
         return $this->tariffId;
     }
 
-    public function getPriceByCurrency(): ?float
+    /**
+     * @return null|float
+     */
+    public function getPriceByCurrency()
     {
         return $this->priceByCurrency;
     }
 
-    public function getCurrency(): ?string
+    /**
+     * @return null|string
+     */
+    public function getCurrency()
     {
         return $this->currency;
     }
 
-    public function getDeliveryDateMin(): ?\DateTimeImmutable
+    /**
+     * @return null|\DateTimeImmutable
+     */
+    public function getDeliveryDateMin()
     {
         return $this->deliveryDateMin;
     }
 
-    public function getDeliveryDateMax(): ?\DateTimeImmutable
+    /**
+     * @return null|\DateTimeImmutable
+     */
+    public function getDeliveryDateMax()
     {
         return $this->deliveryDateMax;
     }
@@ -132,7 +156,7 @@ class Result
     /**
      * @return array|null
      */
-    public function getAdditionalServices(): ?array
+    public function getAdditionalServices()
     {
         return $this->services;
     }

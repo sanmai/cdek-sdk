@@ -33,8 +33,8 @@ class PrintReceiptsRequest implements XmlRequest, ShouldAuthorize
 {
     use Authorized, Fillable, OrdersAware, RequestCore;
 
-    protected const METHOD = 'POST';
-    protected const ADDRESS = 'https://integration.cdek.ru/orders_print.php';
+    const METHOD = 'POST';
+    const ADDRESS = 'https://integration.cdek.ru/orders_print.php';
 
     public function addOrder(Order $order)
     {

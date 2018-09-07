@@ -447,7 +447,7 @@ class Order
      *
      * @return int|null
      */
-    public function getSendCityCode(): ?int
+    public function getSendCityCode()
     {
         return $this->SendCity ? $this->SendCity->getCode() : null;
     }
@@ -460,7 +460,7 @@ class Order
      *
      * @return null|string
      */
-    public function getSendCityPostCode(): ?string
+    public function getSendCityPostCode()
     {
         return $this->SendCity ? $this->SendCity->getPostCode() : null;
     }
@@ -473,7 +473,7 @@ class Order
      *
      * @return int|null
      */
-    public function getRecCityCode(): ?int
+    public function getRecCityCode()
     {
         return $this->RecCity ? $this->RecCity->getCode() : null;
     }
@@ -486,7 +486,7 @@ class Order
      *
      * @return null|string
      */
-    public function getRecCityPostCode(): ?string
+    public function getRecCityPostCode()
     {
         return $this->RecCity ? $this->RecCity->getPostCode() : null;
     }
@@ -573,7 +573,10 @@ class Order
         return $this->courierCalls;
     }
 
-    public function getStatus(): ?Status
+    /**
+     * @return Status|null
+     */
+    public function getStatus()
     {
         return $this->Status;
     }

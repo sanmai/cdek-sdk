@@ -50,7 +50,7 @@ class DeliveryResponse
     /**
      * @JMS\PostDeserialize
      */
-    public function filterOrders(): void
+    public function filterOrders()
     {
         $messages = array_filter($this->orders, function (Order $order) {
             return (bool) $order->getMessage();

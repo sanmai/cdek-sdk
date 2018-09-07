@@ -25,12 +25,12 @@ class PvzListRequest implements ParamRequest
 {
     use RequestCore;
 
-    public const TYPE_PVZ = 'PVZ';
-    public const TYPE_ALL = 'ALL';
-    public const TYPE_POSTOMAT = 'POSTOMAT';
+    const TYPE_PVZ = 'PVZ';
+    const TYPE_ALL = 'ALL';
+    const TYPE_POSTOMAT = 'POSTOMAT';
 
-    protected const METHOD = 'GET';
-    protected const ADDRESS = 'https://integration.cdek.ru/pvzlist.php';
+    const METHOD = 'GET';
+    const ADDRESS = 'https://integration.cdek.ru/pvzlist.php';
 
     /** @var string */
     protected $type = self::TYPE_PVZ;

@@ -35,6 +35,9 @@
             "Appwilio\\CdekSDK\\": "src/"
         }
     },
+    "autoload-dev": {
+        "psr-4": {"Tests\\Appwilio\\CdekSDK\\": "tests/"}
+    },
     "scripts": {
         "test": "vendor/bin/phpunit"
     }

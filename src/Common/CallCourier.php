@@ -1,6 +1,5 @@
 <?php
-
-/**
+/*
  * This file is part of Cdek SDK package.
  *
  * © Appwilio (http://appwilio.com), greabock (https://github.com/greabock), JhaoDa (https://github.com/jhaoda)
@@ -69,7 +68,7 @@ class CallCourier
      * @JMS\SerializedName("SendCityCode")
      * @JMS\Type("integer")
      *
-     * @var integer
+     * @var int
      */
     public $SendCityCode;
 

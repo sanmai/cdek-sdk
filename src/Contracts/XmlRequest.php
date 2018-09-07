@@ -1,6 +1,5 @@
 <?php
-
-/**
+/*
  * This file is part of Cdek SDK package.
  *
  * © Appwilio (http://appwilio.com), greabock (https://github.com/greabock), JhaoDa (https://github.com/jhaoda)
@@ -15,5 +14,4 @@ namespace Appwilio\CdekSDK\Contracts;
 
 interface XmlRequest extends Request
 {
-
 }

@@ -1,6 +1,5 @@
 <?php
-
-/**
+/*
  * This file is part of Cdek SDK package.
  *
  * © Appwilio (http://appwilio.com), greabock (https://github.com/greabock), JhaoDa (https://github.com/jhaoda)
@@ -82,7 +81,7 @@ class Item
      */
     protected $DelivAmount;
 
-    public static function create(string $WareKey, float $Cost, float $Payment,  int $Weight, int $Amount, string $Comment)
+    public static function create(string $WareKey, float $Cost, float $Payment, int $Weight, int $Amount, string $Comment)
     {
         return new static(compact('WareKey', 'Cost', 'Payment', 'Weight', 'Amount', 'Comment'));
     }

@@ -1,6 +1,5 @@
 <?php
-
-/**
+/*
  * This file is part of Cdek SDK package.
  *
  * © Appwilio (http://appwilio.com), greabock (https://github.com/greabock), JhaoDa (https://github.com/jhaoda)
@@ -9,16 +8,14 @@
  * file that was distributed with this source code.
  */
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace Appwilio\CdekSDK\Common;
 
 use JMS\Serializer\Annotation as JMS;
 
 /**
- * Class Pvz
- *
- * @package Appwilio\CdekSDK\Common
+ * Class Pvz.
  */
 class Pvz
 {
@@ -245,7 +242,7 @@ class Pvz
      * @JMS\SerializedName("WeightLimit")
      * @JMS\Type("Appwilio\CdekSDK\Common\WeightLimit")
      *
-     * @var  WeightLimit
+     * @var WeightLimit
      */
     public $WeightLimit;
 
@@ -255,7 +252,7 @@ class Pvz
     public function postDeserialize()
     {
         foreach (self::BOOLEAN_FIELDS as $field) {
-            $this->$field = $this->$field === 'есть';
+            $this->{$field} = $this->{$field} === 'есть';
         }
     }
 }

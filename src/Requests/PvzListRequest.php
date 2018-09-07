@@ -1,6 +1,5 @@
 <?php
-
-/**
+/*
  * This file is part of Cdek SDK package.
  *
  * © Appwilio (http://appwilio.com), greabock (https://github.com/greabock), JhaoDa (https://github.com/jhaoda)
@@ -17,9 +16,7 @@ use Appwilio\CdekSDK\Contracts\ParamRequest;
 use Appwilio\CdekSDK\Requests\Concerns\RequestCore;
 
 /**
- * Class PvzListRequest
- *
- * @package Appwilio\CdekSDK\Requests
+ * Class PvzListRequest.
  */
 class PvzListRequest implements ParamRequest
 {
@@ -125,14 +122,14 @@ class PvzListRequest implements ParamRequest
     public function getParams(): array
     {
         return [
-            'type'           => $this->type,
-            'cityid'         => $this->cityId,
-            'regionid'       => $this->regionId,
-            'countryid'      => $this->countryId,
-            'citypostcode'   => $this->cityPostCode,
-            'havecashles'    => $this->cashless,
-            'weightmax'      => $this->maxWeight,
-            'allowedcod'     => $this->codAllowed,
+            'type' => $this->type,
+            'cityid' => $this->cityId,
+            'regionid' => $this->regionId,
+            'countryid' => $this->countryId,
+            'citypostcode' => $this->cityPostCode,
+            'havecashles' => $this->cashless,
+            'weightmax' => $this->maxWeight,
+            'allowedcod' => $this->codAllowed,
             'isdressingroom' => $this->dressingRoom,
         ];
     }

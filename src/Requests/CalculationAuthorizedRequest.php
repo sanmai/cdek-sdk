@@ -1,6 +1,5 @@
 <?php
-
-/**
+/*
  * This file is part of Cdek SDK package.
  *
  * © Appwilio (http://appwilio.com), greabock (https://github.com/greabock), JhaoDa (https://github.com/jhaoda)
@@ -17,9 +16,7 @@ use Appwilio\CdekSDK\Contracts\ShouldAuthorize;
 use Appwilio\CdekSDK\Requests\Concerns\Authorized;
 
 /**
- * Class CalculationAuthorizedRequest
- *
- * @package Appwilio\CdekSDK\Requests
+ * Class CalculationAuthorizedRequest.
  */
 class CalculationAuthorizedRequest extends CalculationRequest implements ShouldAuthorize
 {
@@ -28,8 +25,8 @@ class CalculationAuthorizedRequest extends CalculationRequest implements ShouldA
     public function getBody(): array
     {
         return array_merge(parent::getBody(), [
-            'secure'      => $this->secure,
-            'authLogin'   => $this->account,
+            'secure' => $this->secure,
+            'authLogin' => $this->account,
             'dateExecute' => $this->date->format('Y-m-d'),
         ]);
     }

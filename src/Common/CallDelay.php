@@ -1,6 +1,5 @@
 <?php
-
-/**
+/*
  * This file is part of Cdek SDK package.
  *
  * © Appwilio (http://appwilio.com), greabock (https://github.com/greabock), JhaoDa (https://github.com/jhaoda)
@@ -16,9 +15,7 @@ namespace Appwilio\CdekSDK\Common;
 use JMS\Serializer\Annotation as JMS;
 
 /**
- * Class CallDelay
- *
- * @package Appwilio\CdekSDK\Responses\StatusReport
+ * Class CallDelay.
  */
 class CallDelay
 {

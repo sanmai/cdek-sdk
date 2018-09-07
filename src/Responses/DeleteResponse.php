@@ -1,6 +1,5 @@
 <?php
-
-/**
+/*
  * This file is part of Cdek SDK package.
  *
  * © Appwilio (http://appwilio.com), greabock (https://github.com/greabock), JhaoDa (https://github.com/jhaoda)
@@ -14,11 +13,8 @@ declare(strict_types=1);
 namespace Appwilio\CdekSDK\Responses;
 
 /**
- * Class DeleteResponse
- *
- * @package Appwilio\CdekSDK\Responses
+ * Class DeleteResponse.
  */
 class DeleteResponse extends DeliveryResponse
 {
-
 }

@@ -1,20 +1,25 @@
 <?php
-
-/**
- * This file is part of CdekPost SDK package.
+/*
+ * This file is part of Cdek SDK package.
  *
  * © Appwilio (http://appwilio.com), greabock (https://github.com/greabock), JhaoDa (https://github.com/jhaoda)
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
+
 declare(strict_types=1);
 
-use PHPUnit\Framework\Assert;
-use PHPUnit\Framework\TestCase;
+namespace Tests\Appwilio\CdekSDK;
+
 use Appwilio\CdekSDK\CdekClient;
 use GuzzleHttp\Client as HttpClient;
+use PHPUnit\Framework\Assert;
+use PHPUnit\Framework\TestCase;
 
+/**
+ * @coversNothing
+ */
 class CdekClientTestCase extends TestCase
 {
     public function test_client_is_instantiable()
@@ -29,8 +34,7 @@ class CdekClientTestCase extends TestCase
     {
         $mock = $this->createHttpClientMock();
 
-        return new class($mock) extends CdekClient
-        {
+        return new class($mock) extends CdekClient {
             protected $httpClient;
 
             public function __construct($mock)

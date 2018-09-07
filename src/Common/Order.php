@@ -1,6 +1,5 @@
 <?php
-
-/**
+/*
  * This file is part of Cdek SDK package.
  *
  * © Appwilio (http://appwilio.com), greabock (https://github.com/greabock), JhaoDa (https://github.com/jhaoda)
@@ -16,9 +15,7 @@ namespace Appwilio\CdekSDK\Common;
 use JMS\Serializer\Annotation as JMS;
 
 /**
- * Class Order
- *
- * @package Appwilio\CdekSDK\Common
+ * Class Order.
  */
 class Order
 {
@@ -92,7 +89,7 @@ class Order
      * @JMS\SerializedName("TariffTypeCode")
      * @JMS\Type("integer")
      *
-     * @var integer
+     * @var int
      */
     protected $TariffTypeCode;
 
@@ -166,6 +163,7 @@ class Order
     /**
      * @JMS\XmlList(entry="AddedService", inline=true)
      * @JMS\Type("array<Appwilio\CdekSDK\Common\AdditionalService>")
+     *
      * @var array|AdditionalService[]
      */
     protected $addedServices = [];
@@ -173,6 +171,7 @@ class Order
     /**
      * @JMS\XmlList(entry="AddService", inline=true)
      * @JMS\Type("array<Appwilio\CdekSDK\Common\AdditionalService>")
+     *
      * @var array|AdditionalService[]
      */
     protected $additionalServices = [];
@@ -252,6 +251,7 @@ class Order
      * @JMS\XmlAttribute
      * @JMS\SerializedName("DeliveryMode")
      * @JMS\Type("int")
+     *
      * @var int
      */
     protected $DeliveryMode;
@@ -364,6 +364,7 @@ class Order
     /**
      * @JMS\SerializedName("ReturnOrder")
      * @JMS\Type("Appwilio\CdekSDK\Common\Order")
+     *
      * @var Order
      */
     public $ReturnOrder;

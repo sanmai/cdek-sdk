@@ -1,6 +1,5 @@
 <?php
-
-/**
+/*
  * This file is part of Cdek SDK package.
  *
  * © Appwilio (http://appwilio.com), greabock (https://github.com/greabock), JhaoDa (https://github.com/jhaoda)
@@ -13,14 +12,12 @@ declare(strict_types=1);
 
 namespace Appwilio\CdekSDK\Responses;
 
-use JMS\Serializer\Annotation as JMS;
 use Appwilio\CdekSDK\Responses\Types\Error;
 use Appwilio\CdekSDK\Responses\Types\Result;
+use JMS\Serializer\Annotation as JMS;
 
 /**
- * Class CalculationResponse
- *
- * @package Appwilio\CdekSDK\Responses
+ * Class CalculationResponse.
  */
 class CalculationResponse
 {
@@ -42,7 +39,7 @@ class CalculationResponse
 
     public function hasErrors(): bool
     {
-        return ! empty($this->errors);
+        return !empty($this->errors);
     }
 
     public function getErrors(): array

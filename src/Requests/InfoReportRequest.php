@@ -1,6 +1,5 @@
 <?php
-
-/**
+/*
  * This file is part of Cdek SDK package.
  *
  * © Appwilio (http://appwilio.com), greabock (https://github.com/greabock), JhaoDa (https://github.com/jhaoda)
@@ -13,21 +12,19 @@ declare(strict_types=1);
 
 namespace Appwilio\CdekSDK\Requests;
 
-use Appwilio\CdekSDK\Common\Order;
 use Appwilio\CdekSDK\Common\ChangePeriod;
-use Appwilio\CdekSDK\Contracts\XmlRequest;
+use Appwilio\CdekSDK\Common\Order;
 use Appwilio\CdekSDK\Contracts\ShouldAuthorize;
+use Appwilio\CdekSDK\Contracts\XmlRequest;
 use Appwilio\CdekSDK\Requests\Concerns\Authorized;
 use Appwilio\CdekSDK\Requests\Concerns\OrdersAware;
 use Appwilio\CdekSDK\Requests\Concerns\RequestCore;
 use JMS\Serializer\Annotation as JMS;
 
 /**
- * Class InfoReportRequest
+ * Class InfoReportRequest.
  *
  * @JMS\XmlRoot(name="InfoRequest")
- *
- * @package Appwilio\CdekSDK\Requests
  */
 class InfoReportRequest implements XmlRequest, ShouldAuthorize
 {
@@ -39,6 +36,7 @@ class InfoReportRequest implements XmlRequest, ShouldAuthorize
     /**
      * @JMS\SerializedName("ChangePeriod")
      * @JMS\Type("string")
+     *
      * @var ChangePeriod|null
      */
     protected $ChangePeriod;

@@ -1,6 +1,5 @@
 <?php
-
-/**
+/*
  * This file is part of Cdek SDK package.
  *
  * © Appwilio (http://appwilio.com), greabock (https://github.com/greabock), JhaoDa (https://github.com/jhaoda)
@@ -13,20 +12,20 @@ declare(strict_types=1);
 
 namespace Appwilio\CdekSDK;
 
-use JMS\Serializer\Serializer;
-use JMS\Serializer\SerializerBuilder;
-use JMS\Serializer\Handler\HandlerRegistry;
-use GuzzleHttp\Client as GuzzleClient;
-use Psr\Http\Message\ResponseInterface;
-use Appwilio\CdekSDK\Contracts\Request;
-use Appwilio\CdekSDK\Contracts\XmlRequest;
 use Appwilio\CdekSDK\Contracts\JsonRequest;
 use Appwilio\CdekSDK\Contracts\ParamRequest;
+use Appwilio\CdekSDK\Contracts\Request;
 use Appwilio\CdekSDK\Contracts\ShouldAuthorize;
+use Appwilio\CdekSDK\Contracts\XmlRequest;
 use Appwilio\CdekSDK\Serialization\NullableDateTimeHandler;
+use GuzzleHttp\Client as GuzzleClient;
+use JMS\Serializer\Handler\HandlerRegistry;
+use JMS\Serializer\Serializer;
+use JMS\Serializer\SerializerBuilder;
+use Psr\Http\Message\ResponseInterface;
 
 /**
- * Class CdekClient
+ * Class CdekClient.
  *
  * @method Responses\DeleteResponse       sendDeleteRequest(Requests\DeleteRequest $request)
  * @method Responses\PvzListResponse      sendPvzListRequest(Requests\PvzListRequest $request)
@@ -35,22 +34,20 @@ use Appwilio\CdekSDK\Serialization\NullableDateTimeHandler;
  * @method Responses\CalculationResponse  sendCalculationRequest(Requests\CalculationRequest $request)
  * @method Responses\StatusReportResponse sendStatusReportRequest(Requests\StatusReportRequest $request)
  * @method ResponseInterface              sendPrintReceiptsRequest(Requests\PrintReceiptsRequest $request)
- *
- * @package Appwilio\CdekSDK
  */
 class CdekClient
 {
     private $maps = [
-        'xml'  => [
-            Requests\DeleteRequest::class        => Responses\DeleteResponse::class,
-            Requests\PvzListRequest::class       => Responses\PvzListResponse::class,
-            Requests\DeliveryRequest::class      => Responses\DeliveryResponse::class,
-            Requests\InfoReportRequest::class    => Responses\InfoReportResponse::class,
-            Requests\StatusReportRequest::class  => Responses\StatusReportResponse::class,
-            Requests\PrintReceiptsRequest::class => Responses\PrintReceiptsResponse::class
+        'xml' => [
+            Requests\DeleteRequest::class => Responses\DeleteResponse::class,
+            Requests\PvzListRequest::class => Responses\PvzListResponse::class,
+            Requests\DeliveryRequest::class => Responses\DeliveryResponse::class,
+            Requests\InfoReportRequest::class => Responses\InfoReportResponse::class,
+            Requests\StatusReportRequest::class => Responses\StatusReportResponse::class,
+            Requests\PrintReceiptsRequest::class => Responses\PrintReceiptsResponse::class,
         ],
         'json' => [
-            Requests\CalculationRequest::class           => Responses\CalculationResponse::class,
+            Requests\CalculationRequest::class => Responses\CalculationResponse::class,
             Requests\CalculationAuthorizedRequest::class => Responses\CalculationResponse::class,
         ],
     ];
@@ -107,7 +104,7 @@ class CdekClient
 
     private function deserialize(Request $request, ResponseInterface $response)
     {
-        if (! $this->isTextResponse($response)) {
+        if (!$this->isTextResponse($response)) {
             return $response;
         }
 
@@ -141,28 +138,28 @@ class CdekClient
         if ($request instanceof ParamRequest) {
             if ($request->getMethod() === 'GET') {
                 return [
-                    'query' => $request->getParams()
+                    'query' => $request->getParams(),
                 ];
             }
 
             return [
-                'form_params' => $request->getParams()
+                'form_params' => $request->getParams(),
             ];
         }
 
         if ($request instanceof XmlRequest) {
             return [
                 'form_params' => [
-                    'xml_request' => $this->serializer->serialize($request, 'xml')
-                ]
+                    'xml_request' => $this->serializer->serialize($request, 'xml'),
+                ],
             ];
         }
 
         if ($request instanceof JsonRequest) {
             return [
-                'body'    => json_encode($request->getBody()),
+                'body' => json_encode($request->getBody()),
                 'headers' => [
-                    'Content-Type' => 'application/json'
+                    'Content-Type' => 'application/json',
                 ],
             ];
         }

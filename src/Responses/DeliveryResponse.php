@@ -1,6 +1,5 @@
 <?php
-
-/**
+/*
  * This file is part of Cdek SDK package.
  *
  * © Appwilio (http://appwilio.com), greabock (https://github.com/greabock), JhaoDa (https://github.com/jhaoda)
@@ -18,9 +17,7 @@ use Appwilio\CdekSDK\Responses\Types\Message;
 use JMS\Serializer\Annotation as JMS;
 
 /**
- * Class DeliveryResponse
- *
- * @package Appwilio\CdekSDK\Responses
+ * Class DeliveryResponse.
  */
 class DeliveryResponse
 {

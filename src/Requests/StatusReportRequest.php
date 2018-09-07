@@ -1,6 +1,5 @@
 <?php
-
-/**
+/*
  * This file is part of Cdek SDK package.
  *
  * © Appwilio (http://appwilio.com), greabock (https://github.com/greabock), JhaoDa (https://github.com/jhaoda)
@@ -13,20 +12,18 @@ declare(strict_types=1);
 
 namespace Appwilio\CdekSDK\Requests;
 
-use Appwilio\CdekSDK\Common\Order;
 use Appwilio\CdekSDK\Common\ChangePeriod;
-use Appwilio\CdekSDK\Contracts\XmlRequest;
+use Appwilio\CdekSDK\Common\Order;
 use Appwilio\CdekSDK\Contracts\ShouldAuthorize;
+use Appwilio\CdekSDK\Contracts\XmlRequest;
 use Appwilio\CdekSDK\Requests\Concerns\Authorized;
 use Appwilio\CdekSDK\Requests\Concerns\RequestCore;
 use JMS\Serializer\Annotation as JMS;
 
 /**
- * Class StatusReportRequest
+ * Class StatusReportRequest.
  *
  * @JMS\XmlRoot(name="StatusReport")
- *
- * @package Appwilio\CdekSDK\Requests
  */
 class StatusReportRequest implements XmlRequest, ShouldAuthorize
 {
@@ -39,6 +36,7 @@ class StatusReportRequest implements XmlRequest, ShouldAuthorize
      * @JMS\XmlAttribute
      * @JMS\SerializedName("ShowHistory")
      * @JMS\Type("int")
+     *
      * @var int
      */
     protected $ShowHistory;
@@ -47,6 +45,7 @@ class StatusReportRequest implements XmlRequest, ShouldAuthorize
      * @JMS\XmlAttribute
      * @JMS\SerializedName("ShowReturnOrder")
      * @JMS\Type("int")
+     *
      * @var int
      */
     protected $ShowReturnOrder;
@@ -55,6 +54,7 @@ class StatusReportRequest implements XmlRequest, ShouldAuthorize
      * @JMS\XmlAttribute
      * @JMS\SerializedName("ShowReturnOrder")
      * @JMS\Type("int")
+     *
      * @var int
      */
     protected $ShowReturnOrderHistory;
@@ -62,12 +62,14 @@ class StatusReportRequest implements XmlRequest, ShouldAuthorize
     /**
      * @JMS\XmlList(inline = true, entry = "Order")
      * @JMS\Type("array<Appwilio\CdekSDK\Common\Order>")
+     *
      * @var array|Order[]
      */
     protected $orders = [];
 
     /**
      * @JMS\SerializedName("ChangePeriod")
+     *
      * @var ChangePeriod|null
      */
     protected $ChangePeriod;

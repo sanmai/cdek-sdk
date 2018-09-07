@@ -1,6 +1,5 @@
 <?php
-
-/**
+/*
  * This file is part of Cdek SDK package.
  *
  * © Appwilio (http://appwilio.com), greabock (https://github.com/greabock), JhaoDa (https://github.com/jhaoda)
@@ -33,7 +32,7 @@ class Status
      * @JMS\SerializedName("Code")
      * @JMS\Type("integer")
      *
-     * @var integer
+     * @var int
      */
     protected $Code;
 
@@ -51,7 +50,7 @@ class Status
      * @JMS\SerializedName("CityCode")
      * @JMS\Type("integer")
      *
-     * @var integer
+     * @var int
      */
     protected $CityCode;
 

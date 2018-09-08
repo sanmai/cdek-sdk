@@ -21,7 +21,7 @@ trait Authorized
      * @JMS\SerializedName("Date")
      * @JMS\Type("DateTimeImmutable<'Y-m-d'>")
      *
-     * @var \DateTimeImmutable
+     * @var \DateTimeInterface
      */
     public $date;
 

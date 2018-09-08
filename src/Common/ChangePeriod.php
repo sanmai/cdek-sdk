@@ -21,7 +21,7 @@ class ChangePeriod
      * @JMS\SerializedName("DateBeg")
      * @JMS\Type("DateTimeImmutable<'Y-m-d\TH:i:sP'>")
      *
-     * @var \DateTimeImmutable
+     * @var \DateTimeInterface
      */
     public $DateBeg;
 
@@ -30,7 +30,7 @@ class ChangePeriod
      * @JMS\SerializedName("DateEnd")
      * @JMS\Type("DateTimeImmutable<'Y-m-d\TH:i:sP'>")
      *
-     * @var \DateTimeImmutable
+     * @var \DateTimeInterface
      */
     public $DateEnd;
 

@@ -101,6 +101,6 @@ $response = $client->sendStatusReportRequest($request);
 - [greabock](https://github.com/greabock)
 - [JhaoDa](https://github.com/jhaoda)
 
-## Лиценция
+## Лицензия
 
 Данный SDK распространяется под лицензией [MIT](http://opensource.org/licenses/MIT).

@@ -2,7 +2,7 @@
     "name": "sanmai/cdek-sdk",
     "keywords": ["CDEK", "sdk", "delivery", "СДЭК", "служба доставки"],
     "homepage": "https://github.com/sanmai/cdek-sdk",
-    "description": "SDK for CDEK API (cdek.ru)",
+    "description": "PHP SDK для API СДЭК",
     "type": "library",
     "license": "MIT",
     "authors": [

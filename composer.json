@@ -13,6 +13,11 @@
         {
             "name": "JhaoDa",
             "role": "Developer"
+        },
+        {
+            "name": "Alexey Kopytko",
+            "email": "alexey@kopytko.com",
+            "homepage": "https://www.alexeykopytko.com"
         }
     ],
     "require": {

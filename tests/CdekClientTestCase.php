@@ -18,7 +18,7 @@ use PHPUnit\Framework\Assert;
 use PHPUnit\Framework\TestCase;
 
 /**
- * @coversNothing
+ * @covers \Appwilio\CdekSDK\CdekClient
  */
 class CdekClientTestCase extends TestCase
 {

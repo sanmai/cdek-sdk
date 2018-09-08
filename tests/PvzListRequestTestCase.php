@@ -17,7 +17,7 @@ use PHPUnit\Framework\Assert;
 use PHPUnit\Framework\TestCase;
 
 /**
- * @coversNothing
+ * @covers \Appwilio\CdekSDK\Requests\PvzListRequest
  */
 class PvzListRequestTestCase extends TestCase
 {

@@ -21,37 +21,16 @@
 
 ## Установка
 
-> Минимальные требования — PHP 7.1+.
+> Минимальные требования — PHP 7.0+.
 
 ```bash
-composer require appwilio/cdek-sdk
+composer require sanmai/cdek-sdk
 ```
 
-### Laravel 5.1+
+## Конфигурация
+
 ```php
-// config/app.php
-
-    'providers' => [
-        // ...
-        
-        \Appwilio\CdekSDK\LaravelCdekServiceProvider::class
-        
-        // ...
-    ]
-    
-// config/services.php
-
-    'cdek' => [
-        'account'  => env('CDEK_ACCOUNT', ''),
-        'password' => env('CDEK_PASSWORD', ''),
-    ],
-```
-
-### Иные фреймворки/без фреймворка
-```php
-require_once '../vendor/autoload.php';
-
-\Doctrine\Common\Annotations\AnnotationRegistry::registerLoader('class_exists');
+require_once 'vendor/autoload.php';
 
 $client = new \Appwilio\CdekSDK\CdekClient('account', 'password');
 ```
@@ -96,9 +75,13 @@ $response = $client->sendStatusReportRequest($request);
 
 ## Авторы
 
+Эта библиотека - хард форк библиотеки [appwilio/cdek-sdk](https://github.com/appwilio/cdek-sdk) с поддержкой более старых версий PHP. Авторы-создатели исходной библиотеки:
+
 - [greabock](https://github.com/greabock)
 - [JhaoDa](https://github.com/jhaoda)
 
-## Лиценция
+Обратная совместимость с исходной библиотекой не гарантируется, но фичи и исправления будут переноситься по возможности.
+
+## Лицензия
 
 Данный SDK распространяется под лицензией [MIT](http://opensource.org/licenses/MIT).

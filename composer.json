@@ -1,8 +1,8 @@
 {
-    "name": "appwilio/cdek-sdk",
-    "keywords": ["CDEK", "sdk", "delivery"],
-    "homepage": "https://github.com/appwilio/cdek-sdk",
-    "description": "CDEK API SDK (cdek.ru)",
+    "name": "sanmai/cdek-sdk",
+    "keywords": ["CDEK", "sdk", "delivery", "СДЭК", "служба доставки"],
+    "homepage": "https://github.com/sanmai/cdek-sdk",
+    "description": "SDK for CDEK API (cdek.ru)",
     "type": "library",
     "license": "MIT",
     "authors": [
@@ -17,10 +17,6 @@
             "role": "Developer"
         }
     ],
-    "support": {
-        "email": "jhaoda@gmail.com",
-        "issues": "https://github.com/appwilio/cdek-sdk/issues"
-    },
     "require": {
         "php": ">=7.0",
         "jms/serializer": "^1.8",
@@ -43,7 +39,9 @@
         }
     },
     "autoload-dev": {
-        "psr-4": {"Tests\\Appwilio\\CdekSDK\\": "tests/"}
+        "psr-4": {
+            "Tests\\Appwilio\\CdekSDK\\": "tests/"
+        }
     },
     "scripts": {
         "test": "vendor/bin/phpunit"

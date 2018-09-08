@@ -25,7 +25,7 @@ class PrintReceiptsResponse
      * @JMS\XmlList(entry = "Order", inline = true)
      * @JMS\Type("array<Appwilio\CdekSDK\Responses\Types\PrintReceiptsError>")
      *
-     * @var array|Order[]
+     * @var array|PrintReceiptsError[]
      */
     private $orders = [];
 
@@ -33,7 +33,7 @@ class PrintReceiptsResponse
      * @JMS\XmlList(entry = "OrdersPrint", inline = true)
      * @JMS\Type("array<Appwilio\CdekSDK\Responses\Types\PrintReceiptsError>")
      *
-     * @var array|Order[]
+     * @var array|PrintReceiptsError[]
      */
     private $ordersPrint = [];
 

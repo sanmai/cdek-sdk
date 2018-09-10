@@ -1,4 +1,4 @@
-# SDK для СДЭК
+# PHP SDK для API СДЭК
 
 [![Build Status](https://travis-ci.org/sanmai/cdek-sdk.svg?branch=master)](https://travis-ci.org/sanmai/cdek-sdk)
 

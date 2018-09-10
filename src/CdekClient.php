@@ -38,21 +38,6 @@ use Psr\Http\Message\ResponseInterface;
  */
 final class CdekClient
 {
-    private $maps = [
-        'xml' => [
-            Requests\DeleteRequest::class => Responses\DeleteResponse::class,
-            Requests\PvzListRequest::class => Responses\PvzListResponse::class,
-            Requests\DeliveryRequest::class => Responses\DeliveryResponse::class,
-            Requests\InfoReportRequest::class => Responses\InfoReportResponse::class,
-            Requests\StatusReportRequest::class => Responses\StatusReportResponse::class,
-            Requests\PrintReceiptsRequest::class => Responses\PrintReceiptsResponse::class,
-        ],
-        'json' => [
-            Requests\CalculationRequest::class => Responses\CalculationResponse::class,
-            Requests\CalculationAuthorizedRequest::class => Responses\CalculationResponse::class,
-        ],
-    ];
-
     /** @var ClientInterface */
     private $http;
 
@@ -109,15 +94,7 @@ final class CdekClient
             return $response;
         }
 
-        $class = \get_class($request);
-
-        foreach ($this->maps as $format => $map) {
-            if (array_key_exists($class, $map)) {
-                return $this->serializer->deserialize((string) $response->getBody(), $map[$class], $format);
-            }
-        }
-
-        throw new \Exception("Class [$class] not mapped.");
+        return $this->serializer->deserialize((string) $response->getBody(), $request->getResponseClassName(), $request->getSerializationFormat());
     }
 
     private function getSecure(\DateTimeInterface $date): string

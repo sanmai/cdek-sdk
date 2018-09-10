@@ -14,7 +14,14 @@ namespace Appwilio\CdekSDK\Contracts;
 
 interface Request
 {
+    const SERIALIZATION_JSON = 'json';
+    const SERIALIZATION_XML = 'xml';
+
     public function getMethod(): string;
 
     public function getAddress(): string;
+
+    public function getResponseClassName(): string;
+
+    public function getSerializationFormat(): string;
 }

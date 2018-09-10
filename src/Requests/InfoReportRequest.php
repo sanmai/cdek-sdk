@@ -19,6 +19,7 @@ use Appwilio\CdekSDK\Contracts\XmlRequest;
 use Appwilio\CdekSDK\Requests\Concerns\Authorized;
 use Appwilio\CdekSDK\Requests\Concerns\OrdersAware;
 use Appwilio\CdekSDK\Requests\Concerns\RequestCore;
+use Appwilio\CdekSDK\Responses\InfoReportResponse;
 use JMS\Serializer\Annotation as JMS;
 
 /**
@@ -32,6 +33,7 @@ final class InfoReportRequest implements XmlRequest, ShouldAuthorize
 
     const METHOD = 'POST';
     const ADDRESS = 'https://integration.cdek.ru/info_report.php';
+    const RESPONSE = InfoReportResponse::class;
 
     /**
      * @JMS\SerializedName("ChangePeriod")

@@ -12,6 +12,7 @@ declare(strict_types=1);
 
 namespace Appwilio\CdekSDK\Requests;
 
+use Appwilio\CdekSDK\Responses\DeleteResponse;
 use JMS\Serializer\Annotation as JMS;
 
 /**
@@ -22,4 +23,5 @@ use JMS\Serializer\Annotation as JMS;
 final class DeleteRequest extends DeliveryRequest
 {
     const ADDRESS = 'https://integration.cdek.ru/delete_orders.php';
+    const RESPONSE = DeleteResponse::class;
 }

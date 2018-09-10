@@ -13,12 +13,14 @@ declare(strict_types=1);
 namespace Appwilio\CdekSDK\Requests;
 
 use Appwilio\CdekSDK\Contracts\ParamRequest;
+use Appwilio\CdekSDK\Contracts\XmlRequest;
 use Appwilio\CdekSDK\Requests\Concerns\RequestCore;
+use Appwilio\CdekSDK\Responses\PvzListResponse;
 
 /**
  * Class PvzListRequest.
  */
-final class PvzListRequest implements ParamRequest
+final class PvzListRequest implements ParamRequest, XmlRequest
 {
     use RequestCore;
 
@@ -28,6 +30,7 @@ final class PvzListRequest implements ParamRequest
 
     const METHOD = 'GET';
     const ADDRESS = 'https://integration.cdek.ru/pvzlist.php';
+    const RESPONSE = PvzListResponse::class;
 
     /** @var string */
     protected $type = self::TYPE_PVZ;

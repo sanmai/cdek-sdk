@@ -32,6 +32,7 @@ use Appwilio\CdekSDK\Common\Reason;
 use Appwilio\CdekSDK\Common\State;
 use Appwilio\CdekSDK\Common\Status;
 use Appwilio\CdekSDK\Common\WeightLimit;
+use Appwilio\CdekSDK\Contracts\Request;
 use Appwilio\CdekSDK\Requests\CalculationAuthorizedRequest;
 use Appwilio\CdekSDK\Requests\CalculationRequest;
 use Appwilio\CdekSDK\Requests\DeleteRequest;
@@ -117,5 +118,46 @@ class SanityTest extends TestCase
     public function test_class_exist($className)
     {
         $this->assertTrue(class_exists($className));
+    }
+
+    private $legacyMaps = [
+        'xml' => [
+            DeleteRequest::class => DeleteResponse::class,
+            PvzListRequest::class => PvzListResponse::class,
+            DeliveryRequest::class => DeliveryResponse::class,
+            InfoReportRequest::class => InfoReportResponse::class,
+            StatusReportRequest::class => StatusReportResponse::class,
+            PrintReceiptsRequest::class => PrintReceiptsResponse::class,
+        ],
+        'json' => [
+            CalculationRequest::class => CalculationResponse::class,
+            CalculationAuthorizedRequest::class => CalculationResponse::class,
+        ],
+    ];
+
+    public function legacyMaps(): \Generator
+    {
+        foreach ($this->legacyMaps as $format => $mapping) {
+            foreach ($mapping as $request => $response) {
+                yield [$format, $request, $response];
+            }
+        }
+    }
+
+    /**
+     * @dataProvider legacyMaps
+     *
+     * @param mixed $format
+     * @param mixed $request
+     * @param mixed $response
+     */
+    public function test_legacy_mapping_checks_out($format, $request, $response)
+    {
+        $request = new $request();
+        /** @var $request Request */
+        $this->assertInstanceOf(Request::class, $request);
+
+        $this->assertSame($format, $request->getSerializationFormat());
+        $this->assertSame($response, $request->getResponseClassName());
     }
 }

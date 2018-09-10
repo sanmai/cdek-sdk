@@ -14,6 +14,7 @@ namespace Appwilio\CdekSDK\Requests;
 
 use Appwilio\CdekSDK\Contracts\JsonRequest;
 use Appwilio\CdekSDK\Requests\Concerns\RequestCore;
+use Appwilio\CdekSDK\Responses\CalculationResponse;
 
 /**
  * Class CalculationRequest.
@@ -41,6 +42,7 @@ class CalculationRequest implements JsonRequest
 
     const METHOD = 'POST';
     const ADDRESS = 'https://api.cdek.ru/calculator/calculate_price_by_json.php';
+    const RESPONSE = CalculationResponse::class;
 
     protected $senderCityId;
     protected $senderCityPostCode;

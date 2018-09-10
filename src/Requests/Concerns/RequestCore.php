@@ -12,6 +12,9 @@ declare(strict_types=1);
 
 namespace Appwilio\CdekSDK\Requests\Concerns;
 
+use Appwilio\CdekSDK\Contracts\JsonRequest;
+use Appwilio\CdekSDK\Contracts\XmlRequest;
+
 trait RequestCore
 {
     /** @suppress PhanUndeclaredConstant */
@@ -24,5 +27,24 @@ trait RequestCore
     public function getMethod(): string
     {
         return static::METHOD;
+    }
+
+    /** @suppress PhanUndeclaredConstant */
+    public function getResponseClassName(): string
+    {
+        return static::RESPONSE;
+    }
+
+    public function getSerializationFormat(): string
+    {
+        if ($this instanceof XmlRequest) {
+            return $this::SERIALIZATION_XML;
+        }
+
+        if ($this instanceof JsonRequest) {
+            return $this::SERIALIZATION_JSON;
+        }
+
+        throw new \BadMethodCallException(sprintf('Class [%s] has an unrecognized serialization format.', __CLASS__));
     }
 }

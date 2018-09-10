@@ -18,6 +18,7 @@ use Appwilio\CdekSDK\Contracts\ShouldAuthorize;
 use Appwilio\CdekSDK\Contracts\XmlRequest;
 use Appwilio\CdekSDK\Requests\Concerns\Authorized;
 use Appwilio\CdekSDK\Requests\Concerns\RequestCore;
+use Appwilio\CdekSDK\Responses\StatusReportResponse;
 use JMS\Serializer\Annotation as JMS;
 
 /**
@@ -29,6 +30,7 @@ final class StatusReportRequest implements XmlRequest, ShouldAuthorize
 {
     const METHOD = 'POST';
     const ADDRESS = 'https://integration.cdek.ru/status_report_h.php';
+    const RESPONSE = StatusReportResponse::class;
 
     use Authorized, RequestCore;
 

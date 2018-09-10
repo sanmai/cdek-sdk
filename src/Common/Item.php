@@ -82,7 +82,7 @@ final class Item
     protected $DelivAmount;
 
     /**
-     * @suppress PhanUnusedPublicFinalMethodParameter
+     * @phan-suppress PhanUnusedPublicFinalMethodParameter
      *
      * @return \Appwilio\CdekSDK\Common\Item
      */

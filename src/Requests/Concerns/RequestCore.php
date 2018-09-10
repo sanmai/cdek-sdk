@@ -17,19 +17,19 @@ use Appwilio\CdekSDK\Contracts\XmlRequest;
 
 trait RequestCore
 {
-    /** @suppress PhanUndeclaredConstant */
+    /** @phan-suppress PhanUndeclaredConstant */
     public function getAddress(): string
     {
         return static::ADDRESS;
     }
 
-    /** @suppress PhanUndeclaredConstant */
+    /** @phan-suppress PhanUndeclaredConstant */
     public function getMethod(): string
     {
         return static::METHOD;
     }
 
-    /** @suppress PhanUndeclaredConstant */
+    /** @phan-suppress PhanUndeclaredConstant */
     public function getResponseClassName(): string
     {
         return static::RESPONSE;

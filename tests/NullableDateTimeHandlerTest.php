@@ -35,7 +35,7 @@ class NullableDateTimeHandlerTest extends TestCase
     public function test_unserialize_normal_date()
     {
         \Doctrine\Common\Annotations\AnnotationRegistry::registerLoader('class_exists');
-        \Doctrine\Common\Annotations\AnnotationReader::addGlobalIgnoredName('suppress');
+        \Doctrine\Common\Annotations\AnnotationReader::addGlobalIgnoredName('phan');
 
         $result = $this->serializer->deserialize(file_get_contents(__DIR__.'/Fixtures/data/StatusReportResponse.xml'), StatusReportResponse::class, 'xml');
 

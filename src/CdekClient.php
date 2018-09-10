@@ -60,6 +60,9 @@ final class CdekClient
         $this->serializer = SerializerBuilder::create()->configureHandlers(function (HandlerRegistry $registry) {
             $registry->registerSubscribingHandler(new NullableDateTimeHandler());
         })->build();
+
+        // Ignore Phan issue-suppressing annotations
+        \Doctrine\Common\Annotations\AnnotationReader::addGlobalIgnoredName('phan');
     }
 
     public function sendRequest(Request $request)

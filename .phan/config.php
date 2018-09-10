@@ -296,6 +296,7 @@ return [
         'vendor/jms/serializer/src',
         'vendor/phpunit/phpunit/src',
         'vendor/psr/http-message/src',
+        'vendor/doctrine/annotations/lib',
     ],
 
     // A list of individual files to include in analysis

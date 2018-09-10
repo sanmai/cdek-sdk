@@ -98,7 +98,7 @@ class CalculationRequest implements JsonRequest
     }
 
     /**
-     * @suppress PhanUnusedPublicMethodParameter
+     * @phan-suppress PhanUnusedPublicMethodParameter
      *
      * @param mixed $id
      * @param mixed $priority

@@ -43,7 +43,7 @@ trait Authorized
     public $secure;
 
     /**
-     * @suppress PhanTypeMismatchReturn
+     * @phan-suppress PhanTypeMismatchReturn
      */
     public function date(\DateTimeInterface $date): ShouldAuthorize
     {
@@ -54,7 +54,7 @@ trait Authorized
     }
 
     /**
-     * @suppress PhanTypeMismatchReturn
+     * @phan-suppress PhanTypeMismatchReturn
      */
     public function credentials(string $account, string $secure): ShouldAuthorize
     {

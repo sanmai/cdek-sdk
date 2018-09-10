@@ -19,7 +19,7 @@ use JMS\Serializer\Annotation as JMS;
  *
  * @JMS\XmlRoot(name="DeleteRequest")
  */
-class DeleteRequest extends DeliveryRequest
+final class DeleteRequest extends DeliveryRequest
 {
     const ADDRESS = 'https://integration.cdek.ru/delete_orders.php';
 }

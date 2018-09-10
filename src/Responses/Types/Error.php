@@ -14,21 +14,21 @@ namespace Appwilio\CdekSDK\Responses\Types;
 
 use JMS\Serializer\Annotation as JMS;
 
-class Error
+final class Error
 {
     /**
      * @JMS\Type("int")
      *
      * @var int
      */
-    protected $code;
+    private $code;
 
     /**
      * @JMS\Type("string")
      *
      * @var string
      */
-    protected $text;
+    private $text;
 
     public function getCode(): int
     {

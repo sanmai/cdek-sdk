@@ -18,6 +18,8 @@ use JMS\Serializer\Annotation as JMS;
 
 /**
  * Class DeliveryResponse.
+ *
+ * @see DeleteResponse
  */
 class DeliveryResponse
 {

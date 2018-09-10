@@ -12,7 +12,7 @@ declare(strict_types=1);
 
 namespace Appwilio\CdekSDK\Common;
 
-class WeightLimit
+final class WeightLimit
 {
     use Fillable;
 

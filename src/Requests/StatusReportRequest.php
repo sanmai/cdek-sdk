@@ -25,7 +25,7 @@ use JMS\Serializer\Annotation as JMS;
  *
  * @JMS\XmlRoot(name="StatusReport")
  */
-class StatusReportRequest implements XmlRequest, ShouldAuthorize
+final class StatusReportRequest implements XmlRequest, ShouldAuthorize
 {
     const METHOD = 'POST';
     const ADDRESS = 'https://integration.cdek.ru/status_report_h.php';

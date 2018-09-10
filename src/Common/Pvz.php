@@ -17,7 +17,7 @@ use JMS\Serializer\Annotation as JMS;
 /**
  * Class Pvz.
  */
-class Pvz
+final class Pvz
 {
     const BOOLEAN_FIELDS = ['IsDressingRoom', 'AllowedCod', 'HaveCashless'];
 

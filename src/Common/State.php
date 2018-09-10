@@ -14,7 +14,7 @@ namespace Appwilio\CdekSDK\Common;
 
 use JMS\Serializer\Annotation as JMS;
 
-class State
+final class State
 {
     /**
      * @JMS\XmlAttribute

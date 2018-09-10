@@ -17,7 +17,7 @@ use JMS\Serializer\Annotation as JMS;
 /**
  * Class CallGood.
  */
-class CallGood
+final class CallGood
 {
     /**
      * @JMS\XmlAttribute
@@ -26,7 +26,7 @@ class CallGood
      *
      * @var \DateTimeImmutable
      */
-    protected $Date;
+    private $Date;
 
     /**
      * @JMS\XmlAttribute
@@ -35,7 +35,7 @@ class CallGood
      *
      * @var \DateTimeImmutable
      */
-    protected $DateDeliv;
+    private $DateDeliv;
 
     public function getDate(): \DateTimeImmutable
     {

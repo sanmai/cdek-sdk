@@ -14,7 +14,7 @@ namespace Appwilio\CdekSDK\Common;
 
 use JMS\Serializer\Annotation as JMS;
 
-class Package
+final class Package
 {
     use Fillable;
 

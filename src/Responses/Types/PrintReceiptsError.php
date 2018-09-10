@@ -14,7 +14,7 @@ namespace Appwilio\CdekSDK\Responses\Types;
 
 use JMS\Serializer\Annotation as JMS;
 
-class PrintReceiptsError
+final class PrintReceiptsError
 {
     /**
      * @JMS\XmlAttribute
@@ -23,7 +23,7 @@ class PrintReceiptsError
      *
      * @var string
      */
-    protected $code;
+    private $code;
 
     /**
      * @JMS\XmlAttribute
@@ -32,7 +32,7 @@ class PrintReceiptsError
      *
      * @var string
      */
-    protected $text;
+    private $text;
 
     public function getCode(): string
     {

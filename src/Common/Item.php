@@ -14,7 +14,7 @@ namespace Appwilio\CdekSDK\Common;
 
 use JMS\Serializer\Annotation as JMS;
 
-class Item
+final class Item
 {
     use Fillable;
 
@@ -82,7 +82,7 @@ class Item
     protected $DelivAmount;
 
     /**
-     * @suppress PhanUnusedPublicMethodParameter
+     * @suppress PhanUnusedPublicFinalMethodParameter
      *
      * @return \Appwilio\CdekSDK\Common\Item
      */

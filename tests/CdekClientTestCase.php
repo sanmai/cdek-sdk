@@ -34,16 +34,7 @@ class CdekClientTestCase extends TestCase
     {
         $mock = $this->createHttpClientMock();
 
-        return new class($mock) extends CdekClient {
-            protected $httpClient;
-
-            public function __construct($mock)
-            {
-                parent::__construct('foo', 'bar');
-
-                $this->httpClient = $mock;
-            }
-        };
+        return new CdekClient('foo', 'bar', $mock);
     }
 
     private function createHttpClientMock()

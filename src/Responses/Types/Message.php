@@ -12,10 +12,10 @@ declare(strict_types=1);
 
 namespace Appwilio\CdekSDK\Responses\Types;
 
-class Message
+final class Message
 {
     /** @var string */
-    protected $text;
+    private $text;
 
     /** @var string|null */
     private $errorCode;

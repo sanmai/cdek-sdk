@@ -26,7 +26,7 @@ use JMS\Serializer\Annotation as JMS;
  *
  * @JMS\XmlRoot(name="OrdersPrint")
  */
-class PrintReceiptsRequest implements XmlRequest, ShouldAuthorize
+final class PrintReceiptsRequest implements XmlRequest, ShouldAuthorize
 {
     use Authorized, Fillable, OrdersAware, RequestCore;
 

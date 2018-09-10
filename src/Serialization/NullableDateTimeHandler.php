@@ -15,7 +15,7 @@ namespace Appwilio\CdekSDK\Serialization;
 use JMS\Serializer\Handler\DateHandler;
 use JMS\Serializer\XmlDeserializationVisitor;
 
-class NullableDateTimeHandler extends DateHandler
+final class NullableDateTimeHandler extends DateHandler
 {
     public function deserializeDateTimeFromXml(XmlDeserializationVisitor $visitor, $data, array $type)
     {

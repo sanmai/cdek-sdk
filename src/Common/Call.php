@@ -17,7 +17,7 @@ use JMS\Serializer\Annotation as JMS;
 /**
  * Class Call.
  */
-class Call
+final class Call
 {
     use Fillable;
 

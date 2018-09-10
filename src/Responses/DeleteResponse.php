@@ -15,6 +15,6 @@ namespace Appwilio\CdekSDK\Responses;
 /**
  * Class DeleteResponse.
  */
-class DeleteResponse extends DeliveryResponse
+final class DeleteResponse extends DeliveryResponse
 {
 }

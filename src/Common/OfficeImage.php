@@ -12,7 +12,7 @@ declare(strict_types=1);
 
 namespace Appwilio\CdekSDK\Common;
 
-class OfficeImage
+final class OfficeImage
 {
     use Fillable;
 

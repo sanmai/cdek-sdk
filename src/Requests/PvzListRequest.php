@@ -18,7 +18,7 @@ use Appwilio\CdekSDK\Requests\Concerns\RequestCore;
 /**
  * Class PvzListRequest.
  */
-class PvzListRequest implements ParamRequest
+final class PvzListRequest implements ParamRequest
 {
     use RequestCore;
 

@@ -18,7 +18,7 @@ use JMS\Serializer\Annotation as JMS;
 /**
  * Class PvzListResponse.
  */
-class PvzListResponse
+final class PvzListResponse
 {
     /**
      * @JMS\XmlList(entry="Pvz", inline=true)

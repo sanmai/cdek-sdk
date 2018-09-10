@@ -18,7 +18,7 @@ use Appwilio\CdekSDK\Requests\Concerns\Authorized;
 /**
  * Class CalculationAuthorizedRequest.
  */
-class CalculationAuthorizedRequest extends CalculationRequest implements ShouldAuthorize
+final class CalculationAuthorizedRequest extends CalculationRequest implements ShouldAuthorize
 {
     use Authorized;
 

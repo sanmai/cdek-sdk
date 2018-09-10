@@ -26,7 +26,7 @@ use JMS\Serializer\Annotation as JMS;
  *
  * @JMS\XmlRoot(name="InfoRequest")
  */
-class InfoReportRequest implements XmlRequest, ShouldAuthorize
+final class InfoReportRequest implements XmlRequest, ShouldAuthorize
 {
     use Authorized, OrdersAware, RequestCore;
 

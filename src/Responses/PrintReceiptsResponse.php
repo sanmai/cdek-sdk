@@ -19,7 +19,7 @@ use JMS\Serializer\Annotation as JMS;
 /**
  * Class PrintReceiptsResponse.
  */
-class PrintReceiptsResponse
+final class PrintReceiptsResponse
 {
     /**
      * @JMS\XmlList(entry = "Order", inline = true)
@@ -42,7 +42,7 @@ class PrintReceiptsResponse
      *
      * @var PrintReceiptsError[]
      */
-    protected $errors;
+    private $errors;
 
     /**
      * @JMS\PostDeserialize

@@ -18,7 +18,7 @@ use JMS\Serializer\Annotation as JMS;
 /**
  * Class InfoReportResponse.
  */
-class InfoReportResponse
+final class InfoReportResponse
 {
     /**
      * @JMS\XmlList(entry = "Order", inline = true)
@@ -26,7 +26,7 @@ class InfoReportResponse
      *
      * @var array|Order[]
      */
-    protected $orders = [];
+    private $orders = [];
 
     /**
      * @return Order[]|array

@@ -18,7 +18,7 @@ use JMS\Serializer\Annotation as JMS;
 /**
  * Class StatusReportResponse.
  */
-class StatusReportResponse
+final class StatusReportResponse
 {
     /**
      * @JMS\XmlAttribute
@@ -27,7 +27,7 @@ class StatusReportResponse
      *
      * @var \DateTimeImmutable
      */
-    protected $DateFirst;
+    private $DateFirst;
 
     /**
      * @JMS\XmlAttribute
@@ -36,7 +36,7 @@ class StatusReportResponse
      *
      * @var \DateTimeImmutable
      */
-    protected $DateLast;
+    private $DateLast;
 
     /**
      * @JMS\XmlList(inline = true, entry = "Order")
@@ -44,7 +44,7 @@ class StatusReportResponse
      *
      * @var Order[]|array
      */
-    protected $orders = [];
+    private $orders = [];
 
     public function getDateFirst(): \DateTimeImmutable
     {

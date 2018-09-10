@@ -19,6 +19,7 @@ use Appwilio\CdekSDK\Contracts\ShouldAuthorize;
 use Appwilio\CdekSDK\Contracts\XmlRequest;
 use Appwilio\CdekSDK\Serialization\NullableDateTimeHandler;
 use GuzzleHttp\Client as GuzzleClient;
+use GuzzleHttp\ClientInterface;
 use JMS\Serializer\Handler\HandlerRegistry;
 use JMS\Serializer\Serializer;
 use JMS\Serializer\SerializerBuilder;
@@ -35,7 +36,7 @@ use Psr\Http\Message\ResponseInterface;
  * @method Responses\StatusReportResponse sendStatusReportRequest(Requests\StatusReportRequest $request)
  * @method ResponseInterface              sendPrintReceiptsRequest(Requests\PrintReceiptsRequest $request)
  */
-class CdekClient
+final class CdekClient
 {
     private $maps = [
         'xml' => [
@@ -52,7 +53,7 @@ class CdekClient
         ],
     ];
 
-    /** @var GuzzleClient */
+    /** @var ClientInterface */
     private $http;
 
     /** @var string */
@@ -64,12 +65,12 @@ class CdekClient
     /** @var Serializer */
     private $serializer;
 
-    public function __construct(string $account, string $password)
+    public function __construct(string $account, string $password, ClientInterface $http = null)
     {
         $this->account = $account;
         $this->password = $password;
 
-        $this->http = new GuzzleClient();
+        $this->http = $http ?? new GuzzleClient();
 
         $this->serializer = SerializerBuilder::create()->configureHandlers(function (HandlerRegistry $registry) {
             $registry->registerSubscribingHandler(new NullableDateTimeHandler());

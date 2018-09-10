@@ -19,7 +19,7 @@ use JMS\Serializer\Annotation as JMS;
 /**
  * Class CalculationResponse.
  */
-class CalculationResponse
+final class CalculationResponse
 {
     /**
      * @JMS\SerializedName("result")
@@ -27,7 +27,7 @@ class CalculationResponse
      *
      * @var Result
      */
-    protected $result;
+    private $result;
 
     /**
      * @JMS\SerializedName("error")

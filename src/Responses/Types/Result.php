@@ -14,7 +14,7 @@ namespace Appwilio\CdekSDK\Responses\Types;
 
 use JMS\Serializer\Annotation as JMS;
 
-class Result
+final class Result
 {
     /**
      * @JMS\SerializedName("price")
@@ -22,7 +22,7 @@ class Result
      *
      * @var null|float
      */
-    protected $price;
+    private $price;
 
     /**
      * @JMS\SerializedName("deliveryPeriodMin")
@@ -30,7 +30,7 @@ class Result
      *
      * @var null|int
      */
-    protected $deliveryPeriodMin;
+    private $deliveryPeriodMin;
 
     /**
      * @JMS\SerializedName("deliveryPeriodMax")
@@ -38,7 +38,7 @@ class Result
      *
      * @var null|int
      */
-    protected $deliveryPeriodMax;
+    private $deliveryPeriodMax;
 
     /**
      * @JMS\SerializedName("deliveryDateMin")
@@ -46,7 +46,7 @@ class Result
      *
      * @var null|\DateTimeImmutable
      */
-    protected $deliveryDateMin;
+    private $deliveryDateMin;
 
     /**
      * @JMS\SerializedName("deliveryDateMax")
@@ -54,7 +54,7 @@ class Result
      *
      * @var null|\DateTimeImmutable
      */
-    protected $deliveryDateMax;
+    private $deliveryDateMax;
 
     /**
      * @JMS\SerializedName("tariffId")
@@ -62,7 +62,7 @@ class Result
      *
      * @var int
      */
-    protected $tariffId;
+    private $tariffId;
 
     /**
      * @JMS\SerializedName("priceByCurrency")
@@ -70,7 +70,7 @@ class Result
      *
      * @var null|float
      */
-    protected $priceByCurrency;
+    private $priceByCurrency;
 
     /**
      * @JMS\SerializedName("currency")
@@ -78,7 +78,7 @@ class Result
      *
      * @var null|string
      */
-    protected $currency;
+    private $currency;
 
     /**
      * @JMS\SerializedName("services")
@@ -86,7 +86,7 @@ class Result
      *
      * @var null|array
      */
-    protected $services;
+    private $services;
 
     /**
      * @return null|float

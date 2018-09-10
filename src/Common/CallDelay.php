@@ -17,7 +17,7 @@ use JMS\Serializer\Annotation as JMS;
 /**
  * Class CallDelay.
  */
-class CallDelay
+final class CallDelay
 {
     use Fillable;
 

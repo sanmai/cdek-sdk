@@ -14,7 +14,7 @@ namespace Appwilio\CdekSDK\Common;
 
 use JMS\Serializer\Annotation as JMS;
 
-class Reason
+final class Reason
 {
     /**
      * @JMS\XmlAttribute

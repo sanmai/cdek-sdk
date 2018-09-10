@@ -17,7 +17,7 @@ use JMS\Serializer\Annotation as JMS;
 /**
  * Class Order.
  */
-class Order
+final class Order
 {
     use Fillable;
 

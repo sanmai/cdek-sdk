@@ -14,7 +14,7 @@ namespace Appwilio\CdekSDK\Common;
 
 use JMS\Serializer\Annotation as JMS;
 
-class ChangePeriod
+final class ChangePeriod
 {
     /**
      * @JMS\XmlAttribute

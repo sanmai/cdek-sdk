@@ -32,6 +32,8 @@ composer require sanmai/cdek-sdk
 ```php
 require_once 'vendor/autoload.php';
 
+\Doctrine\Common\Annotations\AnnotationRegistry::registerLoader('class_exists');
+
 $client = new \Appwilio\CdekSDK\CdekClient('account', 'password');
 ```
 
@@ -45,7 +47,7 @@ use Appwilio\CdekSDK\Requests\CalculationRequest;
 // для выполнения авторизованного запроса используется
 // $request = CalculationRequest::withAuthorization();
 
-$request = (CalculationRequest())
+$request = (new CalculationRequest())
     ->setSenderCityPostCode('295000')
     ->setReceiverCityPostCode('652632')
     ->addGood([

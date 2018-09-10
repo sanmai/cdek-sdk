@@ -425,7 +425,10 @@ final class Order
         return $this;
     }
 
-    public function getDate(): \DateTimeImmutable
+    /**
+     * @return \DateTimeImmutable|null
+     */
+    public function getDate()
     {
         return $this->Date;
     }

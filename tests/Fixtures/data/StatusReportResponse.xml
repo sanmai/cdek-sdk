@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StatusReport DateFirst="2000-12-31T17:00:00+00:00" DateLast="2018-08-10T08:55:52+00:00" >
+    <Order ActNumber="" Number="2080965069" DispatchNumber="1000028000"  DeliveryDate="2018-04-06T13:33:27+03:00" RecipientName="Руслан Альбертович" >
+        <Status Date="2018-04-06T10:33:42+00:00" Code="4" Description="Вручен" CityCode="1081" CityName="Нальчик">
+            <State Date="2018-03-21T14:54:13+00:00" Code="1" Description="Создан" CityCode="44" CityName="Москва" />
+            <State Date="2018-03-21T17:32:32+00:00" Code="3" Description="Принят на склад отправителя" CityCode="44" CityName="Москва" />
+            <State Date="2018-03-21T17:35:12+00:00" Code="6" Description="Выдан на отправку в г.-отправителе" CityCode="44" CityName="Москва" />
+            <State Date="2018-03-21T23:00:12+00:00" Code="7" Description="Сдан перевозчику в г.-отправителе" CityCode="44" CityName="Москва" />
+            <State Date="2018-03-21T23:36:53+00:00" Code="21" Description="Отправлен в г.-транзит" CityCode="44" CityName="Москва" />
+            <State Date="2018-03-22T19:01:19+00:00" Code="22" Description="Встречен в г.-транзите" CityCode="438" CityName="Ростов-на-Дону" />
+            <State Date="2018-03-22T22:18:47+00:00" Code="13" Description="Принят на склад транзита" CityCode="438" CityName="Ростов-на-Дону" />
+            <State Date="2018-03-22T22:18:47+00:00" Code="19" Description="Выдан на отправку в г.-транзите" CityCode="438" CityName="Ростов-на-Дону" />
+            <State Date="2018-03-22T22:19:44+00:00" Code="20" Description="Сдан перевозчику в г.-транзите" CityCode="438" CityName="Ростов-на-Дону" />
+            <State Date="2018-03-22T22:59:19+00:00" Code="8" Description="Отправлен в г.-получатель" CityCode="438" CityName="Ростов-на-Дону" />
+            <State Date="2018-03-24T15:11:53+00:00" Code="17" Description="Возвращен на склад транзита" CityCode="438" CityName="Ростов-на-Дону" />
+            <State Date="2018-03-24T15:11:53+00:00" Code="19" Description="Выдан на отправку в г.-транзите" CityCode="438" CityName="Ростов-на-Дону" />
+            <State Date="2018-03-25T21:25:02+00:00" Code="20" Description="Сдан перевозчику в г.-транзите" CityCode="438" CityName="Ростов-на-Дону" />
+            <State Date="2018-03-25T22:32:47+00:00" Code="8" Description="Отправлен в г.-получатель" CityCode="438" CityName="Ростов-на-Дону" />
+            <State Date="2018-03-26T11:13:27+00:00" Code="10" Description="Принят на склад доставки" CityCode="1081" CityName="Нальчик" />
+            <State Date="2018-04-06T05:28:09+00:00" Code="11" Description="Выдан на доставку" CityCode="1081" CityName="Нальчик" />
+            <State Date="2018-04-06T10:33:42+00:00" Code="4" Description="Вручен" CityCode="1081" CityName="Нальчик" />
+        </Status>
+        <Reason Code="" Description="" Date=""></Reason>
+        <DelayReason Code="" Description="" Date="" ></DelayReason>
+        <Call>
+            <CallGood>
+                <Good Date="2018-03-26T12:50:31+00:00" DateDeliv="2018-04-06" />
+                <Good Date="2018-03-26T12:50:37+00:00" DateDeliv="2018-04-06" />
+            </CallGood>
+        </Call>
+    </Order>
+    <Order ActNumber="" Number="2066479243" DispatchNumber="1000356200"  DeliveryDate="2018-04-07T15:29:32+03:00" RecipientName="Аркадий Якубович" >
+        <Status Date="2018-04-07T12:29:39+00:00" Code="4" Description="Вручен" CityCode="44" CityName="Москва">
+            <State Date="2018-04-01T14:15:20+00:00" Code="1" Description="Создан" CityCode="44" CityName="Москва" />
+            <State Date="2018-04-01T18:03:43+00:00" Code="10" Description="Принят на склад доставки" CityCode="44" CityName="Москва" />
+            <State Date="2018-04-02T09:04:38+00:00" Code="11" Description="Выдан на доставку" CityCode="44" CityName="Москва" />
+            <State Date="2018-04-02T09:13:41+00:00" Code="18" Description="Возвращен на склад доставки" CityCode="44" CityName="Москва" />
+            <State Date="2018-04-02T09:13:41+00:00" Code="11" Description="Выдан на доставку" CityCode="44" CityName="Москва" />
+            <State Date="2018-04-03T07:56:08+00:00" Code="18" Description="Возвращен на склад доставки" CityCode="44" CityName="Москва" />
+            <State Date="2018-04-07T06:14:36+00:00" Code="11" Description="Выдан на доставку" CityCode="44" CityName="Москва" />
+            <State Date="2018-04-07T12:29:39+00:00" Code="4" Description="Вручен" CityCode="44" CityName="Москва" />
+        </Status>
+        <Reason Code="20" Description="Частичная доставка" Date="2018-04-07T12:29:39+00:00"></Reason>
+        <DelayReason Code="" Description="" Date="" >
+            <State Date="2018-04-03T16:56:41+00:00" Code="47" Description="Адрес не существует" />
+        </DelayReason>
+        <Package Number="2066479243" BarCode="2066479243">
+            <Item WareKey="2201073352678" Amount="1" DelivAmount="0" />
+            <Item WareKey="2201084246850" Amount="1" DelivAmount="1" />
+            <Item WareKey="654321" Amount="1" DelivAmount="0" />
+        </Package>
+        <Call>
+            <CallGood>
+                <Good Date="2018-04-01T14:15:46+00:00" DateDeliv="2018-04-02" />
+                <Good Date="2018-04-03T16:56:41+00:00" DateDeliv="2018-04-07" />
+            </CallGood>
+            <CallFail>
+                <Fail Date="2018-04-02T15:35:47+00:00" ReasonCode="3" ReasonDescription="Абонент недоступен" />
+            </CallFail>
+        </Call>
+    </Order>
+</StatusReport>

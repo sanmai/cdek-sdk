@@ -10,13 +10,9 @@
 
 declare(strict_types=1);
 
-namespace Tests\Appwilio\CdekSDK;
+namespace Tests\Appwilio\CdekSDK\Deserialization;
 
 use Appwilio\CdekSDK\Responses\StatusReportResponse;
-use Appwilio\CdekSDK\Serialization\NullableDateTimeHandler;
-use JMS\Serializer\Handler\HandlerRegistry;
-use JMS\Serializer\SerializerBuilder;
-use PHPUnit\Framework\TestCase;
 use Tests\Appwilio\CdekSDK\Fixtures\FixtureLoader;
 
 /**
@@ -24,21 +20,9 @@ use Tests\Appwilio\CdekSDK\Fixtures\FixtureLoader;
  */
 class NullableDateTimeHandlerTest extends TestCase
 {
-    private $serializer;
-
-    protected function setUp()
-    {
-        $this->serializer = SerializerBuilder::create()->configureHandlers(function (HandlerRegistry $registry) {
-            $registry->registerSubscribingHandler(new NullableDateTimeHandler());
-        })->build();
-    }
-
     public function test_unserialize_normal_date()
     {
-        \Doctrine\Common\Annotations\AnnotationRegistry::registerLoader('class_exists');
-        \Doctrine\Common\Annotations\AnnotationReader::addGlobalIgnoredName('phan');
-
-        $result = $this->serializer->deserialize(FixtureLoader::load('StatusReportResponse.xml'), StatusReportResponse::class, 'xml');
+        $result = $this->getSerializer()->deserialize(FixtureLoader::load('StatusReportResponse.xml'), StatusReportResponse::class, 'xml');
 
         /** @var $result StatusReportResponse */
         $this->assertInstanceOf(StatusReportResponse::class, $result);

@@ -27,6 +27,9 @@ class DeliveryResponseTest extends TestCase
 
         /** @var $response DeliveryResponse */
         $this->assertInstanceOf(DeliveryResponse::class, $response);
-        $this->assertStringStartsWith('ERR_', $response->getRequests()[0]->getErrorCode());
+
+        foreach ($response->getMessages() as $message) {
+            $this->assertTrue($message->isError());
+        }
     }
 }

@@ -25,6 +25,10 @@ class DeliveryRequestTest extends TestCase
     {
         $request = new DeliveryRequest();
         $response = $this->getClient()->sendDeliveryRequest($request);
-        $this->assertStringStartsWith('ERR_', $response->getRequests()[0]->getErrorCode());
+
+        foreach ($response->getMessages() as $message) {
+            $this->assertTrue($message->isError());
+            break;
+        }
     }
 }

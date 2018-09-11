@@ -14,9 +14,9 @@ namespace Tests\Appwilio\CdekSDK;
 
 use Appwilio\CdekSDK\CdekClient;
 use GuzzleHttp\Client as HttpClient;
+use GuzzleHttp\ClientInterface;
 use PHPUnit\Framework\Assert;
 use PHPUnit\Framework\TestCase;
-use GuzzleHttp\ClientInterface;
 use Psr\Http\Message\ResponseInterface;
 
 /**
@@ -44,7 +44,6 @@ class CdekClientTest extends TestCase
         $http->method('request')->willReturn($textResponse);
 
         /** @var HttpClient $mock */
-
         $client = new CdekClient('foo', 'bar', $http);
         $response = $client->sendCalculationRequest(new \Appwilio\CdekSDK\Requests\CalculationRequest());
 

@@ -13,6 +13,7 @@ declare(strict_types=1);
 namespace Tests\Appwilio\CdekSDK;
 
 use Appwilio\CdekSDK\CdekClient;
+use Appwilio\CdekSDK\Contracts\Request;
 use Appwilio\CdekSDK\Requests\CalculationRequest;
 use Appwilio\CdekSDK\Requests\PrintReceiptsRequest;
 use Appwilio\CdekSDK\Requests\PvzListRequest;
@@ -81,6 +82,13 @@ class CdekClientTest extends TestCase
         /** @var $response PvzListResponse */
         $this->assertInstanceOf(PvzListResponse::class, $response);
         $this->assertEmpty($response->getItems());
+    }
+
+    public function test_client_can_handle_any_request()
+    {
+        $client = new CdekClient('foo', 'bar', $this->getHttpClient('text/plain', 'example'));
+        $response = $client->sendRequest($this->createMock(Request::class));
+        $this->assertInstanceOf(ResponseInterface::class, $response);
     }
 
     public function test_fails_on_unknown_method()

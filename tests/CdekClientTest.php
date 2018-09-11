@@ -15,8 +15,10 @@ namespace Tests\Appwilio\CdekSDK;
 use Appwilio\CdekSDK\CdekClient;
 use Appwilio\CdekSDK\Requests\CalculationRequest;
 use Appwilio\CdekSDK\Requests\PrintReceiptsRequest;
+use Appwilio\CdekSDK\Requests\PvzListRequest;
 use Appwilio\CdekSDK\Requests\StatusReportRequest;
 use Appwilio\CdekSDK\Responses\CalculationResponse;
+use Appwilio\CdekSDK\Responses\PvzListResponse;
 use Appwilio\CdekSDK\Responses\StatusReportResponse;
 use GuzzleHttp\ClientInterface;
 use PHPUnit\Framework\TestCase;
@@ -69,6 +71,16 @@ class CdekClientTest extends TestCase
         /** @var $response CalculationResponse */
         $this->assertInstanceOf(CalculationResponse::class, $response);
         $this->assertTrue($response->hasErrors());
+    }
+
+    public function test_client_can_handle_param_request()
+    {
+        $client = new CdekClient('foo', 'bar', $this->getHttpClient('text/xml', FixtureLoader::load('PvzListEmpty.xml')));
+        $response = $client->sendPvzListRequest(new PvzListRequest());
+
+        /** @var $response PvzListResponse */
+        $this->assertInstanceOf(PvzListResponse::class, $response);
+        $this->assertEmpty($response->getItems());
     }
 
     public function test_fails_on_unknown_method()

@@ -34,7 +34,7 @@ class DeliveryRequest implements XmlRequest, ShouldAuthorize
     use Authorized, Fillable, OrdersAware, RequestCore;
 
     const METHOD = 'POST';
-    const ADDRESS = 'https://integration.cdek.ru/new_orders.php';
+    const ADDRESS = '/new_orders.php';
     const RESPONSE = DeliveryResponse::class;
 
     /**

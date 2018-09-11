@@ -28,7 +28,7 @@ final class PvzListRequest implements ParamRequest
     const TYPE_POSTOMAT = 'POSTOMAT';
 
     const METHOD = 'GET';
-    const ADDRESS = 'https://integration.cdek.ru/pvzlist.php';
+    const ADDRESS = '/pvzlist.php';
     const RESPONSE = PvzListResponse::class;
 
     /** @var string */

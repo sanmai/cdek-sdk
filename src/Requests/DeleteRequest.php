@@ -22,6 +22,6 @@ use JMS\Serializer\Annotation as JMS;
  */
 final class DeleteRequest extends DeliveryRequest
 {
-    const ADDRESS = 'https://integration.cdek.ru/delete_orders.php';
+    const ADDRESS = '/delete_orders.php';
     const RESPONSE = DeleteResponse::class;
 }

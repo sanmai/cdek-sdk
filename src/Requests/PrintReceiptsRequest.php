@@ -32,7 +32,7 @@ final class PrintReceiptsRequest implements XmlRequest, ShouldAuthorize
     use Authorized, Fillable, OrdersAware, RequestCore;
 
     const METHOD = 'POST';
-    const ADDRESS = 'https://integration.cdek.ru/orders_print.php';
+    const ADDRESS = '/orders_print.php';
     const RESPONSE = PrintReceiptsResponse::class;
 
     public function addOrder(Order $order)

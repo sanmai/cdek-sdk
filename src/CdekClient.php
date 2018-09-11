@@ -38,6 +38,8 @@ use Psr\Http\Message\ResponseInterface;
  */
 final class CdekClient
 {
+    const STANDARD_BASE_URL = 'https://integration.cdek.ru';
+
     /** @var ClientInterface */
     private $http;
 
@@ -55,7 +57,9 @@ final class CdekClient
         $this->account = $account;
         $this->password = $password;
 
-        $this->http = $http ?? new GuzzleClient();
+        $this->http = $http ?? new GuzzleClient([
+            'base_uri' => self::STANDARD_BASE_URL,
+        ]);
 
         $this->serializer = SerializerBuilder::create()->configureHandlers(function (HandlerRegistry $registry) {
             $registry->registerSubscribingHandler(new NullableDateTimeHandler());

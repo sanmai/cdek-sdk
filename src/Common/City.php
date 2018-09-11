@@ -55,11 +55,11 @@ final class City
 
     public function getPostCode(): string
     {
-        return $this->PostCode;
+        return (string) $this->PostCode;
     }
 
     public function getName(): string
     {
-        return $this->Name;
+        return (string) $this->Name;
     }
 }

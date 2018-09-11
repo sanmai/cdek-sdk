@@ -38,8 +38,8 @@ class NullableDateTimeHandlerTest extends TestCase
         \Doctrine\Common\Annotations\AnnotationReader::addGlobalIgnoredName('suppress');
 
         $result = $this->serializer->deserialize(file_get_contents(__DIR__.'/Fixtures/data/StatusReportResponse.xml'), StatusReportResponse::class, 'xml');
-        /** @var $result StatusReportResponse */
 
+        /** @var $result StatusReportResponse */
         $this->assertInstanceOf(StatusReportResponse::class, $result);
         $this->assertNull($result->getOrders()[0]->getDate());
     }

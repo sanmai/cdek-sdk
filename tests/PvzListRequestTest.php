@@ -19,7 +19,7 @@ use PHPUnit\Framework\TestCase;
 /**
  * @covers \Appwilio\CdekSDK\Requests\PvzListRequest
  */
-class PvzListRequestTestCase extends TestCase
+class PvzListRequestTest extends TestCase
 {
     public function test_can_get_params()
     {
@@ -29,7 +29,7 @@ class PvzListRequestTestCase extends TestCase
             ->setCountryId(3)
             ->setPostCode('123456');
 
-        Assert::assertEquals([
+        $this->assertEquals([
             'type' => 'PVZ',
             'cityid' => 1,
             'regionid' => 2,

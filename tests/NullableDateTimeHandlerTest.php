@@ -17,6 +17,7 @@ use Appwilio\CdekSDK\Serialization\NullableDateTimeHandler;
 use JMS\Serializer\Handler\HandlerRegistry;
 use JMS\Serializer\SerializerBuilder;
 use PHPUnit\Framework\TestCase;
+use Tests\Appwilio\CdekSDK\Fixtures\FixtureLoader;
 
 /**
  * @covers \Appwilio\CdekSDK\Serialization\NullableDateTimeHandler
@@ -37,7 +38,7 @@ class NullableDateTimeHandlerTest extends TestCase
         \Doctrine\Common\Annotations\AnnotationRegistry::registerLoader('class_exists');
         \Doctrine\Common\Annotations\AnnotationReader::addGlobalIgnoredName('phan');
 
-        $result = $this->serializer->deserialize(file_get_contents(__DIR__.'/Fixtures/data/StatusReportResponse.xml'), StatusReportResponse::class, 'xml');
+        $result = $this->serializer->deserialize(FixtureLoader::load('StatusReportResponse.xml'), StatusReportResponse::class, 'xml');
 
         /** @var $result StatusReportResponse */
         $this->assertInstanceOf(StatusReportResponse::class, $result);

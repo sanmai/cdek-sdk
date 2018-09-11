@@ -297,20 +297,11 @@ return [
         'vendor/phpunit/phpunit/src',
         'vendor/psr/http-message/src',
         'vendor/doctrine/annotations/lib',
+        'vendor/sanmai/pipeline/src/',
     ],
 
     // A list of individual files to include in analysis
     // with a path relative to the root directory of the
     // project
-    'file_list' => [
-        'vendor/friendsofphp/php-cs-fixer/tests/Test/AbstractFixerTestCase.php',
-        'vendor/friendsofphp/php-cs-fixer/tests/Test/AbstractIntegrationCaseFactory.php',
-        'vendor/friendsofphp/php-cs-fixer/tests/Test/AbstractIntegrationTestCase.php',
-        'vendor/friendsofphp/php-cs-fixer/tests/Test/Assert/AssertTokensTrait.php',
-        'vendor/friendsofphp/php-cs-fixer/tests/Test/IntegrationCase.php',
-        'vendor/friendsofphp/php-cs-fixer/tests/Test/IntegrationCaseFactory.php',
-        'vendor/friendsofphp/php-cs-fixer/tests/Test/IntegrationCaseFactoryInterface.php',
-        'vendor/friendsofphp/php-cs-fixer/tests/Test/InternalIntegrationCaseFactory.php',
-        'vendor/friendsofphp/php-cs-fixer/tests/TestCase.php',
-    ],
+    'file_list' => [],
 ];

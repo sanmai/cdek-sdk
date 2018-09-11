@@ -12,6 +12,9 @@ declare(strict_types=1);
 
 namespace Appwilio\CdekSDK\Contracts;
 
+/**
+ * @see \Appwilio\CdekSDK\Requests\PvzListRequest
+ */
 interface ParamRequest extends Request
 {
     public function getParams(): array;

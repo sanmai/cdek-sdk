@@ -13,6 +13,7 @@ declare(strict_types=1);
 namespace Appwilio\CdekSDK\Requests\Concerns;
 
 use Appwilio\CdekSDK\Contracts\JsonRequest;
+use Appwilio\CdekSDK\Contracts\ParamRequest;
 use Appwilio\CdekSDK\Contracts\XmlRequest;
 
 trait RequestCore
@@ -43,6 +44,10 @@ trait RequestCore
 
         if ($this instanceof JsonRequest) {
             return $this::SERIALIZATION_JSON;
+        }
+
+        if ($this instanceof ParamRequest) {
+            return $this::SERIALIZATION_XML;
         }
 
         throw new \BadMethodCallException(sprintf('Class [%s] has an unrecognized serialization format.', __CLASS__));

@@ -13,14 +13,13 @@ declare(strict_types=1);
 namespace Appwilio\CdekSDK\Requests;
 
 use Appwilio\CdekSDK\Contracts\ParamRequest;
-use Appwilio\CdekSDK\Contracts\XmlRequest;
 use Appwilio\CdekSDK\Requests\Concerns\RequestCore;
 use Appwilio\CdekSDK\Responses\PvzListResponse;
 
 /**
  * Class PvzListRequest.
  */
-final class PvzListRequest implements ParamRequest, XmlRequest
+final class PvzListRequest implements ParamRequest
 {
     use RequestCore;
 

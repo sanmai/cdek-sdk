@@ -13,7 +13,6 @@ declare(strict_types=1);
 namespace Tests\Appwilio\CdekSDK;
 
 use Appwilio\CdekSDK\Requests\PvzListRequest;
-use PHPUnit\Framework\Assert;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -30,7 +29,7 @@ class PvzListRequestTest extends TestCase
             ->setPostCode('123456');
 
         $this->assertEquals([
-            'type' => 'PVZ',
+            'type' => PvzListRequest::TYPE_PVZ,
             'cityid' => 1,
             'regionid' => 2,
             'countryid' => 3,
@@ -39,6 +38,25 @@ class PvzListRequestTest extends TestCase
             'weightmax' => null,
             'allowedcod' => null,
             'isdressingroom' => null,
+        ], $request->getParams());
+
+        $request = (new PvzListRequest())
+            ->setType(PvzListRequest::TYPE_POSTOMAT)
+            ->setCashless(true)
+            ->setDressingRoom(false)
+            ->setCodAllowed(true)
+            ->setMaxWeight(100);
+
+        $this->assertEquals([
+            'type' => PvzListRequest::TYPE_POSTOMAT,
+            'cityid' => null,
+            'regionid' => null,
+            'countryid' => null,
+            'citypostcode' => null,
+            'havecashles' => true,
+            'weightmax' => 100,
+            'allowedcod' => true,
+            'isdressingroom' => false,
         ], $request->getParams());
     }
 }

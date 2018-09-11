@@ -13,9 +13,7 @@ declare(strict_types=1);
 namespace Tests\Appwilio\CdekSDK;
 
 use Appwilio\CdekSDK\CdekClient;
-use GuzzleHttp\Client as HttpClient;
 use GuzzleHttp\ClientInterface;
-use PHPUnit\Framework\Assert;
 use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\ResponseInterface;
 
@@ -24,50 +22,26 @@ use Psr\Http\Message\ResponseInterface;
  */
 class CdekClientTest extends TestCase
 {
-    public function test_client_is_instantiable()
+    private function getHttpClient($contentType, $responseBody)
     {
-        Assert::assertInstanceOf(
-            CdekClient::class,
-            $this->getClient()
-        );
+        $response = $this->createMock(ResponseInterface::class);
+        $response->method('hasHeader')->willReturn($this->callback(function ($headerName) {
+            return $headerName == 'Content-Type';
+        }));
+        $response->method('getHeader')->willReturn([$contentType]);
+        $response->method('getBody')->willReturn($responseBody);
+
+        $http = $this->createMock(ClientInterface::class);
+        $http->method('request')->willReturn($response);
+
+        return $http;
     }
 
     public function test_client_can_read_plain_text_response()
     {
-        $textResponse = $this->createMock(ResponseInterface::class);
-        $textResponse->method('hasHeader')->willReturn($this->callback(function ($headerName) {
-            return $headerName == 'Content-Type';
-        }));
-        $textResponse->method('getHeader')->willReturn(['text/plain']);
+        $client = new CdekClient('foo', 'bar', $this->getHttpClient('text/plain', 'testing'));
+        $response = $client->sendPrintReceiptsRequest(new \Appwilio\CdekSDK\Requests\PrintReceiptsRequest());
 
-        $http = $this->createMock(ClientInterface::class);
-        $http->method('request')->willReturn($textResponse);
-
-        /** @var HttpClient $mock */
-        $client = new CdekClient('foo', 'bar', $http);
-        $response = $client->sendCalculationRequest(new \Appwilio\CdekSDK\Requests\CalculationRequest());
-
-        $this->assertSame($textResponse, $response);
-    }
-
-    private function getClient()
-    {
-        $mock = $this->createHttpClientMock();
-
-        return new CdekClient('foo', 'bar', $mock);
-    }
-
-    private function createHttpClientMock()
-    {
-        $mock = $this->getMockBuilder(HttpClient::class)
-            ->setMethods(['request'])
-            //->disableOriginalConstructor()
-            ->getMock();
-
-        //$mock->method('getTicket')->willReturn(new TicketResponse());
-        //$mock->method('getResponseByTicket')->willReturn(new TrackingResponse());
-
-        /** @var HttpClient $mock */
-        return $mock;
+        $this->assertSame('testing', $response->getBody());
     }
 }

@@ -16,11 +16,13 @@ use Appwilio\CdekSDK\CdekClient;
 use GuzzleHttp\Client as HttpClient;
 use PHPUnit\Framework\Assert;
 use PHPUnit\Framework\TestCase;
+use GuzzleHttp\ClientInterface;
+use Psr\Http\Message\ResponseInterface;
 
 /**
  * @covers \Appwilio\CdekSDK\CdekClient
  */
-class CdekClientTestCase extends TestCase
+class CdekClientTest extends TestCase
 {
     public function test_client_is_instantiable()
     {
@@ -28,6 +30,25 @@ class CdekClientTestCase extends TestCase
             CdekClient::class,
             $this->getClient()
         );
+    }
+
+    public function test_client_can_read_plain_text_response()
+    {
+        $textResponse = $this->createMock(ResponseInterface::class);
+        $textResponse->method('hasHeader')->willReturn($this->callback(function ($headerName) {
+            return $headerName == 'Content-Type';
+        }));
+        $textResponse->method('getHeader')->willReturn(['text/plain']);
+
+        $http = $this->createMock(ClientInterface::class);
+        $http->method('request')->willReturn($textResponse);
+
+        /** @var HttpClient $mock */
+
+        $client = new CdekClient('foo', 'bar', $http);
+        $response = $client->sendCalculationRequest(new \Appwilio\CdekSDK\Requests\CalculationRequest());
+
+        $this->assertSame($textResponse, $response);
     }
 
     private function getClient()

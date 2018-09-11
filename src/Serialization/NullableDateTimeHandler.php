@@ -17,15 +17,6 @@ use JMS\Serializer\XmlDeserializationVisitor;
 
 final class NullableDateTimeHandler extends DateHandler
 {
-    public function deserializeDateTimeFromXml(XmlDeserializationVisitor $visitor, $data, array $type)
-    {
-        if ((string) $data === '') {
-            return null;
-        }
-
-        return parent::deserializeDateTimeFromXml($visitor, $data, $type);
-    }
-
     public function deserializeDateTimeImmutableFromXml(XmlDeserializationVisitor $visitor, $data, array $type)
     {
         if ((string) $data === '') {

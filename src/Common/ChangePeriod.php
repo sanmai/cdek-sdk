@@ -54,7 +54,7 @@ final class ChangePeriod
     /**
      * @JMS\XmlAttribute
      * @JMS\SerializedName("DateLast")
-     * @JMS\Type("DateTime<'Y-m-d\TH:i:sP'>")
+     * @JMS\Type("DateTimeImmutable<'Y-m-d\TH:i:sP'>")
      * @JMS\VirtualProperty()
      */
     public function getDateLast()

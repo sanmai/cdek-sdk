@@ -12,6 +12,7 @@ declare(strict_types=1);
 
 namespace Appwilio\CdekSDK\Responses;
 
+use Appwilio\CdekSDK\Common\DeliveryRequest;
 use Appwilio\CdekSDK\Common\Order;
 use Appwilio\CdekSDK\Responses\Types\Message;
 use JMS\Serializer\Annotation as JMS;
@@ -23,6 +24,14 @@ use JMS\Serializer\Annotation as JMS;
  */
 class DeliveryResponse
 {
+    /**
+     * @JMS\XmlList(entry = "DeliveryRequest", inline = true)
+     * @JMS\Type("array<Appwilio\CdekSDK\Common\DeliveryRequest>")
+     *
+     * @var array|DeliveryRequest[]
+     */
+    protected $requests = [];
+
     /**
      * @JMS\XmlList(entry = "Order", inline = true)
      * @JMS\Type("array<Appwilio\CdekSDK\Common\Order>")
@@ -37,6 +46,14 @@ class DeliveryResponse
      * @var array|Message[]
      */
     protected $messages;
+
+    /**
+     * @return DeliveryRequest[]|array
+     */
+    public function getRequests()
+    {
+        return $this->requests;
+    }
 
     /**
      * @return Order[]|array

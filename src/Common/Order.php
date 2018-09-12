@@ -12,12 +12,13 @@ declare(strict_types=1);
 
 namespace Appwilio\CdekSDK\Common;
 
+use Appwilio\CdekSDK\Contracts\HasMessage;
 use JMS\Serializer\Annotation as JMS;
 
 /**
  * Class Order.
  */
-final class Order
+final class Order implements HasMessage
 {
     use Fillable;
 

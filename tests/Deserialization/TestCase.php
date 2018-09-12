@@ -26,6 +26,8 @@ abstract class TestCase extends \PHPUnit\Framework\TestCase
         $this->serializer = SerializerBuilder::create()->configureHandlers(function (HandlerRegistry $registry) {
             $registry->registerSubscribingHandler(new NullableDateTimeHandler());
         })->build();
+
+        \Doctrine\Common\Annotations\AnnotationReader::addGlobalIgnoredName('phan');
     }
 
     protected function getSerializer(): Serializer

@@ -24,7 +24,7 @@ use function Pipeline\map;
  *
  * @see DeleteResponse
  */
-class DeliveryResponse
+final class DeliveryResponse
 {
     /**
      * @JMS\XmlList(entry = "DeliveryRequest", inline = true)
@@ -32,7 +32,7 @@ class DeliveryResponse
      *
      * @var array|DeliveryRequest[]
      */
-    protected $requests = [];
+    private $requests = [];
 
     /**
      * @JMS\XmlList(entry = "Order", inline = true)
@@ -40,7 +40,7 @@ class DeliveryResponse
      *
      * @var array|Order[]
      */
-    protected $orders = [];
+    private $orders = [];
 
     /**
      * @JMS\Exclude
@@ -54,7 +54,7 @@ class DeliveryResponse
      *
      * @var \Traversable|Message[]
      */
-    protected $messages;
+    private $messages;
 
     /**
      * @return \Traversable|Order[]

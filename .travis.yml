@@ -19,3 +19,5 @@ script:
   - make ci --keep-going COMPOSER='/bin/sh -c composer'
   - composer validate
 
+after_success:
+  - travis_retry php vendor/bin/php-coveralls

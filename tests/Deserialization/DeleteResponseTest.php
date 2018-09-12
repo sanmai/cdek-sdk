@@ -17,7 +17,7 @@ use Tests\Appwilio\CdekSDK\Fixtures\FixtureLoader;
 
 /**
  * @covers \Appwilio\CdekSDK\Responses\DeleteResponse
- * @covers \Appwilio\CdekSDK\Common\DeleteRequest
+ * @covers \Appwilio\CdekSDK\Responses\Types\DeleteRequest
  * @covers \Appwilio\CdekSDK\Common\Order
  * @covers \Appwilio\CdekSDK\Responses\Types\Message
  */

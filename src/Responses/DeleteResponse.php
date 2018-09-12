@@ -12,8 +12,8 @@ declare(strict_types=1);
 
 namespace Appwilio\CdekSDK\Responses;
 
-use Appwilio\CdekSDK\Common\DeleteRequest;
 use Appwilio\CdekSDK\Common\Order;
+use Appwilio\CdekSDK\Responses\Types\DeleteRequest;
 use Appwilio\CdekSDK\Responses\Types\Message;
 use JMS\Serializer\Annotation as JMS;
 use function Pipeline\fromArray;
@@ -25,7 +25,7 @@ final class DeleteResponse
 {
     /**
      * @JMS\XmlList(entry = "DeleteRequest", inline = true)
-     * @JMS\Type("array<Appwilio\CdekSDK\Common\DeleteRequest>")
+     * @JMS\Type("array<Appwilio\CdekSDK\Responses\Types\DeleteRequest>")
      *
      * @var array|DeleteRequest[]
      */

@@ -10,7 +10,7 @@
 
 declare(strict_types=1);
 
-namespace Appwilio\CdekSDK\Common;
+namespace Appwilio\CdekSDK\Responses\Types;
 
 use Appwilio\CdekSDK\Contracts\HasMessage;
 use Appwilio\CdekSDK\Requests\Concerns\OrdersAware;

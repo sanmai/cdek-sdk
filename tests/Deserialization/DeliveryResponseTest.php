@@ -17,7 +17,8 @@ use Tests\Appwilio\CdekSDK\Fixtures\FixtureLoader;
 
 /**
  * @covers \Appwilio\CdekSDK\Responses\DeliveryResponse
- * @covers \Appwilio\CdekSDK\Common\DeliveryRequest
+ * @covers \Appwilio\CdekSDK\Responses\Types\DeliveryRequest
+ * @covers \Appwilio\CdekSDK\Responses\Types\Message
  */
 class DeliveryResponseTest extends TestCase
 {

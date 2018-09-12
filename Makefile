@@ -54,7 +54,7 @@ ci: prerequisites ci-phpunit ci-analyze
 ci-phpunit: ci-cs
 	$(SILENT) $(PHP) $(PHPUNIT) $(PHPUNIT_ARGS)
 	$(SILENT) $(PHP) $(INFECTION) $(INFECTION_ARGS)
-	$(SILENT) $(PHP) $(PHPUNIT) --group=integration || true
+	$(SILENT) $(PHP) $(PHPUNIT) --group=integration --coverage-clover=build/logs/clover-integration.xml || true
 
 ci-analyze: ci-cs
 	$(SILENT) $(PHP) $(PHAN) $(PHAN_ARGS)

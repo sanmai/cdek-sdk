@@ -38,10 +38,12 @@ class DeliveryRequestTest extends TestCase
         }
     }
 
+    const TEST_NUMBER = 'TESTING123';
+
     public function test_successful_request()
     {
         $this->getClient()->sendDeleteRequest(DeleteRequest::create([
-            'number' => 'TESTING123',
+            'Number' => self::TEST_NUMBER,
         ])->addOrder(new Order([
             'Number' => 'TEST-123456',
         ])));
@@ -76,7 +78,7 @@ class DeliveryRequestTest extends TestCase
         ])->addItem(Item::create('NN0001', 500, 0, 120, 2, 'Test item')));
 
         $request = new DeliveryRequest([
-            'number' => 'TESTING123',
+            'Number' => 'TESTING123',
         ]);
         $request->addOrder($order);
 

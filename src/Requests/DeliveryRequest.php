@@ -44,7 +44,7 @@ class DeliveryRequest implements XmlRequest, ShouldAuthorize
      *
      * @var string
      */
-    protected $number;
+    protected $Number;
 
     /**
      * @JMS\XmlAttribute
@@ -66,6 +66,6 @@ class DeliveryRequest implements XmlRequest, ShouldAuthorize
 
     public function getNumber(): string
     {
-        return $this->number;
+        return (string) $this->Number;
     }
 }

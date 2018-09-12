@@ -19,10 +19,13 @@ use Appwilio\CdekSDK\Common\Order;
 use Appwilio\CdekSDK\Common\Package;
 use Appwilio\CdekSDK\Requests\DeleteRequest;
 use Appwilio\CdekSDK\Requests\DeliveryRequest;
+use Appwilio\CdekSDK\Responses\DeleteResponse;
 
 /**
  * @covers \Appwilio\CdekSDK\Requests\DeliveryRequest
  * @covers \Appwilio\CdekSDK\Responses\DeliveryResponse
+ * @covers \Appwilio\CdekSDK\Requests\DeleteRequest
+ * @covers \Appwilio\CdekSDK\Responses\DeleteResponse
  * @covers \Appwilio\CdekSDK\Common\DeliveryRequest
  *
  * @group integration
@@ -42,14 +45,30 @@ class DeliveryRequestTest extends TestCase
 
     const TEST_NUMBER = 'TESTING123';
 
-    public function test_successful_request()
+    public function test_delete_success()
     {
-        $this->getClient()->sendDeleteRequest(DeleteRequest::create([
+        $response = $this->getClient()->sendDeleteRequest(DeleteRequest::create([
             'Number' => self::TEST_NUMBER,
         ])->addOrder(new Order([
             'Number' => 'TEST-123456',
         ])));
 
+        $this->assertInstanceOf(DeleteResponse::class, $response);
+
+        foreach ($response->getMessages() as $message) {
+            $this->assertNotEmpty($message->getText());
+        }
+
+        foreach ($response->getOrders() as $order) {
+            $this->assertSame('TEST-123456', $order->getNumber());
+        }
+    }
+
+    /**
+     * @depends test_delete_success
+     */
+    public function test_successful_request()
+    {
         $order = new Order([
             'Number' => 'TEST-123456',
             'SendCity' => City::create([

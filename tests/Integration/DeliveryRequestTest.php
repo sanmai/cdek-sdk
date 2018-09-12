@@ -24,6 +24,8 @@ use Appwilio\CdekSDK\Requests\DeliveryRequest;
  * @covers \Appwilio\CdekSDK\Requests\DeliveryRequest
  * @covers \Appwilio\CdekSDK\Responses\DeliveryResponse
  * @covers \Appwilio\CdekSDK\Common\DeliveryRequest
+ *
+ * @group integration
  */
 class DeliveryRequestTest extends TestCase
 {

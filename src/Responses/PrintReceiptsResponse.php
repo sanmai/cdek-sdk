@@ -13,8 +13,10 @@ declare(strict_types=1);
 namespace Appwilio\CdekSDK\Responses;
 
 use Appwilio\CdekSDK\Common\Order;
+use Appwilio\CdekSDK\Responses\Types\Message;
 use Appwilio\CdekSDK\Responses\Types\PrintReceiptsError;
 use JMS\Serializer\Annotation as JMS;
+use function Pipeline\map;
 
 /**
  * Class PrintReceiptsResponse.
@@ -25,7 +27,7 @@ final class PrintReceiptsResponse
      * @JMS\XmlList(entry = "Order", inline = true)
      * @JMS\Type("array<Appwilio\CdekSDK\Responses\Types\PrintReceiptsError>")
      *
-     * @var array|PrintReceiptsError[]
+     * @var PrintReceiptsError[]
      */
     private $orders = [];
 
@@ -33,7 +35,7 @@ final class PrintReceiptsResponse
      * @JMS\XmlList(entry = "OrdersPrint", inline = true)
      * @JMS\Type("array<Appwilio\CdekSDK\Responses\Types\PrintReceiptsError>")
      *
-     * @var array|PrintReceiptsError[]
+     * @var PrintReceiptsError[]
      */
     private $ordersPrint = [];
 
@@ -45,20 +47,25 @@ final class PrintReceiptsResponse
     private $errors;
 
     /**
-     * @JMS\PostDeserialize
-     */
-    public function filter()
-    {
-        $this->errors = array_merge($this->orders, $this->ordersPrint);
-
-        unset($this->orders, $this->ordersPrint);
-    }
-
-    /**
      * @return PrintReceiptsError[]
+     *
+     * @deprecated
      */
     public function getErrors()
     {
-        return $this->errors;
+        return array_merge($this->orders, $this->ordersPrint);
+    }
+
+    /**
+     * @return \Traversable|Message[]
+     */
+    public function getMessages()
+    {
+        return map(function () {
+            yield from $this->orders;
+            yield from $this->ordersPrint;
+        })->map(function (PrintReceiptsError $order) {
+            return new Message($order->getMessage(), $order->getErrorCode());
+        });
     }
 }

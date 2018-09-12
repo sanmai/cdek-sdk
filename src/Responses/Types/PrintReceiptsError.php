@@ -12,9 +12,10 @@ declare(strict_types=1);
 
 namespace Appwilio\CdekSDK\Responses\Types;
 
+use Appwilio\CdekSDK\Contracts\HasMessage;
 use JMS\Serializer\Annotation as JMS;
 
-final class PrintReceiptsError
+final class PrintReceiptsError implements HasMessage
 {
     /**
      * @JMS\XmlAttribute
@@ -34,12 +35,28 @@ final class PrintReceiptsError
      */
     private $text;
 
+    /**
+     * @deprecated
+     */
     public function getCode(): string
+    {
+        return $this->getErrorCode();
+    }
+
+    /**
+     * @deprecated
+     */
+    public function getText(): string
+    {
+        return $this->getMessage();
+    }
+
+    public function getErrorCode(): string
     {
         return $this->code;
     }
 
-    public function getText(): string
+    public function getMessage(): string
     {
         return $this->text;
     }

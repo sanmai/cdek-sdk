@@ -29,6 +29,8 @@ class PrintReceiptsResponseTest extends TestCase
         /** @var $response PrintReceiptsResponse */
         $this->assertInstanceOf(PrintReceiptsResponse::class, $response);
 
+        $this->assertNotEmpty($response->getErrors());
+
         foreach ($response->getMessages() as $message) {
             $this->assertTrue($message->isError());
             $this->assertContains('заказ не найден в базе', $message->getText());

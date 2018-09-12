@@ -19,14 +19,20 @@ use Appwilio\CdekSDK\Common\Order;
 use Appwilio\CdekSDK\Common\Package;
 use Appwilio\CdekSDK\Requests\DeleteRequest;
 use Appwilio\CdekSDK\Requests\DeliveryRequest;
+use Appwilio\CdekSDK\Requests\PrintReceiptsRequest;
 use Appwilio\CdekSDK\Responses\DeleteResponse;
+use Appwilio\CdekSDK\Responses\PrintReceiptsResponse;
 
 /**
  * @covers \Appwilio\CdekSDK\Requests\DeliveryRequest
  * @covers \Appwilio\CdekSDK\Responses\DeliveryResponse
+ * @covers \Appwilio\CdekSDK\Responses\Types\DeliveryRequest
+ *
  * @covers \Appwilio\CdekSDK\Requests\DeleteRequest
  * @covers \Appwilio\CdekSDK\Responses\DeleteResponse
- * @covers \Appwilio\CdekSDK\Common\DeliveryRequest
+ *
+ * @covers \Appwilio\CdekSDK\Requests\PrintReceiptsRequest
+ * @covers \Appwilio\CdekSDK\Responses\PrintReceiptsResponse
  *
  * @group integration
  */
@@ -112,6 +118,40 @@ class DeliveryRequestTest extends TestCase
         foreach ($response->getOrders() as $order) {
             $this->assertSame('TEST-123456', $order->getNumber());
             $this->assertNotEmpty($order->getDispatchNumber());
+        }
+
+        return $order->getDispatchNumber();
+    }
+
+    /**
+     * @depends test_successful_request
+     */
+    public function test_print_receipts_request(int $dispatchNumber)
+    {
+        $request = new PrintReceiptsRequest();
+        $request->addOrder(Order::create([
+            'DispatchNumber' => $dispatchNumber,
+        ]));
+
+        $response = $this->getClient()->sendPrintReceiptsRequest($request);
+        $this->assertNotInstanceOf(PrintReceiptsResponse::class, $response);
+
+        $this->assertSame('%PDF', $response->getBody()->read(4));
+    }
+
+    public function test_failed_print_receipts_request()
+    {
+        $request = new PrintReceiptsRequest();
+        $request->addOrder(Order::create([
+            'Number' => 'invalid',
+        ]));
+
+        $response = $this->getClient()->sendPrintReceiptsRequest($request);
+
+        $this->assertInstanceOf(PrintReceiptsResponse::class, $response);
+
+        foreach ($response->getMessages() as $message) {
+            $this->assertTrue($message->isError());
         }
     }
 }

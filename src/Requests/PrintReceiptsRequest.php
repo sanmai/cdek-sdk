@@ -31,6 +31,8 @@ final class PrintReceiptsRequest implements XmlRequest, ShouldAuthorize
 {
     use Authorized, Fillable, OrdersAware, RequestCore;
 
+    const COPY_COUNT_DEFAULT = 2;
+
     const METHOD = 'POST';
     const ADDRESS = '/orders_print.php';
     const RESPONSE = PrintReceiptsResponse::class;
@@ -61,6 +63,6 @@ final class PrintReceiptsRequest implements XmlRequest, ShouldAuthorize
      */
     public function getCopyCount()
     {
-        return 2;
+        return self::COPY_COUNT_DEFAULT;
     }
 }

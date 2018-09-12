@@ -16,7 +16,7 @@ export PHP_CS_FIXER_IGNORE_ENV=1
 
 # PHPUnit
 PHPUNIT=vendor/bin/phpunit
-PHPUNIT_ARGS=--coverage-xml=coverage/coverage-xml --log-junit=coverage/phpunit.junit.xml
+PHPUNIT_ARGS=--coverage-xml=coverage/coverage-xml --log-junit=coverage/phpunit.junit.xml --coverage-clover=build/logs/clover.xml
 
 # Phan
 PHAN=vendor/bin/phan

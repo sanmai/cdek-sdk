@@ -14,7 +14,6 @@ namespace Appwilio\CdekSDK\Responses;
 
 use Appwilio\CdekSDK\Common\DeleteRequest;
 use Appwilio\CdekSDK\Common\Order;
-use Appwilio\CdekSDK\Contracts\HasMessage;
 use Appwilio\CdekSDK\Responses\Types\Message;
 use JMS\Serializer\Annotation as JMS;
 use function Pipeline\fromArray;
@@ -32,10 +31,7 @@ final class DeleteResponse
      */
     private $requests = [];
 
-    /**
-     * @return \Traversable|Order[]
-     */
-    public function getOrders()
+    private function getOrdersFromRequests(): \Pipeline\Standard
     {
         return fromArray($this->requests)->map(function (DeleteRequest $request) {
             yield from $request->getOrders();
@@ -43,12 +39,20 @@ final class DeleteResponse
     }
 
     /**
+     * @return \Traversable|Order[]
+     */
+    public function getOrders()
+    {
+        return $this->getOrdersFromRequests();
+    }
+
+    /**
      * @return \Traversable|Message[]
      */
     public function getMessages()
     {
-        return fromArray($this->requests)->map(function (HasMessage $item) {
-            return new Message($item->getMessage());
+        return $this->getOrdersFromRequests()->map(function (Order $order) {
+            return new Message($order->getMessage(), $order->getErrorCode());
         });
     }
 }

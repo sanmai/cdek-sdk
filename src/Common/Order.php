@@ -311,6 +311,15 @@ final class Order implements HasMessage
 
     /**
      * @JMS\XmlAttribute
+     * @JMS\SerializedName("ErrorCode")
+     * @JMS\Type("string")
+     *
+     * @var string
+     */
+    protected $ErrorCode;
+
+    /**
+     * @JMS\XmlAttribute
      * @JMS\SerializedName("Msg")
      * @JMS\Type("string")
      *
@@ -652,6 +661,11 @@ final class Order implements HasMessage
     public function getRecipientCity(): City
     {
         return $this->RecCity;
+    }
+
+    public function getErrorCode(): string
+    {
+        return (string) $this->ErrorCode;
     }
 
     public function getMessage(): string

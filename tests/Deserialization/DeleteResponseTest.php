@@ -17,13 +17,13 @@ use Tests\Appwilio\CdekSDK\Fixtures\FixtureLoader;
 
 /**
  * @covers \Appwilio\CdekSDK\Responses\DeleteResponse
- * @covers \Appwilio\CdekSDK\Common\DeliveryRequest
  * @covers \Appwilio\CdekSDK\Common\DeleteRequest
  * @covers \Appwilio\CdekSDK\Common\Order
+ * @covers \Appwilio\CdekSDK\Responses\Types\Message
  */
 class DeleteResponseTest extends TestCase
 {
-    public function test_failing_request()
+    public function test_successful_request()
     {
         $response = $this->getSerializer()->deserialize(FixtureLoader::load('DeleteRequestSuccess.xml'), DeleteResponse::class, 'xml');
 
@@ -32,6 +32,22 @@ class DeleteResponseTest extends TestCase
 
         foreach ($response->getMessages() as $message) {
             $this->assertFalse($message->isError());
+        }
+
+        foreach ($response->getOrders() as $order) {
+            $this->assertSame('TEST-123456', $order->getNumber());
+        }
+    }
+
+    public function test_failing_request()
+    {
+        $response = $this->getSerializer()->deserialize(FixtureLoader::load('DeleteRequestFailure.xml'), DeleteResponse::class, 'xml');
+
+        /** @var $response DeleteResponse */
+        $this->assertInstanceOf(DeleteResponse::class, $response);
+
+        foreach ($response->getMessages() as $message) {
+            $this->assertTrue($message->isError());
         }
 
         foreach ($response->getOrders() as $order) {

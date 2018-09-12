@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="UTF-8"?><response><DeleteRequest Msg="Удалено заказов:0" ErrMsg="Не удалено заказов:1"><Order Number="TEST-123456" ErrorCode="ERR_ORDER_NOTFIND" Msg="Заказ не найден в базе СДЭК: Number=TEST-123456"/></DeleteRequest></response>
+

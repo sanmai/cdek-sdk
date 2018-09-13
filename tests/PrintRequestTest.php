@@ -30,8 +30,11 @@ declare(strict_types=1);
 
 namespace Tests\CdekSDK;
 
+use CdekSDK\Common\Fillable;
 use CdekSDK\Common\Order;
-use CdekSDK\Requests\PrintReceiptsRequest;
+use CdekSDK\Requests\Concerns\Authorized;
+use CdekSDK\Requests\Concerns\RequestCore;
+use CdekSDK\Requests\Template\PrintRequest;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -44,7 +47,13 @@ class PrintRequestTest extends TestCase
     {
         $this->expectException(\BadMethodCallException::class);
 
-        $request = new PrintReceiptsRequest();
+        $request = new class() extends PrintRequest {
+            use Fillable, Authorized, RequestCore;
+
+            const ADDRESS = '';
+            const METHOD = '';
+        };
+
         $request->addOrder(Order::create([
             'Number' => 'invalid',
         ]));

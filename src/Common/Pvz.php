@@ -28,7 +28,7 @@
 
 declare(strict_types=1);
 
-namespace Appwilio\CdekSDK\Common;
+namespace CdekSDK\Common;
 
 use JMS\Serializer\Annotation as JMS;
 
@@ -258,7 +258,7 @@ final class Pvz
     /**
      * @JMS\XmlAttribute
      * @JMS\SerializedName("WeightLimit")
-     * @JMS\Type("Appwilio\CdekSDK\Common\WeightLimit")
+     * @JMS\Type("CdekSDK\Common\WeightLimit")
      *
      * @var WeightLimit
      */

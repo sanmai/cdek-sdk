@@ -28,7 +28,7 @@
 
 declare(strict_types=1);
 
-namespace Appwilio\CdekSDK\Common;
+namespace CdekSDK\Common;
 
 use JMS\Serializer\Annotation as JMS;
 
@@ -92,7 +92,7 @@ final class Attempt
 
     /**
      * @JMS\SerializedName("Address")
-     * @JMS\Type("Appwilio\CdekSDK\Requests\DeliveryRequest\Address")
+     * @JMS\Type("CdekSDK\Requests\DeliveryRequest\Address")
      *
      * @var Address
      */

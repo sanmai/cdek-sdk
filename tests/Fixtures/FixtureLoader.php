@@ -28,7 +28,7 @@
 
 declare(strict_types=1);
 
-namespace Tests\Appwilio\CdekSDK\Fixtures;
+namespace Tests\CdekSDK\Fixtures;
 
 class FixtureLoader
 {

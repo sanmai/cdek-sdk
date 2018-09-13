@@ -28,11 +28,11 @@
 
 declare(strict_types=1);
 
-namespace Appwilio\CdekSDK\Responses;
+namespace CdekSDK\Responses;
 
-use Appwilio\CdekSDK\Common\Order;
-use Appwilio\CdekSDK\Responses\Types\DeliveryRequest;
-use Appwilio\CdekSDK\Responses\Types\Message;
+use CdekSDK\Common\Order;
+use CdekSDK\Responses\Types\DeliveryRequest;
+use CdekSDK\Responses\Types\Message;
 use JMS\Serializer\Annotation as JMS;
 use function Pipeline\fromArray;
 use function Pipeline\map;
@@ -46,7 +46,7 @@ final class DeliveryResponse
 {
     /**
      * @JMS\XmlList(entry = "DeliveryRequest", inline = true)
-     * @JMS\Type("array<Appwilio\CdekSDK\Responses\Types\DeliveryRequest>")
+     * @JMS\Type("array<CdekSDK\Responses\Types\DeliveryRequest>")
      *
      * @var array|DeliveryRequest[]
      */
@@ -54,7 +54,7 @@ final class DeliveryResponse
 
     /**
      * @JMS\XmlList(entry = "Order", inline = true)
-     * @JMS\Type("array<Appwilio\CdekSDK\Common\Order>")
+     * @JMS\Type("array<CdekSDK\Common\Order>")
      *
      * @var array|Order[]
      */

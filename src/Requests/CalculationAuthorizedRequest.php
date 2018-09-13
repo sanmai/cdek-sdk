@@ -28,10 +28,10 @@
 
 declare(strict_types=1);
 
-namespace Appwilio\CdekSDK\Requests;
+namespace CdekSDK\Requests;
 
-use Appwilio\CdekSDK\Contracts\ShouldAuthorize;
-use Appwilio\CdekSDK\Requests\Concerns\Authorized;
+use CdekSDK\Contracts\ShouldAuthorize;
+use CdekSDK\Requests\Concerns\Authorized;
 
 /**
  * Class CalculationAuthorizedRequest.

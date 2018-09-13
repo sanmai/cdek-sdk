@@ -28,13 +28,13 @@
 
 declare(strict_types=1);
 
-namespace Tests\Appwilio\CdekSDK\Deserialization;
+namespace Tests\CdekSDK\Deserialization;
 
-use Appwilio\CdekSDK\Responses\StatusReportResponse;
-use Tests\Appwilio\CdekSDK\Fixtures\FixtureLoader;
+use CdekSDK\Responses\StatusReportResponse;
+use Tests\CdekSDK\Fixtures\FixtureLoader;
 
 /**
- * @covers \Appwilio\CdekSDK\Serialization\NullableDateTimeHandler
+ * @covers \CdekSDK\Serialization\NullableDateTimeHandler
  */
 class NullableDateTimeHandlerTest extends TestCase
 {

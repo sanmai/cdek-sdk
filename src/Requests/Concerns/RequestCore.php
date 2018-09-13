@@ -28,11 +28,11 @@
 
 declare(strict_types=1);
 
-namespace Appwilio\CdekSDK\Requests\Concerns;
+namespace CdekSDK\Requests\Concerns;
 
-use Appwilio\CdekSDK\Contracts\JsonRequest;
-use Appwilio\CdekSDK\Contracts\ParamRequest;
-use Appwilio\CdekSDK\Contracts\XmlRequest;
+use CdekSDK\Contracts\JsonRequest;
+use CdekSDK\Contracts\ParamRequest;
+use CdekSDK\Contracts\XmlRequest;
 
 trait RequestCore
 {

@@ -28,9 +28,9 @@
 
 declare(strict_types=1);
 
-namespace Appwilio\CdekSDK\Requests\Concerns;
+namespace CdekSDK\Requests\Concerns;
 
-use Appwilio\CdekSDK\Contracts\ShouldAuthorize;
+use CdekSDK\Contracts\ShouldAuthorize;
 
 trait Authorized
 {

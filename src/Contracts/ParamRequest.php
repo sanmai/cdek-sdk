@@ -28,10 +28,10 @@
 
 declare(strict_types=1);
 
-namespace Appwilio\CdekSDK\Contracts;
+namespace CdekSDK\Contracts;
 
 /**
- * @see \Appwilio\CdekSDK\Requests\PvzListRequest
+ * @see \CdekSDK\Requests\PvzListRequest
  */
 interface ParamRequest extends Request
 {

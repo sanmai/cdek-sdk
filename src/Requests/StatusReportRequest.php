@@ -28,15 +28,15 @@
 
 declare(strict_types=1);
 
-namespace Appwilio\CdekSDK\Requests;
+namespace CdekSDK\Requests;
 
-use Appwilio\CdekSDK\Common\ChangePeriod;
-use Appwilio\CdekSDK\Common\Order;
-use Appwilio\CdekSDK\Contracts\ShouldAuthorize;
-use Appwilio\CdekSDK\Contracts\XmlRequest;
-use Appwilio\CdekSDK\Requests\Concerns\Authorized;
-use Appwilio\CdekSDK\Requests\Concerns\RequestCore;
-use Appwilio\CdekSDK\Responses\StatusReportResponse;
+use CdekSDK\Common\ChangePeriod;
+use CdekSDK\Common\Order;
+use CdekSDK\Contracts\ShouldAuthorize;
+use CdekSDK\Contracts\XmlRequest;
+use CdekSDK\Requests\Concerns\Authorized;
+use CdekSDK\Requests\Concerns\RequestCore;
+use CdekSDK\Responses\StatusReportResponse;
 use JMS\Serializer\Annotation as JMS;
 
 /**
@@ -81,7 +81,7 @@ final class StatusReportRequest implements XmlRequest, ShouldAuthorize
 
     /**
      * @JMS\XmlList(inline = true, entry = "Order")
-     * @JMS\Type("array<Appwilio\CdekSDK\Common\Order>")
+     * @JMS\Type("array<CdekSDK\Common\Order>")
      *
      * @var array|Order[]
      */

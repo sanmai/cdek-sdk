@@ -28,15 +28,15 @@
 
 declare(strict_types=1);
 
-namespace Appwilio\CdekSDK;
+namespace CdekSDK;
 
-use Appwilio\CdekSDK\Contracts\JsonRequest;
-use Appwilio\CdekSDK\Contracts\ParamRequest;
-use Appwilio\CdekSDK\Contracts\Request;
-use Appwilio\CdekSDK\Contracts\ShouldAuthorize;
-use Appwilio\CdekSDK\Contracts\XmlRequest;
-use Appwilio\CdekSDK\Responses\FileResponse;
-use Appwilio\CdekSDK\Serialization\NullableDateTimeHandler;
+use CdekSDK\Contracts\JsonRequest;
+use CdekSDK\Contracts\ParamRequest;
+use CdekSDK\Contracts\Request;
+use CdekSDK\Contracts\ShouldAuthorize;
+use CdekSDK\Contracts\XmlRequest;
+use CdekSDK\Responses\FileResponse;
+use CdekSDK\Serialization\NullableDateTimeHandler;
 use GuzzleHttp\Client as GuzzleClient;
 use GuzzleHttp\ClientInterface;
 use JMS\Serializer\Handler\HandlerRegistry;

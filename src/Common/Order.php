@@ -28,9 +28,9 @@
 
 declare(strict_types=1);
 
-namespace Appwilio\CdekSDK\Common;
+namespace CdekSDK\Common;
 
-use Appwilio\CdekSDK\Contracts\HasMessage;
+use CdekSDK\Contracts\HasMessage;
 use JMS\Serializer\Annotation as JMS;
 
 /**
@@ -141,7 +141,7 @@ final class Order implements HasMessage
 
     /**
      * @JMS\SerializedName("Status")
-     * @JMS\Type("Appwilio\CdekSDK\Common\Status")
+     * @JMS\Type("CdekSDK\Common\Status")
      *
      * @var Status|null
      */
@@ -149,7 +149,7 @@ final class Order implements HasMessage
 
     /**
      * @JMS\SerializedName("Reason")
-     * @JMS\Type("Appwilio\CdekSDK\Common\Reason")
+     * @JMS\Type("CdekSDK\Common\Reason")
      *
      * @var Reason
      */
@@ -157,7 +157,7 @@ final class Order implements HasMessage
 
     /**
      * @JMS\SerializedName("DelayReason")
-     * @JMS\Type("Appwilio\CdekSDK\Common\Reason")
+     * @JMS\Type("CdekSDK\Common\Reason")
      *
      * @var Reason
      */
@@ -165,7 +165,7 @@ final class Order implements HasMessage
 
     /**
      * @JMS\SerializedName("Address")
-     * @JMS\Type("Appwilio\CdekSDK\Common\Address")
+     * @JMS\Type("CdekSDK\Common\Address")
      *
      * @var Address
      */
@@ -173,7 +173,7 @@ final class Order implements HasMessage
 
     /**
      * @JMS\XmlList(entry="Attempt", inline=true)
-     * @JMS\Type("array<Appwilio\CdekSDK\Common\Attempt>")
+     * @JMS\Type("array<CdekSDK\Common\Attempt>")
      *
      * @var array|Attempt[]
      */
@@ -181,7 +181,7 @@ final class Order implements HasMessage
 
     /**
      * @JMS\XmlList(entry="AddedService", inline=true)
-     * @JMS\Type("array<Appwilio\CdekSDK\Common\AdditionalService>")
+     * @JMS\Type("array<CdekSDK\Common\AdditionalService>")
      *
      * @var array|AdditionalService[]
      */
@@ -189,7 +189,7 @@ final class Order implements HasMessage
 
     /**
      * @JMS\XmlList(entry="AddService", inline=true)
-     * @JMS\Type("array<Appwilio\CdekSDK\Common\AdditionalService>")
+     * @JMS\Type("array<CdekSDK\Common\AdditionalService>")
      *
      * @var array|AdditionalService[]
      */
@@ -198,7 +198,7 @@ final class Order implements HasMessage
     /**
      * @JMS\SerializedName("Schedule")
      * @JMS\XmlList(entry="Attempt")
-     * @JMS\Type("array<Appwilio\CdekSDK\Common\Attempt>")\
+     * @JMS\Type("array<CdekSDK\Common\Attempt>")\
      *
      * @var array|Attempt[]
      */
@@ -206,7 +206,7 @@ final class Order implements HasMessage
 
     /**
      * @JMS\XmlList(entry="Package", inline=true)
-     * @JMS\Type("array<Appwilio\CdekSDK\Common\Package>")
+     * @JMS\Type("array<CdekSDK\Common\Package>")
      *
      * @var array|Package[]
      */
@@ -215,7 +215,7 @@ final class Order implements HasMessage
     /**
      * @JMS\SerializedName("CallCourier")
      * @JMS\XmlList(entry="Call")
-     * @JMS\Type("array<Appwilio\CdekSDK\Common\CallCourier>")
+     * @JMS\Type("array<CdekSDK\Common\CallCourier>")
      *
      * @var array|CallCourier[]
      */
@@ -295,7 +295,7 @@ final class Order implements HasMessage
 
     /**
      * @JMS\SerializedName("SendCity")
-     * @JMS\Type("Appwilio\CdekSDK\Common\City")
+     * @JMS\Type("CdekSDK\Common\City")
      *
      * @var City
      */
@@ -312,7 +312,7 @@ final class Order implements HasMessage
 
     /**
      * @JMS\SerializedName("RecCity")
-     * @JMS\Type("Appwilio\CdekSDK\Common\City")
+     * @JMS\Type("CdekSDK\Common\City")
      *
      * @var City
      */
@@ -383,7 +383,7 @@ final class Order implements HasMessage
 
     /**
      * @JMS\SerializedName("Call")
-     * @JMS\Type("Appwilio\CdekSDK\Common\Call")
+     * @JMS\Type("CdekSDK\Common\Call")
      *
      * @var Call
      */
@@ -391,7 +391,7 @@ final class Order implements HasMessage
 
     /**
      * @JMS\SerializedName("ReturnOrder")
-     * @JMS\Type("Appwilio\CdekSDK\Common\Order")
+     * @JMS\Type("CdekSDK\Common\Order")
      *
      * @var Order
      */

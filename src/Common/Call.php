@@ -28,7 +28,7 @@
 
 declare(strict_types=1);
 
-namespace Appwilio\CdekSDK\Common;
+namespace CdekSDK\Common;
 
 use JMS\Serializer\Annotation as JMS;
 
@@ -42,7 +42,7 @@ final class Call
     /**
      * @JMS\SerializedName("CallGood")
      * @JMS\XmlList(entry="Good")
-     * @JMS\Type("array<Appwilio\CdekSDK\Common\CallGood>")
+     * @JMS\Type("array<CdekSDK\Common\CallGood>")
      *
      * @var CallGood[]|array
      */
@@ -51,7 +51,7 @@ final class Call
     /**
      * @JMS\SerializedName("CallFail")
      * @JMS\XmlList(entry="Good")
-     * @JMS\Type("array<Appwilio\CdekSDK\Common\CallFail>")
+     * @JMS\Type("array<CdekSDK\Common\CallFail>")
      *
      * @var CallFail[]|array
      */
@@ -60,7 +60,7 @@ final class Call
     /**
      * @JMS\SerializedName("CallDelay")
      * @JMS\XmlList(entry="Good")
-     * @JMS\Type("array<Appwilio\CdekSDK\Common\CallDelay>")
+     * @JMS\Type("array<CdekSDK\Common\CallDelay>")
      *
      * @var CallDelay[]|array
      */

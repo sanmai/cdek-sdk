@@ -28,10 +28,10 @@
 
 declare(strict_types=1);
 
-namespace Appwilio\CdekSDK\Responses\Types;
+namespace CdekSDK\Responses\Types;
 
-use Appwilio\CdekSDK\Contracts\HasMessage;
-use Appwilio\CdekSDK\Requests\Concerns\OrdersAware;
+use CdekSDK\Contracts\HasMessage;
+use CdekSDK\Requests\Concerns\OrdersAware;
 use JMS\Serializer\Annotation as JMS;
 
 /**

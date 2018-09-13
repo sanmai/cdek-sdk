@@ -28,9 +28,9 @@
 
 declare(strict_types=1);
 
-namespace Tests\Appwilio\CdekSDK\Deserialization;
+namespace Tests\CdekSDK\Deserialization;
 
-use Appwilio\CdekSDK\Serialization\NullableDateTimeHandler;
+use CdekSDK\Serialization\NullableDateTimeHandler;
 use JMS\Serializer\Handler\HandlerRegistry;
 use JMS\Serializer\Serializer;
 use JMS\Serializer\SerializerBuilder;

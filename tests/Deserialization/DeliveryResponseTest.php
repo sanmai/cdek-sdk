@@ -28,15 +28,15 @@
 
 declare(strict_types=1);
 
-namespace Tests\Appwilio\CdekSDK\Deserialization;
+namespace Tests\CdekSDK\Deserialization;
 
-use Appwilio\CdekSDK\Responses\DeliveryResponse;
-use Tests\Appwilio\CdekSDK\Fixtures\FixtureLoader;
+use CdekSDK\Responses\DeliveryResponse;
+use Tests\CdekSDK\Fixtures\FixtureLoader;
 
 /**
- * @covers \Appwilio\CdekSDK\Responses\DeliveryResponse
- * @covers \Appwilio\CdekSDK\Responses\Types\DeliveryRequest
- * @covers \Appwilio\CdekSDK\Responses\Types\Message
+ * @covers \CdekSDK\Responses\DeliveryResponse
+ * @covers \CdekSDK\Responses\Types\DeliveryRequest
+ * @covers \CdekSDK\Responses\Types\Message
  */
 class DeliveryResponseTest extends TestCase
 {

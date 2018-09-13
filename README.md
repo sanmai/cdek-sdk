@@ -35,7 +35,7 @@ require_once 'vendor/autoload.php';
 
 \Doctrine\Common\Annotations\AnnotationRegistry::registerLoader('class_exists');
 
-$client = new \Appwilio\CdekSDK\CdekClient('account', 'password');
+$client = new \CdekSDK\CdekClient('account', 'password');
 ```
 
 ## Использование
@@ -43,7 +43,7 @@ $client = new \Appwilio\CdekSDK\CdekClient('account', 'password');
 ### Расчёт стоимости доставки
 
 ```php
-use Appwilio\CdekSDK\Requests\CalculationRequest;
+use CdekSDK\Requests\CalculationRequest;
 
 // для выполнения авторизованного запроса используется
 // $request = CalculationRequest::withAuthorization();
@@ -64,8 +64,8 @@ $response = $client->sendCalculationRequest($request)
 ### Трекинг
 
 ```php
-use \Appwilio\CdekSDK\Common\Order;
-use Appwilio\CdekSDK\Requests\StatusReportRequest;
+use \CdekSDK\Common\Order;
+use CdekSDK\Requests\StatusReportRequest;
 
 $request = (new StatusReportRequest())
     ->setShowHistory();

@@ -28,11 +28,11 @@
 
 declare(strict_types=1);
 
-namespace Appwilio\CdekSDK\Requests;
+namespace CdekSDK\Requests;
 
-use Appwilio\CdekSDK\Contracts\ParamRequest;
-use Appwilio\CdekSDK\Requests\Concerns\RequestCore;
-use Appwilio\CdekSDK\Responses\PvzListResponse;
+use CdekSDK\Contracts\ParamRequest;
+use CdekSDK\Requests\Concerns\RequestCore;
+use CdekSDK\Responses\PvzListResponse;
 
 /**
  * Class PvzListRequest.

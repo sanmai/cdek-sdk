@@ -28,7 +28,7 @@
 
 declare(strict_types=1);
 
-namespace Appwilio\CdekSDK\Common;
+namespace CdekSDK\Common;
 
 use JMS\Serializer\Annotation as JMS;
 
@@ -102,7 +102,7 @@ final class Item
     /**
      * @phan-suppress PhanUnusedPublicFinalMethodParameter
      *
-     * @return \Appwilio\CdekSDK\Common\Item
+     * @return \CdekSDK\Common\Item
      */
     public static function create(string $WareKey, float $Cost, float $Payment, int $Weight, int $Amount, string $Comment)
     {

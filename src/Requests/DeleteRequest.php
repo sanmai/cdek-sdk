@@ -28,9 +28,9 @@
 
 declare(strict_types=1);
 
-namespace Appwilio\CdekSDK\Requests;
+namespace CdekSDK\Requests;
 
-use Appwilio\CdekSDK\Responses\DeleteResponse;
+use CdekSDK\Responses\DeleteResponse;
 use JMS\Serializer\Annotation as JMS;
 
 /**

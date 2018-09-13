@@ -28,13 +28,13 @@
 
 declare(strict_types=1);
 
-namespace Appwilio\CdekSDK\Requests\Template;
+namespace CdekSDK\Requests\Template;
 
-use Appwilio\CdekSDK\Common\Order;
-use Appwilio\CdekSDK\Contracts\ShouldAuthorize;
-use Appwilio\CdekSDK\Contracts\XmlRequest;
-use Appwilio\CdekSDK\Requests\Concerns\OrdersAware;
-use Appwilio\CdekSDK\Responses\PrintErrorResponse;
+use CdekSDK\Common\Order;
+use CdekSDK\Contracts\ShouldAuthorize;
+use CdekSDK\Contracts\XmlRequest;
+use CdekSDK\Requests\Concerns\OrdersAware;
+use CdekSDK\Responses\PrintErrorResponse;
 use JMS\Serializer\Annotation as JMS;
 
 abstract class PrintRequest implements XmlRequest, ShouldAuthorize

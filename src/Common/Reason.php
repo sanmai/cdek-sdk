@@ -28,7 +28,7 @@
 
 declare(strict_types=1);
 
-namespace Appwilio\CdekSDK\Common;
+namespace CdekSDK\Common;
 
 use JMS\Serializer\Annotation as JMS;
 
@@ -63,7 +63,7 @@ final class Reason
 
     /**
      * @JMS\XmlList(entry="State", inline=true)
-     * @JMS\Type("array<Appwilio\CdekSDK\Common\State>")
+     * @JMS\Type("array<CdekSDK\Common\State>")
      *
      * @var State[]|array
      */

@@ -28,15 +28,15 @@
 
 declare(strict_types=1);
 
-namespace Appwilio\CdekSDK\Requests\Concerns;
+namespace CdekSDK\Requests\Concerns;
 
-use Appwilio\CdekSDK\Common\Order;
+use CdekSDK\Common\Order;
 
 trait OrdersAware
 {
     /**
      * @JMS\XmlList(entry = "Order", inline = true)
-     * @JMS\Type("array<Appwilio\CdekSDK\Common\Order>")
+     * @JMS\Type("array<CdekSDK\Common\Order>")
      *
      * @var Order[]|array
      */

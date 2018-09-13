@@ -28,7 +28,7 @@
 
 declare(strict_types=1);
 
-namespace Appwilio\CdekSDK\Responses;
+namespace CdekSDK\Responses;
 
 use Psr\Http\Message\StreamInterface;
 

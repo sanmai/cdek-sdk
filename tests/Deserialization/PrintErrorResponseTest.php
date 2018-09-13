@@ -28,15 +28,15 @@
 
 declare(strict_types=1);
 
-namespace Tests\Appwilio\CdekSDK\Deserialization;
+namespace Tests\CdekSDK\Deserialization;
 
-use Appwilio\CdekSDK\Responses\PrintErrorResponse;
-use Tests\Appwilio\CdekSDK\Fixtures\FixtureLoader;
+use CdekSDK\Responses\PrintErrorResponse;
+use Tests\CdekSDK\Fixtures\FixtureLoader;
 
 /**
- * @covers \Appwilio\CdekSDK\Responses\PrintErrorResponse
- * @covers \Appwilio\CdekSDK\Responses\Types\PrintError
- * @covers \Appwilio\CdekSDK\Responses\Types\Message
+ * @covers \CdekSDK\Responses\PrintErrorResponse
+ * @covers \CdekSDK\Responses\Types\PrintError
+ * @covers \CdekSDK\Responses\Types\Message
  */
 class PrintErrorResponseTest extends TestCase
 {

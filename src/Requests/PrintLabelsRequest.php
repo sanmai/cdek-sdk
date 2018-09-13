@@ -28,12 +28,12 @@
 
 declare(strict_types=1);
 
-namespace Appwilio\CdekSDK\Requests;
+namespace CdekSDK\Requests;
 
-use Appwilio\CdekSDK\Common\Fillable;
-use Appwilio\CdekSDK\Requests\Concerns\Authorized;
-use Appwilio\CdekSDK\Requests\Concerns\RequestCore;
-use Appwilio\CdekSDK\Requests\Template\PrintRequest;
+use CdekSDK\Common\Fillable;
+use CdekSDK\Requests\Concerns\Authorized;
+use CdekSDK\Requests\Concerns\RequestCore;
+use CdekSDK\Requests\Template\PrintRequest;
 use JMS\Serializer\Annotation as JMS;
 
 /**

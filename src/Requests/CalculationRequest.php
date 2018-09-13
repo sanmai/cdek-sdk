@@ -28,11 +28,11 @@
 
 declare(strict_types=1);
 
-namespace Appwilio\CdekSDK\Requests;
+namespace CdekSDK\Requests;
 
-use Appwilio\CdekSDK\Contracts\JsonRequest;
-use Appwilio\CdekSDK\Requests\Concerns\RequestCore;
-use Appwilio\CdekSDK\Responses\CalculationResponse;
+use CdekSDK\Contracts\JsonRequest;
+use CdekSDK\Requests\Concerns\RequestCore;
+use CdekSDK\Responses\CalculationResponse;
 
 /**
  * Class CalculationRequest.
@@ -121,7 +121,7 @@ class CalculationRequest implements JsonRequest
      * @param mixed $id
      * @param mixed $priority
      *
-     * @return \Appwilio\CdekSDK\Requests\CalculationRequest
+     * @return \CdekSDK\Requests\CalculationRequest
      */
     public function addTariffToList($id, $priority)
     {

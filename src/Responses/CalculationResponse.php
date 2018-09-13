@@ -28,10 +28,10 @@
 
 declare(strict_types=1);
 
-namespace Appwilio\CdekSDK\Responses;
+namespace CdekSDK\Responses;
 
-use Appwilio\CdekSDK\Responses\Types\Error;
-use Appwilio\CdekSDK\Responses\Types\Result;
+use CdekSDK\Responses\Types\Error;
+use CdekSDK\Responses\Types\Result;
 use JMS\Serializer\Annotation as JMS;
 
 /**
@@ -41,7 +41,7 @@ final class CalculationResponse
 {
     /**
      * @JMS\SerializedName("result")
-     * @JMS\Type("Appwilio\CdekSDK\Responses\Types\Result")
+     * @JMS\Type("CdekSDK\Responses\Types\Result")
      *
      * @var Result
      */
@@ -49,7 +49,7 @@ final class CalculationResponse
 
     /**
      * @JMS\SerializedName("error")
-     * @JMS\Type("array<Appwilio\CdekSDK\Responses\Types\Error>")
+     * @JMS\Type("array<CdekSDK\Responses\Types\Error>")
      *
      * @var array|Error[]
      */

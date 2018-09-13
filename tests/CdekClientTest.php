@@ -28,26 +28,26 @@
 
 declare(strict_types=1);
 
-namespace Tests\Appwilio\CdekSDK;
+namespace Tests\CdekSDK;
 
-use Appwilio\CdekSDK\CdekClient;
-use Appwilio\CdekSDK\Contracts\Request;
-use Appwilio\CdekSDK\Requests\CalculationRequest;
-use Appwilio\CdekSDK\Requests\PrintReceiptsRequest;
-use Appwilio\CdekSDK\Requests\PvzListRequest;
-use Appwilio\CdekSDK\Requests\StatusReportRequest;
-use Appwilio\CdekSDK\Responses\CalculationResponse;
-use Appwilio\CdekSDK\Responses\FileResponse;
-use Appwilio\CdekSDK\Responses\PvzListResponse;
-use Appwilio\CdekSDK\Responses\StatusReportResponse;
+use CdekSDK\CdekClient;
+use CdekSDK\Contracts\Request;
+use CdekSDK\Requests\CalculationRequest;
+use CdekSDK\Requests\PrintReceiptsRequest;
+use CdekSDK\Requests\PvzListRequest;
+use CdekSDK\Requests\StatusReportRequest;
+use CdekSDK\Responses\CalculationResponse;
+use CdekSDK\Responses\FileResponse;
+use CdekSDK\Responses\PvzListResponse;
+use CdekSDK\Responses\StatusReportResponse;
 use GuzzleHttp\ClientInterface;
 use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\StreamInterface;
-use Tests\Appwilio\CdekSDK\Fixtures\FixtureLoader;
+use Tests\CdekSDK\Fixtures\FixtureLoader;
 
 /**
- * @covers \Appwilio\CdekSDK\CdekClient
+ * @covers \CdekSDK\CdekClient
  */
 class CdekClientTest extends TestCase
 {

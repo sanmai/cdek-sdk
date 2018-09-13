@@ -28,9 +28,9 @@
 
 declare(strict_types=1);
 
-namespace Appwilio\CdekSDK\Responses;
+namespace CdekSDK\Responses;
 
-use Appwilio\CdekSDK\Common\Order;
+use CdekSDK\Common\Order;
 use JMS\Serializer\Annotation as JMS;
 
 /**
@@ -58,7 +58,7 @@ final class StatusReportResponse
 
     /**
      * @JMS\XmlList(inline = true, entry = "Order")
-     * @JMS\Type("array<Appwilio\CdekSDK\Common\Order>")
+     * @JMS\Type("array<CdekSDK\Common\Order>")
      *
      * @var Order[]|array
      */

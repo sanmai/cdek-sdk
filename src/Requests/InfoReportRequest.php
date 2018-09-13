@@ -28,16 +28,16 @@
 
 declare(strict_types=1);
 
-namespace Appwilio\CdekSDK\Requests;
+namespace CdekSDK\Requests;
 
-use Appwilio\CdekSDK\Common\ChangePeriod;
-use Appwilio\CdekSDK\Common\Order;
-use Appwilio\CdekSDK\Contracts\ShouldAuthorize;
-use Appwilio\CdekSDK\Contracts\XmlRequest;
-use Appwilio\CdekSDK\Requests\Concerns\Authorized;
-use Appwilio\CdekSDK\Requests\Concerns\OrdersAware;
-use Appwilio\CdekSDK\Requests\Concerns\RequestCore;
-use Appwilio\CdekSDK\Responses\InfoReportResponse;
+use CdekSDK\Common\ChangePeriod;
+use CdekSDK\Common\Order;
+use CdekSDK\Contracts\ShouldAuthorize;
+use CdekSDK\Contracts\XmlRequest;
+use CdekSDK\Requests\Concerns\Authorized;
+use CdekSDK\Requests\Concerns\OrdersAware;
+use CdekSDK\Requests\Concerns\RequestCore;
+use CdekSDK\Responses\InfoReportResponse;
 use JMS\Serializer\Annotation as JMS;
 
 /**

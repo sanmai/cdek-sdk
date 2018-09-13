@@ -28,9 +28,9 @@
 
 declare(strict_types=1);
 
-namespace Tests\Appwilio\CdekSDK\Integration;
+namespace Tests\CdekSDK\Integration;
 
-use Appwilio\CdekSDK\CdekClient;
+use CdekSDK\CdekClient;
 use GuzzleHttp\Client as GuzzleClient;
 
 abstract class TestCase extends \PHPUnit\Framework\TestCase

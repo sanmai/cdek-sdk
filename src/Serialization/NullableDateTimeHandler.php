@@ -28,7 +28,7 @@
 
 declare(strict_types=1);
 
-namespace Appwilio\CdekSDK\Serialization;
+namespace CdekSDK\Serialization;
 
 use JMS\Serializer\Handler\DateHandler;
 use JMS\Serializer\XmlDeserializationVisitor;

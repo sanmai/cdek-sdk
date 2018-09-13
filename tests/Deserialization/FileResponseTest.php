@@ -28,13 +28,13 @@
 
 declare(strict_types=1);
 
-namespace Tests\Appwilio\CdekSDK\Deserialization;
+namespace Tests\CdekSDK\Deserialization;
 
-use Appwilio\CdekSDK\Responses\FileResponse;
+use CdekSDK\Responses\FileResponse;
 use Psr\Http\Message\StreamInterface;
 
 /**
- * @covers \Appwilio\CdekSDK\Responses\FileResponse
+ * @covers \CdekSDK\Responses\FileResponse
  */
 class FileResponseTest extends TestCase
 {

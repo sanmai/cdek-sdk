@@ -28,11 +28,11 @@
 
 declare(strict_types=1);
 
-namespace Appwilio\CdekSDK\Responses;
+namespace CdekSDK\Responses;
 
-use Appwilio\CdekSDK\Common\Order;
-use Appwilio\CdekSDK\Responses\Types\Message;
-use Appwilio\CdekSDK\Responses\Types\PrintError;
+use CdekSDK\Common\Order;
+use CdekSDK\Responses\Types\Message;
+use CdekSDK\Responses\Types\PrintError;
 use JMS\Serializer\Annotation as JMS;
 use function Pipeline\map;
 
@@ -43,7 +43,7 @@ final class PrintErrorResponse
 {
     /**
      * @JMS\XmlList(entry = "Order", inline = true)
-     * @JMS\Type("array<Appwilio\CdekSDK\Responses\Types\PrintError>")
+     * @JMS\Type("array<CdekSDK\Responses\Types\PrintError>")
      *
      * @var PrintError[]
      */
@@ -51,7 +51,7 @@ final class PrintErrorResponse
 
     /**
      * @JMS\XmlList(entry = "OrdersPrint", inline = true)
-     * @JMS\Type("array<Appwilio\CdekSDK\Responses\Types\PrintError>")
+     * @JMS\Type("array<CdekSDK\Responses\Types\PrintError>")
      *
      * @var PrintError[]
      */

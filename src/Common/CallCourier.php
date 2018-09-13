@@ -28,7 +28,7 @@
 
 declare(strict_types=1);
 
-namespace Appwilio\CdekSDK\Common;
+namespace CdekSDK\Common;
 
 use JMS\Serializer\Annotation as JMS;
 
@@ -110,7 +110,7 @@ final class CallCourier
 
     /**
      * @JMS\SerializedName("SendAddress")
-     * @JMS\Type("Appwilio\CdekSDK\Common\Address")
+     * @JMS\Type("CdekSDK\Common\Address")
      *
      * @var Address
      */

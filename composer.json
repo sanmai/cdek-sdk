@@ -38,12 +38,12 @@
     },
     "autoload": {
         "psr-4": {
-            "Appwilio\\CdekSDK\\": "src/"
+            "CdekSDK\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Tests\\Appwilio\\CdekSDK\\": "tests/"
+            "Tests\\CdekSDK\\": "tests/"
         }
     },
     "config": {

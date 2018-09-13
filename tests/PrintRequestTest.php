@@ -28,15 +28,15 @@
 
 declare(strict_types=1);
 
-namespace Tests\Appwilio\CdekSDK;
+namespace Tests\CdekSDK;
 
-use Appwilio\CdekSDK\Common\Order;
-use Appwilio\CdekSDK\Requests\PrintReceiptsRequest;
+use CdekSDK\Common\Order;
+use CdekSDK\Requests\PrintReceiptsRequest;
 use PHPUnit\Framework\TestCase;
 
 /**
- * @covers \Appwilio\CdekSDK\Requests\Template\PrintRequest
- * @covers \Appwilio\CdekSDK\Common\Order
+ * @covers \CdekSDK\Requests\Template\PrintRequest
+ * @covers \CdekSDK\Common\Order
  */
 class PrintRequestTest extends TestCase
 {

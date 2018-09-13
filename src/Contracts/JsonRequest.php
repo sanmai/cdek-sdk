@@ -28,7 +28,7 @@
 
 declare(strict_types=1);
 
-namespace Appwilio\CdekSDK\Contracts;
+namespace CdekSDK\Contracts;
 
 interface JsonRequest extends Request
 {

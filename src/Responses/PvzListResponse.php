@@ -28,9 +28,9 @@
 
 declare(strict_types=1);
 
-namespace Appwilio\CdekSDK\Responses;
+namespace CdekSDK\Responses;
 
-use Appwilio\CdekSDK\Common\Pvz;
+use CdekSDK\Common\Pvz;
 use JMS\Serializer\Annotation as JMS;
 
 /**
@@ -40,7 +40,7 @@ final class PvzListResponse
 {
     /**
      * @JMS\XmlList(entry="Pvz", inline=true)
-     * @JMS\Type("array<Appwilio\CdekSDK\Common\Pvz>")
+     * @JMS\Type("array<CdekSDK\Common\Pvz>")
      *
      * @var Pvz[];
      */

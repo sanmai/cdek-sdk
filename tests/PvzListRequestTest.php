@@ -28,13 +28,13 @@
 
 declare(strict_types=1);
 
-namespace Tests\Appwilio\CdekSDK;
+namespace Tests\CdekSDK;
 
-use Appwilio\CdekSDK\Requests\PvzListRequest;
+use CdekSDK\Requests\PvzListRequest;
 use PHPUnit\Framework\TestCase;
 
 /**
- * @covers \Appwilio\CdekSDK\Requests\PvzListRequest
+ * @covers \CdekSDK\Requests\PvzListRequest
  */
 class PvzListRequestTest extends TestCase
 {

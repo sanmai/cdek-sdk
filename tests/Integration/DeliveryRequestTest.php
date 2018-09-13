@@ -28,34 +28,34 @@
 
 declare(strict_types=1);
 
-namespace Tests\Appwilio\CdekSDK\Integration;
+namespace Tests\CdekSDK\Integration;
 
-use Appwilio\CdekSDK\Common\Address;
-use Appwilio\CdekSDK\Common\City;
-use Appwilio\CdekSDK\Common\Item;
-use Appwilio\CdekSDK\Common\Order;
-use Appwilio\CdekSDK\Common\Package;
-use Appwilio\CdekSDK\Requests\DeleteRequest;
-use Appwilio\CdekSDK\Requests\DeliveryRequest;
-use Appwilio\CdekSDK\Requests\PrintLabelsRequest;
-use Appwilio\CdekSDK\Requests\PrintReceiptsRequest;
-use Appwilio\CdekSDK\Responses\DeleteResponse;
-use Appwilio\CdekSDK\Responses\FileResponse;
-use Appwilio\CdekSDK\Responses\PrintErrorResponse;
+use CdekSDK\Common\Address;
+use CdekSDK\Common\City;
+use CdekSDK\Common\Item;
+use CdekSDK\Common\Order;
+use CdekSDK\Common\Package;
+use CdekSDK\Requests\DeleteRequest;
+use CdekSDK\Requests\DeliveryRequest;
+use CdekSDK\Requests\PrintLabelsRequest;
+use CdekSDK\Requests\PrintReceiptsRequest;
+use CdekSDK\Responses\DeleteResponse;
+use CdekSDK\Responses\FileResponse;
+use CdekSDK\Responses\PrintErrorResponse;
 
 /**
- * @covers \Appwilio\CdekSDK\Requests\DeliveryRequest
- * @covers \Appwilio\CdekSDK\Responses\DeliveryResponse
- * @covers \Appwilio\CdekSDK\Responses\Types\DeliveryRequest
+ * @covers \CdekSDK\Requests\DeliveryRequest
+ * @covers \CdekSDK\Responses\DeliveryResponse
+ * @covers \CdekSDK\Responses\Types\DeliveryRequest
  *
- * @covers \Appwilio\CdekSDK\Requests\DeleteRequest
- * @covers \Appwilio\CdekSDK\Responses\DeleteResponse
+ * @covers \CdekSDK\Requests\DeleteRequest
+ * @covers \CdekSDK\Responses\DeleteResponse
  *
- * @covers \Appwilio\CdekSDK\Requests\Template\PrintRequest
- * @covers \Appwilio\CdekSDK\Requests\PrintReceiptsRequest
- * @covers \Appwilio\CdekSDK\Requests\PrintLabelsRequest
- * @covers \Appwilio\CdekSDK\Responses\PrintErrorResponse
- * @covers \Appwilio\CdekSDK\Responses\FileResponse
+ * @covers \CdekSDK\Requests\Template\PrintRequest
+ * @covers \CdekSDK\Requests\PrintReceiptsRequest
+ * @covers \CdekSDK\Requests\PrintLabelsRequest
+ * @covers \CdekSDK\Responses\PrintErrorResponse
+ * @covers \CdekSDK\Responses\FileResponse
  *
  * @group integration
  */

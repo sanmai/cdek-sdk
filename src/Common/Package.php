@@ -28,7 +28,7 @@
 
 declare(strict_types=1);
 
-namespace Appwilio\CdekSDK\Common;
+namespace CdekSDK\Common;
 
 use JMS\Serializer\Annotation as JMS;
 
@@ -92,7 +92,7 @@ final class Package
 
     /**
      * @JMS\XmlList(entry="Item", inline=true)
-     * @JMS\Type("array<Appwilio\CdekSDK\Common\Item>")
+     * @JMS\Type("array<CdekSDK\Common\Item>")
      *
      * @var array|Item[]
      */

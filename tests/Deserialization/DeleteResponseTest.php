@@ -28,16 +28,16 @@
 
 declare(strict_types=1);
 
-namespace Tests\Appwilio\CdekSDK\Deserialization;
+namespace Tests\CdekSDK\Deserialization;
 
-use Appwilio\CdekSDK\Responses\DeleteResponse;
-use Tests\Appwilio\CdekSDK\Fixtures\FixtureLoader;
+use CdekSDK\Responses\DeleteResponse;
+use Tests\CdekSDK\Fixtures\FixtureLoader;
 
 /**
- * @covers \Appwilio\CdekSDK\Responses\DeleteResponse
- * @covers \Appwilio\CdekSDK\Responses\Types\DeleteRequest
- * @covers \Appwilio\CdekSDK\Common\Order
- * @covers \Appwilio\CdekSDK\Responses\Types\Message
+ * @covers \CdekSDK\Responses\DeleteResponse
+ * @covers \CdekSDK\Responses\Types\DeleteRequest
+ * @covers \CdekSDK\Common\Order
+ * @covers \CdekSDK\Responses\Types\Message
  */
 class DeleteResponseTest extends TestCase
 {

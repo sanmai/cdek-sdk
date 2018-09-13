@@ -88,3 +88,5 @@ $response = $client->sendStatusReportRequest($request);
 ## Лицензия
 
 Данный SDK распространяется под лицензией [MIT](http://opensource.org/licenses/MIT).
+
+This project is licensed under the terms of the MIT license.

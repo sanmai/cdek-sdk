@@ -150,7 +150,7 @@ foreach ($response->getOrders() as $order) {
 
 Для подготовки документов необходимо указывать номер заказа СДЭК, DispatchNumber. Хотя исходное API в принципе позволяет делать распечатки используя номер заказа ИМ и дату, такая функциональность пока не реализована.
 
-```
+```php
 use CdekSDK\Requests\PrintReceiptsRequest;
 use CdekSDK\Responses\FileResponse;
 use CdekSDK\Responses\PrintErrorResponse;

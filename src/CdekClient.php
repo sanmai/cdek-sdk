@@ -17,6 +17,7 @@ use Appwilio\CdekSDK\Contracts\ParamRequest;
 use Appwilio\CdekSDK\Contracts\Request;
 use Appwilio\CdekSDK\Contracts\ShouldAuthorize;
 use Appwilio\CdekSDK\Contracts\XmlRequest;
+use Appwilio\CdekSDK\Responses\FileResponse;
 use Appwilio\CdekSDK\Serialization\NullableDateTimeHandler;
 use GuzzleHttp\Client as GuzzleClient;
 use GuzzleHttp\ClientInterface;
@@ -28,14 +29,14 @@ use Psr\Http\Message\ResponseInterface;
 /**
  * Class CdekClient.
  *
- * @method Responses\DeleteResponse                       sendDeleteRequest(Requests\DeleteRequest $request)
- * @method Responses\PvzListResponse                      sendPvzListRequest(Requests\PvzListRequest $request)
- * @method Responses\DeliveryResponse                     sendDeliveryRequest(Requests\DeliveryRequest $request)
- * @method Responses\InfoReportResponse                   sendInfoReportRequest(Requests\InfoReportRequest $request)
- * @method Responses\CalculationResponse                  sendCalculationRequest(Requests\CalculationRequest $request)
- * @method Responses\StatusReportResponse                 sendStatusReportRequest(Requests\StatusReportRequest $request)
- * @method ResponseInterface|Responses\PrintErrorResponse sendPrintReceiptsRequest(Requests\PrintReceiptsRequest $request)
- * @method ResponseInterface|Responses\PrintErrorResponse sendPrintLabelsRequest(Requests\PrintLabelsRequest $request)
+ * @method Responses\DeleteResponse                            sendDeleteRequest(Requests\DeleteRequest $request)
+ * @method Responses\PvzListResponse                           sendPvzListRequest(Requests\PvzListRequest $request)
+ * @method Responses\DeliveryResponse                          sendDeliveryRequest(Requests\DeliveryRequest $request)
+ * @method Responses\InfoReportResponse                        sendInfoReportRequest(Requests\InfoReportRequest $request)
+ * @method Responses\CalculationResponse                       sendCalculationRequest(Requests\CalculationRequest $request)
+ * @method Responses\StatusReportResponse                      sendStatusReportRequest(Requests\StatusReportRequest $request)
+ * @method Responses\FileResponse|Responses\PrintErrorResponse sendPrintReceiptsRequest(Requests\PrintReceiptsRequest $request)
+ * @method Responses\FileResponse|Responses\PrintErrorResponse sendPrintLabelsRequest(Requests\PrintLabelsRequest $request)
  */
 final class CdekClient
 {
@@ -99,6 +100,10 @@ final class CdekClient
     private function deserialize(Request $request, ResponseInterface $response)
     {
         if (!$this->isTextResponse($response)) {
+            if ($this->hasAttachment($response)) {
+                return new FileResponse($response->getBody());
+            }
+
             return $response;
         }
 
@@ -108,6 +113,15 @@ final class CdekClient
     private function getSecure(\DateTimeInterface $date): string
     {
         return md5($date->format('Y-m-d')."&{$this->password}");
+    }
+
+    private function hasAttachment(ResponseInterface $response): bool
+    {
+        if (!$response->hasHeader('Content-Disposition')) {
+            return false;
+        }
+
+        return strpos($response->getHeader('Content-Disposition')[0], 'attachment') !== false;
     }
 
     private function isTextResponse(ResponseInterface $response): bool

@@ -22,6 +22,7 @@ use Appwilio\CdekSDK\Requests\DeliveryRequest;
 use Appwilio\CdekSDK\Requests\PrintLabelsRequest;
 use Appwilio\CdekSDK\Requests\PrintReceiptsRequest;
 use Appwilio\CdekSDK\Responses\DeleteResponse;
+use Appwilio\CdekSDK\Responses\FileResponse;
 use Appwilio\CdekSDK\Responses\PrintErrorResponse;
 
 /**
@@ -36,6 +37,7 @@ use Appwilio\CdekSDK\Responses\PrintErrorResponse;
  * @covers \Appwilio\CdekSDK\Requests\PrintReceiptsRequest
  * @covers \Appwilio\CdekSDK\Requests\PrintLabelsRequest
  * @covers \Appwilio\CdekSDK\Responses\PrintErrorResponse
+ * @covers \Appwilio\CdekSDK\Responses\FileResponse
  *
  * @group integration
  */
@@ -135,7 +137,7 @@ class DeliveryRequestTest extends TestCase
         $request->addDispatchNumber((string) $dispatchNumber);
 
         $response = $this->getClient()->sendPrintReceiptsRequest($request);
-        $this->assertNotInstanceOf(PrintErrorResponse::class, $response);
+        $this->assertInstanceOf(FileResponse::class, $response);
 
         $this->assertSame('%PDF', $response->getBody()->read(4));
     }
@@ -151,7 +153,7 @@ class DeliveryRequestTest extends TestCase
         $request->addDispatchNumber((string) $dispatchNumber);
 
         $response = $this->getClient()->sendPrintReceiptsRequest($request);
-        $this->assertNotInstanceOf(PrintErrorResponse::class, $response);
+        $this->assertInstanceOf(FileResponse::class, $response);
 
         $this->assertSame('%PDF', $response->getBody()->read(4));
     }

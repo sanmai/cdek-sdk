@@ -19,11 +19,13 @@ use Appwilio\CdekSDK\Requests\PrintReceiptsRequest;
 use Appwilio\CdekSDK\Requests\PvzListRequest;
 use Appwilio\CdekSDK\Requests\StatusReportRequest;
 use Appwilio\CdekSDK\Responses\CalculationResponse;
+use Appwilio\CdekSDK\Responses\FileResponse;
 use Appwilio\CdekSDK\Responses\PvzListResponse;
 use Appwilio\CdekSDK\Responses\StatusReportResponse;
 use GuzzleHttp\ClientInterface;
 use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\ResponseInterface;
+use Psr\Http\Message\StreamInterface;
 use Tests\Appwilio\CdekSDK\Fixtures\FixtureLoader;
 
 /**
@@ -31,14 +33,21 @@ use Tests\Appwilio\CdekSDK\Fixtures\FixtureLoader;
  */
 class CdekClientTest extends TestCase
 {
-    private function getHttpClient($contentType, $responseBody)
+    private function getHttpClient($contentType, $responseBody, $extraHeaders = [])
     {
+        $extraHeaders['Content-Type'] = $contentType;
+
         $response = $this->createMock(ResponseInterface::class);
-        $response->method('hasHeader')->willReturn($this->callback(function ($headerName) {
-            return $headerName == 'Content-Type';
+        $response->method('hasHeader')->will($this->returnCallback(function ($headerName) use ($extraHeaders) {
+            return array_key_exists($headerName, $extraHeaders);
         }));
-        $response->method('getHeader')->willReturn([$contentType]);
-        $response->method('getBody')->willReturn($responseBody);
+        $response->method('getHeader')->will($this->returnCallback(function ($headerName) use ($extraHeaders) {
+            return [$extraHeaders[$headerName]];
+        }));
+
+        $stream = $this->createMock(StreamInterface::class);
+        $stream->method('__toString')->willReturn($responseBody);
+        $response->method('getBody')->willReturn($stream);
 
         $http = $this->createMock(ClientInterface::class);
         $http->method('request')->willReturn($response);
@@ -51,7 +60,7 @@ class CdekClientTest extends TestCase
         $client = new CdekClient('foo', 'bar', $this->getHttpClient('text/plain', 'testing'));
         $response = $client->sendPrintReceiptsRequest(new PrintReceiptsRequest());
 
-        $this->assertSame('testing', $response->getBody());
+        $this->assertSame('testing', (string) $response->getBody());
     }
 
     public function test_client_can_read_xml_response()
@@ -89,6 +98,17 @@ class CdekClientTest extends TestCase
         $client = new CdekClient('foo', 'bar', $this->getHttpClient('text/plain', 'example'));
         $response = $client->sendRequest($this->createMock(Request::class));
         $this->assertInstanceOf(ResponseInterface::class, $response);
+    }
+
+    public function test_client_can_handle_attachments()
+    {
+        $client = new CdekClient('foo', 'bar', $this->getHttpClient('application/pdf', '%PDF', [
+            'Content-Disposition' => 'attachment; filename=testing123.pdf',
+        ]));
+        $response = $client->sendRequest($this->createMock(Request::class));
+        $this->assertInstanceOf(FileResponse::class, $response);
+
+        $this->assertSame('%PDF', (string) $response->getBody());
     }
 
     public function test_fails_on_unknown_method()

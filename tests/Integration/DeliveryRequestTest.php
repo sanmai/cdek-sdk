@@ -128,7 +128,7 @@ class DeliveryRequestTest extends TestCase
         ])->addItem(Item::create('NN0001', 500, 0, 120, 2, 'Test item')));
 
         $request = new DeliveryRequest([
-            'Number' => 'TESTING123',
+            'Number' => self::TEST_NUMBER,
         ]);
         $request->addOrder($order);
 

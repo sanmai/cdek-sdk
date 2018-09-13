@@ -64,25 +64,31 @@ use CdekSDK\Requests\CalculationRequest;
 
 // для выполнения авторизованного запроса используется
 // $request = CalculationRequest::withAuthorization();
+// $request->set...() и так далее
 
 $request = (new CalculationRequest())
     ->setSenderCityPostCode('295000')
     ->setReceiverCityPostCode('652632')
-    ->addGood([
+    ->setTariffId(1)
+    ->addPackage([
         'weight' => 0.2,
-        'length' => 10,
-        'width'  => 10,
+        'length' => 25,
+        'width' => 15,
         'height' => 10,
     ]);
 
-$response = $client->sendCalculationRequest($request)
+$response = $client->sendCalculationRequest($request);
+/** @var \CdekSDK\Responses\CalculationResponse $response */
+
+var_dump($response->getPrice());
+// double(1250)
 ```
 
 ### Трекинг
 
 ```php
 use \CdekSDK\Common\Order;
-use CdekSDK\Requests\StatusReportRequest;
+use \CdekSDK\Requests\StatusReportRequest;
 
 $request = (new StatusReportRequest())
     ->setShowHistory();
@@ -95,7 +101,7 @@ $response = $client->sendStatusReportRequest($request);
 
 ## Авторы и ссылки
 
-Эта библиотека - хард форк библиотеки [appwilio/cdek-sdk](https://github.com/appwilio/cdek-sdk) с поддержкой более старых версий PHP и расширенным. Обратная совместимость с исходной библиотекой не гарантируется, но фичи и исправления будут переноситься оттуда сюда по мере возможности. Если что-то пропустили, [дайте знать](https://github.com/sanmai/cdek-sdk/issues).
+Эта библиотека - хард форк библиотеки [appwilio/cdek-sdk](https://github.com/appwilio/cdek-sdk) с поддержкой более старых версий PHP и расширенной поддержкой API. Обратная совместимость с исходной библиотекой не гарантируется, но фичи и исправления будут переноситься оттуда сюда по мере возможности. Если что-то пропустили, [дайте знать](https://github.com/sanmai/cdek-sdk/issues).
 
 Авторы-создатели исходной библиотеки: [JhaoDa](https://github.com/jhaoda) и [greabock](https://github.com/greabock).
 

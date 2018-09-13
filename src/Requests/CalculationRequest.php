@@ -139,7 +139,7 @@ class CalculationRequest implements JsonRequest
         return $this;
     }
 
-    public function addGood($good)
+    public function addPackage($good)
     {
         $this->goods[] = $good;
 

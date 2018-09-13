@@ -36,6 +36,16 @@ use JMS\Serializer\Annotation as JMS;
 
 /**
  * Class CalculationResponse.
+ *
+ * @method null|float getPrice()
+ * @method null|int getDeliveryPeriodMin()
+ * @method null|int getDeliveryPeriodMax()
+ * @method null|int getTariffId()
+ * @method null|float getPriceByCurrency()
+ * @method null|string getCurrency()
+ * @method null|\DateTimeImmutable getDeliveryDateMin()
+ * @method null|\DateTimeImmutable getDeliveryDateMax()
+ * @method array|null getAdditionalServices()
  */
 final class CalculationResponse
 {

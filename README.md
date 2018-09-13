@@ -146,6 +146,64 @@ foreach ($response->getOrders() as $order) {
 }
 ```
 
+### Печать квитанции к заказу
+
+Для подготовки документов необходимо указывать номер заказа СДЭК, DispatchNumber. Хотя исходное API в принципе позволяет делать распечатки используя номер заказа ИМ и дату, такая функциональность пока не реализована.
+
+```
+use CdekSDK\Requests\PrintReceiptsRequest;
+use CdekSDK\Responses\FileResponse;
+use CdekSDK\Responses\PrintErrorResponse;
+
+$request = new PrintReceiptsRequest();
+$request->addDispatchNumber($dispatchNumber);
+
+$response = $client->sendPrintReceiptsRequest($request);
+
+// Возвращаем содержимое PDF файла...
+if ($response instanceof FileResponse) {
+    return (string) $response->getBody();
+}
+
+// Или обрабатываем возможные ошибки
+if ($response instanceof PrintErrorResponse) {
+    foreach ($response->getMessages() as $message) {
+        $message->isError();
+        $message->getText();
+    }
+}
+```
+
+### Печать ШК-мест
+
+Печать ШК-мест производится по такому же алгоритму что и печать квитанций.
+
+```php
+use CdekSDK\Requests\PrintLabelsRequest;
+use CdekSDK\Responses\FileResponse;
+use CdekSDK\Responses\PrintErrorResponse;
+
+$request = new PrintLabelsRequest([
+    'PrintFormat' => PrintLabelsRequest::PRINT_FORMAT_A5,
+]);
+$request->addDispatchNumber($dispatchNumber);
+
+$response = $client->sendPrintLabelsRequest($request);
+
+// Возвращаем содержимое PDF файла...
+if ($response instanceof FileResponse) {
+    return (string) $response->getBody();
+}
+
+// Или обрабатываем возможные ошибки
+if ($response instanceof PrintErrorResponse) {
+    foreach ($response->getMessages() as $message) {
+        $message->isError();
+        $message->getText();
+    }
+}
+```
+
 ### Удаление заказа
 
 ```php

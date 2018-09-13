@@ -1,6 +1,6 @@
 <?php
 
-$header = 'This code is licensed under the MIT License.'.substr(file_get_contents('LICENSE'), strlen('The MIT License'));
+$header = trim('This code is licensed under the MIT License.'.substr(file_get_contents('LICENSE'), strlen('The MIT License')));
 
 return PhpCsFixer\Config::create()
     ->setRiskyAllowed(true)

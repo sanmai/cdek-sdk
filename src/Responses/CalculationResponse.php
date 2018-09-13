@@ -70,6 +70,9 @@ final class CalculationResponse
         return !empty($this->errors);
     }
 
+    /**
+     * @return Error[]
+     */
     public function getErrors(): array
     {
         return $this->errors;

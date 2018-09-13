@@ -170,7 +170,7 @@ class DeliveryRequestTest extends TestCase
         ]);
         $request->addDispatchNumber($dispatchNumber);
 
-        $response = $this->getClient()->sendPrintReceiptsRequest($request);
+        $response = $this->getClient()->sendPrintLabelsRequest($request);
         $this->assertInstanceOf(FileResponse::class, $response);
 
         $this->assertSame('%PDF', $response->getBody()->read(4));

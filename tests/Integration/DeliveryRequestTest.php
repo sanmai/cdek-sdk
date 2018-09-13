@@ -149,10 +149,10 @@ class DeliveryRequestTest extends TestCase
     /**
      * @depends test_successful_request
      */
-    public function test_print_receipts_request(int $dispatchNumber)
+    public function test_print_receipts_request(string $dispatchNumber)
     {
         $request = new PrintReceiptsRequest();
-        $request->addDispatchNumber((string) $dispatchNumber);
+        $request->addDispatchNumber($dispatchNumber);
 
         $response = $this->getClient()->sendPrintReceiptsRequest($request);
         $this->assertInstanceOf(FileResponse::class, $response);
@@ -163,12 +163,12 @@ class DeliveryRequestTest extends TestCase
     /**
      * @depends test_successful_request
      */
-    public function test_print_labels_request(int $dispatchNumber)
+    public function test_print_labels_request(string $dispatchNumber)
     {
         $request = new PrintLabelsRequest([
             'PrintFormat' => PrintLabelsRequest::PRINT_FORMAT_A5,
         ]);
-        $request->addDispatchNumber((string) $dispatchNumber);
+        $request->addDispatchNumber($dispatchNumber);
 
         $response = $this->getClient()->sendPrintReceiptsRequest($request);
         $this->assertInstanceOf(FileResponse::class, $response);

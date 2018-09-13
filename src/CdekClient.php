@@ -28,13 +28,14 @@ use Psr\Http\Message\ResponseInterface;
 /**
  * Class CdekClient.
  *
- * @method Responses\DeleteResponse                          sendDeleteRequest(Requests\DeleteRequest $request)
- * @method Responses\PvzListResponse                         sendPvzListRequest(Requests\PvzListRequest $request)
- * @method Responses\DeliveryResponse                        sendDeliveryRequest(Requests\DeliveryRequest $request)
- * @method Responses\InfoReportResponse                      sendInfoReportRequest(Requests\InfoReportRequest $request)
- * @method Responses\CalculationResponse                     sendCalculationRequest(Requests\CalculationRequest $request)
- * @method Responses\StatusReportResponse                    sendStatusReportRequest(Requests\StatusReportRequest $request)
- * @method ResponseInterface|Responses\PrintReceiptsResponse sendPrintReceiptsRequest(Requests\PrintReceiptsRequest $request)
+ * @method Responses\DeleteResponse                       sendDeleteRequest(Requests\DeleteRequest $request)
+ * @method Responses\PvzListResponse                      sendPvzListRequest(Requests\PvzListRequest $request)
+ * @method Responses\DeliveryResponse                     sendDeliveryRequest(Requests\DeliveryRequest $request)
+ * @method Responses\InfoReportResponse                   sendInfoReportRequest(Requests\InfoReportRequest $request)
+ * @method Responses\CalculationResponse                  sendCalculationRequest(Requests\CalculationRequest $request)
+ * @method Responses\StatusReportResponse                 sendStatusReportRequest(Requests\StatusReportRequest $request)
+ * @method ResponseInterface|Responses\PrintErrorResponse sendPrintReceiptsRequest(Requests\PrintReceiptsRequest $request)
+ * @method ResponseInterface|Responses\PrintErrorResponse sendPrintLabelsRequest(Requests\PrintLabelsRequest $request)
  */
 final class CdekClient
 {

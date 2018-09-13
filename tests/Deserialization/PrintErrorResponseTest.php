@@ -12,22 +12,22 @@ declare(strict_types=1);
 
 namespace Tests\Appwilio\CdekSDK\Deserialization;
 
-use Appwilio\CdekSDK\Responses\PrintReceiptsResponse;
+use Appwilio\CdekSDK\Responses\PrintErrorResponse;
 use Tests\Appwilio\CdekSDK\Fixtures\FixtureLoader;
 
 /**
- * @covers \Appwilio\CdekSDK\Responses\PrintReceiptsResponse
- * @covers \Appwilio\CdekSDK\Responses\Types\PrintReceiptsError
+ * @covers \Appwilio\CdekSDK\Responses\PrintErrorResponse
+ * @covers \Appwilio\CdekSDK\Responses\Types\PrintError
  * @covers \Appwilio\CdekSDK\Responses\Types\Message
  */
-class PrintReceiptsResponseTest extends TestCase
+class PrintErrorResponseTest extends TestCase
 {
     public function test_failing_request()
     {
-        $response = $this->getSerializer()->deserialize(FixtureLoader::load('PrintReceiptsResponse.xml'), PrintReceiptsResponse::class, 'xml');
+        $response = $this->getSerializer()->deserialize(FixtureLoader::load('PrintErrorResponse.xml'), PrintErrorResponse::class, 'xml');
 
-        /** @var $response PrintReceiptsResponse */
-        $this->assertInstanceOf(PrintReceiptsResponse::class, $response);
+        /** @var $response PrintErrorResponse */
+        $this->assertInstanceOf(PrintErrorResponse::class, $response);
 
         $this->assertNotEmpty($response->getErrors());
 

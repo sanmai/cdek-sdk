@@ -14,40 +14,40 @@ namespace Appwilio\CdekSDK\Responses;
 
 use Appwilio\CdekSDK\Common\Order;
 use Appwilio\CdekSDK\Responses\Types\Message;
-use Appwilio\CdekSDK\Responses\Types\PrintReceiptsError;
+use Appwilio\CdekSDK\Responses\Types\PrintError;
 use JMS\Serializer\Annotation as JMS;
 use function Pipeline\map;
 
 /**
- * Class PrintReceiptsResponse.
+ * Class PrintErrorResponse.
  */
-final class PrintReceiptsResponse
+final class PrintErrorResponse
 {
     /**
      * @JMS\XmlList(entry = "Order", inline = true)
-     * @JMS\Type("array<Appwilio\CdekSDK\Responses\Types\PrintReceiptsError>")
+     * @JMS\Type("array<Appwilio\CdekSDK\Responses\Types\PrintError>")
      *
-     * @var PrintReceiptsError[]
+     * @var PrintError[]
      */
     private $orders = [];
 
     /**
      * @JMS\XmlList(entry = "OrdersPrint", inline = true)
-     * @JMS\Type("array<Appwilio\CdekSDK\Responses\Types\PrintReceiptsError>")
+     * @JMS\Type("array<Appwilio\CdekSDK\Responses\Types\PrintError>")
      *
-     * @var PrintReceiptsError[]
+     * @var PrintError[]
      */
     private $ordersPrint = [];
 
     /**
      * @JMS\Exclude
      *
-     * @var PrintReceiptsError[]
+     * @var PrintError[]
      */
     private $errors;
 
     /**
-     * @return PrintReceiptsError[]
+     * @return PrintError[]
      *
      * @deprecated
      */
@@ -64,7 +64,7 @@ final class PrintReceiptsResponse
         return map(function () {
             yield from $this->orders;
             yield from $this->ordersPrint;
-        })->map(function (PrintReceiptsError $order) {
+        })->map(function (PrintError $order) {
             return new Message($order->getMessage(), $order->getErrorCode());
         });
     }

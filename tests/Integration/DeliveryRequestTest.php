@@ -19,9 +19,10 @@ use Appwilio\CdekSDK\Common\Order;
 use Appwilio\CdekSDK\Common\Package;
 use Appwilio\CdekSDK\Requests\DeleteRequest;
 use Appwilio\CdekSDK\Requests\DeliveryRequest;
+use Appwilio\CdekSDK\Requests\PrintLabelsRequest;
 use Appwilio\CdekSDK\Requests\PrintReceiptsRequest;
 use Appwilio\CdekSDK\Responses\DeleteResponse;
-use Appwilio\CdekSDK\Responses\PrintReceiptsResponse;
+use Appwilio\CdekSDK\Responses\PrintErrorResponse;
 
 /**
  * @covers \Appwilio\CdekSDK\Requests\DeliveryRequest
@@ -31,8 +32,10 @@ use Appwilio\CdekSDK\Responses\PrintReceiptsResponse;
  * @covers \Appwilio\CdekSDK\Requests\DeleteRequest
  * @covers \Appwilio\CdekSDK\Responses\DeleteResponse
  *
+ * @covers \Appwilio\CdekSDK\Requests\Template\PrintRequest
  * @covers \Appwilio\CdekSDK\Requests\PrintReceiptsRequest
- * @covers \Appwilio\CdekSDK\Responses\PrintReceiptsResponse
+ * @covers \Appwilio\CdekSDK\Requests\PrintLabelsRequest
+ * @covers \Appwilio\CdekSDK\Responses\PrintErrorResponse
  *
  * @group integration
  */
@@ -129,12 +132,26 @@ class DeliveryRequestTest extends TestCase
     public function test_print_receipts_request(int $dispatchNumber)
     {
         $request = new PrintReceiptsRequest();
-        $request->addOrder(Order::create([
-            'DispatchNumber' => $dispatchNumber,
-        ]));
+        $request->addDispatchNumber((string) $dispatchNumber);
 
         $response = $this->getClient()->sendPrintReceiptsRequest($request);
-        $this->assertNotInstanceOf(PrintReceiptsResponse::class, $response);
+        $this->assertNotInstanceOf(PrintErrorResponse::class, $response);
+
+        $this->assertSame('%PDF', $response->getBody()->read(4));
+    }
+
+    /**
+     * @depends test_successful_request
+     */
+    public function test_print_labels_request(int $dispatchNumber)
+    {
+        $request = new PrintLabelsRequest([
+            'PrintFormat' => PrintLabelsRequest::PRINT_FORMAT_A5,
+        ]);
+        $request->addDispatchNumber((string) $dispatchNumber);
+
+        $response = $this->getClient()->sendPrintReceiptsRequest($request);
+        $this->assertNotInstanceOf(PrintErrorResponse::class, $response);
 
         $this->assertSame('%PDF', $response->getBody()->read(4));
     }
@@ -143,12 +160,12 @@ class DeliveryRequestTest extends TestCase
     {
         $request = new PrintReceiptsRequest();
         $request->addOrder(Order::create([
-            'Number' => 'invalid',
+            'DispatchNumber' => 'invalid',
         ]));
 
         $response = $this->getClient()->sendPrintReceiptsRequest($request);
 
-        $this->assertInstanceOf(PrintReceiptsResponse::class, $response);
+        $this->assertInstanceOf(PrintErrorResponse::class, $response);
 
         foreach ($response->getMessages() as $message) {
             $this->assertTrue($message->isError());

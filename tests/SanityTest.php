@@ -45,12 +45,12 @@ use Appwilio\CdekSDK\Responses\CalculationResponse;
 use Appwilio\CdekSDK\Responses\DeleteResponse;
 use Appwilio\CdekSDK\Responses\DeliveryResponse;
 use Appwilio\CdekSDK\Responses\InfoReportResponse;
-use Appwilio\CdekSDK\Responses\PrintReceiptsResponse;
+use Appwilio\CdekSDK\Responses\PrintErrorResponse;
 use Appwilio\CdekSDK\Responses\PvzListResponse;
 use Appwilio\CdekSDK\Responses\StatusReportResponse;
 use Appwilio\CdekSDK\Responses\Types\Error;
 use Appwilio\CdekSDK\Responses\Types\Message;
-use Appwilio\CdekSDK\Responses\Types\PrintReceiptsError;
+use Appwilio\CdekSDK\Responses\Types\PrintError;
 use Appwilio\CdekSDK\Responses\Types\Result;
 use Appwilio\CdekSDK\Serialization\NullableDateTimeHandler;
 use PHPUnit\Framework\TestCase;
@@ -93,12 +93,12 @@ class SanityTest extends TestCase
         DeleteResponse::class,
         DeliveryResponse::class,
         InfoReportResponse::class,
-        PrintReceiptsResponse::class,
+        PrintErrorResponse::class,
         PvzListResponse::class,
         StatusReportResponse::class,
         Error::class,
         Message::class,
-        PrintReceiptsError::class,
+        PrintError::class,
         Result::class,
         NullableDateTimeHandler::class,
     ];
@@ -127,7 +127,7 @@ class SanityTest extends TestCase
             DeliveryRequest::class => DeliveryResponse::class,
             InfoReportRequest::class => InfoReportResponse::class,
             StatusReportRequest::class => StatusReportResponse::class,
-            PrintReceiptsRequest::class => PrintReceiptsResponse::class,
+            PrintReceiptsRequest::class => PrintErrorResponse::class,
         ],
         'json' => [
             CalculationRequest::class => CalculationResponse::class,

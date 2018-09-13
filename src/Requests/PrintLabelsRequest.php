@@ -19,14 +19,27 @@ use Appwilio\CdekSDK\Requests\Template\PrintRequest;
 use JMS\Serializer\Annotation as JMS;
 
 /**
- * Class PrintReceiptRequest.
+ * Class PrintLabelsRequest.
  *
- * @JMS\XmlRoot(name="OrdersPrint")
+ * @JMS\XmlRoot(name="OrdersPackagesPrint")
  */
-final class PrintReceiptsRequest extends PrintRequest
+final class PrintLabelsRequest extends PrintRequest
 {
     use Fillable, Authorized, RequestCore;
 
     const METHOD = 'POST';
-    const ADDRESS = '/orders_print.php';
+    const ADDRESS = '/ordersPackagesPrint';
+
+    const PRINT_FORMAT_A4 = 'A4';
+    const PRINT_FORMAT_A5 = 'A5';
+    const PRINT_FORMAT_A6 = 'A6';
+
+    /**
+     * @JMS\XmlAttribute
+     * @JMS\SerializedName("PrintFormat")
+     * @JMS\Type("int")
+     *
+     * @var string
+     */
+    private $PrintFormat = self::PRINT_FORMAT_A4;
 }

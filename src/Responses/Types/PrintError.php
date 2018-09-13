@@ -15,7 +15,7 @@ namespace Appwilio\CdekSDK\Responses\Types;
 use Appwilio\CdekSDK\Contracts\HasMessage;
 use JMS\Serializer\Annotation as JMS;
 
-final class PrintReceiptsError implements HasMessage
+final class PrintError implements HasMessage
 {
     /**
      * @JMS\XmlAttribute

@@ -48,14 +48,14 @@ $client = new \CdekSDK\CdekClient('account', 'password');
 
 | Задача| Метод | Аргумент |
 | ----- | -------------- | ----- |
-| [Удаление заказа](https://confluence.cdek.ru/x/gUju) | `sendDeleteRequest` | `DeleteRequest` |
-| [Получение списка ПВЗ](https://confluence.cdek.ru/x/gUju) | `sendPvzListRequest` | `PvzListRequest` |
-| [Регистрация заказа от ИМ](https://confluence.cdek.ru/x/gUju) | `sendDeliveryRequest` | `DeliveryRequest` |
-| [Отчет "Информация по заказам"](https://confluence.cdek.ru/x/gUju) | `sendInfoReportRequest` | `InfoReportRequest` |
-| [Расчёт стоимости доставки](https://www.cdek.ru/clients/integrator.html) | `sendCalculationRequest` | `CalculationRequest` |
-| [Отчет "Статусы заказов"](https://confluence.cdek.ru/x/gUju) | `sendStatusReportRequest` | `StatusReportRequest` |
-| [Печать квитанции к заказу](https://confluence.cdek.ru/x/gUju) | `sendPrintReceiptsRequest` | `PrintReceiptsRequest` |
-| [Печать ШК-мест](https://confluence.cdek.ru/x/gUju) | `sendPrintLabelsRequest` | `PrintLabelsRequest` |
+| [Удаление заказа](#%D0%A3%D0%B4%D0%B0%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5-%D0%B7%D0%B0%D0%BA%D0%B0%D0%B7%D0%B0) | `sendDeleteRequest` | `DeleteRequest` |
+| Получение списка ПВЗ | `sendPvzListRequest` | `PvzListRequest` |
+| [Регистрация заказа от ИМ](#%D0%A0%D0%B5%D0%B3%D0%B8%D1%81%D1%82%D1%80%D0%B0%D1%86%D0%B8%D1%8F-%D0%B7%D0%B0%D0%BA%D0%B0%D0%B7%D0%B0-%D0%BE%D1%82-%D0%B8%D0%BD%D1%82%D0%B5%D1%80%D0%BD%D0%B5%D1%82-%D0%BC%D0%B0%D0%B3%D0%B0%D0%B7%D0%B8%D0%BD%D0%B0) | `sendDeliveryRequest` | `DeliveryRequest` |
+| Отчет "Информация по заказам" | `sendInfoReportRequest` | `InfoReportRequest` |
+| [Расчёт стоимости доставки](#%D0%A0%D0%B0%D1%81%D1%87%D1%91%D1%82-%D1%81%D1%82%D0%BE%D0%B8%D0%BC%D0%BE%D1%81%D1%82%D0%B8-%D0%B4%D0%BE%D1%81%D1%82%D0%B0%D0%B2%D0%BA%D0%B8) | `sendCalculationRequest` | `CalculationRequest` |
+| [Отчет "Статусы заказов"](#%D0%A2%D1%80%D0%B5%D0%BA%D0%B8%D0%BD%D0%B3) | `sendStatusReportRequest` | `StatusReportRequest` |
+| [Печать квитанции к заказу](#%D0%9F%D0%B5%D1%87%D0%B0%D1%82%D1%8C-%D0%BA%D0%B2%D0%B8%D1%82%D0%B0%D0%BD%D1%86%D0%B8%D0%B8-%D0%BA-%D0%B7%D0%B0%D0%BA%D0%B0%D0%B7%D1%83) | `sendPrintReceiptsRequest` | `PrintReceiptsRequest` |
+| [Печать ШК-мест](#%D0%9F%D0%B5%D1%87%D0%B0%D1%82%D1%8C-%D0%A8%D0%9A-%D0%BC%D0%B5%D1%81%D1%82) | `sendPrintLabelsRequest` | `PrintLabelsRequest` |
 
 ### Расчёт стоимости доставки
 
@@ -86,7 +86,7 @@ var_dump($response->getPrice());
 
 ### Регистрация заказа от интернет-магазина
 
-Названия полей соответствуют названиям полей в официальной документации.
+Названия полей соответствуют названиям полей [в официальной документации](https://confluence.cdek.ru/x/gUju).
 
 ```php
 use CdekSDK\Common\Address;

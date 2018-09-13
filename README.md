@@ -89,11 +89,11 @@ var_dump($response->getPrice());
 Названия полей соответствуют названиям полей в официальной документации.
 
 ```php
-use CdekSDK\Common\Order;
-use CdekSDK\Common\City;
 use CdekSDK\Common\Address;
-use CdekSDK\Common\Package;
+use CdekSDK\Common\City;
 use CdekSDK\Common\Item;
+use CdekSDK\Common\Order;
+use CdekSDK\Common\Package;
 use CdekSDK\Requests\DeliveryRequest;
 
 $order = new Order([
@@ -143,6 +143,32 @@ foreach ($response->getOrders() as $order) {
     $order->getNumber();
     $order->getDispatchNumber();
     break;
+}
+```
+
+### Удаление заказа
+
+```php
+use CdekSDK\Common\Order;
+use CdekSDK\Requests\DeleteRequest;
+
+$response = $client->sendDeleteRequest(DeleteRequest::create([
+    'Number' => 'TESTING123',
+])->addOrder(new Order([
+    'Number' => 'TEST-123456',
+])));
+
+/** @var $response \CdekSDK\Responses\DeleteResponse */
+foreach ($response->getMessages() as $message) {
+    if ($message->isError()) {
+        // обрабатываем ошибки
+        $message->getText();
+    }
+}
+
+foreach ($response->getOrders() as $order) {
+    // проверяем номера удалённых заказов
+    $order->getNumber(); // должно быть 'TEST-123456'
 }
 ```
 

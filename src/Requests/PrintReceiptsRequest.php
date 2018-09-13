@@ -33,7 +33,7 @@ namespace CdekSDK\Requests;
 use CdekSDK\Common\Fillable;
 use CdekSDK\Requests\Concerns\Authorized;
 use CdekSDK\Requests\Concerns\RequestCore;
-use CdekSDK\Requests\Template\PrintRequest;
+use CdekSDK\Requests\Templates\PrintRequest;
 use JMS\Serializer\Annotation as JMS;
 
 /**

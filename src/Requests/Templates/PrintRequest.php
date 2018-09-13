@@ -28,7 +28,7 @@
 
 declare(strict_types=1);
 
-namespace CdekSDK\Requests\Template;
+namespace CdekSDK\Requests\Templates;
 
 use CdekSDK\Common\Order;
 use CdekSDK\Contracts\ShouldAuthorize;

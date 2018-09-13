@@ -34,11 +34,11 @@ use CdekSDK\Common\Fillable;
 use CdekSDK\Common\Order;
 use CdekSDK\Requests\Concerns\Authorized;
 use CdekSDK\Requests\Concerns\RequestCore;
-use CdekSDK\Requests\Template\PrintRequest;
+use CdekSDK\Requests\Templates\PrintRequest;
 use PHPUnit\Framework\TestCase;
 
 /**
- * @covers \CdekSDK\Requests\Template\PrintRequest
+ * @covers \CdekSDK\Requests\Templates\PrintRequest
  * @covers \CdekSDK\Common\Order
  */
 class PrintRequestTest extends TestCase

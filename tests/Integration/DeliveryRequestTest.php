@@ -51,7 +51,7 @@ use CdekSDK\Responses\PrintErrorResponse;
  * @covers \CdekSDK\Requests\DeleteRequest
  * @covers \CdekSDK\Responses\DeleteResponse
  *
- * @covers \CdekSDK\Requests\Template\PrintRequest
+ * @covers \CdekSDK\Requests\Templates\PrintRequest
  * @covers \CdekSDK\Requests\PrintReceiptsRequest
  * @covers \CdekSDK\Requests\PrintLabelsRequest
  * @covers \CdekSDK\Responses\PrintErrorResponse

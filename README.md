@@ -7,11 +7,12 @@
 
 Возможности:
 
-- :unlock:расчёт стоимости доставки
-- :unlock:получение списка пунктов выдачи заказов (ПВЗ) с фильтрацией
+- :unlock: расчёт стоимости доставки
+- :unlock: получение списка пунктов выдачи заказов (ПВЗ) с фильтрацией
 - управление заказами
   - формирование новых заказов
-  - генерация квитанции в PDF
+  - получение квитанции в PDF
+  - получение почтовых этикеток в PDF
   - удаление заказов
   - получение информации по заказам (отчёт «Информация по заказам»)
   - трекинг заказов (отчёт «Статусы заказов»)
@@ -28,7 +29,7 @@
 composer require sanmai/cdek-sdk
 ```
 
-## Конфигурация
+## Инициализация
 
 ```php
 require_once 'vendor/autoload.php';
@@ -37,8 +38,24 @@ require_once 'vendor/autoload.php';
 
 $client = new \CdekSDK\CdekClient('account', 'password');
 ```
+Реквизиты доступа следует [запросить у СДЭК](https://www.cdek.ru/clients/integrator.html). Обычные логин и пароль не подходят.
+
+Далее для всей работы с API используются методы объёкта `$client`, который мы получили выше.
 
 ## Использование
+
+Полный перечень существующих методов ниже.
+
+| Задача| Метод | Аргумент |
+| ----- | -------------- | ----- |
+| [Удаление заказа](https://confluence.cdek.ru/x/gUju) | `sendDeleteRequest` | `DeleteRequest` |
+| [Получение списка ПВЗ](https://confluence.cdek.ru/x/gUju) | `sendPvzListRequest` | `PvzListRequest` |
+| [Регистрация заказа](https://confluence.cdek.ru/x/gUju) | `sendDeliveryRequest` | `DeliveryRequest` |
+| [Отчет "Информация по заказам"](https://confluence.cdek.ru/x/gUju) | `sendInfoReportRequest` | `InfoReportRequest` |
+| [Расчёт стоимости доставки](https://www.cdek.ru/clients/integrator.html) | `sendCalculationRequest` | `CalculationRequest` |
+| [Отчет "Статусы заказов"](https://confluence.cdek.ru/x/gUju) | `sendStatusReportRequest` | `StatusReportRequest` |
+| [Печать квитанции к заказу](https://confluence.cdek.ru/x/gUju) | `sendPrintReceiptsRequest` | `PrintReceiptsRequest` |
+| [Печать ШК-мест](https://confluence.cdek.ru/x/gUju) | `sendPrintLabelsRequest` | `PrintLabelsRequest` |
 
 ### Расчёт стоимости доставки
 
@@ -78,12 +95,9 @@ $response = $client->sendStatusReportRequest($request);
 
 ## Авторы и ссылки
 
-Эта библиотека - хард форк библиотеки [appwilio/cdek-sdk](https://github.com/appwilio/cdek-sdk) с поддержкой более старых версий PHP. Обратная совместимость с исходной библиотекой не гарантируется, но фичи и исправления будут переноситься оттуда сюда по возможности. Если что-то пропустили, [дайте знать](https://github.com/sanmai/cdek-sdk/issues).
+Эта библиотека - хард форк библиотеки [appwilio/cdek-sdk](https://github.com/appwilio/cdek-sdk) с поддержкой более старых версий PHP и расширенным. Обратная совместимость с исходной библиотекой не гарантируется, но фичи и исправления будут переноситься оттуда сюда по мере возможности. Если что-то пропустили, [дайте знать](https://github.com/sanmai/cdek-sdk/issues).
 
-Авторы-создатели исходной библиотеки:
-
-- [greabock](https://github.com/greabock)
-- [JhaoDa](https://github.com/jhaoda)
+Авторы-создатели исходной библиотеки: [JhaoDa](https://github.com/jhaoda) и [greabock](https://github.com/greabock).
 
 ## Лицензия
 

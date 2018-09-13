@@ -50,7 +50,7 @@ $client = new \CdekSDK\CdekClient('account', 'password');
 | ----- | -------------- | ----- |
 | [Удаление заказа](https://confluence.cdek.ru/x/gUju) | `sendDeleteRequest` | `DeleteRequest` |
 | [Получение списка ПВЗ](https://confluence.cdek.ru/x/gUju) | `sendPvzListRequest` | `PvzListRequest` |
-| [Регистрация заказа](https://confluence.cdek.ru/x/gUju) | `sendDeliveryRequest` | `DeliveryRequest` |
+| [Регистрация заказа от ИМ](https://confluence.cdek.ru/x/gUju) | `sendDeliveryRequest` | `DeliveryRequest` |
 | [Отчет "Информация по заказам"](https://confluence.cdek.ru/x/gUju) | `sendInfoReportRequest` | `InfoReportRequest` |
 | [Расчёт стоимости доставки](https://www.cdek.ru/clients/integrator.html) | `sendCalculationRequest` | `CalculationRequest` |
 | [Отчет "Статусы заказов"](https://confluence.cdek.ru/x/gUju) | `sendStatusReportRequest` | `StatusReportRequest` |
@@ -84,11 +84,73 @@ var_dump($response->getPrice());
 // double(1250)
 ```
 
+### Регистрация заказа от интернет-магазина
+
+Названия полей соответствуют названиям полей в официальной документации.
+
+```php
+use CdekSDK\Common\Order;
+use CdekSDK\Common\City;
+use CdekSDK\Common\Address;
+use CdekSDK\Common\Package;
+use CdekSDK\Common\Item;
+use CdekSDK\Requests\DeliveryRequest;
+
+$order = new Order([
+    'Number' => 'TEST-123456',
+    'SendCity' => City::create([
+        'Code' => 44, // Москва
+    ]),
+    'RecCity' => City::create([
+        'PostCode' => '630001', // Новосибирск
+    ]),
+    'RecipientName' => 'Иван Петров',
+    'RecipientEmail' => 'petrov@test.ru',
+    'Phone' => '+7 (383) 202-22-50',
+    'TariffTypeCode' => 139, // Посылка дверь-дверь от ИМ
+]);
+
+$order->setAddress(Address::create([
+    'Street' => 'Холодильная улица',
+    'House' => '16',
+    'Flat' => '22',
+]));
+
+$order->addPackage(Package::create([
+    'Number' => 'TEST-123456',
+    'BarCode' => 'TEST-123456',
+    'Weight' => 500, // Общий вес (в граммах)
+    'SizeA' => 10, // Длина (в сантиметрах), в пределах от 1 до 1500
+    'SizeB' => 10,
+    'SizeC' => 10,
+])->addItem(Item::create('NN0001', 500, 0, 120, 2, 'Test item')));
+
+$request = new DeliveryRequest([
+    'Number' => 'TESTING123',
+]);
+$request->addOrder($order);
+
+$response = $client->sendDeliveryRequest($request);
+
+foreach ($response->getMessages() as $message) {
+    if ($message->isError()) {
+        // обработка ошибки
+    }
+}
+
+foreach ($response->getOrders() as $order) {
+    // сверяем данные заказа, записываем номер
+    $order->getNumber();
+    $order->getDispatchNumber();
+    break;
+}
+```
+
 ### Трекинг
 
 ```php
-use \CdekSDK\Common\Order;
-use \CdekSDK\Requests\StatusReportRequest;
+use CdekSDK\Common\Order;
+use CdekSDK\Requests\StatusReportRequest;
 
 $request = (new StatusReportRequest())
     ->setShowHistory();

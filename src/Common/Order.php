@@ -43,7 +43,7 @@ final class Order implements HasMessage
      * @JMS\SerializedName("Date")
      * @JMS\Type("DateTimeImmutable<'Y-m-d'>")
      *
-     * @var \DateTimeImmutable
+     * @var \DateTimeInterface
      */
     protected $Date;
 
@@ -452,7 +452,7 @@ final class Order implements HasMessage
     }
 
     /**
-     * @return \DateTimeImmutable|null
+     * @return \DateTimeInterface|null
      */
     public function getDate()
     {

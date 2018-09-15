@@ -40,7 +40,7 @@ use PHPUnit\Framework\TestCase;
 class LaravelCdekServiceProviderTest extends TestCase
 {
     /**
-     * @var ApplicationInterface
+     * @var ApplicationInterface|\PHPUnit\Framework\MockObject\MockObject
      */
     private $app;
 
@@ -49,9 +49,6 @@ class LaravelCdekServiceProviderTest extends TestCase
      */
     private $provider;
 
-    /**
-     * {@inheritdoc}
-     */
     protected function setUp()
     {
         parent::setUp();
@@ -65,7 +62,7 @@ class LaravelCdekServiceProviderTest extends TestCase
         $this->provider->boot();
 
         $this->assertEquals('class_exists', \Closure::bind(function () {
-            return end(self::$loaders);
+            return end(AnnotationRegistry::$loaders);
         }, null, AnnotationRegistry::class)());
     }
 

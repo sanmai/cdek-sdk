@@ -2,10 +2,8 @@
 /*
  * This code is licensed under the MIT License.
  *
- * Copyright (c) 2018 appwilio <appwilio.com>
- * Copyright (c) 2018 JhaoDa <jhaoda@gmail.com>
- * Copyright (c) 2018 greabock <greabock17@gmail.com>
- * Copyright (c) 2018 Alexey Kopytko <alexey@kopytko.com>
+ * Copyright (c) 2018 Appwilio (http://appwilio.com), greabock (https://github.com/greabock), JhaoDa (https://github.com/jhaoda)
+ * Copyright (c) 2018 Alexey Kopytko <alexey@kopytko.com> and contributors
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal

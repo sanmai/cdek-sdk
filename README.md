@@ -246,6 +246,27 @@ $request->addOrder(new Order(['DispatchNumber' => '2222222222']));
 $response = $client->sendStatusReportRequest($request);
 ```
 
+### Laravel 5.1+
+
+```php
+// config/app.php
+
+    'providers' => [
+        // ...
+
+        \CdekSDK\LaravelCdekServiceProvider::class
+
+        // ...
+    ]
+
+// config/services.php
+
+    'cdek' => [
+        'account'  => env('CDEK_ACCOUNT', ''),
+        'password' => env('CDEK_PASSWORD', ''),
+    ],
+```
+
 ## Авторы и ссылки
 
 Эта библиотека - хард форк библиотеки [appwilio/cdek-sdk](https://github.com/appwilio/cdek-sdk) с поддержкой более старых версий PHP и расширенной поддержкой API. Обратная совместимость с исходной библиотекой не гарантируется, но фичи и исправления будут переноситься оттуда сюда по мере возможности. Если что-то пропустили, [дайте знать](https://github.com/sanmai/cdek-sdk/issues).

@@ -22,19 +22,20 @@
         }
     ],
     "require": {
-        "php": ">=7.0",
+        "php": "^7.0",
         "guzzlehttp/guzzle": "^6.3",
         "jms/serializer": "^1.8",
         "sanmai/pipeline": "^2.0"
     },
     "require-dev": {
-        "illuminate/support": "5.1.* || 5.2.* || 5.3.* || 5.4.* || 5.5.*",
-        "phpunit/phpunit": ">=6",
-        "php-coveralls/php-coveralls": "^2.0",
         "friendsofphp/php-cs-fixer": "^2.11",
-        "phan/phan": "^0.12",
-        "infection/infection": "~0.8",
-        "phpstan/phpstan": "~0.9",
+        "illuminate/support": "^5.2",
+        "infection/infection": ">=0.8",
+        "laravel/framework": "^5.2",
+        "phan/phan": ">=0.12.9",
+        "php-coveralls/php-coveralls": "^2.0",
+        "phpstan/phpstan": ">=0.9",
+        "phpunit/phpunit": ">=6",
         "vimeo/psalm": ">=1.1"
     },
     "autoload": {

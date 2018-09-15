@@ -68,7 +68,7 @@ use Appwilio\CdekSDK\Requests\CalculationRequest;
 // для выполнения авторизованного запроса используется
 // $request = CalculationRequest::withAuthorization();
 
-$request = (CalculationRequest())
+$request = (new CalculationRequest())
     ->setSenderCityPostCode('295000')
     ->setReceiverCityPostCode('652632')
     ->addGood([

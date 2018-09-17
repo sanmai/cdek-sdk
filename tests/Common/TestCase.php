@@ -28,30 +28,6 @@ declare(strict_types=1);
 
 namespace Tests\CdekSDK\Common;
 
-use CdekSDK\Common\Order;
-
-/**
- * @covers \CdekSDK\Common\Order
- */
-class OrderTest extends TestCase
+abstract class TestCase extends \PHPUnit\Framework\TestCase
 {
-    public function test_it_gets_id_from_dispatch_number()
-    {
-        $order = Order::withDispatchNumber('testing123');
-        $this->assertSame('testing123', $order->getId());
-    }
-
-    public function test_it_gets_id_from_date_number()
-    {
-        $order = Order::withNumberAndDate('foo', new \DateTime('2001-01-01'));
-        $this->assertSame('2001-01-01/foo', $order->getId());
-    }
-
-    public function test_it_fails_with_no_id()
-    {
-        $this->expectException(\BadMethodCallException::class);
-
-        $order = new Order();
-        $order->getId();
-    }
 }

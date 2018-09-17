@@ -67,11 +67,4 @@ abstract class PrintRequest implements XmlRequest, ShouldAuthorize
 
         return $this;
     }
-
-    public function addDispatchNumber(string $DispatchNumber)
-    {
-        $this->addOrder(Order::withDispatchNumber($DispatchNumber));
-
-        return $this;
-    }
 }

@@ -150,7 +150,7 @@ foreach ($response->getOrders() as $order) {
 
 ### Печать квитанции к заказу
 
-Для подготовки документов необходимо указывать номер заказа СДЭК, DispatchNumber. Хотя исходное API в принципе позволяет делать распечатки используя номер заказа ИМ и дату, такая функциональность пока не реализована.
+Для подготовки документов необходимо указывать или номер заказа СДЭК, DispatchNumber, или номер заказа ИМ и дату через объёкт заказа.
 
 ```php
 use CdekSDK\Requests\PrintReceiptsRequest;
@@ -158,7 +158,7 @@ use CdekSDK\Responses\FileResponse;
 use CdekSDK\Responses\PrintErrorResponse;
 
 $request = new PrintReceiptsRequest();
-$request->addDispatchNumber($dispatchNumber);
+$request->addOrder(Order::withDispatchNumber($dispatchNumber));
 
 $response = $client->sendPrintReceiptsRequest($request);
 
@@ -176,6 +176,14 @@ if ($response instanceof PrintErrorResponse) {
 }
 ```
 
+Также можно указывать в запросе сами объекты заказов, полученные из других методов. Или же можно создать заказ прямо на месте, имея известные `Number` и `Date`:
+
+```
+$request = new PrintReceiptsRequest();
+$request->addOrder($orderFromAnotherResponse);
+$request->addOrder(Order::withNumberAndDate($number, new \DateTime($dateString)));
+```
+
 ### Печать ШК-мест
 
 Печать ШК-мест производится по такому же алгоритму что и печать квитанций.
@@ -188,7 +196,7 @@ use CdekSDK\Responses\PrintErrorResponse;
 $request = new PrintLabelsRequest([
     'PrintFormat' => PrintLabelsRequest::PRINT_FORMAT_A5,
 ]);
-$request->addDispatchNumber($dispatchNumber);
+$request->addOrder(Order::withDispatchNumber($dispatchNumber));
 
 $response = $client->sendPrintLabelsRequest($request);
 

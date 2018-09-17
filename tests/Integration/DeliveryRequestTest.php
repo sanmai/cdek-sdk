@@ -152,6 +152,18 @@ class DeliveryRequestTest extends TestCase
             $this->assertNotEmpty($order->getDispatchNumber());
         }
 
+        // повторные запросы не завершаются с ошибкой, лишь ничего не добавляют
+        $response = $this->getClient()->sendDeliveryRequest($request);
+
+        foreach ($response->getMessages() as $message) {
+            $this->assertFalse($message->isError());
+        }
+
+        foreach ($response->getOrders() as $order) {
+            $this->assertSame('TEST-123456', $order->getNumber());
+            $this->assertNotEmpty($order->getDispatchNumber());
+        }
+
         return $order->getDispatchNumber();
     }
 

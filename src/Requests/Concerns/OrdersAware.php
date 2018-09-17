@@ -43,7 +43,7 @@ trait OrdersAware
     /**
      * @return Order[]|array
      */
-    public function getOrders()
+    final public function getOrders()
     {
         return $this->orders;
     }

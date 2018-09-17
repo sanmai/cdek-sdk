@@ -35,24 +35,24 @@ use CdekSDK\Contracts\XmlRequest;
 trait RequestCore
 {
     /** @phan-suppress PhanUndeclaredConstant */
-    public function getAddress(): string
+    final public function getAddress(): string
     {
         return static::ADDRESS;
     }
 
     /** @phan-suppress PhanUndeclaredConstant */
-    public function getMethod(): string
+    final public function getMethod(): string
     {
         return static::METHOD;
     }
 
     /** @phan-suppress PhanUndeclaredConstant */
-    public function getResponseClassName(): string
+    final public function getResponseClassName(): string
     {
         return static::RESPONSE;
     }
 
-    public function getSerializationFormat(): string
+    final public function getSerializationFormat(): string
     {
         if ($this instanceof XmlRequest) {
             return $this::SERIALIZATION_XML;

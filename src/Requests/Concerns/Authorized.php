@@ -61,7 +61,7 @@ trait Authorized
     /**
      * @phan-suppress PhanTypeMismatchReturn
      */
-    public function date(\DateTimeInterface $date): ShouldAuthorize
+    final public function date(\DateTimeInterface $date): ShouldAuthorize
     {
         $this->date = $date;
 
@@ -72,7 +72,7 @@ trait Authorized
     /**
      * @phan-suppress PhanTypeMismatchReturn
      */
-    public function credentials(string $account, string $secure): ShouldAuthorize
+    final public function credentials(string $account, string $secure): ShouldAuthorize
     {
         $this->account = $account;
         $this->secure = $secure;

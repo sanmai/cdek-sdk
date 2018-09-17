@@ -56,12 +56,12 @@ abstract class PrintRequest implements XmlRequest, ShouldAuthorize
      * @JMS\Type("int")
      * @JMS\VirtualProperty()
      */
-    public function getOrderCount()
+    final public function getOrderCount()
     {
         return \count($this->orders);
     }
 
-    public function addOrder(Order $order)
+    final public function addOrder(Order $order)
     {
         $this->orders[$order->getId()] = $order;
 

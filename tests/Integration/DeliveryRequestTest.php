@@ -37,9 +37,11 @@ use CdekSDK\Requests\DeleteRequest;
 use CdekSDK\Requests\DeliveryRequest;
 use CdekSDK\Requests\PrintLabelsRequest;
 use CdekSDK\Requests\PrintReceiptsRequest;
+use CdekSDK\Requests\StatusReportRequest;
 use CdekSDK\Responses\DeleteResponse;
 use CdekSDK\Responses\FileResponse;
 use CdekSDK\Responses\PrintErrorResponse;
+use CdekSDK\Responses\StatusReportResponse;
 
 /**
  * @covers \CdekSDK\Requests\DeliveryRequest
@@ -158,22 +160,6 @@ class DeliveryRequestTest extends TestCase
         $this->assertSame('%PDF', $response->getBody()->read(4));
     }
 
-    /**
-     * @depends test_successful_request
-     */
-    public function test_print_labels_request(string $dispatchNumber)
-    {
-        $request = new PrintLabelsRequest([
-            'PrintFormat' => PrintLabelsRequest::PRINT_FORMAT_A5,
-        ]);
-        $request->addDispatchNumber($dispatchNumber);
-
-        $response = $this->getClient()->sendPrintLabelsRequest($request);
-        $this->assertInstanceOf(FileResponse::class, $response);
-
-        $this->assertSame('%PDF', $response->getBody()->read(4));
-    }
-
     public function test_failed_print_receipts_request()
     {
         $request = new PrintReceiptsRequest();
@@ -188,5 +174,46 @@ class DeliveryRequestTest extends TestCase
         foreach ($response->getMessages() as $message) {
             $this->assertTrue($message->isError());
         }
+    }
+
+    /**
+     * @depends test_successful_request
+     */
+    public function test_status_report(string $dispatchNumber)
+    {
+        $request = new StatusReportRequest();
+        $request->addOrder(Order::withDispatchNumber($dispatchNumber));
+
+        $response = $this->getClient()->sendStatusReportRequest($request);
+
+        $this->assertInstanceOf(StatusReportResponse::class, $response);
+        $this->assertTrue($response->getDateFirst() < $response->getDateLast());
+
+        $this->assertCount(1, $response->getOrders());
+
+        /** @var Order $order */
+        $order = end($response->getOrders());
+
+        $this->assertInstanceOf(Order::class, $order);
+        $this->assertSame('TESTING123', $order->ActNumber);
+        $this->assertSame('Создан', $order->getStatus()->getDescription());
+
+        return order::withNumberAndDate($order->getNumber(), $order->getStatus()->getDate());
+    }
+
+    /**
+     * @depends test_status_report
+     */
+    public function test_print_labels_request(Order $order)
+    {
+        $request = new PrintLabelsRequest([
+            'PrintFormat' => PrintLabelsRequest::PRINT_FORMAT_A5,
+        ]);
+        $request->addOrder($order);
+
+        $response = $this->getClient()->sendPrintLabelsRequest($request);
+        $this->assertInstanceOf(FileResponse::class, $response);
+
+        $this->assertSame('%PDF', $response->getBody()->read(4));
     }
 }

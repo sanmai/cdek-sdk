@@ -33,22 +33,18 @@ use JMS\Serializer\Annotation as JMS;
 final class ChangePeriod
 {
     /**
-     * @JMS\XmlAttribute
-     * @JMS\SerializedName("DateBeg")
-     * @JMS\Type("DateTimeImmutable<'Y-m-d\TH:i:sP'>")
+     * @JMS\Exclude
      *
      * @var \DateTimeInterface
      */
-    public $DateBeg;
+    private $DateBeg;
 
     /**
-     * @JMS\XmlAttribute
-     * @JMS\SerializedName("DateEnd")
-     * @JMS\Type("DateTimeImmutable<'Y-m-d\TH:i:sP'>")
+     * @JMS\Exclude
      *
      * @var \DateTimeInterface
      */
-    public $DateEnd;
+    private $DateEnd;
 
     public function __construct(\DateTimeInterface $start, \DateTimeInterface $end)
     {
@@ -59,7 +55,7 @@ final class ChangePeriod
     /**
      * @JMS\XmlAttribute
      * @JMS\SerializedName("DateFirst")
-     * @JMS\Type("DateTimeImmutable<'Y-m-d\TH:i:sP'>")
+     * @JMS\Type("DateTimeInterface<'Y-m-d\TH:i:sP'>")
      * @JMS\VirtualProperty()
      */
     public function getDateFirst()
@@ -70,10 +66,32 @@ final class ChangePeriod
     /**
      * @JMS\XmlAttribute
      * @JMS\SerializedName("DateLast")
-     * @JMS\Type("DateTimeImmutable<'Y-m-d\TH:i:sP'>")
+     * @JMS\Type("DateTimeInterface<'Y-m-d\TH:i:sP'>")
      * @JMS\VirtualProperty()
      */
     public function getDateLast()
+    {
+        return $this->DateEnd;
+    }
+
+    /**
+     * @JMS\XmlAttribute
+     * @JMS\SerializedName("DateBeg")
+     * @JMS\Type("DateTimeInterface<'Y-m-d\TH:i:sP'>")
+     * @JMS\VirtualProperty()
+     */
+    public function getDateBeg()
+    {
+        return $this->DateBeg;
+    }
+
+    /**
+     * @JMS\XmlAttribute
+     * @JMS\SerializedName("DateEnd")
+     * @JMS\Type("DateTimeInterface<'Y-m-d\TH:i:sP'>")
+     * @JMS\VirtualProperty()
+     */
+    public function getDateEnd()
     {
         return $this->DateEnd;
     }

@@ -255,6 +255,42 @@ $request->addOrder(new Order(['DispatchNumber' => '2222222222']));
 $response = $client->sendStatusReportRequest($request);
 ```
 
+### Отчет "Статусы заказов"
+
+```php
+use CdekSDK\Requests\StatusReportRequest;
+use CdekSDK\Common\ChangePeriod;
+use CdekSDK\Common\Order;
+
+$request = new StatusReportRequest();
+$request->setChangePeriod(new ChangePeriod(new \DateTime('-1 day'), new \DateTime('+1 day')));
+$request->addOrder(Order::withDispatchNumber($dispatchNumber));
+
+$response = $client->sendStatusReportRequest($request);
+
+foreach ($response->getOrders() as $order) {
+    $order->ActNumber;
+    $order->getNumber();
+    $order->getDispatchNumber();
+    $order->DeliveryDate;
+    $order->getRecipientName();
+
+    $order->getStatus()->getDescription();
+    $order->getStatus()->getDate();
+    $order->getStatus()->getCode();
+    $order->getStatus()->getCityCode();
+    $order->getStatus()->getCityName();
+
+    $order->getReason()->Code;
+    $order->getReason()->Description;
+    $order->getReason()->Date;
+
+    $order->getDelayReason()->Code;
+    $order->getDelayReason()->Description;
+    $order->getDelayReason()->Date;
+}
+```
+
 ### Laravel 5.1+
 
 ```php

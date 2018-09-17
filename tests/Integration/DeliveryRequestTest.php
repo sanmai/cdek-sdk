@@ -43,7 +43,6 @@ use CdekSDK\Requests\StatusReportRequest;
 use CdekSDK\Responses\DeleteResponse;
 use CdekSDK\Responses\FileResponse;
 use CdekSDK\Responses\InfoReportResponse;
-use CdekSDK\Responses\PrintErrorResponse;
 use CdekSDK\Responses\StatusReportResponse;
 
 /**
@@ -70,17 +69,6 @@ use CdekSDK\Responses\StatusReportResponse;
  */
 class DeliveryRequestTest extends TestCase
 {
-    public function test_failing_request()
-    {
-        $request = new DeliveryRequest();
-        $response = $this->getClient()->sendDeliveryRequest($request);
-
-        foreach ($response->getMessages() as $message) {
-            $this->assertTrue($message->isError());
-            break;
-        }
-    }
-
     const TEST_NUMBER = 'TESTING123';
 
     public function test_delete_success()
@@ -179,20 +167,6 @@ class DeliveryRequestTest extends TestCase
         $this->assertInstanceOf(FileResponse::class, $response);
 
         $this->assertSame('%PDF', $response->getBody()->read(4));
-    }
-
-    public function test_failed_print_receipts_request()
-    {
-        $request = new PrintReceiptsRequest();
-        $request->addOrder(Order::withDispatchNumber('invalid'));
-
-        $response = $this->getClient()->sendPrintReceiptsRequest($request);
-
-        $this->assertInstanceOf(PrintErrorResponse::class, $response);
-
-        foreach ($response->getMessages() as $message) {
-            $this->assertTrue($message->isError());
-        }
     }
 
     /**

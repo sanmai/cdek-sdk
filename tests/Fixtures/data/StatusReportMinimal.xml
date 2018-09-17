@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StatusReport DateFirst="2000-12-31T17:00:00+00:00" DateLast="2018-09-01T00:00:00+00:00" >
+<Order ActNumber="TESTING123" Number="TEST-123456" DispatchNumber="1234567"  DeliveryDate="" RecipientName="" ><Status Date="2018-09-01T02:10:00+00:00" Code="1" Description="Создан" CityCode="44" CityName="Москва"></Status><Reason Code="" Description="" Date=""></Reason><DelayReason Code="" Description="" Date="" ></DelayReason></Order></StatusReport>
+

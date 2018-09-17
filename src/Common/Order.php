@@ -38,6 +38,21 @@ final class Order implements HasMessage
 {
     use Fillable;
 
+    public static function withDispatchNumber(string $DispatchNumber): Order
+    {
+        return Order::create([
+            'DispatchNumber' => $DispatchNumber,
+        ]);
+    }
+
+    public static function withNumberAndDate(string $Number, \DateTimeInterface $Date): Order
+    {
+        return Order::create([
+            'Number' => $Number,
+            'Date' => $Date,
+        ]);
+    }
+
     /**
      * @JMS\XmlAttribute
      * @JMS\SerializedName("Date")
@@ -467,6 +482,24 @@ final class Order implements HasMessage
     public function getDispatchNumber(): string
     {
         return (string) $this->DispatchNumber;
+    }
+
+    /**
+     * Возвращает идентификатор заказа для API СДЭК, который состоит либо из DispatchNumber, либо из параметров Number, Date. Запросы по заказам должны включать эти параметры для идентификации заказа.
+     *
+     * @return string
+     */
+    public function getId(): string
+    {
+        if (isset($this->DispatchNumber)) {
+            return (string) $this->DispatchNumber;
+        }
+
+        if ($this->Date && !empty($this->Number)) {
+            return $this->Date->format('Y-m-d').'/'.$this->Number;
+        }
+
+        throw new \BadMethodCallException('Order has neither a DispatchNumber nor a Date/Number.');
     }
 
     /**

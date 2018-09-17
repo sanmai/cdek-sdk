@@ -137,6 +137,16 @@ class CalculationRequest implements JsonRequest
         return $this;
     }
 
+    /**
+     * @deprecated
+     *
+     * @param mixed $good
+     */
+    public function addGood($good)
+    {
+        return $this->addPackage($good);
+    }
+
     public function addPackage($good)
     {
         $this->goods[] = $good;

@@ -243,21 +243,6 @@ foreach ($response->getOrders() as $order) {
 ### Трекинг
 
 ```php
-use CdekSDK\Common\Order;
-use CdekSDK\Requests\StatusReportRequest;
-
-$request = (new StatusReportRequest())
-    ->setShowHistory();
-
-$request->addOrder(new Order(['Number' => '89754564']));
-$request->addOrder(new Order(['DispatchNumber' => '2222222222']));
-
-$response = $client->sendStatusReportRequest($request);
-```
-
-### Отчет "Статусы заказов"
-
-```php
 use CdekSDK\Requests\StatusReportRequest;
 use CdekSDK\Common\ChangePeriod;
 use CdekSDK\Common\Order;

@@ -30,26 +30,48 @@ namespace CdekSDK\Common;
 
 use JMS\Serializer\Annotation as JMS;
 
+/**
+ * @JMS\ExclusionPolicy("all")
+ */
 final class ChangePeriod
 {
     /**
-     * @JMS\Exclude
-     *
      * @var \DateTimeInterface
+     *
+     * @deprecated use accessor method
      */
-    private $DateBeg;
+    public $DateBeg;
+
+    /**
+     * @var \DateTimeInterface
+     *
+     * @deprecated use accessor method
+     */
+    public $DateEnd;
 
     /**
      * @JMS\Exclude
      *
      * @var \DateTimeInterface
      */
-    private $DateEnd;
+    private $since;
+
+    /**
+     * @JMS\Exclude
+     *
+     * @var \DateTimeInterface
+     */
+    private $until;
 
     public function __construct(\DateTimeInterface $start, \DateTimeInterface $end)
     {
-        $this->DateBeg = $start;
-        $this->DateEnd = $end;
+        $this->since = $start;
+        $this->until = $end;
+
+        /** @phan-suppress-next-line PhanDeprecatedProperty */
+        $this->DateBeg = $this->since;
+        /** @phan-suppress-next-line PhanDeprecatedProperty */
+        $this->DateEnd = $this->until;
     }
 
     /**
@@ -60,7 +82,7 @@ final class ChangePeriod
      */
     public function getDateFirst()
     {
-        return $this->DateBeg;
+        return $this->since;
     }
 
     /**
@@ -71,7 +93,7 @@ final class ChangePeriod
      */
     public function getDateLast()
     {
-        return $this->DateEnd;
+        return $this->until;
     }
 
     /**
@@ -82,7 +104,7 @@ final class ChangePeriod
      */
     public function getDateBeg()
     {
-        return $this->DateBeg;
+        return $this->since;
     }
 
     /**
@@ -93,6 +115,6 @@ final class ChangePeriod
      */
     public function getDateEnd()
     {
-        return $this->DateEnd;
+        return $this->until;
     }
 }

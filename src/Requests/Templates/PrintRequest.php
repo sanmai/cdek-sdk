@@ -61,38 +61,16 @@ abstract class PrintRequest implements XmlRequest, ShouldAuthorize
         return \count($this->orders);
     }
 
-    /**
-     * Помечен устаревшим так как у заказа в этом методе обязательно должен быть указан
-     * номер отправления СДЭК, при том что целевое API позволяет делать распечатки используя
-     * номер заказа и дату. А дату текущая реализация указать не позволяет (всегда заменяется
-     * текущей). Потому используйте функцию для указаниея трек-номера заказа.
-     *
-     * @see PrintRequest::addDispatchNumber()
-     * @deprecated
-     */
     public function addOrder(Order $order)
     {
-        if ($order->getDispatchNumber() === '') {
-            throw new \BadMethodCallException('Order has no dispatch number.');
-        }
-
-        $this->addOrderWithDispatchNumber($order);
+        $this->orders[$order->getId()] = $order;
 
         return $this;
     }
 
     public function addDispatchNumber(string $DispatchNumber)
     {
-        $this->addOrderWithDispatchNumber(Order::create([
-            'DispatchNumber' => $DispatchNumber,
-        ]));
-
-        return $this;
-    }
-
-    private function addOrderWithDispatchNumber(Order $order)
-    {
-        $this->orders[$order->getDispatchNumber()] = $order;
+        $this->addOrder(Order::withDispatchNumber($DispatchNumber));
 
         return $this;
     }

@@ -62,6 +62,24 @@ final class StatusReportResponse
      */
     private $orders = [];
 
+    /**
+     * @JMS\XmlAttribute
+     * @JMS\SerializedName("ErrorCode")
+     * @JMS\Type("string")
+     *
+     * @var string
+     */
+    private $ErrorCode;
+
+    /**
+     * @JMS\XmlAttribute
+     * @JMS\SerializedName("Msg")
+     * @JMS\Type("string")
+     *
+     * @var string
+     */
+    private $Msg;
+
     public function getDateFirst(): \DateTimeImmutable
     {
         return $this->DateFirst;
@@ -78,5 +96,15 @@ final class StatusReportResponse
     public function getOrders()
     {
         return $this->orders;
+    }
+
+    public function getErrorCode(): string
+    {
+        return (string) $this->ErrorCode;
+    }
+
+    public function getMessage(): string
+    {
+        return (string) $this->Msg;
     }
 }

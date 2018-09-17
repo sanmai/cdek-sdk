@@ -36,11 +36,13 @@ use CdekSDK\Common\Order;
 use CdekSDK\Common\Package;
 use CdekSDK\Requests\DeleteRequest;
 use CdekSDK\Requests\DeliveryRequest;
+use CdekSDK\Requests\InfoReportRequest;
 use CdekSDK\Requests\PrintLabelsRequest;
 use CdekSDK\Requests\PrintReceiptsRequest;
 use CdekSDK\Requests\StatusReportRequest;
 use CdekSDK\Responses\DeleteResponse;
 use CdekSDK\Responses\FileResponse;
+use CdekSDK\Responses\InfoReportResponse;
 use CdekSDK\Responses\PrintErrorResponse;
 use CdekSDK\Responses\StatusReportResponse;
 
@@ -57,6 +59,12 @@ use CdekSDK\Responses\StatusReportResponse;
  * @covers \CdekSDK\Requests\PrintLabelsRequest
  * @covers \CdekSDK\Responses\PrintErrorResponse
  * @covers \CdekSDK\Responses\FileResponse
+ *
+ * @covers \CdekSDK\Requests\StatusReportRequest
+ * @covers \CdekSDK\Responses\StatusReportResponse
+ *
+ * @covers \CdekSDK\Requests\InfoReportRequest
+ * @covers \CdekSDK\Responses\InfoReportResponse
  *
  * @group integration
  */
@@ -186,13 +194,18 @@ class DeliveryRequestTest extends TestCase
 
         $response = $this->getClient()->sendStatusReportRequest($request);
 
+        // База СДЭК не успевает записать данные?
+        if ($response->getErrorCode() == 'ERR_ORDERS_NOT_FOUND') {
+            $this->markTestSkipped($response->getMessage());
+        }
+
         $this->assertInstanceOf(StatusReportResponse::class, $response);
         $this->assertTrue($response->getDateFirst() < $response->getDateLast());
 
         $this->assertCount(1, $response->getOrders());
 
         /** @var Order $order */
-        $order = end($response->getOrders());
+        $order = $response->getOrders()[0];
 
         $this->assertInstanceOf(Order::class, $order);
         $this->assertSame('TESTING123', $order->ActNumber);
@@ -215,5 +228,19 @@ class DeliveryRequestTest extends TestCase
         $this->assertInstanceOf(FileResponse::class, $response);
 
         $this->assertSame('%PDF', $response->getBody()->read(4));
+    }
+
+    /**
+     * @depends test_status_report
+     */
+    public function test_info_report(Order $order)
+    {
+        $request = new InfoReportRequest();
+        $request->addOrder($order);
+
+        $response = $this->getClient()->sendInfoReportRequest($request);
+
+        $this->assertInstanceOf(InfoReportResponse::class, $response);
+        $this->assertCount(1, $response->getOrders());
     }
 }

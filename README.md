@@ -242,6 +242,8 @@ foreach ($response->getOrders() as $order) {
 
 ### Трекинг
 
+Он же отчет "Статусы заказов", используется для получения отчета по статусам заказов, включая историю изменения статусов.
+
 ```php
 use CdekSDK\Requests\StatusReportRequest;
 use CdekSDK\Common\ChangePeriod;

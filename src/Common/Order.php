@@ -411,11 +411,13 @@ final class Order implements HasMessage
     public $ReturnOrder;
 
     /**
+     * Номер акта приема-передачи.
+     *
      * @JMS\XmlAttribute
      * @JMS\SerializedName("ActNumber")
-     * @JMS\Type("int")
+     * @JMS\Type("string")
      *
-     * @var int
+     * @var string
      */
     public $ActNumber;
 

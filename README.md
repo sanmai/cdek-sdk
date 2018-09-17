@@ -250,6 +250,7 @@ use CdekSDK\Common\ChangePeriod;
 use CdekSDK\Common\Order;
 
 $request = new StatusReportRequest();
+// можно указывать или всё сразу, или только диапазоны дат, или только конкретные заказы
 $request->setChangePeriod(new ChangePeriod(new \DateTime('-1 day'), new \DateTime('+1 day')));
 $request->addOrder(Order::withDispatchNumber($dispatchNumber));
 

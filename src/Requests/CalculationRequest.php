@@ -34,6 +34,8 @@ use CdekSDK\Responses\CalculationResponse;
 
 /**
  * Class CalculationRequest.
+ *
+ * @final
  */
 class CalculationRequest implements JsonRequest
 {

@@ -44,6 +44,8 @@ use JMS\Serializer\Annotation as JMS;
  * @see DeleteRequest
  *
  * @JMS\XmlRoot(name="DeliveryRequest")
+ *
+ * @final
  */
 class DeliveryRequest implements XmlRequest, ShouldAuthorize
 {

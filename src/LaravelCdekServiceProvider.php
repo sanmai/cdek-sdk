@@ -32,6 +32,9 @@ use Doctrine\Common\Annotations\AnnotationRegistry;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\ServiceProvider;
 
+/**
+ * @final
+ */
 class LaravelCdekServiceProvider extends ServiceProvider
 {
     protected $defer = true;

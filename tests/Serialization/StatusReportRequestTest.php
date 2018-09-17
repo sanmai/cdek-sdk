@@ -39,13 +39,13 @@ class StatusReportRequestTest extends TestCase
     public function test_can_serialize()
     {
         $request = new StatusReportRequest();
-        $request->setChangePeriod(new ChangePeriod(new \DateTimeImmutable('2018-01-01'), new \DateTimeImmutable('2018-02-01')));
+        $request->setChangePeriod(new ChangePeriod(new \DateTimeImmutable('2018-01-01T00:00:00+0000'), new \DateTimeImmutable('2018-02-02T00:00:00+0000')));
 
         $result = $this->getSerializer()->serialize($request, StatusReportRequest::SERIALIZATION_XML);
 
         $this->assertSame('<?xml version="1.0" encoding="UTF-8"?>
 <StatusReport>
-  <ChangePeriod DateFirst="2018-01-01T00:00:00+0900" DateLast="2018-02-01T00:00:00+0900" DateBeg="2018-01-01T00:00:00+0900" DateEnd="2018-02-01T00:00:00+0900"/>
+  <ChangePeriod DateFirst="2018-01-01T00:00:00+0000" DateLast="2018-02-02T00:00:00+0000" DateBeg="2018-01-01T00:00:00+0000" DateEnd="2018-02-02T00:00:00+0000"/>
 </StatusReport>
 ', $result);
     }

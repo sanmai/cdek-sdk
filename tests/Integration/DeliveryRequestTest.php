@@ -29,6 +29,7 @@ declare(strict_types=1);
 namespace Tests\CdekSDK\Integration;
 
 use CdekSDK\Common\Address;
+use CdekSDK\Common\ChangePeriod;
 use CdekSDK\Common\City;
 use CdekSDK\Common\Item;
 use CdekSDK\Common\Order;
@@ -152,7 +153,7 @@ class DeliveryRequestTest extends TestCase
     public function test_print_receipts_request(string $dispatchNumber)
     {
         $request = new PrintReceiptsRequest();
-        $request->addDispatchNumber($dispatchNumber);
+        $request->addOrder(Order::withDispatchNumber($dispatchNumber));
 
         $response = $this->getClient()->sendPrintReceiptsRequest($request);
         $this->assertInstanceOf(FileResponse::class, $response);
@@ -163,9 +164,7 @@ class DeliveryRequestTest extends TestCase
     public function test_failed_print_receipts_request()
     {
         $request = new PrintReceiptsRequest();
-        $request->addOrder(Order::create([
-            'DispatchNumber' => 'invalid',
-        ]));
+        $request->addOrder(Order::withDispatchNumber('invalid'));
 
         $response = $this->getClient()->sendPrintReceiptsRequest($request);
 
@@ -182,6 +181,7 @@ class DeliveryRequestTest extends TestCase
     public function test_status_report(string $dispatchNumber)
     {
         $request = new StatusReportRequest();
+        $request->setChangePeriod(new ChangePeriod(new \DateTime('-1 day'), new \DateTime('+1 day')));
         $request->addOrder(Order::withDispatchNumber($dispatchNumber));
 
         $response = $this->getClient()->sendStatusReportRequest($request);
@@ -198,7 +198,7 @@ class DeliveryRequestTest extends TestCase
         $this->assertSame('TESTING123', $order->ActNumber);
         $this->assertSame('Создан', $order->getStatus()->getDescription());
 
-        return order::withNumberAndDate($order->getNumber(), $order->getStatus()->getDate());
+        return Order::withNumberAndDate($order->getNumber(), $order->getStatus()->getDate());
     }
 
     /**

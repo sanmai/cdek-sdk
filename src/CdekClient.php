@@ -164,11 +164,15 @@ final class CdekClient
         }
 
         if ($request instanceof XmlRequest) {
-            return [
-                'form_params' => [
-                    'xml_request' => $this->serializer->serialize($request, 'xml'),
-                ],
-            ];
+            try {
+                return [
+                    'form_params' => [
+                        'xml_request' => $this->serializer->serialize($request, 'xml'),
+                    ],
+                ];
+            } catch (\Doctrine\Common\Annotations\AnnotationException $e) {
+                throw new \RuntimeException('Serialization failed. Have you forgotten to initialize an autoloader for AnnotationRegistry?', 0, $e);
+            }
         }
 
         if ($request instanceof JsonRequest) {

@@ -319,6 +319,21 @@ foreach ($response->getOrders() as $order) {
 }
 ```
 
+### Замена базового URL интерфейса
+
+[Перечень возможных URL в документации.](https://confluence.cdek.ru/pages/viewpage.action?pageId=15616129#id-%D0%9F%D1%80%D0%BE%D1%82%D0%BE%D0%BA%D0%BE%D0%BB%D0%BE%D0%B1%D0%BC%D0%B5%D0%BD%D0%B0%D0%B4%D0%B0%D0%BD%D0%BD%D1%8B%D0%BC%D0%B8(v1.5)-3.1.%D0%91%D0%B0%D0%B7%D0%BE%D0%B2%D1%8B%D0%B9URL%D0%B8%D0%BD%D1%82%D0%B5%D1%80%D1%84%D0%B5%D0%B9%D1%81%D0%B0)
+
+```php
+$account = getenv('CDEK_ACCOUNT');
+$password = getenv('CDEK_PASSWORD');
+$baseUri = getenv('CDEK_BASE_URL');
+// Например, это может быть https://integration.cdek-asia.cn
+
+$client = new \CdekSDK\CdekClient($account, $password, new \GuzzleHttp\Client([
+    'base_uri' => $baseUri,
+]));
+```
+
 ### Сервис-провайдер для Laravel 5.1+
 
 ```php

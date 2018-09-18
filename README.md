@@ -363,6 +363,6 @@ $client = new \CdekSDK\CdekClient($account, $password, new \GuzzleHttp\Client([
 
 ## Лицензия
 
-Данный SDK распространяется под лицензией [MIT](http://opensource.org/licenses/MIT).
+Данный SDK распространяется [под лицензией MIT](LICENSE).
 
 This project is licensed under the terms of the MIT license.

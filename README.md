@@ -279,7 +279,47 @@ foreach ($response->getOrders() as $order) {
 }
 ```
 
-### Laravel 5.1+
+### Отчет "Информация по заказам"
+
+Отчет используется для получения детальной информации по заказам.
+
+```php
+use CdekSDK\Common\ChangePeriod;
+use CdekSDK\Common\Order;
+use CdekSDK\Requests\InfoReportRequest;
+
+$request = new InfoReportRequest();
+$request->setChangePeriod(new ChangePeriod(new \DateTime('-1 day'), new \DateTime('+1 day')));
+// можно искать только по номерам, без дат
+$request->addOrder(Order::withDispatchNumber($dispatchNumber));
+
+$response = $client->sendInfoReportRequest($request);
+
+foreach ($response->getMessages() as $message) {
+    if ($message->isError()) {
+        // Обрабатываем ошибки
+        $message->getText();
+    }
+}
+
+foreach ($response->getOrders() as $order) {
+    $order->getNumber();
+    $order->getSenderCity()->getName();
+    $order->getRecipientCity()->getName();
+
+    foreach ($order->getPackages() as $package) {
+        $package->getBarCode();
+        $package->getVolumeWeight();
+    }
+
+    foreach ($order->getAdditionalServices() as $service) {
+        $service->getServiceCode();
+        $service->getSum();
+    }
+}
+```
+
+### Сервис-провайдер для Laravel 5.1+
 
 ```php
 // config/app.php

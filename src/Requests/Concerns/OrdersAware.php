@@ -1,5 +1,5 @@
 <?php
-/*
+/**
  * This code is licensed under the MIT License.
  *
  * Copyright (c) 2018 Appwilio (http://appwilio.com), greabock (https://github.com/greabock), JhaoDa (https://github.com/jhaoda)

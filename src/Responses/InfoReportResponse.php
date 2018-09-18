@@ -29,7 +29,9 @@ declare(strict_types=1);
 namespace CdekSDK\Responses;
 
 use CdekSDK\Common\Order;
+use CdekSDK\Responses\Types\Message;
 use JMS\Serializer\Annotation as JMS;
+use function Pipeline\map;
 
 /**
  * Class InfoReportResponse.
@@ -50,5 +52,19 @@ final class InfoReportResponse
     public function getOrders()
     {
         return $this->orders;
+    }
+
+    /**
+     * @return \Traversable|Message[]
+     */
+    public function getMessages()
+    {
+        return map(function () {
+            yield from $this->orders;
+        })->map(function (Order $order) {
+            if ($order->getMessage()) {
+                yield new Message($order->getMessage(), $order->getErrorCode());
+            }
+        });
     }
 }

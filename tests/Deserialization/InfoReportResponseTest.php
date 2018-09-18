@@ -36,12 +36,18 @@ use Tests\CdekSDK\Fixtures\FixtureLoader;
  */
 class InfoReportResponseTest extends TestCase
 {
-    public function test_failing_request()
+    public function test_successful_request()
     {
         $response = $this->getSerializer()->deserialize(FixtureLoader::load('InfoReport.xml'), InfoReportResponse::class, 'xml');
 
         /** @var $response InfoReportResponse */
         $this->assertInstanceOf(InfoReportResponse::class, $response);
+
+        foreach ($response->getMessages() as $message) {
+            if ($message->isError()) {
+                $this->fail($message->getText());
+            }
+        }
 
         foreach ($response->getOrders() as $order) {
             $this->assertSame('TEST-123456', $order->getNumber());
@@ -59,6 +65,19 @@ class InfoReportResponseTest extends TestCase
                 $this->assertSame(2, $service->getServiceCode());
                 $this->assertSame(7.5, $service->getSum());
             }
+        }
+    }
+
+    public function test_failing_request()
+    {
+        $response = $this->getSerializer()->deserialize(FixtureLoader::load('InfoReportFailed.xml'), InfoReportResponse::class, 'xml');
+
+        /** @var $response InfoReportResponse */
+        $this->assertInstanceOf(InfoReportResponse::class, $response);
+
+        foreach ($response->getMessages() as $message) {
+            $this->assertTrue($message->isError());
+            $this->assertContains('Заказ не найден', $message->getText());
         }
     }
 }

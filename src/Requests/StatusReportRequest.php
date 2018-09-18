@@ -94,7 +94,7 @@ final class StatusReportRequest implements XmlRequest, ShouldAuthorize
 
     public function addOrder(Order $order)
     {
-        $this->orders[$order->getDispatchNumber()] = $order;
+        $this->orders[$order->getId()] = $order;
 
         return $this;
     }

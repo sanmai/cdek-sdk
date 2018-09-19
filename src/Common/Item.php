@@ -35,6 +35,8 @@ final class Item
     use Fillable;
 
     /**
+     * Идентификатор/артикул товара/вложения (Уникален в пределах упаковки Package).
+     *
      * @JMS\XmlAttribute
      * @JMS\SerializedName("WareKey")
      * @JMS\Type("string")
@@ -44,6 +46,8 @@ final class Item
     protected $WareKey;
 
     /**
+     * Объявленная стоимость товара (за единицу товара в указанной валюте, значение >=0). С данного значения рассчитывается страховка.
+     *
      * @JMS\XmlAttribute
      * @JMS\SerializedName("Cost")
      * @JMS\Type("float")
@@ -53,6 +57,8 @@ final class Item
     protected $Cost;
 
     /**
+     * Оплата за товар при получении (за единицу товара в указанной валюте, значение >=0) — наложенный платеж, в случае предоплаты значение = 0.
+     *
      * @JMS\XmlAttribute
      * @JMS\SerializedName("Payment")
      * @JMS\Type("float")
@@ -62,6 +68,8 @@ final class Item
     protected $Payment;
 
     /**
+     * Вес (за единицу товара, в граммах).
+     *
      * @JMS\XmlAttribute
      * @JMS\SerializedName("Weight")
      * @JMS\Type("int")
@@ -71,6 +79,8 @@ final class Item
     protected $Weight;
 
     /**
+     * Количество единиц одноименного товара (в штуках).
+     *
      * @JMS\XmlAttribute
      * @JMS\SerializedName("Amount")
      * @JMS\Type("int")

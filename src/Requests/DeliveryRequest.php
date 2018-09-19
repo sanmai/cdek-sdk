@@ -77,6 +77,7 @@ class DeliveryRequest implements XmlRequest, ShouldAuthorize
 
     public function addOrder(Order $order)
     {
+        // При создании заказа идентификация идёт только по номеру, это обязательный параметр
         $this->orders[$order->getNumber()] = $order;
 
         return $this;

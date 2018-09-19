@@ -55,8 +55,5 @@
         "branch-alias": {
             "dev-master": "0.5.x-dev"
         }
-    },
-	"non-feature-branches": [
-        ".*"
-    ]
+    }
 }

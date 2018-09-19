@@ -36,13 +36,22 @@ composer require sanmai/cdek-sdk
 ```php
 require_once 'vendor/autoload.php';
 
-\Doctrine\Common\Annotations\AnnotationRegistry::registerLoader('class_exists');
-
 $client = new \CdekSDK\CdekClient('account', 'password');
 ```
 Реквизиты доступа следует [запросить у СДЭК](https://www.cdek.ru/clients/integrator.html). Обычные логин и пароль не подходят.
 
 Далее для всей работы с API используются методы объёкта `$client`, который мы получили выше.
+
+### AnnotationRegistry
+
+Если вы не используете `AnnotationRegistry` где-то ещё, то никакой дополнительной настройки делать не требуется. Если же вы используете `AnnotationRegistry` 
+и в ней не настроен обычный автозагрузчик классов, то его следует настроить где-то до создания `CdekClient` следующим образом:
+
+```php
+\Doctrine\Common\Annotations\AnnotationRegistry::registerLoader('class_exists');
+```
+
+Обычно ничего этого делать не нужно, всё должно работать и так.
 
 ## Использование
 

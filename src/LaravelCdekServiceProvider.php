@@ -43,6 +43,7 @@ class LaravelCdekServiceProvider extends ServiceProvider
     {
         /** @phan-suppress-next-line PhanDeprecatedFunction */
         AnnotationRegistry::registerLoader('class_exists');
+        CdekClient::$configureAnnotationRegistry = false;
     }
 
     public function register()

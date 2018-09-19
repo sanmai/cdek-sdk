@@ -35,6 +35,7 @@ use CdekSDK\Contracts\ShouldAuthorize;
 use CdekSDK\Contracts\XmlRequest;
 use CdekSDK\Responses\FileResponse;
 use CdekSDK\Serialization\NullableDateTimeHandler;
+use Doctrine\Common\Annotations\AnnotationRegistry;
 use GuzzleHttp\Client as GuzzleClient;
 use GuzzleHttp\ClientInterface;
 use JMS\Serializer\Handler\HandlerRegistry;
@@ -57,6 +58,13 @@ use Psr\Http\Message\ResponseInterface;
 final class CdekClient
 {
     const STANDARD_BASE_URL = 'https://integration.cdek.ru';
+
+    /**
+     * Настраивать ли AnnotationRegistry в автоматическом режиме, используя штатный автозагрузчик классов.
+     *
+     * @var bool
+     */
+    public static $configureAnnotationRegistry = true;
 
     /** @var ClientInterface */
     private $http;
@@ -85,6 +93,10 @@ final class CdekClient
 
         // Ignore Phan issue-suppressing annotations
         \Doctrine\Common\Annotations\AnnotationReader::addGlobalIgnoredName('phan');
+
+        if (self::$configureAnnotationRegistry) {
+            self::configureAnnotationRegistry();
+        }
     }
 
     public function sendRequest(Request $request)
@@ -185,5 +197,33 @@ final class CdekClient
         }
 
         return [];
+    }
+
+    private static $annotationRegistryReady = false;
+
+    private static function configureAnnotationRegistry()
+    {
+        if (self::$annotationRegistryReady) {
+            return;
+        }
+
+        try {
+            $reflectionClass = new \ReflectionClass(AnnotationRegistry::class);
+            $reflectionProperty = $reflectionClass->getProperty('loaders');
+            $reflectionProperty->setAccessible(true);
+        } catch (\ReflectionException $unused_exception) {
+            // Свойство недоступно, или ещё что. Больше не пытаемся.
+            self::$annotationRegistryReady = true;
+
+            return;
+        }
+
+        // Настройку делаем только если её не сделали за нас.
+        if ([] === $reflectionProperty->getValue()) {
+            /** @phan-suppress-next-line PhanDeprecatedFunction */
+            AnnotationRegistry::registerLoader('class_exists');
+        }
+
+        self::$annotationRegistryReady = true;
     }
 }

@@ -33,6 +33,7 @@ use CdekSDK\Responses\Types\DeleteRequest;
 use CdekSDK\Responses\Types\Message;
 use JMS\Serializer\Annotation as JMS;
 use function Pipeline\fromArray;
+use function Pipeline\map;
 
 /**
  * Class DeleteResponse.
@@ -67,8 +68,13 @@ final class DeleteResponse
      */
     public function getMessages()
     {
-        return $this->getOrdersFromRequests()->map(function (Order $order) {
-            return new Message($order->getMessage(), $order->getErrorCode());
+        return map(function () {
+            yield from $this->getOrdersFromRequests()->map(function (Order $order) {
+                return new Message($order->getMessage(), $order->getErrorCode());
+            });
+            yield from fromArray($this->requests)->map(function (DeleteRequest $request) {
+                return new Message($request->getMessage(), $request->getErrorCode());
+            });
         });
     }
 }

@@ -39,12 +39,14 @@ use Tests\CdekSDK\Fixtures\FixtureLoader;
  */
 class DeleteResponseTest extends TestCase
 {
+    private function loadFixture(string $filename): DeleteResponse
+    {
+        return $this->getSerializer()->deserialize(FixtureLoader::load($filename), DeleteResponse::class, 'xml');
+    }
+
     public function test_successful_request()
     {
-        $response = $this->getSerializer()->deserialize(FixtureLoader::load('DeleteRequestSuccess.xml'), DeleteResponse::class, 'xml');
-
-        /** @var $response DeleteResponse */
-        $this->assertInstanceOf(DeleteResponse::class, $response);
+        $response = $this->loadFixture('DeleteRequestSuccess.xml');
 
         foreach ($response->getMessages() as $message) {
             $this->assertFalse($message->isError());
@@ -57,17 +59,38 @@ class DeleteResponseTest extends TestCase
 
     public function test_failing_request()
     {
-        $response = $this->getSerializer()->deserialize(FixtureLoader::load('DeleteRequestFailure.xml'), DeleteResponse::class, 'xml');
-
-        /** @var $response DeleteResponse */
-        $this->assertInstanceOf(DeleteResponse::class, $response);
+        $response = $this->loadFixture('DeleteRequestFailure.xml');
 
         foreach ($response->getMessages() as $message) {
-            $this->assertTrue($message->isError());
+            break;
         }
+
+        $this->assertTrue(isset($message) && $message->isError());
 
         foreach ($response->getOrders() as $order) {
             $this->assertSame('TEST-123456', $order->getNumber());
         }
+    }
+
+    public function test_missing_number()
+    {
+        $response = $this->loadFixture('DeleteRequestMissingNumber.xml');
+
+        foreach ($response->getMessages() as $message) {
+            break;
+        }
+
+        $this->assertTrue(isset($message) && $message->isError());
+    }
+
+    public function test_missing_orders()
+    {
+        $response = $this->loadFixture('DeleteRequestOrdersMissing.xml');
+
+        foreach ($response->getMessages() as $message) {
+            break;
+        }
+
+        $this->assertTrue(isset($message) && $message->isError());
     }
 }

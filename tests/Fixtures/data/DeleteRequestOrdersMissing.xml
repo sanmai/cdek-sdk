@@ -1,0 +1,1 @@
+<?xml version="1.0" encoding="UTF-8"?><response><DeleteRequest Number="testing" ErrorCode="ERR_NOT_EQUAL_ORDERCOUNT" Msg="Количество передаваемых заказов не соответствует контрольному значению: OrderCount=0"/></response>

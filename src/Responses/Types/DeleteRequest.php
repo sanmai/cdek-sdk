@@ -38,6 +38,7 @@ use JMS\Serializer\Annotation as JMS;
  * Пример данных:
  *
  * <DeleteRequest Msg="Удалено заказов:1" ><Order Number="TEST-123456" Msg="Заказ удален" /></DeleteRequest>
+ * <DeleteRequest ErrorCode="ERR_NEED_ATTRIBUTE" Msg="Отсутствие обязательного атрибута: NUMBER"/>
  */
 final class DeleteRequest implements HasMessage
 {
@@ -52,8 +53,22 @@ final class DeleteRequest implements HasMessage
      */
     protected $Msg;
 
+    /**
+     * @JMS\XmlAttribute
+     * @JMS\SerializedName("ErrorCode")
+     * @JMS\Type("string")
+     *
+     * @var string
+     */
+    protected $ErrorCode;
+
     public function getMessage(): string
     {
         return (string) $this->Msg;
+    }
+
+    public function getErrorCode(): string
+    {
+        return (string) $this->ErrorCode;
     }
 }

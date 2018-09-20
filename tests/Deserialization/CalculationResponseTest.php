@@ -63,6 +63,7 @@ class CalculationResponseTest extends TestCase
             $this->fail();
         }
 
+        $this->assertSame($response->getResult()->getPrice(), $response->getPrice());
         $this->assertSame(1250.0, $response->getPrice());
         $this->assertSame(2, $response->getDeliveryPeriodMin());
         $this->assertSame(4, $response->getDeliveryPeriodMax());
@@ -72,5 +73,13 @@ class CalculationResponseTest extends TestCase
         $this->assertSame('2018-01-01', $response->getDeliveryDateMin()->format('Y-m-d'));
         $this->assertSame('2018-01-02', $response->getDeliveryDateMax()->format('Y-m-d'));
         $this->assertSame(null, $response->getAdditionalServices());
+    }
+
+    public function test_it_errors_on_unknown_method()
+    {
+        $this->expectException(\BadMethodCallException::class);
+
+        $response = new CalculationResponse();
+        call_user_func([$response, 'foo']);
     }
 }

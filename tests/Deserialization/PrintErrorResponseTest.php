@@ -46,6 +46,10 @@ class PrintErrorResponseTest extends TestCase
         $this->assertInstanceOf(PrintErrorResponse::class, $response);
 
         $this->assertNotEmpty($response->getErrors());
+        foreach ($response->getErrors() as $error) {
+            $this->assertNotEmpty($error->getCode());
+            $this->assertNotEmpty($error->getText());
+        }
 
         foreach ($response->getMessages() as $message) {
             $this->assertTrue($message->isError());

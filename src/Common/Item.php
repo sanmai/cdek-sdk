@@ -110,6 +110,8 @@ final class Item
     /**
      * @phan-suppress PhanUnusedPublicFinalMethodParameter
      *
+     * @deprecated
+     *
      * @return \CdekSDK\Common\Item
      */
     public static function create(string $WareKey, float $Cost, float $Payment, int $Weight, int $Amount, string $Comment)

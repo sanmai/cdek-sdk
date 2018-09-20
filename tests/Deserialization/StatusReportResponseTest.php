@@ -132,4 +132,15 @@ class StatusReportResponseTest extends TestCase
         $this->assertSame(0, $order->getReason()->Code);
         $this->assertSame(0, $order->getDelayReason()->Code);
     }
+
+    public function test_it_reads_failed_response()
+    {
+        $response = $this->getSerializer()->deserialize(FixtureLoader::load('StatusReportFailed.xml'), StatusReportResponse::class, 'xml');
+
+        /** @var $response StatusReportResponse */
+        $this->assertInstanceOf(StatusReportResponse::class, $response);
+
+        $this->assertSame('По указанным параметрам заказов не найдено', $response->getMessage());
+        $this->assertSame('ERR_ORDERS_NOT_FOUND', $response->getErrorCode());
+    }
 }

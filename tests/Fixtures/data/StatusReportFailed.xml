@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="UTF-8"?><StatusReport ErrorCode="ERR_ORDERS_NOT_FOUND" Msg="По указанным параметрам заказов не найдено"><Order DispatchNumber="123" ErrorCode="ERR_INVALID_DISPATCHNUMBER" Msg="Заказ не найден в базе СДЭК: DispatchNumber=123"/></StatusReport>
+

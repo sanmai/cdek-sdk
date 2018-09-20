@@ -45,22 +45,7 @@ final class PrintErrorResponse
      *
      * @var PrintError[]
      */
-    private $orders = [];
-
-    /**
-     * @JMS\XmlList(entry = "OrdersPrint", inline = true)
-     * @JMS\Type("array<CdekSDK\Responses\Types\PrintError>")
-     *
-     * @var PrintError[]
-     */
-    private $ordersPrint = [];
-
-    /**
-     * @JMS\Exclude
-     *
-     * @var PrintError[]
-     */
-    private $errors;
+    private $errors = [];
 
     /**
      * @return PrintError[]
@@ -69,7 +54,7 @@ final class PrintErrorResponse
      */
     public function getErrors()
     {
-        return array_merge($this->orders, $this->ordersPrint);
+        return $this->errors;
     }
 
     /**
@@ -78,8 +63,7 @@ final class PrintErrorResponse
     public function getMessages()
     {
         return map(function () {
-            yield from $this->orders;
-            yield from $this->ordersPrint;
+            yield from $this->errors;
         })->map(function (PrintError $order) {
             return new Message($order->getMessage(), $order->getErrorCode());
         });

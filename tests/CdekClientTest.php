@@ -30,6 +30,8 @@ namespace Tests\CdekSDK;
 
 use CdekSDK\CdekClient;
 use CdekSDK\Contracts\Request;
+use CdekSDK\Contracts\ShouldAuthorize;
+use CdekSDK\Contracts\XmlRequest;
 use CdekSDK\Requests\CalculationRequest;
 use CdekSDK\Requests\PrintReceiptsRequest;
 use CdekSDK\Requests\PvzListRequest;
@@ -133,5 +135,47 @@ class CdekClientTest extends TestCase
 
         $invalid = 'invalid';
         (new CdekClient('foo', 'bar'))->{$invalid}();
+    }
+
+    public function test_it_adds_signature()
+    {
+        $request = new class() implements XmlRequest, ShouldAuthorize {
+            public function getMethod(): string
+            {
+                return '';
+            }
+
+            public function getAddress(): string
+            {
+                return '';
+            }
+
+            public function getResponseClassName(): string
+            {
+                return '';
+            }
+
+            public function getSerializationFormat(): string
+            {
+                return '';
+            }
+
+            public function date(\DateTimeInterface $date): ShouldAuthorize
+            {
+                return $this;
+            }
+
+            public function credentials(string $account, string $secure): ShouldAuthorize
+            {
+                throw new \LogicException($secure);
+            }
+        };
+
+        try {
+            $client = new CdekClient('f62dcb094cc91617def72d9c260b4483', '6bd3937dcebd15beb25278bc0657014c');
+            $client->sendRequest($request, new \DateTimeImmutable('2016-10-31'));
+        } catch (\LogicException $e) {
+            $this->assertSame('9e38e10f9d5394a033a5609c359ecaf2', $e->getMessage());
+        }
     }
 }

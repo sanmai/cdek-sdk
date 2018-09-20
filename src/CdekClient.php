@@ -99,12 +99,14 @@ final class CdekClient
         }
     }
 
-    public function sendRequest(Request $request)
+    public function sendRequest(Request $request, \DateTimeInterface $requestDate = null)
     {
         if ($request instanceof ShouldAuthorize) {
-            $date = new \DateTimeImmutable();
+            if ($requestDate === null) {
+                $requestDate = new \DateTimeImmutable();
+            }
 
-            $request->date($date)->credentials($this->account, $this->getSecure($date));
+            $request->date($requestDate)->credentials($this->account, $this->getSecure($requestDate));
         }
 
         $response = $this->http->request(

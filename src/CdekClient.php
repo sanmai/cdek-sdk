@@ -182,9 +182,11 @@ final class CdekClient
                         'xml_request' => $this->serializer->serialize($request, 'xml'),
                     ],
                 ];
+                // @codeCoverageIgnoreStart
             } catch (\Doctrine\Common\Annotations\AnnotationException $e) {
                 throw new \RuntimeException('Serialization failed. Have you forgotten to initialize an autoloader for AnnotationRegistry?', 0, $e);
             }
+            // @codeCoverageIgnoreEnd
         }
 
         if ($request instanceof JsonRequest) {
@@ -211,12 +213,14 @@ final class CdekClient
             $reflectionClass = new \ReflectionClass(AnnotationRegistry::class);
             $reflectionProperty = $reflectionClass->getProperty('loaders');
             $reflectionProperty->setAccessible(true);
+            // @codeCoverageIgnoreStart
         } catch (\ReflectionException $unused_exception) {
             // Свойство недоступно, или ещё что. Больше не пытаемся.
             self::$annotationRegistryReady = true;
 
             return;
         }
+        // @codeCoverageIgnoreEnd
 
         // Настройку делаем только если её не сделали за нас.
         if ([] === $reflectionProperty->getValue()) {

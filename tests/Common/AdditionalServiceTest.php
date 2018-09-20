@@ -61,6 +61,5 @@ class AdditionalServiceTest extends TestCase
 
         $this->assertSame(10, $service->getServiceCode());
         $this->assertSame(3.14, $service->getSum());
-
     }
 }

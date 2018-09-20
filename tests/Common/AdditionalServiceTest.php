@@ -26,55 +26,41 @@
 
 declare(strict_types=1);
 
-namespace CdekSDK\Common;
+namespace Tests\CdekSDK\Common;
 
-use JMS\Serializer\Annotation as JMS;
+use CdekSDK\Common\AdditionalService;
 
-final class AdditionalService
+/**
+ * @covers \CdekSDK\Common\AdditionalService
+ */
+class AdditionalServiceTest extends TestCase
 {
-    use Fillable;
-
-    /**
-     * @JMS\XmlAttribute
-     * @JMS\SerializedName("ServiceCode")
-     * @JMS\Type("int")
-     *
-     * @var int
-     */
-    protected $ServiceCode;
-
-    /**
-     * @JMS\XmlAttribute
-     * @JMS\SerializedName("Sum")
-     * @JMS\Type("float")
-     *
-     * @var float
-     */
-    protected $Sum;
-
-    public function getServiceCode(): int
+    public function test_single_argument_create()
     {
-        return (int) $this->ServiceCode;
+        $service = AdditionalService::create(123);
+        $this->assertSame(123, $service->getServiceCode());
+
+        $service = AdditionalService::create('123');
+        $this->assertSame(123, $service->getServiceCode());
     }
 
-    public function getSum(): float
+    public function test_fillable_create()
     {
-        return (float) $this->Sum;
-    }
-
-    /**
-     * @param int|array $codeOrData
-     *
-     * @return self
-     */
-    public static function create($codeOrData): self
-    {
-        if (is_array($codeOrData)) {
-            return new static($codeOrData);
-        }
-
-        return new static([
-            'ServiceCode' => $codeOrData,
+        $service = AdditionalService::create([
+            'ServiceCode' => 1234,
+            'Sum' => 500.1,
         ]);
+
+        $this->assertSame(1234, $service->getServiceCode());
+        $this->assertSame(500.1, $service->getSum());
+
+        $service = AdditionalService::create([
+            'ServiceCode' => '10',
+            'Sum' => '3.14',
+        ]);
+
+        $this->assertSame(10, $service->getServiceCode());
+        $this->assertSame(3.14, $service->getSum());
+
     }
 }

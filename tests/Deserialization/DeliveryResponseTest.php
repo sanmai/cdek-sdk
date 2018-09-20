@@ -49,4 +49,25 @@ class DeliveryResponseTest extends TestCase
             $this->assertTrue($message->isError());
         }
     }
+
+    public function test_successful_request()
+    {
+        $response = $this->getSerializer()->deserialize(FixtureLoader::load('DeliveryRequestSuccess.xml'), DeliveryResponse::class, 'xml');
+
+        /** @var $response DeliveryResponse */
+        $this->assertInstanceOf(DeliveryResponse::class, $response);
+
+        foreach ($response->getMessages() as $message) {
+            $this->assertFalse($message->isError());
+        }
+
+        $this->assertTrue(isset($message));
+
+        foreach ($response->getOrders() as $order) {
+            $this->assertSame('TEST-123456', $order->getNumber());
+            $this->assertSame('100001234', $order->getDispatchNumber());
+        }
+
+        $this->assertTrue(isset($order));
+    }
 }

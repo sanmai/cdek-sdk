@@ -74,4 +74,9 @@ class LaravelCdekServiceProviderTest extends TestCase
 
         $this->provider->register();
     }
+
+    public function testProvides()
+    {
+        $this->assertSame([CdekClient::class], $this->provider->provides());
+    }
 }

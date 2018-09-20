@@ -64,8 +64,8 @@ final class PrintErrorResponse
     {
         return map(function () {
             yield from $this->errors;
-        })->map(function (PrintError $order) {
-            return new Message($order->getMessage(), $order->getErrorCode());
+        })->map(function (PrintError $error) {
+            return new Message($error->getMessage(), $error->getErrorCode());
         });
     }
 }

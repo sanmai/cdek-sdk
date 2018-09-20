@@ -127,14 +127,25 @@ $order->setAddress(Address::create([
     'Flat' => '22',
 ]));
 
-$order->addPackage(Package::create([
+$package = Package::create([
     'Number' => 'TEST-123456',
     'BarCode' => 'TEST-123456',
     'Weight' => 500, // Общий вес (в граммах)
     'SizeA' => 10, // Длина (в сантиметрах), в пределах от 1 до 1500
     'SizeB' => 10,
     'SizeC' => 10,
-])->addItem(Item::create('NN0001', 500, 0, 120, 2, 'Test item')));
+]);
+
+$package->addItem(new Item([
+    'WareKey' => 'NN0001', // Идентификатор/артикул товара/вложения
+    'Cost' => 500, // Объявленная стоимость товара (за единицу товара)
+    'Payment' => 0, // Оплата за товар при получении (за единицу товара)
+    'Weight' => 120, // Вес (за единицу товара, в граммах)
+    'Amount' => 2, // Количество единиц одноименного товара (в штуках)
+    'Comment' => 'Test item',
+]));
+
+$order->addPackage($package);
 
 $request = new DeliveryRequest([
     'Number' => 'TESTING123',

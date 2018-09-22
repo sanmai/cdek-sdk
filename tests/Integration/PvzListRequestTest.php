@@ -47,4 +47,22 @@ class PvzListRequestTest extends TestCase
         /** @var \CdekSDK\Responses\PvzListResponse $response */
         $this->assertEmpty($response->getItems());
     }
+
+    public function test_success()
+    {
+        $request = new PvzListRequest();
+        $request->setCityId(250);
+        $request->setType(PvzListRequest::TYPE_ALL);
+        $request->setCashless(true);
+        $request->setCodAllowed(true);
+        $request->setDressingRoom(true);
+
+        $response = $this->getClient()->sendPvzListRequest($request);
+        /** @var \CdekSDK\Responses\PvzListResponse $response */
+        $this->assertNotEmpty($response->getItems());
+
+        foreach ($response->getItems() as $item) {
+            $this->assertNotEmpty($item->Code);
+        }
+    }
 }

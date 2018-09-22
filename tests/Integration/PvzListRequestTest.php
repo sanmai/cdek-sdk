@@ -62,7 +62,10 @@ class PvzListRequestTest extends TestCase
         $this->assertNotEmpty($response->getItems());
 
         foreach ($response->getItems() as $item) {
+            /** @var \CdekSDK\Common\Pvz $item */
             $this->assertNotEmpty($item->Code);
+            $this->assertNotEmpty($item->Name);
+            $this->assertNotEmpty($item->Address);
         }
     }
 }

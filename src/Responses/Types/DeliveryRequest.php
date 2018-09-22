@@ -67,11 +67,6 @@ final class DeliveryRequest implements HasMessage
      */
     private $Msg;
 
-    public function getNumber(): string
-    {
-        return (string) $this->Number;
-    }
-
     public function getErrorCode(): string
     {
         return (string) $this->ErrorCode;

@@ -52,6 +52,17 @@ class CalculationResponseTest extends TestCase
         }
     }
 
+    public function test_it_throws_exception()
+    {
+        $response = $this->getSerializer()->deserialize(FixtureLoader::load('CalculationResponseError.json'), CalculationResponse::class, 'json');
+
+        /** @var $response CalculationResponse */
+        $this->assertInstanceOf(CalculationResponse::class, $response);
+
+        $this->expectException(\RuntimeException::class);
+        $response->getPrice();
+    }
+
     public function test_it_passes_calls_to_result()
     {
         $response = $this->getSerializer()->deserialize(FixtureLoader::load('CalculationResponse.json'), CalculationResponse::class, 'json');

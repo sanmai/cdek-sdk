@@ -83,6 +83,10 @@ final class CalculationResponse
 
     public function __call($name, $arguments)
     {
+        if ($this->hasErrors()) {
+            throw new \RuntimeException('Calculation request was not successful. Please check for errors before calling any instance methods.');
+        }
+
         if ($this->result && method_exists($this->result, $name)) {
             return $this->result->{$name}(...$arguments);
         }

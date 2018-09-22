@@ -92,6 +92,14 @@ $request = (new CalculationRequest())
 $response = $client->sendCalculationRequest($request);
 /** @var \CdekSDK\Responses\CalculationResponse $response */
 
+if ($response->hasErrors()) {
+	foreach ($response->getErrors() as $error) {
+        // обрабатываем ошибку
+		$error->getCode();
+		$error->getText();
+	}
+}
+
 var_dump($response->getPrice());
 // double(1250)
 ```

@@ -43,14 +43,20 @@ class PrintRequestTest extends TestCase
 {
     public function test_it_rejects_order_without_dispatch_number()
     {
-        $this->expectException(\BadMethodCallException::class);
-
         $request = new class() extends PrintRequest {
             use Fillable, Authorized, RequestCore;
 
             const ADDRESS = '';
             const METHOD = '';
         };
+
+        $request->addOrder(Order::create([
+            'DispatchNumber' => 'testing',
+        ]));
+
+        $this->assertSame(1, $request->getOrderCount());
+
+        $this->expectException(\BadMethodCallException::class);
 
         $request->addOrder(Order::create([
             'Number' => 'invalid',

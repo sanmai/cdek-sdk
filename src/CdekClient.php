@@ -34,13 +34,9 @@ use CdekSDK\Contracts\Request;
 use CdekSDK\Contracts\ShouldAuthorize;
 use CdekSDK\Contracts\XmlRequest;
 use CdekSDK\Responses\FileResponse;
-use CdekSDK\Serialization\NullableDateTimeHandler;
-use Doctrine\Common\Annotations\AnnotationRegistry;
 use GuzzleHttp\Client as GuzzleClient;
 use GuzzleHttp\ClientInterface;
-use JMS\Serializer\Handler\HandlerRegistry;
-use JMS\Serializer\Serializer;
-use JMS\Serializer\SerializerBuilder;
+use JMS\Serializer\SerializerInterface;
 use Psr\Http\Message\ResponseInterface;
 
 /**
@@ -59,13 +55,6 @@ final class CdekClient
 {
     const STANDARD_BASE_URL = 'https://integration.cdek.ru';
 
-    /**
-     * Настраивать ли AnnotationRegistry в автоматическом режиме, используя штатный автозагрузчик классов.
-     *
-     * @var bool
-     */
-    public static $configureAnnotationRegistry = true;
-
     /** @var ClientInterface */
     private $http;
 
@@ -75,7 +64,7 @@ final class CdekClient
     /** @var string */
     private $password;
 
-    /** @var Serializer */
+    /** @var SerializerInterface */
     private $serializer;
 
     public function __construct(string $account, string $password, ClientInterface $http = null)
@@ -87,16 +76,7 @@ final class CdekClient
             'base_uri' => self::STANDARD_BASE_URL,
         ]);
 
-        $this->serializer = SerializerBuilder::create()->configureHandlers(function (HandlerRegistry $registry) {
-            $registry->registerSubscribingHandler(new NullableDateTimeHandler());
-        })->build();
-
-        // Ignore Phan issue-suppressing annotations
-        \Doctrine\Common\Annotations\AnnotationReader::addGlobalIgnoredName('phan');
-
-        if (self::$configureAnnotationRegistry) {
-            self::configureAnnotationRegistry();
-        }
+        $this->serializer = new Serialization\Serializer();
     }
 
     public function sendRequest(Request $request, \DateTimeInterface $requestDate = null)
@@ -201,35 +181,5 @@ final class CdekClient
         }
 
         return [];
-    }
-
-    private static $annotationRegistryReady = false;
-
-    private static function configureAnnotationRegistry()
-    {
-        if (self::$annotationRegistryReady) {
-            return;
-        }
-
-        try {
-            $reflectionClass = new \ReflectionClass(AnnotationRegistry::class);
-            $reflectionProperty = $reflectionClass->getProperty('loaders');
-            $reflectionProperty->setAccessible(true);
-            // @codeCoverageIgnoreStart
-        } catch (\ReflectionException $unused_exception) {
-            // Свойство недоступно, или ещё что. Больше не пытаемся.
-            self::$annotationRegistryReady = true;
-
-            return;
-        }
-        // @codeCoverageIgnoreEnd
-
-        // Настройку делаем только если её не сделали за нас.
-        if ([] === $reflectionProperty->getValue()) {
-            /** @phan-suppress-next-line PhanDeprecatedFunction */
-            AnnotationRegistry::registerLoader('class_exists');
-        }
-
-        self::$annotationRegistryReady = true;
     }
 }

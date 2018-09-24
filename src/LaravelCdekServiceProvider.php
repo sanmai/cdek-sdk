@@ -28,6 +28,7 @@ declare(strict_types=1);
 
 namespace CdekSDK;
 
+use CdekSDK\Serialization\Serializer;
 use Doctrine\Common\Annotations\AnnotationRegistry;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\ServiceProvider;
@@ -43,7 +44,7 @@ class LaravelCdekServiceProvider extends ServiceProvider
     {
         /** @phan-suppress-next-line PhanDeprecatedFunction */
         AnnotationRegistry::registerLoader('class_exists');
-        CdekClient::$configureAnnotationRegistry = false;
+        Serializer::doNotConfigureAnnotationRegistry();
     }
 
     public function register()

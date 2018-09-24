@@ -28,7 +28,9 @@ declare(strict_types=1);
 
 namespace Tests\CdekSDK\Deserialization;
 
+use CdekSDK\Common\Item;
 use CdekSDK\Common\Order;
+use CdekSDK\Common\Package;
 use CdekSDK\Common\Reason;
 use CdekSDK\Common\State;
 use CdekSDK\Common\Status;
@@ -41,6 +43,8 @@ use Tests\CdekSDK\Fixtures\FixtureLoader;
  * @covers \CdekSDK\Common\Order
  * @covers \CdekSDK\Common\Status
  * @covers \CdekSDK\Common\Reason
+ * @covers \CdekSDK\Common\Package
+ * @covers \CdekSDK\Common\Item
  */
 class StatusReportResponseTest extends TestCase
 {
@@ -99,7 +103,20 @@ class StatusReportResponseTest extends TestCase
         $this->assertSame('Нальчик', $lastState->CityName);
         $this->assertSame(1081, $lastState->CityCode);
 
+        $order = $response->getOrders()[1];
         $this->assertCount(2, $order->Call->CallGood);
+        $this->assertCount(1, $order->Call->CallFail);
+
+        $package = $order->getPackages()[0];
+        /** @var $package Package */
+        $this->assertSame('2066479243', $package->getNumber());
+        $this->assertSame('2066479243', $package->getBarCode());
+
+        $item = $package->getItems()[0];
+        /** @var $item Item */
+        $this->assertSame('2201073352678', $item->getWareKey());
+        $this->assertSame(1, $item->getAmount());
+        $this->assertSame(0, $item->getDelivAmount());
     }
 
     public function test_it_reads_simple_response()

@@ -103,6 +103,14 @@ final class Package
         return $this;
     }
 
+    /**
+     * @return Item[]
+     */
+    public function getItems(): array
+    {
+        return $this->items;
+    }
+
     public function getNumber(): string
     {
         return $this->Number;

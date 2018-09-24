@@ -83,6 +83,10 @@ class DeliveryRequest implements XmlRequest, ShouldAuthorize
         return $this;
     }
 
+    /**
+     * @deprecated
+     * @codeCoverageIgnore
+     */
     public function getNumber(): string
     {
         return (string) $this->Number;

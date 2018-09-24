@@ -128,6 +128,9 @@ final class StatusReportRequest implements XmlRequest, ShouldAuthorize
     }
 
     /**
+     * @deprecated
+     * @codeCoverageIgnore
+     *
      * @return Order[]|array
      */
     public function getOrders()

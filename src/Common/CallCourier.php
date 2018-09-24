@@ -114,21 +114,37 @@ final class CallCourier
      */
     public $SendAddress;
 
+    /**
+     * @deprecated
+     * @codeCoverageIgnore
+     */
     public function getDate(): \DateTimeImmutable
     {
         return $this->Date;
     }
 
+    /**
+     * @deprecated
+     * @codeCoverageIgnore
+     */
     public function getTimeBeg(): \DateTimeImmutable
     {
         return $this->TimeBeg;
     }
 
+    /**
+     * @deprecated
+     * @codeCoverageIgnore
+     */
     public function getTimeEnd(): \DateTimeImmutable
     {
         return $this->TimeEnd;
     }
 
+    /**
+     * @deprecated
+     * @codeCoverageIgnore
+     */
     public function getLunchBeg(): \DateTimeImmutable
     {
         return $this->LunchBeg;

@@ -114,46 +114,82 @@ final class Attempt
      */
     public $ScheduleDescription;
 
+    /**
+     * @deprecated
+     * @codeCoverageIgnore
+     */
     public function getId(): string
     {
         return $this->ID;
     }
 
+    /**
+     * @deprecated
+     * @codeCoverageIgnore
+     */
     public function getDate(): \DateTimeImmutable
     {
         return $this->Date;
     }
 
+    /**
+     * @deprecated
+     * @codeCoverageIgnore
+     */
     public function getTimeBeg(): \DateTimeImmutable
     {
         return $this->TimeBeg;
     }
 
+    /**
+     * @deprecated
+     * @codeCoverageIgnore
+     */
     public function getTimeEnd(): \DateTimeImmutable
     {
         return $this->TimeEnd;
     }
 
+    /**
+     * @deprecated
+     * @codeCoverageIgnore
+     */
     public function getRecipientName(): string
     {
         return $this->RecipientName;
     }
 
+    /**
+     * @deprecated
+     * @codeCoverageIgnore
+     */
     public function getPhone(): string
     {
         return $this->Phone;
     }
 
+    /**
+     * @deprecated
+     * @codeCoverageIgnore
+     */
     public function getAddress(): Address
     {
         return $this->Address;
     }
 
+    /**
+     * @deprecated
+     * @codeCoverageIgnore
+     */
     public function getScheduleCode(): int
     {
         return $this->ScheduleCode;
     }
 
+    /**
+     * @deprecated
+     * @codeCoverageIgnore
+     */
     public function getScheduleDescription(): string
     {
         return $this->ScheduleDescription;

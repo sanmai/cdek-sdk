@@ -141,6 +141,7 @@ class CalculationRequest implements JsonRequest
 
     /**
      * @deprecated
+     * @codeCoverageIgnore
      *
      * @param mixed $good
      */

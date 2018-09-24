@@ -76,29 +76,52 @@ final class Address
      * @JMS\Type("string")
      *
      * @var string
+     *
+     * @deprecated
      */
     protected $SenderName;
 
+    /**
+     * @deprecated
+     * @codeCoverageIgnore
+     * @phan-suppress PhanDeprecatedProperty
+     */
     public function getSenderName(): string
     {
         return $this->SenderName;
     }
 
+    /**
+     * @deprecated
+     * @codeCoverageIgnore
+     */
     public function getPvzCode(): string
     {
         return $this->PvzCode;
     }
 
+    /**
+     * @deprecated
+     * @codeCoverageIgnore
+     */
     public function getFlat(): string
     {
         return $this->Flat;
     }
 
+    /**
+     * @deprecated
+     * @codeCoverageIgnore
+     */
     public function getHouse(): string
     {
         return $this->House;
     }
 
+    /**
+     * @deprecated
+     * @codeCoverageIgnore
+     */
     public function getStreet(): string
     {
         return $this->Street;

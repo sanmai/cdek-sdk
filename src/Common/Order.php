@@ -601,6 +601,10 @@ final class Order implements HasMessage
         return (string) $this->SellerName;
     }
 
+    /**
+     * @deprecated
+     * @codeCoverageIgnore
+     */
     public function getAddress(): Address
     {
         return $this->Address;

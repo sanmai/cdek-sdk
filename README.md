@@ -43,16 +43,7 @@ $client = new \CdekSDK\CdekClient('account', 'password');
 
 Далее для всей работы с API используются методы объёкта `$client`, который мы получили выше.
 
-### AnnotationRegistry
-
-Если вы не используете `AnnotationRegistry` где-то ещё, то никакой дополнительной настройки делать не требуется. Если же вы используете `AnnotationRegistry` 
-и в ней не настроен обычный автозагрузчик классов, то его следует настроить где-то до создания `CdekClient` следующим образом:
-
-```php
-\Doctrine\Common\Annotations\AnnotationRegistry::registerLoader('class_exists');
-```
-
-Обычно ничего этого делать не нужно, всё должно работать и так.
+Для подготовки запросов и ответов используются аннотации из Doctrine. Если вы не знаете что это, то ничего не нужно делать. Иначе прочитайте замечания к совместному использованию AnnotationRegistry.
 
 ## Использование
 
@@ -408,7 +399,27 @@ $client = new \CdekSDK\CdekClient($account, $password, new \GuzzleHttp\Client([
     ],
 ```
 
-## Авторы и ссылки
+## Замечания
+
+### AnnotationRegistry
+
+Если вы не используете `AnnotationRegistry` где-то ещё, то никакой дополнительной настройки делать не требуется.
+
+Если же вы используете `AnnotationRegistry` и в ней не настроен обычный автозагрузчик классов, то его следует подключить где-то до создания `CdekClient` следующим образом:
+
+```php
+\Doctrine\Common\Annotations\AnnotationRegistry::registerLoader('class_exists');
+```
+
+Если же нежелательно использовать обычный загрузчик классов, то можно отключить его автоматическую настройку:
+
+```php
+\CdekSDK\Serialization\Serializer::doNotConfigureAnnotationRegistry();
+```
+
+Обычно ничего этого делать не нужно, всё должно работать и так.
+
+### Авторы и ссылки
 
 Эта библиотека - хард форк библиотеки [appwilio/cdek-sdk](https://github.com/appwilio/cdek-sdk) с поддержкой более старых версий PHP и расширенной поддержкой API. Обратная совместимость с исходной библиотекой не гарантируется, но фичи и исправления будут переноситься оттуда сюда по мере возможности. Если что-то пропустили, [дайте знать](https://github.com/sanmai/cdek-sdk/issues).
 

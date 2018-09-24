@@ -49,7 +49,7 @@ final class Serializer implements SerializerInterface
         self::$configureAnnotationRegistry = false;
     }
 
-    /** @var Serializer */
+    /** @var SerializerInterface */
     private $serializer;
 
     public function __construct()

@@ -73,7 +73,7 @@ final class Serializer implements SerializerInterface
      * @see \JMS\Serializer\SerializerInterface::serialize()
      * @psalm-suppress MoreSpecificImplementedParamType
      */
-    public function serialize($data, $format = null, SerializationContext $context = null)
+    public function serialize($data, $format, SerializationContext $context = null)
     {
         return $this->serializer->serialize($data, $format, $context);
     }
@@ -84,7 +84,7 @@ final class Serializer implements SerializerInterface
      * @see \JMS\Serializer\SerializerInterface::deserialize()
      * @psalm-suppress MoreSpecificImplementedParamType
      */
-    public function deserialize($data, $type, $format = null, DeserializationContext $context = null)
+    public function deserialize($data, $type, $format, DeserializationContext $context = null)
     {
         return $this->serializer->deserialize((string) $data, $type, $format, $context);
     }

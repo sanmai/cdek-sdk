@@ -48,7 +48,7 @@ final class Call
 
     /**
      * @JMS\SerializedName("CallFail")
-     * @JMS\XmlList(entry="Good")
+     * @JMS\XmlList(entry="Fail")
      * @JMS\Type("array<CdekSDK\Common\CallFail>")
      *
      * @var CallFail[]|array
@@ -57,10 +57,10 @@ final class Call
 
     /**
      * @JMS\SerializedName("CallDelay")
-     * @JMS\XmlList(entry="Good")
+     * @JMS\XmlList(entry="Delay")
      * @JMS\Type("array<CdekSDK\Common\CallDelay>")
      *
      * @var CallDelay[]|array
      */
-    public $CallDelay;
+    public $CallDelay = [];
 }

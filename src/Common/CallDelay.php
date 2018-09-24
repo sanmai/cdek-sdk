@@ -54,4 +54,14 @@ final class CallDelay
      * @var \DateTimeImmutable
      */
     public $DateNext;
+
+    public function getDate(): \DateTimeImmutable
+    {
+        return $this->Date;
+    }
+
+    public function getDateNext(): \DateTimeImmutable
+    {
+        return $this->DateNext;
+    }
 }

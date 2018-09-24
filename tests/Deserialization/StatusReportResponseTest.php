@@ -98,6 +98,8 @@ class StatusReportResponseTest extends TestCase
         $this->assertSame('Вручен', $lastState->Description);
         $this->assertSame('Нальчик', $lastState->CityName);
         $this->assertSame(1081, $lastState->CityCode);
+
+        $this->assertCount(2, $order->Call->CallGood);
     }
 
     public function test_it_reads_simple_response()

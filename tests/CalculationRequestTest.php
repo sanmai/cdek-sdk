@@ -106,4 +106,39 @@ class CalculationRequestTest extends TestCase
             'dateExecute' => '2018-01-01',
         ], $request->getBody());
     }
+
+    public function test_with_city_id()
+    {
+        $request = new CalculationRequest();
+
+        $request->setSenderCityId(1)
+            ->setReceiverCityId(2)
+            ->setModeId(3)
+            ->addAdditionalService(4)
+            ->addAdditionalService(5, 6)
+            ->addTariffToList(7, 8);
+
+        $this->assertSame([
+            'version' => '1.0',
+            'modeId' => 3,
+            'tariffList' => [
+                0 => [
+                    'id' => 7,
+                    'priority' => 8,
+                ],
+            ],
+            'senderCityId' => 1,
+            'services' => [
+                0 => [
+                    'id' => 4,
+                    'param' => null,
+                ],
+                1 => [
+                    'id' => 5,
+                    'param' => 6,
+                ],
+            ],
+            'receiverCityId' => 2,
+        ], $request->getBody());
+    }
 }

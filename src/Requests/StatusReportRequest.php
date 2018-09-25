@@ -70,7 +70,7 @@ final class StatusReportRequest implements XmlRequest, ShouldAuthorize
 
     /**
      * @JMS\XmlAttribute
-     * @JMS\SerializedName("ShowReturnOrder")
+     * @JMS\SerializedName("ShowReturnOrderHistory")
      * @JMS\Type("int")
      *
      * @var int

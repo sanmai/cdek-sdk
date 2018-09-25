@@ -29,6 +29,7 @@ declare(strict_types=1);
 namespace Tests\CdekSDK\Serialization;
 
 use CdekSDK\Common\ChangePeriod;
+use CdekSDK\Common\Order;
 use CdekSDK\Requests\StatusReportRequest;
 
 /**
@@ -36,17 +37,46 @@ use CdekSDK\Requests\StatusReportRequest;
  */
 class StatusReportRequestTest extends TestCase
 {
+    private function assertSameAsXML(string $xml, StatusReportRequest $request)
+    {
+        $this->assertSame($xml, $this->getSerializer()->serialize($request, StatusReportRequest::SERIALIZATION_XML));
+    }
+
     public function test_can_serialize()
     {
         $request = new StatusReportRequest();
-        $request->setChangePeriod(new ChangePeriod(new \DateTimeImmutable('2018-01-01T00:00:00+0000'), new \DateTimeImmutable('2018-02-02T00:00:00+0000')));
+        $request = $request->setChangePeriod(new ChangePeriod(new \DateTimeImmutable('2018-01-01T00:00:00+0000'), new \DateTimeImmutable('2018-02-02T00:00:00+0000')));
 
-        $result = $this->getSerializer()->serialize($request, StatusReportRequest::SERIALIZATION_XML);
-
-        $this->assertSame('<?xml version="1.0" encoding="UTF-8"?>
+        $this->assertSameAsXML('<?xml version="1.0" encoding="UTF-8"?>
 <StatusReport>
   <ChangePeriod DateFirst="2018-01-01T00:00:00+0000" DateLast="2018-02-02T00:00:00+0000" DateBeg="2018-01-01T00:00:00+0000" DateEnd="2018-02-02T00:00:00+0000"/>
 </StatusReport>
-', $result);
+', $request);
+    }
+
+    public function test_it_works_with_orders()
+    {
+        $request = new StatusReportRequest();
+        $request->addOrder(Order::withDispatchNumber('123'));
+        $request = $request->addOrder(Order::withDispatchNumber('456'));
+
+        $this->assertSameAsXML('<?xml version="1.0" encoding="UTF-8"?>
+<StatusReport>
+  <Order DispatchNumber="123"/>
+  <Order DispatchNumber="456"/>
+</StatusReport>
+', $request);
+    }
+
+    public function test_it_works_with_show_requests()
+    {
+        $request = new StatusReportRequest();
+        $request = $request->setShowHistory();
+        $request = $request->setShowReturnOrder();
+        $request = $request->setShowReturnOrderHistory();
+
+        $this->assertSameAsXML('<?xml version="1.0" encoding="UTF-8"?>
+<StatusReport ShowHistory="1" ShowReturnOrder="1" ShowReturnOrderHistory="1"/>
+', $request);
     }
 }

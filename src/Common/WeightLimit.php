@@ -28,8 +28,11 @@ declare(strict_types=1);
 
 namespace CdekSDK\Common;
 
+use JMS\Serializer\Annotation as JMS;
+
 final class WeightLimit
 {
+    /** @deprecated */
     use Fillable;
 
     /**
@@ -38,6 +41,8 @@ final class WeightLimit
      * @JMS\Type("int")
      *
      * @var int
+     *
+     * @deprecated use accessor method
      */
     public $WeightMin;
 
@@ -47,6 +52,24 @@ final class WeightLimit
      * @JMS\Type("int")
      *
      * @var int
+     *
+     * @deprecated use accessor method
      */
     public $WeightMax;
+
+    /**
+     * @phan-suppress PhanDeprecatedProperty
+     */
+    public function getWeightMin(): int
+    {
+        return $this->WeightMin;
+    }
+
+    /**
+     * @phan-suppress PhanDeprecatedProperty
+     */
+    public function getWeightMax(): int
+    {
+        return $this->WeightMax;
+    }
 }

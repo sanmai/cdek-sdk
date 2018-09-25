@@ -254,7 +254,6 @@ final class Pvz
     public $WorkTime;
 
     /**
-     * @JMS\XmlAttribute
      * @JMS\SerializedName("WeightLimit")
      * @JMS\Type("CdekSDK\Common\WeightLimit")
      *

@@ -26,49 +26,45 @@
 
 declare(strict_types=1);
 
-namespace CdekSDK\Requests;
+namespace Tests\CdekSDK\Serialization;
 
 use CdekSDK\Common\ChangePeriod;
 use CdekSDK\Common\Order;
-use CdekSDK\Contracts\ShouldAuthorize;
-use CdekSDK\Contracts\XmlRequest;
-use CdekSDK\Requests\Concerns\Authorized;
-use CdekSDK\Requests\Concerns\OrdersAware;
-use CdekSDK\Requests\Concerns\RequestCore;
-use CdekSDK\Responses\InfoReportResponse;
-use JMS\Serializer\Annotation as JMS;
+use CdekSDK\Requests\InfoReportRequest;
 
 /**
- * Class InfoReportRequest.
- *
- * @JMS\XmlRoot(name="InfoRequest")
+ * @covers \CdekSDK\Requests\InfoReportRequest
  */
-final class InfoReportRequest implements XmlRequest, ShouldAuthorize
+class InfoReportRequestTest extends TestCase
 {
-    use Authorized, OrdersAware, RequestCore;
-
-    const METHOD = 'POST';
-    const ADDRESS = '/info_report.php';
-    const RESPONSE = InfoReportResponse::class;
-
-    /**
-     * @JMS\SerializedName("ChangePeriod")
-     *
-     * @var ChangePeriod|null
-     */
-    protected $ChangePeriod;
-
-    public function addOrder(Order $order)
+    private function assertSameAsXML(string $xml, InfoReportRequest $request)
     {
-        $this->orders[] = $order;
-
-        return $this;
+        $this->assertSame($xml, $this->getSerializer()->serialize($request, InfoReportRequest::SERIALIZATION_XML));
     }
 
-    public function setChangePeriod(ChangePeriod $period)
+    public function test_can_serialize()
     {
-        $this->ChangePeriod = $period;
+        $request = new InfoReportRequest();
+        $request = $request->setChangePeriod(new ChangePeriod(new \DateTimeImmutable('2018-01-01T00:00:00+0000'), new \DateTimeImmutable('2018-02-02T00:00:00+0000')));
 
-        return $this;
+        $this->assertSameAsXML('<?xml version="1.0" encoding="UTF-8"?>
+<InfoRequest>
+  <ChangePeriod DateFirst="2018-01-01T00:00:00+0000" DateLast="2018-02-02T00:00:00+0000" DateBeg="2018-01-01T00:00:00+0000" DateEnd="2018-02-02T00:00:00+0000"/>
+</InfoRequest>
+', $request);
+    }
+
+    public function test_it_works_with_orders()
+    {
+        $request = new InfoReportRequest();
+        $request->addOrder(Order::withDispatchNumber('123'));
+        $request = $request->addOrder(Order::withDispatchNumber('456'));
+
+        $this->assertSameAsXML('<?xml version="1.0" encoding="UTF-8"?>
+<InfoRequest>
+  <Order DispatchNumber="123"/>
+  <Order DispatchNumber="456"/>
+</InfoRequest>
+', $request);
     }
 }

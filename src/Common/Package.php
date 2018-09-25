@@ -55,9 +55,9 @@ final class Package
     /**
      * @JMS\XmlAttribute
      * @JMS\SerializedName("Weight")
-     * @JMS\Type("int")
+     * @JMS\Type("float")
      *
-     * @var int
+     * @var float
      */
     protected $Weight;
 
@@ -121,7 +121,7 @@ final class Package
         return $this->BarCode;
     }
 
-    public function getWeight(): int
+    public function getWeight(): float
     {
         return $this->Weight;
     }

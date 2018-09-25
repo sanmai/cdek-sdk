@@ -43,6 +43,6 @@ class PackageTest extends TestCase
             'SizeC' => 5,
         ]);
 
-        $this->assertSame(0.6, $package->getVolumeWeight());
+        $this->assertSame(0.6, $package->calculateVolumeWeight());
     }
 }

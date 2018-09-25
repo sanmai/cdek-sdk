@@ -28,7 +28,9 @@ declare(strict_types=1);
 
 namespace Tests\CdekSDK\Serialization;
 
+use CdekSDK\Common\Item;
 use CdekSDK\Common\Order;
+use CdekSDK\Common\Package;
 use CdekSDK\Requests\DeliveryRequest;
 
 /**
@@ -38,16 +40,22 @@ class DeliveryRequestTest extends TestCase
 {
     public function test_can_serialize()
     {
-        $result = $this->getSerializer()->serialize(DeliveryRequest::create([
+        $request = DeliveryRequest::create([
             'Number' => 'foo',
-        ])->addOrder(new Order([
+        ])->addOrder(Order::create([
             'Number' => 'bar',
-        ])), DeliveryRequest::SERIALIZATION_XML);
+        ])->addPackage(Package::create([
+            'Number' => 'baz',
+        ])->addItem(new Item(['WareKey' => 'foo']))));
 
-        $this->assertSame('<?xml version="1.0" encoding="UTF-8"?>
+        $this->assertSameAsXML('<?xml version="1.0" encoding="UTF-8"?>
 <DeliveryRequest OrderCount="1" Number="foo">
-  <Order Number="bar"/>
+  <Order Number="bar">
+    <Package Number="baz">
+      <Item WareKey="foo"/>
+    </Package>
+  </Order>
 </DeliveryRequest>
-', $result);
+', $request);
     }
 }

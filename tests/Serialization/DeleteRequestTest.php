@@ -38,16 +38,16 @@ class DeleteRequestTest extends TestCase
 {
     public function test_can_serialize()
     {
-        $result = $this->getSerializer()->serialize(DeleteRequest::create([
+        $request = DeleteRequest::create([
             'Number' => 'foo',
         ])->addOrder(new Order([
             'Number' => 'bar',
-        ])), DeleteRequest::SERIALIZATION_XML);
+        ]));
 
-        $this->assertSame('<?xml version="1.0" encoding="UTF-8"?>
+        $this->assertSameAsXML('<?xml version="1.0" encoding="UTF-8"?>
 <DeleteRequest OrderCount="1" Number="foo">
   <Order Number="bar"/>
 </DeleteRequest>
-', $result);
+', $request);
     }
 }

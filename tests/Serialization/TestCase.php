@@ -28,8 +28,13 @@ declare(strict_types=1);
 
 namespace Tests\CdekSDK\Serialization;
 
+use CdekSDK\Contracts\Request;
 use Tests\CdekSDK\Deserialization\TestCase as DeserializationTestCase;
 
 abstract class TestCase extends DeserializationTestCase
 {
+    protected function assertSameAsXML(string $xml, $request, $format = Request::SERIALIZATION_XML)
+    {
+        $this->assertSame($xml, $this->getSerializer()->serialize($request, $request instanceof Request ? $request->getSerializationFormat() : $format));
+    }
 }

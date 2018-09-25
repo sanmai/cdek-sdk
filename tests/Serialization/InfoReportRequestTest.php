@@ -37,11 +37,6 @@ use CdekSDK\Requests\InfoReportRequest;
  */
 class InfoReportRequestTest extends TestCase
 {
-    private function assertSameAsXML(string $xml, InfoReportRequest $request)
-    {
-        $this->assertSame($xml, $this->getSerializer()->serialize($request, InfoReportRequest::SERIALIZATION_XML));
-    }
-
     public function test_can_serialize()
     {
         $request = new InfoReportRequest();

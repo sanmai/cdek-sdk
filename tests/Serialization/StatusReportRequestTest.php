@@ -37,11 +37,6 @@ use CdekSDK\Requests\StatusReportRequest;
  */
 class StatusReportRequestTest extends TestCase
 {
-    private function assertSameAsXML(string $xml, StatusReportRequest $request)
-    {
-        $this->assertSame($xml, $this->getSerializer()->serialize($request, StatusReportRequest::SERIALIZATION_XML));
-    }
-
     public function test_can_serialize()
     {
         $request = new StatusReportRequest();

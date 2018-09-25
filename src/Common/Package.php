@@ -30,6 +30,9 @@ namespace CdekSDK\Common;
 
 use JMS\Serializer\Annotation as JMS;
 
+/**
+ * @JMS\XmlRoot(name="Package")
+ */
 final class Package
 {
     use Fillable;

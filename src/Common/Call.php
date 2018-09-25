@@ -43,6 +43,8 @@ final class Call
      * @JMS\Type("array<CdekSDK\Common\CallGood>")
      *
      * @var CallGood[]|array
+     *
+     * @deprecated
      */
     public $CallGood = [];
 
@@ -52,6 +54,8 @@ final class Call
      * @JMS\Type("array<CdekSDK\Common\CallFail>")
      *
      * @var CallFail[]|array
+     *
+     * @deprecated
      */
     public $CallFail = [];
 
@@ -61,6 +65,44 @@ final class Call
      * @JMS\Type("array<CdekSDK\Common\CallDelay>")
      *
      * @var CallDelay[]|array
+     *
+     * @deprecated use accessor method
      */
     public $CallDelay = [];
+
+    /**
+     * История удачных прозвонов.
+     *
+     * @phan-suppress PhanDeprecatedProperty
+     *
+     * @return CallGood[]|array
+     */
+    public function getCallGood()
+    {
+        return $this->CallGood;
+    }
+
+    /**
+     * История неудачных прозвонов.
+     *
+     * @phan-suppress PhanDeprecatedProperty
+     *
+     * @return CallFail[]|array
+     */
+    public function getCallFail()
+    {
+        return $this->CallFail;
+    }
+
+    /**
+     * История переносов прозвона.
+     *
+     * @phan-suppress PhanDeprecatedProperty
+     *
+     * @return CallDelay[]|array
+     */
+    public function getCallDelay()
+    {
+        return $this->CallDelay;
+    }
 }

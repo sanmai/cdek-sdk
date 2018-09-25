@@ -55,18 +55,18 @@ class CallTest extends TestCase
 </Call>', Call::class, 'xml');
 
         /** @var $call Call */
-        $this->assertCount(2, $call->CallGood);
-        $this->assertCount(1, $call->CallFail);
-        $this->assertCount(1, $call->CallDelay);
+        $this->assertCount(2, $call->getCallGood());
+        $this->assertCount(1, $call->getCallFail());
+        $this->assertCount(1, $call->getCallDelay());
 
-        $this->assertSame('2018-04-01', $call->CallGood[0]->getDate()->format('Y-m-d'));
-        $this->assertSame('2018-04-02', $call->CallGood[0]->getDateDeliv()->format('Y-m-d'));
+        $this->assertSame('2018-04-01', $call->getCallGood()[0]->getDate()->format('Y-m-d'));
+        $this->assertSame('2018-04-02', $call->getCallGood()[0]->getDateDeliv()->format('Y-m-d'));
 
-        $this->assertSame('2018-04-02', $call->CallFail[0]->getDate()->format('Y-m-d'));
-        $this->assertSame(3, $call->CallFail[0]->getReasonCode());
-        $this->assertSame('Абонент недоступен', $call->CallFail[0]->getReasonDescription());
+        $this->assertSame('2018-04-02', $call->getCallFail()[0]->getDate()->format('Y-m-d'));
+        $this->assertSame(3, $call->getCallFail()[0]->getReasonCode());
+        $this->assertSame('Абонент недоступен', $call->getCallFail()[0]->getReasonDescription());
 
-        $this->assertSame('2018-04-03', $call->CallDelay[0]->getDate()->format('Y-m-d'));
-        $this->assertSame('2018-04-06', $call->CallDelay[0]->getDateNext()->format('Y-m-d'));
+        $this->assertSame('2018-04-03', $call->getCallDelay()[0]->getDate()->format('Y-m-d'));
+        $this->assertSame('2018-04-06', $call->getCallDelay()[0]->getDateNext()->format('Y-m-d'));
     }
 }

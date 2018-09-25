@@ -30,6 +30,14 @@ namespace CdekSDK\Common;
 
 use JMS\Serializer\Annotation as JMS;
 
+/**
+ * Текущий дополнительный статус, текущая причина задержки.
+ *
+ * Пример данных:
+ *
+ * <Reason Code="20" Description="Частичная доставка" Date="2018-04-07T12:29:39+00:00"></Reason>
+ * <DelayReason Code="" Description="" Date=""><State Date="2018-04-03T16:56:41+00:00" Code="47" Description="Адрес не существует" /></DelayReason>
+ */
 final class Reason
 {
     /**
@@ -37,7 +45,9 @@ final class Reason
      * @JMS\SerializedName("Date")
      * @JMS\Type("DateTimeImmutable<'Y-m-d\TH:i:sP'>")
      *
-     * @var \DateTimeImmutable
+     * @var \DateTimeImmutable|null
+     *
+     * @deprecated use accessor method
      */
     public $Date;
 
@@ -47,6 +57,8 @@ final class Reason
      * @JMS\Type("int")
      *
      * @var int
+     *
+     * @deprecated use accessor method
      */
     public $Code;
 
@@ -56,6 +68,8 @@ final class Reason
      * @JMS\Type("string")
      *
      * @var string
+     *
+     * @deprecated use accessor method
      */
     public $Description;
 
@@ -64,6 +78,44 @@ final class Reason
      * @JMS\Type("array<CdekSDK\Common\State>")
      *
      * @var State[]|array
+     *
+     * @deprecated use accessor method
      */
     public $states = [];
+
+    /**
+     * @phan-suppress PhanDeprecatedProperty
+     *
+     * @return \DateTimeInterface|null
+     */
+    public function getDate()
+    {
+        return $this->Date;
+    }
+
+    /**
+     * @phan-suppress PhanDeprecatedProperty
+     */
+    public function getCode(): int
+    {
+        return (int) $this->Code;
+    }
+
+    /**
+     * @phan-suppress PhanDeprecatedProperty
+     */
+    public function getDescription(): string
+    {
+        return $this->Description;
+    }
+
+    /**
+     * @phan-suppress PhanDeprecatedProperty
+     *
+     * @return State[]
+     */
+    public function getStates()
+    {
+        return $this->states;
+    }
 }

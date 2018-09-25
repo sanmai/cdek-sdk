@@ -38,6 +38,8 @@ final class State
      * @JMS\Type("DateTimeImmutable<'Y-m-d\TH:i:sP'>")
      *
      * @var \DateTimeImmutable
+     *
+     * @deprecated use accessor method
      */
     public $Date;
 
@@ -47,6 +49,8 @@ final class State
      * @JMS\Type("int")
      *
      * @var int
+     *
+     * @deprecated use accessor method
      */
     public $Code;
 
@@ -56,6 +60,8 @@ final class State
      * @JMS\Type("string")
      *
      * @var string
+     *
+     * @deprecated use accessor method
      */
     public $Description;
 
@@ -65,6 +71,8 @@ final class State
      * @JMS\Type("string")
      *
      * @var string
+     *
+     * @deprecated use accessor method
      */
     public $CityName;
 
@@ -74,6 +82,48 @@ final class State
      * @JMS\Type("int")
      *
      * @var int
+     *
+     * @deprecated use accessor method
      */
     public $CityCode;
+
+    /**
+     * @phan-suppress PhanDeprecatedProperty
+     */
+    public function getDate(): \DateTimeInterface
+    {
+        return $this->Date;
+    }
+
+    /**
+     * @phan-suppress PhanDeprecatedProperty
+     */
+    public function getCode(): int
+    {
+        return (int) $this->Code;
+    }
+
+    /**
+     * @phan-suppress PhanDeprecatedProperty
+     */
+    public function getDescription(): string
+    {
+        return $this->Description;
+    }
+
+    /**
+     * @phan-suppress PhanDeprecatedProperty
+     */
+    public function getCityName(): string
+    {
+        return $this->CityName;
+    }
+
+    /**
+     * @phan-suppress PhanDeprecatedProperty
+     */
+    public function getCityCode(): int
+    {
+        return $this->CityCode;
+    }
 }

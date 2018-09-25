@@ -29,6 +29,7 @@ declare(strict_types=1);
 namespace Tests\CdekSDK;
 
 use CdekSDK\CdekClient;
+use CdekSDK\Contracts\ParamRequest;
 use CdekSDK\Contracts\Request;
 use CdekSDK\Contracts\ShouldAuthorize;
 use CdekSDK\Contracts\XmlRequest;
@@ -177,5 +178,40 @@ class CdekClientTest extends TestCase
         } catch (\LogicException $e) {
             $this->assertSame('9e38e10f9d5394a033a5609c359ecaf2', $e->getMessage());
         }
+    }
+
+    public function test_param_post_request()
+    {
+        $request = new class() implements ParamRequest {
+            public function getMethod(): string
+            {
+                return 'POST';
+            }
+
+            public function getAddress(): string
+            {
+                return '';
+            }
+
+            public function getResponseClassName(): string
+            {
+                return '';
+            }
+
+            public function getSerializationFormat(): string
+            {
+                return '';
+            }
+
+            public function getParams(): array
+            {
+                throw new \LogicException();
+            }
+        };
+
+        $client = new CdekClient('', '');
+
+        $this->expectException(\LogicException::class);
+        $client->sendRequest($request);
     }
 }

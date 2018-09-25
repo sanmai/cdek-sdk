@@ -102,6 +102,8 @@ final class Attempt
      * @JMS\Type('int')
      *
      * @var int
+     *
+     * @deprecated
      */
     public $ScheduleCode;
 
@@ -111,6 +113,8 @@ final class Attempt
      * @JMS\Type('string')
      *
      * @var string
+     *
+     * @deprecated
      */
     public $ScheduleDescription;
 
@@ -178,8 +182,7 @@ final class Attempt
     }
 
     /**
-     * @deprecated
-     * @codeCoverageIgnore
+     * @phan-suppress PhanDeprecatedProperty
      */
     public function getScheduleCode(): int
     {
@@ -187,8 +190,7 @@ final class Attempt
     }
 
     /**
-     * @deprecated
-     * @codeCoverageIgnore
+     * @phan-suppress PhanDeprecatedProperty
      */
     public function getScheduleDescription(): string
     {

@@ -43,6 +43,8 @@ final class CallDelay
      * @JMS\Type("DateTimeImmutable<'Y-m-d\TH:i:sP'>")
      *
      * @var \DateTimeImmutable
+     *
+     * @deprecated
      */
     public $Date;
 
@@ -52,14 +54,22 @@ final class CallDelay
      * @JMS\Type("DateTimeImmutable<'Y-m-d\TH:i:sP'>")
      *
      * @var \DateTimeImmutable
+     *
+     * @deprecated
      */
     public $DateNext;
 
+    /**
+     * @phan-suppress PhanDeprecatedProperty
+     */
     public function getDate(): \DateTimeImmutable
     {
         return $this->Date;
     }
 
+    /**
+     * @phan-suppress PhanDeprecatedProperty
+     */
     public function getDateNext(): \DateTimeImmutable
     {
         return $this->DateNext;

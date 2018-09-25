@@ -399,6 +399,8 @@ final class Order implements HasMessage
      * @JMS\Type("CdekSDK\Common\Call")
      *
      * @var Call
+     *
+     * @deprecated
      */
     public $Call;
 
@@ -407,6 +409,8 @@ final class Order implements HasMessage
      * @JMS\Type("CdekSDK\Common\Order")
      *
      * @var Order
+     *
+     * @deprecated
      */
     public $ReturnOrder;
 
@@ -418,6 +422,8 @@ final class Order implements HasMessage
      * @JMS\Type("string")
      *
      * @var string
+     *
+     * @deprecated
      */
     public $ActNumber;
 
@@ -427,6 +433,8 @@ final class Order implements HasMessage
      * @JMS\Type("DateTimeImmutable<'Y-m-d\TH:i:sP'>")
      *
      * @var \DateTimeImmutable|null
+     *
+     * @deprecated
      */
     public $DeliveryDate;
 
@@ -436,6 +444,8 @@ final class Order implements HasMessage
      * @JMS\Type("int")
      *
      * @var int
+     *
+     * @deprecated
      */
     public $ReturnDispatchNumber;
 
@@ -726,5 +736,47 @@ final class Order implements HasMessage
     public function getMessage(): string
     {
         return (string) $this->Msg;
+    }
+
+    /**
+     * @phan-suppress PhanDeprecatedProperty
+     */
+    public function getCall(): Call
+    {
+        return $this->Call;
+    }
+
+    /**
+     * @phan-suppress PhanDeprecatedProperty
+     */
+    public function getReturnOrder(): Order
+    {
+        return $this->ReturnOrder;
+    }
+
+    /**
+     * @phan-suppress PhanDeprecatedProperty
+     */
+    public function getActNumber(): string
+    {
+        return $this->ActNumber;
+    }
+
+    /**
+     * @phan-suppress PhanDeprecatedProperty
+     *
+     * @return \DateTimeInterface|null
+     */
+    public function getDeliveryDate()
+    {
+        return $this->DeliveryDate;
+    }
+
+    /**
+     * @phan-suppress PhanDeprecatedProperty
+     */
+    public function getReturnDispatchNumber(): int
+    {
+        return $this->ReturnDispatchNumber;
     }
 }

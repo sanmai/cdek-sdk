@@ -34,6 +34,8 @@ final class Package
 {
     use Fillable;
 
+    const VOLUMETRIC_WEIGHT_DIVIDER = 5000;
+
     /**
      * @JMS\XmlAttribute
      * @JMS\SerializedName("Number")
@@ -87,6 +89,15 @@ final class Package
      * @var int
      */
     protected $SizeC;
+
+    /**
+     * @JMS\XmlAttribute
+     * @JMS\SerializedName("VolumeWeight")
+     * @JMS\Type("float")
+     *
+     * @var float
+     */
+    protected $VolumeWeight;
 
     /**
      * @JMS\XmlList(entry="Item", inline=true)
@@ -143,6 +154,19 @@ final class Package
 
     public function getVolumeWeight(): float
     {
-        return ($this->SizeA * $this->SizeB * $this->SizeC) / 5000;
+        if ($this->VolumeWeight > 0) {
+            return $this->VolumeWeight;
+        }
+
+        // @codeCoverageIgnoreStart
+        @trigger_error('Using getVolumeWeight to calculate a volumetric weight is deprecated in favor calculateVolumeWeight() as CDEK provide a pre-calculated value.', E_USER_DEPRECATED);
+
+        return $this->calculateVolumeWeight();
+        // @codeCoverageIgnoreEnd
+    }
+
+    public function calculateVolumeWeight(): float
+    {
+        return $this->SizeA * $this->SizeB * $this->SizeC / self::VOLUMETRIC_WEIGHT_DIVIDER;
     }
 }

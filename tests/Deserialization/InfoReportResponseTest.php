@@ -28,11 +28,16 @@ declare(strict_types=1);
 
 namespace Tests\CdekSDK\Deserialization;
 
+use CdekSDK\Common\City;
+use CdekSDK\Common\Package;
 use CdekSDK\Responses\InfoReportResponse;
 use Tests\CdekSDK\Fixtures\FixtureLoader;
 
 /**
  * @covers \CdekSDK\Responses\InfoReportResponse
+ * @covers \CdekSDK\Common\City
+ * @covers \CdekSDK\Common\Package
+ * @covers \CdekSDK\Common\Item
  */
 class InfoReportResponseTest extends TestCase
 {
@@ -55,16 +60,48 @@ class InfoReportResponseTest extends TestCase
             $this->assertSame('Москва', $order->getSenderCity()->getName());
             $this->assertSame('Новосибирск', $order->getRecipientCity()->getName());
 
+            $this->assertCount(1, $order->getPackages());
+
             foreach ($order->getPackages() as $package) {
+                /** @var $package Package */
                 $this->assertSame('TEST-123456', $package->getBarCode());
-                $this->assertSame(0.2, $package->getVolumeWeight());
-                // getItems ...
+                $this->assertSame(1.22, $package->getVolumeWeight());
+
+                $this->assertSame('_', $package->getNumber());
+                $this->assertSame(0.5, $package->getWeight());
+                $this->assertSame(10, $package->getSizeA());
+                $this->assertSame(12, $package->getSizeB());
+                $this->assertSame(15, $package->getSizeC());
+                $this->assertCount(1, $package->getItems());
+
+                foreach ($package->getItems() as $item) {
+                    /** @var $item Item */
+                    $this->assertSame('NN0001', $item->getWareKey());
+                    $this->assertSame(500.0, $item->getCost());
+                    $this->assertSame(0.0, $item->getPayment());
+                    $this->assertSame(0.12, $item->getWeight());
+                    $this->assertSame(2, $item->getAmount());
+                    $this->assertSame('Test item', $item->getComment());
+                    $this->assertSame(0.0, $item->getDelivAmount());
+                }
             }
 
             foreach ($order->getAdditionalServices() as $service) {
                 $this->assertSame(2, $service->getServiceCode());
                 $this->assertSame(7.5, $service->getSum());
             }
+
+            $city = $order->getSenderCity();
+            /** @var $city City */
+            $this->assertSame(44, $city->getCode());
+            $this->assertSame('101000', $city->getPostCode());
+            $this->assertSame('Москва', $city->getName());
+
+            $city = $order->getRecipientCity();
+            /** @var $city City */
+            $this->assertSame(270, $city->getCode());
+            $this->assertSame('630000', $city->getPostCode());
+            $this->assertSame('Новосибирск', $city->getName());
         }
     }
 

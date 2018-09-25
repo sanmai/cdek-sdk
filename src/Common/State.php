@@ -90,7 +90,7 @@ final class State
     /**
      * @phan-suppress PhanDeprecatedProperty
      */
-    public function getDate(): \DateTimeInterface
+    public function getDate(): \DateTimeImmutable
     {
         return $this->Date;
     }

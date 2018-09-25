@@ -30,6 +30,13 @@ namespace CdekSDK\Common;
 
 use JMS\Serializer\Annotation as JMS;
 
+/**
+ * Вложение (товар).
+ *
+ * Пример данных:
+ *
+ * <Item WareKey="Ботинки60, размер 40" Comment="Кроссовки мужские" Cost="832" Payment="832" VATRate="VAT18" VATSum="126.92" Weight="0.560" Amount="1" DelivAmount="0" />
+ */
 final class Item
 {
     use Fillable;
@@ -68,13 +75,35 @@ final class Item
     protected $Payment;
 
     /**
+     * Ставка НДС включенная в стоимость товара.
+     *
+     * @JMS\XmlAttribute
+     * @JMS\SerializedName("VATRate")
+     * @JMS\Type("string")
+     *
+     * @var string
+     */
+    protected $VATRate;
+
+    /**
+     * Сумма НДС, включенного в стоимость товара.
+     *
+     * @JMS\XmlAttribute
+     * @JMS\SerializedName("VATSum")
+     * @JMS\Type("float")
+     *
+     * @var float
+     */
+    protected $VATSum;
+
+    /**
      * Вес (за единицу товара, в граммах).
      *
      * @JMS\XmlAttribute
      * @JMS\SerializedName("Weight")
-     * @JMS\Type("int")
+     * @JMS\Type("float")
      *
-     * @var int
+     * @var float
      */
     protected $Weight;
 
@@ -101,9 +130,9 @@ final class Item
     /**
      * @JMS\XmlAttribute
      * @JMS\SerializedName("DelivAmount")
-     * @JMS\Type("int")
+     * @JMS\Type("float")
      *
-     * @var int
+     * @var float
      */
     protected $DelivAmount;
 
@@ -134,7 +163,17 @@ final class Item
         return $this->Payment;
     }
 
-    public function getWeight(): int
+    public function getVATRate(): string
+    {
+        return $this->VATRate;
+    }
+
+    public function getVATSum(): float
+    {
+        return $this->VATSum;
+    }
+
+    public function getWeight(): float
     {
         return $this->Weight;
     }
@@ -149,7 +188,7 @@ final class Item
         return $this->Comment;
     }
 
-    public function getDelivAmount(): int
+    public function getDelivAmount(): float
     {
         return $this->DelivAmount;
     }

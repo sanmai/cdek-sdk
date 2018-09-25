@@ -68,7 +68,10 @@ ci-cs: prerequisites
 # Development Workflow                                       #
 ##############################################################
 
-test: phpunit analyze
+test: phpunit analyze composer-validate
+
+.PHONY: composer-validate
+composer-validate: composer.lock
 	$(SILENT) $(COMPOSER) validate --strict
 
 test-prerequisites: prerequisites composer.lock

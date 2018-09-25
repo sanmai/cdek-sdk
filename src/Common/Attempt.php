@@ -97,9 +97,9 @@ final class Attempt
     protected $Address;
 
     /**
-     * @JMS\SerializedName('ScheduleCode')
      * @JMS\XmlAttribute
-     * @JMS\Type('int')
+     * @JMS\SerializedName("ScheduleCode")
+     * @JMS\Type("int")
      *
      * @var int
      *
@@ -108,9 +108,9 @@ final class Attempt
     public $ScheduleCode;
 
     /**
-     * @JMS\SerializedName('ScheduleDescription')
      * @JMS\XmlAttribute
-     * @JMS\Type('string')
+     * @JMS\SerializedName("ScheduleDescription")
+     * @JMS\Type("string")
      *
      * @var string
      *

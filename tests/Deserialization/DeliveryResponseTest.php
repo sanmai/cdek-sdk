@@ -34,7 +34,6 @@ use Tests\CdekSDK\Fixtures\FixtureLoader;
 /**
  * @covers \CdekSDK\Responses\DeliveryResponse
  * @covers \CdekSDK\Responses\Types\DeliveryRequest
- * @covers \CdekSDK\Responses\Types\Message
  */
 class DeliveryResponseTest extends TestCase
 {

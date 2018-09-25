@@ -39,7 +39,6 @@ use Tests\CdekSDK\Fixtures\FixtureLoader;
 
 /**
  * @covers \CdekSDK\Responses\StatusReportResponse
- * @covers \CdekSDK\Responses\Types\Message
  * @covers \CdekSDK\Common\Order
  * @covers \CdekSDK\Common\Status
  * @covers \CdekSDK\Common\Reason

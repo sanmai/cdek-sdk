@@ -26,34 +26,27 @@
 
 declare(strict_types=1);
 
-namespace Tests\CdekSDK\Deserialization;
+namespace Tests\CdekSDK\Common;
 
-use CdekSDK\Responses\PrintErrorResponse;
-use Tests\CdekSDK\Fixtures\FixtureLoader;
+use CdekSDK\Responses\Types\Message;
 
 /**
- * @covers \CdekSDK\Responses\PrintErrorResponse
- * @covers \CdekSDK\Responses\Types\PrintError
+ * @covers \CdekSDK\Responses\Types\Message
  */
-class PrintErrorResponseTest extends TestCase
+class MessageTest extends TestCase
 {
-    public function test_failing_request()
+    public function test_it_is_not_an_error()
     {
-        $response = $this->getSerializer()->deserialize(FixtureLoader::load('PrintErrorResponse.xml'), PrintErrorResponse::class, 'xml');
+        $message = new Message('example');
+        $this->assertFalse($message->isError());
+        $this->assertSame('example', $message->getText());
+    }
 
-        /** @var $response PrintErrorResponse */
-        $this->assertInstanceOf(PrintErrorResponse::class, $response);
-
-        $this->assertNotEmpty($response->getErrors());
-        foreach ($response->getErrors() as $error) {
-            $this->assertNotEmpty($error->getCode());
-            $this->assertNotEmpty($error->getText());
-        }
-
-        foreach ($response->getMessages() as $message) {
-            $this->assertTrue($message->isError());
-            $this->assertContains('заказ не найден в базе', $message->getText());
-            break;
-        }
+    public function test_it_is_an_error()
+    {
+        $message = new Message('example', 'FOO');
+        $this->assertTrue($message->isError());
+        $this->assertSame('example', $message->getText());
+        $this->assertSame('FOO', $message->getCode());
     }
 }

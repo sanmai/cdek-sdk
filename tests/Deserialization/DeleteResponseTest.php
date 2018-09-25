@@ -35,7 +35,6 @@ use Tests\CdekSDK\Fixtures\FixtureLoader;
  * @covers \CdekSDK\Responses\DeleteResponse
  * @covers \CdekSDK\Responses\Types\DeleteRequest
  * @covers \CdekSDK\Common\Order
- * @covers \CdekSDK\Responses\Types\Message
  */
 class DeleteResponseTest extends TestCase
 {

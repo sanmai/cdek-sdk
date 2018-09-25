@@ -51,6 +51,11 @@ final class Message
         return $this->text;
     }
 
+    public function getCode(): string
+    {
+        return (string) $this->errorCode;
+    }
+
     public function isError(): bool
     {
         return (bool) $this->errorCode;

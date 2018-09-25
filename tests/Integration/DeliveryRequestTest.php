@@ -43,6 +43,7 @@ use CdekSDK\Requests\StatusReportRequest;
 use CdekSDK\Responses\DeleteResponse;
 use CdekSDK\Responses\FileResponse;
 use CdekSDK\Responses\InfoReportResponse;
+use CdekSDK\Responses\PrintErrorResponse;
 use CdekSDK\Responses\StatusReportResponse;
 
 /**
@@ -175,6 +176,19 @@ class DeliveryRequestTest extends TestCase
         $request->addOrder(Order::withDispatchNumber($dispatchNumber));
 
         $response = $this->getClient()->sendPrintReceiptsRequest($request);
+
+        if ($response instanceof PrintErrorResponse) {
+            foreach ($response->getMessages() as $message) {
+                if ($message->getCode() == 'ERR_API') {
+                    $this->markTestSkipped($message->getText());
+                }
+
+                if ($message->isError()) {
+                    $this->fail($message->getText());
+                }
+            }
+        }
+
         $this->assertInstanceOf(FileResponse::class, $response);
 
         $this->assertSame('%PDF', $response->getBody()->read(4));
@@ -222,6 +236,19 @@ class DeliveryRequestTest extends TestCase
         $request->addOrder($order);
 
         $response = $this->getClient()->sendPrintLabelsRequest($request);
+
+        if ($response instanceof PrintErrorResponse) {
+            foreach ($response->getMessages() as $message) {
+                if ($message->getCode() == 'ERR_API') {
+                    $this->markTestSkipped($message->getText());
+                }
+
+                if ($message->isError()) {
+                    $this->fail($message->getText());
+                }
+            }
+        }
+
         $this->assertInstanceOf(FileResponse::class, $response);
 
         $this->assertSame('%PDF', $response->getBody()->read(4));

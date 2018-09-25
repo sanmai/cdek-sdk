@@ -32,7 +32,7 @@ use CdekSDK\Common\Order;
 use CdekSDK\Requests\DeliveryRequest;
 
 /**
- * @covers \CdekSDK\Requests\DeleteRequest
+ * @covers \CdekSDK\Requests\DeliveryRequest
  */
 class DeliveryRequestTest extends TestCase
 {

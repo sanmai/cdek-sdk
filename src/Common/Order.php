@@ -369,7 +369,7 @@ final class Order implements HasMessage
 
     /**
      * @JMS\XmlAttribute
-     * @JMS\SerializedName("ShipperAddress")
+     * @JMS\SerializedName("SellerAddress")
      * @JMS\Type("string")
      *
      * @var string
@@ -387,7 +387,7 @@ final class Order implements HasMessage
 
     /**
      * @JMS\XmlAttribute
-     * @JMS\SerializedName("SellerAddress")
+     * @JMS\SerializedName("ShipperAddress")
      * @JMS\Type("string")
      *
      * @var string

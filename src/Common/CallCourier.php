@@ -40,6 +40,8 @@ final class CallCourier
      * @JMS\Type("DateTimeImmutable<'Y-m-d'>")
      *
      * @var \DateTimeImmutable
+     *
+     * @deprecated
      */
     public $Date;
 
@@ -49,6 +51,8 @@ final class CallCourier
      * @JMS\Type("DateTimeImmutable<'H:i:s'>")
      *
      * @var \DateTimeImmutable
+     *
+     * @deprecated
      */
     public $TimeBeg;
 
@@ -58,6 +62,8 @@ final class CallCourier
      * @JMS\Type("DateTimeImmutable<'H:i:s'>")
      *
      * @var \DateTimeImmutable
+     *
+     * @deprecated
      */
     public $TimeEnd;
 
@@ -67,6 +73,8 @@ final class CallCourier
      * @JMS\Type("DateTimeImmutable<'H:i:s'>")
      *
      * @var \DateTimeImmutable
+     *
+     * @deprecated
      */
     public $LunchBeg;
 
@@ -76,6 +84,8 @@ final class CallCourier
      * @JMS\Type("DateTimeImmutable<'H:i:s'>")
      *
      * @var \DateTimeImmutable
+     *
+     * @deprecated
      */
     public $LunchEnd;
 
@@ -85,6 +95,8 @@ final class CallCourier
      * @JMS\Type("integer")
      *
      * @var int
+     *
+     * @deprecated
      */
     public $SendCityCode;
 
@@ -94,6 +106,8 @@ final class CallCourier
      * @JMS\Type("string")
      *
      * @var string
+     *
+     * @deprecated
      */
     public $SendPhone;
 
@@ -103,6 +117,8 @@ final class CallCourier
      * @JMS\Type("string")
      *
      * @var string
+     *
+     * @deprecated
      */
     public $Comment;
 
@@ -111,12 +127,15 @@ final class CallCourier
      * @JMS\Type("CdekSDK\Common\Address")
      *
      * @var Address
+     *
+     * @deprecated
      */
     public $SendAddress;
 
     /**
      * @deprecated
      * @codeCoverageIgnore
+     * @phan-suppress PhanDeprecatedProperty
      */
     public function getDate(): \DateTimeImmutable
     {
@@ -126,6 +145,7 @@ final class CallCourier
     /**
      * @deprecated
      * @codeCoverageIgnore
+     * @phan-suppress PhanDeprecatedProperty
      */
     public function getTimeBeg(): \DateTimeImmutable
     {
@@ -135,6 +155,7 @@ final class CallCourier
     /**
      * @deprecated
      * @codeCoverageIgnore
+     * @phan-suppress PhanDeprecatedProperty
      */
     public function getTimeEnd(): \DateTimeImmutable
     {
@@ -144,6 +165,7 @@ final class CallCourier
     /**
      * @deprecated
      * @codeCoverageIgnore
+     * @phan-suppress PhanDeprecatedProperty
      */
     public function getLunchBeg(): \DateTimeImmutable
     {

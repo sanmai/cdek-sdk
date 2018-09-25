@@ -28,10 +28,30 @@ declare(strict_types=1);
 
 namespace CdekSDK\Common;
 
+use JMS\Serializer\Annotation as JMS;
+
+/**
+ * Фото для ПВЗ.
+ *
+ * Пример данных:
+ *
+ * <OfficeImage number="1" url="https://pvzimage.cdek.ru/images/test.jpg"/>
+ */
 final class OfficeImage
 {
     use Fillable;
 
-    /** @var string */
-    public $url;
+    /**
+     * @JMS\XmlAttribute
+     * @JMS\SerializedName("url")
+     * @JMS\Type("string")
+     *
+     * @var string
+     */
+    private $url;
+
+    public function getUrl()
+    {
+        return $this->url;
+    }
 }

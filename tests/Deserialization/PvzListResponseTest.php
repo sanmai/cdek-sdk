@@ -35,6 +35,7 @@ use Tests\CdekSDK\Fixtures\FixtureLoader;
 /**
  * @covers \CdekSDK\Responses\PvzListResponse
  * @covers \CdekSDK\Common\Pvz
+ * @covers \CdekSDK\Common\OfficeImage
  */
 class PvzListResponseTest extends TestCase
 {
@@ -61,6 +62,11 @@ class PvzListResponseTest extends TestCase
 
         $this->assertAttributeInternalType('boolean', 'HaveCashless', $item);
 
+        /** @var $item Pvz */
         $this->assertSame('EKB8', $item->Code);
+
+        $item = $response->getItems()[2];
+        $this->assertCount(1, $item->OfficeImages);
+        $this->assertStringStartsWith('http', $item->OfficeImages[0]->getUrl());
     }
 }

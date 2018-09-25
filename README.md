@@ -81,6 +81,10 @@ foreach ($response->getItems() as $item) {
     $item->Code;
     $item->Name;
     $item->Address;
+
+    foreach ($item->OfficeImages as $image) {
+        $image->getUrl();
+    }
 }
 ```
 

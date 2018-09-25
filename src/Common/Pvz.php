@@ -263,6 +263,14 @@ final class Pvz
     public $WeightLimit;
 
     /**
+     * @JMS\XmlList(entry="OfficeImage", inline=true)
+     * @JMS\Type("array<CdekSDK\Common\OfficeImage>")
+     *
+     * @var OfficeImage[]|array
+     */
+    public $OfficeImages = [];
+
+    /**
      * @JMS\PostDeserialize
      */
     public function postDeserialize()

@@ -68,10 +68,10 @@ class StatusReportResponseTest extends TestCase
         $this->assertSame('Руслан Альбертович', $order->getRecipientName());
 
         $this->assertInstanceOf(Reason::class, $order->getDelayReason());
-        $this->assertEmpty($order->getDelayReason()->Code);
+        $this->assertEmpty($order->getDelayReason()->getCode());
 
         $this->assertInstanceOf(Reason::class, $order->getReason());
-        $this->assertEmpty($order->getReason()->Code);
+        $this->assertEmpty($order->getReason()->getCode());
 
         $status = $order->getStatus();
         $this->assertInstanceOf(Status::class, $status);
@@ -116,7 +116,7 @@ class StatusReportResponseTest extends TestCase
         /** @var $item Item */
         $this->assertSame('2201073352678', $item->getWareKey());
         $this->assertSame(1, $item->getAmount());
-        $this->assertSame(0, $item->getDelivAmount());
+        $this->assertSame(0.0, $item->getDelivAmount());
     }
 
     public function test_it_reads_simple_response()

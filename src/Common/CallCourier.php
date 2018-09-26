@@ -30,6 +30,11 @@ namespace CdekSDK\Common;
 
 use JMS\Serializer\Annotation as JMS;
 
+/**
+ * Ожидание курьера в запросе регистрации заказа, ожидание курьера в заявке на вызов курьера.
+ *
+ * @JMS\XmlRoot(name="Call")
+ */
 final class CallCourier
 {
     use Fillable;
@@ -37,7 +42,7 @@ final class CallCourier
     /**
      * @JMS\XmlAttribute
      * @JMS\SerializedName("Date")
-     * @JMS\Type("DateTimeImmutable<'Y-m-d'>")
+     * @JMS\Type("DateTimeImmutable<'Y-m-d\TH:i:sP'>")
      *
      * @var \DateTimeImmutable
      *
@@ -48,7 +53,7 @@ final class CallCourier
     /**
      * @JMS\XmlAttribute
      * @JMS\SerializedName("TimeBeg")
-     * @JMS\Type("DateTimeImmutable<'H:i:s'>")
+     * @JMS\Type("DateTimeImmutable<'H:i'>")
      *
      * @var \DateTimeImmutable
      *
@@ -59,7 +64,7 @@ final class CallCourier
     /**
      * @JMS\XmlAttribute
      * @JMS\SerializedName("TimeEnd")
-     * @JMS\Type("DateTimeImmutable<'H:i:s'>")
+     * @JMS\Type("DateTimeImmutable<'H:i'>")
      *
      * @var \DateTimeImmutable
      *
@@ -70,7 +75,7 @@ final class CallCourier
     /**
      * @JMS\XmlAttribute
      * @JMS\SerializedName("LunchBeg")
-     * @JMS\Type("DateTimeImmutable<'H:i:s'>")
+     * @JMS\Type("DateTimeImmutable<'H:i'>")
      *
      * @var \DateTimeImmutable
      *
@@ -81,7 +86,7 @@ final class CallCourier
     /**
      * @JMS\XmlAttribute
      * @JMS\SerializedName("LunchEnd")
-     * @JMS\Type("DateTimeImmutable<'H:i:s'>")
+     * @JMS\Type("DateTimeImmutable<'H:i'>")
      *
      * @var \DateTimeImmutable
      *
@@ -102,6 +107,33 @@ final class CallCourier
 
     /**
      * @JMS\XmlAttribute
+     * @JMS\SerializedName("SendCityPostCode")
+     * @JMS\Type("string")
+     *
+     * @var string
+     */
+    protected $SendCityPostCode;
+
+    /**
+     * @JMS\XmlAttribute
+     * @JMS\SerializedName("SendCountryCode")
+     * @JMS\Type("string")
+     *
+     * @var string
+     */
+    protected $SendCountryCode;
+
+    /**
+     * @JMS\XmlAttribute
+     * @JMS\SerializedName("SendCityName")
+     * @JMS\Type("string")
+     *
+     * @var string
+     */
+    protected $SendCityName;
+
+    /**
+     * @JMS\XmlAttribute
      * @JMS\SerializedName("SendPhone")
      * @JMS\Type("string")
      *
@@ -110,6 +142,24 @@ final class CallCourier
      * @deprecated
      */
     public $SendPhone;
+
+    /**
+     * @JMS\XmlAttribute
+     * @JMS\SerializedName("SenderName")
+     * @JMS\Type("string")
+     *
+     * @var string
+     */
+    protected $SenderName;
+
+    /**
+     * @JMS\XmlAttribute
+     * @JMS\SerializedName("Weight")
+     * @JMS\Type("float")
+     *
+     * @var float
+     */
+    protected $Weight;
 
     /**
      * @JMS\XmlAttribute
@@ -123,6 +173,51 @@ final class CallCourier
     public $Comment;
 
     /**
+     * @JMS\XmlAttribute
+     * @JMS\SerializedName("DispatchNumber")
+     * @JMS\Type("string")
+     *
+     * @var string
+     */
+    protected $DispatchNumber;
+
+    /**
+     * @JMS\XmlAttribute
+     * @JMS\SerializedName("IgnoreTime")
+     * @JMS\Type("bool")
+     *
+     * @var bool
+     */
+    protected $IgnoreTime;
+
+    /**
+     * @JMS\XmlAttribute
+     * @JMS\SerializedName("Number")
+     * @JMS\Type("string")
+     *
+     * @var string
+     */
+    protected $Number;
+
+    /**
+     * @JMS\XmlAttribute
+     * @JMS\SerializedName("Msg")
+     * @JMS\Type("string")
+     *
+     * @var string
+     */
+    protected $Msg;
+
+    /**
+     * @JMS\XmlAttribute
+     * @JMS\SerializedName("ErrorCode")
+     * @JMS\Type("string")
+     *
+     * @var string
+     */
+    protected $ErrorCode;
+
+    /**
      * @JMS\SerializedName("SendAddress")
      * @JMS\Type("CdekSDK\Common\Address")
      *
@@ -131,6 +226,41 @@ final class CallCourier
      * @deprecated
      */
     public $SendAddress;
+
+    /**
+     * @JMS\SerializedName("Address")
+     * @JMS\Type("CdekSDK\Common\Address")
+     *
+     * @var Address
+     */
+    protected $Address;
+
+    /**
+     * Устанавливает адрес в целях регистрация заявки на вызов курьера.
+     *
+     * @param Address $address
+     */
+    public function setAddress(Address $address): self
+    {
+        $this->Address = $address;
+
+        return $this;
+    }
+
+    public function getNumber(): string
+    {
+        return (string) $this->Number;
+    }
+
+    public function getMessage(): string
+    {
+        return (string) $this->Msg;
+    }
+
+    public function getErrorCode(): string
+    {
+        return (string) $this->ErrorCode;
+    }
 
     /**
      * @deprecated

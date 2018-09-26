@@ -45,6 +45,7 @@ use Psr\Http\Message\ResponseInterface;
  * @method Responses\DeleteResponse                            sendDeleteRequest(Requests\DeleteRequest $request)
  * @method Responses\PvzListResponse                           sendPvzListRequest(Requests\PvzListRequest $request)
  * @method Responses\DeliveryResponse                          sendDeliveryRequest(Requests\DeliveryRequest $request)
+ * @method Responses\CallCourierResponse                       sendCallCourierRequest(Requests\CallCourierRequest $request)
  * @method Responses\InfoReportResponse                        sendInfoReportRequest(Requests\InfoReportRequest $request)
  * @method Responses\CalculationResponse                       sendCalculationRequest(Requests\CalculationRequest $request)
  * @method Responses\StatusReportResponse                      sendStatusReportRequest(Requests\StatusReportRequest $request)

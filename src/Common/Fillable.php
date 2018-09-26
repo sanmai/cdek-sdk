@@ -43,7 +43,7 @@ trait Fillable
         }
     }
 
-    public static function create($data)
+    public static function create($data = [])
     {
         return new static($data);
     }

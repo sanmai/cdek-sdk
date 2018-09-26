@@ -31,7 +31,7 @@ namespace CdekSDK\Common;
 use JMS\Serializer\Annotation as JMS;
 
 /**
- * Class Call.
+ * История прозвонов получателя.
  */
 final class Call
 {

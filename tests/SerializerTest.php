@@ -83,6 +83,7 @@ class SerializerTest extends TestCase
         /** @var $response StatusReportResponse */
         $this->assertInstanceOf(StatusReportResponse::class, $response);
         $this->assertSame('1000028000', $response->getOrders()[0]->getDispatchNumber());
+        $this->assertNull($response->getOrders()[0]->getDelayReason()->getDate());
     }
 
     public function test_it_can_serialize()

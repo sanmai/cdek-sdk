@@ -303,10 +303,10 @@ use CdekSDK\Requests\CallCourierRequest;
 use CdekSDK\Responses\CallCourierResponse;
 
 $request = CallCourierRequest::create()->addCall(CallCourier::create([
-    'Date' => new \DateTimeImmutable('tomorrow'),
+    'Date' => new \DateTime('tomorrow'),
     'DispatchNumber' => $dispatchNumber,
-    'TimeBeg' => new \DateTimeImmutable('10:00'),
-    'TimeEnd' => new \DateTimeImmutable('17:00'),
+    'TimeBeg' => new \DateTime('10:00'),
+    'TimeEnd' => new \DateTime('17:00'),
     'SendCityCode' => 44,
     'SenderName' => 'Проверка Тестович',
     'SendPhone' => '+78001001010',

@@ -54,6 +54,7 @@ $client = new \CdekSDK\CdekClient('account', 'password');
 | [Удаление заказа](#%D0%A3%D0%B4%D0%B0%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5-%D0%B7%D0%B0%D0%BA%D0%B0%D0%B7%D0%B0) | `sendDeleteRequest` | `DeleteRequest` |
 | [Получение списка ПВЗ](#%D0%9F%D0%BE%D0%BB%D1%83%D1%87%D0%B5%D0%BD%D0%B8%D0%B5-%D1%81%D0%BF%D0%B8%D1%81%D0%BA%D0%B0-%D0%9F%D0%92%D0%97) | `sendPvzListRequest` | `PvzListRequest` |
 | [Регистрация заказа от ИМ](#%D0%A0%D0%B5%D0%B3%D0%B8%D1%81%D1%82%D1%80%D0%B0%D1%86%D0%B8%D1%8F-%D0%B7%D0%B0%D0%BA%D0%B0%D0%B7%D0%B0-%D0%BE%D1%82-%D0%B8%D0%BD%D1%82%D0%B5%D1%80%D0%BD%D0%B5%D1%82-%D0%BC%D0%B0%D0%B3%D0%B0%D0%B7%D0%B8%D0%BD%D0%B0) | `sendDeliveryRequest` | `DeliveryRequest` |
+| Вызов курьера | `sendCallCourierRequest` | `CallCourierRequest` |
 | [Отчет "Информация по заказам"](#%D0%9E%D1%82%D1%87%D0%B5%D1%82-%D0%98%D0%BD%D1%84%D0%BE%D1%80%D0%BC%D0%B0%D1%86%D0%B8%D1%8F-%D0%BF%D0%BE-%D0%B7%D0%B0%D0%BA%D0%B0%D0%B7%D0%B0%D0%BC) | `sendInfoReportRequest` | `InfoReportRequest` |
 | [Расчёт стоимости доставки](#%D0%A0%D0%B0%D1%81%D1%87%D1%91%D1%82-%D1%81%D1%82%D0%BE%D0%B8%D0%BC%D0%BE%D1%81%D1%82%D0%B8-%D0%B4%D0%BE%D1%81%D1%82%D0%B0%D0%B2%D0%BA%D0%B8) | `sendCalculationRequest` | `CalculationRequest` |
 | [Отчет "Статусы заказов"](#%D0%A2%D1%80%D0%B5%D0%BA%D0%B8%D0%BD%D0%B3) | `sendStatusReportRequest` | `StatusReportRequest` |
@@ -285,6 +286,45 @@ foreach ($response->getMessages() as $message) {
 foreach ($response->getOrders() as $order) {
     // проверяем номера удалённых заказов
     $order->getNumber(); // должно быть 'TEST-123456'
+}
+```
+
+### Вызов курьера
+
+```php
+use CdekSDK\Common\Address;
+use CdekSDK\Common\CallCourier;
+use CdekSDK\Requests\CallCourierRequest;
+use CdekSDK\Responses\CallCourierResponse;
+
+$request = CallCourierRequest::create()->addCall(CallCourier::create([
+    'Date' => new \DateTimeImmutable('tomorrow'),
+    'DispatchNumber' => $dispatchNumber,
+    'TimeBeg' => new \DateTimeImmutable('10:00'),
+    'TimeEnd' => new \DateTimeImmutable('17:00'),
+    'SendCityCode' => 44,
+    'SenderName' => 'Проверка Тестович',
+    'SendPhone' => '+78001001010',
+])->setAddress(Address::create([
+    'Street' => 'Тестовая',
+    'House' => '8',
+    'Flat' => '32',
+])));
+
+$response = $client->sendCallCourierRequest($request);
+/** @var CallCourierResponse $response */
+if ($response->hasErrors()) {
+    // Обрабатываем ошибки
+    foreach ($response->getErrors() as $message) {
+        $message->isError();
+        $message->getCode();
+        $message->getText();
+    }
+}
+
+// Получаем номера заявок
+foreach ($response->getNumbers() as $number) {
+    $this->assertSame('1234567', $number);
 }
 ```
 

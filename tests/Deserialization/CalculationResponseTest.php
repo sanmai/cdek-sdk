@@ -87,11 +87,19 @@ class CalculationResponseTest extends TestCase
         $this->assertSame(null, $response->getAdditionalServices());
     }
 
+    public function test_it_errors_on_unknown_method_within_a_result()
+    {
+        $response = $this->getSerializer()->deserialize(FixtureLoader::load('CalculationResponse.json'), CalculationResponse::class, 'json');
+
+        $this->expectException(\BadMethodCallException::class);
+        call_user_func([$response, 'foo']);
+    }
+
     public function test_it_errors_on_unknown_method()
     {
-        $this->expectException(\BadMethodCallException::class);
-
         $response = new CalculationResponse();
+
+        $this->expectException(\BadMethodCallException::class);
         call_user_func([$response, 'foo']);
     }
 }

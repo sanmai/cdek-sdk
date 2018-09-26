@@ -44,7 +44,7 @@ require_once 'vendor/autoload.php';
 
 $client = new \CdekSDK\CdekClient('account', 'password');
 ```
-Реквизиты доступа следует [запросить у СДЭК](https://www.cdek.ru/clients/integrator.html). Обычные логин и пароль не подходят.
+Реквизиты доступа следует [запросить у СДЭК](https://www.cdek.ru/clients/integrator.html). Обычные логин и пароль не подходят. Если авторизация не нужна, логин и пароль можно указать пустые или пропустить вовсе.
 
 Далее для всей работы с API используются методы объёкта `$client`, который мы получили выше.
 

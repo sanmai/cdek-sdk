@@ -68,7 +68,7 @@ final class CdekClient implements Contracts\Client
     /** @var SerializerInterface */
     private $serializer;
 
-    public function __construct(string $account, string $password, ClientInterface $http = null)
+    public function __construct(string $account = '', string $password = '', ClientInterface $http = null)
     {
         $this->account = $account;
         $this->password = $password;

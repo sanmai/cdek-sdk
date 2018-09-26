@@ -52,7 +52,7 @@ use Psr\Http\Message\ResponseInterface;
  * @method Responses\FileResponse|Responses\PrintErrorResponse sendPrintReceiptsRequest(Requests\PrintReceiptsRequest $request)
  * @method Responses\FileResponse|Responses\PrintErrorResponse sendPrintLabelsRequest(Requests\PrintLabelsRequest $request)
  */
-final class CdekClient
+final class CdekClient implements Contracts\Client
 {
     const STANDARD_BASE_URL = 'https://integration.cdek.ru';
 

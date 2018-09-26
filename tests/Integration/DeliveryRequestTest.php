@@ -42,6 +42,7 @@ use CdekSDK\Requests\InfoReportRequest;
 use CdekSDK\Requests\PrintLabelsRequest;
 use CdekSDK\Requests\PrintReceiptsRequest;
 use CdekSDK\Requests\StatusReportRequest;
+use CdekSDK\Responses\CallCourierResponse;
 use CdekSDK\Responses\DeleteResponse;
 use CdekSDK\Responses\FileResponse;
 use CdekSDK\Responses\InfoReportResponse;
@@ -67,6 +68,9 @@ use CdekSDK\Responses\StatusReportResponse;
  *
  * @covers \CdekSDK\Requests\InfoReportRequest
  * @covers \CdekSDK\Responses\InfoReportResponse
+ *
+ * @covers \CdekSDK\Requests\CallCourierRequest
+ * @covers \CdekSDK\Responses\CallCourierResponse
  *
  * @group integration
  */
@@ -283,9 +287,14 @@ class DeliveryRequestTest extends TestCase
             'SendCityCode' => 44,
             'SenderName' => 'Проверка Тестович',
             'SendPhone' => '+78001001010',
-        ]));
+        ])->setAddress(Address::create([
+            'Street' => 'Тестовая',
+            'House' => '8',
+            'Flat' => '32',
+        ])));
 
         $response = $this->getClient()->sendCallCourierRequest($request);
+        $this->assertInstanceOf(CallCourierResponse::class, $response);
 
         $this->assertFalse($response->hasErrors());
     }

@@ -1,6 +1,2 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<response>
-    <Call Number="5296692"/>
-    <Call Msg="Добавлено заказов 1"/>
-</response>
+<?xml version="1.0" encoding="UTF-8"?><response><CallCourier Date="2018-09-26"  Msg="Добавлено заявок 1"/><Call Number="1234567"/></response>
 

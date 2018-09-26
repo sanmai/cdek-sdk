@@ -47,14 +47,14 @@ class CallCourierResponseTest extends TestCase
 
         /** @var CallCourierResponse $response */
         foreach ($response->getNumbers() as $number) {
-            $this->assertSame('5296692', $number);
+            $this->assertSame('1234567', $number);
         }
 
         $this->assertCount(1, $response->getNumbers());
 
         foreach ($response->getMessages() as $message) {
             $this->assertFalse($message->isError());
-            $this->assertSame('Добавлено заказов 1', $message->getText());
+            $this->assertSame('Добавлено заявок 1', $message->getText());
         }
 
         $this->assertCount(1, $response->getMessages());

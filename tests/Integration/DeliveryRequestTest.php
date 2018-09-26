@@ -29,11 +29,13 @@ declare(strict_types=1);
 namespace Tests\CdekSDK\Integration;
 
 use CdekSDK\Common\Address;
+use CdekSDK\Common\CallCourier;
 use CdekSDK\Common\ChangePeriod;
 use CdekSDK\Common\City;
 use CdekSDK\Common\Item;
 use CdekSDK\Common\Order;
 use CdekSDK\Common\Package;
+use CdekSDK\Requests\CallCourierRequest;
 use CdekSDK\Requests\DeleteRequest;
 use CdekSDK\Requests\DeliveryRequest;
 use CdekSDK\Requests\InfoReportRequest;
@@ -266,5 +268,25 @@ class DeliveryRequestTest extends TestCase
 
         $this->assertInstanceOf(InfoReportResponse::class, $response);
         $this->assertCount(1, $response->getOrders());
+    }
+
+    /**
+     * @depends test_successful_request
+     */
+    public function test_call_courier(string $dispatchNumber)
+    {
+        $request = CallCourierRequest::create()->addCall(CallCourier::create([
+            'Date' => new \DateTimeImmutable('next tuesday'),
+            'DispatchNumber' => $dispatchNumber,
+            'TimeBeg' => new \DateTimeImmutable('10:00'),
+            'TimeEnd' => new \DateTimeImmutable('17:00'),
+            'SendCityCode' => 44,
+            'SenderName' => 'Проверка Тестович',
+            'SendPhone' => '+78001001010',
+        ]));
+
+        $response = $this->getClient()->sendCallCourierRequest($request);
+
+        $this->assertFalse($response->hasErrors());
     }
 }

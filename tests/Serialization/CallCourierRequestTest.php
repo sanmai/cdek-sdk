@@ -42,15 +42,15 @@ class CallCourierRequestTest extends TestCase
     {
         $request = CallCourierRequest::create()->addCall(CallCourier::create([
             'Comment' => 'foo',
-            'Date' => new \DateTimeImmutable('2017-03-14T14:27:46.628+07:00'),
+            'Date' => new \DateTime('2017-03-14T14:27:46.628+07:00'),
             'DispatchNumber' => '1039547805',
-            'LunchBeg' => new \DateTimeImmutable('14:00'),
-            'LunchEnd' => new \DateTimeImmutable('14:30'),
+            'LunchBeg' => new \DateTime('14:00'),
+            'LunchEnd' => new \DateTime('14:30'),
             'SendCityCode' => 44,
             'SenderName' => 'Testing',
             'SendPhone' => '+79138739944',
-            'TimeBeg' => new \DateTimeImmutable('10:00'),
-            'TimeEnd' => new \DateTimeImmutable('17:00'),
+            'TimeBeg' => new \DateTime('10:00'),
+            'TimeEnd' => new \DateTime('17:00'),
             'Weight' => '20',
             'IgnoreTime' => true,
         ])->setAddress(Address::create([

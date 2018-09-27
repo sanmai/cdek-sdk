@@ -36,6 +36,7 @@ use CdekSDK\Contracts\XmlRequest;
 use CdekSDK\Responses\FileResponse;
 use GuzzleHttp\Client as GuzzleClient;
 use GuzzleHttp\ClientInterface;
+use GuzzleHttp\Exception\ServerException;
 use JMS\Serializer\SerializerInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Log\LoggerAwareInterface;
@@ -49,6 +50,7 @@ use Psr\Log\LoggerAwareTrait;
  * @method Responses\DeliveryResponse                          sendDeliveryRequest(Requests\DeliveryRequest $request)
  * @method Responses\CallCourierResponse                       sendCallCourierRequest(Requests\CallCourierRequest $request)
  * @method Responses\ScheduleResponse                          sendScheduleRequest(Requests\ScheduleRequest $request)
+ * @method Responses\PreAlertResponse                          sendPreAlertRequest(Requests\PreAlertRequest $request, \DateTimeInterface $plannedDate)
  * @method Responses\InfoReportResponse                        sendInfoReportRequest(Requests\InfoReportRequest $request)
  * @method Responses\CalculationResponse                       sendCalculationRequest(Requests\CalculationRequest $request)
  * @method Responses\StatusReportResponse                      sendStatusReportRequest(Requests\StatusReportRequest $request)
@@ -92,14 +94,26 @@ final class CdekClient implements Contracts\Client, LoggerAwareInterface
                 $requestDate = new \DateTimeImmutable();
             }
 
+            if ($requestDate instanceof \DateTime) {
+                $requestDate = \DateTimeImmutable::createFromMutable($requestDate);
+            }
+
             $request->date($requestDate)->credentials($this->account, $this->getSecure($requestDate));
         }
 
-        $response = $this->http->request(
-            $request->getMethod(),
-            $request->getAddress(),
-            $this->extractOptions($request)
-        );
+        try {
+            $response = $this->http->request(
+                $request->getMethod(),
+                $request->getAddress(),
+                $this->extractOptions($request)
+            );
+        } catch (ServerException $exception) {
+            // Новые методы СДЭК дают 500 ошибку, вместе с тем отдавая XML с ошибкой
+            if (!$response = $exception->getResponse()) {
+                // В случае ошибок без содержимого кидаем исключение дальше
+                throw $exception;
+            }
+        }
 
         return $this->deserialize($request, $response);
     }
@@ -152,7 +166,20 @@ final class CdekClient implements Contracts\Client, LoggerAwareInterface
             ? $response->getHeader('Content-Type')[0]
             : '';
 
-        return 0 === strpos($header, 'text/xml') || 0 === strpos($header, 'application/json');
+        // Разбиваем условие на части чтобы лучше видеть покрытие тестами
+        if (0 === strpos($header, 'text/xml')) {
+            return true;
+        }
+
+        if (0 === strpos($header, 'application/xml')) {
+            return true;
+        }
+
+        if (0 === strpos($header, 'application/json')) {
+            return true;
+        }
+
+        return false;
     }
 
     private function extractOptions(Request $request): array

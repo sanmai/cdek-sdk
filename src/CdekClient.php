@@ -142,7 +142,7 @@ final class CdekClient implements Contracts\Client, LoggerAwareInterface
             return false;
         }
 
-        return strpos($response->getHeader('Content-Disposition')[0], 'attachment') !== false;
+        return strpos($response->getHeader('Content-Disposition')[0], 'attachment') === 0;
     }
 
     private function isTextResponse(ResponseInterface $response): bool

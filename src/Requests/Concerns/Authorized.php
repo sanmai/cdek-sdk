@@ -53,6 +53,7 @@ trait Authorized
     /**
      * @JMS\XmlAttribute
      * @JMS\SerializedName("Secure")
+     * @JMS\Type("string")
      *
      * @var string
      */

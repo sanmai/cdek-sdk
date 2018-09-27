@@ -78,7 +78,7 @@ class CalculationRequestTest extends TestCase
             $request->credentials('foo', 'bar');
         }
 
-        $request->setSenderCityPostCode('295000')
+        $request = $request->setSenderCityPostCode('295000')
         ->setReceiverCityPostCode('652632')
         ->setTariffId(1)
         ->addPackage([
@@ -111,7 +111,7 @@ class CalculationRequestTest extends TestCase
     {
         $request = new CalculationRequest();
 
-        $request->setSenderCityId(1)
+        $request = $request->setSenderCityId(1)
             ->setReceiverCityId(2)
             ->setModeId(3)
             ->addAdditionalService(4)

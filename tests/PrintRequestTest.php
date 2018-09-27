@@ -50,7 +50,7 @@ class PrintRequestTest extends TestCase
             const METHOD = '';
         };
 
-        $request->addOrder(Order::create([
+        $request = $request->addOrder(Order::create([
             'DispatchNumber' => 'testing',
         ]));
 

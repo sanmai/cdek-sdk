@@ -28,6 +28,7 @@ declare(strict_types=1);
 
 namespace CdekSDK\Responses;
 
+use CdekSDK\Contracts\HasErrorCode;
 use CdekSDK\Responses\Types\Error;
 use CdekSDK\Responses\Types\Result;
 use JMS\Serializer\Annotation as JMS;
@@ -78,7 +79,7 @@ final class CalculationResponse
     /**
      * @phan-suppress PhanDeprecatedProperty
      *
-     * @return Error[]
+     * @return HasErrorCode[]|Error[]
      */
     public function getErrors(): array
     {

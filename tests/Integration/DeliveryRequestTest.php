@@ -185,12 +185,12 @@ class DeliveryRequestTest extends TestCase
 
         if ($response instanceof PrintErrorResponse) {
             foreach ($response->getMessages() as $message) {
-                if ($message->getCode() == 'ERR_API') {
-                    $this->markTestSkipped($message->getText());
+                if ($message->getErrorCode() == 'ERR_API') {
+                    $this->markTestSkipped($message->getMessage());
                 }
 
-                if ($message->isError()) {
-                    $this->fail($message->getText());
+                if ($message->getErrorCode()) {
+                    $this->fail($message->getMessage());
                 }
             }
         }
@@ -245,12 +245,12 @@ class DeliveryRequestTest extends TestCase
 
         if ($response instanceof PrintErrorResponse) {
             foreach ($response->getMessages() as $message) {
-                if ($message->getCode() == 'ERR_API') {
-                    $this->markTestSkipped($message->getText());
+                if ($message->getErrorCode() == 'ERR_API') {
+                    $this->markTestSkipped($message->getMessage());
                 }
 
-                if ($message->isError()) {
-                    $this->fail($message->getText());
+                if ($message->getErrorCode()) {
+                    $this->fail($message->getMessage());
                 }
             }
         }

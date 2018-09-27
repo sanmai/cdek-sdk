@@ -31,6 +31,9 @@ namespace CdekSDK\Responses\Types;
 use CdekSDK\Contracts\HasErrorCode;
 use JMS\Serializer\Annotation as JMS;
 
+/**
+ * @deprecated use interface methods
+ */
 final class Error implements HasErrorCode
 {
     /**

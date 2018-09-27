@@ -29,6 +29,7 @@ declare(strict_types=1);
 namespace CdekSDK\Responses;
 
 use CdekSDK\Common\CallCourier;
+use CdekSDK\Contracts\HasErrorCode;
 use CdekSDK\Responses\Types\Message;
 use JMS\Serializer\Annotation as JMS;
 use function Pipeline\map;
@@ -86,7 +87,7 @@ final class CallCourierResponse
     }
 
     /**
-     * @return \Traversable|Message[]
+     * @return \Traversable|HasErrorCode[]
      */
     public function getErrors()
     {

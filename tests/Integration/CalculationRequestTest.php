@@ -76,8 +76,8 @@ class CalculationRequestTest extends TestCase
         $this->assertTrue($response->hasErrors());
 
         foreach ($response->getErrors() as $error) {
-            $this->assertGreaterThan(0, $error->getCode());
-            $this->assertNotEmpty($error->getText());
+            $this->assertGreaterThan(0, (int) $error->getErrorCode());
+            $this->assertNotEmpty($error->getMessage());
         }
     }
 }

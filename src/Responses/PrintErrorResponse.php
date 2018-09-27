@@ -29,6 +29,7 @@ declare(strict_types=1);
 namespace CdekSDK\Responses;
 
 use CdekSDK\Common\Order;
+use CdekSDK\Contracts\HasErrorCode;
 use CdekSDK\Responses\Types\Message;
 use CdekSDK\Responses\Types\PrintError;
 use JMS\Serializer\Annotation as JMS;
@@ -58,7 +59,7 @@ final class PrintErrorResponse
     }
 
     /**
-     * @return \Traversable|Message[]
+     * @return \Traversable|Message[]|HasErrorCode[]
      */
     public function getMessages()
     {

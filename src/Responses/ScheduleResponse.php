@@ -29,6 +29,7 @@ declare(strict_types=1);
 namespace CdekSDK\Responses;
 
 use CdekSDK\Common\Order;
+use CdekSDK\Contracts\HasErrorCode;
 use CdekSDK\Requests\ScheduleRequest;
 use CdekSDK\Responses\Types\Message;
 use JMS\Serializer\Annotation as JMS;
@@ -74,7 +75,7 @@ final class ScheduleResponse
     }
 
     /**
-     * @return \Traversable|Message[]
+     * @return \Traversable|HasErrorCode[]
      */
     public function getErrors()
     {

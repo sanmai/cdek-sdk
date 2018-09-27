@@ -21,6 +21,7 @@
   - [x] [вызов курьера](#%D0%92%D1%8B%D0%B7%D0%BE%D0%B2-%D0%BA%D1%83%D1%80%D1%8C%D0%B5%D1%80%D0%B0)
  - [x] [выбор базового URL интерфейса](#%D0%97%D0%B0%D0%BC%D0%B5%D0%BD%D0%B0-%D0%B1%D0%B0%D0%B7%D0%BE%D0%B2%D0%BE%D0%B3%D0%BE-url-%D0%B8%D0%BD%D1%82%D0%B5%D1%80%D1%84%D0%B5%D0%B9%D1%81%D0%B0)
  - [x] [сервис-провайдер для Laravel 5.1+](#%D0%A1%D0%B5%D1%80%D0%B2%D0%B8%D1%81-%D0%BF%D1%80%D0%BE%D0%B2%D0%B0%D0%B9%D0%B4%D0%B5%D1%80-%D0%B4%D0%BB%D1%8F-laravel-51)
+ - [x] отладка получаемых ответов
 
 Работа с большинством методов API возможна только при наличии договора со СДЭК. 
 
@@ -447,6 +448,16 @@ $client = new \CdekSDK\CdekClient($account, $password, new \GuzzleHttp\Client([
         'password' => env('CDEK_PASSWORD', ''),
     ],
 ```
+
+### Отладка получаемых ответов
+
+Посмотреть, что конкретно отвечает СДЭК на наши запросы можно используя [стандартный PSR-3 логгер](https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-3-logger-interface.md), так, как, например, [Monolog](https://github.com/Seldaek/monolog).
+
+```
+$client->setLogger($monolog);
+```
+
+Текстовые ответы в исходном виде идут с уровнем `DEBUG`.
 
 ## Замечания
 

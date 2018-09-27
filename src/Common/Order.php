@@ -678,6 +678,13 @@ final class Order implements HasErrorCode
         return $this->attempts;
     }
 
+    public function addAttempt(Attempt $attempt)
+    {
+        $this->attempts[] = $attempt;
+
+        return $this;
+    }
+
     public function getWeight(): float
     {
         return (float) $this->Weight;

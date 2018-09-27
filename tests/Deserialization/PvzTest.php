@@ -60,4 +60,13 @@ class PvzTest extends TestCase
         $this->assertSame(0, $pvz->WeightLimit->getWeightMin());
         $this->assertSame(30, $pvz->WeightLimit->getWeightMax());
     }
+
+    public function test_cyrillic_booleans()
+    {
+        $pvz = $this->getSerializer()->deserialize('<Pvz HaveCashless="есть" AllowedCod="нет" />', Pvz::class, 'xml');
+
+        /** @var $pvz Pvz */
+        $this->assertTrue($pvz->HaveCashless);
+        $this->assertFalse($pvz->AllowedCod);
+    }
 }

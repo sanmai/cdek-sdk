@@ -153,6 +153,23 @@ final class CdekClient implements Contracts\Client, LoggerAwareInterface
         return $this->serializer->deserialize($responseBody, $request->getResponseClassName(), $request->getSerializationFormat());
     }
 
+    private function serialize(XmlRequest $request): string
+    {
+        try {
+            $requestBody = $this->serializer->serialize($request, XmlRequest::SERIALIZATION_XML);
+
+            if ($this->logger) {
+                $this->logger->debug($requestBody);
+            }
+
+            return $requestBody;
+            // @codeCoverageIgnoreStart
+        } catch (\Doctrine\Common\Annotations\AnnotationException $e) {
+            throw new \RuntimeException('Serialization failed. Have you forgotten to initialize an autoloader for AnnotationRegistry?', 0, $e);
+        }
+        // @codeCoverageIgnoreEnd
+    }
+
     private function getSecure(\DateTimeInterface $date): string
     {
         return md5($date->format('Y-m-d')."&{$this->password}");
@@ -204,17 +221,11 @@ final class CdekClient implements Contracts\Client, LoggerAwareInterface
         }
 
         if ($request instanceof XmlRequest) {
-            try {
-                return [
-                    'form_params' => [
-                        'xml_request' => $this->serializer->serialize($request, 'xml'),
-                    ],
-                ];
-                // @codeCoverageIgnoreStart
-            } catch (\Doctrine\Common\Annotations\AnnotationException $e) {
-                throw new \RuntimeException('Serialization failed. Have you forgotten to initialize an autoloader for AnnotationRegistry?', 0, $e);
-            }
-            // @codeCoverageIgnoreEnd
+            return [
+                'form_params' => [
+                    'xml_request' => $this->serialize($request),
+                ],
+            ];
         }
 
         if ($request instanceof JsonRequest) {

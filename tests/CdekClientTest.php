@@ -174,8 +174,9 @@ class CdekClientTest extends TestCase
 
         /** @var $response InfoReportResponse */
         $this->assertInstanceOf(InfoReportResponse::class, $response);
-        $this->assertSame(1, $logger->log->countRecordsWithLevel(LogLevel::DEBUG));
+        $this->assertSame(2, $logger->log->countRecordsWithLevel(LogLevel::DEBUG));
         $this->assertTrue($logger->log->hasRecordsWithMessage(FixtureLoader::load('InfoReportFailed.xml')));
+        $this->assertTrue($logger->log->hasRecordsWithPartialMessage('<InfoRequest'));
     }
 
     public function test_fails_on_unknown_method()

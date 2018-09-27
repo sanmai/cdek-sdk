@@ -236,7 +236,7 @@ if ($response instanceof PrintErrorResponse) {
 
 Также можно указывать в запросе сами объекты заказов, полученные из других методов. Или же можно создать заказ прямо на месте, имея известные `Number` и `Date`:
 
-```
+```php
 $request = new PrintReceiptsRequest();
 $request->addOrder($orderFromAnotherResponse);
 $request->addOrder(Order::withNumberAndDate($number, new \DateTime($dateString)));
@@ -380,7 +380,7 @@ if ($response->hasErrors()) {
 
 Обратите внимание что дата планируемой передачи идёт не объекте запроса, а как аргумент при отправке запроса.
 
-```
+```php
 use CdekSDK\Common\Order;
 use CdekSDK\Requests\PreAlertRequest;
 
@@ -522,7 +522,7 @@ $client = new \CdekSDK\CdekClient($account, $password, new \GuzzleHttp\Client([
 
 Посмотреть, что конкретно отвечает СДЭК на наши запросы и какие запросы мы посылаем сами можно используя [стандартный PSR-3 логгер](https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-3-logger-interface.md), так, как, например, [Monolog](https://github.com/Seldaek/monolog).
 
-```
+```php
 $client->setLogger($monolog);
 ```
 

@@ -34,8 +34,7 @@ use Tests\CdekSDK\Fixtures\FixtureLoader;
 
 /**
  * @covers \CdekSDK\Responses\CallCourierResponse
- * @covers \CdekSDK\Responses\Types\Result
- * @covers \CdekSDK\Responses\Types\Error
+ * @covers \CdekSDK\Common\CallCourier
  */
 class CallCourierResponseTest extends TestCase
 {

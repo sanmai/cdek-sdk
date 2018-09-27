@@ -97,6 +97,14 @@ final class Attempt
     protected $Address;
 
     /**
+     * @JMS\XmlList(entry = "Package", inline = true)
+     * @JMS\Type("array<CdekSDK\Common\Package>")
+     *
+     * @var Package[]|array
+     */
+    protected $packages = [];
+
+    /**
      * @JMS\XmlAttribute
      * @JMS\SerializedName("ScheduleCode")
      * @JMS\Type("int")
@@ -117,6 +125,13 @@ final class Attempt
      * @deprecated
      */
     public $ScheduleDescription;
+
+    public function addPackage(Package $package)
+    {
+        $this->packages[] = $package;
+
+        return $this;
+    }
 
     /**
      * @deprecated

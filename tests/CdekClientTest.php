@@ -34,17 +34,21 @@ use CdekSDK\Contracts\Request;
 use CdekSDK\Contracts\ShouldAuthorize;
 use CdekSDK\Contracts\XmlRequest;
 use CdekSDK\Requests\CalculationRequest;
+use CdekSDK\Requests\InfoReportRequest;
 use CdekSDK\Requests\PrintReceiptsRequest;
 use CdekSDK\Requests\PvzListRequest;
 use CdekSDK\Requests\StatusReportRequest;
 use CdekSDK\Responses\CalculationResponse;
 use CdekSDK\Responses\FileResponse;
+use CdekSDK\Responses\InfoReportResponse;
 use CdekSDK\Responses\PvzListResponse;
 use CdekSDK\Responses\StatusReportResponse;
+use Gamez\Psr\Log\TestLogger;
 use GuzzleHttp\ClientInterface;
 use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\StreamInterface;
+use Psr\Log\LogLevel;
 use Tests\CdekSDK\Fixtures\FixtureLoader;
 
 /**
@@ -128,6 +132,19 @@ class CdekClientTest extends TestCase
         $this->assertInstanceOf(FileResponse::class, $response);
 
         $this->assertSame('%PDF', (string) $response->getBody());
+    }
+
+    public function test_client_can_log_response()
+    {
+        $client = new CdekClient('foo', 'bar', $this->getHttpClient('text/xml', FixtureLoader::load('InfoReportFailed.xml')));
+        $client->setLogger($logger = new TestLogger());
+
+        $response = $client->sendInfoReportRequest(new InfoReportRequest());
+
+        /** @var $response InfoReportResponse */
+        $this->assertInstanceOf(InfoReportResponse::class, $response);
+        $this->assertSame(1, $logger->log->countRecordsWithLevel(LogLevel::DEBUG));
+        $this->assertTrue($logger->log->hasRecordsWithMessage(FixtureLoader::load('InfoReportFailed.xml')));
     }
 
     public function test_fails_on_unknown_method()

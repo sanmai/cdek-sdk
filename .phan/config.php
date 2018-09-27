@@ -299,6 +299,7 @@ return [
         'vendor/doctrine/annotations/lib',
         'vendor/sanmai/pipeline/src/',
         'vendor/laravel/framework/src/',
+        'vendor/psr/',
     ],
 
     // A list of individual files to include in analysis

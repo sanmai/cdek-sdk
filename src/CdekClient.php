@@ -38,6 +38,8 @@ use GuzzleHttp\Client as GuzzleClient;
 use GuzzleHttp\ClientInterface;
 use JMS\Serializer\SerializerInterface;
 use Psr\Http\Message\ResponseInterface;
+use Psr\Log\LoggerAwareInterface;
+use Psr\Log\LoggerAwareTrait;
 
 /**
  * Class CdekClient.
@@ -52,8 +54,10 @@ use Psr\Http\Message\ResponseInterface;
  * @method Responses\FileResponse|Responses\PrintErrorResponse sendPrintReceiptsRequest(Requests\PrintReceiptsRequest $request)
  * @method Responses\FileResponse|Responses\PrintErrorResponse sendPrintLabelsRequest(Requests\PrintLabelsRequest $request)
  */
-final class CdekClient implements Contracts\Client
+final class CdekClient implements Contracts\Client, LoggerAwareInterface
 {
+    use LoggerAwareTrait;
+
     const STANDARD_BASE_URL = 'https://integration.cdek.ru';
 
     /** @var ClientInterface */
@@ -118,7 +122,13 @@ final class CdekClient implements Contracts\Client
             return $response;
         }
 
-        return $this->serializer->deserialize((string) $response->getBody(), $request->getResponseClassName(), $request->getSerializationFormat());
+        $responseBody = (string) $response->getBody();
+
+        if ($this->logger) {
+            $this->logger->debug($responseBody);
+        }
+
+        return $this->serializer->deserialize($responseBody, $request->getResponseClassName(), $request->getSerializationFormat());
     }
 
     private function getSecure(\DateTimeInterface $date): string

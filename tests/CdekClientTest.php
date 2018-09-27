@@ -56,6 +56,8 @@ use Tests\CdekSDK\Fixtures\FixtureLoader;
  */
 class CdekClientTest extends TestCase
 {
+    private $lastRequestOptions = [];
+
     private function getHttpClient($contentType, $responseBody, $extraHeaders = [])
     {
         $extraHeaders['Content-Type'] = $contentType;
@@ -73,7 +75,11 @@ class CdekClientTest extends TestCase
         $response->method('getBody')->willReturn($stream);
 
         $http = $this->createMock(ClientInterface::class);
-        $http->method('request')->willReturn($response);
+        $http->method('request')->will($this->returnCallback(function ($method, $address, array $options) use ($response) {
+            $this->lastRequestOptions = $options;
+
+            return $response;
+        }));
 
         return $http;
     }
@@ -84,6 +90,9 @@ class CdekClientTest extends TestCase
         $response = $client->sendPrintReceiptsRequest(new PrintReceiptsRequest());
 
         $this->assertSame('testing', (string) $response->getBody());
+
+        $this->assertArrayHasKey('form_params', $this->lastRequestOptions);
+        $this->assertArrayHasKey('xml_request', $this->lastRequestOptions['form_params']);
     }
 
     public function test_client_can_read_xml_response()
@@ -94,6 +103,9 @@ class CdekClientTest extends TestCase
         /** @var $response StatusReportResponse */
         $this->assertInstanceOf(StatusReportResponse::class, $response);
         $this->assertSame('1000028000', $response->getOrders()[0]->getDispatchNumber());
+
+        $this->assertArrayHasKey('form_params', $this->lastRequestOptions);
+        $this->assertArrayHasKey('xml_request', $this->lastRequestOptions['form_params']);
     }
 
     public function test_client_can_read_json_response()
@@ -104,6 +116,11 @@ class CdekClientTest extends TestCase
         /** @var $response CalculationResponse */
         $this->assertInstanceOf(CalculationResponse::class, $response);
         $this->assertTrue($response->hasErrors());
+
+        $this->assertArrayHasKey('body', $this->lastRequestOptions);
+        $this->assertArrayHasKey('headers', $this->lastRequestOptions);
+        $this->assertArrayHasKey('Content-Type', $this->lastRequestOptions['headers']);
+        $this->assertSame('application/json', $this->lastRequestOptions['headers']['Content-Type']);
     }
 
     public function test_client_can_handle_param_request()
@@ -114,6 +131,8 @@ class CdekClientTest extends TestCase
         /** @var $response PvzListResponse */
         $this->assertInstanceOf(PvzListResponse::class, $response);
         $this->assertEmpty($response->getItems());
+
+        $this->assertArrayHasKey('query', $this->lastRequestOptions);
     }
 
     public function test_client_can_handle_any_request()
@@ -121,6 +140,8 @@ class CdekClientTest extends TestCase
         $client = new CdekClient('foo', 'bar', $this->getHttpClient('text/plain', 'example'));
         $response = $client->sendRequest($this->createMock(Request::class));
         $this->assertInstanceOf(ResponseInterface::class, $response);
+
+        $this->assertEmpty($this->lastRequestOptions);
     }
 
     public function test_client_can_handle_attachments()
@@ -132,6 +153,7 @@ class CdekClientTest extends TestCase
         $this->assertInstanceOf(FileResponse::class, $response);
 
         $this->assertSame('%PDF', (string) $response->getBody());
+        $this->assertEmpty($this->lastRequestOptions);
     }
 
     public function test_client_can_log_response()
@@ -222,13 +244,16 @@ class CdekClientTest extends TestCase
 
             public function getParams(): array
             {
-                throw new \LogicException();
+                return [
+                    'foo' => 'bar',
+                ];
             }
         };
 
-        $client = new CdekClient('', '');
-
-        $this->expectException(\LogicException::class);
+        $client = new CdekClient('', '', $this->getHttpClient('text/plain', 'example'));
         $client->sendRequest($request);
+
+        $this->assertArrayHasKey('form_params', $this->lastRequestOptions);
+        $this->assertSame('bar', $this->lastRequestOptions['form_params']['foo']);
     }
 }

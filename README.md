@@ -17,8 +17,9 @@
   - [x] [удаление заказов](#%D0%A3%D0%B4%D0%B0%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5-%D0%B7%D0%B0%D0%BA%D0%B0%D0%B7%D0%B0)
   - [x] [получение информации по заказам (отчёт «Информация по заказам»)](#%D0%9E%D1%82%D1%87%D0%B5%D1%82-%D0%98%D0%BD%D1%84%D0%BE%D1%80%D0%BC%D0%B0%D1%86%D0%B8%D1%8F-%D0%BF%D0%BE-%D0%B7%D0%B0%D0%BA%D0%B0%D0%B7%D0%B0%D0%BC)
   - [x] [трекинг заказов (отчёт «Статусы заказов»)](#%D0%A2%D1%80%D0%B5%D0%BA%D0%B8%D0%BD%D0%B3)
-  - [ ] прозвон получателя
+  - [x] прозвон получателя
   - [x] [вызов курьера](#%D0%92%D1%8B%D0%B7%D0%BE%D0%B2-%D0%BA%D1%83%D1%80%D1%8C%D0%B5%D1%80%D0%B0)
+  - [ ] создание преалерта
  - [x] [выбор базового URL интерфейса](#%D0%97%D0%B0%D0%BC%D0%B5%D0%BD%D0%B0-%D0%B1%D0%B0%D0%B7%D0%BE%D0%B2%D0%BE%D0%B3%D0%BE-url-%D0%B8%D0%BD%D1%82%D0%B5%D1%80%D1%84%D0%B5%D0%B9%D1%81%D0%B0)
  - [x] [сервис-провайдер для Laravel 5.1+](#%D0%A1%D0%B5%D1%80%D0%B2%D0%B8%D1%81-%D0%BF%D1%80%D0%BE%D0%B2%D0%B0%D0%B9%D0%B4%D0%B5%D1%80-%D0%B4%D0%BB%D1%8F-laravel-51)
  - [x] [отладка получаемых ответов](#%D0%9E%D1%82%D0%BB%D0%B0%D0%B4%D0%BA%D0%B0-%D0%BF%D0%BE%D0%BB%D1%83%D1%87%D0%B0%D0%B5%D0%BC%D1%8B%D1%85-%D0%BE%D1%82%D0%B2%D0%B5%D1%82%D0%BE%D0%B2)
@@ -333,6 +334,46 @@ foreach ($response->getNumbers() as $number) {
     $number; // ...
 }
 ```
+
+### Регистрация информации о результате прозвона
+
+```php
+use CdekSDK\Common\Attempt;
+use CdekSDK\Common\Item;
+use CdekSDK\Common\Order;
+use CdekSDK\Common\Package;
+use CdekSDK\Requests\ScheduleRequest;
+
+$request = new ScheduleRequest();
+$request = $request->addOrder(Order::create([
+    'DispatchNumber' => '123456',
+])->addAttempt(Attempt::create([
+    'ID' => 500,
+    'Date' => new \DateTimeImmutable('next Monday'),
+])->addPackage(Package::create([
+    'Number' => 'TEST-123456',
+    'BarCode' => 'TEST-123456',
+    'Weight' => 500,
+])->addItem(new Item([
+    'WareKey' => 'NN0001',
+    'Cost' => 500,
+    'Payment' => 0,
+    'Weight' => 120,
+    'Amount' => 2,
+    'Comment' => 'Test item',
+])))));
+
+$response = $client->sendScheduleRequest($request);
+
+if ($response->hasErrors()) {
+    foreach ($response->getErrors() as $error) {
+        // Обрабатываем ошибки
+        $error->getErrorCode();
+        $error->getMessage();
+    }
+}
+```
+
 
 ### Трекинг
 

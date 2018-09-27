@@ -271,6 +271,8 @@ final class Pvz
 
     /**
      * @JMS\PostDeserialize
+     *
+     * @deprecated do not use, will be removed
      */
     public function postDeserialize()
     {

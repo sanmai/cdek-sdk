@@ -82,6 +82,8 @@ final class DeliveryResponse
 
     /**
      * @JMS\PostDeserialize
+     *
+     * @deprecated do not use, will be removed
      */
     public function filterOrders()
     {

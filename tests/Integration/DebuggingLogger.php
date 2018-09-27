@@ -28,36 +28,15 @@ declare(strict_types=1);
 
 namespace Tests\CdekSDK\Integration;
 
-use CdekSDK\CdekClient;
-use GuzzleHttp\Client as GuzzleClient;
+use Psr\Log\LoggerInterface;
+use Psr\Log\LoggerTrait;
 
-abstract class TestCase extends \PHPUnit\Framework\TestCase
+class DebuggingLogger implements LoggerInterface
 {
-    private $client;
+    use LoggerTrait;
 
-    protected function setUp()
+    public function log($level, $message, array $context = [])
     {
-        if (false === getenv('CDEK_ACCOUNT')) {
-            $this->markTestSkipped('Integration testing disabled (CDEK_ACCOUNT missing).');
-        }
-
-        if (false === getenv('CDEK_PASSWORD')) {
-            $this->markTestSkipped('Integration testing disabled (CDEK_PASSWORD missing).');
-        }
-
-        $http = false === getenv('CDEK_BASE_URL') ? null : new GuzzleClient([
-            'base_uri' => getenv('CDEK_BASE_URL'),
-        ]);
-
-        $this->client = new CdekClient(getenv('CDEK_ACCOUNT'), getenv('CDEK_PASSWORD'), $http);
-
-        if (in_array('--debug', $_SERVER['argv'])) {
-            $this->client->setLogger(new DebuggingLogger());
-        }
-    }
-
-    protected function getClient(): CdekClient
-    {
-        return $this->client;
+        fwrite(\STDERR, "\n\n{$message}\n\n");
     }
 }

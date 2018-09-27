@@ -28,10 +28,10 @@ declare(strict_types=1);
 
 namespace CdekSDK\Responses\Types;
 
-use CdekSDK\Contracts\HasMessage;
+use CdekSDK\Contracts\HasErrorCode;
 use JMS\Serializer\Annotation as JMS;
 
-final class PrintError implements HasMessage
+final class PrintError implements HasErrorCode
 {
     /**
      * @JMS\XmlAttribute

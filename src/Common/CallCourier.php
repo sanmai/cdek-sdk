@@ -28,6 +28,7 @@ declare(strict_types=1);
 
 namespace CdekSDK\Common;
 
+use CdekSDK\Contracts\HasErrorCode;
 use JMS\Serializer\Annotation as JMS;
 
 /**
@@ -35,7 +36,7 @@ use JMS\Serializer\Annotation as JMS;
  *
  * @JMS\XmlRoot(name="Call")
  */
-final class CallCourier
+final class CallCourier implements HasErrorCode
 {
     use Fillable;
 

@@ -28,13 +28,13 @@ declare(strict_types=1);
 
 namespace CdekSDK\Common;
 
-use CdekSDK\Contracts\HasMessage;
+use CdekSDK\Contracts\HasErrorCode;
 use JMS\Serializer\Annotation as JMS;
 
 /**
  * Class Order.
  */
-final class Order implements HasMessage
+final class Order implements HasErrorCode
 {
     use Fillable;
 

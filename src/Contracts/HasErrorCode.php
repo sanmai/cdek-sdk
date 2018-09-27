@@ -26,44 +26,9 @@
 
 declare(strict_types=1);
 
-namespace CdekSDK\Responses\Types;
+namespace CdekSDK\Contracts;
 
-use CdekSDK\Contracts\HasErrorCode;
-use JMS\Serializer\Annotation as JMS;
-
-final class Error implements HasErrorCode
+interface HasErrorCode extends HasMessage
 {
-    /**
-     * @JMS\Type("int")
-     *
-     * @var int
-     */
-    private $code;
-
-    /**
-     * @JMS\Type("string")
-     *
-     * @var string
-     */
-    private $text;
-
-    public function getCode(): int
-    {
-        return $this->code;
-    }
-
-    public function getText(): string
-    {
-        return $this->text;
-    }
-
-    public function getErrorCode(): string
-    {
-        return (string) $this->getCode();
-    }
-
-    public function getMessage(): string
-    {
-        return $this->getText();
-    }
+    public function getErrorCode(): string;
 }

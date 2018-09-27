@@ -28,7 +28,7 @@ declare(strict_types=1);
 
 namespace CdekSDK\Responses\Types;
 
-use CdekSDK\Contracts\HasMessage;
+use CdekSDK\Contracts\HasErrorCode;
 use JMS\Serializer\Annotation as JMS;
 
 /**
@@ -38,7 +38,7 @@ use JMS\Serializer\Annotation as JMS;
  *
  * <DeliveryRequest Number="" ErrorCode="ERR_NEED_ATTRIBUTE" Msg="Не задано значение атрибута:NUMBER"/>
  */
-final class DeliveryRequest implements HasMessage
+final class DeliveryRequest implements HasErrorCode
 {
     /**
      * @JMS\XmlAttribute

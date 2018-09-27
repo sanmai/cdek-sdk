@@ -71,14 +71,7 @@ final class CallCourierResponse
      */
     public function getMessages()
     {
-        return map(function () {
-            yield from $this->failed;
-            yield from $this->successful;
-        })->map(function (CallCourier $call) {
-            if ($call->getMessage()) {
-                yield new Message($call->getMessage(), $call->getErrorCode());
-            }
-        });
+        return Message::from($this->failed, $this->successful);
     }
 
     public function hasErrors(): bool

@@ -28,7 +28,10 @@ declare(strict_types=1);
 
 namespace CdekSDK\Responses\Types;
 
-final class Message
+use CdekSDK\Contracts\HasErrorCode;
+use function Pipeline\map;
+
+final class Message implements HasErrorCode
 {
     /** @var string */
     private $text;
@@ -59,5 +62,28 @@ final class Message
     public function isError(): bool
     {
         return (bool) $this->errorCode;
+    }
+
+    public function getErrorCode(): string
+    {
+        return $this->getCode();
+    }
+
+    public function getMessage(): string
+    {
+        return $this->getText();
+    }
+
+    public static function from(...$inputs): \Traversable
+    {
+        return map(function () use ($inputs) {
+            foreach ($inputs as $input) {
+                yield from $input;
+            }
+        })->map(function (HasErrorCode $item) {
+            if ($item->getMessage()) {
+                yield new Message($item->getMessage(), $item->getErrorCode());
+            }
+        });
     }
 }

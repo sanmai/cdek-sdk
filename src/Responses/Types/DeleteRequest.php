@@ -28,7 +28,7 @@ declare(strict_types=1);
 
 namespace CdekSDK\Responses\Types;
 
-use CdekSDK\Contracts\HasMessage;
+use CdekSDK\Contracts\HasErrorCode;
 use CdekSDK\Requests\Concerns\OrdersAware;
 use JMS\Serializer\Annotation as JMS;
 
@@ -40,7 +40,7 @@ use JMS\Serializer\Annotation as JMS;
  * <DeleteRequest Msg="Удалено заказов:1" ><Order Number="TEST-123456" Msg="Заказ удален" /></DeleteRequest>
  * <DeleteRequest ErrorCode="ERR_NEED_ATTRIBUTE" Msg="Отсутствие обязательного атрибута: NUMBER"/>
  */
-final class DeleteRequest implements HasMessage
+final class DeleteRequest implements HasErrorCode
 {
     use OrdersAware;
 

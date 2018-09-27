@@ -33,7 +33,6 @@ use CdekSDK\Responses\Types\DeliveryRequest;
 use CdekSDK\Responses\Types\Message;
 use JMS\Serializer\Annotation as JMS;
 use function Pipeline\fromArray;
-use function Pipeline\map;
 
 /**
  * Class DeliveryResponse.
@@ -66,13 +65,6 @@ final class DeliveryResponse
     private $completeOrders;
 
     /**
-     * @JMS\Exclude
-     *
-     * @var \Traversable|Message[]
-     */
-    private $messages;
-
-    /**
      * @return \Traversable|Order[]
      */
     public function getOrders()
@@ -90,18 +82,6 @@ final class DeliveryResponse
         $this->completeOrders = fromArray($this->orders)->filter(function (Order $order) {
             return (bool) $order->getDispatchNumber();
         });
-
-        $this->messages = map(function () {
-            yield from fromArray($this->orders)->map(function (Order $input) {
-                return $input->getMessage();
-            })->filter()->map(function ($messageText) {
-                yield new Message($messageText);
-            });
-
-            yield from fromArray($this->requests)->map(function (DeliveryRequest $input) {
-                yield new Message($input->getMessage(), $input->getErrorCode());
-            });
-        });
     }
 
     /**
@@ -109,6 +89,6 @@ final class DeliveryResponse
      */
     public function getMessages()
     {
-        return $this->messages;
+        return Message::from($this->orders, $this->requests);
     }
 }

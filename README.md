@@ -4,13 +4,13 @@
 [![Build Status](https://travis-ci.org/sanmai/cdek-sdk.svg?branch=master)](https://travis-ci.org/sanmai/cdek-sdk)
 [![Coverage Status](https://coveralls.io/repos/github/sanmai/cdek-sdk/badge.svg?branch=master)](https://coveralls.io/github/sanmai/cdek-sdk?branch=master)
 
-Это будет самое полное SDK для [интеграции с программным комплексом СДЭК](https://www.cdek.ru/clients/integrator.html).
+Перед вами полное SDK для [интеграции с программным комплексом СДЭК](https://www.cdek.ru/clients/integrator.html).
 
 Возможности:
 
 - [x] [расчёт стоимости доставки](#%D0%A0%D0%B0%D1%81%D1%87%D1%91%D1%82-%D1%81%D1%82%D0%BE%D0%B8%D0%BC%D0%BE%D1%81%D1%82%D0%B8-%D0%B4%D0%BE%D1%81%D1%82%D0%B0%D0%B2%D0%BA%D0%B8) :unlock:
 - [x] [получение списка пунктов выдачи заказов (ПВЗ) с фильтрацией](#%D0%9F%D0%BE%D0%BB%D1%83%D1%87%D0%B5%D0%BD%D0%B8%D0%B5-%D1%81%D0%BF%D0%B8%D1%81%D0%BA%D0%B0-%D0%9F%D0%92%D0%97) :unlock:
-- [ ] управление заказами
+- [x] управление заказами
   - [x] [формирование новых заказов](#%D0%A0%D0%B5%D0%B3%D0%B8%D1%81%D1%82%D1%80%D0%B0%D1%86%D0%B8%D1%8F-%D0%B7%D0%B0%D0%BA%D0%B0%D0%B7%D0%B0-%D0%BE%D1%82-%D0%B8%D0%BD%D1%82%D0%B5%D1%80%D0%BD%D0%B5%D1%82-%D0%BC%D0%B0%D0%B3%D0%B0%D0%B7%D0%B8%D0%BD%D0%B0)
   - [x] [получение квитанции в PDF](#%D0%9F%D0%B5%D1%87%D0%B0%D1%82%D1%8C-%D0%BA%D0%B2%D0%B8%D1%82%D0%B0%D0%BD%D1%86%D0%B8%D0%B8-%D0%BA-%D0%B7%D0%B0%D0%BA%D0%B0%D0%B7%D1%83)
   - [x] [получение почтовых этикеток в PDF](#%D0%9F%D0%B5%D1%87%D0%B0%D1%82%D1%8C-%D0%A8%D0%9A-%D0%BC%D0%B5%D1%81%D1%82)
@@ -19,10 +19,10 @@
   - [x] [трекинг заказов (отчёт «Статусы заказов»)](#%D0%A2%D1%80%D0%B5%D0%BA%D0%B8%D0%BD%D0%B3)
   - [x] [прозвон получателя](#%D0%A0%D0%B5%D0%B3%D0%B8%D1%81%D1%82%D1%80%D0%B0%D1%86%D0%B8%D1%8F-%D0%B8%D0%BD%D1%84%D0%BE%D1%80%D0%BC%D0%B0%D1%86%D0%B8%D0%B8-%D0%BE-%D1%80%D0%B5%D0%B7%D1%83%D0%BB%D1%8C%D1%82%D0%B0%D1%82%D0%B5-%D0%BF%D1%80%D0%BE%D0%B7%D0%B2%D0%BE%D0%BD%D0%B0)
   - [x] [вызов курьера](#%D0%92%D1%8B%D0%B7%D0%BE%D0%B2-%D0%BA%D1%83%D1%80%D1%8C%D0%B5%D1%80%D0%B0)
-  - [ ] создание преалерта
+  - [x] создание преалерта
  - [x] [выбор базового URL интерфейса](#%D0%97%D0%B0%D0%BC%D0%B5%D0%BD%D0%B0-%D0%B1%D0%B0%D0%B7%D0%BE%D0%B2%D0%BE%D0%B3%D0%BE-url-%D0%B8%D0%BD%D1%82%D0%B5%D1%80%D1%84%D0%B5%D0%B9%D1%81%D0%B0)
  - [x] [сервис-провайдер для Laravel 5.1+](#%D0%A1%D0%B5%D1%80%D0%B2%D0%B8%D1%81-%D0%BF%D1%80%D0%BE%D0%B2%D0%B0%D0%B9%D0%B4%D0%B5%D1%80-%D0%B4%D0%BB%D1%8F-laravel-51)
- - [x] [отладка получаемых ответов](#%D0%9E%D1%82%D0%BB%D0%B0%D0%B4%D0%BA%D0%B0-%D0%BF%D0%BE%D0%BB%D1%83%D1%87%D0%B0%D0%B5%D0%BC%D1%8B%D1%85-%D0%BE%D1%82%D0%B2%D0%B5%D1%82%D0%BE%D0%B2)
+ - [x] [отладка получаемых ответов и посылаемых запросов](#%D0%9E%D1%82%D0%BB%D0%B0%D0%B4%D0%BA%D0%B0-%D0%BF%D0%BE%D0%BB%D1%83%D1%87%D0%B0%D0%B5%D0%BC%D1%8B%D1%85-%D0%BE%D1%82%D0%B2%D0%B5%D1%82%D0%BE%D0%B2)
 
 Работа с большинством методов API возможна только при наличии договора со СДЭК. 
 
@@ -63,6 +63,7 @@ $client = new \CdekSDK\CdekClient('account', 'password');
 | [Регистрация заказа от ИМ](#%D0%A0%D0%B5%D0%B3%D0%B8%D1%81%D1%82%D1%80%D0%B0%D1%86%D0%B8%D1%8F-%D0%B7%D0%B0%D0%BA%D0%B0%D0%B7%D0%B0-%D0%BE%D1%82-%D0%B8%D0%BD%D1%82%D0%B5%D1%80%D0%BD%D0%B5%D1%82-%D0%BC%D0%B0%D0%B3%D0%B0%D0%B7%D0%B8%D0%BD%D0%B0) | `sendDeliveryRequest` | `DeliveryRequest` |
 | [Регистрация результата прозвона](#%D0%A0%D0%B5%D0%B3%D0%B8%D1%81%D1%82%D1%80%D0%B0%D1%86%D0%B8%D1%8F-%D0%B8%D0%BD%D1%84%D0%BE%D1%80%D0%BC%D0%B0%D1%86%D0%B8%D0%B8-%D0%BE-%D1%80%D0%B5%D0%B7%D1%83%D0%BB%D1%8C%D1%82%D0%B0%D1%82%D0%B5-%D0%BF%D1%80%D0%BE%D0%B7%D0%B2%D0%BE%D0%BD%D0%B0) | `sendScheduleRequest` | `ScheduleRequest` |
 | [Вызов курьера](#%D0%92%D1%8B%D0%B7%D0%BE%D0%B2-%D0%BA%D1%83%D1%80%D1%8C%D0%B5%D1%80%D0%B0) | `sendCallCourierRequest` | `CallCourierRequest` |
+| Создание преалерта | `sendPreAlertRequest` | `PreAlertRequest` |
 | [Отчет "Информация по заказам"](#%D0%9E%D1%82%D1%87%D0%B5%D1%82-%D0%98%D0%BD%D1%84%D0%BE%D1%80%D0%BC%D0%B0%D1%86%D0%B8%D1%8F-%D0%BF%D0%BE-%D0%B7%D0%B0%D0%BA%D0%B0%D0%B7%D0%B0%D0%BC) | `sendInfoReportRequest` | `InfoReportRequest` |
 | [Расчёт стоимости доставки](#%D0%A0%D0%B0%D1%81%D1%87%D1%91%D1%82-%D1%81%D1%82%D0%BE%D0%B8%D0%BC%D0%BE%D1%81%D1%82%D0%B8-%D0%B4%D0%BE%D1%81%D1%82%D0%B0%D0%B2%D0%BA%D0%B8) | `sendCalculationRequest` | `CalculationRequest` |
 | [Отчет "Статусы заказов"](#%D0%A2%D1%80%D0%B5%D0%BA%D0%B8%D0%BD%D0%B3) | `sendStatusReportRequest` | `StatusReportRequest` |
@@ -375,6 +376,32 @@ if ($response->hasErrors()) {
 }
 ```
 
+### Создание преалерта
+
+Обратите внимание что дата планируемой передачи идёт не объекте запроса, а как аргумент при отправке запроса.
+
+```
+use CdekSDK\Common\Order;
+use CdekSDK\Requests\PreAlertRequest;
+
+$request = new PreAlertRequest([
+    'PvzCode' => 'NSK333',
+]);
+
+$request->addOrder(Order::create([
+    'DispatchNumber' => '12345678',
+]));
+
+$response = $client->sendPreAlertRequest($request, new \DateTime('tomorrow'));
+
+if ($response->hasErrors()) {
+    foreach ($response->getMessages() as $message) {
+        // Обрабатываем ошибки
+        $message->getMessage();
+        $message->getErrorCode();
+    }
+}
+```
 
 ### Трекинг
 
@@ -493,13 +520,13 @@ $client = new \CdekSDK\CdekClient($account, $password, new \GuzzleHttp\Client([
 
 ### Отладка получаемых ответов
 
-Посмотреть, что конкретно отвечает СДЭК на наши запросы можно используя [стандартный PSR-3 логгер](https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-3-logger-interface.md), так, как, например, [Monolog](https://github.com/Seldaek/monolog).
+Посмотреть, что конкретно отвечает СДЭК на наши запросы и какие запросы мы посылаем сами можно используя [стандартный PSR-3 логгер](https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-3-logger-interface.md), так, как, например, [Monolog](https://github.com/Seldaek/monolog).
 
 ```
 $client->setLogger($monolog);
 ```
 
-Текстовые ответы в исходном виде идут с уровнем `DEBUG`.
+Текстовые запросы и ответы в исходном виде идут с уровнем `DEBUG`.
 
 ## Замечания
 

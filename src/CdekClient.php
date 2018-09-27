@@ -50,7 +50,7 @@ use Psr\Log\LoggerAwareTrait;
  * @method Responses\DeliveryResponse                          sendDeliveryRequest(Requests\DeliveryRequest $request)
  * @method Responses\CallCourierResponse                       sendCallCourierRequest(Requests\CallCourierRequest $request)
  * @method Responses\ScheduleResponse                          sendScheduleRequest(Requests\ScheduleRequest $request)
- * @method Responses\PreAlertResponse                          sendPreAlertRequest(Requests\PreAlertRequest $request, \DateTimeInterface $plannedDate)
+ * @method Responses\PreAlertResponse                          sendPreAlertRequest(Requests\PreAlertRequest $request, \DateTimeInterface $plannedDate = null)
  * @method Responses\InfoReportResponse                        sendInfoReportRequest(Requests\InfoReportRequest $request)
  * @method Responses\CalculationResponse                       sendCalculationRequest(Requests\CalculationRequest $request)
  * @method Responses\StatusReportResponse                      sendStatusReportRequest(Requests\StatusReportRequest $request)

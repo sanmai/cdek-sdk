@@ -113,6 +113,13 @@ final class CdekClient implements Contracts\Client, LoggerAwareInterface
                 // В случае ошибок без содержимого кидаем исключение дальше
                 throw $exception;
             }
+
+            if ($this->logger) {
+                $this->logger->debug('CDEK API responded with a HTTP error code {error_code}', [
+                    'exception' => $exception,
+                    'error_code' => $exception->getCode(),
+                ]);
+            }
         }
 
         return $this->deserialize($request, $response);

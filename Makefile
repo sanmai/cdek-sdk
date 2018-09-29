@@ -71,7 +71,7 @@ ci-cs: prerequisites
 test: phpunit analyze composer-validate
 
 .PHONY: composer-validate
-composer-validate: composer.lock
+composer-validate: test-prerequisites
 	$(SILENT) $(COMPOSER) validate --strict
 
 test-prerequisites: prerequisites composer.lock

@@ -81,7 +81,8 @@ final class Message implements HasErrorCode
                 yield from $input;
             }
         })->map(function (HasErrorCode $item) {
-            if ($item->getMessage()) {
+            // В разных версиях API может быть то или другое
+            if ($item->getMessage() || $item->getErrorCode()) {
                 yield new Message($item->getMessage(), $item->getErrorCode());
             }
         });

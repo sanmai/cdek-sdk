@@ -73,6 +73,14 @@ final class DeliveryResponse
     }
 
     /**
+     * @return array|DeliveryRequest[]
+     */
+    public function getRequests()
+    {
+        return $this->requests;
+    }
+
+    /**
      * @JMS\PostDeserialize
      *
      * @deprecated do not use, will be removed

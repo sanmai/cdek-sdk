@@ -67,11 +67,6 @@ final class DeliveryRequest implements HasErrorCode
      */
     private $Msg;
 
-    /**
-     * @codeCoverageIgnore
-     *
-     * @deprecated
-     */
     public function getNumber(): string
     {
         return (string) $this->Number;

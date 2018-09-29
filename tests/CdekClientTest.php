@@ -223,7 +223,7 @@ class CdekClientTest extends TestCase
 
         try {
             $client = new CdekClient('f62dcb094cc91617def72d9c260b4483', '6bd3937dcebd15beb25278bc0657014c');
-            $client->sendRequest($request, new \DateTimeImmutable('2016-10-31'));
+            $client->sendRequest($request, new \DateTime('2016-10-31'));
         } catch (\LogicException $e) {
             $this->assertSame('9e38e10f9d5394a033a5609c359ecaf2', $e->getMessage());
         }

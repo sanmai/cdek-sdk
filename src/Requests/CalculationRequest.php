@@ -26,12 +26,12 @@ class CalculationRequest implements JsonRequest
     use RequestCore;
 
     public const SERVICE_INSURANCE         = 2;  // Страховка
-    public const SERVICE_HAZARDOUS_CARGO   = 7;  // Опасный груз
+    public const SERVICE_DANGEROUS_GOODS   = 7;  // Опасный груз
     public const SERVICE_PICKUP            = 16; // Забор в городе отправителе
     public const SERVICE_DELIVERY_TO_DOOR  = 17; // Доставка в городе получателе
     public const SERVICE_PACKAGE_1         = 24; // Упаковка 1
     public const SERVICE_PACKAGE_2         = 25; // Упаковка 2
-    public const SERVICE_FITTING_AT_HOME   = 30; // Примерка на дому
+    public const SERVICE_TRY_AT_HOME       = 30; // Примерка на дому
     public const SERVICE_PERSONAL_DELIVERY = 31; // Доставка лично в руки
     public const SERVICE_DOCUMENTS_COPY    = 32; // Скан документов
     public const SERVICE_PARTIAL_DELIVERY  = 36; // Частичная доставка
@@ -121,7 +121,7 @@ class CalculationRequest implements JsonRequest
         return $this;
     }
 
-    public function addAdditionalService($serviceId, $param = null)
+    public function addAdditionalService(int $serviceId, $param = null)
     {
         $this->services[] = [
             'id'    => $serviceId,

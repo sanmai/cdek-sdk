@@ -31,7 +31,7 @@ class LaravelCdekServiceProvider extends ServiceProvider
         $this->app->singleton(CdekClient::class, function (Application $app) {
             $config = $app['config']['services.cdek'];
 
-            return new CdekClient($config['account'], $config['password']);
+            return new CdekClient($config['account'], $config['password'], $config['guzzle_options'] ?? []);
         });
     }
 

@@ -34,7 +34,7 @@ class DeliveryRequest implements XmlRequest, ShouldAuthorize
     use Authorized, Fillable, OrdersAware, RequestCore;
 
     protected const METHOD = 'POST';
-    protected const ADDRESS = 'https://integration.cdek.ru/new_orders.php';
+    protected const ADDRESS = 'new_orders.php';
 
     /**
      * @JMS\XmlAttribute

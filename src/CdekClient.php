@@ -40,6 +40,8 @@ use Appwilio\CdekSDK\Serialization\NullableDateTimeHandler;
  */
 class CdekClient
 {
+    private const ENDPOINT_URI = 'https://integration.cdek.ru/';
+
     private $maps = [
         'xml'  => [
             Requests\DeleteRequest::class        => Responses\DeleteResponse::class,
@@ -67,12 +69,15 @@ class CdekClient
     /** @var Serializer */
     private $serializer;
 
-    public function __construct(string $account, string $password)
+    public function __construct(?string $account = null, ?string $password = null, array $guzzleOptions = [])
     {
         $this->account = $account;
         $this->password = $password;
 
-        $this->http = new GuzzleClient();
+        $this->http = new GuzzleClient(array_merge([
+            'base_uri' => self::ENDPOINT_URI,
+            'timeout'  => 10,
+        ], $guzzleOptions));
 
         $this->serializer = SerializerBuilder::create()->configureHandlers(function (HandlerRegistry $registry) {
             $registry->registerSubscribingHandler(new NullableDateTimeHandler());

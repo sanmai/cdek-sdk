@@ -31,7 +31,7 @@ use JMS\Serializer\Annotation as JMS;
 class StatusReportRequest implements XmlRequest, ShouldAuthorize
 {
     protected const METHOD = 'POST';
-    protected const ADDRESS = 'https://integration.cdek.ru/status_report_h.php';
+    protected const ADDRESS = 'status_report_h.php';
 
     use Authorized, RequestCore;
 

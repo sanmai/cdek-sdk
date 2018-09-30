@@ -8,7 +8,7 @@
 
 Возможности:
 
-- :unlock:расчёт стоимости доставки
+- :unlock:расчёт стоимости доставки (API калькулятора v1.1)
 - :unlock:получение списка пунктов выдачи заказов (ПВЗ) с фильтрацией
 - управление заказами
   - формирование новых заказов
@@ -29,6 +29,8 @@
 composer require appwilio/cdek-sdk
 ```
 
+## Конфигурация
+
 ### Laravel 5.1+
 ```php
 // config/app.php
@@ -44,8 +46,12 @@ composer require appwilio/cdek-sdk
 // config/services.php
 
     'cdek' => [
-        'account'  => env('CDEK_ACCOUNT', ''),
-        'password' => env('CDEK_PASSWORD', ''),
+        'account'        => env('CDEK_ACCOUNT', ''),
+        'password'       => env('CDEK_PASSWORD', ''),
+        'guzzle_options' => [ // необязательные параметры
+            'base_uri' => 'https://integration.cdek-asia.cn',
+            'timeout   => 5
+        ]
     ],
 ```
 
@@ -55,8 +61,12 @@ require_once '../vendor/autoload.php';
 
 \Doctrine\Common\Annotations\AnnotationRegistry::registerLoader('class_exists');
 
-$client = new \Appwilio\CdekSDK\CdekClient('account', 'password');
+$client = new \Appwilio\CdekSDK\CdekClient('account', 'password', $guzzleOptions = [
+    'timeout => 5
+]);
 ```
+
+[Параметры Guzzle](http://docs.guzzlephp.org/en/stable/request-options.html)
 
 ## Использование
 

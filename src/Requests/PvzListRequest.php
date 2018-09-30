@@ -30,7 +30,7 @@ class PvzListRequest implements ParamRequest
     public const TYPE_POSTOMAT = 'POSTOMAT';
 
     protected const METHOD = 'GET';
-    protected const ADDRESS = 'https://integration.cdek.ru/pvzlist.php';
+    protected const ADDRESS = 'pvzlist.php';
 
     /** @var string */
     protected $type = self::TYPE_PVZ;

@@ -34,7 +34,7 @@ class InfoReportRequest implements XmlRequest, ShouldAuthorize
     use Authorized, OrdersAware, RequestCore;
 
     protected const METHOD = 'POST';
-    protected const ADDRESS = 'https://integration.cdek.ru/info_report.php';
+    protected const ADDRESS = 'info_report.php';
 
     /**
      * @JMS\SerializedName("ChangePeriod")

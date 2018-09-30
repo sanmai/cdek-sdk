@@ -35,7 +35,7 @@
         "infection/infection": ">=0.8",
         "laravel/framework": "^5.2",
         "phan/phan": "^1.0",
-        "php-coveralls/php-coveralls": "^2.0",
+        "php-coveralls/php-coveralls": "^2.1",
         "phpstan/phpstan": ">=0.9",
         "phpunit/phpunit": ">=6",
         "vimeo/psalm": ">=1.1"

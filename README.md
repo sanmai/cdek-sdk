@@ -2,7 +2,7 @@
 
 [![Latest Stable Version](https://poser.pugx.org/sanmai/cdek-sdk/v/stable)](https://packagist.org/packages/sanmai/cdek-sdk)
 [![Build Status](https://travis-ci.org/sanmai/cdek-sdk.svg?branch=master)](https://travis-ci.org/sanmai/cdek-sdk)
-[![Coverage Status](https://coveralls.io/repos/github/sanmai/cdek-sdk/badge.svg?branch=master)](https://coveralls.io/github/sanmai/cdek-sdk?branch=master)
+[![Code Coverage](https://scrutinizer-ci.com/g/sanmai/cdek-sdk/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/sanmai/cdek-sdk/?branch=master)
 
 Перед вами полное SDK для [интеграции с программным комплексом СДЭК](https://www.cdek.ru/clients/integrator.html).
 
@@ -529,6 +529,10 @@ $client->setLogger($monolog);
 Текстовые запросы и ответы в исходном виде идут с уровнем `DEBUG`.
 
 ## Замечания
+
+- [Инструкции для разработчиков.](CONTRIBUTING.md)
+
+- [Общие инструкции по работе с GitHub.](https://www.alexeykopytko.com/2018/github-contributor-guide/) Если это ваш первый PR, очень рекомендуем ознакомиться.
 
 ### AnnotationRegistry
 

@@ -19,7 +19,7 @@ class Message
     protected $text;
 
     /** @var string|null */
-    private $errorCode;
+    protected $errorCode;
 
     public function __construct(string $text, ?string $errorCode = null)
     {

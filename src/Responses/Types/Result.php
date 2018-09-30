@@ -83,9 +83,9 @@ class Result
 
     /**
      * @JMS\SerializedName("services")
-     * @JMS\Type("array")
+     * @JMS\Type("array<Appwilio\CdekSDK\Responses\Types\AdditionalService>")
      *
-     * @var null|array
+     * @var AdditionalService[]|null
      */
     protected $services;
 
@@ -130,9 +130,9 @@ class Result
     }
 
     /**
-     * @return array|null
+     * @return AdditionalService[]|null
      */
-    public function getAdditionalServices(): ?array
+    public function getAdditionalServices()
     {
         return $this->services;
     }

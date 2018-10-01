@@ -46,7 +46,7 @@ class ScheduleRequestTest extends TestCase
             'DispatchNumber' => 'bar',
         ])->addAttempt(Attempt::create([
             'ID' => 500,
-            'Date' => new \DateTimeImmutable('next Monday'),
+            'Date' => new \DateTimeImmutable('2018-10-01'),
         ])->addPackage(Package::create([
             'Number' => 100,
             'BarCode' => 'foo123',

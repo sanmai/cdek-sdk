@@ -26,7 +26,7 @@
 
 declare(strict_types=1);
 
-namespace Tests\CdekSDK;
+namespace Tests\CdekSDK\Common;
 
 use CdekSDK\Common\Fillable;
 use CdekSDK\Common\Order;

@@ -26,7 +26,7 @@
 
 declare(strict_types=1);
 
-namespace Tests\CdekSDK;
+namespace Tests\CdekSDK\Serialization;
 
 use CdekSDK\Contracts\ShouldAuthorize;
 use CdekSDK\Requests\CalculationRequest;

@@ -26,7 +26,7 @@
 
 declare(strict_types=1);
 
-namespace Tests\CdekSDK;
+namespace Tests\CdekSDK\Serialization;
 
 use CdekSDK\Requests\PvzListRequest;
 use PHPUnit\Framework\TestCase;

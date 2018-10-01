@@ -28,6 +28,7 @@ declare(strict_types=1);
 
 namespace Tests\CdekSDK\Integration;
 
+use CdekSDK\Requests\CalculationAuthorizedRequest;
 use CdekSDK\Requests\CalculationRequest;
 
 /**
@@ -53,9 +54,43 @@ class CalculationRequestTest extends TestCase
 
         $response = $this->getClient()->sendCalculationRequest($request);
 
+        foreach ($response->getErrors() as $error) {
+            $this->assertEmpty($error->getMessage());
+            $this->fail($error->getErrorCode());
+        }
+
+        $this->assertFalse($response->hasErrors());
+
         /** @var \CdekSDK\Responses\CalculationResponse $response */
         $this->assertGreaterThan(0, $response->getPrice());
+    }
+
+    public function test_authorized_success()
+    {
+        $request = (new CalculationAuthorizedRequest())
+        ->setSenderCityPostCode('295000')
+        ->setReceiverCityPostCode('652632')
+        ->addAdditionalService(CalculationRequest::SERVICE_INSURANCE, 2000)
+        ->setTariffId(1)
+        ->addPackage([
+            'weight' => 0.2,
+            'length' => 25,
+            'width' => 15,
+            'height' => 10,
+        ]);
+
+        $response = $this->getClient()->sendCalculationRequest($request);
+
+        foreach ($response->getErrors() as $error) {
+            $this->assertEmpty($error->getMessage());
+            $this->fail($error->getErrorCode());
+        }
+
         $this->assertFalse($response->hasErrors());
+        $this->assertCount(1, $response->getAdditionalServices());
+
+        /** @var \CdekSDK\Responses\CalculationResponse $response */
+        $this->assertGreaterThan(0, $response->getPrice());
     }
 
     public function test_failure()

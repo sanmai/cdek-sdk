@@ -48,5 +48,27 @@ class MessageTest extends TestCase
         $this->assertTrue($message->isError());
         $this->assertSame('example', $message->getText());
         $this->assertSame('FOO', $message->getCode());
+
+        $this->assertSame('example', $message->getMessage());
+        $this->assertSame('FOO', $message->getErrorCode());
+    }
+
+    public function test_maps_into_list()
+    {
+        $this->assertCount(4, Message::from([
+            new Message('example1', 'FOO1'),
+            new Message('example2', 'FOO2'),
+        ], [
+            new Message('', 'BAR'),
+            new Message('Testing', ''),
+            new Message('', ''),
+        ]));
+
+        foreach (Message::from([
+           new Message('example1', 'FOO1'),
+       ]) as $message) {
+            $this->assertSame('example1', $message->getText());
+            $this->assertSame('FOO1', $message->getCode());
+        }
     }
 }

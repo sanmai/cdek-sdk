@@ -29,7 +29,7 @@ declare(strict_types=1);
 namespace CdekSDK\Responses\Types;
 
 use CdekSDK\Contracts\HasErrorCode;
-use function Pipeline\map;
+use function Pipeline\fromArray;
 
 final class Message implements HasErrorCode
 {
@@ -76,11 +76,7 @@ final class Message implements HasErrorCode
 
     public static function from(...$inputs): \Traversable
     {
-        return map(function () use ($inputs) {
-            foreach ($inputs as $input) {
-                yield from $input;
-            }
-        })->map(function (HasErrorCode $item) {
+        return fromArray($inputs)->unpack()->map(function (HasErrorCode $item) {
             // В разных версиях API может быть то или другое
             if ($item->getMessage() || $item->getErrorCode()) {
                 yield new Message($item->getMessage(), $item->getErrorCode());

@@ -28,6 +28,9 @@
         "psr/log": "^1.0",
         "sanmai/pipeline": "^2.0"
     },
+    "suggest": {
+        "sanmai/pindx": "For postal code validation"
+    },
     "require-dev": {
         "friendsofphp/php-cs-fixer": "^2.13",
         "gamez/psr-testlogger": "^3.0",

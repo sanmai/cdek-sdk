@@ -1,0 +1,26 @@
+{
+	"result": {
+		"price": "2555",
+		"deliveryPeriodMin": 2,
+		"deliveryPeriodMax": 3,
+		"deliveryDateMin": "2012-07-28",
+		"deliveryDateMax": "2012-07-29",
+		"tariffId": "137",
+		"cashOnDelivery": "30000.00",
+		"percentVAT": 18,
+		"priceByCurrency": 2555,
+		"currency": "RUB",
+		"services": [
+			{
+				"id": 2,
+				"title": "Страхование",
+				"price": 15
+			},
+			{
+				"id": 30,
+				"title": "Примерка на дому",
+				"price": 0
+			}
+		]
+	}
+}

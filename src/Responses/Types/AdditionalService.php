@@ -30,28 +30,28 @@ namespace CdekSDK\Responses\Types;
 
 use JMS\Serializer\Annotation as JMS;
 
-class AdditionalService
+final class AdditionalService implements \ArrayAccess
 {
     /**
      * @JMS\Type("int")
      *
      * @var int
      */
-    protected $id;
+    private $id;
 
     /**
      * @JMS\Type("string")
      *
      * @var string
      */
-    protected $title;
+    private $title;
 
     /**
      * @JMS\Type("float")
      *
      * @var float
      */
-    protected $price;
+    private $price;
 
     public function getId(): int
     {
@@ -66,5 +66,36 @@ class AdditionalService
     public function getPrice(): float
     {
         return $this->price;
+    }
+
+    public function offsetExists($offset)
+    {
+        return property_exists($this, $offset);
+    }
+
+    public function offsetGet($offset)
+    {
+        return $this->{$offset};
+    }
+
+    /**
+     * @deprecated
+     *
+     * @param mixed $offset
+     * @param mixed $value
+     */
+    public function offsetSet($offset, $value)
+    {
+        $this->{$offset} = $value;
+    }
+
+    /**
+     * @deprecated
+     *
+     * @param mixed $offset
+     */
+    public function offsetUnset($offset)
+    {
+        $this->{$offset} = null;
     }
 }

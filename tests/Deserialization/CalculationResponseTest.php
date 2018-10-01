@@ -72,7 +72,7 @@ class CalculationResponseTest extends TestCase
 
         $this->assertFalse($response->hasErrors());
         foreach ($response->getErrors() as $error) {
-            $this->fail();
+            $this->fail($error->getMessage());
         }
 
         $this->assertSame($response->getResult()->getPrice(), $response->getPrice());
@@ -85,6 +85,29 @@ class CalculationResponseTest extends TestCase
         $this->assertSame('2018-01-01', $response->getDeliveryDateMin()->format('Y-m-d'));
         $this->assertSame('2018-01-02', $response->getDeliveryDateMax()->format('Y-m-d'));
         $this->assertSame(null, $response->getAdditionalServices());
+    }
+
+    public function test_it_loads_additional_services()
+    {
+        $response = $this->getSerializer()->deserialize(FixtureLoader::load('CalculationResponseWithServices.json'), CalculationResponse::class, 'json');
+
+        /** @var $response CalculationResponse */
+        $this->assertInstanceOf(CalculationResponse::class, $response);
+
+        $this->assertFalse($response->hasErrors());
+        foreach ($response->getErrors() as $error) {
+            $this->fail($error->getMessage());
+        }
+
+        $this->assertSame(2, $response->getAdditionalServices()[0]['id']);
+        $this->assertSame('Страхование', $response->getAdditionalServices()[0]['title']);
+        $this->assertEquals(15, $response->getAdditionalServices()[0]['price']);
+
+        $this->assertSame(30, $response->getAdditionalServices()[1]['id']);
+        $this->assertSame('Примерка на дому', $response->getAdditionalServices()[1]['title']);
+        $this->assertEquals(0, $response->getAdditionalServices()[1]['price']);
+
+        $this->assertCount(2, $response->getAdditionalServices());
     }
 
     public function test_it_errors_on_unknown_method_within_a_result()

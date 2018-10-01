@@ -168,10 +168,14 @@ class CalculationRequest implements JsonRequest
         return $this;
     }
 
+    /**
+     * @param int              $serviceId
+     * @param int|float|string $param
+     */
     public function addAdditionalService($serviceId, $param = null)
     {
         $this->services[] = [
-            'id'    => $serviceId,
+            'id'    => (int) $serviceId,
             'param' => $param,
         ];
 

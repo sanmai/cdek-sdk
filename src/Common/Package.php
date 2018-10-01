@@ -157,7 +157,7 @@ final class Package
 
     public function getVolumeWeight(): float
     {
-        if ($this->VolumeWeight > 0) {
+        if ($this->VolumeWeight !== null) {
             return $this->VolumeWeight;
         }
 

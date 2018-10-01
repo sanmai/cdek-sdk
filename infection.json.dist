@@ -11,6 +11,7 @@
     "mutators": {
         "@default": true,
         "IdenticalEqual": false,
+        "NotIdenticalNotEqual": false,
         "@cast": false
     }
 }

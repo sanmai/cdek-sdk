@@ -53,7 +53,7 @@ class LaravelCdekServiceProvider extends ServiceProvider
         $this->app->singleton(CdekClient::class, function (Application $app) {
             $config = $app['config']['services.cdek'];
 
-            $client = $config['guzzle_options'] ? new GuzzleClient($config['guzzle_options'] + [
+            $client = !empty($config['guzzle_options']) ? new GuzzleClient($config['guzzle_options'] + [
                 'base_uri' => CdekClient::STANDARD_BASE_URL,
                 'timeout'  => CdekClient::DEFAULT_TIMEOUT,
             ]) : null;

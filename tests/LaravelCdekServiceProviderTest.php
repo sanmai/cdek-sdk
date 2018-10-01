@@ -31,6 +31,7 @@ namespace Tests\CdekSDK;
 use CdekSDK\CdekClient;
 use CdekSDK\LaravelCdekServiceProvider;
 use Doctrine\Common\Annotations\AnnotationRegistry;
+use GuzzleHttp\ClientInterface;
 use Illuminate\Contracts\Foundation\Application as ApplicationInterface;
 use PHPUnit\Framework\TestCase;
 
@@ -49,6 +50,13 @@ class LaravelCdekServiceProviderTest extends TestCase
      */
     private $provider;
 
+    // PHPStan workarounds (can't grok introspection yet)
+    private $account;
+    private $password;
+
+    /** @var ClientInterface */
+    private $http;
+
     protected function setUp()
     {
         parent::setUp();
@@ -66,13 +74,128 @@ class LaravelCdekServiceProviderTest extends TestCase
         }, null, AnnotationRegistry::class)());
     }
 
+    private function applicationWithConfig(array $config): \Illuminate\Foundation\Application
+    {
+        $app = new class() extends \Illuminate\Foundation\Application {
+            private $config;
+
+            public function setConfig($config)
+            {
+                $this->config = $config;
+            }
+
+            public function offsetGet($key)
+            {
+                TestCase::assertSame('config', $key);
+
+                return $this->config;
+            }
+        };
+
+        $app->setConfig($config);
+
+        return $app;
+    }
+
+    private function runOnClient(CdekClient $client, callable $callback)
+    {
+        return \Closure::bind($callback, $client, CdekClient::class)();
+    }
+
     public function testRegister()
     {
+        $savedCallback = null;
+
         $this->app->expects($this->once())
             ->method('singleton')
-            ->with(CdekClient::class);
+            ->with(CdekClient::class)->will($this->returnCallback(function ($className, $callback) use (&$savedCallback) {
+                $savedCallback = $callback;
+            }));
 
         $this->provider->register();
+
+        $this->assertNotNull($savedCallback);
+
+        return $savedCallback;
+    }
+
+    /**
+     * @depends testRegister
+     */
+    public function testWithMinimalConfig(callable $savedCallback)
+    {
+        $client = $savedCallback($this->applicationWithConfig([
+            'services.cdek' => [
+                'account'  => 'foo',
+                'password' => 'bar',
+            ],
+        ]));
+
+        $this->assertInstanceOf(CdekClient::class, $client);
+
+        $this->assertEquals('foo', $this->runOnClient($client, function () {
+            return $this->account;
+        }));
+
+        $this->assertEquals('bar', $this->runOnClient($client, function () {
+            return $this->password;
+        }));
+    }
+
+    /**
+     * @depends testRegister
+     */
+    public function testWithCustomBaseUrl(callable $savedCallback)
+    {
+        $client = $savedCallback($this->applicationWithConfig([
+            'services.cdek' => [
+                'account'        => 'bang',
+                'password'       => 'boom',
+                'guzzle_options' => [
+                    'base_uri' => 'https://www.example.com',
+                ],
+            ],
+        ]));
+
+        $this->assertInstanceOf(CdekClient::class, $client);
+
+        $this->assertEquals('bang', $this->runOnClient($client, function () {
+            return $this->account;
+        }));
+
+        $this->assertEquals('boom', $this->runOnClient($client, function () {
+            return $this->password;
+        }));
+
+        $this->assertEquals('https://www.example.com', $this->runOnClient($client, function () {
+            return $this->http->getConfig()['base_uri'];
+        }));
+
+        $this->assertEquals(CdekClient::DEFAULT_TIMEOUT, $this->runOnClient($client, function () {
+            return $this->http->getConfig()['timeout'];
+        }));
+    }
+
+    /**
+     * @depends testRegister
+     */
+    public function testWithCustomTimeout(callable $savedCallback)
+    {
+        $client = $savedCallback($this->applicationWithConfig([
+            'services.cdek' => [
+                'account'        => 'bang',
+                'password'       => 'boom',
+                'guzzle_options' => [
+                    'timeout' => 100000,
+                ],
+            ],
+        ]));
+
+        $this->assertInstanceOf(CdekClient::class, $client);
+
+        $this->assertEquals(100000, $this->runOnClient($client, function () {
+            return $this->http->getConfig()['timeout'];
+        }));
     }
 
     public function testProvides()

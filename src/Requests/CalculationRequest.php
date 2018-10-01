@@ -41,6 +41,8 @@ class CalculationRequest implements JsonRequest
 {
     use RequestCore;
 
+    const VERSION = '1.0';
+
     const SERVICE_INSURANCE = 2;  // Страховка
     const SERVICE_HAZARDOUS_CARGO = 7;  // Опасный груз
     const SERVICE_PICKUP = 16; // Забор в городе отправителе
@@ -170,7 +172,7 @@ class CalculationRequest implements JsonRequest
     public function getBody(): array
     {
         return array_filter([
-            'version' => '1.0',
+            'version' => self::VERSION,
             'goods' => $this->goods,
             'modeId' => $this->modeId,
             'tariffId' => $this->tariffId,

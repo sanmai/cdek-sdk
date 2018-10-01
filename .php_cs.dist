@@ -2,6 +2,8 @@
 
 $header = trim('This code is licensed under the MIT License.'.substr(file_get_contents('LICENSE'), strlen('The MIT License')));
 
+use PhpCsFixer\Fixer\Operator\BinaryOperatorSpacesFixer;
+
 return PhpCsFixer\Config::create()
     ->setRiskyAllowed(true)
     ->setRules([
@@ -24,6 +26,7 @@ return PhpCsFixer\Config::create()
         'ternary_to_null_coalescing' => true,
         'yoda_style' => null,
         'phpdoc_to_comment' => false,
+        'binary_operator_spaces' => ['operators' => ['=>' => BinaryOperatorSpacesFixer::ALIGN]],
     ])
     ->setFinder(
         PhpCsFixer\Finder::create()

@@ -2,7 +2,7 @@
 /**
  * This code is licensed under the MIT License.
  *
- * Copyright (c) 2018 Appwilio  (http://appwilio.com), greabock (https://github.com/greabock), JhaoDa (https://github.com/jhaoda)
+ * Copyright (c) 2018 Appwilio (http://appwilio.com), greabock (https://github.com/greabock), JhaoDa (https://github.com/jhaoda)
  * Copyright (c) 2018 Alexey Kopytko <alexey@kopytko.com> and contributors
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -53,6 +53,13 @@ final class AdditionalService implements \ArrayAccess
      */
     private $price;
 
+    /**
+     * @JMS\Type("float")
+     *
+     * @var float
+     */
+    private $rate;
+
     public function getId(): int
     {
         return $this->id;
@@ -64,6 +71,22 @@ final class AdditionalService implements \ArrayAccess
     }
 
     public function getPrice(): float
+    {
+        return $this->price;
+    }
+
+    /**
+     * @see \CdekSDK\Common\AdditionalService
+     */
+    public function getServiceCode(): int
+    {
+        return $this->id;
+    }
+
+    /**
+     * @see \CdekSDK\Common\AdditionalService
+     */
+    public function getSum(): float
     {
         return $this->price;
     }

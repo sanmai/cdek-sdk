@@ -28,8 +28,8 @@ declare(strict_types=1);
 
 namespace CdekSDK\Responses;
 
-use CdekSDK\Common\AdditionalService;
 use CdekSDK\Contracts\HasErrorCode;
+use CdekSDK\Responses\Types\AdditionalService;
 use CdekSDK\Responses\Types\Error;
 use CdekSDK\Responses\Types\Result;
 use JMS\Serializer\Annotation as JMS;

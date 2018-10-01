@@ -29,12 +29,14 @@ declare(strict_types=1);
 namespace Tests\CdekSDK\Deserialization;
 
 use CdekSDK\Responses\CalculationResponse;
+use CdekSDK\Responses\Types\AdditionalService;
 use Tests\CdekSDK\Fixtures\FixtureLoader;
 
 /**
  * @covers \CdekSDK\Responses\CalculationResponse
  * @covers \CdekSDK\Responses\Types\Result
  * @covers \CdekSDK\Responses\Types\Error
+ * @covers \CdekSDK\Responses\Types\AdditionalService
  */
 class CalculationResponseTest extends TestCase
 {
@@ -108,6 +110,34 @@ class CalculationResponseTest extends TestCase
         $this->assertEquals(0, $response->getAdditionalServices()[1]['price']);
 
         $this->assertCount(2, $response->getAdditionalServices());
+    }
+
+    public function test_it_loads_additional_services_extended()
+    {
+        $response = $this->getSerializer()->deserialize(FixtureLoader::load('CalculationResponseAuthorized.json'), CalculationResponse::class, 'json');
+
+        /** @var $response CalculationResponse */
+        $this->assertInstanceOf(CalculationResponse::class, $response);
+
+        $this->assertFalse($response->hasErrors());
+        foreach ($response->getErrors() as $error) {
+            $this->fail($error->getMessage());
+        }
+
+        $this->assertCount(1, $response->getAdditionalServices());
+
+        foreach ($response->getAdditionalServices() as $service) {
+            $this->assertInstanceOf(AdditionalService::class, $service);
+
+            $this->assertSame(2, $service->getId());
+            $this->assertSame('Страхование', $service->getTitle());
+            $this->assertSame(500.0, $service->getPrice());
+
+            $this->assertSame(2, $service->getServiceCode());
+            $this->assertSame(500.0, $service->getSum());
+
+            $this->assertSame(1.8, $service['rate']);
+        }
     }
 
     public function test_it_errors_on_unknown_method_within_a_result()

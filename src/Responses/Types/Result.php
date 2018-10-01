@@ -102,7 +102,7 @@ final class Result
      *
      * @var AdditionalService[]|null
      */
-    private $services;
+    private $services = [];
 
     /**
      * @return null|float
@@ -173,6 +173,11 @@ final class Result
      */
     public function getAdditionalServices()
     {
+        if ($this->services === []) {
+            /** @deprecated */
+            return null;
+        }
+
         return $this->services;
     }
 }

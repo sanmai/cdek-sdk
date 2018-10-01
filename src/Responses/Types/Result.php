@@ -98,9 +98,9 @@ final class Result
 
     /**
      * @JMS\SerializedName("services")
-     * @JMS\Type("array")
+     * @JMS\Type("array<CdekSDK\Responses\Types\AdditionalService>")
      *
-     * @var null|array
+     * @var AdditionalService[]|null
      */
     private $services;
 
@@ -169,7 +169,7 @@ final class Result
     }
 
     /**
-     * @return array|null
+     * @return AdditionalService[]|null
      */
     public function getAdditionalServices()
     {

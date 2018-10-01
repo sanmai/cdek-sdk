@@ -2,7 +2,7 @@
 /**
  * This code is licensed under the MIT License.
  *
- * Copyright (c) 2018 Appwilio (http://appwilio.com), greabock (https://github.com/greabock), JhaoDa (https://github.com/jhaoda)
+ * Copyright (c) 2018 Appwilio  (http://appwilio.com), greabock (https://github.com/greabock), JhaoDa (https://github.com/jhaoda)
  * Copyright (c) 2018 Alexey Kopytko <alexey@kopytko.com> and contributors
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -26,44 +26,45 @@
 
 declare(strict_types=1);
 
-namespace CdekSDK;
+namespace CdekSDK\Responses\Types;
 
-use CdekSDK\Serialization\Serializer;
-use Doctrine\Common\Annotations\AnnotationRegistry;
-use GuzzleHttp\Client as GuzzleClient;
-use Illuminate\Foundation\Application;
-use Illuminate\Support\ServiceProvider;
+use JMS\Serializer\Annotation as JMS;
 
-/**
- * @final
- */
-class LaravelCdekServiceProvider extends ServiceProvider
+class AdditionalService
 {
-    protected $defer = true;
+    /**
+     * @JMS\Type("int")
+     *
+     * @var int
+     */
+    protected $id;
 
-    public function boot()
+    /**
+     * @JMS\Type("string")
+     *
+     * @var string
+     */
+    protected $title;
+
+    /**
+     * @JMS\Type("float")
+     *
+     * @var float
+     */
+    protected $price;
+
+    public function getId(): int
     {
-        /** @phan-suppress-next-line PhanDeprecatedFunction */
-        AnnotationRegistry::registerLoader('class_exists');
-        Serializer::doNotConfigureAnnotationRegistry();
+        return $this->id;
     }
 
-    public function register()
+    public function getTitle(): string
     {
-        $this->app->singleton(CdekClient::class, function (Application $app) {
-            $config = $app['config']['services.cdek'];
-
-            $client = $config['guzzle_options'] ? new GuzzleClient($config['guzzle_options'] + [
-                'base_uri' => CdekClient::STANDARD_BASE_URL,
-                'timeout' => CdekClient::DEFAULT_TIMEOUT,
-            ]) : null;
-
-            return new CdekClient($config['account'], $config['password'], $client);
-        });
+        return $this->title;
     }
 
-    public function provides()
+    public function getPrice(): float
     {
-        return [CdekClient::class];
+        return $this->price;
     }
 }

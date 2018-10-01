@@ -515,6 +515,10 @@ $client = new \CdekSDK\CdekClient($account, $password, new \GuzzleHttp\Client([
     'cdek' => [
         'account'  => env('CDEK_ACCOUNT', ''),
         'password' => env('CDEK_PASSWORD', ''),
+        'guzzle_options' => [ // необязательные параметры
+            'base_uri' => 'https://integration.cdek-asia.cn',
+            'timeout   => 5,
+        ],
     ],
 ```
 

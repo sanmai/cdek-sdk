@@ -63,6 +63,8 @@ final class CdekClient implements Contracts\Client, LoggerAwareInterface
 
     const STANDARD_BASE_URL = 'https://integration.cdek.ru';
 
+    const DEFAULT_TIMEOUT = 15;
+
     /** @var ClientInterface */
     private $http;
 
@@ -82,6 +84,7 @@ final class CdekClient implements Contracts\Client, LoggerAwareInterface
 
         $this->http = $http ?? new GuzzleClient([
             'base_uri' => self::STANDARD_BASE_URL,
+            'timeout' => self::DEFAULT_TIMEOUT,
         ]);
 
         $this->serializer = new Serialization\Serializer();

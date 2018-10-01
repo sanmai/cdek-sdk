@@ -138,15 +138,15 @@ class SanityTest extends TestCase
 
     private $legacyMaps = [
         'xml' => [
-            DeleteRequest::class => DeleteResponse::class,
-            PvzListRequest::class => PvzListResponse::class,
-            DeliveryRequest::class => DeliveryResponse::class,
-            InfoReportRequest::class => InfoReportResponse::class,
-            StatusReportRequest::class => StatusReportResponse::class,
+            DeleteRequest::class        => DeleteResponse::class,
+            PvzListRequest::class       => PvzListResponse::class,
+            DeliveryRequest::class      => DeliveryResponse::class,
+            InfoReportRequest::class    => InfoReportResponse::class,
+            StatusReportRequest::class  => StatusReportResponse::class,
             PrintReceiptsRequest::class => PrintErrorResponse::class,
         ],
         'json' => [
-            CalculationRequest::class => CalculationResponse::class,
+            CalculationRequest::class           => CalculationResponse::class,
             CalculationAuthorizedRequest::class => CalculationResponse::class,
         ],
     ];

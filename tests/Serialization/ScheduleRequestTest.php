@@ -45,18 +45,18 @@ class ScheduleRequestTest extends TestCase
         $request = $request->addOrder(Order::create([
             'DispatchNumber' => 'bar',
         ])->addAttempt(Attempt::create([
-            'ID' => 500,
+            'ID'   => 500,
             'Date' => new \DateTimeImmutable('2018-10-01'),
         ])->addPackage(Package::create([
-            'Number' => 100,
+            'Number'  => 100,
             'BarCode' => 'foo123',
-            'Weight' => 500,
+            'Weight'  => 500,
         ])->addItem(new Item([
             'WareKey' => 'NN0001',
-            'Cost' => 500,
+            'Cost'    => 500,
             'Payment' => 0,
-            'Weight' => 120,
-            'Amount' => 2,
+            'Weight'  => 120,
+            'Amount'  => 2,
             'Comment' => 'Test item',
         ])))));
 

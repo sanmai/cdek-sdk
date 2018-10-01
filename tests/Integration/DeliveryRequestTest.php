@@ -103,40 +103,40 @@ class DeliveryRequestTest extends TestCase
     public function test_successful_request()
     {
         $order = new Order([
-            'Number' => 'TEST-123456',
+            'Number'   => 'TEST-123456',
             'SendCity' => City::create([
                 'Code' => 44, // Москва
             ]),
             'RecCity' => City::create([
                 'PostCode' => '630001', // Новосибирск
             ]),
-            'RecipientName' => 'Иван Петров',
+            'RecipientName'  => 'Иван Петров',
             'RecipientEmail' => 'petrov@test.ru',
-            'Phone' => '+7 (383) 202-22-50',
+            'Phone'          => '+7 (383) 202-22-50',
             'TariffTypeCode' => 139, // Посылка дверь-дверь
         ]);
 
         $order->setAddress(Address::create([
             'Street' => 'Холодильная улица',
-            'House' => '16',
-            'Flat' => '22',
+            'House'  => '16',
+            'Flat'   => '22',
         ]));
 
         $package = Package::create([
-            'Number' => 'TEST-123456',
+            'Number'  => 'TEST-123456',
             'BarCode' => 'TEST-123456',
-            'Weight' => 500, // Общий вес (в граммах)
-            'SizeA' => 10, // Длина (в сантиметрах), в пределах от 1 до 1500
-            'SizeB' => 10,
-            'SizeC' => 10,
+            'Weight'  => 500, // Общий вес (в граммах)
+            'SizeA'   => 10, // Длина (в сантиметрах), в пределах от 1 до 1500
+            'SizeB'   => 10,
+            'SizeC'   => 10,
         ]);
 
         $package->addItem(new Item([
             'WareKey' => 'NN0001', // Идентификатор/артикул товара/вложения
-            'Cost' => 500, // Объявленная стоимость товара (за единицу товара)
+            'Cost'    => 500, // Объявленная стоимость товара (за единицу товара)
             'Payment' => 0, // Оплата за товар при получении (за единицу товара)
-            'Weight' => 120, // Вес (за единицу товара, в граммах)
-            'Amount' => 2, // Количество единиц одноименного товара (в штуках)
+            'Weight'  => 120, // Вес (за единицу товара, в граммах)
+            'Amount'  => 2, // Количество единиц одноименного товара (в штуках)
             'Comment' => 'Test item',
         ]));
 
@@ -280,17 +280,17 @@ class DeliveryRequestTest extends TestCase
     public function test_call_courier(string $dispatchNumber)
     {
         $request = CallCourierRequest::create()->addCall(CallCourier::create([
-            'Date' => new \DateTimeImmutable('next tuesday'),
+            'Date'           => new \DateTimeImmutable('next tuesday'),
             'DispatchNumber' => $dispatchNumber,
-            'TimeBeg' => new \DateTimeImmutable('10:00'),
-            'TimeEnd' => new \DateTimeImmutable('17:00'),
-            'SendCityCode' => 44,
-            'SenderName' => 'Проверка Тестович',
-            'SendPhone' => '+78001001010',
+            'TimeBeg'        => new \DateTimeImmutable('10:00'),
+            'TimeEnd'        => new \DateTimeImmutable('17:00'),
+            'SendCityCode'   => 44,
+            'SenderName'     => 'Проверка Тестович',
+            'SendPhone'      => '+78001001010',
         ])->setAddress(Address::create([
             'Street' => 'Тестовая',
-            'House' => '8',
-            'Flat' => '32',
+            'House'  => '8',
+            'Flat'   => '32',
         ])));
 
         $response = $this->getClient()->sendCallCourierRequest($request);

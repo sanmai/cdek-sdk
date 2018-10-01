@@ -84,7 +84,7 @@ final class CdekClient implements Contracts\Client, LoggerAwareInterface
 
         $this->http = $http ?? new GuzzleClient([
             'base_uri' => self::STANDARD_BASE_URL,
-            'timeout' => self::DEFAULT_TIMEOUT,
+            'timeout'  => self::DEFAULT_TIMEOUT,
         ]);
 
         $this->serializer = new Serialization\Serializer();
@@ -119,7 +119,7 @@ final class CdekClient implements Contracts\Client, LoggerAwareInterface
 
             if ($this->logger) {
                 $this->logger->debug('CDEK API responded with a HTTP error code {error_code}', [
-                    'exception' => $exception,
+                    'exception'  => $exception,
                     'error_code' => $exception->getCode(),
                 ]);
             }
@@ -233,7 +233,7 @@ final class CdekClient implements Contracts\Client, LoggerAwareInterface
 
         if ($request instanceof JsonRequest) {
             return [
-                'body' => json_encode($request->getBody()),
+                'body'    => json_encode($request->getBody()),
                 'headers' => [
                     'Content-Type' => 'application/json',
                 ],

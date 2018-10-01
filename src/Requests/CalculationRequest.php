@@ -162,7 +162,7 @@ class CalculationRequest implements JsonRequest
     public function addAdditionalService($serviceId, $param = null)
     {
         $this->services[] = [
-            'id' => $serviceId,
+            'id'    => $serviceId,
             'param' => $param,
         ];
 
@@ -172,15 +172,15 @@ class CalculationRequest implements JsonRequest
     public function getBody(): array
     {
         return array_filter([
-            'version' => self::VERSION,
-            'goods' => $this->goods,
-            'modeId' => $this->modeId,
-            'tariffId' => $this->tariffId,
-            'tariffList' => $this->tariffList,
-            'senderCityId' => $this->senderCityId,
-            'senderCityPostCode' => $this->senderCityPostCode,
-            'services' => $this->services,
-            'receiverCityId' => $this->receiverCityId,
+            'version'              => self::VERSION,
+            'goods'                => $this->goods,
+            'modeId'               => $this->modeId,
+            'tariffId'             => $this->tariffId,
+            'tariffList'           => $this->tariffList,
+            'senderCityId'         => $this->senderCityId,
+            'senderCityPostCode'   => $this->senderCityPostCode,
+            'services'             => $this->services,
+            'receiverCityId'       => $this->receiverCityId,
             'receiverCityPostCode' => $this->receiverCityPostCode,
         ]);
     }

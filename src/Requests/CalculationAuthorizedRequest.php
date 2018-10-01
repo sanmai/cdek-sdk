@@ -41,8 +41,8 @@ final class CalculationAuthorizedRequest extends CalculationRequest implements S
     public function getBody(): array
     {
         return array_merge(parent::getBody(), [
-            'secure' => $this->secure,
-            'authLogin' => $this->account,
+            'secure'      => $this->secure,
+            'authLogin'   => $this->account,
             'dateExecute' => $this->date->format('Y-m-d'),
         ]);
     }

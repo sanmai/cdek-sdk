@@ -48,7 +48,7 @@ class CalculationRequestTest extends TestCase
         ->addPackage([
             'weight' => 0.2,
             'length' => 25,
-            'width' => 15,
+            'width'  => 15,
             'height' => 10,
         ]);
 
@@ -75,7 +75,7 @@ class CalculationRequestTest extends TestCase
         ->addPackage([
             'weight' => 0.2,
             'length' => 25,
-            'width' => 15,
+            'width'  => 15,
             'height' => 10,
         ]);
 
@@ -101,7 +101,7 @@ class CalculationRequestTest extends TestCase
         ->addPackage([
             'weight' => 0.2,
             'length' => 25,
-            'width' => 15,
+            'width'  => 15,
             'height' => 10,
         ]);
 

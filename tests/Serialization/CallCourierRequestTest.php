@@ -41,22 +41,22 @@ class CallCourierRequestTest extends TestCase
     public function test_can_serialize()
     {
         $request = CallCourierRequest::create()->addCall(CallCourier::create([
-            'Comment' => 'foo',
-            'Date' => new \DateTime('2017-03-14T14:27:46.628+07:00'),
+            'Comment'        => 'foo',
+            'Date'           => new \DateTime('2017-03-14T14:27:46.628+07:00'),
             'DispatchNumber' => '1039547805',
-            'LunchBeg' => new \DateTime('14:00'),
-            'LunchEnd' => new \DateTime('14:30'),
-            'SendCityCode' => 44,
-            'SenderName' => 'Testing',
-            'SendPhone' => '+79138739944',
-            'TimeBeg' => new \DateTime('10:00'),
-            'TimeEnd' => new \DateTime('17:00'),
-            'Weight' => '20',
-            'IgnoreTime' => true,
+            'LunchBeg'       => new \DateTime('14:00'),
+            'LunchEnd'       => new \DateTime('14:30'),
+            'SendCityCode'   => 44,
+            'SenderName'     => 'Testing',
+            'SendPhone'      => '+79138739944',
+            'TimeBeg'        => new \DateTime('10:00'),
+            'TimeEnd'        => new \DateTime('17:00'),
+            'Weight'         => '20',
+            'IgnoreTime'     => true,
         ])->setAddress(Address::create([
             'Street' => 'Тестовая',
-            'House' => '8',
-            'Flat' => '32',
+            'House'  => '8',
+            'Flat'   => '32',
         ])));
 
         $this->assertSameAsXML('<?xml version="1.0" encoding="UTF-8"?>

@@ -140,14 +140,14 @@ final class PvzListRequest implements ParamRequest
     public function getParams(): array
     {
         return [
-            'type' => $this->type,
-            'cityid' => $this->cityId,
-            'regionid' => $this->regionId,
-            'countryid' => $this->countryId,
-            'citypostcode' => $this->cityPostCode,
-            'havecashles' => $this->cashless,
-            'weightmax' => $this->maxWeight,
-            'allowedcod' => $this->codAllowed,
+            'type'           => $this->type,
+            'cityid'         => $this->cityId,
+            'regionid'       => $this->regionId,
+            'countryid'      => $this->countryId,
+            'citypostcode'   => $this->cityPostCode,
+            'havecashles'    => $this->cashless,
+            'weightmax'      => $this->maxWeight,
+            'allowedcod'     => $this->codAllowed,
             'isdressingroom' => $this->dressingRoom,
         ];
     }

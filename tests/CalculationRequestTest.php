@@ -48,22 +48,22 @@ class CalculationRequestTest extends TestCase
             ->addPackage([
                 'weight' => 0.2,
                 'length' => 25,
-                'width' => 15,
+                'width'  => 15,
                 'height' => 10,
             ]);
 
         $this->assertSame([
             'version' => '1.0',
-            'goods' => [
+            'goods'   => [
                 [
                     'weight' => 0.2,
                     'length' => 25,
-                    'width' => 15,
+                    'width'  => 15,
                     'height' => 10,
                 ],
             ],
-            'tariffId' => 1,
-            'senderCityPostCode' => '295000',
+            'tariffId'             => 1,
+            'senderCityPostCode'   => '295000',
             'receiverCityPostCode' => '652632',
         ], $request->getBody());
     }
@@ -84,26 +84,26 @@ class CalculationRequestTest extends TestCase
         ->addPackage([
             'weight' => 0.2,
             'length' => 25,
-            'width' => 15,
+            'width'  => 15,
             'height' => 10,
         ]);
 
         $this->assertSame([
             'version' => '1.0',
-            'goods' => [
+            'goods'   => [
                 [
                     'weight' => 0.2,
                     'length' => 25,
-                    'width' => 15,
+                    'width'  => 15,
                     'height' => 10,
                 ],
             ],
-            'tariffId' => 1,
-            'senderCityPostCode' => '295000',
+            'tariffId'             => 1,
+            'senderCityPostCode'   => '295000',
             'receiverCityPostCode' => '652632',
-            'secure' => 'bar',
-            'authLogin' => 'foo',
-            'dateExecute' => '2018-01-01',
+            'secure'               => 'bar',
+            'authLogin'            => 'foo',
+            'dateExecute'          => '2018-01-01',
         ], $request->getBody());
     }
 
@@ -119,22 +119,22 @@ class CalculationRequestTest extends TestCase
             ->addTariffToList(7, 8);
 
         $this->assertSame([
-            'version' => '1.0',
-            'modeId' => 3,
+            'version'    => '1.0',
+            'modeId'     => 3,
             'tariffList' => [
                 0 => [
-                    'id' => 7,
+                    'id'       => 7,
                     'priority' => 8,
                 ],
             ],
             'senderCityId' => 1,
-            'services' => [
+            'services'     => [
                 0 => [
-                    'id' => 4,
+                    'id'    => 4,
                     'param' => null,
                 ],
                 1 => [
-                    'id' => 5,
+                    'id'    => 5,
                     'param' => 6,
                 ],
             ],

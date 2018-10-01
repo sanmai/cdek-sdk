@@ -49,7 +49,7 @@ final class Order implements HasErrorCode
     {
         return Order::create([
             'Number' => $Number,
-            'Date' => $Date,
+            'Date'   => $Date,
         ]);
     }
 

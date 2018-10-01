@@ -45,14 +45,14 @@ class PvzListRequestTest extends TestCase
             ->setPostCode('123456');
 
         $this->assertEquals([
-            'type' => PvzListRequest::TYPE_PVZ,
-            'cityid' => 1,
-            'regionid' => 2,
-            'countryid' => 3,
-            'citypostcode' => '123456',
-            'havecashles' => null,
-            'weightmax' => null,
-            'allowedcod' => null,
+            'type'           => PvzListRequest::TYPE_PVZ,
+            'cityid'         => 1,
+            'regionid'       => 2,
+            'countryid'      => 3,
+            'citypostcode'   => '123456',
+            'havecashles'    => null,
+            'weightmax'      => null,
+            'allowedcod'     => null,
             'isdressingroom' => null,
         ], $request->getParams());
 
@@ -64,14 +64,14 @@ class PvzListRequestTest extends TestCase
             ->setMaxWeight(100);
 
         $this->assertEquals([
-            'type' => PvzListRequest::TYPE_POSTOMAT,
-            'cityid' => null,
-            'regionid' => null,
-            'countryid' => null,
-            'citypostcode' => null,
-            'havecashles' => true,
-            'weightmax' => 100,
-            'allowedcod' => true,
+            'type'           => PvzListRequest::TYPE_POSTOMAT,
+            'cityid'         => null,
+            'regionid'       => null,
+            'countryid'      => null,
+            'citypostcode'   => null,
+            'havecashles'    => true,
+            'weightmax'      => 100,
+            'allowedcod'     => true,
             'isdressingroom' => false,
         ], $request->getParams());
     }

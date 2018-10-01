@@ -48,7 +48,7 @@ class AdditionalServiceTest extends TestCase
     {
         $service = AdditionalService::create([
             'ServiceCode' => 1234,
-            'Sum' => 500.1,
+            'Sum'         => 500.1,
         ]);
 
         $this->assertSame(1234, $service->getServiceCode());
@@ -56,7 +56,7 @@ class AdditionalServiceTest extends TestCase
 
         $service = AdditionalService::create([
             'ServiceCode' => '10',
-            'Sum' => '3.14',
+            'Sum'         => '3.14',
         ]);
 
         $this->assertSame(10, $service->getServiceCode());

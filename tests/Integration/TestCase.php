@@ -47,6 +47,7 @@ abstract class TestCase extends \PHPUnit\Framework\TestCase
 
         $http = false === getenv('CDEK_BASE_URL') ? null : new GuzzleClient([
             'base_uri' => getenv('CDEK_BASE_URL'),
+            'verify'   => !getenv('CI'), // Igonore SSL errors on the likes of Travis CI
         ]);
 
         $this->client = new CdekClient(getenv('CDEK_ACCOUNT'), getenv('CDEK_PASSWORD'), $http);

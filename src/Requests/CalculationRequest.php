@@ -44,16 +44,25 @@ class CalculationRequest implements JsonRequest
     const VERSION = '1.0';
 
     const SERVICE_INSURANCE = 2;  // Страховка
-    const SERVICE_HAZARDOUS_CARGO = 7;  // Опасный груз
+    const SERVICE_DANGEROUS_GOODS = 7;  // Опасный груз
     const SERVICE_PICKUP = 16; // Забор в городе отправителе
     const SERVICE_DELIVERY_TO_DOOR = 17; // Доставка в городе получателе
     const SERVICE_PACKAGE_1 = 24; // Упаковка 1
     const SERVICE_PACKAGE_2 = 25; // Упаковка 2
-    const SERVICE_FITTING_AT_HOME = 30; // Примерка на дому
+    const SERVICE_TRY_AT_HOME = 30; // Примерка на дому
     const SERVICE_PERSONAL_DELIVERY = 31; // Доставка лично в руки
     const SERVICE_DOCUMENTS_COPY = 32; // Скан документов
     const SERVICE_PARTIAL_DELIVERY = 36; // Частичная доставка
     const SERVICE_CARGO_CHECK = 37; // Осмотр вложения
+
+    /**
+     * @deprecated
+     */
+    const SERVICE_HAZARDOUS_CARGO = 7;  // Опасный груз
+    /**
+     * @deprecated
+     */
+    const SERVICE_FITTING_AT_HOME = 30; // Примерка на дому
 
     const MODE_DOOR_DOOR = 1;
     const MODE_DOOR_WAREHOUSE = 2;

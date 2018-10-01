@@ -45,7 +45,9 @@ use CdekSDK\Responses\PvzListResponse;
 use CdekSDK\Responses\StatusReportResponse;
 use Gamez\Psr\Log\TestLogger;
 use GuzzleHttp\ClientInterface;
+use GuzzleHttp\Exception\ServerException;
 use PHPUnit\Framework\TestCase;
+use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\StreamInterface;
 use Psr\Log\LogLevel;
@@ -177,6 +179,49 @@ class CdekClientTest extends TestCase
         $this->assertSame(2, $logger->log->countRecordsWithLevel(LogLevel::DEBUG));
         $this->assertTrue($logger->log->hasRecordsWithMessage(FixtureLoader::load('InfoReportFailed.xml')));
         $this->assertTrue($logger->log->hasRecordsWithPartialMessage('<InfoRequest'));
+    }
+
+    public function test_client_can_pass_through_common_exceptions()
+    {
+        $client = new CdekClient('foo', 'bar', $http = $this->getHttpClient('text/xml', FixtureLoader::load('InfoReportFailed.xml')));
+
+        $http->method('request')->will($this->returnCallback(function () {
+            throw new \RuntimeException();
+        }));
+
+        $this->expectException(\RuntimeException::class);
+        $response = $client->sendInfoReportRequest(new InfoReportRequest());
+    }
+
+    public function test_client_can_pass_through_exceptions_without_response()
+    {
+        $client = new CdekClient('foo', 'bar', $http = $this->getHttpClient('text/xml', FixtureLoader::load('InfoReportFailed.xml')));
+
+        $http->method('request')->will($this->returnCallback(function () {
+            throw new ServerException('', $this->createMock(RequestInterface::class));
+        }));
+
+        $this->expectException(ServerException::class);
+        $response = $client->sendInfoReportRequest(new InfoReportRequest());
+    }
+
+    public function test_client_can_handle_error_response()
+    {
+        $client = new CdekClient('foo', 'bar', $http = $this->getHttpClient('text/xml', FixtureLoader::load('InfoReportFailed.xml')));
+        $client->setLogger($logger = new TestLogger());
+
+        $responseMock = $this->createMock(ResponseInterface::class);
+
+        $http->method('request')->will($this->returnCallback(function () use ($responseMock) {
+            throw new ServerException('', $this->createMock(RequestInterface::class), $responseMock);
+        }));
+
+        //$this->expectException(\RuntimeException::class);
+        $response = $client->sendInfoReportRequest(new InfoReportRequest());
+        $this->assertSame(2, $logger->log->countRecordsWithLevel(LogLevel::DEBUG));
+        $this->assertTrue($logger->log->hasRecordsWithPartialMessage('CDEK API responded with a HTTP error code'));
+
+        $this->assertSame($responseMock, $response);
     }
 
     public function test_fails_on_unknown_method()

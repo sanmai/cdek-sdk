@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Regions>
+    <Region regionName="Тверская" regionCode="50" regionUuid="18aff43f-58b8-4608-ade7-92fdab7fc39f" prefix="обл" regionCodeExt="69" regionFiasGuid="61723327-1c20-42fe-8dfa-402638d9b396" countryName="РОССИЯ" countryCode="1" countryCodeExt="643"/>
+    <Region regionName="Архангельская" regionCode="66" regionUuid="2f644011-2c18-411e-b85c-3491117caa54" prefix="обл" regionCodeExt="29" regionFiasGuid="294277aa-e25d-428c-95ad-46719c4ddb44" countryName="РОССИЯ" countryCode="1" countryCodeExt="643"/>
+    <Region regionName="Калининградская" regionCode="38" regionUuid="3cfe3bff-25bf-4ccb-9014-85fff75e3a05" prefix="обл" regionCodeExt="39" regionFiasGuid="90c7181e-724f-41b3-b6c6-bd3ec7ae3f30" countryName="РОССИЯ" countryCode="1" countryCodeExt="643"/>
+    <Region regionName="Магаданская" regionCode="59" regionUuid="4a3de27c-86eb-4f67-b717-ef0cdbc73088" prefix="обл" regionCodeExt="49" regionFiasGuid="9c05e812-8679-4710-b8cb-5e8bd43cdf48" countryName="РОССИЯ" countryCode="1" countryCodeExt="643"/>
+    <Region regionName="Чукотский" regionCode="83" regionUuid="58384c03-3481-44d1-9cb3-f527da387c96" prefix="АО" regionCodeExt="87" regionFiasGuid="f136159b-404a-4f1f-8d8d-d169e1374d5c" countryName="РОССИЯ" countryCode="1" countryCodeExt="643"/>
+</Regions>
+

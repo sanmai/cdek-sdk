@@ -39,11 +39,6 @@ use CdekSDK\Responses\RegionsResponse;
  */
 class RegionsRequestTest extends TestCase
 {
-    public function testOK()
-    {
-        $this->assertTrue(true);
-    }
-
     public function test_example()
     {
         $request = new RegionsRequest();

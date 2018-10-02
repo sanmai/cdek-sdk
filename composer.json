@@ -8,11 +8,13 @@
     "authors": [
         {
             "name": "Roman Sokharev",
-            "role": "Creator"
+            "role": "Creator",
+            "homepage": "https://github.com/greabock"
         },
         {
             "name": "JhaoDa",
-            "role": "Developer"
+            "role": "Developer",
+            "homepage": "https://github.com/jhaoda"
         },
         {
             "name": "Alexey Kopytko",

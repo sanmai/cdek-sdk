@@ -57,6 +57,7 @@ use Psr\Log\LoggerAwareTrait;
  * @method Responses\FileResponse|Responses\PrintErrorResponse sendPrintReceiptsRequest(Requests\PrintReceiptsRequest $request)
  * @method Responses\FileResponse|Responses\PrintErrorResponse sendPrintLabelsRequest(Requests\PrintLabelsRequest $request)
  * @method Responses\RegionsResponse                           sendRegionsRequest(Requests\RegionsRequest $request)
+ * @method Responses\CitiesResponse                            sendCitiesRequest(Requests\CitiesRequest $request)
  */
 final class CdekClient implements Contracts\Client, LoggerAwareInterface
 {

@@ -11,7 +11,7 @@
 - [x] [расчёт стоимости доставки](#%D0%A0%D0%B0%D1%81%D1%87%D1%91%D1%82-%D1%81%D1%82%D0%BE%D0%B8%D0%BC%D0%BE%D1%81%D1%82%D0%B8-%D0%B4%D0%BE%D1%81%D1%82%D0%B0%D0%B2%D0%BA%D0%B8) :unlock:
 - [x] [получение списка пунктов выдачи заказов (ПВЗ) с фильтрацией](#%D0%9F%D0%BE%D0%BB%D1%83%D1%87%D0%B5%D0%BD%D0%B8%D0%B5-%D1%81%D0%BF%D0%B8%D1%81%D0%BA%D0%B0-%D0%9F%D0%92%D0%97) :unlock:
 - [x] получение списка регионов-субъектов РФ
-- [ ] получение списка городов
+- [x] получение списка городов
 - [x] управление заказами
   - [x] [формирование новых заказов](#%D0%A0%D0%B5%D0%B3%D0%B8%D1%81%D1%82%D1%80%D0%B0%D1%86%D0%B8%D1%8F-%D0%B7%D0%B0%D0%BA%D0%B0%D0%B7%D0%B0-%D0%BE%D1%82-%D0%B8%D0%BD%D1%82%D0%B5%D1%80%D0%BD%D0%B5%D1%82-%D0%BC%D0%B0%D0%B3%D0%B0%D0%B7%D0%B8%D0%BD%D0%B0)
   - [x] [получение квитанции в PDF](#%D0%9F%D0%B5%D1%87%D0%B0%D1%82%D1%8C-%D0%BA%D0%B2%D0%B8%D1%82%D0%B0%D0%BD%D1%86%D0%B8%D0%B8-%D0%BA-%D0%B7%D0%B0%D0%BA%D0%B0%D0%B7%D1%83)
@@ -63,6 +63,7 @@ $client = new \CdekSDK\CdekClient('account', 'password');
 | [Удаление заказа](#%D0%A3%D0%B4%D0%B0%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5-%D0%B7%D0%B0%D0%BA%D0%B0%D0%B7%D0%B0) | `sendDeleteRequest` | `DeleteRequest` |
 | [Получение списка ПВЗ](#%D0%9F%D0%BE%D0%BB%D1%83%D1%87%D0%B5%D0%BD%D0%B8%D0%B5-%D1%81%D0%BF%D0%B8%D1%81%D0%BA%D0%B0-%D0%9F%D0%92%D0%97) | `sendPvzListRequest` | `PvzListRequest` |
 | Список субъектов РФ | `sendRegionsRequest` | `RegionsRequest` |
+| Список городов | `sendCitiesRequest` | `CitiesRequest` |
 | [Регистрация заказа от ИМ](#%D0%A0%D0%B5%D0%B3%D0%B8%D1%81%D1%82%D1%80%D0%B0%D1%86%D0%B8%D1%8F-%D0%B7%D0%B0%D0%BA%D0%B0%D0%B7%D0%B0-%D0%BE%D1%82-%D0%B8%D0%BD%D1%82%D0%B5%D1%80%D0%BD%D0%B5%D1%82-%D0%BC%D0%B0%D0%B3%D0%B0%D0%B7%D0%B8%D0%BD%D0%B0) | `sendDeliveryRequest` | `DeliveryRequest` |
 | [Регистрация результата прозвона](#%D0%A0%D0%B5%D0%B3%D0%B8%D1%81%D1%82%D1%80%D0%B0%D1%86%D0%B8%D1%8F-%D0%B8%D0%BD%D1%84%D0%BE%D1%80%D0%BC%D0%B0%D1%86%D0%B8%D0%B8-%D0%BE-%D1%80%D0%B5%D0%B7%D1%83%D0%BB%D1%8C%D1%82%D0%B0%D1%82%D0%B5-%D0%BF%D1%80%D0%BE%D0%B7%D0%B2%D0%BE%D0%BD%D0%B0) | `sendScheduleRequest` | `ScheduleRequest` |
 | [Вызов курьера](#%D0%92%D1%8B%D0%B7%D0%BE%D0%B2-%D0%BA%D1%83%D1%80%D1%8C%D0%B5%D1%80%D0%B0) | `sendCallCourierRequest` | `CallCourierRequest` |
@@ -156,6 +157,34 @@ foreach ($response->getItems() as $region) {
     $region->getCountryName();
     $region->getCountryCode();
     $region->getCountryCodeExt();
+}
+```
+
+### Список городов
+
+```php
+use CdekSDK\Requests\CitiesRequest;
+
+$request = new CitiesRequest();
+$request->setPage(0)->setSize(10)->setRegionCode(50);
+
+$response = $client->sendCitiesRequest($request);
+
+foreach ($response->getItems() as $location) {
+    $location->getCityName();
+    $location->getCityCode();
+    $location->getCityUuid();
+    $location->getCountry();
+    $location->getCountryCode();
+    $location->getRegion();
+    $location->getRegionCode();
+    $location->getRegionCodeExt();
+    $location->getSubRegion();
+    $location->getPaymentLimit();
+    $location->getLatitude();
+    $location->getLongitude();
+    $location->getKladr();
+    $location->getFiasGuid();
 }
 ```
 

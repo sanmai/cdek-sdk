@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Locations>
+    <Location cityName="Лебедевка" cityCode="37960" cityUuid="1ef4f958-43c9-4a80-9fd6-e414231c3e55" country="РОССИЯ" countryCode="1" region="Новосибирская" regionCode="23" regionCodeExt="54" subRegion="Искитимский" latitude="54.6711" longitude="83.2337" kladr="5400800007900" fiasGuid="873b2cc6-cf4e-4001-aca7-eb0380951bfc" paymentLimit="-1"/>
+    <Location cityName="Новопокровский" cityCode="49876" cityUuid="228fcc02-be09-411b-8d88-aaab86c79a8f" country="РОССИЯ" countryCode="1" region="Новосибирская" regionCode="23" regionCodeExt="54" subRegion="Краснозерский" latitude="54.23" longitude="78.6929" kladr="5401400004900" fiasGuid="33836940-2211-4335-ae2e-7244fa88fe9e" paymentLimit="-1"/>
+    <Location cityName="Александро-Невский" cityCode="1961" cityUuid="22f58510-3b97-42b4-bd86-6e21a0e74ba9" country="РОССИЯ" countryCode="1" region="Новосибирская" regionCode="23" regionCodeExt="54" subRegion="Баганский" latitude="54.0212" longitude="77.3931" kladr="5400200002500" fiasGuid="34cbaf34-7ab2-42a4-b21a-c3d4b3a492e5" paymentLimit="-1"/>
+    <Location cityName="Маршанское" cityCode="39646" cityUuid="23f5dc61-43b0-4566-9413-344de99e1b11" country="РОССИЯ" countryCode="1" region="Новосибирская" regionCode="23" regionCodeExt="54" subRegion="Каргатский" latitude="55.0366" longitude="79.8615" kladr="5401000001200" fiasGuid="9d27abd6-049c-47ef-9f58-51b7a1c07a58" paymentLimit="-1"/>
+    <Location cityName="Чистоозерное" cityCode="752" cityUuid="574033d7-bfed-45b1-8745-d9917a58e8e4" country="РОССИЯ" countryCode="1" region="Новосибирская" regionCode="23" regionCodeExt="54" subRegion="Чистоозерный" latitude="54.7074" longitude="76.5818" kladr="5402900000100" fiasGuid="6c5bea6d-2211-49e4-ae75-192fc5e88b20" paymentLimit="-1"/>
+</Locations>
+

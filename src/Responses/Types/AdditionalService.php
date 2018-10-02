@@ -91,34 +91,50 @@ final class AdditionalService implements \ArrayAccess
         return $this->price;
     }
 
+    /**
+     * @deprecated
+     * @codeCoverageIgnore
+     *
+     * @param mixed $offset
+     */
     public function offsetExists($offset)
     {
+        @trigger_error('Do not use this object as an array; this functionality will be removed in a future version.', E_USER_DEPRECATED);
+
         return property_exists($this, $offset);
     }
 
     public function offsetGet($offset)
     {
+        @trigger_error('Do not use this object as an array; this functionality will be removed in a future version.', E_USER_DEPRECATED);
+
         return $this->{$offset};
     }
 
     /**
      * @deprecated
+     * @codeCoverageIgnore
      *
      * @param mixed $offset
      * @param mixed $value
      */
     public function offsetSet($offset, $value)
     {
+        @trigger_error('Do not use this object as an array; this functionality will be removed in a future version.', E_USER_DEPRECATED);
+
         $this->{$offset} = $value;
     }
 
     /**
      * @deprecated
+     * @codeCoverageIgnore
      *
      * @param mixed $offset
      */
     public function offsetUnset($offset)
     {
+        @trigger_error('Do not use this object as an array; this functionality will be removed in a future version.', E_USER_DEPRECATED);
+
         $this->{$offset} = null;
     }
 }

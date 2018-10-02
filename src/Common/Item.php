@@ -140,6 +140,7 @@ final class Item
      * @phan-suppress PhanUnusedPublicFinalMethodParameter
      *
      * @deprecated
+     * @codeCoverageIgnore
      *
      * @return \CdekSDK\Common\Item
      */

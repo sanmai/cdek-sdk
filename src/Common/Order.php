@@ -257,7 +257,7 @@ final class Order implements HasErrorCode
      * @JMS\SerializedName("DateLastChange")
      * @JMS\Type("DateTimeImmutable<'Y-m-d\TH:i:sP'>")
      *
-     * @var \DateTimeImmutable
+     * @var \DateTimeImmutable|null
      */
     protected $DateLastChange;
 
@@ -460,16 +460,22 @@ final class Order implements HasErrorCode
     public function callCourier(CallCourier $call)
     {
         $this->courierCalls[] = $call;
+
+        return $this;
     }
 
     public function addService(AdditionalService $service)
     {
         $this->additionalServices[] = $service;
+
+        return $this;
     }
 
     public function addScheduleAttempt(Attempt $attempt)
     {
         $this->scheduleAttempts[] = $attempt;
+
+        return $this;
     }
 
     public function setAddress(Address $address)
@@ -693,6 +699,10 @@ final class Order implements HasErrorCode
         return $this->attempts;
     }
 
+    /**
+     * @deprecated
+     * @codeCoverageIgnore
+     */
     public function addAttempt(Attempt $attempt)
     {
         $this->attempts[] = $attempt;
@@ -710,7 +720,10 @@ final class Order implements HasErrorCode
         return (float) $this->DeliverySum;
     }
 
-    public function getDateLastChange(): \DateTimeImmutable
+    /**
+     * @return \DateTimeImmutable|null
+     */
+    public function getDateLastChange()
     {
         return $this->DateLastChange;
     }

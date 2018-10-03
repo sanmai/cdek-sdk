@@ -38,6 +38,7 @@ use Tests\CdekSDK\Fixtures\FixtureLoader;
  * @covers \CdekSDK\Common\City
  * @covers \CdekSDK\Common\Package
  * @covers \CdekSDK\Common\Item
+ * @covers \CdekSDK\Common\Order
  */
 class InfoReportResponseTest extends TestCase
 {
@@ -59,6 +60,7 @@ class InfoReportResponseTest extends TestCase
             $this->assertSame('101000', $order->getSendCityPostCode());
             $this->assertSame('Москва', $order->getSenderCity()->getName());
             $this->assertSame('Новосибирск', $order->getRecipientCity()->getName());
+            $this->assertNull($order->getDateLastChange());
 
             $this->assertCount(1, $order->getPackages());
 

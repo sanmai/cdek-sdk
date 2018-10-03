@@ -28,8 +28,12 @@ declare(strict_types=1);
 
 namespace Tests\CdekSDK\Serialization;
 
+use CdekSDK\Common\AdditionalService;
 use CdekSDK\Common\Address;
+use CdekSDK\Common\Attempt;
+use CdekSDK\Common\CallCourier;
 use CdekSDK\Common\Order;
+use CdekSDK\Common\Package;
 use CdekSDK\Common\Sender;
 
 /**
@@ -57,6 +61,84 @@ class OrderTest extends TestCase
     <Address Street="Тестовая" House="8" Flat="32"/>
     <Phone><![CDATA[+9-999-999-9999]]></Phone>
   </Sender>
+</Order>
+', $order);
+    }
+
+    public function test_can_serialize_own_address()
+    {
+        $order = new Order();
+        $order = $order->setAddress(Address::create([
+            'Street' => 'Тестовая',
+            'House'  => '8',
+            'Flat'   => '32',
+        ]));
+
+        $this->assertSameAsXML('<?xml version="1.0" encoding="UTF-8"?>
+<Order>
+  <Address Street="Тестовая" House="8" Flat="32"/>
+</Order>
+', $order);
+    }
+
+    public function test_can_serialize_call_courier()
+    {
+        $order = Order::withDispatchNumber('123456');
+        $order = $order->callCourier(CallCourier::create([
+            'SendCityCode'   => 44,
+            'SenderName'     => 'Проверка Тестович',
+            'SendPhone'      => '+78001001010',
+        ]));
+
+        $this->assertSameAsXML('<?xml version="1.0" encoding="UTF-8"?>
+<Order DispatchNumber="123456">
+  <CallCourier>
+    <Call SendCityCode="44" SendPhone="+78001001010" SenderName="Проверка Тестович"/>
+  </CallCourier>
+</Order>
+', $order);
+    }
+
+    public function test_can_serialize_with_service()
+    {
+        $order = Order::withDispatchNumber('123456');
+        $order = $order->addService(AdditionalService::create([
+            'ServiceCode'   => 1,
+        ]));
+
+        $this->assertSameAsXML('<?xml version="1.0" encoding="UTF-8"?>
+<Order DispatchNumber="123456">
+  <AddService ServiceCode="1"/>
+</Order>
+', $order);
+    }
+
+    public function test_can_serialize_with_schedule_attempt()
+    {
+        $order = Order::withDispatchNumber('123456');
+        $order = $order->addScheduleAttempt(Attempt::create([
+            'Phone'     => '+78001001010',
+        ]));
+
+        $this->assertSameAsXML('<?xml version="1.0" encoding="UTF-8"?>
+<Order DispatchNumber="123456">
+  <Schedule>
+    <Attempt Phone="+78001001010"/>
+  </Schedule>
+</Order>
+', $order);
+    }
+
+    public function test_can_serialize_with_package()
+    {
+        $order = Order::withDispatchNumber('123456');
+        $order = $order->addPackage(Package::create([
+            'Number' => '123',
+        ]));
+
+        $this->assertSameAsXML('<?xml version="1.0" encoding="UTF-8"?>
+<Order DispatchNumber="123456">
+  <Package Number="123"/>
 </Order>
 ', $order);
     }

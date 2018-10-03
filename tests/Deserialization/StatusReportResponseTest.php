@@ -66,6 +66,15 @@ class StatusReportResponseTest extends TestCase
         $this->assertSame('2018-04-06', $order->DeliveryDate->format('Y-m-d'));
         $this->assertSame('Руслан Альбертович', $order->getRecipientName());
 
+        $this->assertSame(0.0, $order->getWeight());
+        $this->assertSame(0.0, $order->getDeliverySum());
+        $this->assertSame(0.0, $order->getCashOnDeliv());
+        $this->assertSame(0, $order->getDeliveryMode());
+        $this->assertSame('', $order->getPvzCode());
+        $this->assertSame('', $order->getDeliveryVariant());
+        $this->assertSame('', $order->getErrorCode());
+        $this->assertSame('', $order->getMessage());
+
         $this->assertInstanceOf(Reason::class, $order->getDelayReason());
         $this->assertEmpty($order->getDelayReason()->getCode());
 

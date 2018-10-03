@@ -29,6 +29,7 @@ declare(strict_types=1);
 namespace Tests\CdekSDK\Deserialization;
 
 use CdekSDK\Responses\DeliveryResponse;
+use CdekSDK\Responses\Types\DeliveryRequest;
 use Tests\CdekSDK\Fixtures\FixtureLoader;
 
 /**
@@ -67,6 +68,7 @@ class DeliveryResponseTest extends TestCase
         $this->assertCount(1, $response->getRequests());
 
         foreach ($response->getRequests() as $request) {
+            $this->assertInstanceOf(DeliveryRequest::class, $request);
             $this->assertSame('TESTING123', $request->getNumber());
         }
     }

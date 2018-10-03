@@ -28,9 +28,7 @@ declare(strict_types=1);
 
 namespace Tests\CdekSDK\Deserialization;
 
-use CdekSDK\Common\Item;
 use CdekSDK\Common\Order;
-use CdekSDK\Common\Package;
 use CdekSDK\Common\Reason;
 use CdekSDK\Common\State;
 use CdekSDK\Common\Status;
@@ -38,37 +36,27 @@ use CdekSDK\Responses\StatusReportResponse;
 use Tests\CdekSDK\Fixtures\FixtureLoader;
 
 /**
- * @covers \CdekSDK\Responses\StatusReportResponse
+ * @covers \CdekSDK\Common\Order
+ * @covers \CdekSDK\Common\Status
+ * @covers \CdekSDK\Common\Reason
+ * @covers \CdekSDK\Common\Package
+ * @covers \CdekSDK\Common\Item
  */
-class StatusReportResponseTest extends TestCase
+class OrderTest extends TestCase
 {
-    public function test_it_reads_example_response()
+    private function loadOrder($number): Order
     {
         $response = $this->getSerializer()->deserialize(FixtureLoader::load('StatusReportResponse.xml'), StatusReportResponse::class, 'xml');
 
         /** @var $response StatusReportResponse */
-        $this->assertInstanceOf(StatusReportResponse::class, $response);
+        return $response->getOrders()[$number];
+    }
 
-        $this->assertSame('2000-12-31', $response->getDateFirst()->format('Y-m-d'));
-        $this->assertSame('2018-08-10', $response->getDateLast()->format('Y-m-d'));
-
-        $this->assertCount(2, $response->getOrders());
-
-        $order = $response->getOrders()[0];
+    public function test_it_reads_another_order()
+    {
+        $order = $this->loadOrder(0);
 
         $this->assertSame('1000028000', $order->getDispatchNumber());
-        $this->assertSame('2080965069', $order->getNumber());
-        $this->assertSame('2018-04-06', $order->DeliveryDate->format('Y-m-d'));
-        $this->assertSame('Руслан Альбертович', $order->getRecipientName());
-
-        $this->assertSame(0.0, $order->getWeight());
-        $this->assertSame(0.0, $order->getDeliverySum());
-        $this->assertSame(0.0, $order->getCashOnDeliv());
-        $this->assertSame(0, $order->getDeliveryMode());
-        $this->assertSame('', $order->getPvzCode());
-        $this->assertSame('', $order->getDeliveryVariant());
-        $this->assertSame('', $order->getErrorCode());
-        $this->assertSame('', $order->getMessage());
 
         $this->assertInstanceOf(Reason::class, $order->getDelayReason());
         $this->assertEmpty($order->getDelayReason()->getCode());
@@ -105,10 +93,58 @@ class StatusReportResponseTest extends TestCase
         $this->assertSame('Вручен', $lastState->Description);
         $this->assertSame('Нальчик', $lastState->CityName);
         $this->assertSame(1081, $lastState->CityCode);
+    }
 
-        $order = $response->getOrders()[1];
-        $this->assertCount(2, $order->Call->CallGood);
-        $this->assertCount(1, $order->Call->CallFail);
+    public function test_it_reads_yet_another_order()
+    {
+        $order = $this->loadOrder(1);
+
+        $this->assertSame('1000356200', $order->getDispatchNumber());
+
+        $this->assertNull($order->getDate());
+        $this->assertSame('2066479243', $order->getNumber());
+        $this->assertSame('1000356200', $order->getId());
+        $this->assertSame(null, $order->getSendCityCode());
+        $this->assertSame(null, $order->getSendCityPostCode());
+        $this->assertSame(null, $order->getRecCityCode());
+        $this->assertSame(null, $order->getRecCityPostCode());
+        $this->assertSame('Аркадий Якубович', $order->getRecipientName());
+        $this->assertSame(0.0, $order->getDeliveryRecipientCost());
+        $this->assertSame(0, $order->getTariffTypeCode());
+        $this->assertSame('', $order->getPhone());
+        $this->assertSame('', $order->getRecipientEmail());
+        $this->assertSame('', $order->getRecipientCurrency());
+        $this->assertSame('', $order->getItemsCurrency());
+        $this->assertSame('', $order->getComment());
+        $this->assertSame('', $order->getSellerName());
+        //$this->assertSame(1, $order->getAddress());
+        $this->assertCount(0, $order->getAdditionalServices());
+        $this->assertCount(0, $order->getScheduleAttempts());
+        $this->assertCount(1, $order->getPackages());
+        $this->assertCount(0, $order->getCourierCalls());
+        $this->assertSame(4, $order->getStatus()->getCode());
+        $this->assertSame(20, $order->getReason()->getCode());
+        $this->assertSame(0, $order->getDelayReason()->getCode());
+        $this->assertCount(1, $order->getDelayReason()->getStates());
+        $this->assertCount(0, $order->getAttempts());
+        $this->assertSame(0.0, $order->getWeight());
+        $this->assertSame(0.0, $order->getDeliverySum());
+        //$this->assertSame(1, $order->getDateLastChange());
+        $this->assertSame(0.0, $order->getCashOnDeliv());
+        $this->assertSame(0.0, $order->getCashOnDelivFac());
+        $this->assertSame(0.0, $order->getCashOnDelivFact());
+        $this->assertSame(0, $order->getDeliveryMode());
+        $this->assertSame('', $order->getPvzCode());
+        $this->assertSame('', $order->getDeliveryVariant());
+        //$this->assertSame(1, $order->getSenderCity());
+        //$this->assertSame(1, $order->getRecipientCity());
+        $this->assertSame('', $order->getErrorCode());
+        $this->assertSame('', $order->getMessage());
+        $this->assertCount(2, $order->getCall()->getCallGood());
+        //$this->assertSame(1, $order->getReturnOrder());
+        $this->assertSame('', $order->getActNumber());
+        $this->assertSame('2018-04-07 15:29:32', $order->getDeliveryDate()->format('Y-m-d H:i:s'));
+        //$this->assertSame(1, $order->getReturnDispatchNumber());
 
         $package = $order->getPackages()[0];
         /** @var $package Package */
@@ -120,49 +156,5 @@ class StatusReportResponseTest extends TestCase
         $this->assertSame('2201073352678', $item->getWareKey());
         $this->assertSame(1, $item->getAmount());
         $this->assertSame(0.0, $item->getDelivAmount());
-    }
-
-    public function test_it_reads_simple_response()
-    {
-        $response = $this->getSerializer()->deserialize(FixtureLoader::load('StatusReportMinimal.xml'), StatusReportResponse::class, 'xml');
-
-        /** @var $response StatusReportResponse */
-        $this->assertInstanceOf(StatusReportResponse::class, $response);
-
-        $this->assertSame(strtotime('2000-12-31T17:00:00+00:00'), $response->getDateFirst()->getTimestamp());
-        $this->assertSame(strtotime('2018-09-01T00:00:00+00:00'), $response->getDateLast()->getTimestamp());
-
-        $this->assertCount(1, $response->getOrders());
-
-        /** @var Order $order */
-        $order = $response->getOrders()[0];
-
-        $this->assertInstanceOf(Order::class, $order);
-        $this->assertSame('TESTING123', $order->ActNumber);
-        $this->assertSame('TEST-123456', $order->getNumber());
-        $this->assertSame('1234567', $order->getDispatchNumber());
-        $this->assertNull($order->DeliveryDate);
-        $this->assertSame('', $order->getRecipientName());
-
-        $this->assertSame(strtotime('2018-09-01T02:10:00+00:00'), $order->getStatus()->getDate()->getTimestamp());
-        $this->assertSame(1, $order->getStatus()->getCode());
-
-        $this->assertSame('Создан', $order->getStatus()->getDescription());
-        $this->assertSame(44, $order->getStatus()->getCityCode());
-        $this->assertSame('Москва', $order->getStatus()->getCityName());
-
-        $this->assertSame(0, $order->getReason()->Code);
-        $this->assertSame(0, $order->getDelayReason()->Code);
-    }
-
-    public function test_it_reads_failed_response()
-    {
-        $response = $this->getSerializer()->deserialize(FixtureLoader::load('StatusReportFailed.xml'), StatusReportResponse::class, 'xml');
-
-        /** @var $response StatusReportResponse */
-        $this->assertInstanceOf(StatusReportResponse::class, $response);
-
-        $this->assertSame('По указанным параметрам заказов не найдено', $response->getMessage());
-        $this->assertSame('ERR_ORDERS_NOT_FOUND', $response->getErrorCode());
     }
 }

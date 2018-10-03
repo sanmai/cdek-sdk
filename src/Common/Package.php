@@ -172,4 +172,9 @@ final class Package
     {
         return $this->SizeA * $this->SizeB * $this->SizeC / self::VOLUMETRIC_WEIGHT_DIVIDER;
     }
+
+    public function getItems(): array
+    {
+        return $this->items;
+    }
 }

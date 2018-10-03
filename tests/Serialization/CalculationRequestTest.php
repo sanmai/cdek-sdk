@@ -141,4 +141,29 @@ class CalculationRequestTest extends TestCase
             'receiverCityId' => 2,
         ], $request->getBody());
     }
+
+    public function test_constants_exists()
+    {
+        foreach ([
+            CalculationRequest::SERVICE_INSURANCE,
+            CalculationRequest::SERVICE_DANGEROUS_GOODS,
+            CalculationRequest::SERVICE_PICKUP,
+            CalculationRequest::SERVICE_DELIVERY_TO_DOOR,
+            CalculationRequest::SERVICE_PACKAGE_1,
+            CalculationRequest::SERVICE_PACKAGE_2,
+            CalculationRequest::SERVICE_TRY_AT_HOME,
+            CalculationRequest::SERVICE_PERSONAL_DELIVERY,
+            CalculationRequest::SERVICE_DOCUMENTS_COPY,
+            CalculationRequest::SERVICE_PARTIAL_DELIVERY,
+            CalculationRequest::SERVICE_CARGO_CHECK,
+            CalculationRequest::SERVICE_HAZARDOUS_CARGO, // @deprecated
+            CalculationRequest::SERVICE_FITTING_AT_HOME, // @deprecated
+            CalculationRequest::MODE_DOOR_DOOR,
+            CalculationRequest::MODE_DOOR_WAREHOUSE,
+            CalculationRequest::MODE_WAREHOUSE_DOOR,
+            CalculationRequest::MODE_WAREHOUSE_WAREHOUSE,
+        ] as $value) {
+            $this->assertNotNull($value);
+        }
+    }
 }

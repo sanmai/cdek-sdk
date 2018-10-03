@@ -59,5 +59,11 @@ class PreAlertResponseTest extends TestCase
             $this->assertContains('Некорректный формат', $message->getMessage());
             $this->assertSame('INVALID_PARAMETER', $message->getErrorCode());
         }
+
+        $this->assertCount(1, $response->getErrors());
+        foreach ($response->getErrors() as $error) {
+            $this->assertContains('Некорректный формат', $error->getMessage());
+            $this->assertSame('INVALID_PARAMETER', $error->getErrorCode());
+        }
     }
 }

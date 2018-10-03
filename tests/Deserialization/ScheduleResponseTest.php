@@ -49,6 +49,7 @@ class ScheduleResponseTest extends TestCase
 
         $this->assertCount(1, $response->getMessages());
         $this->assertCount(0, $response->getErrors());
+        $this->assertFalse($response->hasErrors());
 
         foreach ($response->getMessages() as $message) {
             $this->assertFalse($message->isError());

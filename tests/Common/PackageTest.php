@@ -43,6 +43,10 @@ class PackageTest extends TestCase
             'SizeC' => 5,
         ]);
 
+        $this->assertSame(30, $package->getSizeA());
+        $this->assertSame(20, $package->getSizeB());
+        $this->assertSame(5, $package->getSizeC());
+
         $this->assertSame(0.6, $package->calculateVolumeWeight());
     }
 
@@ -70,5 +74,14 @@ class PackageTest extends TestCase
         ]);
 
         $this->assertSame(1000.5, $package->getVolumeWeight());
+    }
+
+    public function test_get_set_weight()
+    {
+        $package = new Package([
+            'Weight' => 100.1,
+        ]);
+
+        $this->assertSame(100.1, $package->getWeight());
     }
 }

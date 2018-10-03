@@ -150,7 +150,7 @@ class DeliveryRequestTest extends TestCase
         $response = $this->getClient()->sendDeliveryRequest($request);
 
         foreach ($response->getMessages() as $message) {
-            $this->assertFalse($message->isError());
+            $this->assertFalse($message->isError(), $message->getMessage());
         }
 
         foreach ($response->getOrders() as $order) {

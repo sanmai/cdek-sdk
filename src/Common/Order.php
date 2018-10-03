@@ -32,7 +32,7 @@ use CdekSDK\Contracts\HasErrorCode;
 use JMS\Serializer\Annotation as JMS;
 
 /**
- * Class Order.
+ * @JMS\XmlRoot(name="Order")
  */
 final class Order implements HasErrorCode
 {

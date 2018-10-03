@@ -58,6 +58,7 @@ class InfoReportResponseTest extends TestCase
         foreach ($response->getOrders() as $order) {
             $this->assertSame('TEST-123456', $order->getNumber());
             $this->assertSame('101000', $order->getSendCityPostCode());
+            $this->assertSame(44, $order->getSenderCity()->getCode());
             $this->assertSame('Москва', $order->getSenderCity()->getName());
             $this->assertSame('Новосибирск', $order->getRecipientCity()->getName());
             $this->assertNull($order->getDateLastChange());

@@ -53,7 +53,7 @@ class CitiesRequestTest extends TestCase
 
         $location = $response->getItems()[0];
 
-        $this->assertSame('Согласие', $location->getName());
+        $this->assertNotEmpty($location->getName());
         $this->assertSame(0.0, $location->getPaymentLimit());
     }
 

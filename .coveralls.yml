@@ -1,4 +1,2 @@
 coverage_clover:
   - build/logs/clover.xml
-  - build/logs/clover-integration.xml
-

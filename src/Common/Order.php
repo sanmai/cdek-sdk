@@ -272,12 +272,12 @@ final class Order implements HasErrorCode
 
     /**
      * @JMS\XmlAttribute
-     * @JMS\SerializedName("CashOnDelivFac")
+     * @JMS\SerializedName("CashOnDelivFact")
      * @JMS\Type("float")
      *
      * @var float
      */
-    protected $CashOnDelivFac;
+    protected $CashOnDelivFact;
 
     /**
      * @JMS\XmlAttribute
@@ -395,6 +395,14 @@ final class Order implements HasErrorCode
     protected $ShipperAddress;
 
     /**
+     * @JMS\SerializedName("Sender")
+     * @JMS\Type("CdekSDK\Common\Sender")
+     *
+     * @var Sender
+     */
+    protected $Sender;
+
+    /**
      * @JMS\SerializedName("Call")
      * @JMS\Type("CdekSDK\Common\Call")
      *
@@ -467,6 +475,13 @@ final class Order implements HasErrorCode
     public function setAddress(Address $address)
     {
         $this->Address = $address;
+
+        return $this;
+    }
+
+    public function setSender(Sender $sender)
+    {
+        $this->Sender = $sender;
 
         return $this;
     }
@@ -705,9 +720,18 @@ final class Order implements HasErrorCode
         return (float) $this->CashOnDeliv;
     }
 
+    /**
+     * @deprecated
+     * @codeCoverageIgnore
+     */
     public function getCashOnDelivFac(): float
     {
-        return (float) $this->CashOnDelivFac;
+        return $this->getCashOnDelivFact();
+    }
+
+    public function getCashOnDelivFact(): float
+    {
+        return (float) $this->CashOnDelivFact;
     }
 
     public function getDeliveryMode(): int

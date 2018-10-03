@@ -23,6 +23,10 @@
             "homepage": "https://www.alexeykopytko.com"
         }
     ],
+    "support": {
+        "issues": "https://github.com/sanmai/cdek-sdk/issues",
+        "docs": "https://github.com/sanmai/cdek-sdk/blob/master/README.md"
+    },
     "require": {
         "php": "^7.0",
         "guzzlehttp/guzzle": "^6.3",

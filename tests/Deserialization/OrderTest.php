@@ -157,4 +157,11 @@ class OrderTest extends TestCase
         $this->assertSame(1, $item->getAmount());
         $this->assertSame(0.0, $item->getDelivAmount());
     }
+
+    public function test_reads_pvz_code()
+    {
+        $order = $this->getSerializer()->deserialize('<Order PvzCode="ABC123" />', Order::class, 'xml');
+        /** @var $order Order */
+        $this->assertSame('ABC123', $order->getPvzCode());
+    }
 }

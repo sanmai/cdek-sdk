@@ -535,6 +535,11 @@ final class Order implements HasErrorCode
         throw new \BadMethodCallException('Order has neither a DispatchNumber nor a Date/Number.');
     }
 
+    public function __toString()
+    {
+        return $this->getId();
+    }
+
     /**
      * @JMS\VirtualProperty
      * @JMS\XmlAttribute

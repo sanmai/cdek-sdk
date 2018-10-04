@@ -39,12 +39,14 @@ class OrderTest extends TestCase
     {
         $order = Order::withDispatchNumber('testing123');
         $this->assertSame('testing123', $order->getId());
+        $this->assertSame('testing123', (string) $order);
     }
 
     public function test_it_gets_id_from_date_number()
     {
         $order = Order::withNumberAndDate('foo', new \DateTime('2001-01-01'));
         $this->assertSame('2001-01-01/foo', $order->getId());
+        $this->assertSame('2001-01-01/foo', (string) $order);
     }
 
     public function test_it_fails_with_no_id()

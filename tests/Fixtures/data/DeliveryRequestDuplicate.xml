@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?><response><Order ErrorCode="ERROR_VALIDATE_IM_DEP_NUMBER_HAS_ALREADY_HAD" Msg="Введенный номер отправления ИМ не уникальный. Введите уникальный номер или нажмите кнопку &quot;уникальный номер&quot;, если необходимо, чтобы система сгенерировала его автоматически." Number="TEST-123456"/><Order Msg="Добавлено заказов 0"/></response>
+

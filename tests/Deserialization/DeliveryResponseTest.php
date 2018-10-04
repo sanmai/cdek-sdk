@@ -52,6 +52,21 @@ class DeliveryResponseTest extends TestCase
         }
     }
 
+    public function test_duplicate_request()
+    {
+        $response = $this->getSerializer()->deserialize(FixtureLoader::load('DeliveryRequestDuplicate.xml'), DeliveryResponse::class, 'xml');
+
+        /** @var $response DeliveryResponse */
+        $this->assertInstanceOf(DeliveryResponse::class, $response);
+
+        $this->assertCount(2, $response->getMessages());
+
+        foreach ($response->getMessages() as $message) {
+            $this->assertTrue($message->isError());
+            break;
+        }
+    }
+
     public function test_failing_request_with_failed_auth()
     {
         $response = $this->getSerializer()->deserialize(FixtureLoader::load('DeliveryRequestFailedAuth.xml'), DeliveryResponse::class, 'xml');

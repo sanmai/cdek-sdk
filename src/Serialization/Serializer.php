@@ -91,8 +91,13 @@ final class Serializer implements SerializerInterface
         }
     }
 
+    /**
+     * @psalm-suppress PossiblyNullIterator
+     */
     private function updateAttributesCase(\SimpleXMLElement $data): \SimpleXMLElement
     {
+        assert($data->attributes() !== null);
+
         foreach ($data->attributes() as $attrName => $attrValue) {
             if ($this->ctypeEnabled && \ctype_upper($attrName[0])) {
                 continue;

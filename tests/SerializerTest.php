@@ -102,6 +102,7 @@ class SerializerTest extends TestCase
         $serializer = new Serializer();
 
         $example = $serializer->deserialize($serializer->serialize(new SerializerExample(), 'xml'), SerializerExample::class, 'xml');
+
         /** @var $example SerializerExample */
         $this->assertNull($example->Number);
 

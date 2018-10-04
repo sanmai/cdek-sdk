@@ -110,10 +110,13 @@ final class Serializer implements SerializerInterface
     }
 
     /**
-     * {@inheritdoc}
-     *
      * @see \JMS\Serializer\SerializerInterface::serialize()
      * @psalm-suppress MoreSpecificImplementedParamType
+     *
+     * @param mixed  $data
+     * @param string $format
+     *
+     * @return string
      */
     public function serialize($data, $format, SerializationContext $context = null)
     {
@@ -121,10 +124,12 @@ final class Serializer implements SerializerInterface
     }
 
     /**
-     * {@inheritdoc}
-     *
      * @see \JMS\Serializer\SerializerInterface::deserialize()
      * @psalm-suppress MoreSpecificImplementedParamType
+     *
+     * @param mixed  $data
+     * @param string $type
+     * @param string $format
      */
     public function deserialize($data, $type, $format, DeserializationContext $context = null)
     {

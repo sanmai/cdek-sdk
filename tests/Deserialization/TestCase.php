@@ -29,7 +29,6 @@ declare(strict_types=1);
 namespace Tests\CdekSDK\Deserialization;
 
 use CdekSDK\Serialization;
-use JMS\Serializer\SerializerInterface;
 
 abstract class TestCase extends \PHPUnit\Framework\TestCase
 {
@@ -45,7 +44,7 @@ abstract class TestCase extends \PHPUnit\Framework\TestCase
         \Doctrine\Common\Annotations\AnnotationRegistry::registerLoader('class_exists');
     }
 
-    protected function getSerializer(): SerializerInterface
+    protected function getSerializer(): Serialization\Serializer
     {
         return $this->serializer;
     }

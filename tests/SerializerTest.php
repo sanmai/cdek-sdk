@@ -34,6 +34,7 @@ use CdekSDK\Serialization\Serializer;
 use Doctrine\Common\Annotations\AnnotationRegistry;
 use PHPUnit\Framework\TestCase;
 use Tests\CdekSDK\Fixtures\FixtureLoader;
+use Tests\CdekSDK\Fixtures\SerializerExample;
 
 /**
  * @covers \CdekSDK\Serialization\Serializer
@@ -94,5 +95,26 @@ class SerializerTest extends TestCase
         $this->assertSame('<?xml version="1.0" encoding="UTF-8"?>
 <StatusReport/>
 ', $response);
+    }
+
+    public function test_it_can_deserialize_mixed_case_attributes()
+    {
+        $serializer = new Serializer();
+
+        $example = $serializer->deserialize($serializer->serialize(new SerializerExample(), 'xml'), SerializerExample::class, 'xml');
+        /** @var $example SerializerExample */
+        $this->assertNull($example->Number);
+
+        $example = $serializer->deserialize('<SerializerExample foo="1" number="ABC1234" BAR="baz" />', SerializerExample::class, 'xml');
+        /** @var $example SerializerExample */
+        $this->assertSame('ABC1234', $example->Number);
+        $this->assertSame('baz', $example->BAR);
+        $this->assertSame(1, $example->Foo);
+
+        $example = $serializer->deserialize('<SerializerExample Foo="2" number="ABC12345" bAR="Baz" />', SerializerExample::class, 'xml');
+        /** @var $example SerializerExample */
+        $this->assertSame('ABC12345', $example->Number);
+        $this->assertSame('Baz', $example->BAR);
+        $this->assertSame(2, $example->Foo);
     }
 }

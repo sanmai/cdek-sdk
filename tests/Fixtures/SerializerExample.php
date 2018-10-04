@@ -26,27 +26,39 @@
 
 declare(strict_types=1);
 
-namespace Tests\CdekSDK\Deserialization;
+namespace Tests\CdekSDK\Fixtures;
 
-use CdekSDK\Serialization;
-use JMS\Serializer\SerializerInterface;
+use JMS\Serializer\Annotation as JMS;
 
-abstract class TestCase extends \PHPUnit\Framework\TestCase
+/**
+ * @JMS\XmlRoot(name="SerializerExample")
+ */
+final class SerializerExample
 {
-    private $serializer;
+    /**
+     * @JMS\XmlAttribute
+     * @JMS\SerializedName("Number")
+     * @JMS\Type("string")
+     *
+     * @var string
+     */
+    public $Number;
 
-    protected function setUp()
-    {
-        $this->serializer = new Serialization\Serializer();
+    /**
+     * @JMS\XmlAttribute
+     * @JMS\SerializedName("Foo")
+     * @JMS\Type("int")
+     *
+     * @var int
+     */
+    public $Foo;
 
-        \Doctrine\Common\Annotations\AnnotationReader::addGlobalIgnoredName('phan');
-
-        /** @phan-suppress-next-line PhanDeprecatedFunction */
-        \Doctrine\Common\Annotations\AnnotationRegistry::registerLoader('class_exists');
-    }
-
-    protected function getSerializer(): SerializerInterface
-    {
-        return $this->serializer;
-    }
+    /**
+     * @JMS\XmlAttribute
+     * @JMS\SerializedName("BAR")
+     * @JMS\Type("string")
+     *
+     * @var string
+     */
+    public $BAR;
 }

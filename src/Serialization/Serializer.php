@@ -31,6 +31,9 @@ namespace CdekSDK\Serialization;
 use Doctrine\Common\Annotations\AnnotationReader;
 use Doctrine\Common\Annotations\AnnotationRegistry;
 use JMS\Serializer\DeserializationContext;
+use JMS\Serializer\EventDispatcher\EventDispatcher;
+use JMS\Serializer\EventDispatcher\Events;
+use JMS\Serializer\EventDispatcher\PreDeserializeEvent;
 use JMS\Serializer\Handler\HandlerRegistryInterface;
 use JMS\Serializer\SerializationContext;
 use JMS\Serializer\SerializerBuilder;
@@ -52,11 +55,32 @@ final class Serializer implements SerializerInterface
     /** @var SerializerInterface */
     private $serializer;
 
+    private $ctypeEnabled;
+
     public function __construct()
     {
-        $this->serializer = SerializerBuilder::create()->configureHandlers(function (HandlerRegistryInterface $registry) {
+        $builder = SerializerBuilder::create()->configureHandlers(function (HandlerRegistryInterface $registry) {
             $registry->registerSubscribingHandler(new NullableDateTimeHandler());
-        })->build();
+        });
+
+        /*
+         * У СДЭК атрибуты могут быть как в верхнем, так и в нижнем регистре. Например, pvzCode="123" и PvzCode="123".
+         * Чтобы не добавлять отдельные свойства для каждого вида написания (как в 4f5ca9d27), приведём все
+         * атрибуты к единому виду, с главной большой буквы.
+         */
+        $builder->configureListeners(function (EventDispatcher $dispatcher) {
+            $dispatcher->addListener(Events::PRE_DESERIALIZE, function (PreDeserializeEvent $event) {
+                $data = $event->getData();
+                if ($data instanceof \SimpleXMLElement) {
+                    $event->setData($this->updateAttributesCase($data));
+                }
+            }, null, 'xml');
+        });
+
+        $this->serializer = $builder->build();
+
+        // Can be disabled in certain environments (customized PHP build?)
+        $this->ctypeEnabled = function_exists('\ctype_upper');
 
         // Ignore Phan/Psalm issue-suppressing annotations
         AnnotationReader::addGlobalIgnoredName('phan');
@@ -65,6 +89,19 @@ final class Serializer implements SerializerInterface
         if (self::$configureAnnotationRegistry) {
             self::configureAnnotationRegistry();
         }
+    }
+
+    private function updateAttributesCase(\SimpleXMLElement $data): \SimpleXMLElement
+    {
+        foreach ($data->attributes() as $attrName => $attrValue) {
+            if ($this->ctypeEnabled && \ctype_upper($attrName[0])) {
+                continue;
+            }
+
+            $data[ucfirst($attrName)] = $attrValue;
+        }
+
+        return $data;
     }
 
     /**

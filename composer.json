@@ -35,6 +35,7 @@
         "sanmai/pipeline": "^2.0"
     },
     "suggest": {
+        "ext-ctype": "For flexible attribute name handling",
         "sanmai/pindx": "For postal code validation"
     },
     "require-dev": {

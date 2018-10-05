@@ -65,7 +65,7 @@ final class CdekClient implements Contracts\Client, LoggerAwareInterface
 
     const STANDARD_BASE_URL = 'https://integration.cdek.ru';
 
-    const DEFAULT_TIMEOUT = 15;
+    const DEFAULT_TIMEOUT = 60;
 
     /** @var ClientInterface */
     private $http;

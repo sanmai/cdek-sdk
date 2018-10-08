@@ -29,12 +29,13 @@ declare(strict_types=1);
 namespace CdekSDK\Responses;
 
 use CdekSDK\Common\Region;
+use CdekSDK\Contracts\Response;
 use JMS\Serializer\Annotation as JMS;
 
 /**
  * Class RegionsResponse.
  */
-final class RegionsResponse implements \IteratorAggregate
+final class RegionsResponse implements \IteratorAggregate, Response
 {
     /**
      * @JMS\XmlList(entry = "Region", inline = true)
@@ -58,5 +59,20 @@ final class RegionsResponse implements \IteratorAggregate
     public function getIterator()
     {
         return new \ArrayIterator($this->getItems());
+    }
+
+    public function jsonSerialize()
+    {
+        return [];
+    }
+
+    public function hasErrors(): bool
+    {
+        return false;
+    }
+
+    public function getMessages()
+    {
+        return [];
     }
 }

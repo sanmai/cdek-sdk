@@ -30,15 +30,19 @@ namespace CdekSDK\Responses;
 
 use CdekSDK\Common\Order;
 use CdekSDK\Contracts\HasErrorCode;
+use CdekSDK\Contracts\Response;
 use CdekSDK\Requests\ScheduleRequest;
+use CdekSDK\Responses\Concerns\HasErrors;
 use CdekSDK\Responses\Types\Message;
 use JMS\Serializer\Annotation as JMS;
 
 /**
  * Class ScheduleResponse.
  */
-final class ScheduleResponse
+final class ScheduleResponse implements Response
 {
+    use HasErrors;
+
     /**
      * @JMS\XmlList(entry = "ScheduleRequest", inline = true)
      * @JMS\Type("array<CdekSDK\Requests\ScheduleRequest>")
@@ -63,17 +67,6 @@ final class ScheduleResponse
         return Message::from($this->requests, $this->orders);
     }
 
-    public function hasErrors(): bool
-    {
-        foreach ($this->getMessages() as $message) {
-            if ($message->isError()) {
-                return true;
-            }
-        }
-
-        return false;
-    }
-
     /**
      * @return \Traversable|HasErrorCode[]
      */
@@ -84,5 +77,10 @@ final class ScheduleResponse
                 yield $message;
             }
         }
+    }
+
+    public function jsonSerialize()
+    {
+        return [];
     }
 }

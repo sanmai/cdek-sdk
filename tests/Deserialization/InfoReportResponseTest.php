@@ -120,4 +120,10 @@ class InfoReportResponseTest extends TestCase
             $this->assertContains('Заказ не найден', $message->getText());
         }
     }
+
+    public function test_it_serializes_to_empty_json()
+    {
+        $response = new InfoReportResponse();
+        $this->assertSame([], $response->jsonSerialize());
+    }
 }

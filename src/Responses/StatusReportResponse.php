@@ -29,12 +29,15 @@ declare(strict_types=1);
 namespace CdekSDK\Responses;
 
 use CdekSDK\Common\Order;
+use CdekSDK\Contracts\HasErrorCode;
+use CdekSDK\Contracts\Response;
+use CdekSDK\Responses\Types\Message;
 use JMS\Serializer\Annotation as JMS;
 
 /**
  * Class StatusReportResponse.
  */
-final class StatusReportResponse
+final class StatusReportResponse implements Response, HasErrorCode
 {
     /**
      * @JMS\XmlAttribute
@@ -106,5 +109,25 @@ final class StatusReportResponse
     public function getMessage(): string
     {
         return (string) $this->Msg;
+    }
+
+    public function jsonSerialize()
+    {
+        return [];
+    }
+
+    public function hasErrors(): bool
+    {
+        return (bool) $this->ErrorCode;
+    }
+
+    /**
+     * {@inheritdoc}
+     *
+     * @see \CdekSDK\Contracts\Response::getMessages()
+     */
+    public function getMessages()
+    {
+        return Message::from([$this]);
     }
 }

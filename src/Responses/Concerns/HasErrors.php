@@ -26,40 +26,21 @@
 
 declare(strict_types=1);
 
-namespace CdekSDK\Responses;
+namespace CdekSDK\Responses\Concerns;
 
 use CdekSDK\Contracts\Response;
-use Psr\Http\Message\StreamInterface;
 
-/**
- * FileResponse содержит данные файла.
- */
-final class FileResponse implements Response
+trait HasErrors
 {
-    private $stream;
-
-    public function __construct(StreamInterface $stream)
-    {
-        $this->stream = $stream;
-    }
-
-    public function getBody(): StreamInterface
-    {
-        return $this->stream;
-    }
-
-    public function jsonSerialize()
-    {
-        return (string) $this->getBody();
-    }
-
     public function hasErrors(): bool
     {
-        return false;
-    }
+        assert($this instanceof Response);
+        foreach ($this->getMessages() as $message) {
+            if ($message->getErrorCode() !== '') {
+                return true;
+            }
+        }
 
-    public function getMessages()
-    {
-        return [];
+        return false;
     }
 }

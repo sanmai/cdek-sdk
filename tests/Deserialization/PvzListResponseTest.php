@@ -69,4 +69,17 @@ class PvzListResponseTest extends TestCase
         $this->assertCount(1, $item->OfficeImages);
         $this->assertStringStartsWith('http', $item->OfficeImages[0]->getUrl());
     }
+
+    public function test_it_has_no_errors()
+    {
+        $response = new PvzListResponse();
+        $this->assertFalse($response->hasErrors());
+        $this->assertCount(0, $response->getMessages());
+    }
+
+    public function test_it_serializes_to_empty_json()
+    {
+        $response = new PvzListResponse();
+        $this->assertSame([], $response->jsonSerialize());
+    }
 }

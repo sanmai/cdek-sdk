@@ -39,7 +39,7 @@ COMPOSER=$(PHP) $(shell which composer)
 INFECTION=vendor/bin/infection
 MIN_MSI=70
 MIN_COVERED_MSI=90
-INFECTION_ARGS=--min-msi=$(MIN_MSI) --min-covered-msi=$(MIN_COVERED_MSI) --threads=$(JOBS) --coverage=build/logs
+INFECTION_ARGS=--min-msi=$(MIN_MSI) --min-covered-msi=$(MIN_COVERED_MSI) --threads=$(JOBS) --coverage=build/logs --log-verbosity=default --show-mutations
 
 all: test
 
@@ -54,7 +54,7 @@ ci: prerequisites ci-phpunit ci-analyze
 ci-phpunit: ci-cs
 	$(SILENT) $(PHP) $(PHPUNIT) $(PHPUNIT_ARGS)
 	$(SILENT) $(PHP) $(INFECTION) $(INFECTION_ARGS)
-	$(SILENT) $(PHP) $(PHPUNIT) --group=integration --coverage-clover=build/logs/clover-integration.xml || true
+	#php -v | grep -q 7.0 && $(SILENT) $(PHP) $(PHPUNIT) --group=integration --coverage-clover=build/logs/clover-integration.xml || true
 
 ci-analyze: ci-cs
 	$(SILENT) $(PHP) $(PHAN) $(PHAN_ARGS)
@@ -78,7 +78,7 @@ test-prerequisites: prerequisites composer.lock
 
 phpunit: cs
 	$(SILENT) $(PHP) $(PHPUNIT) $(PHPUNIT_ARGS) --verbose
-	$(SILENT) $(PHP) $(INFECTION) $(INFECTION_ARGS) --log-verbosity=default --show-mutations
+	$(SILENT) $(PHP) $(INFECTION) $(INFECTION_ARGS)
 
 analyze: cs
 	$(SILENT) $(PHP) $(PHAN) $(PHAN_ARGS) --color

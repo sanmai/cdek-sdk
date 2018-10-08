@@ -56,4 +56,10 @@ class PrintErrorResponseTest extends TestCase
             break;
         }
     }
+
+    public function test_it_serializes_to_empty_json()
+    {
+        $response = new PrintErrorResponse();
+        $this->assertSame([], $response->jsonSerialize());
+    }
 }

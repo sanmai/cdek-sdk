@@ -91,4 +91,10 @@ class ScheduleResponseTest extends TestCase
         $this->assertCount(1, $response->getErrors());
         $this->assertTrue($response->hasErrors());
     }
+
+    public function test_it_serializes_to_empty_json()
+    {
+        $response = new ScheduleResponse();
+        $this->assertSame([], $response->jsonSerialize());
+    }
 }

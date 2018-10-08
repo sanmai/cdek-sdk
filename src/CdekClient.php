@@ -31,6 +31,7 @@ namespace CdekSDK;
 use CdekSDK\Contracts\JsonRequest;
 use CdekSDK\Contracts\ParamRequest;
 use CdekSDK\Contracts\Request;
+use CdekSDK\Contracts\Response;
 use CdekSDK\Contracts\ShouldAuthorize;
 use CdekSDK\Contracts\XmlRequest;
 use CdekSDK\Responses\FileResponse;
@@ -92,6 +93,13 @@ final class CdekClient implements Contracts\Client, LoggerAwareInterface
         $this->serializer = new Serialization\Serializer();
     }
 
+    /**
+     * {@inheritdoc}
+     *
+     * @see \CdekSDK\Contracts\Client::sendRequest()
+     *
+     * @return Response
+     */
     public function sendRequest(Request $request, \DateTimeInterface $requestDate = null)
     {
         if ($request instanceof ShouldAuthorize) {

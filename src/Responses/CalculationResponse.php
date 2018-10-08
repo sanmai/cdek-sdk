@@ -29,6 +29,7 @@ declare(strict_types=1);
 namespace CdekSDK\Responses;
 
 use CdekSDK\Contracts\HasErrorCode;
+use CdekSDK\Contracts\Response;
 use CdekSDK\Responses\Types\AdditionalService;
 use CdekSDK\Responses\Types\Error;
 use CdekSDK\Responses\Types\Result;
@@ -47,7 +48,7 @@ use JMS\Serializer\Annotation as JMS;
  * @method null|\DateTimeImmutable  getDeliveryDateMax()
  * @method AdditionalService[]|null getAdditionalServices()
  */
-final class CalculationResponse
+final class CalculationResponse implements Response
 {
     /**
      * @JMS\SerializedName("result")
@@ -87,6 +88,16 @@ final class CalculationResponse
         return $this->errors;
     }
 
+    /**
+     * {@inheritdoc}
+     *
+     * @see \CdekSDK\Contracts\Response::getMessages()
+     */
+    public function getMessages()
+    {
+        yield from $this->getErrors();
+    }
+
     public function getResult(): Result
     {
         return $this->result;
@@ -103,5 +114,10 @@ final class CalculationResponse
         }
 
         throw new \BadMethodCallException(sprintf('Method [%s] not found in [%s].', $name, __CLASS__));
+    }
+
+    public function jsonSerialize()
+    {
+        return [];
     }
 }

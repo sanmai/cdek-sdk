@@ -29,6 +29,8 @@ declare(strict_types=1);
 namespace CdekSDK\Responses;
 
 use CdekSDK\Common\Order;
+use CdekSDK\Contracts\Response;
+use CdekSDK\Responses\Concerns\HasErrors;
 use CdekSDK\Responses\Types\DeleteRequest;
 use CdekSDK\Responses\Types\Message;
 use JMS\Serializer\Annotation as JMS;
@@ -37,8 +39,10 @@ use function Pipeline\fromArray;
 /**
  * Class DeleteResponse.
  */
-final class DeleteResponse
+final class DeleteResponse implements Response
 {
+    use HasErrors;
+
     /**
      * @JMS\XmlList(entry = "DeleteRequest", inline = true)
      * @JMS\Type("array<CdekSDK\Responses\Types\DeleteRequest>")
@@ -68,5 +72,10 @@ final class DeleteResponse
     public function getMessages()
     {
         return Message::from($this->getOrdersFromRequests(), $this->requests);
+    }
+
+    public function jsonSerialize()
+    {
+        return [];
     }
 }

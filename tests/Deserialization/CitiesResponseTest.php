@@ -45,6 +45,9 @@ class CitiesResponseTest extends TestCase
         /** @var $response CitiesResponse */
         $this->assertInstanceOf(CitiesResponse::class, $response);
 
+        $this->assertFalse($response->hasErrors());
+        $this->assertCount(0, $response->getMessages());
+
         $this->assertNotEmpty($response->getItems());
 
         $this->assertCount(5, $response->getItems());
@@ -80,5 +83,11 @@ class CitiesResponseTest extends TestCase
 
         assert(isset($item));
         $this->assertSame($location, $item);
+    }
+
+    public function test_it_serializes_to_empty_json()
+    {
+        $response = new CitiesResponse();
+        $this->assertSame([], $response->jsonSerialize());
     }
 }

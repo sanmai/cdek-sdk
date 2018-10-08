@@ -30,6 +30,8 @@ namespace CdekSDK\Responses;
 
 use CdekSDK\Common\Order;
 use CdekSDK\Contracts\HasErrorCode;
+use CdekSDK\Contracts\Response;
+use CdekSDK\Responses\Concerns\HasErrors;
 use CdekSDK\Responses\Types\Message;
 use CdekSDK\Responses\Types\PrintError;
 use JMS\Serializer\Annotation as JMS;
@@ -38,7 +40,7 @@ use function Pipeline\map;
 /**
  * Class PrintErrorResponse.
  */
-final class PrintErrorResponse
+final class PrintErrorResponse implements Response
 {
     /**
      * @JMS\XmlList(entry = "Order", inline = true)
@@ -58,6 +60,11 @@ final class PrintErrorResponse
         return $this->errors;
     }
 
+    public function hasErrors(): bool
+    {
+        return true;
+    }
+
     /**
      * @return \Traversable|Message[]|HasErrorCode[]
      */
@@ -68,5 +75,10 @@ final class PrintErrorResponse
         })->map(function (PrintError $error) {
             return new Message($error->getMessage(), $error->getErrorCode());
         });
+    }
+
+    public function jsonSerialize()
+    {
+        return [];
     }
 }

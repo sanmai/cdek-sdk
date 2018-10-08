@@ -29,12 +29,13 @@ declare(strict_types=1);
 namespace CdekSDK\Responses;
 
 use CdekSDK\Common\Pvz;
+use CdekSDK\Contracts\Response;
 use JMS\Serializer\Annotation as JMS;
 
 /**
  * Class PvzListResponse.
  */
-final class PvzListResponse
+final class PvzListResponse implements Response
 {
     /**
      * @JMS\XmlList(entry="Pvz", inline=true)
@@ -50,5 +51,20 @@ final class PvzListResponse
     public function getItems(): array
     {
         return $this->items;
+    }
+
+    public function jsonSerialize()
+    {
+        return [];
+    }
+
+    public function hasErrors(): bool
+    {
+        return false;
+    }
+
+    public function getMessages()
+    {
+        return [];
     }
 }

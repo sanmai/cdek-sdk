@@ -26,40 +26,30 @@
 
 declare(strict_types=1);
 
-namespace Tests\CdekSDK\Serialization;
+namespace Tests\CdekSDK\Fixtures;
 
-use CdekSDK\Common\ChangePeriod;
-use CdekSDK\Common\Order;
-use CdekSDK\Requests\InfoReportRequest;
+use JMS\Serializer\Annotation as JMS;
 
 /**
- * @covers \CdekSDK\Requests\InfoReportRequest
+ * @JMS\XmlRoot(name="DateTimeExample")
  */
-class InfoReportRequestTest extends TestCase
+final class DateTimeExample
 {
-    public function test_can_serialize()
-    {
-        $request = new InfoReportRequest();
-        $request = $request->setChangePeriod(new ChangePeriod(new \DateTime('2018-01-01T00:00:00+0000'), new \DateTimeImmutable('2018-02-02T00:00:00+0000')));
+    /**
+     * @JMS\XmlAttribute
+     * @JMS\SerializedName("Date")
+     * @JMS\Type("DateTimeImmutable<'Y-m-d'>")
+     *
+     * @var \DateTimeInterface
+     */
+    public $Date;
 
-        $this->assertSameAsXML('<?xml version="1.0" encoding="UTF-8"?>
-<InfoRequest>
-  <ChangePeriod DateFirst="2018-01-01T00:00:00+0000" DateLast="2018-02-02T00:00:00+0000" DateBeg="2018-01-01T00:00:00+0000" DateEnd="2018-02-02T00:00:00+0000"/>
-</InfoRequest>
-', $request);
-    }
-
-    public function test_it_works_with_orders()
-    {
-        $request = new InfoReportRequest();
-        $request->addOrder(Order::withDispatchNumber('123'));
-        $request = $request->addOrder(Order::withDispatchNumber('456'));
-
-        $this->assertSameAsXML('<?xml version="1.0" encoding="UTF-8"?>
-<InfoRequest>
-  <Order DispatchNumber="123"/>
-  <Order DispatchNumber="456"/>
-</InfoRequest>
-', $request);
-    }
+    /**
+     * @JMS\XmlAttribute
+     * @JMS\SerializedName("DateTime")
+     * @JMS\Type("DateTimeImmutable<'Y-m-d\TH:i:sP'>")
+     *
+     * @var \DateTimeInterface
+     */
+    public $DateTime;
 }

@@ -42,7 +42,7 @@ class PreAlertRequestTest extends TestCase
             'PvzCode' => 'NSK333',
         ]);
 
-        $request->date(new \DateTimeImmutable('2017-09-29'))->credentials('123', '456');
+        $request->date(new \DateTime('2017-09-29'))->credentials('123', '456');
 
         $request = $request->addOrder(Order::create([
             'DispatchNumber' => 'bar',

@@ -244,16 +244,4 @@ final class CallCourier implements HasErrorCode
     {
         return (string) $this->ErrorCode;
     }
-
-    /**
-     * @JMS\PreSerialize
-     */
-    private function makeDateTimeImmutable()
-    {
-        foreach (get_object_vars($this) as $name => $value) {
-            if ($value instanceof \DateTime) {
-                $this->{$name} = \DateTimeImmutable::createFromMutable($value);
-            }
-        }
-    }
 }

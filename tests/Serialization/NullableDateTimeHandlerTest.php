@@ -28,38 +28,29 @@ declare(strict_types=1);
 
 namespace Tests\CdekSDK\Serialization;
 
-use CdekSDK\Common\ChangePeriod;
-use CdekSDK\Common\Order;
-use CdekSDK\Requests\InfoReportRequest;
+use Tests\CdekSDK\Fixtures\DateTimeExample;
 
 /**
- * @covers \CdekSDK\Requests\InfoReportRequest
+ * @covers \CdekSDK\Serialization\NullableDateTimeHandler
  */
-class InfoReportRequestTest extends TestCase
+class NullableDateTimeHandlerTest extends TestCase
 {
-    public function test_can_serialize()
+    public function test_can_serialize_all_kinds_dates()
     {
-        $request = new InfoReportRequest();
-        $request = $request->setChangePeriod(new ChangePeriod(new \DateTime('2018-01-01T00:00:00+0000'), new \DateTimeImmutable('2018-02-02T00:00:00+0000')));
+        $example = new DateTimeExample();
+        $example->Date = new \DateTimeImmutable('2018-04-03T16:56:41+00:00');
+        $example->DateTime = new \DateTime('2018-04-03T16:56:41+00:00');
 
         $this->assertSameAsXML('<?xml version="1.0" encoding="UTF-8"?>
-<InfoRequest>
-  <ChangePeriod DateFirst="2018-01-01T00:00:00+0000" DateLast="2018-02-02T00:00:00+0000" DateBeg="2018-01-01T00:00:00+0000" DateEnd="2018-02-02T00:00:00+0000"/>
-</InfoRequest>
-', $request);
-    }
+<DateTimeExample Date="2018-04-03" DateTime="2018-04-03T16:56:41+00:00"/>
+', $example);
 
-    public function test_it_works_with_orders()
-    {
-        $request = new InfoReportRequest();
-        $request->addOrder(Order::withDispatchNumber('123'));
-        $request = $request->addOrder(Order::withDispatchNumber('456'));
+        $example = new DateTimeExample();
+        $example->Date = new \DateTime('2018-04-03T16:00:00+00:00');
+        $example->DateTime = new \DateTimeImmutable('2018-04-03T16:00:00+00:00');
 
         $this->assertSameAsXML('<?xml version="1.0" encoding="UTF-8"?>
-<InfoRequest>
-  <Order DispatchNumber="123"/>
-  <Order DispatchNumber="456"/>
-</InfoRequest>
-', $request);
+<DateTimeExample Date="2018-04-03" DateTime="2018-04-03T16:00:00+00:00"/>
+', $example);
     }
 }

@@ -28,11 +28,28 @@ declare(strict_types=1);
 
 namespace CdekSDK\Serialization;
 
+use JMS\Serializer\Context;
+use JMS\Serializer\GraphNavigator;
 use JMS\Serializer\Handler\DateHandler;
+use JMS\Serializer\VisitorInterface;
 use JMS\Serializer\XmlDeserializationVisitor;
 
 final class NullableDateTimeHandler extends DateHandler
 {
+    public static function getSubscribingMethods()
+    {
+        $methods = parent::getSubscribingMethods();
+
+        $methods[] = [
+            'type'      => \DateTimeImmutable::class,
+            'format'    => 'xml',
+            'direction' => GraphNavigator::DIRECTION_SERIALIZATION,
+            'method'    => 'serializeDateTimeInterface',
+        ];
+
+        return $methods;
+    }
+
     public function deserializeDateTimeImmutableFromXml(XmlDeserializationVisitor $visitor, $data, array $type)
     {
         if ((string) $data === '') {
@@ -40,5 +57,18 @@ final class NullableDateTimeHandler extends DateHandler
         }
 
         return parent::deserializeDateTimeImmutableFromXml($visitor, $data, $type);
+    }
+
+    public function serializeDateTimeInterface(VisitorInterface $visitor, \DateTimeInterface $date, array $type, Context $context)
+    {
+        // DateTimeInterface can't be implemented by user classes, so it's either \DateTime or \DateTimeImmutable
+
+        if ($date instanceof \DateTime) {
+            $date = \DateTimeImmutable::createFromMutable($date);
+        }
+
+        assert($date instanceof \DateTimeImmutable);
+
+        return parent::serializeDateTimeImmutable($visitor, $date, $type, $context);
     }
 }

@@ -49,7 +49,6 @@ all: test
 
 ci: SILENT=
 ci: prerequisites ci-phpunit ci-analyze
-	$(SILENT) $(COMPOSER) validate --strict
 
 ci-phpunit: ci-cs
 	$(SILENT) $(PHP) $(PHPUNIT) $(PHPUNIT_ARGS)

@@ -44,7 +44,7 @@ class StatusReportRequestTest extends TestCase
 
         $this->assertSameAsXML('<?xml version="1.0" encoding="UTF-8"?>
 <StatusReport>
-  <ChangePeriod DateFirst="2018-01-01T00:00:00+0000" DateLast="2018-02-02T00:00:00+0000" DateBeg="2018-01-01T00:00:00+0000" DateEnd="2018-02-02T00:00:00+0000"/>
+  <ChangePeriod DateFirst="2018-01-01T00:00:00+00:00" DateLast="2018-02-02T00:00:00+00:00" DateBeg="2018-01-01T00:00:00+00:00" DateEnd="2018-02-02T00:00:00+00:00"/>
 </StatusReport>
 ', $request);
     }

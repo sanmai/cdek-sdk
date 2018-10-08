@@ -73,7 +73,7 @@ final class ChangePeriod
     /**
      * @JMS\XmlAttribute
      * @JMS\SerializedName("DateFirst")
-     * @JMS\Type("DateTimeInterface<'Y-m-d\TH:i:sP'>")
+     * @JMS\Type("DateTimeImmutable<'Y-m-d\TH:i:sP'>")
      * @JMS\VirtualProperty()
      */
     public function getDateFirst()
@@ -84,7 +84,7 @@ final class ChangePeriod
     /**
      * @JMS\XmlAttribute
      * @JMS\SerializedName("DateLast")
-     * @JMS\Type("DateTimeInterface<'Y-m-d\TH:i:sP'>")
+     * @JMS\Type("DateTimeImmutable<'Y-m-d\TH:i:sP'>")
      * @JMS\VirtualProperty()
      */
     public function getDateLast()
@@ -95,7 +95,7 @@ final class ChangePeriod
     /**
      * @JMS\XmlAttribute
      * @JMS\SerializedName("DateBeg")
-     * @JMS\Type("DateTimeInterface<'Y-m-d\TH:i:sP'>")
+     * @JMS\Type("DateTimeImmutable<'Y-m-d\TH:i:sP'>")
      * @JMS\VirtualProperty()
      */
     public function getDateBeg()
@@ -106,7 +106,7 @@ final class ChangePeriod
     /**
      * @JMS\XmlAttribute
      * @JMS\SerializedName("DateEnd")
-     * @JMS\Type("DateTimeInterface<'Y-m-d\TH:i:sP'>")
+     * @JMS\Type("DateTimeImmutable<'Y-m-d\TH:i:sP'>")
      * @JMS\VirtualProperty()
      */
     public function getDateEnd()

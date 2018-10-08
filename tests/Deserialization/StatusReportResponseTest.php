@@ -58,7 +58,7 @@ class StatusReportResponseTest extends TestCase
 
         $this->assertSame('1000028000', $order->getDispatchNumber());
         $this->assertSame('2080965069', $order->getNumber());
-        $this->assertSame('2018-04-06', $order->DeliveryDate->format('Y-m-d'));
+        $this->assertSame('2018-04-06', $order->getDeliveryDate()->format('Y-m-d'));
         $this->assertSame('Руслан Альбертович', $order->getRecipientName());
 
         $this->assertSame(0.0, $order->getWeight());
@@ -90,25 +90,25 @@ class StatusReportResponseTest extends TestCase
 
         $this->assertInstanceOf(State::class, $firstState);
 
-        $this->assertSame('2018-03-21', $firstState->Date->format('Y-m-d'));
-        $this->assertSame(1, $firstState->Code);
-        $this->assertSame('Создан', $firstState->Description);
-        $this->assertSame('Москва', $firstState->CityName);
-        $this->assertSame(44, $firstState->CityCode);
+        $this->assertSame('2018-03-21', $firstState->getDate()->format('Y-m-d'));
+        $this->assertSame(1, $firstState->getCode());
+        $this->assertSame('Создан', $firstState->getDescription());
+        $this->assertSame('Москва', $firstState->getCityName());
+        $this->assertSame(44, $firstState->getCityCode());
 
         $lastState = end($states);
 
         $this->assertInstanceOf(State::class, $lastState);
 
-        $this->assertSame('2018-04-06', $lastState->Date->format('Y-m-d'));
-        $this->assertSame(4, $lastState->Code);
-        $this->assertSame('Вручен', $lastState->Description);
-        $this->assertSame('Нальчик', $lastState->CityName);
-        $this->assertSame(1081, $lastState->CityCode);
+        $this->assertSame('2018-04-06', $lastState->getDate()->format('Y-m-d'));
+        $this->assertSame(4, $lastState->getCode());
+        $this->assertSame('Вручен', $lastState->getDescription());
+        $this->assertSame('Нальчик', $lastState->getCityName());
+        $this->assertSame(1081, $lastState->getCityCode());
 
         $order = $response->getOrders()[1];
-        $this->assertCount(2, $order->Call->CallGood);
-        $this->assertCount(1, $order->Call->CallFail);
+        $this->assertCount(2, $order->getCall()->getCallGood());
+        $this->assertCount(1, $order->getCall()->getCallFail());
 
         $package = $order->getPackages()[0];
         /** @var $package Package */
@@ -138,10 +138,10 @@ class StatusReportResponseTest extends TestCase
         $order = $response->getOrders()[0];
 
         $this->assertInstanceOf(Order::class, $order);
-        $this->assertSame('TESTING123', $order->ActNumber);
+        $this->assertSame('TESTING123', $order->getActNumber());
         $this->assertSame('TEST-123456', $order->getNumber());
         $this->assertSame('1234567', $order->getDispatchNumber());
-        $this->assertNull($order->DeliveryDate);
+        $this->assertNull($order->getDeliveryDate());
         $this->assertSame('', $order->getRecipientName());
 
         $this->assertSame(strtotime('2018-09-01T02:10:00+00:00'), $order->getStatus()->getDate()->getTimestamp());
@@ -151,8 +151,8 @@ class StatusReportResponseTest extends TestCase
         $this->assertSame(44, $order->getStatus()->getCityCode());
         $this->assertSame('Москва', $order->getStatus()->getCityName());
 
-        $this->assertSame(0, $order->getReason()->Code);
-        $this->assertSame(0, $order->getDelayReason()->Code);
+        $this->assertSame(0, $order->getReason()->getCode());
+        $this->assertSame(0, $order->getDelayReason()->getCode());
     }
 
     public function test_it_reads_failed_response()

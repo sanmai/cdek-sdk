@@ -31,9 +31,6 @@ namespace CdekSDK\Responses\Types;
 use CdekSDK\Contracts\HasErrorCode;
 use JMS\Serializer\Annotation as JMS;
 
-/**
- * @deprecated use interface methods
- */
 final class Error implements HasErrorCode
 {
     /**
@@ -55,9 +52,12 @@ final class Error implements HasErrorCode
         return $this->code;
     }
 
+    /**
+     * @deprecated use getMessage()
+     */
     public function getText(): string
     {
-        return $this->text;
+        return $this->getMessage();
     }
 
     public function getErrorCode(): string
@@ -67,6 +67,6 @@ final class Error implements HasErrorCode
 
     public function getMessage(): string
     {
-        return $this->getText();
+        return $this->text;
     }
 }

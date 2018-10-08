@@ -43,10 +43,8 @@ final class Call
      * @JMS\Type("array<CdekSDK\Common\CallGood>")
      *
      * @var CallGood[]|array
-     *
-     * @deprecated
      */
-    public $CallGood = [];
+    protected $CallGood = [];
 
     /**
      * @JMS\SerializedName("CallFail")
@@ -54,10 +52,8 @@ final class Call
      * @JMS\Type("array<CdekSDK\Common\CallFail>")
      *
      * @var CallFail[]|array
-     *
-     * @deprecated
      */
-    public $CallFail = [];
+    protected $CallFail = [];
 
     /**
      * @JMS\SerializedName("CallDelay")
@@ -65,10 +61,8 @@ final class Call
      * @JMS\Type("array<CdekSDK\Common\CallDelay>")
      *
      * @var CallDelay[]|array
-     *
-     * @deprecated use accessor method
      */
-    public $CallDelay = [];
+    protected $CallDelay = [];
 
     /**
      * История удачных прозвонов.

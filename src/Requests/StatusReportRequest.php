@@ -126,15 +126,4 @@ final class StatusReportRequest implements XmlRequest, ShouldAuthorize
 
         return $this;
     }
-
-    /**
-     * @deprecated
-     * @codeCoverageIgnore
-     *
-     * @return Order[]|array
-     */
-    public function getOrders()
-    {
-        return $this->orders;
-    }
 }

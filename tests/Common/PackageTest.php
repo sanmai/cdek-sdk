@@ -50,20 +50,6 @@ class PackageTest extends TestCase
         $this->assertSame(0.6, $package->calculateVolumeWeight());
     }
 
-    /**
-     * @deprecated
-     */
-    public function test_volume_deprecated_calculation()
-    {
-        $package = new Package([
-            'SizeA' => 30,
-            'SizeB' => 20,
-            'SizeC' => 5,
-        ]);
-
-        $this->assertSame(0.6, $package->getVolumeWeight());
-    }
-
     public function test_volume_as_is()
     {
         $package = new Package([

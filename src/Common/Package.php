@@ -157,15 +157,7 @@ final class Package
 
     public function getVolumeWeight(): float
     {
-        if ($this->VolumeWeight !== null) {
-            return $this->VolumeWeight;
-        }
-
-        // @codeCoverageIgnoreStart
-        @trigger_error('Using getVolumeWeight to calculate a volumetric weight is deprecated in favor calculateVolumeWeight() as CDEK provides a pre-calculated value.', E_USER_DEPRECATED);
-
-        return $this->calculateVolumeWeight();
-        // @codeCoverageIgnoreEnd
+        return $this->VolumeWeight;
     }
 
     public function calculateVolumeWeight(): float

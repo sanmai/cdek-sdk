@@ -46,10 +46,8 @@ final class CallCourier implements HasErrorCode
      * @JMS\Type("DateTimeImmutable<'Y-m-d'>")
      *
      * @var \DateTimeImmutable
-     *
-     * @deprecated
      */
-    public $Date;
+    protected $Date;
 
     /**
      * @JMS\XmlAttribute
@@ -57,10 +55,8 @@ final class CallCourier implements HasErrorCode
      * @JMS\Type("DateTimeImmutable<'H:i'>")
      *
      * @var \DateTimeImmutable
-     *
-     * @deprecated
      */
-    public $TimeBeg;
+    protected $TimeBeg;
 
     /**
      * @JMS\XmlAttribute
@@ -68,10 +64,8 @@ final class CallCourier implements HasErrorCode
      * @JMS\Type("DateTimeImmutable<'H:i'>")
      *
      * @var \DateTimeImmutable
-     *
-     * @deprecated
      */
-    public $TimeEnd;
+    protected $TimeEnd;
 
     /**
      * @JMS\XmlAttribute
@@ -79,10 +73,8 @@ final class CallCourier implements HasErrorCode
      * @JMS\Type("DateTimeImmutable<'H:i'>")
      *
      * @var \DateTimeImmutable
-     *
-     * @deprecated
      */
-    public $LunchBeg;
+    protected $LunchBeg;
 
     /**
      * @JMS\XmlAttribute
@@ -90,10 +82,8 @@ final class CallCourier implements HasErrorCode
      * @JMS\Type("DateTimeImmutable<'H:i'>")
      *
      * @var \DateTimeImmutable
-     *
-     * @deprecated
      */
-    public $LunchEnd;
+    protected $LunchEnd;
 
     /**
      * @JMS\XmlAttribute
@@ -101,10 +91,8 @@ final class CallCourier implements HasErrorCode
      * @JMS\Type("integer")
      *
      * @var int
-     *
-     * @deprecated
      */
-    public $SendCityCode;
+    protected $SendCityCode;
 
     /**
      * @JMS\XmlAttribute
@@ -139,10 +127,8 @@ final class CallCourier implements HasErrorCode
      * @JMS\Type("string")
      *
      * @var string
-     *
-     * @deprecated
      */
-    public $SendPhone;
+    protected $SendPhone;
 
     /**
      * @JMS\XmlAttribute
@@ -168,10 +154,8 @@ final class CallCourier implements HasErrorCode
      * @JMS\Type("string")
      *
      * @var string
-     *
-     * @deprecated
      */
-    public $Comment;
+    protected $Comment;
 
     /**
      * @JMS\XmlAttribute
@@ -223,10 +207,8 @@ final class CallCourier implements HasErrorCode
      * @JMS\Type("CdekSDK\Common\Address")
      *
      * @var Address
-     *
-     * @deprecated
      */
-    public $SendAddress;
+    protected $SendAddress;
 
     /**
      * @JMS\SerializedName("Address")
@@ -261,46 +243,6 @@ final class CallCourier implements HasErrorCode
     public function getErrorCode(): string
     {
         return (string) $this->ErrorCode;
-    }
-
-    /**
-     * @deprecated
-     * @codeCoverageIgnore
-     * @phan-suppress PhanDeprecatedProperty
-     */
-    public function getDate(): \DateTimeImmutable
-    {
-        return $this->Date;
-    }
-
-    /**
-     * @deprecated
-     * @codeCoverageIgnore
-     * @phan-suppress PhanDeprecatedProperty
-     */
-    public function getTimeBeg(): \DateTimeImmutable
-    {
-        return $this->TimeBeg;
-    }
-
-    /**
-     * @deprecated
-     * @codeCoverageIgnore
-     * @phan-suppress PhanDeprecatedProperty
-     */
-    public function getTimeEnd(): \DateTimeImmutable
-    {
-        return $this->TimeEnd;
-    }
-
-    /**
-     * @deprecated
-     * @codeCoverageIgnore
-     * @phan-suppress PhanDeprecatedProperty
-     */
-    public function getLunchBeg(): \DateTimeImmutable
-    {
-        return $this->LunchBeg;
     }
 
     /**

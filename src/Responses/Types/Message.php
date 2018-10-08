@@ -59,6 +59,10 @@ final class Message implements HasErrorCode
         return (string) $this->errorCode;
     }
 
+    /**
+     * @deprecated use getErrorCode()
+     * @codeCoverageIgnore
+     */
     public function isError(): bool
     {
         return (bool) $this->errorCode;

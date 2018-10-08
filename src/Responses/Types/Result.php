@@ -100,7 +100,7 @@ final class Result
      * @JMS\SerializedName("services")
      * @JMS\Type("array<CdekSDK\Responses\Types\AdditionalService>")
      *
-     * @var AdditionalService[]|null
+     * @var AdditionalService[]
      */
     private $services = [];
 
@@ -169,15 +169,10 @@ final class Result
     }
 
     /**
-     * @return AdditionalService[]|null
+     * @return AdditionalService[]
      */
     public function getAdditionalServices()
     {
-        if ($this->services === []) {
-            /** @deprecated */
-            return null;
-        }
-
         return $this->services;
     }
 }

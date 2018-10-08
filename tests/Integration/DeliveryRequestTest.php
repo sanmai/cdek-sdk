@@ -221,7 +221,7 @@ class DeliveryRequestTest extends TestCase
         $order = $response->getOrders()[0];
 
         $this->assertInstanceOf(Order::class, $order);
-        $this->assertSame('TESTING123', $order->ActNumber);
+        $this->assertSame('TESTING123', $order->getActNumber());
         $this->assertSame('Создан', $order->getStatus()->getDescription());
 
         return Order::withNumberAndDate($order->getNumber(), $order->getStatus()->getDate());

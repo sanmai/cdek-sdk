@@ -271,10 +271,8 @@ final class Pvz
 
     /**
      * @JMS\PostDeserialize
-     *
-     * @deprecated do not use, will be removed
      */
-    public function postDeserialize()
+    private function postDeserialize()
     {
         foreach (self::BOOLEAN_FIELDS as $field) {
             $this->{$field} = $this->{$field} === 'есть';

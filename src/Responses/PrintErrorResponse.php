@@ -50,16 +50,6 @@ final class PrintErrorResponse implements Response
      */
     private $errors = [];
 
-    /**
-     * @return PrintError[]
-     *
-     * @deprecated
-     */
-    public function getErrors()
-    {
-        return $this->errors;
-    }
-
     public function hasErrors(): bool
     {
         return true;

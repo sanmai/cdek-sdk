@@ -135,11 +135,11 @@ $response = $client->sendCalculationRequest($request);
 /** @var \CdekSDK\Responses\CalculationResponse $response */
 
 if ($response->hasErrors()) {
-	foreach ($response->getErrors() as $error) {
+    foreach ($response->getErrors() as $error) {
         // обрабатываем ошибку
-		$error->getCode();
-		$error->getText();
-	}
+        $error->getErrorCode();
+        $error->getMessage();
+    }
 }
 
 var_dump($response->getPrice());
@@ -292,8 +292,8 @@ if ($response instanceof FileResponse) {
 // Или обрабатываем возможные ошибки
 if ($response instanceof PrintErrorResponse) {
     foreach ($response->getMessages() as $message) {
-        $message->isError();
-        $message->getText();
+        $message->getErrorCode();
+        $message->getMessage();
     }
 }
 ```
@@ -330,8 +330,8 @@ if ($response instanceof FileResponse) {
 // Или обрабатываем возможные ошибки
 if ($response instanceof PrintErrorResponse) {
     foreach ($response->getMessages() as $message) {
-        $message->isError();
-        $message->getText();
+        $message->getErrorCode();
+        $message->getMessage();
     }
 }
 ```
@@ -385,13 +385,12 @@ $request = CallCourierRequest::create()->addCall(CallCourier::create([
 ])));
 
 $response = $client->sendCallCourierRequest($request);
-/** @var CallCourierResponse $response */
+/** @var \CdekSDK\Responses\CallCourierResponse $response */
 if ($response->hasErrors()) {
     // Обрабатываем ошибки
     foreach ($response->getErrors() as $message) {
-        $message->isError();
-        $message->getCode();
-        $message->getText();
+        $message->getErrorCode();
+        $message->getMessage();
     }
 }
 
@@ -484,10 +483,10 @@ $request->addOrder(Order::withDispatchNumber($dispatchNumber));
 $response = $client->sendStatusReportRequest($request);
 
 foreach ($response->getOrders() as $order) {
-    $order->ActNumber;
+    $order->getActNumber();
     $order->getNumber();
     $order->getDispatchNumber();
-    $order->DeliveryDate;
+    $order->getDeliveryDate();
     $order->getRecipientName();
 
     $order->getStatus()->getDescription();
@@ -496,13 +495,13 @@ foreach ($response->getOrders() as $order) {
     $order->getStatus()->getCityCode();
     $order->getStatus()->getCityName();
 
-    $order->getReason()->Code;
-    $order->getReason()->Description;
-    $order->getReason()->Date;
+    $order->getReason()->getCode();
+    $order->getReason()->getDescription();
+    $order->getReason()->getDate();
 
-    $order->getDelayReason()->Code;
-    $order->getDelayReason()->Description;
-    $order->getDelayReason()->Date;
+    $order->getDelayReason()->getCode();
+    $order->getDelayReason()->getDescription();
+    $order->getDelayReason()->getDate();
 }
 ```
 

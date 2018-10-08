@@ -78,21 +78,21 @@ class OrderTest extends TestCase
 
         $this->assertInstanceOf(State::class, $firstState);
 
-        $this->assertSame('2018-03-21', $firstState->Date->format('Y-m-d'));
-        $this->assertSame(1, $firstState->Code);
-        $this->assertSame('Создан', $firstState->Description);
-        $this->assertSame('Москва', $firstState->CityName);
-        $this->assertSame(44, $firstState->CityCode);
+        $this->assertSame('2018-03-21', $firstState->getDate()->format('Y-m-d'));
+        $this->assertSame(1, $firstState->getCode());
+        $this->assertSame('Создан', $firstState->getDescription());
+        $this->assertSame('Москва', $firstState->getCityName());
+        $this->assertSame(44, $firstState->getCityCode());
 
         $lastState = end($states);
 
         $this->assertInstanceOf(State::class, $lastState);
 
-        $this->assertSame('2018-04-06', $lastState->Date->format('Y-m-d'));
-        $this->assertSame(4, $lastState->Code);
-        $this->assertSame('Вручен', $lastState->Description);
-        $this->assertSame('Нальчик', $lastState->CityName);
-        $this->assertSame(1081, $lastState->CityCode);
+        $this->assertSame('2018-04-06', $lastState->getDate()->format('Y-m-d'));
+        $this->assertSame(4, $lastState->getCode());
+        $this->assertSame('Вручен', $lastState->getDescription());
+        $this->assertSame('Нальчик', $lastState->getCityName());
+        $this->assertSame(1081, $lastState->getCityCode());
     }
 
     public function test_it_reads_yet_another_order()
@@ -131,7 +131,6 @@ class OrderTest extends TestCase
         $this->assertSame(0.0, $order->getDeliverySum());
         //$this->assertSame(1, $order->getDateLastChange());
         $this->assertSame(0.0, $order->getCashOnDeliv());
-        $this->assertSame(0.0, $order->getCashOnDelivFac());
         $this->assertSame(0.0, $order->getCashOnDelivFact());
         $this->assertSame(0, $order->getDeliveryMode());
         $this->assertSame('', $order->getPvzCode());

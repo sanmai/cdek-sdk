@@ -86,10 +86,8 @@ final class DeliveryResponse implements Response
 
     /**
      * @JMS\PostDeserialize
-     *
-     * @deprecated do not use, will be removed
      */
-    public function filterOrders()
+    private function filterOrders()
     {
         $this->completeOrders = fromArray($this->orders)->filter(function (Order $order) {
             return (bool) $order->getDispatchNumber();

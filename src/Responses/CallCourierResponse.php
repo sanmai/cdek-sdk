@@ -79,7 +79,7 @@ final class CallCourierResponse implements Response
     public function hasErrors(): bool
     {
         foreach ($this->getMessages() as $message) {
-            if ($message->isError()) {
+            if ($message->getErrorCode() !== '') {
                 return true;
             }
         }
@@ -93,7 +93,7 @@ final class CallCourierResponse implements Response
     public function getErrors()
     {
         foreach ($this->getMessages() as $message) {
-            if ($message->isError()) {
+            if ($message->getErrorCode() !== '') {
                 yield $message;
             }
         }

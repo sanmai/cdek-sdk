@@ -45,14 +45,4 @@ class ChangePeriodTest extends TestCase
         $this->assertSame($from, $period->getDateFirst());
         $this->assertSame($to, $period->getDateLast());
     }
-
-    public function test_can_access_deprecated_properties()
-    {
-        $period = new ChangePeriod($from = new \DateTime(), $to = new \DateTime());
-
-        /** @phan-suppress-next-line PhanDeprecatedProperty */
-        $this->assertSame($from, $period->DateBeg);
-        /** @phan-suppress-next-line PhanDeprecatedProperty */
-        $this->assertSame($to, $period->DateEnd);
-    }
 }

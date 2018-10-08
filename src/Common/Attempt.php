@@ -110,10 +110,8 @@ final class Attempt
      * @JMS\Type("int")
      *
      * @var int
-     *
-     * @deprecated
      */
-    public $ScheduleCode;
+    protected $ScheduleCode;
 
     /**
      * @JMS\XmlAttribute
@@ -121,10 +119,8 @@ final class Attempt
      * @JMS\Type("string")
      *
      * @var string
-     *
-     * @deprecated
      */
-    public $ScheduleDescription;
+    protected $ScheduleDescription;
 
     public function addPackage(Package $package)
     {
@@ -133,80 +129,11 @@ final class Attempt
         return $this;
     }
 
-    /**
-     * @deprecated
-     * @codeCoverageIgnore
-     */
-    public function getId(): string
-    {
-        return $this->ID;
-    }
-
-    /**
-     * @deprecated
-     * @codeCoverageIgnore
-     */
-    public function getDate(): \DateTimeImmutable
-    {
-        return $this->Date;
-    }
-
-    /**
-     * @deprecated
-     * @codeCoverageIgnore
-     */
-    public function getTimeBeg(): \DateTimeImmutable
-    {
-        return $this->TimeBeg;
-    }
-
-    /**
-     * @deprecated
-     * @codeCoverageIgnore
-     */
-    public function getTimeEnd(): \DateTimeImmutable
-    {
-        return $this->TimeEnd;
-    }
-
-    /**
-     * @deprecated
-     * @codeCoverageIgnore
-     */
-    public function getRecipientName(): string
-    {
-        return $this->RecipientName;
-    }
-
-    /**
-     * @deprecated
-     * @codeCoverageIgnore
-     */
-    public function getPhone(): string
-    {
-        return $this->Phone;
-    }
-
-    /**
-     * @deprecated
-     * @codeCoverageIgnore
-     */
-    public function getAddress(): Address
-    {
-        return $this->Address;
-    }
-
-    /**
-     * @phan-suppress PhanDeprecatedProperty
-     */
     public function getScheduleCode(): int
     {
         return $this->ScheduleCode;
     }
 
-    /**
-     * @phan-suppress PhanDeprecatedProperty
-     */
     public function getScheduleDescription(): string
     {
         return $this->ScheduleDescription;

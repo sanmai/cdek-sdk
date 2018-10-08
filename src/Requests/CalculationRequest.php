@@ -55,15 +55,6 @@ class CalculationRequest implements JsonRequest
     const SERVICE_PARTIAL_DELIVERY = 36; // Частичная доставка
     const SERVICE_CARGO_CHECK = 37; // Осмотр вложения
 
-    /**
-     * @deprecated
-     */
-    const SERVICE_HAZARDOUS_CARGO = 7;  // Опасный груз
-    /**
-     * @deprecated
-     */
-    const SERVICE_FITTING_AT_HOME = 30; // Примерка на дому
-
     const MODE_DOOR_DOOR = 1;
     const MODE_DOOR_WAREHOUSE = 2;
     const MODE_WAREHOUSE_DOOR = 3;
@@ -148,17 +139,6 @@ class CalculationRequest implements JsonRequest
         $this->modeId = $id;
 
         return $this;
-    }
-
-    /**
-     * @deprecated
-     * @codeCoverageIgnore
-     *
-     * @param mixed $good
-     */
-    public function addGood($good)
-    {
-        return $this->addPackage($good);
     }
 
     public function addPackage($good)

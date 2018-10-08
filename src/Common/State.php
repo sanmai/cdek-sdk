@@ -38,10 +38,8 @@ final class State
      * @JMS\Type("DateTimeImmutable<'Y-m-d\TH:i:sP'>")
      *
      * @var \DateTimeImmutable
-     *
-     * @deprecated use accessor method
      */
-    public $Date;
+    private $Date;
 
     /**
      * @JMS\XmlAttribute
@@ -49,10 +47,8 @@ final class State
      * @JMS\Type("int")
      *
      * @var int
-     *
-     * @deprecated use accessor method
      */
-    public $Code;
+    private $Code;
 
     /**
      * @JMS\XmlAttribute
@@ -60,10 +56,8 @@ final class State
      * @JMS\Type("string")
      *
      * @var string
-     *
-     * @deprecated use accessor method
      */
-    public $Description;
+    private $Description;
 
     /**
      * @JMS\XmlAttribute
@@ -71,10 +65,8 @@ final class State
      * @JMS\Type("string")
      *
      * @var string
-     *
-     * @deprecated use accessor method
      */
-    public $CityName;
+    private $CityName;
 
     /**
      * @JMS\XmlAttribute
@@ -82,46 +74,29 @@ final class State
      * @JMS\Type("int")
      *
      * @var int
-     *
-     * @deprecated use accessor method
      */
-    public $CityCode;
+    private $CityCode;
 
-    /**
-     * @phan-suppress PhanDeprecatedProperty
-     */
     public function getDate(): \DateTimeImmutable
     {
         return $this->Date;
     }
 
-    /**
-     * @phan-suppress PhanDeprecatedProperty
-     */
     public function getCode(): int
     {
         return (int) $this->Code;
     }
 
-    /**
-     * @phan-suppress PhanDeprecatedProperty
-     */
     public function getDescription(): string
     {
         return $this->Description;
     }
 
-    /**
-     * @phan-suppress PhanDeprecatedProperty
-     */
     public function getCityName(): string
     {
         return $this->CityName;
     }
 
-    /**
-     * @phan-suppress PhanDeprecatedProperty
-     */
     public function getCityCode(): int
     {
         return $this->CityCode;

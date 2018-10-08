@@ -63,14 +63,10 @@ final class CalculationResponse implements Response
      * @JMS\Type("array<CdekSDK\Responses\Types\Error>")
      *
      * @var array|Error[]
-     *
-     * @deprecated use accessor method
      */
-    public $errors = [];
+    private $errors = [];
 
     /**
-     * @phan-suppress PhanDeprecatedProperty
-     *
      * @return bool
      */
     public function hasErrors(): bool
@@ -79,8 +75,6 @@ final class CalculationResponse implements Response
     }
 
     /**
-     * @phan-suppress PhanDeprecatedProperty
-     *
      * @return HasErrorCode[]|Error[]
      */
     public function getErrors(): array

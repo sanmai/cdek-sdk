@@ -73,7 +73,7 @@ final class ScheduleResponse implements Response
     public function getErrors()
     {
         foreach ($this->getMessages() as $message) {
-            if ($message->isError()) {
+            if ($message->getErrorCode() !== '') {
                 yield $message;
             }
         }

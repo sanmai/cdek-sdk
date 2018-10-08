@@ -51,22 +51,6 @@ final class PrintError implements HasErrorCode
      */
     private $text;
 
-    /**
-     * @deprecated
-     */
-    public function getCode(): string
-    {
-        return $this->getErrorCode();
-    }
-
-    /**
-     * @deprecated
-     */
-    public function getText(): string
-    {
-        return $this->getMessage();
-    }
-
     public function getErrorCode(): string
     {
         return $this->code;

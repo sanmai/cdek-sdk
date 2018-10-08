@@ -103,7 +103,7 @@ class CalculationResponseTest extends TestCase
         $this->assertSame('RUB', $response->getCurrency());
         $this->assertSame('2018-01-01', $response->getDeliveryDateMin()->format('Y-m-d'));
         $this->assertSame('2018-01-02', $response->getDeliveryDateMax()->format('Y-m-d'));
-        $this->assertSame(null, $response->getAdditionalServices());
+        $this->assertSame([], $response->getAdditionalServices());
     }
 
     public function test_it_loads_additional_services()
@@ -118,13 +118,13 @@ class CalculationResponseTest extends TestCase
             $this->fail($error->getMessage());
         }
 
-        $this->assertSame(2, $response->getAdditionalServices()[0]['id']);
-        $this->assertSame('Страхование', $response->getAdditionalServices()[0]['title']);
-        $this->assertEquals(15, $response->getAdditionalServices()[0]['price']);
+        $this->assertSame(2, $response->getAdditionalServices()[0]->getId());
+        $this->assertSame('Страхование', $response->getAdditionalServices()[0]->getTitle());
+        $this->assertEquals(15, $response->getAdditionalServices()[0]->getPrice());
 
-        $this->assertSame(30, $response->getAdditionalServices()[1]['id']);
-        $this->assertSame('Примерка на дому', $response->getAdditionalServices()[1]['title']);
-        $this->assertEquals(0, $response->getAdditionalServices()[1]['price']);
+        $this->assertSame(30, $response->getAdditionalServices()[1]->getId());
+        $this->assertSame('Примерка на дому', $response->getAdditionalServices()[1]->getTitle());
+        $this->assertEquals(0, $response->getAdditionalServices()[1]->getPrice());
 
         $this->assertCount(2, $response->getAdditionalServices());
     }
@@ -153,7 +153,7 @@ class CalculationResponseTest extends TestCase
             $this->assertSame(2, $service->getServiceCode());
             $this->assertSame(500.0, $service->getSum());
 
-            $this->assertSame(1.8, $service['rate']);
+            $this->assertSame(1.8, $service->getRate());
         }
     }
 

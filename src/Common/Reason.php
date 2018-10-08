@@ -46,10 +46,8 @@ final class Reason
      * @JMS\Type("DateTimeImmutable<'Y-m-d\TH:i:sP'>")
      *
      * @var \DateTimeImmutable|null
-     *
-     * @deprecated use accessor method
      */
-    public $Date;
+    private $Date;
 
     /**
      * @JMS\XmlAttribute
@@ -57,10 +55,8 @@ final class Reason
      * @JMS\Type("int")
      *
      * @var int
-     *
-     * @deprecated use accessor method
      */
-    public $Code;
+    private $Code;
 
     /**
      * @JMS\XmlAttribute
@@ -68,24 +64,18 @@ final class Reason
      * @JMS\Type("string")
      *
      * @var string
-     *
-     * @deprecated use accessor method
      */
-    public $Description;
+    private $Description;
 
     /**
      * @JMS\XmlList(entry="State", inline=true)
      * @JMS\Type("array<CdekSDK\Common\State>")
      *
      * @var State[]|array
-     *
-     * @deprecated use accessor method
      */
-    public $states = [];
+    private $states = [];
 
     /**
-     * @phan-suppress PhanDeprecatedProperty
-     *
      * @return \DateTimeInterface|null
      */
     public function getDate()
@@ -93,25 +83,17 @@ final class Reason
         return $this->Date;
     }
 
-    /**
-     * @phan-suppress PhanDeprecatedProperty
-     */
     public function getCode(): int
     {
         return (int) $this->Code;
     }
 
-    /**
-     * @phan-suppress PhanDeprecatedProperty
-     */
     public function getDescription(): string
     {
         return $this->Description;
     }
 
     /**
-     * @phan-suppress PhanDeprecatedProperty
-     *
      * @return State[]
      */
     public function getStates()

@@ -37,17 +37,13 @@ final class ChangePeriod
 {
     /**
      * @var \DateTimeInterface
-     *
-     * @deprecated use accessor method
      */
-    public $DateBeg;
+    private $DateBeg;
 
     /**
      * @var \DateTimeInterface
-     *
-     * @deprecated use accessor method
      */
-    public $DateEnd;
+    private $DateEnd;
 
     /**
      * @JMS\Exclude

@@ -136,19 +136,6 @@ final class Item
      */
     protected $DelivAmount;
 
-    /**
-     * @phan-suppress PhanUnusedPublicFinalMethodParameter
-     *
-     * @deprecated
-     * @codeCoverageIgnore
-     *
-     * @return \CdekSDK\Common\Item
-     */
-    public static function create(string $WareKey, float $Cost, float $Payment, int $Weight, int $Amount, string $Comment)
-    {
-        return new static(compact('WareKey', 'Cost', 'Payment', 'Weight', 'Amount', 'Comment'));
-    }
-
     public function getWareKey(): string
     {
         return $this->WareKey;

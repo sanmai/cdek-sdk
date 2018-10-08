@@ -407,20 +407,16 @@ final class Order implements HasErrorCode
      * @JMS\Type("CdekSDK\Common\Call")
      *
      * @var Call
-     *
-     * @deprecated
      */
-    public $Call;
+    protected $Call;
 
     /**
      * @JMS\SerializedName("ReturnOrder")
      * @JMS\Type("CdekSDK\Common\Order")
      *
      * @var Order
-     *
-     * @deprecated
      */
-    public $ReturnOrder;
+    protected $ReturnOrder;
 
     /**
      * Номер акта приема-передачи.
@@ -430,10 +426,8 @@ final class Order implements HasErrorCode
      * @JMS\Type("string")
      *
      * @var string
-     *
-     * @deprecated
      */
-    public $ActNumber;
+    protected $ActNumber;
 
     /**
      * @JMS\XmlAttribute
@@ -441,10 +435,8 @@ final class Order implements HasErrorCode
      * @JMS\Type("DateTimeImmutable<'Y-m-d\TH:i:sP'>")
      *
      * @var \DateTimeImmutable|null
-     *
-     * @deprecated
      */
-    public $DeliveryDate;
+    protected $DeliveryDate;
 
     /**
      * @JMS\XmlAttribute
@@ -452,10 +444,8 @@ final class Order implements HasErrorCode
      * @JMS\Type("int")
      *
      * @var int
-     *
-     * @deprecated
      */
-    public $ReturnDispatchNumber;
+    protected $ReturnDispatchNumber;
 
     public function callCourier(CallCourier $call)
     {
@@ -638,15 +628,6 @@ final class Order implements HasErrorCode
     }
 
     /**
-     * @deprecated
-     * @codeCoverageIgnore
-     */
-    public function getAddress(): Address
-    {
-        return $this->Address;
-    }
-
-    /**
      * @return AdditionalService[]|array
      */
     public function getAdditionalServices()
@@ -704,10 +685,6 @@ final class Order implements HasErrorCode
         return $this->attempts;
     }
 
-    /**
-     * @deprecated
-     * @codeCoverageIgnore
-     */
     public function addAttempt(Attempt $attempt)
     {
         $this->attempts[] = $attempt;
@@ -736,15 +713,6 @@ final class Order implements HasErrorCode
     public function getCashOnDeliv(): float
     {
         return (float) $this->CashOnDeliv;
-    }
-
-    /**
-     * @deprecated
-     * @codeCoverageIgnore
-     */
-    public function getCashOnDelivFac(): float
-    {
-        return $this->getCashOnDelivFact();
     }
 
     public function getCashOnDelivFact(): float
@@ -787,33 +755,22 @@ final class Order implements HasErrorCode
         return (string) $this->Msg;
     }
 
-    /**
-     * @phan-suppress PhanDeprecatedProperty
-     */
     public function getCall(): Call
     {
         return $this->Call;
     }
 
-    /**
-     * @phan-suppress PhanDeprecatedProperty
-     */
     public function getReturnOrder(): Order
     {
         return $this->ReturnOrder;
     }
 
-    /**
-     * @phan-suppress PhanDeprecatedProperty
-     */
     public function getActNumber(): string
     {
         return $this->ActNumber;
     }
 
     /**
-     * @phan-suppress PhanDeprecatedProperty
-     *
      * @return \DateTimeInterface|null
      */
     public function getDeliveryDate()
@@ -821,9 +778,6 @@ final class Order implements HasErrorCode
         return $this->DeliveryDate;
     }
 
-    /**
-     * @phan-suppress PhanDeprecatedProperty
-     */
     public function getReturnDispatchNumber(): int
     {
         return $this->ReturnDispatchNumber;

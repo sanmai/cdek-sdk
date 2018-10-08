@@ -37,6 +37,7 @@ use CdekSDK\Requests\ScheduleRequest;
 /**
  * @covers \CdekSDK\Requests\ScheduleRequest
  * @covers \CdekSDK\Common\Attempt
+ * @covers \CdekSDK\Common\Order
  */
 class ScheduleRequestTest extends TestCase
 {

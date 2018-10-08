@@ -156,8 +156,6 @@ class CalculationRequestTest extends TestCase
             CalculationRequest::SERVICE_DOCUMENTS_COPY,
             CalculationRequest::SERVICE_PARTIAL_DELIVERY,
             CalculationRequest::SERVICE_CARGO_CHECK,
-            CalculationRequest::SERVICE_HAZARDOUS_CARGO, // @deprecated
-            CalculationRequest::SERVICE_FITTING_AT_HOME, // @deprecated
             CalculationRequest::MODE_DOOR_DOOR,
             CalculationRequest::MODE_DOOR_WAREHOUSE,
             CalculationRequest::MODE_WAREHOUSE_DOOR,

@@ -414,7 +414,7 @@ $request = $request->addOrder(Order::create([
     'DispatchNumber' => '123456',
 ])->addAttempt(Attempt::create([
     'ID' => 500,
-    'Date' => new \DateTimeImmutable('next Monday'),
+    'Date' => new \DateTime('next Monday'),
 ])->addPackage(Package::create([
     'Number' => 'TEST-123456',
     'BarCode' => 'TEST-123456',
@@ -597,9 +597,13 @@ $client->setLogger($monolog);
 
 ## Замечания
 
-- [Инструкции для разработчиков.](CONTRIBUTING.md)
+- [Инструкции по доработке и тестированию.](CONTRIBUTING.md)
 
 - [Общие инструкции по работе с GitHub.](https://www.alexeykopytko.com/2018/github-contributor-guide/) Если это ваш первый PR, очень рекомендуем ознакомиться.
+
+### О форматах даты и времени
+
+Для указания даты и времени в запросах везде можно использовать ровно как `DateTime`, так и `DateTimeImmutable`.
 
 ### AnnotationRegistry
 

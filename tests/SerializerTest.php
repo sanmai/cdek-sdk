@@ -50,7 +50,7 @@ class SerializerTest extends TestCase
 
     private function isAnnotationRegistryConfigured(): bool
     {
-        return 'class_exists' == \Closure::bind(function () {
+        return 'class_exists' === \Closure::bind(function () {
             return end(AnnotationRegistry::$loaders);
         }, null, AnnotationRegistry::class)();
     }

@@ -181,7 +181,7 @@ class DeliveryRequestTest extends TestCase
 
         if ($response instanceof PrintErrorResponse) {
             foreach ($response->getMessages() as $message) {
-                if ($message->getErrorCode() == 'ERR_API') {
+                if ($message->getErrorCode() === 'ERR_API') {
                     $this->markTestSkipped($message->getMessage());
                 }
 
@@ -208,7 +208,7 @@ class DeliveryRequestTest extends TestCase
         $response = $this->getClient()->sendStatusReportRequest($request);
 
         // База СДЭК не успевает записать данные?
-        if ($response->getErrorCode() == 'ERR_ORDERS_NOT_FOUND') {
+        if ($response->getErrorCode() === 'ERR_ORDERS_NOT_FOUND') {
             $this->markTestSkipped($response->getMessage());
         }
 
@@ -241,7 +241,7 @@ class DeliveryRequestTest extends TestCase
 
         if ($response instanceof PrintErrorResponse) {
             foreach ($response->getMessages() as $message) {
-                if ($message->getErrorCode() == 'ERR_API') {
+                if ($message->getErrorCode() === 'ERR_API') {
                     $this->markTestSkipped($message->getMessage());
                 }
 

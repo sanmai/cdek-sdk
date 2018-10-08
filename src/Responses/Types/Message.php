@@ -49,18 +49,26 @@ final class Message implements HasErrorCode
         $this->errorCode = $errorCode;
     }
 
+    /**
+     * @deprecated use getMessage()
+     * @codeCoverageIgnore
+     */
     public function getText(): string
     {
-        return $this->text;
-    }
-
-    public function getCode(): string
-    {
-        return (string) $this->errorCode;
+        return $this->getMessage();
     }
 
     /**
      * @deprecated use getErrorCode()
+     * @codeCoverageIgnore
+     */
+    public function getCode(): string
+    {
+        return $this->getErrorCode();
+    }
+
+    /**
+     * @deprecated use getErrorCode() !== ''
      * @codeCoverageIgnore
      */
     public function isError(): bool
@@ -70,12 +78,12 @@ final class Message implements HasErrorCode
 
     public function getErrorCode(): string
     {
-        return $this->getCode();
+        return (string) $this->errorCode;
     }
 
     public function getMessage(): string
     {
-        return $this->getText();
+        return $this->text;
     }
 
     public static function from(...$inputs): \Traversable

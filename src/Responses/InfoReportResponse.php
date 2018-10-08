@@ -64,4 +64,9 @@ final class InfoReportResponse implements Response
     {
         return Message::from($this->orders);
     }
+
+    public function jsonSerialize()
+    {
+        return [];
+    }
 }

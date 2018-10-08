@@ -73,4 +73,9 @@ final class DeleteResponse implements Response
     {
         return Message::from($this->getOrdersFromRequests(), $this->requests);
     }
+
+    public function jsonSerialize()
+    {
+        return [];
+    }
 }

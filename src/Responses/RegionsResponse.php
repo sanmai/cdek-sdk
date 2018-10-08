@@ -61,6 +61,11 @@ final class RegionsResponse implements \IteratorAggregate, Response
         return new \ArrayIterator($this->getItems());
     }
 
+    public function jsonSerialize()
+    {
+        return [];
+    }
+
     public function hasErrors(): bool
     {
         return false;

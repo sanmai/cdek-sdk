@@ -69,4 +69,9 @@ final class PreAlertResponse implements Response
             }
         }
     }
+
+    public function jsonSerialize()
+    {
+        return [];
+    }
 }

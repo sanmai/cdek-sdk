@@ -103,4 +103,9 @@ final class DeliveryResponse implements Response
     {
         return Message::from($this->orders, $this->requests);
     }
+
+    public function jsonSerialize()
+    {
+        return [];
+    }
 }

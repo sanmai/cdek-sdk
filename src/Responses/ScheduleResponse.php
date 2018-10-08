@@ -78,4 +78,9 @@ final class ScheduleResponse implements Response
             }
         }
     }
+
+    public function jsonSerialize()
+    {
+        return [];
+    }
 }

@@ -73,4 +73,9 @@ final class PrintErrorResponse implements Response
             return new Message($error->getMessage(), $error->getErrorCode());
         });
     }
+
+    public function jsonSerialize()
+    {
+        return [];
+    }
 }

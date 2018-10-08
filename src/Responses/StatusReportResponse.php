@@ -111,6 +111,11 @@ final class StatusReportResponse implements Response, HasErrorCode
         return (string) $this->Msg;
     }
 
+    public function jsonSerialize()
+    {
+        return [];
+    }
+
     public function hasErrors(): bool
     {
         return (bool) $this->ErrorCode;

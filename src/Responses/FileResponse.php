@@ -48,6 +48,11 @@ final class FileResponse implements Response
         return $this->stream;
     }
 
+    public function jsonSerialize()
+    {
+        return (string) $this->getBody();
+    }
+
     public function hasErrors(): bool
     {
         return false;

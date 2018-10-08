@@ -53,6 +53,11 @@ final class PvzListResponse implements Response
         return $this->items;
     }
 
+    public function jsonSerialize()
+    {
+        return [];
+    }
+
     public function hasErrors(): bool
     {
         return false;

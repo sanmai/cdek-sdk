@@ -110,4 +110,9 @@ final class CalculationResponse implements Response
 
         throw new \BadMethodCallException(sprintf('Method [%s] not found in [%s].', $name, __CLASS__));
     }
+
+    public function jsonSerialize()
+    {
+        return [];
+    }
 }

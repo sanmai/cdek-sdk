@@ -28,7 +28,7 @@ declare(strict_types=1);
 
 namespace CdekSDK\Contracts;
 
-interface Response
+interface Response extends \JsonSerializable
 {
     public function hasErrors(): bool;
 

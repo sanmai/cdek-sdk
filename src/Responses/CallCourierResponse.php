@@ -98,4 +98,9 @@ final class CallCourierResponse implements Response
             }
         }
     }
+
+    public function jsonSerialize()
+    {
+        return [];
+    }
 }

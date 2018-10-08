@@ -38,6 +38,9 @@ final class CalculationAuthorizedRequest extends CalculationRequest implements S
 {
     use Authorized;
 
+    /**
+     * @phan-suppress PhanDeprecatedProperty
+     */
     public function getBody(): array
     {
         return array_merge(parent::getBody(), [

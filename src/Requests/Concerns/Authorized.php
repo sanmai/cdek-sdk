@@ -29,6 +29,7 @@ declare(strict_types=1);
 namespace CdekSDK\Requests\Concerns;
 
 use CdekSDK\Contracts\ShouldAuthorize;
+use JMS\Serializer\Annotation as JMS;
 
 trait Authorized
 {
@@ -38,6 +39,8 @@ trait Authorized
      * @JMS\Type("DateTimeImmutable<'Y-m-d'>")
      *
      * @var \DateTimeInterface
+     *
+     * @deprecated will be made private/protected
      */
     public $date;
 
@@ -47,6 +50,8 @@ trait Authorized
      * @JMS\Type("string")
      *
      * @var string
+     *
+     * @deprecated will be made private/protected
      */
     public $account;
 
@@ -56,11 +61,14 @@ trait Authorized
      * @JMS\Type("string")
      *
      * @var string
+     *
+     * @deprecated will be made private/protected
      */
     public $secure;
 
     /**
      * @phan-suppress PhanTypeMismatchReturn
+     * @phan-suppress PhanDeprecatedProperty
      */
     final public function date(\DateTimeInterface $date): ShouldAuthorize
     {
@@ -72,6 +80,7 @@ trait Authorized
 
     /**
      * @phan-suppress PhanTypeMismatchReturn
+     * @phan-suppress PhanDeprecatedProperty
      */
     final public function credentials(string $account, string $secure): ShouldAuthorize
     {

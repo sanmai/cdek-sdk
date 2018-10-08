@@ -42,8 +42,6 @@ use function Pipeline\map;
  */
 final class PrintErrorResponse implements Response
 {
-    use HasErrors;
-
     /**
      * @JMS\XmlList(entry = "Order", inline = true)
      * @JMS\Type("array<CdekSDK\Responses\Types\PrintError>")
@@ -60,6 +58,11 @@ final class PrintErrorResponse implements Response
     public function getErrors()
     {
         return $this->errors;
+    }
+
+    public function hasErrors(): bool
+    {
+        return true;
     }
 
     /**

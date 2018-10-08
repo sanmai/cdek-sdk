@@ -121,6 +121,11 @@ final class StatusReportResponse implements Response, HasErrorCode
         return (bool) $this->ErrorCode;
     }
 
+    /**
+     * {@inheritdoc}
+     *
+     * @see \CdekSDK\Contracts\Response::getMessages()
+     */
     public function getMessages()
     {
         return Message::from([$this]);

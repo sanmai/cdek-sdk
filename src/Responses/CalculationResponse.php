@@ -88,6 +88,11 @@ final class CalculationResponse implements Response
         return $this->errors;
     }
 
+    /**
+     * {@inheritdoc}
+     *
+     * @see \CdekSDK\Contracts\Response::getMessages()
+     */
     public function getMessages()
     {
         yield from $this->getErrors();

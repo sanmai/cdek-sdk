@@ -164,5 +164,19 @@ class StatusReportResponseTest extends TestCase
 
         $this->assertSame('По указанным параметрам заказов не найдено', $response->getMessage());
         $this->assertSame('ERR_ORDERS_NOT_FOUND', $response->getErrorCode());
+
+        $this->assertTrue($response->hasErrors());
+        $this->assertCount(1, $response->getMessages());
+
+        foreach ($response->getMessages() as $message) {
+            $this->assertSame('По указанным параметрам заказов не найдено', $message->getMessage());
+            $this->assertSame('ERR_ORDERS_NOT_FOUND', $message->getErrorCode());
+        }
+    }
+
+    public function test_it_serializes_to_empty_json()
+    {
+        $response = new StatusReportResponse();
+        $this->assertSame([], $response->jsonSerialize());
     }
 }

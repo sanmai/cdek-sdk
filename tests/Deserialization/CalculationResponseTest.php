@@ -48,10 +48,18 @@ class CalculationResponseTest extends TestCase
         $this->assertInstanceOf(CalculationResponse::class, $response);
 
         $this->assertTrue($response->hasErrors());
+
+        $this->assertCount(1, $response->getErrors());
         foreach ($response->getErrors() as $error) {
             $this->assertSame('Не задан тариф или список тарифов', $error->getText());
             $this->assertSame(6, $error->getCode());
 
+            $this->assertSame('Не задан тариф или список тарифов', $error->getMessage());
+            $this->assertSame('6', $error->getErrorCode());
+        }
+
+        $this->assertCount(1, $response->getMessages());
+        foreach ($response->getMessages() as $error) {
             $this->assertSame('Не задан тариф или список тарифов', $error->getMessage());
             $this->assertSame('6', $error->getErrorCode());
         }
@@ -76,7 +84,13 @@ class CalculationResponseTest extends TestCase
         $this->assertInstanceOf(CalculationResponse::class, $response);
 
         $this->assertFalse($response->hasErrors());
+        $this->assertCount(0, $response->getErrors());
         foreach ($response->getErrors() as $error) {
+            $this->fail($error->getMessage());
+        }
+
+        $this->assertCount(0, $response->getMessages());
+        foreach ($response->getMessages() as $error) {
             $this->fail($error->getMessage());
         }
 
@@ -157,5 +171,11 @@ class CalculationResponseTest extends TestCase
 
         $this->expectException(\BadMethodCallException::class);
         call_user_func([$response, 'foo']);
+    }
+
+    public function test_it_serializes_to_empty_json()
+    {
+        $response = new CalculationResponse();
+        $this->assertSame([], $response->jsonSerialize());
     }
 }

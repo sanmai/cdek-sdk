@@ -66,4 +66,10 @@ class PreAlertResponseTest extends TestCase
             $this->assertSame('INVALID_PARAMETER', $error->getErrorCode());
         }
     }
+
+    public function test_it_serializes_to_empty_json()
+    {
+        $response = new PreAlertResponse();
+        $this->assertSame([], $response->jsonSerialize());
+    }
 }

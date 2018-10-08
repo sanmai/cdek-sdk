@@ -73,4 +73,17 @@ class RegionsResponseTest extends TestCase
         assert(isset($item));
         $this->assertSame($region, $item);
     }
+
+    public function test_it_has_no_errors()
+    {
+        $response = new RegionsResponse();
+        $this->assertFalse($response->hasErrors());
+        $this->assertCount(0, $response->getMessages());
+    }
+
+    public function test_it_serializes_to_empty_json()
+    {
+        $response = new RegionsResponse();
+        $this->assertSame([], $response->jsonSerialize());
+    }
 }

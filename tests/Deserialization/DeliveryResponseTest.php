@@ -108,4 +108,10 @@ class DeliveryResponseTest extends TestCase
 
         $this->assertTrue(isset($order));
     }
+
+    public function test_it_serializes_to_empty_json()
+    {
+        $response = new DeliveryResponse();
+        $this->assertSame([], $response->jsonSerialize());
+    }
 }

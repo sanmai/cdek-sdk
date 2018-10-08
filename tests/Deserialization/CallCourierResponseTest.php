@@ -109,4 +109,10 @@ class CallCourierResponseTest extends TestCase
             $this->assertSame('ERR_NOTFOUNDTAG', $message->getCode());
         }
     }
+
+    public function test_it_serializes_to_empty_json()
+    {
+        $response = new CallCourierResponse();
+        $this->assertSame([], $response->jsonSerialize());
+    }
 }

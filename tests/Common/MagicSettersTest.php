@@ -46,8 +46,8 @@ class MagicSettersTest extends TestCase
         };
 
         $example->setFoo('foo');
-        $example->setBar('bar');
-        $example->setJustTesting(123);
+        $example = $example->setBar('bar');
+        $example = $example->setJustTesting(123);
 
         $this->assertSame([
             'foo'         => 'foo',

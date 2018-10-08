@@ -29,14 +29,18 @@ declare(strict_types=1);
 namespace CdekSDK\Responses;
 
 use CdekSDK\Common\Order;
+use CdekSDK\Contracts\Response;
+use CdekSDK\Responses\Concerns\HasErrors;
 use CdekSDK\Responses\Types\Message;
 use JMS\Serializer\Annotation as JMS;
 
 /**
  * Class InfoReportResponse.
  */
-final class InfoReportResponse
+final class InfoReportResponse implements Response
 {
+    use HasErrors;
+
     /**
      * @JMS\XmlList(entry = "Order", inline = true)
      * @JMS\Type("array<CdekSDK\Common\Order>")

@@ -29,6 +29,8 @@ declare(strict_types=1);
 namespace CdekSDK\Responses;
 
 use CdekSDK\Common\Order;
+use CdekSDK\Contracts\Response;
+use CdekSDK\Responses\Concerns\HasErrors;
 use CdekSDK\Responses\Types\DeliveryRequest;
 use CdekSDK\Responses\Types\Message;
 use JMS\Serializer\Annotation as JMS;
@@ -39,8 +41,10 @@ use function Pipeline\fromArray;
  *
  * @see DeleteResponse
  */
-final class DeliveryResponse
+final class DeliveryResponse implements Response
 {
+    use HasErrors;
+
     /**
      * @JMS\XmlList(entry = "DeliveryRequest", inline = true)
      * @JMS\Type("array<CdekSDK\Responses\Types\DeliveryRequest>")

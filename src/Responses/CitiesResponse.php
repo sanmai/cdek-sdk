@@ -29,12 +29,13 @@ declare(strict_types=1);
 namespace CdekSDK\Responses;
 
 use CdekSDK\Common\Location;
+use CdekSDK\Contracts\Response;
 use JMS\Serializer\Annotation as JMS;
 
 /**
  * Class CitiesResponse.
  */
-final class CitiesResponse implements \IteratorAggregate
+final class CitiesResponse implements \IteratorAggregate, Response
 {
     /**
      * @JMS\XmlList(entry = "Location", inline = true)
@@ -58,5 +59,15 @@ final class CitiesResponse implements \IteratorAggregate
     public function getIterator()
     {
         return new \ArrayIterator($this->getItems());
+    }
+
+    public function hasErrors(): bool
+    {
+        return false;
+    }
+
+    public function getMessages()
+    {
+        return [];
     }
 }

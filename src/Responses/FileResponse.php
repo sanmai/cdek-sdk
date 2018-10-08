@@ -28,12 +28,13 @@ declare(strict_types=1);
 
 namespace CdekSDK\Responses;
 
+use CdekSDK\Contracts\Response;
 use Psr\Http\Message\StreamInterface;
 
 /**
  * FileResponse содержит данные файла.
  */
-final class FileResponse
+final class FileResponse implements Response
 {
     private $stream;
 
@@ -45,5 +46,15 @@ final class FileResponse
     public function getBody(): StreamInterface
     {
         return $this->stream;
+    }
+
+    public function hasErrors(): bool
+    {
+        return false;
+    }
+
+    public function getMessages()
+    {
+        return [];
     }
 }

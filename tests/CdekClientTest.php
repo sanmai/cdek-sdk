@@ -163,6 +163,8 @@ class CdekClientTest extends TestCase
         $response = $client->sendRequest($this->createMock(Request::class));
         $this->assertInstanceOf(FileResponse::class, $response);
 
+        assert($response instanceof FileResponse);
+
         $this->assertSame('%PDF', (string) $response->getBody());
         $this->assertEmpty($this->lastRequestOptions);
     }

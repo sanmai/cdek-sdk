@@ -26,51 +26,14 @@
 
 declare(strict_types=1);
 
-namespace CdekSDK\Responses;
+namespace CdekSDK\Contracts;
 
-use CdekSDK\Common\Order;
-use CdekSDK\Contracts\HasErrorCode;
-use CdekSDK\Contracts\Response;
-use CdekSDK\Responses\Concerns\HasErrors;
-use CdekSDK\Responses\Types\Message;
-use CdekSDK\Responses\Types\PrintError;
-use JMS\Serializer\Annotation as JMS;
-use function Pipeline\map;
-
-/**
- * Class PrintErrorResponse.
- */
-final class PrintErrorResponse implements Response
+interface Response
 {
-    use HasErrors;
+    public function hasErrors(): bool;
 
     /**
-     * @JMS\XmlList(entry = "Order", inline = true)
-     * @JMS\Type("array<CdekSDK\Responses\Types\PrintError>")
-     *
-     * @var PrintError[]
+     * @return \Traversable|HasErrorCode[]
      */
-    private $errors = [];
-
-    /**
-     * @return PrintError[]
-     *
-     * @deprecated
-     */
-    public function getErrors()
-    {
-        return $this->errors;
-    }
-
-    /**
-     * @return \Traversable|Message[]|HasErrorCode[]
-     */
-    public function getMessages()
-    {
-        return map(function () {
-            yield from $this->errors;
-        })->map(function (PrintError $error) {
-            return new Message($error->getMessage(), $error->getErrorCode());
-        });
-    }
+    public function getMessages();
 }

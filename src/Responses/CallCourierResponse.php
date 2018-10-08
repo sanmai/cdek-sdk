@@ -30,6 +30,7 @@ namespace CdekSDK\Responses;
 
 use CdekSDK\Common\CallCourier;
 use CdekSDK\Contracts\HasErrorCode;
+use CdekSDK\Contracts\Response;
 use CdekSDK\Responses\Types\Message;
 use JMS\Serializer\Annotation as JMS;
 use function Pipeline\map;
@@ -37,7 +38,7 @@ use function Pipeline\map;
 /**
  * Class CallCourierResponse.
  */
-final class CallCourierResponse
+final class CallCourierResponse implements Response
 {
     /**
      * @JMS\XmlList(entry = "CallCourier", inline = true)

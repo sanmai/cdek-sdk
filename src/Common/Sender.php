@@ -30,7 +30,7 @@ namespace CdekSDK\Common;
 
 use JMS\Serializer\Annotation as JMS;
 
-class Sender
+final class Sender
 {
     use Fillable;
 

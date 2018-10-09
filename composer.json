@@ -36,6 +36,7 @@
     },
     "suggest": {
         "ext-ctype": "For flexible attribute name handling",
+        "monolog/monolog": "For advanced logging and debugging",
         "sanmai/pindx": "For postal code validation"
     },
     "require-dev": {

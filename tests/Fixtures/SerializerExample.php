@@ -37,7 +37,6 @@ final class SerializerExample
 {
     /**
      * @JMS\XmlAttribute
-     * @JMS\SerializedName("Number")
      * @JMS\Type("string")
      *
      * @var string
@@ -46,7 +45,6 @@ final class SerializerExample
 
     /**
      * @JMS\XmlAttribute
-     * @JMS\SerializedName("Foo")
      * @JMS\Type("int")
      *
      * @var int
@@ -55,7 +53,6 @@ final class SerializerExample
 
     /**
      * @JMS\XmlAttribute
-     * @JMS\SerializedName("BAR")
      * @JMS\Type("string")
      *
      * @var string

@@ -35,6 +35,8 @@ use JMS\Serializer\EventDispatcher\EventDispatcher;
 use JMS\Serializer\EventDispatcher\Events;
 use JMS\Serializer\EventDispatcher\PreDeserializeEvent;
 use JMS\Serializer\Handler\HandlerRegistryInterface;
+use JMS\Serializer\Naming\IdenticalPropertyNamingStrategy;
+use JMS\Serializer\Naming\SerializedNameAnnotationStrategy;
 use JMS\Serializer\SerializationContext;
 use JMS\Serializer\SerializerBuilder;
 use JMS\Serializer\SerializerInterface;
@@ -62,6 +64,8 @@ final class Serializer implements SerializerInterface
         $builder = SerializerBuilder::create()->configureHandlers(function (HandlerRegistryInterface $registry) {
             $registry->registerSubscribingHandler(new NullableDateTimeHandler());
         });
+
+        $builder->setPropertyNamingStrategy(new SerializedNameAnnotationStrategy(new IdenticalPropertyNamingStrategy()));
 
         /*
          * У СДЭК атрибуты могут быть как в верхнем, так и в нижнем регистре. Например, pvzCode="123" и PvzCode="123".

@@ -37,7 +37,6 @@ final class DateTimeExample
 {
     /**
      * @JMS\XmlAttribute
-     * @JMS\SerializedName("Date")
      * @JMS\Type("DateTimeImmutable<'Y-m-d'>")
      *
      * @var \DateTimeInterface
@@ -46,7 +45,6 @@ final class DateTimeExample
 
     /**
      * @JMS\XmlAttribute
-     * @JMS\SerializedName("DateTime")
      * @JMS\Type("DateTimeImmutable<'Y-m-d\TH:i:sP'>")
      *
      * @var \DateTimeInterface

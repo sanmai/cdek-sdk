@@ -4,5 +4,8 @@ build:
             version: 7.2
 
 filter:
+    paths:
+        - src/
     excluded_paths:
-        - examples
+        - examples/
+        - tests/

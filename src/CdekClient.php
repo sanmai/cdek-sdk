@@ -43,6 +43,7 @@ use JMS\Serializer\SerializerInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerAwareTrait;
+use function GuzzleHttp\default_user_agent;
 
 /**
  * Class CdekClient.
@@ -69,6 +70,9 @@ final class CdekClient implements Contracts\Client, LoggerAwareInterface
 
     const DEFAULT_TIMEOUT = 60;
 
+    const PACKAGE_NAME = 'Cdek-SDK';
+    const VERSION_INFO = '$Format:%h%d by %an +%ae$';
+
     /** @var ClientInterface */
     private $http;
 
@@ -89,9 +93,24 @@ final class CdekClient implements Contracts\Client, LoggerAwareInterface
         $this->http = $http ?? new GuzzleClient([
             'base_uri' => self::STANDARD_BASE_URL,
             'timeout'  => self::DEFAULT_TIMEOUT,
+            'headers'  => [
+                'User-Agent' => $this->getDefaultUserAgent(),
+            ],
         ]);
 
         $this->serializer = new Serialization\Serializer();
+    }
+
+    /**
+     * @codeCoverageIgnore
+     */
+    private function getDefaultUserAgent(): string
+    {
+        if (self::VERSION_INFO[0] === '$') {
+            return default_user_agent().' '.self::PACKAGE_NAME.'/'.@json_decode((string) file_get_contents(__DIR__.'/../composer.json'), true)['extra']['branch-alias']['dev-master'];
+        }
+
+        return default_user_agent().' '.self::PACKAGE_NAME.'/'.self::VERSION_INFO;
     }
 
     /**

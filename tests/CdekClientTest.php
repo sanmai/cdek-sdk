@@ -332,4 +332,16 @@ class CdekClientTest extends TestCase
         $this->assertArrayHasKey('form_params', $this->lastRequestOptions);
         $this->assertSame('bar', $this->lastRequestOptions['form_params']['foo']);
     }
+
+    public function test_it_sets_default_user_agent()
+    {
+        $reflectionClass = new \ReflectionClass(CdekClient::class);
+        $reflectionProperty = $reflectionClass->getProperty('http');
+        $reflectionProperty->setAccessible(true);
+
+        $value = $reflectionProperty->getValue(new CdekClient('', ''));
+
+        /** @var ClientInterface $value */
+        $this->assertContains(CdekClient::PACKAGE_NAME, $value->getConfig()['headers']['User-Agent']);
+    }
 }

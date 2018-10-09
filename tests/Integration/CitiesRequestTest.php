@@ -46,6 +46,7 @@ class CitiesRequestTest extends TestCase
 
         $response = $this->getClient()->sendCitiesRequest($request);
 
+        $this->assertFalse($response->hasErrors());
         $this->assertInstanceOf(CitiesResponse::class, $response);
 
         $this->assertCount(1, $response->getItems());
@@ -67,6 +68,7 @@ class CitiesRequestTest extends TestCase
 
         $response = $this->getClient()->sendCitiesRequest($request);
 
+        $this->assertFalse($response->hasErrors());
         $this->assertCount(0, $response->getItems());
     }
 }

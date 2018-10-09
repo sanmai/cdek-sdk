@@ -46,6 +46,7 @@ class RegionsRequestTest extends TestCase
 
         $response = $this->getClient()->sendRegionsRequest($request);
 
+        $this->assertFalse($response->hasErrors());
         $this->assertInstanceOf(RegionsResponse::class, $response);
 
         $this->assertCount(1, $response->getItems());
@@ -75,6 +76,7 @@ class RegionsRequestTest extends TestCase
 
         $response = $this->getClient()->sendRegionsRequest($request);
 
+        $this->assertFalse($response->hasErrors());
         $this->assertCount(0, $response->getItems());
     }
 }

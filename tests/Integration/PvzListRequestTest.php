@@ -44,7 +44,9 @@ class PvzListRequestTest extends TestCase
         $request->setCityId(0);
 
         $response = $this->getClient()->sendPvzListRequest($request);
+
         /** @var \CdekSDK\Responses\PvzListResponse $response */
+        $this->assertFalse($response->hasErrors());
         $this->assertEmpty($response->getItems());
     }
 
@@ -58,7 +60,9 @@ class PvzListRequestTest extends TestCase
         $request->setDressingRoom(true);
 
         $response = $this->getClient()->sendPvzListRequest($request);
+
         /** @var \CdekSDK\Responses\PvzListResponse $response */
+        $this->assertFalse($response->hasErrors());
         $this->assertNotEmpty($response->getItems());
 
         foreach ($response->getItems() as $item) {

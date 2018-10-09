@@ -51,8 +51,10 @@ class InvalidRequestsTest extends TestCase
         $request = new DeliveryRequest();
         $response = $this->getClient()->sendDeliveryRequest($request);
 
+        $this->assertTrue($response->hasErrors());
+
         foreach ($response->getMessages() as $message) {
-            $this->assertTrue($message->isError());
+            $this->assertNotEmpty($message->getErrorCode(), $message->getMessage());
             break;
         }
     }
@@ -64,10 +66,11 @@ class InvalidRequestsTest extends TestCase
 
         $response = $this->getClient()->sendPrintReceiptsRequest($request);
 
+        $this->assertTrue($response->hasErrors());
         $this->assertInstanceOf(PrintErrorResponse::class, $response);
 
         foreach ($response->getMessages() as $message) {
-            $this->assertTrue($message->isError());
+            $this->assertNotEmpty($message->getErrorCode(), $message->getMessage());
         }
     }
 }

@@ -43,6 +43,8 @@ class RegionsResponseTest extends TestCase
         $response = $this->getSerializer()->deserialize(FixtureLoader::load('Regions.xml'), RegionsResponse::class, 'xml');
 
         /** @var $response RegionsResponse */
+        $this->assertFalse($response->hasErrors());
+
         $this->assertInstanceOf(RegionsResponse::class, $response);
 
         $this->assertNotEmpty($response->getItems());

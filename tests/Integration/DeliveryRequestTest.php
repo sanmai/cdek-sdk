@@ -229,6 +229,8 @@ class DeliveryRequestTest extends TestCase
             $this->assertEmpty($message->getErrorCode(), $message->getMessage());
         }
 
+        $this->assertFalse($response->hasErrors());
+
         foreach ($response->getOrders() as $order) {
             $this->assertSame('TEST-123456', $order->getNumber());
             $this->assertNotEmpty($order->getDispatchNumber());
@@ -236,6 +238,8 @@ class DeliveryRequestTest extends TestCase
 
         // повторные запросы не завершаются с ошибкой, лишь ничего не добавляют
         $response = $this->getClient()->sendDeliveryRequest($request);
+
+        $this->assertTrue($response->hasErrors());
 
         foreach ($response->getMessages() as $message) {
             $this->assertNotEmpty($message->getErrorCode());
@@ -267,6 +271,7 @@ class DeliveryRequestTest extends TestCase
             }
         }
 
+        $this->assertFalse($response->hasErrors());
         $this->assertInstanceOf(FileResponse::class, $response);
 
         $this->assertSame('%PDF', $response->getBody()->read(4));
@@ -282,6 +287,8 @@ class DeliveryRequestTest extends TestCase
         $request->addOrder(Order::withDispatchNumber($dispatchNumber));
 
         $response = $this->getClient()->sendStatusReportRequest($request);
+
+        $this->assertFalse($response->hasErrors());
 
         // База СДЭК не успевает записать данные?
         if ($response->getErrorCode() === 'ERR_ORDERS_NOT_FOUND') {
@@ -327,6 +334,7 @@ class DeliveryRequestTest extends TestCase
             }
         }
 
+        $this->assertFalse($response->hasErrors());
         $this->assertInstanceOf(FileResponse::class, $response);
 
         $this->assertSame('%PDF', $response->getBody()->read(4));
@@ -342,6 +350,7 @@ class DeliveryRequestTest extends TestCase
 
         $response = $this->getClient()->sendInfoReportRequest($request);
 
+        $this->assertFalse($response->hasErrors());
         $this->assertInstanceOf(InfoReportResponse::class, $response);
         $this->assertCount(1, $response->getOrders());
     }
@@ -366,8 +375,8 @@ class DeliveryRequestTest extends TestCase
         ])));
 
         $response = $this->getClient()->sendCallCourierRequest($request);
-        $this->assertInstanceOf(CallCourierResponse::class, $response);
 
         $this->assertFalse($response->hasErrors());
+        $this->assertInstanceOf(CallCourierResponse::class, $response);
     }
 }

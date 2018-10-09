@@ -224,7 +224,7 @@ class CdekClientTest extends TestCase
         //$this->expectException(\RuntimeException::class);
         $response = $client->sendInfoReportRequest(new InfoReportRequest());
         $this->assertSame(2, $logger->log->countRecordsWithLevel(LogLevel::DEBUG));
-        $this->assertTrue($logger->log->hasRecordsWithPartialMessage('CDEK API responded with a HTTP error code'));
+        $this->assertTrue($logger->log->hasRecordsWithPartialMessage('CDEK API responded with an HTTP error code'));
 
         $this->assertSame(1, $logger->log->countRecordsWithContextKey('exception'));
         $this->assertSame(1, $logger->log->countRecordsWithContextKey('error_code'));

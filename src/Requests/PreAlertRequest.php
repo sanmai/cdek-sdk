@@ -43,7 +43,6 @@ final class PreAlertRequest extends DeliveryRequest
 
     /**
      * @JMS\XmlAttribute
-     * @JMS\SerializedName("PvzCode")
      * @JMS\Type("string")
      *
      * @var string

@@ -43,7 +43,6 @@ abstract class PrintRequest implements XmlRequest, ShouldAuthorize
 
     /**
      * @JMS\XmlAttribute
-     * @JMS\SerializedName("CopyCount")
      * @JMS\Type("int")
      *
      * @var string

@@ -41,7 +41,6 @@ final class Package
 
     /**
      * @JMS\XmlAttribute
-     * @JMS\SerializedName("Number")
      * @JMS\Type("string")
      *
      * @var string
@@ -50,7 +49,6 @@ final class Package
 
     /**
      * @JMS\XmlAttribute
-     * @JMS\SerializedName("BarCode")
      * @JMS\Type("string")
      *
      * @var string
@@ -59,7 +57,6 @@ final class Package
 
     /**
      * @JMS\XmlAttribute
-     * @JMS\SerializedName("Weight")
      * @JMS\Type("float")
      *
      * @var float
@@ -68,7 +65,6 @@ final class Package
 
     /**
      * @JMS\XmlAttribute
-     * @JMS\SerializedName("SizeA")
      * @JMS\Type("int")
      *
      * @var int
@@ -77,7 +73,6 @@ final class Package
 
     /**
      * @JMS\XmlAttribute
-     * @JMS\SerializedName("SizeB")
      * @JMS\Type("int")
      *
      * @var int
@@ -86,7 +81,6 @@ final class Package
 
     /**
      * @JMS\XmlAttribute
-     * @JMS\SerializedName("SizeC")
      * @JMS\Type("int")
      *
      * @var int
@@ -95,7 +89,6 @@ final class Package
 
     /**
      * @JMS\XmlAttribute
-     * @JMS\SerializedName("VolumeWeight")
      * @JMS\Type("float")
      *
      * @var float

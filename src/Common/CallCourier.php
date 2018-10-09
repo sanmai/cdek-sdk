@@ -42,7 +42,6 @@ final class CallCourier implements HasErrorCode
 
     /**
      * @JMS\XmlAttribute
-     * @JMS\SerializedName("Date")
      * @JMS\Type("DateTimeImmutable<'Y-m-d'>")
      *
      * @var \DateTimeImmutable
@@ -51,7 +50,6 @@ final class CallCourier implements HasErrorCode
 
     /**
      * @JMS\XmlAttribute
-     * @JMS\SerializedName("TimeBeg")
      * @JMS\Type("DateTimeImmutable<'H:i'>")
      *
      * @var \DateTimeImmutable
@@ -60,7 +58,6 @@ final class CallCourier implements HasErrorCode
 
     /**
      * @JMS\XmlAttribute
-     * @JMS\SerializedName("TimeEnd")
      * @JMS\Type("DateTimeImmutable<'H:i'>")
      *
      * @var \DateTimeImmutable
@@ -69,7 +66,6 @@ final class CallCourier implements HasErrorCode
 
     /**
      * @JMS\XmlAttribute
-     * @JMS\SerializedName("LunchBeg")
      * @JMS\Type("DateTimeImmutable<'H:i'>")
      *
      * @var \DateTimeImmutable
@@ -78,7 +74,6 @@ final class CallCourier implements HasErrorCode
 
     /**
      * @JMS\XmlAttribute
-     * @JMS\SerializedName("LunchEnd")
      * @JMS\Type("DateTimeImmutable<'H:i'>")
      *
      * @var \DateTimeImmutable
@@ -87,7 +82,6 @@ final class CallCourier implements HasErrorCode
 
     /**
      * @JMS\XmlAttribute
-     * @JMS\SerializedName("SendCityCode")
      * @JMS\Type("integer")
      *
      * @var int
@@ -96,7 +90,6 @@ final class CallCourier implements HasErrorCode
 
     /**
      * @JMS\XmlAttribute
-     * @JMS\SerializedName("SendCityPostCode")
      * @JMS\Type("string")
      *
      * @var string
@@ -105,7 +98,6 @@ final class CallCourier implements HasErrorCode
 
     /**
      * @JMS\XmlAttribute
-     * @JMS\SerializedName("SendCountryCode")
      * @JMS\Type("string")
      *
      * @var string
@@ -114,7 +106,6 @@ final class CallCourier implements HasErrorCode
 
     /**
      * @JMS\XmlAttribute
-     * @JMS\SerializedName("SendCityName")
      * @JMS\Type("string")
      *
      * @var string
@@ -123,7 +114,6 @@ final class CallCourier implements HasErrorCode
 
     /**
      * @JMS\XmlAttribute
-     * @JMS\SerializedName("SendPhone")
      * @JMS\Type("string")
      *
      * @var string
@@ -132,7 +122,6 @@ final class CallCourier implements HasErrorCode
 
     /**
      * @JMS\XmlAttribute
-     * @JMS\SerializedName("SenderName")
      * @JMS\Type("string")
      *
      * @var string
@@ -141,7 +130,6 @@ final class CallCourier implements HasErrorCode
 
     /**
      * @JMS\XmlAttribute
-     * @JMS\SerializedName("Weight")
      * @JMS\Type("float")
      *
      * @var float
@@ -150,7 +138,6 @@ final class CallCourier implements HasErrorCode
 
     /**
      * @JMS\XmlAttribute
-     * @JMS\SerializedName("Comment")
      * @JMS\Type("string")
      *
      * @var string
@@ -159,7 +146,6 @@ final class CallCourier implements HasErrorCode
 
     /**
      * @JMS\XmlAttribute
-     * @JMS\SerializedName("DispatchNumber")
      * @JMS\Type("string")
      *
      * @var string
@@ -168,7 +154,6 @@ final class CallCourier implements HasErrorCode
 
     /**
      * @JMS\XmlAttribute
-     * @JMS\SerializedName("IgnoreTime")
      * @JMS\Type("bool")
      *
      * @var bool
@@ -177,7 +162,6 @@ final class CallCourier implements HasErrorCode
 
     /**
      * @JMS\XmlAttribute
-     * @JMS\SerializedName("Number")
      * @JMS\Type("string")
      *
      * @var string
@@ -186,7 +170,6 @@ final class CallCourier implements HasErrorCode
 
     /**
      * @JMS\XmlAttribute
-     * @JMS\SerializedName("Msg")
      * @JMS\Type("string")
      *
      * @var string
@@ -195,7 +178,6 @@ final class CallCourier implements HasErrorCode
 
     /**
      * @JMS\XmlAttribute
-     * @JMS\SerializedName("ErrorCode")
      * @JMS\Type("string")
      *
      * @var string
@@ -203,7 +185,6 @@ final class CallCourier implements HasErrorCode
     protected $ErrorCode;
 
     /**
-     * @JMS\SerializedName("SendAddress")
      * @JMS\Type("CdekSDK\Common\Address")
      *
      * @var Address
@@ -211,7 +192,6 @@ final class CallCourier implements HasErrorCode
     protected $SendAddress;
 
     /**
-     * @JMS\SerializedName("Address")
      * @JMS\Type("CdekSDK\Common\Address")
      *
      * @var Address

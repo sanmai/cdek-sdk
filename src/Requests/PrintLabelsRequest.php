@@ -52,7 +52,6 @@ final class PrintLabelsRequest extends PrintRequest
 
     /**
      * @JMS\XmlAttribute
-     * @JMS\SerializedName("PrintFormat")
      * @JMS\Type("int")
      *
      * @var string

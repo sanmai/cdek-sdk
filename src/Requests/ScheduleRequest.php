@@ -44,7 +44,6 @@ final class ScheduleRequest extends DeliveryRequest implements HasErrorCode
 
     /**
      * @JMS\XmlAttribute
-     * @JMS\SerializedName("Msg")
      * @JMS\Type("string")
      *
      * @var string
@@ -53,7 +52,6 @@ final class ScheduleRequest extends DeliveryRequest implements HasErrorCode
 
     /**
      * @JMS\XmlAttribute
-     * @JMS\SerializedName("ErrorCode")
      * @JMS\Type("string")
      *
      * @var string

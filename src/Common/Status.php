@@ -36,7 +36,6 @@ final class Status
 
     /**
      * @JMS\XmlAttribute
-     * @JMS\SerializedName("Date")
      * @JMS\Type("DateTimeImmutable<'Y-m-d\TH:i:sP'>")
      *
      * @var \DateTimeImmutable
@@ -45,7 +44,6 @@ final class Status
 
     /**
      * @JMS\XmlAttribute
-     * @JMS\SerializedName("Code")
      * @JMS\Type("integer")
      *
      * @var int
@@ -54,7 +52,6 @@ final class Status
 
     /**
      * @JMS\XmlAttribute
-     * @JMS\SerializedName("Description")
      * @JMS\Type("string")
      *
      * @var string
@@ -63,7 +60,6 @@ final class Status
 
     /**
      * @JMS\XmlAttribute
-     * @JMS\SerializedName("CityCode")
      * @JMS\Type("integer")
      *
      * @var int
@@ -72,7 +68,6 @@ final class Status
 
     /**
      * @JMS\XmlAttribute
-     * @JMS\SerializedName("CityName")
      * @JMS\Type("string")
      *
      * @var string

@@ -38,7 +38,6 @@ final class Call
     use Fillable;
 
     /**
-     * @JMS\SerializedName("CallGood")
      * @JMS\XmlList(entry="Good")
      * @JMS\Type("array<CdekSDK\Common\CallGood>")
      *
@@ -47,7 +46,6 @@ final class Call
     protected $CallGood = [];
 
     /**
-     * @JMS\SerializedName("CallFail")
      * @JMS\XmlList(entry="Fail")
      * @JMS\Type("array<CdekSDK\Common\CallFail>")
      *
@@ -56,7 +54,6 @@ final class Call
     protected $CallFail = [];
 
     /**
-     * @JMS\SerializedName("CallDelay")
      * @JMS\XmlList(entry="Delay")
      * @JMS\Type("array<CdekSDK\Common\CallDelay>")
      *

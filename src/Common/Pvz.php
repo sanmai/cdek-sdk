@@ -39,7 +39,6 @@ final class Pvz
 
     /**
      * @JMS\XmlAttribute
-     * @JMS\SerializedName("Code")
      * @JMS\Type("string")
      *
      * @var string
@@ -48,7 +47,6 @@ final class Pvz
 
     /**
      * @JMS\XmlAttribute
-     * @JMS\SerializedName("Name")
      * @JMS\Type("string")
      *
      * @var string
@@ -57,7 +55,6 @@ final class Pvz
 
     /**
      * @JMS\XmlAttribute
-     * @JMS\SerializedName("Address")
      * @JMS\Type("string")
      *
      * @var string
@@ -66,7 +63,6 @@ final class Pvz
 
     /**
      * @JMS\XmlAttribute
-     * @JMS\SerializedName("AddressComment")
      * @JMS\Type("string")
      *
      * @var string
@@ -75,7 +71,6 @@ final class Pvz
 
     /**
      * @JMS\XmlAttribute
-     * @JMS\SerializedName("FullAddress")
      * @JMS\Type("string")
      *
      * @var string
@@ -84,7 +79,6 @@ final class Pvz
 
     /**
      * @JMS\XmlAttribute
-     * @JMS\SerializedName("Phone")
      * @JMS\Type("string")
      *
      * @var string
@@ -93,7 +87,6 @@ final class Pvz
 
     /**
      * @JMS\XmlAttribute
-     * @JMS\SerializedName("Email")
      * @JMS\Type("string")
      *
      * @var string
@@ -102,7 +95,6 @@ final class Pvz
 
     /**
      * @JMS\XmlAttribute
-     * @JMS\SerializedName("Note")
      * @JMS\Type("string")
      *
      * @var string
@@ -111,7 +103,6 @@ final class Pvz
 
     /**
      * @JMS\XmlAttribute
-     * @JMS\SerializedName("coordX")
      * @JMS\Type("float")
      *
      * @var float
@@ -120,7 +111,6 @@ final class Pvz
 
     /**
      * @JMS\XmlAttribute
-     * @JMS\SerializedName("coordY")
      * @JMS\Type("float")
      *
      * @var float
@@ -129,7 +119,6 @@ final class Pvz
 
     /**
      * @JMS\XmlAttribute
-     * @JMS\SerializedName("CountryCode")
      * @JMS\Type("int")
      *
      * @var int
@@ -138,7 +127,6 @@ final class Pvz
 
     /**
      * @JMS\XmlAttribute
-     * @JMS\SerializedName("CountryName")
      * @JMS\Type("string")
      *
      * @var string
@@ -147,7 +135,6 @@ final class Pvz
 
     /**
      * @JMS\XmlAttribute
-     * @JMS\SerializedName("RegionCode")
      * @JMS\Type("int")
      *
      * @var int
@@ -156,7 +143,6 @@ final class Pvz
 
     /**
      * @JMS\XmlAttribute
-     * @JMS\SerializedName("RegionName")
      * @JMS\Type("string")
      *
      * @var string
@@ -165,7 +151,6 @@ final class Pvz
 
     /**
      * @JMS\XmlAttribute
-     * @JMS\SerializedName("CityCode")
      * @JMS\Type("int")
      *
      * @var int
@@ -174,7 +159,6 @@ final class Pvz
 
     /**
      * @JMS\XmlAttribute
-     * @JMS\SerializedName("City")
      * @JMS\Type("string")
      *
      * @var string
@@ -183,7 +167,6 @@ final class Pvz
 
     /**
      * @JMS\XmlAttribute
-     * @JMS\SerializedName("IsDressingRoom")
      * @JMS\Type("string")
      *
      * @var bool
@@ -192,7 +175,6 @@ final class Pvz
 
     /**
      * @JMS\XmlAttribute
-     * @JMS\SerializedName("HaveCashless")
      * @JMS\Type("string")
      *
      * @var bool
@@ -201,7 +183,6 @@ final class Pvz
 
     /**
      * @JMS\XmlAttribute
-     * @JMS\SerializedName("AllowedCod")
      * @JMS\Type("string")
      *
      * @var bool
@@ -210,7 +191,6 @@ final class Pvz
 
     /**
      * @JMS\XmlAttribute
-     * @JMS\SerializedName("NearestStation")
      * @JMS\Type("string")
      *
      * @var string
@@ -219,7 +199,6 @@ final class Pvz
 
     /**
      * @JMS\XmlAttribute
-     * @JMS\SerializedName("MetroStation")
      * @JMS\Type("string")
      *
      * @var string
@@ -228,7 +207,6 @@ final class Pvz
 
     /**
      * @JMS\XmlAttribute
-     * @JMS\SerializedName("Site")
      * @JMS\Type("string")
      *
      * @var string
@@ -237,7 +215,6 @@ final class Pvz
 
     /**
      * @JMS\XmlAttribute
-     * @JMS\SerializedName("Type")
      * @JMS\Type("string")
      *
      * @var string
@@ -246,7 +223,6 @@ final class Pvz
 
     /**
      * @JMS\XmlAttribute
-     * @JMS\SerializedName("WorkTime")
      * @JMS\Type("string")
      *
      * @var string
@@ -254,7 +230,6 @@ final class Pvz
     public $WorkTime;
 
     /**
-     * @JMS\SerializedName("WeightLimit")
      * @JMS\Type("CdekSDK\Common\WeightLimit")
      *
      * @var WeightLimit

@@ -41,7 +41,6 @@ final class StatusReportResponse implements Response, HasErrorCode
 {
     /**
      * @JMS\XmlAttribute
-     * @JMS\SerializedName("DateFirst")
      * @JMS\Type("DateTimeImmutable<'Y-m-d\TH:i:sP'>")
      *
      * @var \DateTimeImmutable
@@ -50,7 +49,6 @@ final class StatusReportResponse implements Response, HasErrorCode
 
     /**
      * @JMS\XmlAttribute
-     * @JMS\SerializedName("DateLast")
      * @JMS\Type("DateTimeImmutable<'Y-m-d\TH:i:sP'>")
      *
      * @var \DateTimeImmutable
@@ -67,7 +65,6 @@ final class StatusReportResponse implements Response, HasErrorCode
 
     /**
      * @JMS\XmlAttribute
-     * @JMS\SerializedName("ErrorCode")
      * @JMS\Type("string")
      *
      * @var string
@@ -76,7 +73,6 @@ final class StatusReportResponse implements Response, HasErrorCode
 
     /**
      * @JMS\XmlAttribute
-     * @JMS\SerializedName("Msg")
      * @JMS\Type("string")
      *
      * @var string

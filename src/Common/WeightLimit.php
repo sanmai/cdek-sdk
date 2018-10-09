@@ -34,7 +34,6 @@ final class WeightLimit
 {
     /**
      * @JMS\XmlAttribute
-     * @JMS\SerializedName("WeightMin")
      * @JMS\Type("int")
      *
      * @var int
@@ -43,7 +42,6 @@ final class WeightLimit
 
     /**
      * @JMS\XmlAttribute
-     * @JMS\SerializedName("WeightMax")
      * @JMS\Type("int")
      *
      * @var int

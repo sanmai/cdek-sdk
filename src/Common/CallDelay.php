@@ -39,7 +39,6 @@ final class CallDelay
 
     /**
      * @JMS\XmlAttribute
-     * @JMS\SerializedName("Date")
      * @JMS\Type("DateTimeImmutable<'Y-m-d\TH:i:sP'>")
      *
      * @var \DateTimeImmutable
@@ -48,7 +47,6 @@ final class CallDelay
 
     /**
      * @JMS\XmlAttribute
-     * @JMS\SerializedName("DateNext")
      * @JMS\Type("DateTimeImmutable<'Y-m-d\TH:i:sP'>")
      *
      * @var \DateTimeImmutable

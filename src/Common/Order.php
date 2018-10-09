@@ -62,7 +62,6 @@ final class Order implements HasErrorCode
 
     /**
      * @JMS\XmlAttribute
-     * @JMS\SerializedName("ClientSide")
      * @JMS\Type("string")
      *
      * @var string
@@ -71,7 +70,6 @@ final class Order implements HasErrorCode
 
     /**
      * @JMS\XmlAttribute
-     * @JMS\SerializedName("Date")
      * @JMS\Type("DateTimeImmutable<'Y-m-d'>")
      *
      * @var \DateTimeInterface
@@ -80,7 +78,6 @@ final class Order implements HasErrorCode
 
     /**
      * @JMS\XmlAttribute
-     * @JMS\SerializedName("Number")
      * @JMS\Type("string")
      *
      * @var string
@@ -89,7 +86,6 @@ final class Order implements HasErrorCode
 
     /**
      * @JMS\XmlAttribute
-     * @JMS\SerializedName("DispatchNumber")
      * @JMS\Type("string")
      *
      * @var string
@@ -98,7 +94,6 @@ final class Order implements HasErrorCode
 
     /**
      * @JMS\XmlAttribute
-     * @JMS\SerializedName("RecipientCompany")
      * @JMS\Type("string")
      *
      * @var string
@@ -107,7 +102,6 @@ final class Order implements HasErrorCode
 
     /**
      * @JMS\XmlAttribute
-     * @JMS\SerializedName("RecipientName")
      * @JMS\Type("string")
      *
      * @var string
@@ -116,7 +110,6 @@ final class Order implements HasErrorCode
 
     /**
      * @JMS\XmlAttribute
-     * @JMS\SerializedName("RecipientEmail")
      * @JMS\Type("string")
      *
      * @var string
@@ -125,7 +118,6 @@ final class Order implements HasErrorCode
 
     /**
      * @JMS\XmlAttribute
-     * @JMS\SerializedName("RecipientCurrency")
      * @JMS\Type("string")
      *
      * @var string
@@ -134,7 +126,6 @@ final class Order implements HasErrorCode
 
     /**
      * @JMS\XmlAttribute
-     * @JMS\SerializedName("Phone")
      * @JMS\Type("string")
      *
      * @var string
@@ -143,7 +134,6 @@ final class Order implements HasErrorCode
 
     /**
      * @JMS\XmlAttribute
-     * @JMS\SerializedName("TariffTypeCode")
      * @JMS\Type("integer")
      *
      * @var int
@@ -152,7 +142,6 @@ final class Order implements HasErrorCode
 
     /**
      * @JMS\XmlAttribute
-     * @JMS\SerializedName("DeliveryRecipientCost")
      * @JMS\Type("float")
      *
      * @var float
@@ -161,7 +150,6 @@ final class Order implements HasErrorCode
 
     /**
      * @JMS\XmlAttribute
-     * @JMS\SerializedName("ItemsCurrency")
      * @JMS\Type("string")
      *
      * @var string
@@ -170,7 +158,6 @@ final class Order implements HasErrorCode
 
     /**
      * @JMS\XmlAttribute
-     * @JMS\SerializedName("Comment")
      * @JMS\Type("string")
      *
      * @var string
@@ -178,7 +165,6 @@ final class Order implements HasErrorCode
     protected $Comment;
 
     /**
-     * @JMS\SerializedName("Status")
      * @JMS\Type("CdekSDK\Common\Status")
      *
      * @var Status|null
@@ -186,7 +172,6 @@ final class Order implements HasErrorCode
     protected $Status;
 
     /**
-     * @JMS\SerializedName("Reason")
      * @JMS\Type("CdekSDK\Common\Reason")
      *
      * @var Reason
@@ -194,7 +179,6 @@ final class Order implements HasErrorCode
     protected $Reason;
 
     /**
-     * @JMS\SerializedName("DelayReason")
      * @JMS\Type("CdekSDK\Common\Reason")
      *
      * @var Reason
@@ -202,7 +186,6 @@ final class Order implements HasErrorCode
     protected $DelayReason;
 
     /**
-     * @JMS\SerializedName("Address")
      * @JMS\Type("CdekSDK\Common\Address")
      *
      * @var Address
@@ -261,7 +244,6 @@ final class Order implements HasErrorCode
 
     /**
      * @JMS\XmlAttribute
-     * @JMS\SerializedName("Weight")
      * @JMS\Type("float")
      *
      * @var float
@@ -270,7 +252,6 @@ final class Order implements HasErrorCode
 
     /**
      * @JMS\XmlAttribute
-     * @JMS\SerializedName("DeliverySum")
      * @JMS\Type("float")
      *
      * @var float
@@ -279,7 +260,6 @@ final class Order implements HasErrorCode
 
     /**
      * @JMS\XmlAttribute
-     * @JMS\SerializedName("DateLastChange")
      * @JMS\Type("DateTimeImmutable<'Y-m-d\TH:i:sP'>")
      *
      * @var \DateTimeImmutable|null
@@ -288,7 +268,6 @@ final class Order implements HasErrorCode
 
     /**
      * @JMS\XmlAttribute
-     * @JMS\SerializedName("CashOnDeliv")
      * @JMS\Type("float")
      *
      * @var float
@@ -297,7 +276,6 @@ final class Order implements HasErrorCode
 
     /**
      * @JMS\XmlAttribute
-     * @JMS\SerializedName("CashOnDelivFact")
      * @JMS\Type("float")
      *
      * @var float
@@ -306,7 +284,6 @@ final class Order implements HasErrorCode
 
     /**
      * @JMS\XmlAttribute
-     * @JMS\SerializedName("DeliveryMode")
      * @JMS\Type("int")
      *
      * @var int
@@ -315,7 +292,6 @@ final class Order implements HasErrorCode
 
     /**
      * @JMS\XmlAttribute
-     * @JMS\SerializedName("PvzCode")
      * @JMS\Type("string")
      *
      * @var string
@@ -324,7 +300,6 @@ final class Order implements HasErrorCode
 
     /**
      * @JMS\XmlAttribute
-     * @JMS\SerializedName("DeliveryVariant")
      * @JMS\Type("string")
      *
      * @var string
@@ -332,7 +307,6 @@ final class Order implements HasErrorCode
     protected $DeliveryVariant;
 
     /**
-     * @JMS\SerializedName("SendCity")
      * @JMS\Type("CdekSDK\Common\City")
      *
      * @var City
@@ -341,7 +315,6 @@ final class Order implements HasErrorCode
 
     /**
      * @JMS\XmlAttribute
-     * @JMS\SerializedName("SendCityName")
      * @JMS\Type("string")
      *
      * @var string
@@ -349,7 +322,6 @@ final class Order implements HasErrorCode
     protected $SendCityName;
 
     /**
-     * @JMS\SerializedName("RecCity")
      * @JMS\Type("CdekSDK\Common\City")
      *
      * @var City
@@ -358,7 +330,6 @@ final class Order implements HasErrorCode
 
     /**
      * @JMS\XmlAttribute
-     * @JMS\SerializedName("RecCityName")
      * @JMS\Type("string")
      *
      * @var string
@@ -367,7 +338,6 @@ final class Order implements HasErrorCode
 
     /**
      * @JMS\XmlAttribute
-     * @JMS\SerializedName("ErrorCode")
      * @JMS\Type("string")
      *
      * @var string
@@ -376,7 +346,6 @@ final class Order implements HasErrorCode
 
     /**
      * @JMS\XmlAttribute
-     * @JMS\SerializedName("Msg")
      * @JMS\Type("string")
      *
      * @var string
@@ -385,7 +354,6 @@ final class Order implements HasErrorCode
 
     /**
      * @JMS\XmlAttribute
-     * @JMS\SerializedName("SellerName")
      * @JMS\Type("string")
      *
      * @var string
@@ -394,7 +362,6 @@ final class Order implements HasErrorCode
 
     /**
      * @JMS\XmlAttribute
-     * @JMS\SerializedName("SellerAddress")
      * @JMS\Type("string")
      *
      * @var string
@@ -403,7 +370,6 @@ final class Order implements HasErrorCode
 
     /**
      * @JMS\XmlAttribute
-     * @JMS\SerializedName("ShipperName")
      * @JMS\Type("string")
      *
      * @var string
@@ -412,7 +378,6 @@ final class Order implements HasErrorCode
 
     /**
      * @JMS\XmlAttribute
-     * @JMS\SerializedName("ShipperAddress")
      * @JMS\Type("string")
      *
      * @var string
@@ -420,7 +385,6 @@ final class Order implements HasErrorCode
     protected $ShipperAddress;
 
     /**
-     * @JMS\SerializedName("Sender")
      * @JMS\Type("CdekSDK\Common\Sender")
      *
      * @var Sender
@@ -428,7 +392,6 @@ final class Order implements HasErrorCode
     protected $Sender;
 
     /**
-     * @JMS\SerializedName("Call")
      * @JMS\Type("CdekSDK\Common\Call")
      *
      * @var Call
@@ -436,7 +399,6 @@ final class Order implements HasErrorCode
     protected $Call;
 
     /**
-     * @JMS\SerializedName("ReturnOrder")
      * @JMS\Type("CdekSDK\Common\Order")
      *
      * @var Order
@@ -447,7 +409,6 @@ final class Order implements HasErrorCode
      * Номер акта приема-передачи.
      *
      * @JMS\XmlAttribute
-     * @JMS\SerializedName("ActNumber")
      * @JMS\Type("string")
      *
      * @var string
@@ -456,7 +417,6 @@ final class Order implements HasErrorCode
 
     /**
      * @JMS\XmlAttribute
-     * @JMS\SerializedName("DeliveryDate")
      * @JMS\Type("DateTimeImmutable<'Y-m-d\TH:i:sP'>")
      *
      * @var \DateTimeImmutable|null
@@ -465,7 +425,6 @@ final class Order implements HasErrorCode
 
     /**
      * @JMS\XmlAttribute
-     * @JMS\SerializedName("ReturnDispatchNumber")
      * @JMS\Type("int")
      *
      * @var int

@@ -34,7 +34,6 @@ final class Location
 {
     /**
      * @JMS\XmlAttribute
-     * @JMS\SerializedName("cityUuid")
      * @JMS\Type("string")
      *
      * @var string
@@ -43,7 +42,6 @@ final class Location
 
     /**
      * @JMS\XmlAttribute
-     * @JMS\SerializedName("cityName")
      * @JMS\Type("string")
      *
      * @var string
@@ -52,7 +50,6 @@ final class Location
 
     /**
      * @JMS\XmlAttribute
-     * @JMS\SerializedName("cityCode")
      * @JMS\Type("int")
      *
      * @var int
@@ -61,7 +58,6 @@ final class Location
 
     /**
      * @JMS\XmlAttribute
-     * @JMS\SerializedName("region")
      * @JMS\Type("string")
      *
      * @var string
@@ -70,7 +66,6 @@ final class Location
 
     /**
      * @JMS\XmlAttribute
-     * @JMS\SerializedName("regionCode")
      * @JMS\Type("int")
      *
      * @var int
@@ -79,7 +74,6 @@ final class Location
 
     /**
      * @JMS\XmlAttribute
-     * @JMS\SerializedName("regionCodeExt")
      * @JMS\Type("int")
      *
      * @var int
@@ -88,7 +82,6 @@ final class Location
 
     /**
      * @JMS\XmlAttribute
-     * @JMS\SerializedName("subRegion")
      * @JMS\Type("string")
      *
      * @var string|null
@@ -97,7 +90,6 @@ final class Location
 
     /**
      * @JMS\XmlAttribute
-     * @JMS\SerializedName("country")
      * @JMS\Type("string")
      *
      * @var string
@@ -106,7 +98,6 @@ final class Location
 
     /**
      * @JMS\XmlAttribute
-     * @JMS\SerializedName("countryCode")
      * @JMS\Type("int")
      *
      * @var int
@@ -115,7 +106,6 @@ final class Location
 
     /**
      * @JMS\XmlAttribute
-     * @JMS\SerializedName("latitude")
      * @JMS\Type("float")
      *
      * @var float|null
@@ -124,7 +114,6 @@ final class Location
 
     /**
      * @JMS\XmlAttribute
-     * @JMS\SerializedName("longitude")
      * @JMS\Type("float")
      *
      * @var float|null
@@ -133,7 +122,6 @@ final class Location
 
     /**
      * @JMS\XmlAttribute
-     * @JMS\SerializedName("kladr")
      * @JMS\Type("string")
      *
      * @var string|null
@@ -142,7 +130,6 @@ final class Location
 
     /**
      * @JMS\XmlAttribute
-     * @JMS\SerializedName("fiasGuid")
      * @JMS\Type("string")
      *
      * @var string|null
@@ -151,7 +138,6 @@ final class Location
 
     /**
      * @JMS\XmlAttribute
-     * @JMS\SerializedName("paymentLimit")
      * @JMS\Type("float")
      *
      * @var float

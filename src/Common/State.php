@@ -34,7 +34,6 @@ final class State
 {
     /**
      * @JMS\XmlAttribute
-     * @JMS\SerializedName("Date")
      * @JMS\Type("DateTimeImmutable<'Y-m-d\TH:i:sP'>")
      *
      * @var \DateTimeImmutable
@@ -43,7 +42,6 @@ final class State
 
     /**
      * @JMS\XmlAttribute
-     * @JMS\SerializedName("Code")
      * @JMS\Type("int")
      *
      * @var int
@@ -52,7 +50,6 @@ final class State
 
     /**
      * @JMS\XmlAttribute
-     * @JMS\SerializedName("Description")
      * @JMS\Type("string")
      *
      * @var string
@@ -61,7 +58,6 @@ final class State
 
     /**
      * @JMS\XmlAttribute
-     * @JMS\SerializedName("CityName")
      * @JMS\Type("string")
      *
      * @var string
@@ -70,7 +66,6 @@ final class State
 
     /**
      * @JMS\XmlAttribute
-     * @JMS\SerializedName("CityCode")
      * @JMS\Type("int")
      *
      * @var int

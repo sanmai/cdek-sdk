@@ -34,7 +34,6 @@ final class Region
 {
     /**
      * @JMS\XmlAttribute
-     * @JMS\SerializedName("regionUuid")
      * @JMS\Type("string")
      *
      * @var string
@@ -43,7 +42,6 @@ final class Region
 
     /**
      * @JMS\XmlAttribute
-     * @JMS\SerializedName("regionName")
      * @JMS\Type("string")
      *
      * @var string
@@ -52,7 +50,6 @@ final class Region
 
     /**
      * @JMS\XmlAttribute
-     * @JMS\SerializedName("prefix")
      * @JMS\Type("string")
      *
      * @var string|null
@@ -61,7 +58,6 @@ final class Region
 
     /**
      * @JMS\XmlAttribute
-     * @JMS\SerializedName("regionCode")
      * @JMS\Type("int")
      *
      * @var int
@@ -70,7 +66,6 @@ final class Region
 
     /**
      * @JMS\XmlAttribute
-     * @JMS\SerializedName("regionCodeExt")
      * @JMS\Type("int")
      *
      * @var int
@@ -79,7 +74,6 @@ final class Region
 
     /**
      * @JMS\XmlAttribute
-     * @JMS\SerializedName("regionFiasGuid")
      * @JMS\Type("string")
      *
      * @var string|null
@@ -88,7 +82,6 @@ final class Region
 
     /**
      * @JMS\XmlAttribute
-     * @JMS\SerializedName("countryName")
      * @JMS\Type("string")
      *
      * @var string
@@ -97,7 +90,6 @@ final class Region
 
     /**
      * @JMS\XmlAttribute
-     * @JMS\SerializedName("countryCode")
      * @JMS\Type("int")
      *
      * @var int
@@ -106,7 +98,6 @@ final class Region
 
     /**
      * @JMS\XmlAttribute
-     * @JMS\SerializedName("countryCodeExt")
      * @JMS\Type("int")
      *
      * @var int

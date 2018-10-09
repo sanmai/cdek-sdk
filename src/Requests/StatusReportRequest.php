@@ -52,7 +52,6 @@ final class StatusReportRequest implements XmlRequest, ShouldAuthorize
 
     /**
      * @JMS\XmlAttribute
-     * @JMS\SerializedName("ShowHistory")
      * @JMS\Type("int")
      *
      * @var int
@@ -61,7 +60,6 @@ final class StatusReportRequest implements XmlRequest, ShouldAuthorize
 
     /**
      * @JMS\XmlAttribute
-     * @JMS\SerializedName("ShowReturnOrder")
      * @JMS\Type("int")
      *
      * @var int
@@ -70,7 +68,6 @@ final class StatusReportRequest implements XmlRequest, ShouldAuthorize
 
     /**
      * @JMS\XmlAttribute
-     * @JMS\SerializedName("ShowReturnOrderHistory")
      * @JMS\Type("int")
      *
      * @var int

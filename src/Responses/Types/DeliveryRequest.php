@@ -42,7 +42,6 @@ final class DeliveryRequest implements HasErrorCode
 {
     /**
      * @JMS\XmlAttribute
-     * @JMS\SerializedName("Number")
      * @JMS\Type("string")
      *
      * @var string
@@ -51,7 +50,6 @@ final class DeliveryRequest implements HasErrorCode
 
     /**
      * @JMS\XmlAttribute
-     * @JMS\SerializedName("ErrorCode")
      * @JMS\Type("string")
      *
      * @var string
@@ -60,7 +58,6 @@ final class DeliveryRequest implements HasErrorCode
 
     /**
      * @JMS\XmlAttribute
-     * @JMS\SerializedName("Msg")
      * @JMS\Type("string")
      *
      * @var string

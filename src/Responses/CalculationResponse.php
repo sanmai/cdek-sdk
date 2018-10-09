@@ -51,7 +51,6 @@ use JMS\Serializer\Annotation as JMS;
 final class CalculationResponse implements Response
 {
     /**
-     * @JMS\SerializedName("result")
      * @JMS\Type("CdekSDK\Responses\Types\Result")
      *
      * @var Result

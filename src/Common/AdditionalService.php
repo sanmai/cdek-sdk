@@ -48,7 +48,6 @@ final class AdditionalService
 
     /**
      * @JMS\XmlAttribute
-     * @JMS\SerializedName("ServiceCode")
      * @JMS\Type("int")
      *
      * @var int
@@ -57,7 +56,6 @@ final class AdditionalService
 
     /**
      * @JMS\XmlAttribute
-     * @JMS\SerializedName("Sum")
      * @JMS\Type("float")
      *
      * @var float

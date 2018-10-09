@@ -43,7 +43,6 @@ final class OfficeImage
 
     /**
      * @JMS\XmlAttribute
-     * @JMS\SerializedName("url")
      * @JMS\Type("string")
      *
      * @var string

@@ -36,7 +36,6 @@ final class Attempt
 
     /**
      * @JMS\XmlAttribute
-     * @JMS\SerializedName("ID")
      * @JMS\Type("string")
      *
      * @var string
@@ -45,7 +44,6 @@ final class Attempt
 
     /**
      * @JMS\XmlAttribute
-     * @JMS\SerializedName("Date")
      * @JMS\Type("DateTimeImmutable<'Y-m-d'>")
      *
      * @var \DateTimeImmutable
@@ -54,7 +52,6 @@ final class Attempt
 
     /**
      * @JMS\XmlAttribute
-     * @JMS\SerializedName("TimeBeg")
      * @JMS\Type("DateTimeImmutable<'H:i:s'>")
      *
      * @var \DateTimeImmutable
@@ -63,7 +60,6 @@ final class Attempt
 
     /**
      * @JMS\XmlAttribute
-     * @JMS\SerializedName("TimeEnd")
      * @JMS\Type("DateTimeImmutable<'H:i:s'>")
      *
      * @var \DateTimeImmutable
@@ -72,7 +68,6 @@ final class Attempt
 
     /**
      * @JMS\XmlAttribute
-     * @JMS\SerializedName("RecipientName")
      * @JMS\Type("string")
      *
      * @var string
@@ -81,7 +76,6 @@ final class Attempt
 
     /**
      * @JMS\XmlAttribute
-     * @JMS\SerializedName("Phone")
      * @JMS\Type("string")
      *
      * @var string
@@ -89,7 +83,6 @@ final class Attempt
     protected $Phone;
 
     /**
-     * @JMS\SerializedName("Address")
      * @JMS\Type("CdekSDK\Requests\DeliveryRequest\Address")
      *
      * @var Address
@@ -106,7 +99,6 @@ final class Attempt
 
     /**
      * @JMS\XmlAttribute
-     * @JMS\SerializedName("ScheduleCode")
      * @JMS\Type("int")
      *
      * @var int
@@ -115,7 +107,6 @@ final class Attempt
 
     /**
      * @JMS\XmlAttribute
-     * @JMS\SerializedName("ScheduleDescription")
      * @JMS\Type("string")
      *
      * @var string

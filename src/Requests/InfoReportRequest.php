@@ -52,8 +52,6 @@ final class InfoReportRequest implements XmlRequest, ShouldAuthorize
     const RESPONSE = InfoReportResponse::class;
 
     /**
-     * @JMS\SerializedName("ChangePeriod")
-     *
      * @var ChangePeriod|null
      */
     protected $ChangePeriod;

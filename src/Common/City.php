@@ -36,7 +36,6 @@ final class City
 
     /**
      * @JMS\XmlAttribute
-     * @JMS\SerializedName("Code")
      * @JMS\Type("int")
      *
      * @var int
@@ -45,7 +44,6 @@ final class City
 
     /**
      * @JMS\XmlAttribute
-     * @JMS\SerializedName("PostCode")
      * @JMS\Type("string")
      *
      * @var string
@@ -54,7 +52,6 @@ final class City
 
     /**
      * @JMS\XmlAttribute
-     * @JMS\SerializedName("Name")
      * @JMS\Type("string")
      *
      * @var string

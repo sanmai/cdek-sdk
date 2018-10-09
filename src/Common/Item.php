@@ -45,7 +45,6 @@ final class Item
      * Идентификатор/артикул товара/вложения (Уникален в пределах упаковки Package).
      *
      * @JMS\XmlAttribute
-     * @JMS\SerializedName("WareKey")
      * @JMS\Type("string")
      *
      * @var string
@@ -56,7 +55,6 @@ final class Item
      * Объявленная стоимость товара (за единицу товара в указанной валюте, значение >=0). С данного значения рассчитывается страховка.
      *
      * @JMS\XmlAttribute
-     * @JMS\SerializedName("Cost")
      * @JMS\Type("float")
      *
      * @var float
@@ -67,7 +65,6 @@ final class Item
      * Оплата за товар при получении (за единицу товара в указанной валюте, значение >=0) — наложенный платеж, в случае предоплаты значение = 0.
      *
      * @JMS\XmlAttribute
-     * @JMS\SerializedName("Payment")
      * @JMS\Type("float")
      *
      * @var float
@@ -78,7 +75,6 @@ final class Item
      * Ставка НДС включенная в стоимость товара.
      *
      * @JMS\XmlAttribute
-     * @JMS\SerializedName("VATRate")
      * @JMS\Type("string")
      *
      * @var string
@@ -89,7 +85,6 @@ final class Item
      * Сумма НДС, включенного в стоимость товара.
      *
      * @JMS\XmlAttribute
-     * @JMS\SerializedName("VATSum")
      * @JMS\Type("float")
      *
      * @var float
@@ -100,7 +95,6 @@ final class Item
      * Вес (за единицу товара, в граммах).
      *
      * @JMS\XmlAttribute
-     * @JMS\SerializedName("Weight")
      * @JMS\Type("float")
      *
      * @var float
@@ -111,7 +105,6 @@ final class Item
      * Количество единиц одноименного товара (в штуках).
      *
      * @JMS\XmlAttribute
-     * @JMS\SerializedName("Amount")
      * @JMS\Type("int")
      *
      * @var int
@@ -120,7 +113,6 @@ final class Item
 
     /**
      * @JMS\XmlAttribute
-     * @JMS\SerializedName("Comment")
      * @JMS\Type("string")
      *
      * @var string
@@ -129,7 +121,6 @@ final class Item
 
     /**
      * @JMS\XmlAttribute
-     * @JMS\SerializedName("DelivAmount")
      * @JMS\Type("float")
      *
      * @var float

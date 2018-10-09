@@ -36,7 +36,6 @@ final class Address
 
     /**
      * @JMS\XmlAttribute
-     * @JMS\SerializedName("Street")
      * @JMS\Type("string")
      *
      * @var string
@@ -45,7 +44,6 @@ final class Address
 
     /**
      * @JMS\XmlAttribute
-     * @JMS\SerializedName("House")
      * @JMS\Type("string")
      *
      * @var string
@@ -54,7 +52,6 @@ final class Address
 
     /**
      * @JMS\XmlAttribute
-     * @JMS\SerializedName("Flat")
      * @JMS\Type("string")
      *
      * @var string
@@ -63,7 +60,6 @@ final class Address
 
     /**
      * @JMS\XmlAttribute
-     * @JMS\SerializedName("PvzCode")
      * @JMS\Type("string")
      *
      * @var string

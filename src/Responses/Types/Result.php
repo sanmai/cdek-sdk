@@ -33,7 +33,6 @@ use JMS\Serializer\Annotation as JMS;
 final class Result
 {
     /**
-     * @JMS\SerializedName("price")
      * @JMS\Type("float")
      *
      * @var null|float
@@ -41,7 +40,6 @@ final class Result
     private $price;
 
     /**
-     * @JMS\SerializedName("deliveryPeriodMin")
      * @JMS\Type("int")
      *
      * @var null|int
@@ -49,7 +47,6 @@ final class Result
     private $deliveryPeriodMin;
 
     /**
-     * @JMS\SerializedName("deliveryPeriodMax")
      * @JMS\Type("int")
      *
      * @var null|int
@@ -57,7 +54,6 @@ final class Result
     private $deliveryPeriodMax;
 
     /**
-     * @JMS\SerializedName("deliveryDateMin")
      * @JMS\Type("DateTimeImmutable<'Y-m-d'>")
      *
      * @var null|\DateTimeImmutable
@@ -65,7 +61,6 @@ final class Result
     private $deliveryDateMin;
 
     /**
-     * @JMS\SerializedName("deliveryDateMax")
      * @JMS\Type("DateTimeImmutable<'Y-m-d'>")
      *
      * @var null|\DateTimeImmutable
@@ -73,7 +68,6 @@ final class Result
     private $deliveryDateMax;
 
     /**
-     * @JMS\SerializedName("tariffId")
      * @JMS\Type("int")
      *
      * @var int
@@ -81,7 +75,6 @@ final class Result
     private $tariffId;
 
     /**
-     * @JMS\SerializedName("priceByCurrency")
      * @JMS\Type("float")
      *
      * @var null|float
@@ -89,7 +82,6 @@ final class Result
     private $priceByCurrency;
 
     /**
-     * @JMS\SerializedName("currency")
      * @JMS\Type("string")
      *
      * @var null|string
@@ -97,7 +89,6 @@ final class Result
     private $currency;
 
     /**
-     * @JMS\SerializedName("services")
      * @JMS\Type("array<CdekSDK\Responses\Types\AdditionalService>")
      *
      * @var AdditionalService[]

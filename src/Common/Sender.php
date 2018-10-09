@@ -36,7 +36,6 @@ final class Sender
 
     /**
      * @JMS\XmlAttribute
-     * @JMS\SerializedName("Name")
      * @JMS\Type("string")
      *
      * @var string
@@ -45,7 +44,6 @@ final class Sender
 
     /**
      * @JMS\XmlAttribute
-     * @JMS\SerializedName("Company")
      * @JMS\Type("string")
      *
      * @var string
@@ -53,7 +51,6 @@ final class Sender
     protected $Company;
 
     /**
-     * @JMS\SerializedName("Address")
      * @JMS\Type("CdekSDK\Common\Address")
      *
      * @var Address
@@ -61,7 +58,6 @@ final class Sender
     protected $Address;
 
     /**
-     * @JMS\SerializedName("Phone")
      * @JMS\Type("string")
      *
      * @var string

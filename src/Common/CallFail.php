@@ -37,7 +37,6 @@ final class CallFail
 {
     /**
      * @JMS\XmlAttribute
-     * @JMS\SerializedName("Date")
      * @JMS\Type("DateTimeImmutable<'Y-m-d\TH:i:sP'>")
      *
      * @var \DateTimeImmutable
@@ -46,7 +45,6 @@ final class CallFail
 
     /**
      * @JMS\XmlAttribute
-     * @JMS\SerializedName("ReasonCode")
      * @JMS\Type("int")
      *
      * @var int
@@ -55,7 +53,6 @@ final class CallFail
 
     /**
      * @JMS\XmlAttribute
-     * @JMS\SerializedName("ReasonDescription")
      * @JMS\Type("string")
      *
      * @var string

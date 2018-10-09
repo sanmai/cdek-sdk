@@ -35,29 +35,27 @@ final class PrintError implements HasErrorCode
 {
     /**
      * @JMS\XmlAttribute
-     * @JMS\SerializedName("ErrorCode")
      * @JMS\Type("string")
      *
      * @var string
      */
-    private $code;
+    private $ErrorCode;
 
     /**
      * @JMS\XmlAttribute
-     * @JMS\SerializedName("Msg")
      * @JMS\Type("string")
      *
      * @var string
      */
-    private $text;
+    private $Msg;
 
     public function getErrorCode(): string
     {
-        return $this->code;
+        return $this->ErrorCode;
     }
 
     public function getMessage(): string
     {
-        return $this->text;
+        return $this->Msg;
     }
 }

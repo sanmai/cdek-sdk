@@ -123,13 +123,7 @@ final class CdekClient implements Contracts\Client, LoggerAwareInterface
     public function sendRequest(Request $request, \DateTimeInterface $requestDate = null)
     {
         if ($request instanceof ShouldAuthorize) {
-            if ($requestDate === null) {
-                $requestDate = new \DateTimeImmutable();
-            }
-
-            if ($requestDate instanceof \DateTime) {
-                $requestDate = \DateTimeImmutable::createFromMutable($requestDate);
-            }
+            $requestDate = $requestDate ?? new \DateTimeImmutable();
 
             $request->date($requestDate)->credentials($this->account, $this->getSecure($requestDate));
         }

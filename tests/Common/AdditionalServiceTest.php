@@ -62,4 +62,23 @@ class AdditionalServiceTest extends TestCase
         $this->assertSame(10, $service->getServiceCode());
         $this->assertSame(3.14, $service->getSum());
     }
+
+    public function test_constants_exists()
+    {
+        foreach ([
+            AdditionalService::SERVICE_INSURANCE,
+            AdditionalService::SERVICE_DANGEROUS_GOODS,
+            AdditionalService::SERVICE_PICKUP,
+            AdditionalService::SERVICE_DELIVERY_TO_DOOR,
+            AdditionalService::SERVICE_PACKAGE_1,
+            AdditionalService::SERVICE_PACKAGE_2,
+            AdditionalService::SERVICE_TRY_AT_HOME,
+            AdditionalService::SERVICE_PERSONAL_DELIVERY,
+            AdditionalService::SERVICE_DOCUMENTS_COPY,
+            AdditionalService::SERVICE_PARTIAL_DELIVERY,
+            AdditionalService::SERVICE_CARGO_CHECK,
+        ] as $value) {
+            $this->assertNotNull($value);
+        }
+    }
 }

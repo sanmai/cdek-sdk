@@ -279,8 +279,9 @@ $request->addOrder($order);
 $response = $client->sendDeliveryRequest($request);
 
 foreach ($response->getMessages() as $message) {
-    if ($message->isError()) {
+    if ($message->getErrorCode() != '') {
         // обработка ошибки
+        $message->getMessage();
     }
 }
 
@@ -289,6 +290,88 @@ foreach ($response->getOrders() as $order) {
     $order->getNumber();
     $order->getDispatchNumber();
     break;
+}
+```
+
+### Регистрация заказа на доставку
+
+Отличается необходимость указывать тип клиента, адрес забора груза. Без необходимости указывать состав посылок.
+
+```php
+use CdekSDK\Common\AdditionalService;
+use CdekSDK\Common\Address;
+use CdekSDK\Common\City;
+use CdekSDK\Common\Order;
+use CdekSDK\Common\Package;
+use CdekSDK\Common\Sender;
+use CdekSDK\Requests\DeliveryRequest;
+
+$order = new Order([
+    'ClientSide' => Order::CLIENT_SIDE_SENDER,
+    'Number'     => 'TEST-123456',
+    'SendCity'   => City::create([
+        'Code' => 44, // Москва
+    ]),
+    'RecCity' => City::create([
+        'PostCode' => '630001', // Новосибирск
+    ]),
+    'RecipientName'    => 'Иван Петров',
+    'RecipientEmail'   => 'petrov@test.ru',
+    'Phone'            => '+7 (383) 202-22-50',
+    'TariffTypeCode'   => 1,
+    'RecipientCompany' => 'Петров и партнёры, ООО',
+    'Comment'          => 'Это тестовый заказ',
+]);
+
+$order->setSender(Sender::create([
+    'Company' => 'ЗАО «Рога и Копыта»',
+    'Name'    => 'Петр Иванов',
+    'Phone'   => '+7 (283) 101-11-20',
+])->setAddress(Address::create([
+    'Street' => 'Морозильная улица',
+    'House'  => '2',
+    'Flat'   => '101',
+])));
+
+$order->setAddress(Address::create([
+    'Street'  => 'Холодильная улица',
+    'House'   => '16',
+    'Flat'    => '22',
+]));
+
+$package = Package::create([
+    'Number'  => 'TEST-123456',
+    'BarCode' => 'TEST-123456',
+    'Weight'  => 500, // Общий вес (в граммах)
+    'SizeA'   => 10, // Длина (в сантиметрах), в пределах от 1 до 1500
+    'SizeB'   => 10,
+    'SizeC'   => 10,
+]);
+
+$order->addPackage($package);
+
+$order->addService(AdditionalService::create(AdditionalService::SERVICE_DELIVERY_TO_DOOR));
+
+$request = new DeliveryRequest([
+    'Number'          => 'TESTING123',
+    'ForeignDelivery' => false,
+    'Currency'        => 'RUR',
+]);
+$request->addOrder($order);
+
+$response = $client->sendDeliveryRequest($request);
+
+foreach ($response->getMessages() as $message) {
+    if ($message->getErrorCode() !== '') {
+        // обработка ошибки
+        $message->getMessage();
+    }
+}
+
+foreach ($response->getOrders() as $order) {
+    // сверяем данные заказа, записываем номер
+    $order->getNumber();
+    $order->getDispatchNumber();
 }
 ```
 
@@ -306,18 +389,16 @@ $request->addOrder(Order::withDispatchNumber($dispatchNumber));
 
 $response = $client->sendPrintReceiptsRequest($request);
 
-// Возвращаем содержимое PDF файла...
-if ($response instanceof FileResponse) {
-    return (string) $response->getBody();
-}
-
-// Или обрабатываем возможные ошибки
-if ($response instanceof PrintErrorResponse) {
+// Обрабатываем возможные ошибки
+if ($response->hasErrors()) {
     foreach ($response->getMessages() as $message) {
         $message->getErrorCode();
         $message->getMessage();
     }
 }
+
+// Или возвращаем содержимое PDF файла...
+return (string) $response->getBody();
 ```
 
 Также можно указывать в запросе сами объекты заказов, полученные из других методов. Или же можно создать заказ прямо на месте, имея известные `Number` и `Date`:
@@ -344,18 +425,16 @@ $request->addOrder(Order::withDispatchNumber($dispatchNumber));
 
 $response = $client->sendPrintLabelsRequest($request);
 
-// Возвращаем содержимое PDF файла...
-if ($response instanceof FileResponse) {
-    return (string) $response->getBody();
-}
-
-// Или обрабатываем возможные ошибки
-if ($response instanceof PrintErrorResponse) {
+// Обрабатываем возможные ошибки
+if ($response->hasErrors()) {
     foreach ($response->getMessages() as $message) {
         $message->getErrorCode();
         $message->getMessage();
     }
 }
+
+// Или возвращаем содержимое PDF файла...
+return (string) $response->getBody();
 ```
 
 ### Удаление заказа

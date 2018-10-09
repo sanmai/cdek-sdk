@@ -28,6 +28,7 @@ declare(strict_types=1);
 
 namespace Tests\CdekSDK\Integration;
 
+use CdekSDK\Common\AdditionalService;
 use CdekSDK\Common\Address;
 use CdekSDK\Common\CallCourier;
 use CdekSDK\Common\ChangePeriod;
@@ -35,6 +36,7 @@ use CdekSDK\Common\City;
 use CdekSDK\Common\Item;
 use CdekSDK\Common\Order;
 use CdekSDK\Common\Package;
+use CdekSDK\Common\Sender;
 use CdekSDK\Requests\CallCourierRequest;
 use CdekSDK\Requests\DeleteRequest;
 use CdekSDK\Requests\DeliveryRequest;
@@ -46,7 +48,6 @@ use CdekSDK\Responses\CallCourierResponse;
 use CdekSDK\Responses\DeleteResponse;
 use CdekSDK\Responses\FileResponse;
 use CdekSDK\Responses\InfoReportResponse;
-use CdekSDK\Responses\PrintErrorResponse;
 use CdekSDK\Responses\StatusReportResponse;
 
 /**
@@ -86,10 +87,14 @@ class DeliveryRequestTest extends TestCase
             'Number' => 'TEST-123456',
         ])));
 
+        foreach ($response->getMessages() as $message) {
+            $this->assertEmpty($message->getErrorCode(), $message->getMessage());
+        }
+
         $this->assertInstanceOf(DeleteResponse::class, $response);
 
         foreach ($response->getMessages() as $message) {
-            $this->assertNotEmpty($message->getText());
+            $this->assertNotEmpty($message->getMessage());
         }
 
         foreach ($response->getOrders() as $order) {
@@ -100,7 +105,7 @@ class DeliveryRequestTest extends TestCase
     /**
      * @depends test_delete_success
      */
-    public function test_successful_request()
+    public function test_failing_request_with_demo_keys()
     {
         $order = new Order([
             'Number'   => 'TEST-123456',
@@ -149,8 +154,79 @@ class DeliveryRequestTest extends TestCase
 
         $response = $this->getClient()->sendDeliveryRequest($request);
 
+        $this->assertTrue($response->hasErrors());
+
+        $this->assertCount(2, $response->getMessages());
+
         foreach ($response->getMessages() as $message) {
-            $this->assertFalse($message->isError(), $message->getMessage());
+            $this->assertNotEmpty($message->getErrorCode(), $message->getMessage());
+            $this->assertSame('ERR_INVALID_TARIFF_WITH_CLIENT', $message->getErrorCode());
+            break;
+        }
+    }
+
+    /**
+     * @depends test_delete_success
+     */
+    public function test_successful_request()
+    {
+        $order = new Order([
+            'ClientSide' => Order::CLIENT_SIDE_SENDER,
+            'Number'     => 'TEST-123456',
+            'SendCity'   => City::create([
+                'Code' => 44, // Москва
+            ]),
+            'RecCity' => City::create([
+                'PostCode' => '630001', // Новосибирск
+            ]),
+            'RecipientName'    => 'Иван Петров',
+            'RecipientEmail'   => 'petrov@test.ru',
+            'Phone'            => '+7 (383) 202-22-50',
+            'TariffTypeCode'   => 1,
+            'RecipientCompany' => 'Петров и партнёры, ООО',
+            'Comment'          => 'Это тестовый заказ',
+        ]);
+
+        $order->setSender(Sender::create([
+            'Company' => 'ЗАО «Рога и Копыта»',
+            'Name'    => 'Петр Иванов',
+            'Phone'   => '+7 (283) 101-11-20',
+        ])->setAddress(Address::create([
+            'Street' => 'Морозильная улица',
+            'House'  => '2',
+            'Flat'   => '101',
+        ])));
+
+        $order->setAddress(Address::create([
+            'Street'  => 'Холодильная улица',
+            'House'   => '16',
+            'Flat'    => '22',
+        ]));
+
+        $package = Package::create([
+            'Number'  => 'TEST-123456',
+            'BarCode' => 'TEST-123456',
+            'Weight'  => 500, // Общий вес (в граммах)
+            'SizeA'   => 10, // Длина (в сантиметрах), в пределах от 1 до 1500
+            'SizeB'   => 10,
+            'SizeC'   => 10,
+        ]);
+
+        $order->addPackage($package);
+
+        $order->addService(AdditionalService::create(AdditionalService::SERVICE_DELIVERY_TO_DOOR));
+
+        $request = new DeliveryRequest([
+            'Number'          => self::TEST_NUMBER,
+            'ForeignDelivery' => false,
+            'Currency'        => 'RUR',
+        ]);
+        $request->addOrder($order);
+
+        $response = $this->getClient()->sendDeliveryRequest($request);
+
+        foreach ($response->getMessages() as $message) {
+            $this->assertEmpty($message->getErrorCode(), $message->getMessage());
         }
 
         foreach ($response->getOrders() as $order) {
@@ -162,7 +238,7 @@ class DeliveryRequestTest extends TestCase
         $response = $this->getClient()->sendDeliveryRequest($request);
 
         foreach ($response->getMessages() as $message) {
-            $this->assertTrue($message->isError());
+            $this->assertNotEmpty($message->getErrorCode());
             break;
         }
 
@@ -179,7 +255,7 @@ class DeliveryRequestTest extends TestCase
 
         $response = $this->getClient()->sendPrintReceiptsRequest($request);
 
-        if ($response instanceof PrintErrorResponse) {
+        if ($response->hasErrors()) {
             foreach ($response->getMessages() as $message) {
                 if ($message->getErrorCode() === 'ERR_API') {
                     $this->markTestSkipped($message->getMessage());
@@ -239,7 +315,7 @@ class DeliveryRequestTest extends TestCase
 
         $response = $this->getClient()->sendPrintLabelsRequest($request);
 
-        if ($response instanceof PrintErrorResponse) {
+        if ($response->hasErrors()) {
             foreach ($response->getMessages() as $message) {
                 if ($message->getErrorCode() === 'ERR_API') {
                     $this->markTestSkipped($message->getMessage());

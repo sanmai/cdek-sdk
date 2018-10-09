@@ -66,6 +66,24 @@ class DeliveryRequest implements XmlRequest, ShouldAuthorize
 
     /**
      * @JMS\XmlAttribute
+     * @JMS\SerializedName("ForeignDelivery")
+     * @JMS\Type("bool")
+     *
+     * @var bool
+     */
+    protected $ForeignDelivery;
+
+    /**
+     * @JMS\XmlAttribute
+     * @JMS\SerializedName("Currency")
+     * @JMS\Type("string")
+     *
+     * @var string
+     */
+    protected $Currency;
+
+    /**
+     * @JMS\XmlAttribute
      * @JMS\SerializedName("OrderCount")
      * @JMS\Type("int")
      * @JMS\VirtualProperty()

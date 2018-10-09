@@ -28,6 +28,7 @@ declare(strict_types=1);
 
 namespace CdekSDK\Requests;
 
+use CdekSDK\Common\AdditionalService;
 use CdekSDK\Contracts\JsonRequest;
 use CdekSDK\Requests\Concerns\RequestCore;
 use CdekSDK\Responses\CalculationResponse;
@@ -43,17 +44,17 @@ class CalculationRequest implements JsonRequest
 
     const VERSION = '1.0';
 
-    const SERVICE_INSURANCE = 2;  // Страховка
-    const SERVICE_DANGEROUS_GOODS = 7;  // Опасный груз
-    const SERVICE_PICKUP = 16; // Забор в городе отправителе
-    const SERVICE_DELIVERY_TO_DOOR = 17; // Доставка в городе получателе
-    const SERVICE_PACKAGE_1 = 24; // Упаковка 1
-    const SERVICE_PACKAGE_2 = 25; // Упаковка 2
-    const SERVICE_TRY_AT_HOME = 30; // Примерка на дому
-    const SERVICE_PERSONAL_DELIVERY = 31; // Доставка лично в руки
-    const SERVICE_DOCUMENTS_COPY = 32; // Скан документов
-    const SERVICE_PARTIAL_DELIVERY = 36; // Частичная доставка
-    const SERVICE_CARGO_CHECK = 37; // Осмотр вложения
+    const SERVICE_INSURANCE = AdditionalService::SERVICE_INSURANCE;  // Страховка
+    const SERVICE_DANGEROUS_GOODS = AdditionalService::SERVICE_DANGEROUS_GOODS;  // Опасный груз
+    const SERVICE_PICKUP = AdditionalService::SERVICE_PICKUP; // Забор в городе отправителе
+    const SERVICE_DELIVERY_TO_DOOR = AdditionalService::SERVICE_DELIVERY_TO_DOOR; // Доставка в городе получателе
+    const SERVICE_PACKAGE_1 = AdditionalService::SERVICE_PACKAGE_1; // Упаковка 1
+    const SERVICE_PACKAGE_2 = AdditionalService::SERVICE_PACKAGE_2; // Упаковка 2
+    const SERVICE_TRY_AT_HOME = AdditionalService::SERVICE_TRY_AT_HOME; // Примерка на дому
+    const SERVICE_PERSONAL_DELIVERY = AdditionalService::SERVICE_PERSONAL_DELIVERY; // Доставка лично в руки
+    const SERVICE_DOCUMENTS_COPY = AdditionalService::SERVICE_DOCUMENTS_COPY; // Скан документов
+    const SERVICE_PARTIAL_DELIVERY = AdditionalService::SERVICE_PARTIAL_DELIVERY; // Частичная доставка
+    const SERVICE_CARGO_CHECK = AdditionalService::SERVICE_CARGO_CHECK; // Осмотр вложения
 
     const MODE_DOOR_DOOR = 1;
     const MODE_DOOR_WAREHOUSE = 2;

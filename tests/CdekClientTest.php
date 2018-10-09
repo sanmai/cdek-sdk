@@ -31,6 +31,7 @@ namespace Tests\CdekSDK;
 use CdekSDK\CdekClient;
 use CdekSDK\Contracts\ParamRequest;
 use CdekSDK\Contracts\Request;
+use CdekSDK\Contracts\Response;
 use CdekSDK\Contracts\ShouldAuthorize;
 use CdekSDK\Contracts\XmlRequest;
 use CdekSDK\Requests\CalculationRequest;
@@ -213,6 +214,8 @@ class CdekClientTest extends TestCase
         $client->setLogger($logger = new TestLogger());
 
         $responseMock = $this->createMock(ResponseInterface::class);
+        $responseMock->method('getStatusCode')->willReturn(500);
+        $responseMock->method('getReasonPhrase')->willReturn('Server error');
 
         $http->method('request')->will($this->returnCallback(function () use ($responseMock) {
             throw new ServerException('', $this->createMock(RequestInterface::class), $responseMock);
@@ -226,7 +229,20 @@ class CdekClientTest extends TestCase
         $this->assertSame(1, $logger->log->countRecordsWithContextKey('exception'));
         $this->assertSame(1, $logger->log->countRecordsWithContextKey('error_code'));
 
-        $this->assertSame($responseMock, $response);
+        $this->assertInstanceOf(Response::class, $response);
+
+        $this->assertTrue($response->hasErrors());
+        $this->assertCount(1, $response->getMessages());
+        foreach ($response->getMessages() as $message) {
+            $this->assertSame('500', $message->getErrorCode());
+            $this->assertSame('Server error', $message->getMessage());
+        }
+
+        $this->assertInstanceOf(ResponseInterface::class, $response);
+
+        assert($response instanceof ResponseInterface);
+        $this->assertSame(500, $response->getStatusCode());
+        $this->assertSame('Server error', $response->getReasonPhrase());
     }
 
     public function test_fails_on_unknown_method()

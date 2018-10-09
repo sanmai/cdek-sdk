@@ -38,6 +38,13 @@ final class Order implements HasErrorCode
 {
     use Fillable;
 
+    /** Тип Клиента: отправитель. */
+    const CLIENT_SIDE_SENDER = 'sender';
+    /** Тип Клиента: получатель. */
+    const CLIENT_SIDE_RECEIVED = 'receiver';
+    /** Тип Клиента: третье лицо. */
+    const CLIENT_SIDE_OTHER = 'other';
+
     public static function withDispatchNumber(string $DispatchNumber): Order
     {
         return Order::create([
@@ -52,6 +59,15 @@ final class Order implements HasErrorCode
             'Date'   => $Date,
         ]);
     }
+
+    /**
+     * @JMS\XmlAttribute
+     * @JMS\SerializedName("ClientSide")
+     * @JMS\Type("string")
+     *
+     * @var string
+     */
+    protected $ClientSide;
 
     /**
      * @JMS\XmlAttribute
@@ -79,6 +95,15 @@ final class Order implements HasErrorCode
      * @var string
      */
     protected $DispatchNumber;
+
+    /**
+     * @JMS\XmlAttribute
+     * @JMS\SerializedName("RecipientCompany")
+     * @JMS\Type("string")
+     *
+     * @var string
+     */
+    protected $RecipientCompany;
 
     /**
      * @JMS\XmlAttribute

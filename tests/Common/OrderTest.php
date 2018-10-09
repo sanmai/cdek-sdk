@@ -56,4 +56,15 @@ class OrderTest extends TestCase
         $order = new Order();
         $order->getId();
     }
+
+    public function test_constants_exists()
+    {
+        foreach ([
+            Order::CLIENT_SIDE_SENDER,
+            Order::CLIENT_SIDE_RECEIVED,
+            Order::CLIENT_SIDE_OTHER,
+        ] as $value) {
+            $this->assertNotNull($value);
+        }
+    }
 }

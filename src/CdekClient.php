@@ -34,6 +34,7 @@ use CdekSDK\Contracts\Request;
 use CdekSDK\Contracts\Response;
 use CdekSDK\Contracts\ShouldAuthorize;
 use CdekSDK\Contracts\XmlRequest;
+use CdekSDK\Responses\ErrorResponse;
 use CdekSDK\Responses\FileResponse;
 use GuzzleHttp\Client as GuzzleClient;
 use GuzzleHttp\ClientInterface;
@@ -154,7 +155,7 @@ final class CdekClient implements Contracts\Client, LoggerAwareInterface
                 return new FileResponse($response->getBody());
             }
 
-            return $response;
+            return ErrorResponse::withHTTPResponse($response);
         }
 
         $responseBody = (string) $response->getBody();

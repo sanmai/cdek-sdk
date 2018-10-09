@@ -44,6 +44,7 @@ class PrintErrorResponseTest extends TestCase
         /** @var $response PrintErrorResponse */
         $this->assertInstanceOf(PrintErrorResponse::class, $response);
 
+        $this->assertTrue($response->hasErrors());
         $this->assertCount(1, $response->getMessages());
 
         foreach ($response->getMessages() as $message) {

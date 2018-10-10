@@ -280,6 +280,7 @@ class DeliveryRequestTest extends TestCase
 
     /**
      * @depends test_successful_request
+     * @psalm-suppress PossiblyNullReference
      */
     public function test_status_report(string $dispatchNumber)
     {

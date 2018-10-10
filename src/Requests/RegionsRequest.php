@@ -36,13 +36,13 @@ use CdekSDK\Requests\Concerns\RequestCore;
 use CdekSDK\Responses\RegionsResponse;
 
 /**
- * @method \CdekSDK\Requests\RegionsRequest setRegionCodeExt(mixed $value)
- * @method \CdekSDK\Requests\RegionsRequest setRegionCode(mixed $value)
- * @method \CdekSDK\Requests\RegionsRequest setRegionFiasGuid(mixed $value)
- * @method \CdekSDK\Requests\RegionsRequest setCountryCode(mixed $value)
- * @method \CdekSDK\Requests\RegionsRequest setCountryCodeExt(mixed $value)
- * @method \CdekSDK\Requests\RegionsRequest setPage(mixed $value)
- * @method \CdekSDK\Requests\RegionsRequest setSize(mixed $value)
+ * @method RegionsRequest setRegionCodeExt(mixed $value)
+ * @method RegionsRequest setRegionCode(mixed $value)
+ * @method RegionsRequest setRegionFiasGuid(mixed $value)
+ * @method RegionsRequest setCountryCode(mixed $value)
+ * @method RegionsRequest setCountryCodeExt(mixed $value)
+ * @method RegionsRequest setPage(mixed $value)
+ * @method RegionsRequest setSize(mixed $value)
  */
 final class RegionsRequest implements ParamRequest
 {

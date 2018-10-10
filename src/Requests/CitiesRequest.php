@@ -36,10 +36,10 @@ use CdekSDK\Requests\Concerns\RequestCore;
 use CdekSDK\Responses\CitiesResponse;
 
 /**
- * @method \CdekSDK\Requests\RegionsRequest setRegionCodeExt(mixed $value)
- * @method \CdekSDK\Requests\RegionsRequest setRegionCode(mixed $value)
- * @method \CdekSDK\Requests\RegionsRequest setPage(mixed $value)
- * @method \CdekSDK\Requests\RegionsRequest setSize(mixed $value)
+ * @method CitiesRequest setRegionCodeExt(mixed $value)
+ * @method CitiesRequest setRegionCode(mixed $value)
+ * @method CitiesRequest setPage(mixed $value)
+ * @method CitiesRequest setSize(mixed $value)
  */
 final class CitiesRequest implements ParamRequest
 {

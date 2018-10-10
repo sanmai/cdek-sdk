@@ -79,7 +79,7 @@ class CalculationRequest implements JsonRequest
     protected $receiverCityId;
     protected $receiverCityPostCode;
 
-    public static function withAuthorization(): CalculationRequest
+    public static function withAuthorization(): CalculationAuthorizedRequest
     {
         return new CalculationAuthorizedRequest();
     }
@@ -132,7 +132,7 @@ class CalculationRequest implements JsonRequest
      * @param mixed $id
      * @param mixed $priority
      *
-     * @return \CdekSDK\Requests\CalculationRequest
+     * @return self
      */
     public function addTariffToList($id, $priority)
     {
@@ -166,6 +166,8 @@ class CalculationRequest implements JsonRequest
     /**
      * @param int              $serviceId
      * @param int|float|string $param
+     *
+     * @return self
      */
     public function addAdditionalService($serviceId, $param = null)
     {

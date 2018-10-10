@@ -34,8 +34,13 @@ use GuzzleHttp\Client as GuzzleClient;
 
 abstract class TestCase extends \PHPUnit\Framework\TestCase
 {
+    /** @var \CdekSDK\CdekClient */
     private $client;
 
+    /**
+     * @psalm-suppress PossiblyFalseArgument
+     * @psalm-suppress MixedArgument
+     */
     protected function setUp()
     {
         if (false === getenv('CDEK_ACCOUNT')) {

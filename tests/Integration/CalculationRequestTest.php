@@ -28,7 +28,6 @@ declare(strict_types=1);
 
 namespace Tests\CdekSDK\Integration;
 
-use CdekSDK\Requests\CalculationAuthorizedRequest;
 use CdekSDK\Requests\CalculationRequest;
 
 /**
@@ -41,8 +40,8 @@ class CalculationRequestTest extends TestCase
 {
     public function test_success()
     {
-        $request = (new CalculationRequest())
-        ->setSenderCityPostCode('295000')
+        $request = new CalculationRequest();
+        $request->setSenderCityPostCode('295000')
         ->setReceiverCityPostCode('652632')
         ->setTariffId(1)
         ->addPackage([
@@ -67,7 +66,7 @@ class CalculationRequestTest extends TestCase
 
     public function test_authorized_success()
     {
-        $request = (new CalculationAuthorizedRequest())
+        $request = CalculationRequest::withAuthorization()
         ->setSenderCityPostCode('295000')
         ->setReceiverCityPostCode('652632')
         ->addAdditionalService(CalculationRequest::SERVICE_INSURANCE, 2000)

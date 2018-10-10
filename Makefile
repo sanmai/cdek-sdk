@@ -31,6 +31,7 @@ PHPSTAN_ARGS=analyse src tests --level=2 -c .phpstan.neon
 # Psalm
 PSALM=vendor/bin/psalm
 PSALM_ARGS=--show-info=false
+PSALM_PHP_VERSION="PHP 7.2"
 
 # Composer
 COMPOSER=$(PHP) $(shell which composer)
@@ -40,6 +41,7 @@ INFECTION=vendor/bin/infection
 MIN_MSI=94
 MIN_COVERED_MSI=99
 INFECTION_ARGS=--min-msi=$(MIN_MSI) --min-covered-msi=$(MIN_COVERED_MSI) --threads=$(JOBS) --coverage=build/logs --log-verbosity=default --show-mutations
+INFECTION_PHP_VERSION="PHP 7.2"
 
 all: test
 
@@ -52,13 +54,13 @@ ci: prerequisites ci-phpunit ci-analyze
 
 ci-phpunit: ci-cs
 	$(SILENT) $(PHP) $(PHPUNIT) $(PHPUNIT_ARGS)
-	$(SILENT) $(PHP) $(INFECTION) $(INFECTION_ARGS)
+	if php -v | grep -q $(INFECTION_PHP_VERSION); then $(SILENT) $(PHP) $(INFECTION) $(INFECTION_ARGS); fi
 	#php -v | grep -q 7.0 && $(SILENT) $(PHP) $(PHPUNIT) --group=integration --coverage-clover=build/logs/clover-integration.xml || true
 
 ci-analyze: ci-cs
 	$(SILENT) $(PHP) $(PHAN) $(PHAN_ARGS)
 	$(SILENT) $(PHP) $(PHPSTAN) $(PHPSTAN_ARGS) --no-progress
-	$(SILENT) $(PHP) $(PSALM) $(PSALM_ARGS) --no-cache
+	if php -v | grep -q $(PSALM_PHP_VERSION); then $(SILENT) $(PHP) $(PSALM) $(PSALM_ARGS) --no-cache; fi
 
 ci-cs: prerequisites
 	$(SILENT) $(PHP) $(PHP_CS_FIXER) $(PHP_CS_FIXER_ARGS) --dry-run --stop-on-violation fix

@@ -28,10 +28,13 @@ declare(strict_types=1);
 
 namespace CdekSDK\Common;
 
+use CdekSDK\Responses\Concerns\JsonObjectVars;
 use JMS\Serializer\Annotation as JMS;
 
-final class Location
+final class Location implements \JsonSerializable
 {
+    use JsonObjectVars;
+
     /**
      * @JMS\XmlAttribute
      * @JMS\Type("string")

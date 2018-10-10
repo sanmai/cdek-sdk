@@ -26,31 +26,12 @@
 
 declare(strict_types=1);
 
-namespace Tests\CdekSDK\Deserialization;
+namespace CdekSDK\Responses\Concerns;
 
-use CdekSDK\Serialization;
-
-abstract class TestCase extends \PHPUnit\Framework\TestCase
+trait JsonObjectVars
 {
-    private $serializer;
-
-    protected function setUp()
+    final public function jsonSerialize()
     {
-        $this->serializer = new Serialization\Serializer();
-
-        \Doctrine\Common\Annotations\AnnotationReader::addGlobalIgnoredName('phan');
-
-        /** @phan-suppress-next-line PhanDeprecatedFunction */
-        \Doctrine\Common\Annotations\AnnotationRegistry::registerLoader('class_exists');
-    }
-
-    protected function getSerializer(): Serialization\Serializer
-    {
-        return $this->serializer;
-    }
-
-    protected function assertSameAsJSON(string $json, \JsonSerializable $response)
-    {
-        $this->assertSame($json, json_encode($response, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
+        return get_object_vars($this);
     }
 }

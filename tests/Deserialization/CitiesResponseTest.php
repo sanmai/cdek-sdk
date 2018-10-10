@@ -83,6 +83,89 @@ class CitiesResponseTest extends TestCase
 
         assert(isset($item));
         $this->assertSame($location, $item);
+
+        $this->assertSameAsJSON('[
+    {
+        "cityUuid": "1ef4f958-43c9-4a80-9fd6-e414231c3e55",
+        "cityName": "Лебедевка",
+        "cityCode": 37960,
+        "region": "Новосибирская",
+        "regionCode": 23,
+        "regionCodeExt": 54,
+        "subRegion": "Искитимский",
+        "country": "РОССИЯ",
+        "countryCode": 1,
+        "latitude": 54.6711,
+        "longitude": 83.2337,
+        "kladr": "5400800007900",
+        "fiasGuid": "873b2cc6-cf4e-4001-aca7-eb0380951bfc",
+        "paymentLimit": -1
+    },
+    {
+        "cityUuid": "228fcc02-be09-411b-8d88-aaab86c79a8f",
+        "cityName": "Новопокровский",
+        "cityCode": 49876,
+        "region": "Новосибирская",
+        "regionCode": 23,
+        "regionCodeExt": 54,
+        "subRegion": "Краснозерский",
+        "country": "РОССИЯ",
+        "countryCode": 1,
+        "latitude": 54.23,
+        "longitude": 78.6929,
+        "kladr": "5401400004900",
+        "fiasGuid": "33836940-2211-4335-ae2e-7244fa88fe9e",
+        "paymentLimit": -1
+    },
+    {
+        "cityUuid": "22f58510-3b97-42b4-bd86-6e21a0e74ba9",
+        "cityName": "Александро-Невский",
+        "cityCode": 1961,
+        "region": "Новосибирская",
+        "regionCode": 23,
+        "regionCodeExt": 54,
+        "subRegion": "Баганский",
+        "country": "РОССИЯ",
+        "countryCode": 1,
+        "latitude": 54.0212,
+        "longitude": 77.3931,
+        "kladr": "5400200002500",
+        "fiasGuid": "34cbaf34-7ab2-42a4-b21a-c3d4b3a492e5",
+        "paymentLimit": -1
+    },
+    {
+        "cityUuid": "23f5dc61-43b0-4566-9413-344de99e1b11",
+        "cityName": "Маршанское",
+        "cityCode": 39646,
+        "region": "Новосибирская",
+        "regionCode": 23,
+        "regionCodeExt": 54,
+        "subRegion": "Каргатский",
+        "country": "РОССИЯ",
+        "countryCode": 1,
+        "latitude": 55.0366,
+        "longitude": 79.8615,
+        "kladr": "5401000001200",
+        "fiasGuid": "9d27abd6-049c-47ef-9f58-51b7a1c07a58",
+        "paymentLimit": -1
+    },
+    {
+        "cityUuid": "574033d7-bfed-45b1-8745-d9917a58e8e4",
+        "cityName": "Чистоозерное",
+        "cityCode": 752,
+        "region": "Новосибирская",
+        "regionCode": 23,
+        "regionCodeExt": 54,
+        "subRegion": "Чистоозерный",
+        "country": "РОССИЯ",
+        "countryCode": 1,
+        "latitude": 54.7074,
+        "longitude": 76.5818,
+        "kladr": "5402900000100",
+        "fiasGuid": "6c5bea6d-2211-49e4-ae75-192fc5e88b20",
+        "paymentLimit": -1
+    }
+]', $response);
     }
 
     public function test_it_serializes_to_empty_json()

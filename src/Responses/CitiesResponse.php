@@ -63,7 +63,7 @@ final class CitiesResponse implements \IteratorAggregate, Response
 
     public function jsonSerialize()
     {
-        return [];
+        return $this->getItems();
     }
 
     public function hasErrors(): bool

@@ -30,6 +30,10 @@ namespace CdekSDK\Common;
 
 trait Fillable
 {
+    /**
+     * @psalm-suppress MixedAssignment
+     * @psalm-suppress MixedArgument
+     */
     public function __construct(array $data = [])
     {
         foreach ($data as $key => $value) {
@@ -46,6 +50,8 @@ trait Fillable
     /** @return static */
     public static function create($data = [])
     {
+        assert(is_array($data));
+
         return new static($data);
     }
 }

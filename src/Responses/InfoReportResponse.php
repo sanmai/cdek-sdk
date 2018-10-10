@@ -45,7 +45,7 @@ final class InfoReportResponse implements Response, \IteratorAggregate
      * @JMS\XmlList(entry = "Order", inline = true)
      * @JMS\Type("array<CdekSDK\Common\Order>")
      *
-     * @var array|Order[]
+     * @var Order[]
      */
     private $orders = [];
 

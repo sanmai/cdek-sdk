@@ -47,7 +47,7 @@ final class DeleteResponse implements Response
      * @JMS\XmlList(entry = "DeleteRequest", inline = true)
      * @JMS\Type("array<CdekSDK\Responses\Types\DeleteRequest>")
      *
-     * @var array|DeleteRequest[]
+     * @var DeleteRequest[]
      */
     private $requests = [];
 

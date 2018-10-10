@@ -41,7 +41,7 @@ final class PvzListResponse implements Response, \IteratorAggregate
      * @JMS\XmlList(entry="Pvz", inline=true)
      * @JMS\Type("array<CdekSDK\Common\Pvz>")
      *
-     * @var Pvz[];
+     * @var Pvz[]
      */
     private $items = [];
 

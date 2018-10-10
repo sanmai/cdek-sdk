@@ -49,7 +49,7 @@ final class DeliveryResponse implements Response
      * @JMS\XmlList(entry = "DeliveryRequest", inline = true)
      * @JMS\Type("array<CdekSDK\Responses\Types\DeliveryRequest>")
      *
-     * @var array|DeliveryRequest[]
+     * @var DeliveryRequest[]
      */
     private $requests = [];
 
@@ -57,14 +57,14 @@ final class DeliveryResponse implements Response
      * @JMS\XmlList(entry = "Order", inline = true)
      * @JMS\Type("array<CdekSDK\Common\Order>")
      *
-     * @var array|Order[]
+     * @var Order[]
      */
     private $orders = [];
 
     /**
      * @JMS\Exclude
      *
-     * @var \Traversable|Order[]
+     * @var \Iterator<Order>
      */
     private $completeOrders;
 
@@ -77,7 +77,7 @@ final class DeliveryResponse implements Response
     }
 
     /**
-     * @return array|DeliveryRequest[]
+     * @return DeliveryRequest[]
      */
     public function getRequests()
     {
@@ -86,6 +86,8 @@ final class DeliveryResponse implements Response
 
     /**
      * @JMS\PostDeserialize
+     *
+     * @psalm-suppress InvalidPropertyAssignmentValue
      */
     private function filterOrders()
     {

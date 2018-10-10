@@ -99,7 +99,7 @@ final class Package
      * @JMS\XmlList(entry="Item", inline=true)
      * @JMS\Type("array<CdekSDK\Common\Item>")
      *
-     * @var array|Item[]
+     * @var Item[]
      */
     protected $items = [];
 

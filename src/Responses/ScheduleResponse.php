@@ -47,7 +47,7 @@ final class ScheduleResponse implements Response
      * @JMS\XmlList(entry = "ScheduleRequest", inline = true)
      * @JMS\Type("array<CdekSDK\Requests\ScheduleRequest>")
      *
-     * @var array|ScheduleRequest[]
+     * @var ScheduleRequest[]
      */
     private $requests = [];
 
@@ -55,7 +55,7 @@ final class ScheduleResponse implements Response
      * @JMS\XmlList(entry = "Order", inline = true)
      * @JMS\Type("array<CdekSDK\Common\Order>")
      *
-     * @var array|Order[]
+     * @var Order[]
      */
     private $orders = [];
 

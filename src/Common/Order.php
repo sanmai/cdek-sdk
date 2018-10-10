@@ -196,7 +196,7 @@ final class Order implements HasErrorCode
      * @JMS\XmlList(entry="Attempt", inline=true)
      * @JMS\Type("array<CdekSDK\Common\Attempt>")
      *
-     * @var array|Attempt[]
+     * @var Attempt[]
      */
     protected $attempts = [];
 
@@ -204,7 +204,7 @@ final class Order implements HasErrorCode
      * @JMS\XmlList(entry="AddedService", inline=true)
      * @JMS\Type("array<CdekSDK\Common\AdditionalService>")
      *
-     * @var array|AdditionalService[]
+     * @var AdditionalService[]
      */
     protected $addedServices = [];
 
@@ -212,7 +212,7 @@ final class Order implements HasErrorCode
      * @JMS\XmlList(entry="AddService", inline=true)
      * @JMS\Type("array<CdekSDK\Common\AdditionalService>")
      *
-     * @var array|AdditionalService[]
+     * @var AdditionalService[]
      */
     protected $additionalServices = [];
 
@@ -221,7 +221,7 @@ final class Order implements HasErrorCode
      * @JMS\XmlList(entry="Attempt")
      * @JMS\Type("array<CdekSDK\Common\Attempt>")\
      *
-     * @var array|Attempt[]
+     * @var Attempt[]
      */
     protected $scheduleAttempts = [];
 
@@ -229,7 +229,7 @@ final class Order implements HasErrorCode
      * @JMS\XmlList(entry="Package", inline=true)
      * @JMS\Type("array<CdekSDK\Common\Package>")
      *
-     * @var array|Package[]
+     * @var Package[]
      */
     protected $packages = [];
 
@@ -238,7 +238,7 @@ final class Order implements HasErrorCode
      * @JMS\XmlList(entry="Call")
      * @JMS\Type("array<CdekSDK\Common\CallCourier>")
      *
-     * @var array|CallCourier[]
+     * @var CallCourier[]
      */
     protected $courierCalls = [];
 

@@ -61,7 +61,7 @@ final class CalculationResponse implements Response
      * @JMS\SerializedName("error")
      * @JMS\Type("array<CdekSDK\Responses\Types\Error>")
      *
-     * @var array|Error[]
+     * @var Error[]
      */
     private $errors = [];
 
@@ -96,7 +96,7 @@ final class CalculationResponse implements Response
         return $this->result;
     }
 
-    public function __call($name, $arguments)
+    public function __call(string $name, array $arguments)
     {
         if ($this->hasErrors()) {
             throw new \RuntimeException('Calculation request was not successful. Please check for errors before calling any instance methods.');

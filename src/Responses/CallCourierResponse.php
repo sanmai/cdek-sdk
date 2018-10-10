@@ -44,7 +44,7 @@ final class CallCourierResponse implements Response
      * @JMS\XmlList(entry = "CallCourier", inline = true)
      * @JMS\Type("array<CdekSDK\Common\CallCourier>")
      *
-     * @var array|CallCourier[]
+     * @var CallCourier[]
      */
     private $failed = [];
 
@@ -52,7 +52,7 @@ final class CallCourierResponse implements Response
      * @JMS\XmlList(entry = "Call", inline = true)
      * @JMS\Type("array<CdekSDK\Common\CallCourier>")
      *
-     * @var array|CallCourier[]
+     * @var CallCourier[]
      */
     private $successful = [];
 

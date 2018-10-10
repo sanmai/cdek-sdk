@@ -48,6 +48,12 @@ class LaravelCdekServiceProvider extends ServiceProvider
         Serializer::doNotConfigureAnnotationRegistry();
     }
 
+    /**
+     * @psalm-suppress MixedAssignment
+     * @psalm-suppress MixedArrayAccess
+     * @psalm-suppress MixedArgument
+     * @psalm-suppress MixedOperand
+     */
     public function register()
     {
         $this->app->singleton(CdekClient::class, function (Application $app) {

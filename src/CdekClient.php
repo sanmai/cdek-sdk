@@ -110,6 +110,7 @@ final class CdekClient implements Contracts\Client, LoggerAwareInterface
 
     /**
      * @codeCoverageIgnore
+     * @psalm-suppress MixedArrayAccess
      */
     private function getDefaultUserAgent(): string
     {
@@ -120,6 +121,8 @@ final class CdekClient implements Contracts\Client, LoggerAwareInterface
                 self::setUserAgent(self::PACKAGE_NAME, self::VERSION_INFO);
             }
         }
+
+        assert(is_string(self::$userAgentPostfix));
 
         return default_user_agent().' '.self::$userAgentPostfix;
     }
@@ -163,16 +166,26 @@ final class CdekClient implements Contracts\Client, LoggerAwareInterface
         return $this->deserialize($request, $response);
     }
 
-    public function __call($name, $arguments)
+    public function __call(string $name, array $arguments)
     {
         if (0 === strpos($name, 'send')) {
+            /** @psalm-suppress MixedArgument */
             return $this->sendRequest(...$arguments);
         }
 
         throw new \BadMethodCallException(sprintf('Method [%s] not found in [%s].', $name, __CLASS__));
     }
 
-    private function deserialize(Request $request, ResponseInterface $response)
+    /**
+     * @psalm-suppress InvalidReturnStatement
+     * @psalm-suppress InvalidReturnType
+     *
+     * @param Request           $request
+     * @param ResponseInterface $response
+     *
+     * @return Response
+     */
+    private function deserialize(Request $request, ResponseInterface $response): Response
     {
         if (!$this->isTextResponse($response)) {
             if ($this->hasAttachment($response)) {

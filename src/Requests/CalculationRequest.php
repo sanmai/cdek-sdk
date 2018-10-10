@@ -68,7 +68,10 @@ class CalculationRequest implements JsonRequest
     protected $senderCityId;
     protected $senderCityPostCode;
 
-    protected $goods;
+    /**
+     * @var array[]
+     */
+    protected $goods = [];
     protected $modeId;
     protected $services;
     protected $tariffId;
@@ -148,7 +151,11 @@ class CalculationRequest implements JsonRequest
         return $this;
     }
 
-    /** @return self */
+    /**
+     * @param array $good
+     *
+     * @return self
+     */
     public function addPackage($good)
     {
         $this->goods[] = $good;

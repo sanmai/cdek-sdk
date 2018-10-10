@@ -78,7 +78,7 @@ final class StatusReportRequest implements XmlRequest, ShouldAuthorize
      * @JMS\XmlList(inline = true, entry = "Order")
      * @JMS\Type("array<CdekSDK\Common\Order>")
      *
-     * @var array|Order[]
+     * @var Order[]
      */
     protected $orders = [];
 

@@ -61,6 +61,7 @@ final class Serializer implements SerializerInterface
 
     public function __construct()
     {
+        /** @var SerializerBuilder $builder */
         $builder = SerializerBuilder::create()->configureHandlers(function (HandlerRegistryInterface $registry) {
             $registry->registerSubscribingHandler(new NullableDateTimeHandler());
         });
@@ -73,6 +74,7 @@ final class Serializer implements SerializerInterface
          * атрибуты к единому виду, с главной большой буквы.
          */
         $builder->configureListeners(function (EventDispatcher $dispatcher) {
+            /** @psalm-suppress MixedAssignment */
             $dispatcher->addListener(Events::PRE_DESERIALIZE, function (PreDeserializeEvent $event) {
                 $data = $event->getData();
                 if ($data instanceof \SimpleXMLElement) {
@@ -81,6 +83,7 @@ final class Serializer implements SerializerInterface
             }, null, 'xml');
         });
 
+        /** @psalm-suppress MixedAssignment */
         $this->serializer = $builder->build();
 
         // Can be disabled in certain environments (customized PHP build?)
@@ -97,6 +100,9 @@ final class Serializer implements SerializerInterface
 
     /**
      * @psalm-suppress PossiblyNullIterator
+     * @psalm-suppress MixedAssignment
+     * @psalm-suppress MixedArrayAccess
+     * @psalm-suppress MixedArgument
      */
     private function updateAttributesCase(\SimpleXMLElement $data): \SimpleXMLElement
     {
@@ -117,7 +123,7 @@ final class Serializer implements SerializerInterface
      * @see \JMS\Serializer\SerializerInterface::serialize()
      * @psalm-suppress MoreSpecificImplementedParamType
      *
-     * @param mixed  $data
+     * @param object $data
      * @param string $format
      *
      * @return string

@@ -36,6 +36,7 @@ use Psr\Http\Message\StreamInterface;
  */
 final class FileResponse implements Response
 {
+    /** @var StreamInterface */
     private $stream;
 
     public function __construct(StreamInterface $stream)

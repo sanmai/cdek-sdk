@@ -37,6 +37,7 @@ use CdekSDK\Common\Item;
 use CdekSDK\Common\Order;
 use CdekSDK\Common\Package;
 use CdekSDK\Common\Sender;
+use CdekSDK\Requests\AddDeliveryRequest;
 use CdekSDK\Requests\CallCourierRequest;
 use CdekSDK\Requests\DeleteRequest;
 use CdekSDK\Requests\DeliveryRequest;
@@ -190,7 +191,7 @@ class DeliveryRequestTest extends TestCase
         $order->setSender(Sender::create([
             'Company' => 'ЗАО «Рога и Копыта»',
             'Name'    => 'Петр Иванов',
-            'Phone'   => '+7 (283) 101-11-20',
+            'Phone'   => '+7 (495) 101-11-20',
         ])->setAddress(Address::create([
             'Street' => 'Морозильная улица',
             'House'  => '2',
@@ -214,16 +215,16 @@ class DeliveryRequestTest extends TestCase
 
         $order->addPackage($package);
 
-        $order->addService(AdditionalService::create(AdditionalService::SERVICE_DELIVERY_TO_DOOR));
+        $order->addService(AdditionalService::create(AdditionalService::SERVICE_DANGEROUS_GOODS));
 
-        $request = new DeliveryRequest([
+        $request = new AddDeliveryRequest([
             'Number'          => self::TEST_NUMBER,
             'ForeignDelivery' => false,
             'Currency'        => 'RUR',
         ]);
         $request->addOrder($order);
 
-        $response = $this->getClient()->sendDeliveryRequest($request);
+        $response = $this->getClient()->sendAddDeliveryRequest($request);
 
         foreach ($response->getMessages() as $message) {
             $this->assertEmpty($message->getErrorCode(), $message->getMessage());

@@ -35,10 +35,12 @@ use CdekSDK\Common\Item;
 use CdekSDK\Common\Order;
 use CdekSDK\Common\Package;
 use CdekSDK\Common\Sender;
+use CdekSDK\Requests\AddDeliveryRequest;
 use CdekSDK\Requests\DeliveryRequest;
 
 /**
  * @covers \CdekSDK\Requests\DeliveryRequest
+ * @covers \CdekSDK\Requests\AddDeliveryRequest
  */
 class DeliveryRequestTest extends TestCase
 {
@@ -175,7 +177,7 @@ class DeliveryRequestTest extends TestCase
 
         $order->addService(AdditionalService::create(AdditionalService::SERVICE_DELIVERY_TO_DOOR));
 
-        $request = new DeliveryRequest([
+        $request = new AddDeliveryRequest([
             'Number'          => self::TEST_NUMBER,
             'ForeignDelivery' => false,
             'Currency'        => 'RUR',

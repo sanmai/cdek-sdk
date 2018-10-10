@@ -76,14 +76,14 @@ $order->addPackage($package);
 
 $order->addService(Common\AdditionalService::create(Common\AdditionalService::SERVICE_DELIVERY_TO_DOOR));
 
-$request = new Requests\DeliveryRequest([
+$request = new Requests\AddDeliveryRequest([
     'Number'          => 'TESTING123',
     'ForeignDelivery' => false,
     'Currency'        => 'RUR',
 ]);
 $request->addOrder($order);
 
-$response = $client->sendDeliveryRequest($request);
+$response = $client->sendAddDeliveryRequest($request);
 
 if ($response->hasErrors()) {
     // обработка ошибок

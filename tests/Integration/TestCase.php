@@ -73,7 +73,10 @@ abstract class TestCase extends \PHPUnit\Framework\TestCase
         if ($response->hasErrors()) {
             foreach ($response->getMessages() as $message) {
                 if ($message->getErrorCode() === '502') {
-                    $this->markTestSkipped("CDEK responded with: {$message->getMessage()}");
+                    $this->markTestSkipped("CDEK responded with an HTTP error code: {$message->getMessage()}");
+                }
+                if ($message->getErrorCode() === 'ERROR_INTERNAL') {
+                    $this->markTestSkipped("CDEK failed with an internal error: {$message->getMessage()}");
                 }
             }
         }

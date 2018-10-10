@@ -155,8 +155,9 @@ class DeliveryRequestTest extends TestCase
 
         $response = $this->getClient()->sendDeliveryRequest($request);
 
-        $this->assertTrue($response->hasErrors());
+        $this->skipIfKnownAPIErrorCode($response);
 
+        $this->assertTrue($response->hasErrors());
         $this->assertCount(2, $response->getMessages());
 
         foreach ($response->getMessages() as $message) {
@@ -225,6 +226,8 @@ class DeliveryRequestTest extends TestCase
         $request->addOrder($order);
 
         $response = $this->getClient()->sendAddDeliveryRequest($request);
+
+        $this->skipIfKnownAPIErrorCode($response);
 
         foreach ($response->getMessages() as $message) {
             $this->assertEmpty($message->getErrorCode(), $message->getMessage());

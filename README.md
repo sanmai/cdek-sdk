@@ -118,12 +118,12 @@ $request->setCodAllowed(true);
 $request->setDressingRoom(true);
 
 $response = $client->sendPvzListRequest($request);
-/** @var \CdekSDK\Responses\PvzListResponse $response */
 
 if ($response->hasErrors()) {
     // обработка ошибок
 }
 
+/** @var \CdekSDK\Responses\PvzListResponse $response */
 foreach ($response as $item) {
     /** @var \CdekSDK\Common\Pvz $item */
     // всевозможные параметры соответствуют полям из API СДЭК
@@ -158,11 +158,12 @@ $request->setSenderCityPostCode('295000')
     ]);
 
 $response = $client->sendCalculationRequest($request);
-/** @var \CdekSDK\Responses\CalculationResponse $response */
+
 if ($response->hasErrors()) {
     // обработка ошибок
 }
 
+/** @var \CdekSDK\Responses\CalculationResponse $response */
 $response->getPrice();
 // double(1250)
 ```

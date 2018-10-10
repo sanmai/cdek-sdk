@@ -101,16 +101,27 @@ final class CdekClient implements Contracts\Client, LoggerAwareInterface
         $this->serializer = new Serialization\Serializer();
     }
 
+    private static $userAgentPostfix;
+
+    public static function setUserAgent(string $product, string $versionDetails)
+    {
+        self::$userAgentPostfix = sprintf('%s/%s', $product, $versionDetails);
+    }
+
     /**
      * @codeCoverageIgnore
      */
     private function getDefaultUserAgent(): string
     {
-        if (self::VERSION_INFO[0] === '$') {
-            return default_user_agent().' '.self::PACKAGE_NAME.'/'.@json_decode((string) file_get_contents(__DIR__.'/../composer.json'), true)['extra']['branch-alias']['dev-master'];
+        if (self::$userAgentPostfix === null) {
+            if (self::VERSION_INFO[0] === '$') {
+                self::setUserAgent(self::PACKAGE_NAME, (string) @json_decode((string) file_get_contents(__DIR__.'/../composer.json'), true)['extra']['branch-alias']['dev-master']);
+            } else {
+                self::setUserAgent(self::PACKAGE_NAME, self::VERSION_INFO);
+            }
         }
 
-        return default_user_agent().' '.self::PACKAGE_NAME.'/'.self::VERSION_INFO;
+        return default_user_agent().' '.self::$userAgentPostfix;
     }
 
     /**

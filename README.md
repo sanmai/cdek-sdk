@@ -120,7 +120,11 @@ $request->setDressingRoom(true);
 $response = $client->sendPvzListRequest($request);
 /** @var \CdekSDK\Responses\PvzListResponse $response */
 
-foreach ($response->getItems() as $item) {
+if ($response->hasErrors()) {
+    // обработка ошибок
+}
+
+foreach ($response as $item) {
     /** @var \CdekSDK\Common\Pvz $item */
     // всевозможные параметры соответствуют полям из API СДЭК
     $item->Code;
@@ -157,11 +161,7 @@ $response = $client->sendCalculationRequest($request);
 /** @var \CdekSDK\Responses\CalculationResponse $response */
 
 if ($response->hasErrors()) {
-    foreach ($response->getErrors() as $error) {
-        // обрабатываем ошибку
-        $error->getErrorCode();
-        $error->getMessage();
-    }
+    // обработка ошибок
 }
 
 var_dump($response->getPrice());
@@ -178,7 +178,12 @@ $request->setPage(0)->setSize(10);
 
 $response = $client->sendRegionsRequest($request);
 
-foreach ($response->getItems() as $region) {
+if ($response->hasErrors()) {
+    // обработка ошибок
+}
+
+foreach ($response as $region) {
+    /** @var \CdekSDK\Common\Region $region */
     $region->getUuid();
     $region->getName();
     $region->getPrefix();
@@ -201,7 +206,12 @@ $request->setPage(0)->setSize(10)->setRegionCode(50);
 
 $response = $client->sendCitiesRequest($request);
 
-foreach ($response->getItems() as $location) {
+if ($response->hasErrors()) {
+    // обработка ошибок
+}
+
+foreach ($response as $location) {
+    /** @var \CdekSDK\Common\Location $location */
     $location->getCityName();
     $location->getCityCode();
     $location->getCityUuid();
@@ -278,11 +288,8 @@ $request->addOrder($order);
 
 $response = $client->sendDeliveryRequest($request);
 
-foreach ($response->getMessages() as $message) {
-    if ($message->getErrorCode() != '') {
-        // обработка ошибки
-        $message->getMessage();
-    }
+if ($response->hasErrors()) {
+    // обработка ошибок
 }
 
 foreach ($response->getOrders() as $order) {
@@ -361,11 +368,8 @@ $request->addOrder($order);
 
 $response = $client->sendDeliveryRequest($request);
 
-foreach ($response->getMessages() as $message) {
-    if ($message->getErrorCode() !== '') {
-        // обработка ошибки
-        $message->getMessage();
-    }
+if ($response->hasErrors()) {
+    // обработка ошибок
 }
 
 foreach ($response->getOrders() as $order) {
@@ -389,12 +393,8 @@ $request->addOrder(Order::withDispatchNumber($dispatchNumber));
 
 $response = $client->sendPrintReceiptsRequest($request);
 
-// Обрабатываем возможные ошибки
 if ($response->hasErrors()) {
-    foreach ($response->getMessages() as $message) {
-        $message->getErrorCode();
-        $message->getMessage();
-    }
+    // обработка ошибок
 }
 
 // Или возвращаем содержимое PDF файла...
@@ -425,12 +425,8 @@ $request->addOrder(Order::withDispatchNumber($dispatchNumber));
 
 $response = $client->sendPrintLabelsRequest($request);
 
-// Обрабатываем возможные ошибки
 if ($response->hasErrors()) {
-    foreach ($response->getMessages() as $message) {
-        $message->getErrorCode();
-        $message->getMessage();
-    }
+    // обработка ошибок
 }
 
 // Или возвращаем содержимое PDF файла...
@@ -449,14 +445,11 @@ $response = $client->sendDeleteRequest(DeleteRequest::create([
     'Number' => 'TEST-123456',
 ])));
 
-/** @var $response \CdekSDK\Responses\DeleteResponse */
-foreach ($response->getMessages() as $message) {
-    if ($message->isError()) {
-        // обрабатываем ошибки
-        $message->getText();
-    }
+if ($response->hasErrors()) {
+    // обработка ошибок
 }
 
+/** @var $response \CdekSDK\Responses\DeleteResponse */
 foreach ($response->getOrders() as $order) {
     // проверяем номера удалённых заказов
     $order->getNumber(); // должно быть 'TEST-123456'
@@ -487,12 +480,9 @@ $request = CallCourierRequest::create()->addCall(CallCourier::create([
 
 $response = $client->sendCallCourierRequest($request);
 /** @var \CdekSDK\Responses\CallCourierResponse $response */
+
 if ($response->hasErrors()) {
-    // Обрабатываем ошибки
-    foreach ($response->getErrors() as $message) {
-        $message->getErrorCode();
-        $message->getMessage();
-    }
+    // обработка ошибок
 }
 
 // Получаем номера заявок
@@ -532,11 +522,7 @@ $request = $request->addOrder(Order::create([
 $response = $client->sendScheduleRequest($request);
 
 if ($response->hasErrors()) {
-    foreach ($response->getErrors() as $error) {
-        // Обрабатываем ошибки
-        $error->getErrorCode();
-        $error->getMessage();
-    }
+    // обработка ошибок
 }
 ```
 
@@ -559,11 +545,7 @@ $request->addOrder(Order::create([
 $response = $client->sendPreAlertRequest($request, new \DateTime('tomorrow'));
 
 if ($response->hasErrors()) {
-    foreach ($response->getMessages() as $message) {
-        // Обрабатываем ошибки
-        $message->getMessage();
-        $message->getErrorCode();
-    }
+    // обработка ошибок
 }
 ```
 
@@ -583,7 +565,12 @@ $request->addOrder(Order::withDispatchNumber($dispatchNumber));
 
 $response = $client->sendStatusReportRequest($request);
 
-foreach ($response->getOrders() as $order) {
+if ($response->hasErrors()) {
+    // обработка ошибок
+}
+
+foreach ($response as $order) {
+    /** @var \CdekSDK\Common\Order $order */
     $order->getActNumber();
     $order->getNumber();
     $order->getDispatchNumber();
@@ -622,14 +609,12 @@ $request->addOrder(Order::withDispatchNumber($dispatchNumber));
 
 $response = $client->sendInfoReportRequest($request);
 
-foreach ($response->getMessages() as $message) {
-    if ($message->isError()) {
-        // Обрабатываем ошибки
-        $message->getText();
-    }
+if ($response->hasErrors()) {
+    // обработка ошибок
 }
 
-foreach ($response->getOrders() as $order) {
+foreach ($response as $order) {
+    /** @var \CdekSDK\Common\Order $order */
     $order->getNumber();
     $order->getSenderCity()->getName();
     $order->getRecipientCity()->getName();

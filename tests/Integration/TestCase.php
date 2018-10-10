@@ -29,6 +29,7 @@ declare(strict_types=1);
 namespace Tests\CdekSDK\Integration;
 
 use CdekSDK\CdekClient;
+use CdekSDK\Contracts\Response;
 use GuzzleHttp\Client as GuzzleClient;
 
 abstract class TestCase extends \PHPUnit\Framework\TestCase
@@ -60,5 +61,16 @@ abstract class TestCase extends \PHPUnit\Framework\TestCase
     protected function getClient(): CdekClient
     {
         return $this->client;
+    }
+
+    protected function skipIfKnownAPIErrorCode(Response $response)
+    {
+        if ($response->hasErrors()) {
+            foreach ($response->getMessages() as $message) {
+                if ($message->getErrorCode() === '502') {
+                    $this->markTestSkipped("CDEK responded with: {$message->getMessage()}");
+                }
+            }
+        }
     }
 }

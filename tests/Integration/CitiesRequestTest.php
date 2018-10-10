@@ -44,7 +44,10 @@ class CitiesRequestTest extends TestCase
         $request = new CitiesRequest();
         $request->setPage(0)->setSize(1);
 
+        /** @var \CdekSDK\Responses\CitiesResponse $response */
         $response = $this->getClient()->sendCitiesRequest($request);
+
+        $this->skipIfKnownAPIErrorCode($response);
 
         $this->assertFalse($response->hasErrors());
         $this->assertInstanceOf(CitiesResponse::class, $response);
@@ -67,6 +70,8 @@ class CitiesRequestTest extends TestCase
         $request = $request->setSize(7);
 
         $response = $this->getClient()->sendCitiesRequest($request);
+
+        $this->skipIfKnownAPIErrorCode($response);
 
         $this->assertFalse($response->hasErrors());
         $this->assertCount(0, $response->getItems());

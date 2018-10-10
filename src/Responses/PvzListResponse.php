@@ -71,6 +71,9 @@ final class PvzListResponse implements Response, \IteratorAggregate
         return false;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function getMessages()
     {
         return [];

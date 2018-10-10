@@ -67,7 +67,7 @@ final class DeleteResponse implements Response
     }
 
     /**
-     * @return \Traversable|Message[]
+     * {@inheritdoc}
      */
     public function getMessages()
     {

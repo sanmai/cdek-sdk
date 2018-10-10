@@ -83,8 +83,6 @@ final class CalculationResponse implements Response
 
     /**
      * {@inheritdoc}
-     *
-     * @see \CdekSDK\Contracts\Response::getMessages()
      */
     public function getMessages()
     {

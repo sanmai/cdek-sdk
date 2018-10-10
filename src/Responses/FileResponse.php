@@ -59,6 +59,9 @@ final class FileResponse implements Response
         return false;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function getMessages()
     {
         return [];

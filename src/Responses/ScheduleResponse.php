@@ -60,7 +60,7 @@ final class ScheduleResponse implements Response
     private $orders = [];
 
     /**
-     * @return \Traversable|Message[]
+     * {@inheritdoc}
      */
     public function getMessages()
     {

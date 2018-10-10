@@ -127,8 +127,6 @@ final class StatusReportResponse implements Response, HasErrorCode, \IteratorAgg
 
     /**
      * {@inheritdoc}
-     *
-     * @see \CdekSDK\Contracts\Response::getMessages()
      */
     public function getMessages()
     {

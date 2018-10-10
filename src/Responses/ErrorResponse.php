@@ -28,7 +28,6 @@ declare(strict_types=1);
 
 namespace CdekSDK\Responses;
 
-use CdekSDK\Contracts\HasErrorCode;
 use CdekSDK\Contracts\Response;
 use CdekSDK\Responses\Types\Message;
 use Psr\Http\Message\ResponseInterface;
@@ -55,7 +54,7 @@ final class ErrorResponse implements Response, ResponseInterface
     }
 
     /**
-     * @return \Traversable|HasErrorCode[]
+     * {@inheritdoc}
      */
     public function getMessages()
     {

@@ -51,7 +51,7 @@ final class PreAlertResponse implements Response
     private $orders = [];
 
     /**
-     * @return \Traversable|Message[]
+     * {@inheritdoc}
      */
     public function getMessages()
     {

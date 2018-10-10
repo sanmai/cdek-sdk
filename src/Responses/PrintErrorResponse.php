@@ -29,7 +29,6 @@ declare(strict_types=1);
 namespace CdekSDK\Responses;
 
 use CdekSDK\Common\Order;
-use CdekSDK\Contracts\HasErrorCode;
 use CdekSDK\Contracts\Response;
 use CdekSDK\Responses\Concerns\HasErrors;
 use CdekSDK\Responses\Types\Message;
@@ -56,7 +55,7 @@ final class PrintErrorResponse implements Response
     }
 
     /**
-     * @return \Traversable|Message[]|HasErrorCode[]
+     * {@inheritdoc}
      */
     public function getMessages()
     {

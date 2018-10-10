@@ -97,7 +97,7 @@ final class DeliveryResponse implements Response
     }
 
     /**
-     * @return \Traversable|Message[]
+     * {@inheritdoc}
      */
     public function getMessages()
     {

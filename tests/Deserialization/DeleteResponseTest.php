@@ -48,7 +48,7 @@ class DeleteResponseTest extends TestCase
         $response = $this->loadFixture('DeleteRequestSuccess.xml');
 
         foreach ($response->getMessages() as $message) {
-            $this->assertFalse($message->isError());
+            $this->assertEmpty($message->getErrorCode());
         }
 
         foreach ($response->getOrders() as $order) {
@@ -64,7 +64,7 @@ class DeleteResponseTest extends TestCase
             break;
         }
 
-        $this->assertTrue(isset($message) && $message->isError());
+        $this->assertTrue(isset($message) && $message->getErrorCode() !== '');
 
         foreach ($response->getOrders() as $order) {
             $this->assertSame('TEST-123456', $order->getNumber());
@@ -79,7 +79,7 @@ class DeleteResponseTest extends TestCase
             break;
         }
 
-        $this->assertTrue(isset($message) && $message->isError());
+        $this->assertTrue(isset($message) && $message->getErrorCode() !== '');
     }
 
     public function test_missing_orders()
@@ -90,7 +90,7 @@ class DeleteResponseTest extends TestCase
             break;
         }
 
-        $this->assertTrue(isset($message) && $message->isError());
+        $this->assertTrue(isset($message) && $message->getErrorCode() !== '');
     }
 
     public function test_it_serializes_to_empty_json()

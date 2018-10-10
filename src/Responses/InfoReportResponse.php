@@ -66,7 +66,7 @@ final class InfoReportResponse implements Response, \IteratorAggregate
     }
 
     /**
-     * @return \Traversable|Message[]
+     * {@inheritdoc}
      */
     public function getMessages()
     {

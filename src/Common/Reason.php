@@ -42,7 +42,6 @@ final class Reason
 {
     /**
      * @JMS\XmlAttribute
-     * @JMS\SerializedName("Date")
      * @JMS\Type("DateTimeImmutable<'Y-m-d\TH:i:sP'>")
      *
      * @var \DateTimeImmutable|null
@@ -51,7 +50,6 @@ final class Reason
 
     /**
      * @JMS\XmlAttribute
-     * @JMS\SerializedName("Code")
      * @JMS\Type("int")
      *
      * @var int
@@ -60,7 +58,6 @@ final class Reason
 
     /**
      * @JMS\XmlAttribute
-     * @JMS\SerializedName("Description")
      * @JMS\Type("string")
      *
      * @var string

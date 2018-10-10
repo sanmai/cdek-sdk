@@ -57,7 +57,6 @@ class DeliveryRequest implements XmlRequest, ShouldAuthorize
 
     /**
      * @JMS\XmlAttribute
-     * @JMS\SerializedName("Number")
      * @JMS\Type("string")
      *
      * @var string
@@ -66,7 +65,6 @@ class DeliveryRequest implements XmlRequest, ShouldAuthorize
 
     /**
      * @JMS\XmlAttribute
-     * @JMS\SerializedName("ForeignDelivery")
      * @JMS\Type("bool")
      *
      * @var bool
@@ -75,7 +73,6 @@ class DeliveryRequest implements XmlRequest, ShouldAuthorize
 
     /**
      * @JMS\XmlAttribute
-     * @JMS\SerializedName("Currency")
      * @JMS\Type("string")
      *
      * @var string

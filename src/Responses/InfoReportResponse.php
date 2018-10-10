@@ -37,7 +37,7 @@ use JMS\Serializer\Annotation as JMS;
 /**
  * Class InfoReportResponse.
  */
-final class InfoReportResponse implements Response
+final class InfoReportResponse implements Response, \IteratorAggregate
 {
     use HasErrors;
 
@@ -55,6 +55,14 @@ final class InfoReportResponse implements Response
     public function getOrders()
     {
         return $this->orders;
+    }
+
+    /**
+     * @return \Traversable|Order[]
+     */
+    public function getIterator()
+    {
+        return new \ArrayIterator($this->getOrders());
     }
 
     /**

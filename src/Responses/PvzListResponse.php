@@ -35,7 +35,7 @@ use JMS\Serializer\Annotation as JMS;
 /**
  * Class PvzListResponse.
  */
-final class PvzListResponse implements Response
+final class PvzListResponse implements Response, \IteratorAggregate
 {
     /**
      * @JMS\XmlList(entry="Pvz", inline=true)
@@ -51,6 +51,14 @@ final class PvzListResponse implements Response
     public function getItems(): array
     {
         return $this->items;
+    }
+
+    /**
+     * @return \Traversable|Pvz[]
+     */
+    public function getIterator()
+    {
+        return new \ArrayIterator($this->getItems());
     }
 
     public function jsonSerialize()

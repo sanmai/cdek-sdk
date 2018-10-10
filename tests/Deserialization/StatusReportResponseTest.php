@@ -53,6 +53,11 @@ class StatusReportResponseTest extends TestCase
         $this->assertSame('2018-08-10', $response->getDateLast()->format('Y-m-d'));
 
         $this->assertCount(2, $response->getOrders());
+        $this->assertCount(2, $response);
+
+        foreach ($response as $order) {
+            $this->assertInstanceOf(Order::class, $order);
+        }
 
         $order = $response->getOrders()[0];
 

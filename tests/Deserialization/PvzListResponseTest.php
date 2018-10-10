@@ -56,6 +56,11 @@ class PvzListResponseTest extends TestCase
         $this->assertInstanceOf(PvzListResponse::class, $response);
         $this->assertNotEmpty($response->getItems());
         $this->assertCount(3, $response->getItems());
+        $this->assertCount(3, $response);
+
+        foreach ($response as $item) {
+            $this->assertInstanceOf(Pvz::class, $item);
+        }
 
         $item = $response->getItems()[0];
         $this->assertInstanceOf(Pvz::class, $item);

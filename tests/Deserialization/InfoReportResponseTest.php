@@ -29,6 +29,7 @@ declare(strict_types=1);
 namespace Tests\CdekSDK\Deserialization;
 
 use CdekSDK\Common\City;
+use CdekSDK\Common\Order;
 use CdekSDK\Common\Package;
 use CdekSDK\Responses\InfoReportResponse;
 use Tests\CdekSDK\Fixtures\FixtureLoader;
@@ -50,12 +51,21 @@ class InfoReportResponseTest extends TestCase
         $this->assertInstanceOf(InfoReportResponse::class, $response);
 
         foreach ($response->getMessages() as $message) {
-            if ($message->isError()) {
-                $this->fail($message->getText());
+            if ($message->getErrorCode() !== '') {
+                $this->fail($message->getMessage());
             }
         }
 
+        $this->assertCount(1, $response->getOrders());
+        $this->assertCount(1, $response);
+
         foreach ($response->getOrders() as $order) {
+            $this->assertSame('TEST-123456', $order->getNumber());
+            break;
+        }
+
+        foreach ($response as $order) {
+            /** @var $order Order */
             $this->assertSame('TEST-123456', $order->getNumber());
             $this->assertSame('101000', $order->getSendCityPostCode());
             $this->assertSame(44, $order->getSenderCity()->getCode());

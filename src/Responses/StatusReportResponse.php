@@ -37,7 +37,7 @@ use JMS\Serializer\Annotation as JMS;
 /**
  * Class StatusReportResponse.
  */
-final class StatusReportResponse implements Response, HasErrorCode
+final class StatusReportResponse implements Response, HasErrorCode, \IteratorAggregate
 {
     /**
      * @JMS\XmlAttribute
@@ -95,6 +95,14 @@ final class StatusReportResponse implements Response, HasErrorCode
     public function getOrders()
     {
         return $this->orders;
+    }
+
+    /**
+     * @return \Traversable|Order[]
+     */
+    public function getIterator()
+    {
+        return new \ArrayIterator($this->getOrders());
     }
 
     public function getErrorCode(): string

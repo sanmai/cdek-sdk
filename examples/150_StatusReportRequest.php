@@ -26,25 +26,43 @@
 
 declare(strict_types=1);
 
-namespace CdekSDK\Requests\Concerns;
+use CdekSDK\Common;
+use CdekSDK\Requests;
 
-use CdekSDK\Common\Order;
+$client = new \CdekSDK\CdekClient('account', 'password');
+$dispatchNumber = '123';
 
-trait OrdersAware
-{
-    /**
-     * @JMS\XmlList(entry = "Order", inline = true)
-     * @JMS\Type("array<CdekSDK\Common\Order>")
-     *
-     * @var Order[]
-     */
-    protected $orders = [];
+$request = new Requests\StatusReportRequest();
+// можно указывать или всё сразу, или только диапазоны дат, или только конкретные заказы
+$request->setChangePeriod(new Common\ChangePeriod(new \DateTime('-1 day'), new \DateTime('+1 day')));
+$request->addOrder(Common\Order::withDispatchNumber($dispatchNumber));
 
-    /**
-     * @return Order[]
-     */
-    final public function getOrders()
-    {
-        return $this->orders;
+$response = $client->sendStatusReportRequest($request);
+
+if ($response->hasErrors()) {
+    // обработка ошибок
+}
+
+foreach ($response as $order) {
+    $order->getActNumber();
+    $order->getNumber();
+    $order->getDispatchNumber();
+    $order->getDeliveryDate();
+    $order->getRecipientName();
+
+    if ($status = $order->getStatus()) {
+        $status->getDescription();
+        $status->getDate();
+        $status->getCode();
+        $status->getCityCode();
+        $status->getCityName();
     }
+
+    $order->getReason()->getCode();
+    $order->getReason()->getDescription();
+    $order->getReason()->getDate();
+
+    $order->getDelayReason()->getCode();
+    $order->getDelayReason()->getDescription();
+    $order->getDelayReason()->getDate();
 }

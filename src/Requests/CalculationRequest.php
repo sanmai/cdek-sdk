@@ -81,6 +81,7 @@ class CalculationRequest implements JsonRequest
         return new CalculationAuthorizedRequest();
     }
 
+    /** @return self */
     public function setSenderCityId($id)
     {
         $this->senderCityId = $id;
@@ -88,6 +89,7 @@ class CalculationRequest implements JsonRequest
         return $this;
     }
 
+    /** @return self */
     public function setReceiverCityId($id)
     {
         $this->receiverCityId = $id;
@@ -95,6 +97,7 @@ class CalculationRequest implements JsonRequest
         return $this;
     }
 
+    /** @return self */
     public function setSenderCityPostCode($code)
     {
         $this->senderCityPostCode = $code;
@@ -102,6 +105,7 @@ class CalculationRequest implements JsonRequest
         return $this;
     }
 
+    /** @return self */
     public function setReceiverCityPostCode($code)
     {
         $this->receiverCityPostCode = $code;
@@ -109,6 +113,7 @@ class CalculationRequest implements JsonRequest
         return $this;
     }
 
+    /** @return self */
     public function setTariffId($id)
     {
         $this->tariffList = [];
@@ -135,6 +140,7 @@ class CalculationRequest implements JsonRequest
         return $this;
     }
 
+    /** @return self */
     public function setModeId($id)
     {
         $this->modeId = $id;
@@ -142,6 +148,7 @@ class CalculationRequest implements JsonRequest
         return $this;
     }
 
+    /** @return self */
     public function addPackage($good)
     {
         $this->goods[] = $good;

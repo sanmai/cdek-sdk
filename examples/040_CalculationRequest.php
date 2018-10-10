@@ -25,26 +25,30 @@
  */
 
 declare(strict_types=1);
+use CdekSDK\Requests;
 
-namespace CdekSDK\Requests\Concerns;
+$client = new \CdekSDK\CdekClient('account', 'password');
 
-use CdekSDK\Common\Order;
+// для выполнения авторизованного запроса используется
+// $request = Requests\CalculationRequest::withAuthorization();
+// $request->set...() и так далее
 
-trait OrdersAware
-{
-    /**
-     * @JMS\XmlList(entry = "Order", inline = true)
-     * @JMS\Type("array<CdekSDK\Common\Order>")
-     *
-     * @var Order[]
-     */
-    protected $orders = [];
+$request = new Requests\CalculationRequest();
+$request->setSenderCityPostCode('295000')
+    ->setReceiverCityPostCode('652632')
+    ->setTariffId(1)
+    ->addPackage([
+        'weight' => 0.2,
+        'length' => 25,
+        'width'  => 15,
+        'height' => 10,
+    ]);
 
-    /**
-     * @return Order[]
-     */
-    final public function getOrders()
-    {
-        return $this->orders;
-    }
+$response = $client->sendCalculationRequest($request);
+/** @var \CdekSDK\Responses\CalculationResponse $response */
+if ($response->hasErrors()) {
+    // обработка ошибок
 }
+
+$response->getPrice();
+// double(1250)

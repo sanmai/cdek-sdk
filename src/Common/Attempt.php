@@ -93,7 +93,7 @@ final class Attempt
      * @JMS\XmlList(entry = "Package", inline = true)
      * @JMS\Type("array<CdekSDK\Common\Package>")
      *
-     * @var Package[]|array
+     * @var Package[]
      */
     protected $packages = [];
 
@@ -113,6 +113,7 @@ final class Attempt
      */
     protected $ScheduleDescription;
 
+    /** @return self */
     public function addPackage(Package $package)
     {
         $this->packages[] = $package;

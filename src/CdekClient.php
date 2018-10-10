@@ -48,19 +48,19 @@ use function GuzzleHttp\default_user_agent;
 /**
  * Class CdekClient.
  *
- * @method Responses\DeleteResponse                            sendDeleteRequest(Requests\DeleteRequest $request)
- * @method Responses\PvzListResponse                           sendPvzListRequest(Requests\PvzListRequest $request)
- * @method Responses\DeliveryResponse                          sendDeliveryRequest(Requests\DeliveryRequest $request)
- * @method Responses\CallCourierResponse                       sendCallCourierRequest(Requests\CallCourierRequest $request)
- * @method Responses\ScheduleResponse                          sendScheduleRequest(Requests\ScheduleRequest $request)
- * @method Responses\PreAlertResponse                          sendPreAlertRequest(Requests\PreAlertRequest $request, \DateTimeInterface $plannedDate = null)
- * @method Responses\InfoReportResponse                        sendInfoReportRequest(Requests\InfoReportRequest $request)
- * @method Responses\CalculationResponse                       sendCalculationRequest(Requests\CalculationRequest $request)
- * @method Responses\StatusReportResponse                      sendStatusReportRequest(Requests\StatusReportRequest $request)
- * @method Responses\FileResponse|Responses\PrintErrorResponse sendPrintReceiptsRequest(Requests\PrintReceiptsRequest $request)
- * @method Responses\FileResponse|Responses\PrintErrorResponse sendPrintLabelsRequest(Requests\PrintLabelsRequest $request)
- * @method Responses\RegionsResponse                           sendRegionsRequest(Requests\RegionsRequest $request)
- * @method Responses\CitiesResponse                            sendCitiesRequest(Requests\CitiesRequest $request)
+ * @method Responses\DeleteResponse                     sendDeleteRequest(Requests\DeleteRequest $request)
+ * @method Responses\PvzListResponse<Common\Pvz>        sendPvzListRequest(Requests\PvzListRequest $request)
+ * @method Responses\DeliveryResponse                   sendDeliveryRequest(Requests\DeliveryRequest $request)
+ * @method Responses\CallCourierResponse                sendCallCourierRequest(Requests\CallCourierRequest $request)
+ * @method Responses\ScheduleResponse                   sendScheduleRequest(Requests\ScheduleRequest $request)
+ * @method Responses\PreAlertResponse                   sendPreAlertRequest(Requests\PreAlertRequest $request, $plannedDate = null)
+ * @method Responses\InfoReportResponse<Common\Order>   sendInfoReportRequest(Requests\InfoReportRequest $request)
+ * @method Responses\CalculationResponse                sendCalculationRequest(Requests\CalculationRequest $request)
+ * @method Responses\StatusReportResponse<Common\Order> sendStatusReportRequest(Requests\StatusReportRequest $request)
+ * @method Responses\FileResponse                       sendPrintReceiptsRequest(Requests\PrintReceiptsRequest $request)
+ * @method Responses\FileResponse                       sendPrintLabelsRequest(Requests\PrintLabelsRequest $request)
+ * @method Responses\RegionsResponse<Common\Region>     sendRegionsRequest(Requests\RegionsRequest $request)
+ * @method Responses\CitiesResponse<Common\Location>    sendCitiesRequest(Requests\CitiesRequest $request)
  */
 final class CdekClient implements Contracts\Client, LoggerAwareInterface
 {

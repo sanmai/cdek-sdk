@@ -78,7 +78,7 @@ final class Status
      * @JMS\XmlList(entry="State", inline=true)
      * @JMS\Type("array<CdekSDK\Common\State>")
      *
-     * @var State[]|array
+     * @var State[]
      */
     protected $states = [];
 
@@ -108,7 +108,7 @@ final class Status
     }
 
     /**
-     * @return State[]|array
+     * @return State[]
      */
     public function getStates(): array
     {

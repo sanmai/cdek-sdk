@@ -90,6 +90,7 @@ class DeliveryRequest implements XmlRequest, ShouldAuthorize
         return \count($this->orders);
     }
 
+    /** @return static */
     public function addOrder(Order $order)
     {
         // При создании заказа идентификация идёт только по номеру, это обязательный параметр

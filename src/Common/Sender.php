@@ -64,6 +64,7 @@ final class Sender
      */
     protected $Phone;
 
+    /** @return self */
     public function setAddress(Address $address)
     {
         $this->Address = $address;

@@ -26,25 +26,19 @@
 
 declare(strict_types=1);
 
-namespace CdekSDK\Requests\Concerns;
+$client = new \CdekSDK\CdekClient('account', 'password');
 
-use CdekSDK\Common\Order;
+$request = new \CdekSDK\Requests\DeliveryRequest();
+/** @var \CdekSDK\Contracts\Request $request */
+/** @var \CdekSDK\Contracts\Response $response */
+$response = $client->sendRequest($request);
 
-trait OrdersAware
-{
-    /**
-     * @JMS\XmlList(entry = "Order", inline = true)
-     * @JMS\Type("array<CdekSDK\Common\Order>")
-     *
-     * @var Order[]
-     */
-    protected $orders = [];
-
-    /**
-     * @return Order[]
-     */
-    final public function getOrders()
-    {
-        return $this->orders;
+if ($response->hasErrors()) {
+    // Обрабатываем ошибки
+    foreach ($response->getMessages() as $message) {
+        if ($message->getErrorCode() !== '') {
+            // Это ошибка
+            $message->getMessage();
+        }
     }
 }

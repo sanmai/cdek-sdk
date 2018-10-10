@@ -52,7 +52,7 @@ final class CallCourierRequest implements XmlRequest, ShouldAuthorize
      * @JMS\XmlList(entry = "Call", inline = true)
      * @JMS\Type("array<CdekSDK\Common\CallCourier>")
      *
-     * @var CallCourier[]|array
+     * @var CallCourier[]
      */
     protected $calls = [];
 
@@ -67,6 +67,7 @@ final class CallCourierRequest implements XmlRequest, ShouldAuthorize
         return \count($this->calls);
     }
 
+    /** @return self */
     public function addCall(CallCourier $call)
     {
         $this->calls[] = $call;

@@ -43,6 +43,7 @@ trait Fillable
         }
     }
 
+    /** @return static */
     public static function create($data = [])
     {
         return new static($data);

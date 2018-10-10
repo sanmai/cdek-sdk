@@ -26,25 +26,36 @@
 
 declare(strict_types=1);
 
-namespace CdekSDK\Requests\Concerns;
+use CdekSDK\Common;
+use CdekSDK\Requests;
 
-use CdekSDK\Common\Order;
+$client = new \CdekSDK\CdekClient('account', 'password');
+$dispatchNumber = '123';
 
-trait OrdersAware
-{
-    /**
-     * @JMS\XmlList(entry = "Order", inline = true)
-     * @JMS\Type("array<CdekSDK\Common\Order>")
-     *
-     * @var Order[]
-     */
-    protected $orders = [];
+$request = new Requests\InfoReportRequest();
+$request->setChangePeriod(new Common\ChangePeriod(new \DateTime('-1 day'), new \DateTime('+1 day')));
+// можно искать только по номерам, без дат
+$request->addOrder(Common\Order::withDispatchNumber($dispatchNumber));
 
-    /**
-     * @return Order[]
-     */
-    final public function getOrders()
-    {
-        return $this->orders;
+$response = $client->sendInfoReportRequest($request);
+
+if ($response->hasErrors()) {
+    // обработка ошибок
+}
+
+foreach ($response as $order) {
+    /** @var \CdekSDK\Common\Order $order */
+    $order->getNumber();
+    $order->getSenderCity()->getName();
+    $order->getRecipientCity()->getName();
+
+    foreach ($order->getPackages() as $package) {
+        $package->getBarCode();
+        $package->getVolumeWeight();
+    }
+
+    foreach ($order->getAdditionalServices() as $service) {
+        $service->getServiceCode();
+        $service->getSum();
     }
 }

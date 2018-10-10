@@ -90,8 +90,8 @@ $client = new \CdekSDK\CdekClient('account', 'password');
 Все возвращаемые ответы содержат методы для проверки на ошибку, также для получения списка сообщений включая сообщения об ошибках.
 
 ```php
-$response = $client->sendSomeRequest($request);
 /** @var \CdekSDK\Contracts\Response $response */
+$response = $client->sendSomeRequest($request);
 
 if ($response->hasErrors()) {
     // Обрабатываем ошибки
@@ -108,9 +108,9 @@ if ($response->hasErrors()) {
 ### Получение списка ПВЗ
 
 ```php
-use CdekSDK\Requests\PvzListRequest;
+use CdekSDK\Requests;
 
-$request = new PvzListRequest();
+$request = new Requests\PvzListRequest();
 $request->setCityId(250);
 $request->setType(PvzListRequest::TYPE_ALL);
 $request->setCashless(true);
@@ -140,40 +140,39 @@ foreach ($response as $item) {
 ### Расчёт стоимости доставки
 
 ```php
-use CdekSDK\Requests\CalculationRequest;
+use CdekSDK\Requests;
 
 // для выполнения авторизованного запроса используется
-// $request = CalculationRequest::withAuthorization();
+// $request = Requests\CalculationRequest::withAuthorization();
 // $request->set...() и так далее
 
-$request = (new CalculationRequest())
-    ->setSenderCityPostCode('295000')
+$request = new Requests\CalculationRequest();
+$request->setSenderCityPostCode('295000')
     ->setReceiverCityPostCode('652632')
     ->setTariffId(1)
     ->addPackage([
         'weight' => 0.2,
         'length' => 25,
-        'width' => 15,
+        'width'  => 15,
         'height' => 10,
     ]);
 
 $response = $client->sendCalculationRequest($request);
 /** @var \CdekSDK\Responses\CalculationResponse $response */
-
 if ($response->hasErrors()) {
     // обработка ошибок
 }
 
-var_dump($response->getPrice());
+$response->getPrice();
 // double(1250)
 ```
 
 ### Список регионов/субъектов РФ
 
 ```php
-use CdekSDK\Requests\RegionsRequest;
+use CdekSDK\Requests;
 
-$request = new RegionsRequest();
+$request = new Requests\RegionsRequest();
 $request->setPage(0)->setSize(10);
 
 $response = $client->sendRegionsRequest($request);
@@ -199,9 +198,9 @@ foreach ($response as $region) {
 ### Список городов
 
 ```php
-use CdekSDK\Requests\CitiesRequest;
+use CdekSDK\Requests;
 
-$request = new CitiesRequest();
+$request = new Requests\CitiesRequest();
 $request->setPage(0)->setSize(10)->setRegionCode(50);
 
 $response = $client->sendCitiesRequest($request);
@@ -234,54 +233,50 @@ foreach ($response as $location) {
 Названия полей соответствуют названиям полей [в официальной документации](https://confluence.cdek.ru/x/gUju).
 
 ```php
-use CdekSDK\Common\Address;
-use CdekSDK\Common\City;
-use CdekSDK\Common\Item;
-use CdekSDK\Common\Order;
-use CdekSDK\Common\Package;
-use CdekSDK\Requests\DeliveryRequest;
+use CdekSDK\Common;
+use CdekSDK\Requests;
 
-$order = new Order([
-    'Number' => 'TEST-123456',
-    'SendCity' => City::create([
+$order = new Common\Order([
+    'Number'   => 'TEST-123456',
+    'SendCity' => Common\City::create([
         'Code' => 44, // Москва
     ]),
-    'RecCity' => City::create([
+    'RecCity' => Common\City::create([
         'PostCode' => '630001', // Новосибирск
     ]),
-    'RecipientName' => 'Иван Петров',
+    'RecipientName'  => 'Иван Петров',
     'RecipientEmail' => 'petrov@test.ru',
-    'Phone' => '+7 (383) 202-22-50',
+    'Phone'          => '+7 (383) 202-22-50',
     'TariffTypeCode' => 139, // Посылка дверь-дверь от ИМ
 ]);
 
-$order->setAddress(Address::create([
+$order->setAddress(Common\Address::create([
     'Street' => 'Холодильная улица',
-    'House' => '16',
-    'Flat' => '22',
+    'House'  => '16',
+    'Flat'   => '22',
 ]));
 
-$package = Package::create([
-    'Number' => 'TEST-123456',
+$package = Common\Package::create([
+    'Number'  => 'TEST-123456',
     'BarCode' => 'TEST-123456',
-    'Weight' => 500, // Общий вес (в граммах)
-    'SizeA' => 10, // Длина (в сантиметрах), в пределах от 1 до 1500
-    'SizeB' => 10,
-    'SizeC' => 10,
+    'Weight'  => 500, // Общий вес (в граммах)
+    'SizeA'   => 10, // Длина (в сантиметрах), в пределах от 1 до 1500
+    'SizeB'   => 10,
+    'SizeC'   => 10,
 ]);
 
-$package->addItem(new Item([
+$package->addItem(new Common\Item([
     'WareKey' => 'NN0001', // Идентификатор/артикул товара/вложения
-    'Cost' => 500, // Объявленная стоимость товара (за единицу товара)
+    'Cost'    => 500, // Объявленная стоимость товара (за единицу товара)
     'Payment' => 0, // Оплата за товар при получении (за единицу товара)
-    'Weight' => 120, // Вес (за единицу товара, в граммах)
-    'Amount' => 2, // Количество единиц одноименного товара (в штуках)
+    'Weight'  => 120, // Вес (за единицу товара, в граммах)
+    'Amount'  => 2, // Количество единиц одноименного товара (в штуках)
     'Comment' => 'Test item',
 ]));
 
 $order->addPackage($package);
 
-$request = new DeliveryRequest([
+$request = new Requests\DeliveryRequest([
     'Number' => 'TESTING123',
 ]);
 $request->addOrder($order);
@@ -305,21 +300,16 @@ foreach ($response->getOrders() as $order) {
 Отличается необходимость указывать тип клиента, адрес забора груза. Без необходимости указывать состав посылок.
 
 ```php
-use CdekSDK\Common\AdditionalService;
-use CdekSDK\Common\Address;
-use CdekSDK\Common\City;
-use CdekSDK\Common\Order;
-use CdekSDK\Common\Package;
-use CdekSDK\Common\Sender;
-use CdekSDK\Requests\DeliveryRequest;
+use CdekSDK\Common;
+use CdekSDK\Requests;
 
-$order = new Order([
-    'ClientSide' => Order::CLIENT_SIDE_SENDER,
+$order = new Common\Order([
+    'ClientSide' => Common\Order::CLIENT_SIDE_SENDER,
     'Number'     => 'TEST-123456',
-    'SendCity'   => City::create([
+    'SendCity'   => Common\City::create([
         'Code' => 44, // Москва
     ]),
-    'RecCity' => City::create([
+    'RecCity' => Common\City::create([
         'PostCode' => '630001', // Новосибирск
     ]),
     'RecipientName'    => 'Иван Петров',
@@ -330,23 +320,23 @@ $order = new Order([
     'Comment'          => 'Это тестовый заказ',
 ]);
 
-$order->setSender(Sender::create([
+$order->setSender(Common\Sender::create([
     'Company' => 'ЗАО «Рога и Копыта»',
     'Name'    => 'Петр Иванов',
     'Phone'   => '+7 (283) 101-11-20',
-])->setAddress(Address::create([
+])->setAddress(Common\Address::create([
     'Street' => 'Морозильная улица',
     'House'  => '2',
     'Flat'   => '101',
 ])));
 
-$order->setAddress(Address::create([
+$order->setAddress(Common\Address::create([
     'Street'  => 'Холодильная улица',
     'House'   => '16',
     'Flat'    => '22',
 ]));
 
-$package = Package::create([
+$package = Common\Package::create([
     'Number'  => 'TEST-123456',
     'BarCode' => 'TEST-123456',
     'Weight'  => 500, // Общий вес (в граммах)
@@ -357,9 +347,9 @@ $package = Package::create([
 
 $order->addPackage($package);
 
-$order->addService(AdditionalService::create(AdditionalService::SERVICE_DELIVERY_TO_DOOR));
+$order->addService(Common\AdditionalService::create(Common\AdditionalService::SERVICE_DELIVERY_TO_DOOR));
 
-$request = new DeliveryRequest([
+$request = new Requests\DeliveryRequest([
     'Number'          => 'TESTING123',
     'ForeignDelivery' => false,
     'Currency'        => 'RUR',
@@ -384,12 +374,11 @@ foreach ($response->getOrders() as $order) {
 Для подготовки документов необходимо указывать или номер заказа СДЭК, DispatchNumber, или номер заказа ИМ и дату через объёкт заказа.
 
 ```php
-use CdekSDK\Requests\PrintReceiptsRequest;
-use CdekSDK\Responses\FileResponse;
-use CdekSDK\Responses\PrintErrorResponse;
+use CdekSDK\Common;
+use CdekSDK\Requests;
 
-$request = new PrintReceiptsRequest();
-$request->addOrder(Order::withDispatchNumber($dispatchNumber));
+$request = new Requests\PrintReceiptsRequest();
+$request->addOrder(Common\Order::withDispatchNumber($dispatchNumber));
 
 $response = $client->sendPrintReceiptsRequest($request);
 
@@ -404,9 +393,9 @@ return (string) $response->getBody();
 Также можно указывать в запросе сами объекты заказов, полученные из других методов. Или же можно создать заказ прямо на месте, имея известные `Number` и `Date`:
 
 ```php
-$request = new PrintReceiptsRequest();
+$request = new Requests\PrintReceiptsRequest();
 $request->addOrder($orderFromAnotherResponse);
-$request->addOrder(Order::withNumberAndDate($number, new \DateTime($dateString)));
+$request->addOrder(Common\Order::withNumberAndDate($number, new \DateTime($dateString)));
 ```
 
 ### Печать ШК-мест
@@ -414,14 +403,13 @@ $request->addOrder(Order::withNumberAndDate($number, new \DateTime($dateString))
 Печать ШК-мест производится по такому же алгоритму что и печать квитанций.
 
 ```php
-use CdekSDK\Requests\PrintLabelsRequest;
-use CdekSDK\Responses\FileResponse;
-use CdekSDK\Responses\PrintErrorResponse;
+use CdekSDK\Common;
+use CdekSDK\Requests;
 
-$request = new PrintLabelsRequest([
-    'PrintFormat' => PrintLabelsRequest::PRINT_FORMAT_A5,
+$request = new Requests\PrintLabelsRequest([
+    'PrintFormat' => Requests\PrintLabelsRequest::PRINT_FORMAT_A5,
 ]);
-$request->addOrder(Order::withDispatchNumber($dispatchNumber));
+$request->addOrder(Common\Order::withDispatchNumber($dispatchNumber));
 
 $response = $client->sendPrintLabelsRequest($request);
 
@@ -436,20 +424,21 @@ return (string) $response->getBody();
 ### Удаление заказа
 
 ```php
-use CdekSDK\Common\Order;
-use CdekSDK\Requests\DeleteRequest;
+use CdekSDK\Common;
+use CdekSDK\Requests;
 
-$response = $client->sendDeleteRequest(DeleteRequest::create([
+$request = Requests\DeleteRequest::create([
     'Number' => 'TESTING123',
-])->addOrder(new Order([
+])->addOrder(new Common\Order([
     'Number' => 'TEST-123456',
-])));
+]));
+
+$response = $client->sendDeleteRequest($request);
 
 if ($response->hasErrors()) {
     // обработка ошибок
 }
 
-/** @var $response \CdekSDK\Responses\DeleteResponse */
 foreach ($response->getOrders() as $order) {
     // проверяем номера удалённых заказов
     $order->getNumber(); // должно быть 'TEST-123456'
@@ -459,27 +448,24 @@ foreach ($response->getOrders() as $order) {
 ### Вызов курьера
 
 ```php
-use CdekSDK\Common\Address;
-use CdekSDK\Common\CallCourier;
-use CdekSDK\Requests\CallCourierRequest;
-use CdekSDK\Responses\CallCourierResponse;
+use CdekSDK\Common;
+use CdekSDK\Requests;
 
-$request = CallCourierRequest::create()->addCall(CallCourier::create([
-    'Date' => new \DateTime('tomorrow'),
+$request = Requests\CallCourierRequest::create()->addCall(Common\CallCourier::create([
+    'Date'           => new \DateTime('tomorrow'),
     'DispatchNumber' => $dispatchNumber,
-    'TimeBeg' => new \DateTime('10:00'),
-    'TimeEnd' => new \DateTime('17:00'),
-    'SendCityCode' => 44,
-    'SenderName' => 'Проверка Тестович',
-    'SendPhone' => '+78001001010',
-])->setAddress(Address::create([
+    'TimeBeg'        => new \DateTime('10:00'),
+    'TimeEnd'        => new \DateTime('17:00'),
+    'SendCityCode'   => 44,
+    'SenderName'     => 'Проверка Тестович',
+    'SendPhone'      => '+78001001010',
+])->setAddress(Common\Address::create([
     'Street' => 'Тестовая',
-    'House' => '8',
-    'Flat' => '32',
+    'House'  => '8',
+    'Flat'   => '32',
 ])));
 
 $response = $client->sendCallCourierRequest($request);
-/** @var \CdekSDK\Responses\CallCourierResponse $response */
 
 if ($response->hasErrors()) {
     // обработка ошибок
@@ -494,28 +480,25 @@ foreach ($response->getNumbers() as $number) {
 ### Регистрация информации о результате прозвона
 
 ```php
-use CdekSDK\Common\Attempt;
-use CdekSDK\Common\Item;
-use CdekSDK\Common\Order;
-use CdekSDK\Common\Package;
-use CdekSDK\Requests\ScheduleRequest;
+use CdekSDK\Common;
+use CdekSDK\Requests;
 
-$request = new ScheduleRequest();
-$request = $request->addOrder(Order::create([
+$request = new Requests\ScheduleRequest();
+$request = $request->addOrder(Common\Order::create([
     'DispatchNumber' => '123456',
-])->addAttempt(Attempt::create([
-    'ID' => 500,
+])->addAttempt(Common\Attempt::create([
+    'ID'   => 500,
     'Date' => new \DateTime('next Monday'),
-])->addPackage(Package::create([
-    'Number' => 'TEST-123456',
+])->addPackage(Common\Package::create([
+    'Number'  => 'TEST-123456',
     'BarCode' => 'TEST-123456',
-    'Weight' => 500,
-])->addItem(new Item([
+    'Weight'  => 500,
+])->addItem(new Common\Item([
     'WareKey' => 'NN0001',
-    'Cost' => 500,
+    'Cost'    => 500,
     'Payment' => 0,
-    'Weight' => 120,
-    'Amount' => 2,
+    'Weight'  => 120,
+    'Amount'  => 2,
     'Comment' => 'Test item',
 ])))));
 
@@ -531,16 +514,14 @@ if ($response->hasErrors()) {
 Обратите внимание что дата планируемой передачи идёт не в объекте запроса, а как аргумент при отправке запроса.
 
 ```php
-use CdekSDK\Common\Order;
-use CdekSDK\Requests\PreAlertRequest;
+use CdekSDK\Common;
+use CdekSDK\Requests;
 
-$request = new PreAlertRequest([
+$request = new Requests\PreAlertRequest([
     'PvzCode' => 'NSK333',
 ]);
 
-$request->addOrder(Order::create([
-    'DispatchNumber' => '12345678',
-]));
+$request->addOrder(Common\Order::withDispatchNumber('12345678'));
 
 $response = $client->sendPreAlertRequest($request, new \DateTime('tomorrow'));
 
@@ -554,14 +535,13 @@ if ($response->hasErrors()) {
 Он же отчет "Статусы заказов", используется для получения отчета по статусам заказов, включая историю изменения статусов.
 
 ```php
-use CdekSDK\Requests\StatusReportRequest;
-use CdekSDK\Common\ChangePeriod;
-use CdekSDK\Common\Order;
+use CdekSDK\Common;
+use CdekSDK\Requests;
 
-$request = new StatusReportRequest();
+$request = new Requests\StatusReportRequest();
 // можно указывать или всё сразу, или только диапазоны дат, или только конкретные заказы
-$request->setChangePeriod(new ChangePeriod(new \DateTime('-1 day'), new \DateTime('+1 day')));
-$request->addOrder(Order::withDispatchNumber($dispatchNumber));
+$request->setChangePeriod(new Common\ChangePeriod(new \DateTime('-1 day'), new \DateTime('+1 day')));
+$request->addOrder(Common\Order::withDispatchNumber($dispatchNumber));
 
 $response = $client->sendStatusReportRequest($request);
 
@@ -570,18 +550,19 @@ if ($response->hasErrors()) {
 }
 
 foreach ($response as $order) {
-    /** @var \CdekSDK\Common\Order $order */
     $order->getActNumber();
     $order->getNumber();
     $order->getDispatchNumber();
     $order->getDeliveryDate();
     $order->getRecipientName();
 
-    $order->getStatus()->getDescription();
-    $order->getStatus()->getDate();
-    $order->getStatus()->getCode();
-    $order->getStatus()->getCityCode();
-    $order->getStatus()->getCityName();
+    if ($status = $order->getStatus()) {
+        $status->getDescription();
+        $status->getDate();
+        $status->getCode();
+        $status->getCityCode();
+        $status->getCityName();
+    }
 
     $order->getReason()->getCode();
     $order->getReason()->getDescription();
@@ -598,14 +579,13 @@ foreach ($response as $order) {
 Отчет используется для получения детальной информации по заказам.
 
 ```php
-use CdekSDK\Common\ChangePeriod;
-use CdekSDK\Common\Order;
-use CdekSDK\Requests\InfoReportRequest;
+use CdekSDK\Common;
+use CdekSDK\Requests;
 
-$request = new InfoReportRequest();
-$request->setChangePeriod(new ChangePeriod(new \DateTime('-1 day'), new \DateTime('+1 day')));
+$request = new Requests\InfoReportRequest();
+$request->setChangePeriod(new Common\ChangePeriod(new \DateTime('-1 day'), new \DateTime('+1 day')));
 // можно искать только по номерам, без дат
-$request->addOrder(Order::withDispatchNumber($dispatchNumber));
+$request->addOrder(Common\Order::withDispatchNumber($dispatchNumber));
 
 $response = $client->sendInfoReportRequest($request);
 

@@ -103,6 +103,7 @@ final class Package
      */
     protected $items = [];
 
+    /** @return self */
     public function addItem(Item $item)
     {
         $this->items[] = $item;

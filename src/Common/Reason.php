@@ -68,7 +68,7 @@ final class Reason
      * @JMS\XmlList(entry="State", inline=true)
      * @JMS\Type("array<CdekSDK\Common\State>")
      *
-     * @var State[]|array
+     * @var State[]
      */
     private $states = [];
 

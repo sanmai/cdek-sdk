@@ -25,26 +25,19 @@
  */
 
 declare(strict_types=1);
+use CdekSDK\Common;
+use CdekSDK\Requests;
 
-namespace CdekSDK\Requests\Concerns;
+$client = new \CdekSDK\CdekClient('account', 'password');
 
-use CdekSDK\Common\Order;
+$request = new Requests\PreAlertRequest([
+    'PvzCode' => 'NSK333',
+]);
 
-trait OrdersAware
-{
-    /**
-     * @JMS\XmlList(entry = "Order", inline = true)
-     * @JMS\Type("array<CdekSDK\Common\Order>")
-     *
-     * @var Order[]
-     */
-    protected $orders = [];
+$request->addOrder(Common\Order::withDispatchNumber('12345678'));
 
-    /**
-     * @return Order[]
-     */
-    final public function getOrders()
-    {
-        return $this->orders;
-    }
+$response = $client->sendPreAlertRequest($request, new \DateTime('tomorrow'));
+
+if ($response->hasErrors()) {
+    // обработка ошибок
 }

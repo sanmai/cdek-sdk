@@ -59,7 +59,7 @@ final class StatusReportResponse implements Response, HasErrorCode, \IteratorAgg
      * @JMS\XmlList(inline = true, entry = "Order")
      * @JMS\Type("array<CdekSDK\Common\Order>")
      *
-     * @var Order[]|array
+     * @var Order[]
      */
     private $orders = [];
 
@@ -90,7 +90,7 @@ final class StatusReportResponse implements Response, HasErrorCode, \IteratorAgg
     }
 
     /**
-     * @return Order[]|array
+     * @return Order[]
      */
     public function getOrders()
     {

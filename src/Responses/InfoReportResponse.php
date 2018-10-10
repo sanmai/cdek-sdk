@@ -50,7 +50,7 @@ final class InfoReportResponse implements Response, \IteratorAggregate
     private $orders = [];
 
     /**
-     * @return Order[]|array
+     * @return Order[]
      */
     public function getOrders()
     {

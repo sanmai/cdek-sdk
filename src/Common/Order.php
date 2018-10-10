@@ -612,7 +612,7 @@ final class Order implements HasErrorCode
     }
 
     /**
-     * @return AdditionalService[]|array
+     * @return AdditionalService[]
      */
     public function getAdditionalServices()
     {
@@ -620,7 +620,7 @@ final class Order implements HasErrorCode
     }
 
     /**
-     * @return Attempt[]|array
+     * @return Attempt[]
      */
     public function getScheduleAttempts()
     {
@@ -628,7 +628,7 @@ final class Order implements HasErrorCode
     }
 
     /**
-     * @return Package[]|array
+     * @return Package[]
      */
     public function getPackages()
     {
@@ -636,7 +636,7 @@ final class Order implements HasErrorCode
     }
 
     /**
-     * @return CallCourier[]|array
+     * @return CallCourier[]
      */
     public function getCourierCalls()
     {
@@ -662,13 +662,14 @@ final class Order implements HasErrorCode
     }
 
     /**
-     * @return Attempt[]|array
+     * @return Attempt[]
      */
     public function getAttempts()
     {
         return $this->attempts;
     }
 
+    /** @return self */
     public function addAttempt(Attempt $attempt)
     {
         $this->attempts[] = $attempt;

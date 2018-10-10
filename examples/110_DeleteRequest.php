@@ -25,26 +25,24 @@
  */
 
 declare(strict_types=1);
+use CdekSDK\Common;
+use CdekSDK\Requests;
 
-namespace CdekSDK\Requests\Concerns;
+$client = new \CdekSDK\CdekClient('account', 'password');
 
-use CdekSDK\Common\Order;
+$request = Requests\DeleteRequest::create([
+    'Number' => 'TESTING123',
+])->addOrder(new Common\Order([
+    'Number' => 'TEST-123456',
+]));
 
-trait OrdersAware
-{
-    /**
-     * @JMS\XmlList(entry = "Order", inline = true)
-     * @JMS\Type("array<CdekSDK\Common\Order>")
-     *
-     * @var Order[]
-     */
-    protected $orders = [];
+$response = $client->sendDeleteRequest($request);
 
-    /**
-     * @return Order[]
-     */
-    final public function getOrders()
-    {
-        return $this->orders;
-    }
+if ($response->hasErrors()) {
+    // обработка ошибок
+}
+
+foreach ($response->getOrders() as $order) {
+    // проверяем номера удалённых заказов
+    $order->getNumber(); // должно быть 'TEST-123456'
 }

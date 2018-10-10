@@ -25,26 +25,32 @@
  */
 
 declare(strict_types=1);
+use CdekSDK\Common;
+use CdekSDK\Requests;
 
-namespace CdekSDK\Requests\Concerns;
+$client = new \CdekSDK\CdekClient('account', 'password');
 
-use CdekSDK\Common\Order;
+$request = new Requests\ScheduleRequest();
+$request = $request->addOrder(Common\Order::create([
+    'DispatchNumber' => '123456',
+])->addAttempt(Common\Attempt::create([
+    'ID'   => 500,
+    'Date' => new \DateTime('next Monday'),
+])->addPackage(Common\Package::create([
+    'Number'  => 'TEST-123456',
+    'BarCode' => 'TEST-123456',
+    'Weight'  => 500,
+])->addItem(new Common\Item([
+    'WareKey' => 'NN0001',
+    'Cost'    => 500,
+    'Payment' => 0,
+    'Weight'  => 120,
+    'Amount'  => 2,
+    'Comment' => 'Test item',
+])))));
 
-trait OrdersAware
-{
-    /**
-     * @JMS\XmlList(entry = "Order", inline = true)
-     * @JMS\Type("array<CdekSDK\Common\Order>")
-     *
-     * @var Order[]
-     */
-    protected $orders = [];
+$response = $client->sendScheduleRequest($request);
 
-    /**
-     * @return Order[]
-     */
-    final public function getOrders()
-    {
-        return $this->orders;
-    }
+if ($response->hasErrors()) {
+    // обработка ошибок
 }

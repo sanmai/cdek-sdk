@@ -25,26 +25,33 @@
  */
 
 declare(strict_types=1);
+use CdekSDK\Common;
+use CdekSDK\Requests;
 
-namespace CdekSDK\Requests\Concerns;
+$client = new \CdekSDK\CdekClient('account', 'password');
+$dispatchNumber = '';
 
-use CdekSDK\Common\Order;
+$request = Requests\CallCourierRequest::create()->addCall(Common\CallCourier::create([
+    'Date'           => new \DateTime('tomorrow'),
+    'DispatchNumber' => $dispatchNumber,
+    'TimeBeg'        => new \DateTime('10:00'),
+    'TimeEnd'        => new \DateTime('17:00'),
+    'SendCityCode'   => 44,
+    'SenderName'     => 'Проверка Тестович',
+    'SendPhone'      => '+78001001010',
+])->setAddress(Common\Address::create([
+    'Street' => 'Тестовая',
+    'House'  => '8',
+    'Flat'   => '32',
+])));
 
-trait OrdersAware
-{
-    /**
-     * @JMS\XmlList(entry = "Order", inline = true)
-     * @JMS\Type("array<CdekSDK\Common\Order>")
-     *
-     * @var Order[]
-     */
-    protected $orders = [];
+$response = $client->sendCallCourierRequest($request);
 
-    /**
-     * @return Order[]
-     */
-    final public function getOrders()
-    {
-        return $this->orders;
-    }
+if ($response->hasErrors()) {
+    // обработка ошибок
+}
+
+// Получаем номера заявок
+foreach ($response->getNumbers() as $number) {
+    $number; // ...
 }

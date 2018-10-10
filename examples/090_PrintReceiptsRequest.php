@@ -25,26 +25,28 @@
  */
 
 declare(strict_types=1);
+use CdekSDK\Common;
+use CdekSDK\Requests;
 
-namespace CdekSDK\Requests\Concerns;
+$dispatchNumber = '123';
+$client = new \CdekSDK\CdekClient('account', 'password');
 
-use CdekSDK\Common\Order;
+$request = new Requests\PrintReceiptsRequest();
+$request->addOrder(Common\Order::withDispatchNumber($dispatchNumber));
 
-trait OrdersAware
-{
-    /**
-     * @JMS\XmlList(entry = "Order", inline = true)
-     * @JMS\Type("array<CdekSDK\Common\Order>")
-     *
-     * @var Order[]
-     */
-    protected $orders = [];
+$response = $client->sendPrintReceiptsRequest($request);
 
-    /**
-     * @return Order[]
-     */
-    final public function getOrders()
-    {
-        return $this->orders;
-    }
+if ($response->hasErrors()) {
+    // обработка ошибок
 }
+
+// Или возвращаем содержимое PDF файла...
+return (string) $response->getBody();
+
+$orderFromAnotherResponse = new Common\Order();
+$number = '123';
+$dateString = 'now';
+
+$request = new Requests\PrintReceiptsRequest();
+$request->addOrder($orderFromAnotherResponse);
+$request->addOrder(Common\Order::withNumberAndDate($number, new \DateTime($dateString)));

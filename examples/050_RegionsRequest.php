@@ -25,26 +25,28 @@
  */
 
 declare(strict_types=1);
+use CdekSDK\Requests;
 
-namespace CdekSDK\Requests\Concerns;
+$client = new \CdekSDK\CdekClient('account', 'password');
 
-use CdekSDK\Common\Order;
+$request = new Requests\RegionsRequest();
+$request->setPage(0)->setSize(10);
 
-trait OrdersAware
-{
-    /**
-     * @JMS\XmlList(entry = "Order", inline = true)
-     * @JMS\Type("array<CdekSDK\Common\Order>")
-     *
-     * @var Order[]
-     */
-    protected $orders = [];
+$response = $client->sendRegionsRequest($request);
 
-    /**
-     * @return Order[]
-     */
-    final public function getOrders()
-    {
-        return $this->orders;
-    }
+if ($response->hasErrors()) {
+    // обработка ошибок
+}
+
+foreach ($response as $region) {
+    /** @var \CdekSDK\Common\Region $region */
+    $region->getUuid();
+    $region->getName();
+    $region->getPrefix();
+    $region->getCode();
+    $region->getCodeExt();
+    $region->getFiasGuid();
+    $region->getCountryName();
+    $region->getCountryCode();
+    $region->getCountryCodeExt();
 }

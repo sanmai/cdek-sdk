@@ -240,7 +240,7 @@ final class Pvz
      * @JMS\XmlList(entry="OfficeImage", inline=true)
      * @JMS\Type("array<CdekSDK\Common\OfficeImage>")
      *
-     * @var OfficeImage[]|array
+     * @var OfficeImage[]
      */
     public $OfficeImages = [];
 

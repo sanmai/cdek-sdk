@@ -25,26 +25,14 @@
  */
 
 declare(strict_types=1);
+require_once 'vendor/autoload.php';
 
-namespace CdekSDK\Requests\Concerns;
+$account = 'account';
+$password = 'password';
+$baseUri = 'http://';
 
-use CdekSDK\Common\Order;
+$client = new \CdekSDK\CdekClient($account, $password, new \GuzzleHttp\Client([
+    'base_uri' => $baseUri,
+]));
 
-trait OrdersAware
-{
-    /**
-     * @JMS\XmlList(entry = "Order", inline = true)
-     * @JMS\Type("array<CdekSDK\Common\Order>")
-     *
-     * @var Order[]
-     */
-    protected $orders = [];
-
-    /**
-     * @return Order[]
-     */
-    final public function getOrders()
-    {
-        return $this->orders;
-    }
-}
+return $client;

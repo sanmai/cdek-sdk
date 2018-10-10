@@ -26,25 +26,33 @@
 
 declare(strict_types=1);
 
-namespace CdekSDK\Requests\Concerns;
+use CdekSDK\Requests;
 
-use CdekSDK\Common\Order;
+$client = new \CdekSDK\CdekClient('account', 'password');
 
-trait OrdersAware
-{
-    /**
-     * @JMS\XmlList(entry = "Order", inline = true)
-     * @JMS\Type("array<CdekSDK\Common\Order>")
-     *
-     * @var Order[]
-     */
-    protected $orders = [];
+$request = new Requests\CitiesRequest();
+$request->setPage(0)->setSize(10)->setRegionCode(50);
 
-    /**
-     * @return Order[]
-     */
-    final public function getOrders()
-    {
-        return $this->orders;
-    }
+$response = $client->sendCitiesRequest($request);
+
+if ($response->hasErrors()) {
+    // обработка ошибок
+}
+
+foreach ($response as $location) {
+    /** @var \CdekSDK\Common\Location $location */
+    $location->getCityName();
+    $location->getCityCode();
+    $location->getCityUuid();
+    $location->getCountry();
+    $location->getCountryCode();
+    $location->getRegion();
+    $location->getRegionCode();
+    $location->getRegionCodeExt();
+    $location->getSubRegion();
+    $location->getPaymentLimit();
+    $location->getLatitude();
+    $location->getLongitude();
+    $location->getKladr();
+    $location->getFiasGuid();
 }

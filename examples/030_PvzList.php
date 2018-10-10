@@ -26,25 +26,32 @@
 
 declare(strict_types=1);
 
-namespace CdekSDK\Requests\Concerns;
+use CdekSDK\Requests;
 
-use CdekSDK\Common\Order;
+$client = new \CdekSDK\CdekClient('account', 'password');
 
-trait OrdersAware
-{
-    /**
-     * @JMS\XmlList(entry = "Order", inline = true)
-     * @JMS\Type("array<CdekSDK\Common\Order>")
-     *
-     * @var Order[]
-     */
-    protected $orders = [];
+$request = new Requests\PvzListRequest();
+$request->setCityId(250);
+$request->setType(Requests\PvzListRequest::TYPE_ALL);
+$request->setCashless(true);
+$request->setCodAllowed(true);
+$request->setDressingRoom(true);
 
-    /**
-     * @return Order[]
-     */
-    final public function getOrders()
-    {
-        return $this->orders;
+$response = $client->sendPvzListRequest($request);
+
+if ($response->hasErrors()) {
+    // обработка ошибок
+}
+
+foreach ($response as $item) {
+    /** @var \CdekSDK\Common\Pvz $item */
+
+    // всевозможные параметры соответствуют полям из API СДЭК
+    $item->Code;
+    $item->Name;
+    $item->Address;
+
+    foreach ($item->OfficeImages as $image) {
+        $image->getUrl();
     }
 }

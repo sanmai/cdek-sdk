@@ -180,12 +180,12 @@ class DeliveryRequestTest extends TestCase
         $request = new AddDeliveryRequest([
             'Number'          => self::TEST_NUMBER,
             'ForeignDelivery' => false,
-            'Currency'        => 'RUR',
+            'Currency'        => 'RUB',
         ]);
         $request->addOrder($order);
 
         $this->assertSameAsXML('<?xml version="1.0" encoding="UTF-8"?>
-<DeliveryRequest OrderCount="1" Number="TESTING123" ForeignDelivery="false" Currency="RUR">
+<DeliveryRequest OrderCount="1" Number="TESTING123" ForeignDelivery="false" Currency="RUB">
   <Order SendCityCode="44" SendCityPostCode="" RecCityPostCode="630001" ClientSide="sender" Number="TEST-123456" RecipientCompany="Петров и партнёры, ООО" RecipientName="Иван Петров" RecipientEmail="petrov@test.ru" Phone="+7 (383) 202-22-50" TariffTypeCode="1" Comment="Это тестовый заказ">
     <Address Street="Холодильная улица" House="16" Flat="22" PvzCode="TST123"/>
     <AddService ServiceCode="17"/>

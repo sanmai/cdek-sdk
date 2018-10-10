@@ -220,7 +220,7 @@ class DeliveryRequestTest extends TestCase
         $request = new AddDeliveryRequest([
             'Number'          => self::TEST_NUMBER,
             'ForeignDelivery' => false,
-            'Currency'        => 'RUR',
+            'Currency'        => 'RUB',
         ]);
         $request->addOrder($order);
 

@@ -79,7 +79,7 @@ $order->addService(Common\AdditionalService::create(Common\AdditionalService::SE
 $request = new Requests\AddDeliveryRequest([
     'Number'          => 'TESTING123',
     'ForeignDelivery' => false,
-    'Currency'        => 'RUR',
+    'Currency'        => 'RUB',
 ]);
 $request->addOrder($order);
 

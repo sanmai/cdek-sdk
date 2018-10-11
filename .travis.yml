@@ -35,7 +35,8 @@ cache:
 
 install:
   - phpenv config-rm xdebug.ini || true
-  - composer install --prefer-dist
+  - composer remove --no-update --dev phan/phan phpstan/phpstan vimeo/psalm infection/infection friendsofphp/php-cs-fixer
+  - composer install --prefer-dist --ignore-platform-reqs
 
 script:
   - make ci-test --keep-going

@@ -58,7 +58,6 @@ class CitiesRequestTest extends TestCase
         $location = $response->getItems()[0];
 
         $this->assertNotEmpty($location->getName());
-        $this->assertSame(0.0, $location->getPaymentLimit());
     }
 
     public function test_with_everything()

@@ -5,12 +5,9 @@ php:
   - 7.0
   - 7.1
   - 7.2
-  - nightly
 
 matrix:
   fast_finish: true
-  allow_failures:
-    - nightly
 
 stages:
   - analyze
@@ -34,7 +31,7 @@ cache:
     - build/cache
 
 install:
-  - phpenv config-rm xdebug.ini || true
+  - phpenv config-rm xdebug.ini
   - composer install --prefer-dist
 
 script:

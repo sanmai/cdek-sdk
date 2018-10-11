@@ -35,7 +35,7 @@ vendor/bin/phpunit --group=integration --debug
 
 # Бэйджи и прочее
 
-[![Coverage Status](https://coveralls.io/repos/github/sanmai/cdek-sdk/badge.svg?branch=master)](https://coveralls.io/github/sanmai/cdek-sdk?branch=master)
+[![Code Coverage](https://scrutinizer-ci.com/g/sanmai/cdek-sdk/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/sanmai/cdek-sdk/?branch=master)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/sanmai/cdek-sdk/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/sanmai/cdek-sdk/?branch=master)
 
 

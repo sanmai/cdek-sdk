@@ -12,18 +12,33 @@ matrix:
   allow_failures:
     - nightly
 
+stages:
+  - analyze
+  - test
+
+jobs:
+  include:
+    - stage: analyze
+      php: 7.2
+      install:
+        - pecl install ast
+        - phpenv config-rm xdebug.ini
+        - composer install --prefer-dist
+      script:
+        - make ci-analyze --keep-going
+        - composer validate
+
 cache:
   directories:
     - $HOME/.composer
     - build/cache
 
 install:
-  - pecl install ast
+  - phpenv config-rm xdebug.ini
   - composer install --prefer-dist
 
 script:
-  - make ci --keep-going COMPOSER='/bin/sh -c composer'
-  - composer validate
+  - make ci-test --keep-going
 
 after_success:
   - travis_retry php vendor/bin/php-coveralls

@@ -81,8 +81,7 @@ class CalculationRequestTest extends TestCase
         $response = $this->getClient()->sendCalculationRequest($request);
 
         foreach ($response->getErrors() as $error) {
-            $this->assertEmpty($error->getMessage());
-            $this->fail($error->getErrorCode());
+            $this->fail("{$error->getErrorCode()}: {$error->getMessage()}");
         }
 
         $this->assertFalse($response->hasErrors());

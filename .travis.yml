@@ -6,11 +6,14 @@ php:
   - 7.1
   - 7.2
   - nightly
+env:
+  - GROUP=default
 
 matrix:
   fast_finish: true
   allow_failures:
     - nightly
+    - env: GROUP=integration
 
 stages:
   - analyze
@@ -18,6 +21,9 @@ stages:
 
 jobs:
   include:
+    - if: branch = master
+      php: 7.0
+      env: GROUP=integration
     - stage: analyze
       php: 7.2
       install:
@@ -35,11 +41,13 @@ cache:
 
 install:
   - phpenv config-rm xdebug.ini || true
-  - composer remove --no-update --dev phan/phan phpstan/phpstan vimeo/psalm infection/infection friendsofphp/php-cs-fixer
+  - composer remove --no-update --dev
+      phan/phan phpstan/phpstan vimeo/psalm
+      infection/infection friendsofphp/php-cs-fixer
   - composer install --prefer-dist
 
 script:
-  - make ci-test --keep-going
+  - make ci-test --keep-going PHPUNIT_GROUP=$GROUP
 
 after_success:
   - travis_retry php vendor/bin/php-coveralls

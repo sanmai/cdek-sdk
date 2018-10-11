@@ -8,14 +8,11 @@ php:
   - nightly
 env:
   - PHPUNIT_GROUP=default
-  - PHPUNIT_GROUP=integration
 
 matrix:
   fast_finish: true
   allow_failures:
     - nightly
-    - env: PHPUNIT_GROUP=integration
-  exclude:
     - env: PHPUNIT_GROUP=integration
 
 stages:
@@ -24,6 +21,9 @@ stages:
 
 jobs:
   include:
+    - if: branch != master
+      php: 7.0
+      env: PHPUNIT_GROUP=integration
     - stage: analyze
       php: 7.2
       install:

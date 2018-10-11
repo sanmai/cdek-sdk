@@ -18,7 +18,8 @@ export PHP_CS_FIXER_IGNORE_ENV=1
 # PHPUnit
 PHPUNIT=vendor/bin/phpunit
 PHPUNIT_COVERAGE_CLOVER=--coverage-clover=build/logs/clover.xml
-PHPUNIT_ARGS=--coverage-xml=build/logs/coverage-xml --log-junit=build/logs/phpunit.junit.xml $(PHPUNIT_COVERAGE_CLOVER)
+PHPUNIT_GROUP=default
+PHPUNIT_ARGS=--coverage-xml=build/logs/coverage-xml --log-junit=build/logs/phpunit.junit.xml $(PHPUNIT_COVERAGE_CLOVER) --group=$(PHPUNIT_GROUP)
 
 # Phan
 PHAN=vendor/bin/phan
@@ -54,7 +55,6 @@ all: test
 ci-test: SILENT=
 ci-test: prerequisites
 	$(SILENT) $(PHPDBG) $(PHPUNIT) $(PHPUNIT_COVERAGE_CLOVER)
-	@#php -v | grep -q 7.0 && $(SILENT) $(PHP) $(PHPUNIT) --group=integration --coverage-clover=build/logs/clover-integration.xml || true
 
 ci-analyze: SILENT=
 ci-analyze: prerequisites ci-phpunit ci-infection ci-phan ci-phpstan ci-psalm

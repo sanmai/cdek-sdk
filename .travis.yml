@@ -21,7 +21,7 @@ stages:
 
 jobs:
   include:
-    - if: branch != master
+    - if: branch = master
       php: 7.0
       env: GROUP=integration
     - stage: analyze

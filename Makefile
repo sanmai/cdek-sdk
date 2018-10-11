@@ -2,6 +2,7 @@
 
 # Use any most recent PHP version
 PHP=$(shell which php7.2 || which php7.1 || which php)
+PHPDBG=phpdbg -qrr
 
 # Default parallelism
 JOBS=$(shell nproc)
@@ -16,7 +17,8 @@ export PHP_CS_FIXER_IGNORE_ENV=1
 
 # PHPUnit
 PHPUNIT=vendor/bin/phpunit
-PHPUNIT_ARGS=--coverage-xml=build/logs/coverage-xml --log-junit=build/logs/phpunit.junit.xml --coverage-clover=build/logs/clover.xml
+PHPUNIT_COVERAGE_CLOVER=--coverage-clover=build/logs/clover.xml
+PHPUNIT_ARGS=--coverage-xml=build/logs/coverage-xml --log-junit=build/logs/phpunit.junit.xml $(PHPUNIT_COVERAGE_CLOVER)
 
 # Phan
 PHAN=vendor/bin/phan
@@ -49,18 +51,28 @@ all: test
 # Continuous Integration                                     #
 ##############################################################
 
-ci: SILENT=
-ci: prerequisites ci-phpunit ci-analyze
+ci-test: SILENT=
+ci-test: prerequisites
+	$(SILENT) $(PHPDBG) $(PHPUNIT) $(PHPUNIT_COVERAGE_CLOVER)
+	@#php -v | grep -q 7.0 && $(SILENT) $(PHP) $(PHPUNIT) --group=integration --coverage-clover=build/logs/clover-integration.xml || true
+
+ci-analyze: SILENT=
+ci-analyze: prerequisites ci-phpunit ci-infection ci-phan ci-phpstan ci-psalm
 
 ci-phpunit: ci-cs
-	$(SILENT) $(PHP) $(PHPUNIT) $(PHPUNIT_ARGS)
-	if php -v | grep -q $(INFECTION_PHP_VERSION); then $(SILENT) $(PHP) $(INFECTION) $(INFECTION_ARGS); fi
-	#php -v | grep -q 7.0 && $(SILENT) $(PHP) $(PHPUNIT) --group=integration --coverage-clover=build/logs/clover-integration.xml || true
+	$(SILENT) $(PHPDBG) $(PHPUNIT) $(PHPUNIT_ARGS)
 
-ci-analyze: ci-cs
+ci-infection: ci-phpunit
+	$(SILENT) $(PHP) $(INFECTION) $(INFECTION_ARGS)
+
+ci-phan: ci-cs
 	$(SILENT) $(PHP) $(PHAN) $(PHAN_ARGS)
+
+ci-phpstan: ci-cs
 	$(SILENT) $(PHP) $(PHPSTAN) $(PHPSTAN_ARGS) --no-progress
-	if php -v | grep -q $(PSALM_PHP_VERSION); then $(SILENT) $(PHP) $(PSALM) $(PSALM_ARGS) --no-cache; fi
+
+ci-psalm: ci-cs
+	$(SILENT) $(PHP) $(PSALM) $(PSALM_ARGS) --no-cache
 
 ci-cs: prerequisites
 	$(SILENT) $(PHP) $(PHP_CS_FIXER) $(PHP_CS_FIXER_ARGS) --dry-run --stop-on-violation fix

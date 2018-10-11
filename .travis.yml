@@ -7,13 +7,13 @@ php:
   - 7.2
   - nightly
 env:
-  - PHPUNIT_GROUP=default
+  - GROUP=default
 
 matrix:
   fast_finish: true
   allow_failures:
     - nightly
-    - env: PHPUNIT_GROUP=integration
+    - env: GROUP=integration
 
 stages:
   - analyze
@@ -23,7 +23,7 @@ jobs:
   include:
     - if: branch != master
       php: 7.0
-      env: PHPUNIT_GROUP=integration
+      env: GROUP=integration
     - stage: analyze
       php: 7.2
       install:
@@ -45,7 +45,7 @@ install:
   - composer install --prefer-dist
 
 script:
-  - make ci-test --keep-going PHPUNIT_GROUP=$PHPUNIT_GROUP
+  - make ci-test --keep-going PHPUNIT_GROUP=$GROUP
 
 after_success:
   - travis_retry php vendor/bin/php-coveralls

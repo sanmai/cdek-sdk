@@ -39,7 +39,8 @@ class PreAlertRequestTest extends TestCase
     public function test_can_serialize()
     {
         $request = new PreAlertRequest([
-            'PvzCode' => 'NSK333',
+            'PvzCode'            => 'NSK333',
+            'PlannedMeetingDate' => new \DateTime('2017-10-12'),
         ]);
 
         $request->date(new \DateTime('2017-09-29'))->credentials('123', '456');
@@ -52,7 +53,7 @@ class PreAlertRequestTest extends TestCase
         ]));
 
         $this->assertSameAsXML('<?xml version="1.0" encoding="UTF-8"?>
-<PreAlert OrderCount="2" Date="2017-09-29" Account="123" Secure="456" PvzCode="NSK333">
+<PreAlert OrderCount="2" Date="2017-09-29" Account="123" Secure="456" PvzCode="NSK333" PlannedMeetingDate="2017-10-12">
   <Order DispatchNumber="bar"/>
   <Order Number="foo"/>
 </PreAlert>

@@ -54,7 +54,7 @@ use function GuzzleHttp\default_user_agent;
  * @method Responses\DeliveryResponse                   sendAddDeliveryRequest(Requests\AddDeliveryRequest $request)
  * @method Responses\CallCourierResponse                sendCallCourierRequest(Requests\CallCourierRequest $request)
  * @method Responses\ScheduleResponse                   sendScheduleRequest(Requests\ScheduleRequest $request)
- * @method Responses\PreAlertResponse                   sendPreAlertRequest(Requests\PreAlertRequest $request, $plannedDate = null)
+ * @method Responses\PreAlertResponse                   sendPreAlertRequest(Requests\PreAlertRequest $request)
  * @method Responses\InfoReportResponse<Common\Order>   sendInfoReportRequest(Requests\InfoReportRequest $request)
  * @method Responses\CalculationResponse                sendCalculationRequest(Requests\CalculationRequest $request)
  * @method Responses\StatusReportResponse<Common\Order> sendStatusReportRequest(Requests\StatusReportRequest $request)

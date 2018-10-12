@@ -521,19 +521,18 @@ if ($response->hasErrors()) {
 
 ### Создание преалерта
 
-Обратите внимание что дата планируемой передачи идёт не в объекте запроса, а как аргумент при отправке запроса.
-
 ```php
 use CdekSDK\Common;
 use CdekSDK\Requests;
 
 $request = new Requests\PreAlertRequest([
-    'PvzCode' => 'NSK333',
+    'PvzCode'            => 'NSK333',
+    'PlannedMeetingDate' => new \DateTime('2017-10-12'),
 ]);
 
 $request->addOrder(Common\Order::withDispatchNumber('12345678'));
 
-$response = $client->sendPreAlertRequest($request, new \DateTime('tomorrow'));
+$response = $client->sendPreAlertRequest($request);
 
 if ($response->hasErrors()) {
     // обработка ошибок

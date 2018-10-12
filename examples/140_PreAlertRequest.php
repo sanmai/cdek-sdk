@@ -31,12 +31,13 @@ use CdekSDK\Requests;
 $client = new \CdekSDK\CdekClient('account', 'password');
 
 $request = new Requests\PreAlertRequest([
-    'PvzCode' => 'NSK333',
+    'PvzCode'            => 'NSK333',
+    'PlannedMeetingDate' => new \DateTime('2017-10-12'),
 ]);
 
 $request->addOrder(Common\Order::withDispatchNumber('12345678'));
 
-$response = $client->sendPreAlertRequest($request, new \DateTime('tomorrow'));
+$response = $client->sendPreAlertRequest($request);
 
 if ($response->hasErrors()) {
     // обработка ошибок

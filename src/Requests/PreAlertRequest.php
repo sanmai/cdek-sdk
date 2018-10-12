@@ -48,4 +48,14 @@ final class PreAlertRequest extends DeliveryRequest
      * @var string
      */
     protected $PvzCode;
+
+    /**
+     * Дата планируемой передачи. В формате YYYY-MM-DD.
+     *
+     * @JMS\XmlAttribute
+     * @JMS\Type("DateTimeImmutable<'Y-m-d'>")
+     *
+     * @var \DateTimeImmutable
+     */
+    protected $PlannedMeetingDate;
 }

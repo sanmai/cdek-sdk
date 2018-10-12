@@ -1,5 +1,6 @@
 # PHP SDK для API СДЭК
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/f99630e6f04944d09088ea5e198634b7)](https://app.codacy.com/app/sanmai/cdek-sdk?utm_source=github.com&utm_medium=referral&utm_content=sanmai/cdek-sdk&utm_campaign=Badge_Grade_Dashboard)
 [![Latest Stable Version](https://poser.pugx.org/sanmai/cdek-sdk/v/stable)](https://packagist.org/packages/sanmai/cdek-sdk)
 [![Build Status](https://travis-ci.org/sanmai/cdek-sdk.svg?branch=master)](https://travis-ci.org/sanmai/cdek-sdk)
 [![Coverage Status](https://coveralls.io/repos/github/sanmai/cdek-sdk/badge.svg?branch=master)](https://coveralls.io/github/sanmai/cdek-sdk?branch=master)

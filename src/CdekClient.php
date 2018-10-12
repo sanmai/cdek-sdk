@@ -38,7 +38,7 @@ use CdekSDK\Responses\ErrorResponse;
 use CdekSDK\Responses\FileResponse;
 use GuzzleHttp\Client as GuzzleClient;
 use GuzzleHttp\ClientInterface;
-use GuzzleHttp\Exception\ServerException;
+use GuzzleHttp\Exception\BadResponseException;
 use JMS\Serializer\SerializerInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Log\LoggerAwareInterface;
@@ -149,7 +149,7 @@ final class CdekClient implements Contracts\Client, LoggerAwareInterface
                 $request->getAddress(),
                 $this->extractOptions($request)
             );
-        } catch (ServerException $exception) {
+        } catch (BadResponseException $exception) {
             // Новые методы СДЭК дают 500 ошибку, вместе с тем отдавая XML с ошибкой
             if (!$response = $exception->getResponse()) {
                 // В случае ошибок без содержимого кидаем исключение дальше

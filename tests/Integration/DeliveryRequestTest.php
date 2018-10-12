@@ -157,6 +157,12 @@ class DeliveryRequestTest extends TestCase
 
         $this->skipIfKnownAPIErrorCode($response);
 
+        foreach ($response->getMessages() as $message) {
+            if ($message->getErrorCode() === 'ERR_AUTH') {
+                $this->fail("Access keys require an update; received {$message->getErrorCode()}: {$message->getMessage()}");
+            }
+        }
+
         $this->assertTrue($response->hasErrors());
         $this->assertCount(2, $response->getMessages());
 

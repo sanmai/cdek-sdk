@@ -24,6 +24,7 @@
         }
     ],
     "support": {
+        "telegram": "https://t.me/phpcdeksdk",
         "issues": "https://github.com/sanmai/cdek-sdk/issues",
         "docs": "https://github.com/sanmai/cdek-sdk/blob/master/README.md"
     },

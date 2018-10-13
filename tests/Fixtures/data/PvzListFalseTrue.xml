@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<PvzList>
+  <Pvz Code="EKB8" PostalCode="620014" Name="На Вайнера" CountryCode="1" CountryName="Россия" RegionCode="24" RegionName="Свердловская обл." CityCode="250" City="Екатеринбург" WorkTime="Пн-Пт 10:00-20:00, Сб-Вс 10:00-17:00" Address="ул. Вайнера, 51б, 1-5" FullAddress="Россия, Свердловская обл., Екатеринбург, ул. Вайнера, 51б, 1-5" AddressComment="" Phone="+73433630371" Email="johnrea@mail.ru" qqId="" Note="" coordX="60.5982933" coordY="56.8276253" Type="PVZ" ownerCode="cdek" IsDressingRoom="true" HaveCashless="true" AllowedCod="true" NearestStation="" MetroStation="" Site="https://www.cdek.ru/contacts/g_ekaterinburg_ulvaynera_d51b_of1-3.html">
+    <PhoneDetail number="+73433630371"/>
+    <WorkTimeY day="1" periods="10:00/20:00"/>
+    <WorkTimeY day="2" periods="10:00/20:00"/>
+    <WorkTimeY day="3" periods="10:00/20:00"/>
+    <WorkTimeY day="4" periods="10:00/20:00"/>
+    <WorkTimeY day="5" periods="10:00/20:00"/>
+    <WorkTimeY day="6" periods="10:00/17:00"/>
+    <WorkTimeY day="7" periods="10:00/17:00"/>
+    <WeightLimit WeightMin="0" WeightMax="30"/>
+  </Pvz>
+</PvzList>
+

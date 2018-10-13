@@ -66,6 +66,7 @@ class PvzListResponseTest extends TestCase
         $this->assertInstanceOf(Pvz::class, $item);
 
         $this->assertAttributeInternalType('boolean', 'HaveCashless', $item);
+        $this->assertTrue($item->HaveCashless);
 
         /** @var $item Pvz */
         $this->assertSame('EKB8', $item->Code);
@@ -73,6 +74,25 @@ class PvzListResponseTest extends TestCase
         $item = $response->getItems()[2];
         $this->assertCount(1, $item->OfficeImages);
         $this->assertStringStartsWith('http', $item->OfficeImages[0]->getUrl());
+    }
+
+    public function test_new_true_false()
+    {
+        $response = $this->getSerializer()->deserialize(FixtureLoader::load('PvzListFalseTrue.xml'), PvzListResponse::class, 'xml');
+
+        /** @var $response PvzListResponse */
+        $this->assertInstanceOf(PvzListResponse::class, $response);
+        /** @var $response PvzListResponse */
+        $this->assertInstanceOf(PvzListResponse::class, $response);
+        $this->assertNotEmpty($response->getItems());
+        $this->assertCount(1, $response->getItems());
+        $this->assertCount(1, $response);
+
+        $item = $response->getItems()[0];
+        $this->assertInstanceOf(Pvz::class, $item);
+
+        $this->assertAttributeInternalType('boolean', 'HaveCashless', $item);
+        $this->assertTrue($item->HaveCashless);
     }
 
     public function test_it_has_no_errors()

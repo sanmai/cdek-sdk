@@ -66,71 +66,129 @@ final class ErrorResponse implements Response, ResponseInterface
         return [];
     }
 
+    /**
+     * {@inheritdoc}
+     *
+     * @psalm-suppress MixedArgument
+     */
     public function withStatus($code, $reasonPhrase = '')
     {
         return $this->response->withStatus($code, $reasonPhrase);
     }
 
+    /**
+     * {@inheritdoc}
+     *
+     * @psalm-suppress MixedArgument
+     */
     public function hasHeader($name)
     {
         return $this->response->hasHeader($name);
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function getHeaders()
     {
         return $this->response->getHeaders();
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function getBody()
     {
         return $this->response->getBody();
     }
 
+    /**
+     * {@inheritdoc}
+     *
+     * @psalm-suppress MixedArgument
+     */
     public function withProtocolVersion($version)
     {
         return $this->response->withProtocolVersion($version);
     }
 
+    /**
+     * {@inheritdoc}
+     *
+     * @psalm-suppress MixedArgument
+     */
     public function withoutHeader($name)
     {
         return $this->response->withoutHeader($name);
     }
 
+    /**
+     * {@inheritdoc}
+     *
+     * @psalm-suppress MixedArgument
+     */
     public function getHeaderLine($name)
     {
         return $this->response->getHeaderLine($name);
     }
 
+    /**
+     * {@inheritdoc}
+     *
+     * @psalm-suppress MixedArgument
+     */
     public function withHeader($name, $value)
     {
         return $this->response->withHeader($name, $value);
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function withBody(StreamInterface $body)
     {
         return $this->response->withBody($body);
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function getReasonPhrase()
     {
         return $this->response->getReasonPhrase();
     }
 
+    /**
+     * {@inheritdoc}
+     *
+     * @psalm-suppress MixedArgument
+     */
     public function getHeader($name)
     {
         return $this->response->getHeader($name);
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function getProtocolVersion()
     {
         return $this->response->getProtocolVersion();
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function getStatusCode()
     {
         return $this->response->getStatusCode();
     }
 
+    /**
+     * {@inheritdoc}
+     *
+     * @psalm-suppress MixedArgument
+     */
     public function withAddedHeader($name, $value)
     {
         return $this->response->withAddedHeader($name, $value);

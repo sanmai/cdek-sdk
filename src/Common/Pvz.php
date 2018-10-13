@@ -250,7 +250,7 @@ final class Pvz
     private function postDeserialize()
     {
         foreach (self::BOOLEAN_FIELDS as $field) {
-            $this->{$field} = $this->{$field} === 'есть';
+            $this->{$field} = $this->{$field} === 'есть' || $this->{$field} === 'true';
         }
     }
 }

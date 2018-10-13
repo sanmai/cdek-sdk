@@ -366,4 +366,59 @@ class CdekClientTest extends TestCase
         /** @var ClientInterface $value */
         $this->assertContains(CdekClient::PACKAGE_NAME, $value->getConfig()['headers']['User-Agent']);
     }
+
+    public function test_it_adds_date_and_secure()
+    {
+        $request = new class() implements ParamRequest, ShouldAuthorize {
+            public function getMethod(): string
+            {
+                return 'POST';
+            }
+
+            public function getAddress(): string
+            {
+                return '';
+            }
+
+            public function getResponseClassName(): string
+            {
+                return '';
+            }
+
+            public function getSerializationFormat(): string
+            {
+                return '';
+            }
+
+            private $params = [];
+
+            public function getParams(): array
+            {
+                return $this->params;
+            }
+
+            public function date(\DateTimeInterface $date): ShouldAuthorize
+            {
+                $this->params['date'] = $date->format('Y-m-d');
+
+                return $this;
+            }
+
+            public function credentials(string $account, string $secure): ShouldAuthorize
+            {
+                $this->params['account'] = $account;
+                $this->params['secure'] = $secure;
+
+                return $this;
+            }
+        };
+
+        $client = new CdekClient('foo', 'bar', $this->getHttpClient('text/plain', 'example'));
+        $client->sendRequest($request, new \DateTimeImmutable('2018-10-13'));
+
+        $this->assertArrayHasKey('form_params', $this->lastRequestOptions);
+        $this->assertSame('2018-10-13', $this->lastRequestOptions['form_params']['date']);
+        $this->assertSame('foo', $this->lastRequestOptions['form_params']['account']);
+        $this->assertSame('74938bff7e92a0cb141d94fe6da88b6b', $this->lastRequestOptions['form_params']['secure']);
+    }
 }

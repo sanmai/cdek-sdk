@@ -35,8 +35,31 @@ class DebuggingLogger implements LoggerInterface
 {
     use LoggerTrait;
 
+    /**
+     * @param mixed  $level
+     * @param string $message
+     * @param array  $context
+     *
+     * @psalm-suppress MixedTypeCoercion
+     */
     public function log($level, $message, array $context = [])
     {
-        fwrite(\STDERR, "\n\n{$message}\n\n");
+        if ($context) {
+            $message = strtr($message, iterator_to_array(self::context2replacements($context), true));
+        }
+
+        fwrite(\STDERR, "\n{$message}\n\n");
+    }
+
+    /**
+     * @param array<string, string> $context
+     *
+     * @return \Generator
+     */
+    private static function context2replacements($context): \Generator
+    {
+        foreach ($context as $key => $value) {
+            yield '{'.$key.'}' => $value;
+        }
     }
 }

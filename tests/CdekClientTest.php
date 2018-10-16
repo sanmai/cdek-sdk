@@ -179,9 +179,12 @@ class CdekClientTest extends TestCase
 
         /** @var $response InfoReportResponse */
         $this->assertInstanceOf(InfoReportResponse::class, $response);
-        $this->assertSame(2, $logger->log->countRecordsWithLevel(LogLevel::DEBUG));
+        $this->assertSame(3, $logger->log->countRecordsWithLevel(LogLevel::DEBUG));
         $this->assertTrue($logger->log->hasRecordsWithMessage(FixtureLoader::load('InfoReportFailed.xml')));
         $this->assertTrue($logger->log->hasRecordsWithPartialMessage('<InfoRequest'));
+
+        $this->assertSame(1, $logger->log->countRecordsWithContextKey('method'));
+        $this->assertSame(1, $logger->log->countRecordsWithContextKey('location'));
     }
 
     public function test_client_can_pass_through_common_exceptions()
@@ -223,7 +226,7 @@ class CdekClientTest extends TestCase
 
         //$this->expectException(\RuntimeException::class);
         $response = $client->sendInfoReportRequest(new InfoReportRequest());
-        $this->assertSame(2, $logger->log->countRecordsWithLevel(LogLevel::DEBUG));
+        $this->assertSame(3, $logger->log->countRecordsWithLevel(LogLevel::DEBUG));
         $this->assertTrue($logger->log->hasRecordsWithPartialMessage('CDEK API responded with an HTTP error code'));
 
         $this->assertSame(1, $logger->log->countRecordsWithContextKey('exception'));

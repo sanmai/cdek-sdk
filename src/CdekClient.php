@@ -211,6 +211,11 @@ final class CdekClient implements Contracts\Client, LoggerAwareInterface
             $requestBody = $this->serializer->serialize($request, XmlRequest::SERIALIZATION_XML);
 
             if ($this->logger) {
+                $this->logger->debug('{method} {location}', [
+                    'method'   => $request->getMethod(),
+                    'location' => $request->getAddress(),
+                ]);
+
                 $this->logger->debug($requestBody);
             }
 

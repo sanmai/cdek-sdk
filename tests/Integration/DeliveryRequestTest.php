@@ -266,6 +266,12 @@ class DeliveryRequestTest extends TestCase
                     $this->markTestSkipped($message->getMessage());
                 }
 
+                // Новые заказы попадают в БД СДЭК с задержкой, потому квитанцию не всегда получается сразу получить
+                if ($message->getErrorCode() === 'ERR_INVALID_DISPATCHNUMBER') {
+                    $this->assertContains($dispatchNumber, $message->getMessage());
+                    $this->markTestSkipped($message->getMessage());
+                }
+
                 if ($message->getErrorCode()) {
                     $this->fail($message->getMessage());
                 }
@@ -327,6 +333,12 @@ class DeliveryRequestTest extends TestCase
         if ($response->hasErrors()) {
             foreach ($response->getMessages() as $message) {
                 if ($message->getErrorCode() === 'ERR_API') {
+                    $this->markTestSkipped($message->getMessage());
+                }
+
+                // Новые заказы попадают в БД СДЭК с задержкой, потому квитанцию не всегда получается сразу получить
+                if ($message->getErrorCode() === 'ERR_INVALID_DISPATCHNUMBER') {
+                    $this->assertContains($order->getDispatchNumber(), $message->getMessage());
                     $this->markTestSkipped($message->getMessage());
                 }
 

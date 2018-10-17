@@ -70,6 +70,7 @@ $package = Common\Package::create([
     'SizeA'   => 10, // Длина (в сантиметрах), в пределах от 1 до 1500
     'SizeB'   => 10,
     'SizeC'   => 10,
+    'Comment' => 'Обязательное описание вложения',
 ]);
 
 $order->addPackage($package);

@@ -218,6 +218,7 @@ class DeliveryRequestTest extends TestCase
             'SizeA'   => 10, // Длина (в сантиметрах), в пределах от 1 до 1500
             'SizeB'   => 10,
             'SizeC'   => 10,
+            'Comment' => 'Обязательное описание вложения',
         ]);
 
         $order->addPackage($package);
@@ -235,13 +236,6 @@ class DeliveryRequestTest extends TestCase
 
         $this->skipIfKnownAPIErrorCode($response);
 
-        // Это неудачный запрос так нет описания
-        foreach ($response->getMessages() as $message) {
-            if ('ERROR_VALIDATE_PACKAGE_NULL_DESCRIPTION' === $message->getErrorCode()) {
-                $this->markTestSkipped("{$message->getErrorCode()}: {$message->getMessage()}");
-            }
-        }
-
         foreach ($response->getMessages() as $message) {
             $this->assertEmpty($message->getErrorCode(), $message->getMessage());
         }
@@ -251,16 +245,6 @@ class DeliveryRequestTest extends TestCase
         foreach ($response->getOrders() as $order) {
             $this->assertSame('TEST-123456', $order->getNumber());
             $this->assertNotEmpty($order->getDispatchNumber());
-        }
-
-        // повторные запросы не завершаются с ошибкой, лишь ничего не добавляют
-        $response = $this->getClient()->sendDeliveryRequest($request);
-
-        $this->assertTrue($response->hasErrors());
-
-        foreach ($response->getMessages() as $message) {
-            $this->assertNotEmpty($message->getErrorCode());
-            break;
         }
 
         return $order->getDispatchNumber();

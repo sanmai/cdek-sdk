@@ -39,11 +39,12 @@ class PackageTest extends TestCase
     public function test_add_item()
     {
         $package = Package::create([
-            'Number' => '123',
+            'Number'  => '123',
+            'Comment' => 'Example',
         ])->addItem(new Item(['WareKey' => 'foo']))->addItem(new Item(['WareKey' => 'bar']));
 
         $this->assertSameAsXML('<?xml version="1.0" encoding="UTF-8"?>
-<Package Number="123">
+<Package Number="123" Comment="Example">
   <Item WareKey="foo"/>
   <Item WareKey="bar"/>
 </Package>

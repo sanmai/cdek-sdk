@@ -20,6 +20,8 @@ stages:
   - test
 
 jobs:
+  exclude:
+    - php: 7.2
   include:
     - if: branch = master
       php: 7.0

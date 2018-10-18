@@ -31,7 +31,8 @@ install:
   - echo extension_dir=ext >> php.ini
   - echo extension=php_openssl.dll >> php.ini
   - echo extension=php_mbstring.dll >> php.ini
-  - appveyor-retry appveyor DownloadFile https://getcomposer.org/composer.phar -OutFile C:\tools\php\composer.phar
+  - appveyor-retry appveyor DownloadFile https://getcomposer.org/composer.phar
+  - echo @php %%~dp0composer.phar %%* > composer.bat
   - cd c:\projects\workspace
   - appveyor-retry composer update --no-update --dev phan/phan phpstan/phpstan vimeo/psalm infection/infection friendsofphp/php-cs-fixer
   - appveyor-retry composer install --prefer-dist

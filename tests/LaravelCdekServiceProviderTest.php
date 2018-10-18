@@ -79,6 +79,14 @@ class LaravelCdekServiceProviderTest extends TestCase
         $app = new class() extends \Illuminate\Foundation\Application {
             private $config;
 
+            public function __construct($basePath = null)
+            {
+                if (false) {
+                    // PHPStan workaround
+                    parent::__construct($basePath);
+                }
+            }
+
             public function setConfig($config)
             {
                 $this->config = $config;

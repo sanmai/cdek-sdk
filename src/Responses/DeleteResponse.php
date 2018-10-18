@@ -51,7 +51,10 @@ final class DeleteResponse implements Response
      */
     private $requests = [];
 
-    private function getOrdersFromRequests(): \Pipeline\Standard
+    /**
+     * @return \Traversable|Order[]
+     */
+    private function getOrdersFromRequests()
     {
         return fromArray($this->requests)->map(function (DeleteRequest $request) {
             yield from $request->getOrders();

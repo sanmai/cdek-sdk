@@ -711,7 +711,6 @@ $client->setLogger($monolog);
 
 This project is licensed under the terms of the MIT license.
 
-[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fsanmai%2Fcdek-sdk.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Fsanmai%2Fcdek-sdk?ref=badge_large)
-
 [![Maintainability](https://api.codeclimate.com/v1/badges/fd9cfee36167cb7af135/maintainability)](https://codeclimate.com/github/sanmai/cdek-sdk/maintainability)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/f99630e6f04944d09088ea5e198634b7)](https://app.codacy.com/app/sanmai/cdek-sdk?utm_source=github.com&utm_medium=referral&utm_content=sanmai/cdek-sdk&utm_campaign=Badge_Grade_Dashboard)
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fsanmai%2Fcdek-sdk.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Fsanmai%2Fcdek-sdk?ref=badge_shield)

@@ -31,7 +31,7 @@
     "require": {
         "php": "^7.0",
         "guzzlehttp/guzzle": "^6.3",
-        "jms/serializer": "^1.8",
+        "jms/serializer": "^1.11",
         "psr/log": "^1.0",
         "sanmai/pipeline": "^0.3.2|^2.0"
     },

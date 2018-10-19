@@ -170,15 +170,32 @@ class CdekClientTest extends TestCase
         $this->assertEmpty($this->lastRequestOptions);
     }
 
+    /** @return TestLogger */
+    private function getTestLogger()
+    {
+        $logger = new TestLogger();
+
+        if (!property_exists($logger, 'log')) {
+            $this->markTestSkipped('Not testing logging with an outdated version of TestLogger');
+        }
+
+        return $logger;
+    }
+
     public function test_client_can_log_response()
     {
         $client = new CdekClient('foo', 'bar', $this->getHttpClient('text/xml', FixtureLoader::load('InfoReportFailed.xml')));
-        $client->setLogger($logger = new TestLogger());
+        $client->setLogger($logger = $this->getTestLogger());
+
+        if (!property_exists($logger, 'log')) {
+            $this->markTestIncomplete('Not testing logging with an outdated version of TestLogger');
+        }
 
         $response = $client->sendInfoReportRequest(new InfoReportRequest());
 
         /** @var $response InfoReportResponse */
         $this->assertInstanceOf(InfoReportResponse::class, $response);
+
         $this->assertSame(3, $logger->log->countRecordsWithLevel(LogLevel::DEBUG));
         $this->assertTrue($logger->log->hasRecordsWithMessage(FixtureLoader::load('InfoReportFailed.xml')));
         $this->assertTrue($logger->log->hasRecordsWithPartialMessage('<InfoRequest'));
@@ -214,7 +231,7 @@ class CdekClientTest extends TestCase
     public function test_client_can_handle_error_response()
     {
         $client = new CdekClient('foo', 'bar', $http = $this->getHttpClient('text/xml', FixtureLoader::load('InfoReportFailed.xml')));
-        $client->setLogger($logger = new TestLogger());
+        $client->setLogger($logger = $this->getTestLogger());
 
         $responseMock = $this->createMock(ResponseInterface::class);
         $responseMock->method('getStatusCode')->willReturn(500);

@@ -33,7 +33,7 @@
         "guzzlehttp/guzzle": "^6.3",
         "jms/serializer": "^1.11",
         "psr/log": "^1.0",
-        "sanmai/pipeline": "^0.3.2|^2.0"
+        "sanmai/pipeline": "^0.3.2|^2.0|^3.0.1"
     },
     "suggest": {
         "ext-ctype": "For flexible attribute name handling",

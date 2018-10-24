@@ -99,12 +99,14 @@ class DeliveryRequestTest extends TestCase
         ]);
 
         $package->addItem(new Item([
-            'WareKey' => 'NN0001', // Идентификатор/артикул товара/вложения
-            'Cost'    => 500, // Объявленная стоимость товара (за единицу товара)
-            'Payment' => 0, // Оплата за товар при получении (за единицу товара)
-            'Weight'  => 120, // Вес (за единицу товара, в граммах)
-            'Amount'  => 2, // Количество единиц одноименного товара (в штуках)
-            'Comment' => 'Test item',
+            'WareKey'            => 'NN0001', // Идентификатор/артикул товара/вложения
+            'Cost'               => 500, // Объявленная стоимость товара (за единицу товара)
+            'Payment'            => 0, // Оплата за товар при получении (за единицу товара)
+            'PaymentVATRate'     => 'VATX', // Ставка НДС включеная в стоимость (payment) товара.
+            'PaymentVATSum'      => 5.25, // Сумма НДС, включенного в стоимость (payment) товара.
+            'Weight'             => 120, // Вес (за единицу товара, в граммах)
+            'Amount'             => 2, // Количество единиц одноименного товара (в штуках)
+            'Comment'            => 'Test item',
         ]));
 
         $order->addPackage($package);
@@ -119,7 +121,7 @@ class DeliveryRequestTest extends TestCase
   <Order SendCityCode="44" SendCityPostCode="" RecCityPostCode="630001" Number="TEST-123456" RecipientName="Иван Петров" RecipientEmail="petrov@test.ru" Phone="+7 (383) 202-22-50" TariffTypeCode="139">
     <Address Street="Холодильная улица" House="16" Flat="22"/>
     <Package Number="TEST-123456" BarCode="TEST-123456" Weight="500" SizeA="10" SizeB="10" SizeC="10">
-      <Item WareKey="NN0001" Cost="500" Payment="0" Weight="120" Amount="2" Comment="Test item"/>
+      <Item WareKey="NN0001" Cost="500" Payment="0" PaymentVATRate="VATX" PaymentVATSum="5.25" Weight="120" Amount="2" Comment="Test item"/>
     </Package>
     <SendCity Code="44"/>
     <RecCity PostCode="630001"/>

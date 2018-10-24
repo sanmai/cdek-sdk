@@ -72,6 +72,26 @@ final class Item
     protected $Payment;
 
     /**
+     * Ставка НДС включеная в стоимость (payment) товара.
+     *
+     * @JMS\XmlAttribute
+     * @JMS\Type("string")
+     *
+     * @var string
+     */
+    protected $PaymentVATRate;
+
+    /**
+     * Сумма НДС, включенного в стоимость (payment) товара.
+     *
+     * @JMS\XmlAttribute
+     * @JMS\Type("float")
+     *
+     * @var float
+     */
+    protected $PaymentVATSum;
+
+    /**
      * Ставка НДС включенная в стоимость товара.
      *
      * @JMS\XmlAttribute

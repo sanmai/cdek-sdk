@@ -46,7 +46,7 @@
         "illuminate/support": "^5.2",
         "infection/infection": ">=0.10",
         "laravel/framework": "^5.2",
-        "phan/phan": "^1.0",
+        "phan/phan": "^1.1",
         "php-coveralls/php-coveralls": "^2.1",
         "phpstan/phpstan": ">=0.10",
         "phpunit/phpunit": "^6.5|^7.4",

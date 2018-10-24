@@ -64,7 +64,7 @@ final class DeliveryResponse implements Response
     /**
      * @JMS\Exclude
      *
-     * @var \Iterator<Order>
+     * @var \Traversable<Order>
      */
     private $completeOrders;
 

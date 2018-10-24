@@ -155,7 +155,7 @@ class DeliveryRequestTest extends TestCase
 
         foreach ($response->getMessages() as $message) {
             if ($message->getErrorCode() === 'ERR_AUTH') {
-                $this->fail("Access keys require an update; received {$message->getErrorCode()}: {$message->getMessage()}");
+                $this->fail(preg_replace('/[a-f0-9]{16,}/', '[secure]', "Access keys require an update; received {$message->getErrorCode()}: {$message->getMessage()}"));
             }
         }
 

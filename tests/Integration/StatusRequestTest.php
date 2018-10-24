@@ -67,6 +67,9 @@ class StatusRequestTest extends TestCase
     public function test_status_report(string $dispatchNumber)
     {
         $request = new StatusReportRequest();
+        $request->setShowHistory();
+        $request->setShowReturnOrder();
+        $request->setShowReturnOrderHistory();
         $request->addOrder(Order::withDispatchNumber($dispatchNumber));
 
         $response = $this->getClient()->sendStatusReportRequest($request);

@@ -39,6 +39,7 @@ use Tests\CdekSDK\Fixtures\FixtureLoader;
 
 /**
  * @covers \CdekSDK\Responses\StatusReportResponse
+ * @covers \CdekSDK\Common\Order
  */
 class StatusReportResponseTest extends TestCase
 {
@@ -187,6 +188,26 @@ class StatusReportResponseTest extends TestCase
 
         $this->assertSame('Заказ не найден в базе СДЭК: DispatchNumber=123', $message->getMessage());
         $this->assertSame('ERR_INVALID_DISPATCHNUMBER', $message->getErrorCode());
+    }
+
+    public function test_it_reads_response_with_return_order()
+    {
+        $response = $this->getSerializer()->deserialize(FixtureLoader::load('StatusReportReturnOrder.xml'), StatusReportResponse::class, 'xml');
+
+        /** @var $response StatusReportResponse */
+        $this->assertInstanceOf(StatusReportResponse::class, $response);
+
+        /** @var Order $order */
+        $order = $response->getOrders()[0];
+
+        $this->assertInstanceOf(Order::class, $order);
+        $this->assertSame('100000100', $order->getDispatchNumber());
+        $this->assertSame(10000200, $order->getReturnDispatchNumber());
+        $this->assertSame(5, $order->getStatus()->getCode());
+
+        $this->assertInstanceOf(Order::class, $order->getReturnOrder());
+        $this->assertSame('10000200', $order->getReturnOrder()->getDispatchNumber());
+        $this->assertSame(12, $order->getReturnOrder()->getStatus()->getCode());
     }
 
     public function test_it_serializes_to_empty_json()

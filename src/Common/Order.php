@@ -763,6 +763,13 @@ final class Order implements HasErrorCode
         return $this->DeliveryDate;
     }
 
+    /**
+     * Номер возвратной накладной.
+     *
+     * @todo возвращать строку, как для других номеров отправлений
+     *
+     * @return int
+     */
     public function getReturnDispatchNumber(): int
     {
         return $this->ReturnDispatchNumber;

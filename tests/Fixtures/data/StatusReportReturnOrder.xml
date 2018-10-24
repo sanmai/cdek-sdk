@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StatusReport DateFirst="2000-12-31T17:00:00+00:00" DateLast="2018-11-01T00:00:00+00:00" >
+<Order ActNumber="" Number="12345-98765" DispatchNumber="100000100"  DeliveryDate="" RecipientName="" ReturnDispatchNumber="10000200">
+<Status Date="2018-10-10T15:00:00+00:00" Code="5" Description="Не вручен" CityCode="1" CityName="Москва">
+<State Date="2018-10-01T15:00:00+00:00" Code="1" Description="Создан" CityCode="1" CityName="Москва" />
+<State Date="2018-10-10T15:20:00+00:00" Code="12" Description="Принят на склад до востребования" CityCode="1" CityName="Москва" />
+<State Date="2018-10-10T15:00:00+00:00" Code="5" Description="Не вручен" CityCode="1" CityName="Москва" /></Status>
+<Reason Code="11" Description="Возврат, отказ от получения: Без объяснения" Date="2018-10-10T15:00:00+00:00"></Reason>
+<DelayReason Code="" Description="" Date="" ></DelayReason>
+<ReturnOrder ActNumber="" Number="" DispatchNumber="10000200"  DeliveryDate="" RecipientName="" >
+<Status Date="2018-10-10T15:20:00+00:00" Code="12" Description="Принят на склад до востребования" CityCode="1" CityName="Москва">
+<State Date="2018-10-10T15:20:00+00:00" Code="1" Description="Создан" CityCode="1" CityName="Москва" />
+<State Date="2018-10-10T15:20:00+00:00" Code="12" Description="Принят на склад до востребования" CityCode="1" CityName="Москва" /></Status>
+<Reason Code="" Description="" Date=""></Reason><DelayReason Code="" Description="" Date="" ></DelayReason></ReturnOrder></Order></StatusReport>
+

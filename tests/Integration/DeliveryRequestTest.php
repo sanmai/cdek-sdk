@@ -88,10 +88,6 @@ class DeliveryRequestTest extends TestCase
             'Number' => 'TEST-123456',
         ])));
 
-        foreach ($response->getMessages() as $message) {
-            $this->assertEmpty($message->getErrorCode(), $message->getMessage());
-        }
-
         $this->assertInstanceOf(DeleteResponse::class, $response);
 
         foreach ($response->getMessages() as $message) {

@@ -31,7 +31,9 @@ use CdekSDK\Requests;
 $dispatchNumber = '123';
 $client = new \CdekSDK\CdekClient('account', 'password');
 
-$request = new Requests\PrintReceiptsRequest();
+$request = new Requests\PrintReceiptsRequest([
+    'CopyCount' => 4,
+]);
 $request->addOrder(Common\Order::withDispatchNumber($dispatchNumber));
 
 $response = $client->sendPrintReceiptsRequest($request);

@@ -389,7 +389,9 @@ foreach ($response->getOrders() as $order) {
 use CdekSDK\Common;
 use CdekSDK\Requests;
 
-$request = new Requests\PrintReceiptsRequest();
+$request = new Requests\PrintReceiptsRequest([
+    'CopyCount' => 4,
+]);
 $request->addOrder(Common\Order::withDispatchNumber($dispatchNumber));
 
 $response = $client->sendPrintReceiptsRequest($request);

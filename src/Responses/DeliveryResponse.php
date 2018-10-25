@@ -91,6 +91,7 @@ final class DeliveryResponse implements Response
      */
     private function filterOrders()
     {
+        /** @var \Pipeline\Standard<Order> */
         $this->completeOrders = fromArray($this->orders)->filter(function (Order $order) {
             return (bool) $order->getDispatchNumber();
         });

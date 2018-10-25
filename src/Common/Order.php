@@ -149,6 +149,13 @@ final class Order implements HasErrorCode
     protected $DeliveryRecipientCost;
 
     /**
+     * @JMS\Type("CdekSDK\Common\DeliveryRecipientCostAdv")
+     *
+     * @var DeliveryRecipientCostAdv
+     */
+    protected $DeliveryRecipientCostAdv;
+
+    /**
      * @JMS\XmlAttribute
      * @JMS\Type("string")
      *
@@ -434,6 +441,13 @@ final class Order implements HasErrorCode
     public function callCourier(CallCourier $call)
     {
         $this->courierCalls[] = $call;
+
+        return $this;
+    }
+
+    public function addDeliveryRecipientCostAdv(DeliveryRecipientCostAdv $surcharge)
+    {
+        $this->DeliveryRecipientCostAdv = $surcharge;
 
         return $this;
     }

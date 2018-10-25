@@ -32,6 +32,7 @@ use CdekSDK\Common\AdditionalService;
 use CdekSDK\Common\Address;
 use CdekSDK\Common\Attempt;
 use CdekSDK\Common\CallCourier;
+use CdekSDK\Common\DeliveryRecipientCostAdv;
 use CdekSDK\Common\Order;
 use CdekSDK\Common\Package;
 use CdekSDK\Common\Sender;
@@ -139,6 +140,29 @@ class OrderTest extends TestCase
         $this->assertSameAsXML('<?xml version="1.0" encoding="UTF-8"?>
 <Order DispatchNumber="123456">
   <Package Number="123"/>
+</Order>
+', $order);
+    }
+
+    public function test_can_serialize_with_delivery_surcharge()
+    {
+        $order = Order::withDispatchNumber('1234567');
+
+        $order = $order->addDeliveryRecipientCostAdv(DeliveryRecipientCostAdv::create([
+            'Threshold' => 2000,
+            'Sum'       => 150,
+            'VATRate'   => 'vat10',
+            'VATSum'    => 45.906,
+        ]));
+
+        $order = $order->addService(AdditionalService::create([
+            'ServiceCode'   => 30,
+        ]));
+
+        $this->assertSameAsXML('<?xml version="1.0" encoding="UTF-8"?>
+<Order DispatchNumber="1234567">
+  <DeliveryRecipientCostAdv Threshold="2000" Sum="150" VATRate="vat10" VATSum="45.906"/>
+  <AddService ServiceCode="30"/>
 </Order>
 ', $order);
     }

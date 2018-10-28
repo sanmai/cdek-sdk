@@ -34,6 +34,7 @@ use CdekSDK\Common\City;
 use CdekSDK\Common\Item;
 use CdekSDK\Common\Order;
 use CdekSDK\Common\Package;
+use CdekSDK\Common\Passport;
 use CdekSDK\Common\Sender;
 use CdekSDK\Requests\AddDeliveryRequest;
 use CdekSDK\Requests\DeliveryRequest;
@@ -198,6 +199,66 @@ class DeliveryRequestTest extends TestCase
       <Address Street="Морозильная улица" House="2" Flat="101"/>
       <Phone><![CDATA[+7 (283) 101-11-20]]></Phone>
     </Sender>
+  </Order>
+</DeliveryRequest>
+', $request);
+    }
+
+    public function test_can_serialize_foreign_delivery_request()
+    {
+        $order = new Order([
+            'DateInvoice'  => new \DateTimeImmutable('2010-10-10'),
+            'Passport'     => Passport::create([
+                'Series' => '5004',
+                'Number' => '123456',
+            ]),
+            'PassportNumber' => '5004 123457',
+            'Comment'        => 'Test order',
+        ]);
+
+        $package = Package::create([
+            'Number'  => 'TEST-123456',
+        ]);
+
+        $package->addItem(new Item([
+            'WareKey'                  => '123123123',
+            'CostEx'                   => 11,
+            'Cost'                     => 330,
+            'Weight'                   => 1500,
+            'WeightBrutto'             => 1650,
+            'Amount'                   => 2,
+            'CommentEx'                => 'Winter Shoes, Natural Leather. Size 37.',
+            'Comment'                  => 'Зимние ботинки, 37 раз. Кожаные',
+        ]));
+
+        $package->addItem(new Item([
+            'WareKey'                  => '345345345',
+            'CostEx'                   => 12,
+            'Cost'                     => 430,
+            'Weight'                   => 1501,
+            'WeightBrutto'             => 1651,
+            'Amount'                   => 1,
+            'CommentEx'                => 'Winter Shoes, Natural Leather. Size 36.',
+            'Comment'                  => 'Зимние ботинки, 36 раз. Кожаные',
+        ]));
+
+        $order->addPackage($package);
+
+        $request = new DeliveryRequest([
+            'Number'          => '12345',
+            'ForeignDelivery' => true,
+            'Currency'        => 'USD',
+        ]);
+        $request->addOrder($order);
+
+        $this->assertSameAsXML('<?xml version="1.0" encoding="UTF-8"?>
+<DeliveryRequest OrderCount="1" Number="12345" ForeignDelivery="true" Currency="USD">
+  <Order DateInvoice="2010-10-10" Comment="Test order" PassportNumber="5004 123457">
+    <Package Number="TEST-123456">
+      <Item WareKey="123123123" CostEx="11" Cost="330" Weight="1500" WeightBrutto="1650" Amount="2" Comment="Зимние ботинки, 37 раз. Кожаные" CommentEx="Winter Shoes, Natural Leather. Size 37."/>
+      <Item WareKey="345345345" CostEx="12" Cost="430" Weight="1501" WeightBrutto="1651" Amount="1" Comment="Зимние ботинки, 36 раз. Кожаные" CommentEx="Winter Shoes, Natural Leather. Size 36."/>
+    </Package>
+    <Passport Series="5004" Number="123456"/>
   </Order>
 </DeliveryRequest>
 ', $request);

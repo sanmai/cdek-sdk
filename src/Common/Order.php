@@ -78,6 +78,14 @@ final class Order implements HasErrorCode
 
     /**
      * @JMS\XmlAttribute
+     * @JMS\Type("DateTimeImmutable<'Y-m-d'>")
+     *
+     * @var \DateTimeInterface
+     */
+    protected $DateInvoice;
+
+    /**
+     * @JMS\XmlAttribute
      * @JMS\Type("string")
      *
      * @var string
@@ -437,6 +445,21 @@ final class Order implements HasErrorCode
      * @var int
      */
     protected $ReturnDispatchNumber;
+
+    /**
+     * @JMS\XmlAttribute
+     * @JMS\Type("string")
+     *
+     * @var string
+     */
+    protected $PassportNumber;
+
+    /**
+     * @JMS\Type("CdekSDK\Common\Passport")
+     *
+     * @var Passport
+     */
+    protected $Passport;
 
     public function callCourier(CallCourier $call)
     {

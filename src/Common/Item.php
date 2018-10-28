@@ -36,6 +36,7 @@ use JMS\Serializer\Annotation as JMS;
  * Пример данных:
  *
  * <Item WareKey="Ботинки60, размер 40" Comment="Кроссовки мужские" Cost="832" Payment="832" VATRate="VAT18" VATSum="126.92" Weight="0.560" Amount="1" DelivAmount="0" />
+ * <Item WareKey="25000358171" CostEx="50" Cost="1500" Weight="2500" WeightBrutto="2600" Amount="1" CommentEx="Waistcoat with the collar" Comment="Жилет с воротником"/>
  */
 final class Item
 {
@@ -52,6 +53,16 @@ final class Item
     protected $WareKey;
 
     /**
+     * Value of each item in the request's currency. For foreign orders only.
+     *
+     * @JMS\XmlAttribute
+     * @JMS\Type("float")
+     *
+     * @var float
+     */
+    protected $CostEx;
+
+    /**
      * Объявленная стоимость товара (за единицу товара в указанной валюте, значение >=0). С данного значения рассчитывается страховка.
      *
      * @JMS\XmlAttribute
@@ -60,6 +71,16 @@ final class Item
      * @var float
      */
     protected $Cost;
+
+    /**
+     * The payment for each item in the request's currency. For foreign orders only.
+     *
+     * @JMS\XmlAttribute
+     * @JMS\Type("float")
+     *
+     * @var float
+     */
+    protected $PaymentEx;
 
     /**
      * Оплата за товар при получении (за единицу товара в указанной валюте, значение >=0) — наложенный платеж, в случае предоплаты значение = 0.
@@ -122,6 +143,14 @@ final class Item
     protected $Weight;
 
     /**
+     * @JMS\XmlAttribute
+     * @JMS\Type("float")
+     *
+     * @var float
+     */
+    protected $WeightBrutto;
+
+    /**
      * Количество единиц одноименного товара (в штуках).
      *
      * @JMS\XmlAttribute
@@ -132,12 +161,24 @@ final class Item
     protected $Amount;
 
     /**
+     * Description of the item in Russian.
+     *
      * @JMS\XmlAttribute
      * @JMS\Type("string")
      *
      * @var string
      */
     protected $Comment;
+
+    /**
+     * Description of the item in English.
+     *
+     * @JMS\XmlAttribute
+     * @JMS\Type("string")
+     *
+     * @var string
+     */
+    protected $CommentEx;
 
     /**
      * @JMS\XmlAttribute

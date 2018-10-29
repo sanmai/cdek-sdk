@@ -28,6 +28,7 @@ declare(strict_types=1);
 
 namespace CdekSDK\Requests;
 
+use CdekSDK\Common\CallCourier;
 use CdekSDK\Common\Fillable;
 use CdekSDK\Common\Order;
 use CdekSDK\Contracts\ShouldAuthorize;
@@ -78,6 +79,13 @@ class DeliveryRequest implements XmlRequest, ShouldAuthorize
      * @var string
      */
     protected $Currency;
+
+    /**
+     * @JMS\Type("CdekSDK\Common\CallCourier")
+     *
+     * @var CallCourier
+     */
+    protected $CallCourier;
 
     /**
      * @JMS\XmlAttribute

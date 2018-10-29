@@ -82,6 +82,17 @@ class DeleteResponseTest extends TestCase
         $this->assertTrue(isset($message) && $message->getErrorCode() !== '');
     }
 
+    public function test_missing_attribute()
+    {
+        $response = $this->loadFixture('DeleteRequestNoNumber.xml');
+
+        $this->assertCount(1, $response->getMessages());
+
+        foreach ($response->getMessages() as $message) {
+            $this->assertSame('ERR_NEED_ATTRIBUTE', $message->getErrorCode());
+        }
+    }
+
     public function test_missing_orders()
     {
         $response = $this->loadFixture('DeleteRequestOrdersMissing.xml');

@@ -52,6 +52,14 @@ final class DeleteResponse implements Response
     private $requests = [];
 
     /**
+     * @JMS\XmlList(entry = "Order", inline = true)
+     * @JMS\Type("array<CdekSDK\Common\Order>")
+     *
+     * @var Order[]
+     */
+    private $orders = [];
+
+    /**
      * @return \Traversable|Order[]
      */
     private function getOrdersFromRequests()
@@ -74,7 +82,7 @@ final class DeleteResponse implements Response
      */
     public function getMessages()
     {
-        return Message::from($this->getOrdersFromRequests(), $this->requests);
+        return Message::from($this->getOrdersFromRequests(), $this->requests, $this->orders);
     }
 
     public function jsonSerialize()

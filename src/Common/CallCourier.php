@@ -210,6 +210,20 @@ final class CallCourier implements HasErrorCode
         return $this;
     }
 
+    /**
+     * Устанавливает адрес в заявке на вызов курьера при регистрации заказа.
+     *
+     * @param Address $address
+     *
+     * @return self
+     */
+    public function setSendAddress(Address $address): self
+    {
+        $this->SendAddress = $address;
+
+        return $this;
+    }
+
     public function getNumber(): string
     {
         return (string) $this->Number;

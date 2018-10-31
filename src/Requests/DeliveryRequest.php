@@ -28,6 +28,7 @@ declare(strict_types=1);
 
 namespace CdekSDK\Requests;
 
+use CdekSDK\Common\Address;
 use CdekSDK\Common\CallCourier;
 use CdekSDK\Common\Fillable;
 use CdekSDK\Common\Order;
@@ -81,9 +82,9 @@ class DeliveryRequest implements XmlRequest, ShouldAuthorize
     protected $Currency;
 
     /**
-     * @JMS\Type("CdekSDK\Common\CallCourier")
+     * @JMS\Type("CdekSDK\Requests\CallCourierRequest")
      *
-     * @var CallCourier
+     * @var CallCourierRequest
      */
     protected $CallCourier;
 
@@ -103,6 +104,24 @@ class DeliveryRequest implements XmlRequest, ShouldAuthorize
     {
         // При создании заказа идентификация идёт только по номеру, это обязательный параметр
         $this->orders[$order->getNumber()] = $order;
+
+        return $this;
+    }
+
+    public function setCallCourier(CallCourier $call, Address $address)
+    {
+        /*
+         * СДЭК требует чтобы при оформлении заказа адрес был в поле SendAddress,
+         * а не в поле Address как при оформлении заявки на вызов курьера. При этом
+         * сам адрес является обязательным.
+         *
+         * Спрячем эти неочевидные детали от пользователя, указав адрес сами.
+         */
+
+        $call->setSendAddress($address);
+
+        $this->CallCourier = new CallCourierRequest();
+        $this->CallCourier->addCall($call);
 
         return $this;
     }

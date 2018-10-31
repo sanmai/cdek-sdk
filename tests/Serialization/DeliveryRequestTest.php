@@ -269,28 +269,29 @@ class DeliveryRequestTest extends TestCase
     {
         $request = DeliveryRequest::create([
             'Number'      => 'foo',
-            'CallCourier' => CallCourier::create([
-                'Comment'        => 'foo',
-                'Date'           => new \DateTime('2017-05-06T11:20:45.680+07:00'),
-                'LunchBeg'       => new \DateTime('14:00'),
-                'LunchEnd'       => new \DateTime('14:30'),
-                'SendCityCode'   => 44,
-                'SenderName'     => 'Testing',
-                'SendPhone'      => '+79138739944',
-                'TimeBeg'        => new \DateTime('10:00'),
-                'TimeEnd'        => new \DateTime('17:00'),
-                'Weight'         => '20',
-            ])->setAddress(Address::create([
-                'Street' => 'Тестовая',
-                'House'  => '8',
-                'Flat'   => '32',
-            ])),
-        ]);
+        ])->setCallCourier(CallCourier::create([
+            'Comment'        => 'foo',
+            'Date'           => new \DateTime('2017-05-06T11:20:45.680+07:00'),
+            'LunchBeg'       => new \DateTime('14:00'),
+            'LunchEnd'       => new \DateTime('14:30'),
+            'SendCityCode'   => 44,
+            'SenderName'     => 'Testing',
+            'SendPhone'      => '+79138739944',
+            'TimeBeg'        => new \DateTime('10:00'),
+            'TimeEnd'        => new \DateTime('17:00'),
+            'Weight'         => '20',
+        ]), Address::create([
+            'Street' => 'Тестовая',
+            'House'  => '8',
+            'Flat'   => '32',
+        ]));
 
         $this->assertSameAsXML('<?xml version="1.0" encoding="UTF-8"?>
 <DeliveryRequest OrderCount="0" Number="foo">
-  <CallCourier Date="2017-05-06" TimeBeg="10:00" TimeEnd="17:00" LunchBeg="14:00" LunchEnd="14:30" SendCityCode="44" SendPhone="+79138739944" SenderName="Testing" Weight="20" Comment="foo">
-    <Address Street="Тестовая" House="8" Flat="32"/>
+  <CallCourier CallCount="1">
+    <Call Date="2017-05-06" TimeBeg="10:00" TimeEnd="17:00" LunchBeg="14:00" LunchEnd="14:30" SendCityCode="44" SendPhone="+79138739944" SenderName="Testing" Weight="20" Comment="foo">
+      <SendAddress Street="Тестовая" House="8" Flat="32"/>
+    </Call>
   </CallCourier>
 </DeliveryRequest>
 ', $request);

@@ -109,6 +109,21 @@ class DeliveryResponseTest extends TestCase
         $this->assertTrue(isset($order));
     }
 
+    public function test_missing_courier_call()
+    {
+        $response = $this->getSerializer()->deserialize(FixtureLoader::load('DeliveryRequestMissingCall.xml'), DeliveryResponse::class, 'xml');
+
+        /** @var $response DeliveryResponse */
+        $this->assertInstanceOf(DeliveryResponse::class, $response);
+
+        $this->assertCount(3, $response->getMessages());
+
+        foreach ($response->getMessages() as $message) {
+            $this->assertSame('ERROR_CALL_EMPTY', $message->getErrorCode());
+            break;
+        }
+    }
+
     public function test_it_serializes_to_empty_json()
     {
         $response = new DeliveryResponse();

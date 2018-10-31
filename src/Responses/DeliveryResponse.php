@@ -28,6 +28,7 @@ declare(strict_types=1);
 
 namespace CdekSDK\Responses;
 
+use CdekSDK\Common\CallCourier;
 use CdekSDK\Common\Order;
 use CdekSDK\Contracts\Response;
 use CdekSDK\Responses\Concerns\HasErrors;
@@ -60,6 +61,14 @@ final class DeliveryResponse implements Response
      * @var Order[]
      */
     private $orders = [];
+
+    /**
+     * @JMS\XmlList(entry = "Call", inline = true)
+     * @JMS\Type("array<CdekSDK\Common\CallCourier>")
+     *
+     * @var CallCourier[]
+     */
+    private $calls = [];
 
     /**
      * @JMS\Exclude
@@ -102,7 +111,7 @@ final class DeliveryResponse implements Response
      */
     public function getMessages()
     {
-        return Message::from($this->orders, $this->requests);
+        return Message::from($this->calls, $this->orders, $this->requests);
     }
 
     public function jsonSerialize()

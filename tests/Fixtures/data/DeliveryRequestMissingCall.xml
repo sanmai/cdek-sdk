@@ -1,0 +1,1 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?><response><Call ErrorCode="ERROR_CALL_EMPTY" Msg="Не указан тэг вызова курьера"/><Order ErrorCode="ERR_ORDER_DUBL_EXISTS" Msg="Введенный номер отправления ИМ не уникальный." Number="1234567"/><Order Msg="Добавлено заказов 0"/></response>

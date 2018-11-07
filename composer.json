@@ -38,7 +38,8 @@
     "suggest": {
         "ext-ctype": "For flexible attribute name handling",
         "monolog/monolog": "For advanced logging and debugging",
-        "sanmai/pindx": "For postal code validation"
+        "sanmai/pindx": "For postal code validation",
+        "hughgrigg/php-business-time": "Finds next working day, helps with delivery estimates"
     },
     "require-dev": {
         "friendsofphp/php-cs-fixer": "^2.13",

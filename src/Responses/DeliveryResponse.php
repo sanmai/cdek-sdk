@@ -32,6 +32,7 @@ use CdekSDK\Common\CallCourier;
 use CdekSDK\Common\Order;
 use CdekSDK\Contracts\Response;
 use CdekSDK\Responses\Concerns\HasErrors;
+use CdekSDK\Responses\Concerns\WithTraceId;
 use CdekSDK\Responses\Types\DeliveryRequest;
 use CdekSDK\Responses\Types\Message;
 use JMS\Serializer\Annotation as JMS;
@@ -44,7 +45,7 @@ use function Pipeline\fromArray;
  */
 final class DeliveryResponse implements Response
 {
-    use HasErrors;
+    use HasErrors, WithTraceId;
 
     /**
      * @JMS\XmlList(entry = "DeliveryRequest", inline = true)
@@ -91,6 +92,16 @@ final class DeliveryResponse implements Response
     public function getRequests()
     {
         return $this->requests;
+    }
+
+    /**
+     * @return \Pipeline\Standard|CallCourier[]
+     */
+    public function getCalls()
+    {
+        return fromArray($this->calls)->filter(function (CallCourier $call) {
+            return $call->getNumber() !== '';
+        });
     }
 
     /**

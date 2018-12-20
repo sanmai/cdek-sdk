@@ -144,6 +144,8 @@ class DeliveryResponseTest extends TestCase
         foreach ($response->getCalls() as $call) {
             $this->assertSame('22022033', $call->getNumber());
         }
+
+        $this->assertSame('e5341942156970a92', $response->getTraceId());
     }
 
     public function test_it_serializes_to_empty_json()

@@ -58,7 +58,7 @@ class RegionsRequestTest extends TestCase
         $this->assertSame(50, $region->getCode());
         $this->assertSame(69, $region->getCodeExt());
         $this->assertSame('61723327-1c20-42fe-8dfa-402638d9b396', $region->getFiasGuid());
-        $this->assertSame('РОССИЯ', $region->getCountryName());
+        $this->assertSame('Россия', $region->getCountryName());
         $this->assertSame(1, $region->getCountryCode());
         $this->assertSame(643, $region->getCountryCodeExt());
     }

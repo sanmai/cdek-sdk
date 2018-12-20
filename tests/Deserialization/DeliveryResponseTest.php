@@ -124,6 +124,28 @@ class DeliveryResponseTest extends TestCase
         }
     }
 
+    public function test_successful_request_with_call()
+    {
+        $response = $this->getSerializer()->deserialize(FixtureLoader::load('DeliveryRequestWithCallSuccess.xml'), DeliveryResponse::class, 'xml');
+
+        /** @var $response DeliveryResponse */
+        $this->assertInstanceOf(DeliveryResponse::class, $response);
+
+        $this->assertCount(1, $response->getOrders());
+
+        foreach ($response->getOrders() as $order) {
+            $this->assertSame('TESTING-123', $order->getNumber());
+            $this->assertSame('110000123', $order->getDispatchNumber());
+        }
+
+        $this->assertCount(1, $response->getMessages());
+        $this->assertCount(1, $response->getCalls());
+
+        foreach ($response->getCalls() as $call) {
+            $this->assertSame('22022033', $call->getNumber());
+        }
+    }
+
     public function test_it_serializes_to_empty_json()
     {
         $response = new DeliveryResponse();

@@ -94,6 +94,16 @@ final class DeliveryResponse implements Response
     }
 
     /**
+     * @return \Pipeline\Standard|CallCourier[]
+     */
+    public function getCalls()
+    {
+        return fromArray($this->calls)->filter(function (CallCourier $call) {
+            return $call->getNumber() !== '';
+        });
+    }
+
+    /**
      * @JMS\PostDeserialize
      *
      * @psalm-suppress InvalidPropertyAssignmentValue

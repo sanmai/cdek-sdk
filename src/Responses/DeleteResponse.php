@@ -74,6 +74,12 @@ final class DeleteResponse implements Response
      */
     public function getOrders()
     {
+        if ($this->orders) {
+            return fromArray($this->orders)->filter(function (Order $order) {
+                return $order->getNumber() !== '';
+            });
+        }
+
         return $this->getOrdersFromRequests();
     }
 

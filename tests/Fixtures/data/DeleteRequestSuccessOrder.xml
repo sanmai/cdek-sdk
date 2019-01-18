@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<response>
+    <Order DispatchNumber="1101110001" Number="number-123456"/>
+    <Order Msg="Удалено заказов 1"/>
+</response>
+

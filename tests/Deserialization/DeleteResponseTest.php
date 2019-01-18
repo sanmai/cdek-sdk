@@ -56,6 +56,24 @@ class DeleteResponseTest extends TestCase
         }
     }
 
+    public function test_successful_request2()
+    {
+        $response = $this->loadFixture('DeleteRequestSuccessOrder.xml');
+
+        $this->assertCount(1, $response->getMessages());
+
+        foreach ($response->getMessages() as $message) {
+            $this->assertEmpty($message->getErrorCode());
+        }
+
+        $this->assertCount(1, $response->getOrders());
+
+        foreach ($response->getOrders() as $order) {
+            $this->assertSame('number-123456', $order->getNumber());
+            $this->assertSame('1101110001', $order->getDispatchNumber());
+        }
+    }
+
     public function test_failing_request()
     {
         $response = $this->loadFixture('DeleteRequestFailure.xml');

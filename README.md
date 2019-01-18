@@ -556,6 +556,9 @@ $request = new Requests\StatusReportRequest();
 $request->setChangePeriod(new Common\ChangePeriod(new \DateTime('-1 day'), new \DateTime('+1 day')));
 $request->addOrder(Common\Order::withDispatchNumber($dispatchNumber));
 
+// попросим показать историю изменения статусов заказов
+$request->setShowHistory();
+
 $response = $client->sendStatusReportRequest($request);
 
 if ($response->hasErrors()) {

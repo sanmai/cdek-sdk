@@ -38,12 +38,12 @@ use CdekSDK\Responses\ErrorResponse;
 use CdekSDK\Responses\FileResponse;
 use GuzzleHttp\Client as GuzzleClient;
 use GuzzleHttp\ClientInterface;
+use function GuzzleHttp\default_user_agent;
 use GuzzleHttp\Exception\BadResponseException;
 use JMS\Serializer\SerializerInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerAwareTrait;
-use function GuzzleHttp\default_user_agent;
 
 /**
  * Class CdekClient.

@@ -570,7 +570,7 @@ final class Order implements HasErrorCode
      * @JMS\SerializedName("SendCityPostCode")
      * @JMS\Type("string")
      *
-     * @return null|string
+     * @return string|null
      */
     public function getSendCityPostCode()
     {
@@ -596,7 +596,7 @@ final class Order implements HasErrorCode
      * @JMS\SerializedName("RecCityPostCode")
      * @JMS\Type("string")
      *
-     * @return null|string
+     * @return string|null
      */
     public function getRecCityPostCode()
     {

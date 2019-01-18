@@ -35,35 +35,35 @@ final class Result
     /**
      * @JMS\Type("float")
      *
-     * @var null|float
+     * @var float|null
      */
     private $price;
 
     /**
      * @JMS\Type("int")
      *
-     * @var null|int
+     * @var int|null
      */
     private $deliveryPeriodMin;
 
     /**
      * @JMS\Type("int")
      *
-     * @var null|int
+     * @var int|null
      */
     private $deliveryPeriodMax;
 
     /**
      * @JMS\Type("DateTimeImmutable<'Y-m-d'>")
      *
-     * @var null|\DateTimeImmutable
+     * @var \DateTimeImmutable|null
      */
     private $deliveryDateMin;
 
     /**
      * @JMS\Type("DateTimeImmutable<'Y-m-d'>")
      *
-     * @var null|\DateTimeImmutable
+     * @var \DateTimeImmutable|null
      */
     private $deliveryDateMax;
 
@@ -77,14 +77,14 @@ final class Result
     /**
      * @JMS\Type("float")
      *
-     * @var null|float
+     * @var float|null
      */
     private $priceByCurrency;
 
     /**
      * @JMS\Type("string")
      *
-     * @var null|string
+     * @var string|null
      */
     private $currency;
 
@@ -96,7 +96,7 @@ final class Result
     private $services = [];
 
     /**
-     * @return null|float
+     * @return float|null
      */
     public function getPrice()
     {
@@ -104,7 +104,7 @@ final class Result
     }
 
     /**
-     * @return null|int
+     * @return int|null
      */
     public function getDeliveryPeriodMin()
     {
@@ -112,7 +112,7 @@ final class Result
     }
 
     /**
-     * @return null|int
+     * @return int|null
      */
     public function getDeliveryPeriodMax()
     {
@@ -120,7 +120,7 @@ final class Result
     }
 
     /**
-     * @return null|int
+     * @return int|null
      */
     public function getTariffId()
     {
@@ -128,7 +128,7 @@ final class Result
     }
 
     /**
-     * @return null|float
+     * @return float|null
      */
     public function getPriceByCurrency()
     {
@@ -136,7 +136,7 @@ final class Result
     }
 
     /**
-     * @return null|string
+     * @return string|null
      */
     public function getCurrency()
     {
@@ -144,7 +144,7 @@ final class Result
     }
 
     /**
-     * @return null|\DateTimeImmutable
+     * @return \DateTimeImmutable|null
      */
     public function getDeliveryDateMin()
     {
@@ -152,7 +152,7 @@ final class Result
     }
 
     /**
-     * @return null|\DateTimeImmutable
+     * @return \DateTimeImmutable|null
      */
     public function getDeliveryDateMax()
     {

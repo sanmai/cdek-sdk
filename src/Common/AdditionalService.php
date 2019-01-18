@@ -73,7 +73,7 @@ final class AdditionalService
     }
 
     /**
-     * @param int|array $codeOrData
+     * @param int|array<string, mixed> $codeOrData
      *
      * @see AdditionalService::SERVICE_INSURANCE
      * @see AdditionalService::SERVICE_DANGEROUS_GOODS

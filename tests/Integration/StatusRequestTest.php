@@ -50,9 +50,11 @@ class StatusRequestTest extends TestCase
     /**
      * @psalm-suppress MixedArgument
      * @psalm-suppress MixedAssignment
+     * @psalm-suppress MixedTypeCoercion
      */
     public static function knownDispatchNumbers(): \Generator
     {
+        /** @var array<string, mixed> $_SERVER */
         foreach (array_filter(array_keys($_SERVER), function (string $key) {
             return strpos($key, 'CDEK_DISPATCH_NUMBER') === 0;
         }) as $envVar) {

@@ -33,6 +33,8 @@ trait Fillable
     /**
      * @psalm-suppress MixedAssignment
      * @psalm-suppress MixedArgument
+     *
+     * @param array<string, mixed> $data
      */
     public function __construct(array $data = [])
     {
@@ -47,7 +49,11 @@ trait Fillable
         }
     }
 
-    /** @return static */
+    /**
+     * @param array<string, mixed> $data
+     *
+     * @return static
+     */
     public static function create($data = [])
     {
         assert(is_array($data));

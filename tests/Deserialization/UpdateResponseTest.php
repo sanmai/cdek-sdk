@@ -57,6 +57,24 @@ class UpdateResponseTest extends TestCase
         }
     }
 
+    public function test_failed_request()
+    {
+        $response = $this->getSerializer()->deserialize(FixtureLoader::load('UpdateResponseError.xml'), UpdateResponse::class, 'xml');
+
+        /** @var $response UpdateResponse */
+        $this->assertInstanceOf(UpdateResponse::class, $response);
+
+        $this->assertCount(1, $response->getMessages());
+
+        foreach ($response->getMessages() as $message) {
+            $this->assertTrue($message->isError());
+            $this->assertSame('ERR_NEED_ATTRIBUTE', $message->getErrorCode());
+            break;
+        }
+
+        $this->assertSame('123456', $response->getTraceId());
+    }
+
     public function test_it_serializes_to_empty_json()
     {
         $response = new UpdateResponse();

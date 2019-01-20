@@ -42,6 +42,7 @@ class RegionsRequestTest extends TestCase
     public function test_example()
     {
         $request = new RegionsRequest();
+        $request->setCountryCode(1);
         $request->setPage(0)->setSize(1);
 
         $response = $this->getClient()->sendRegionsRequest($request);

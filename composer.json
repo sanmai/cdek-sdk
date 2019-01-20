@@ -48,6 +48,9 @@
         "phpunit/phpunit": "^6.5 || ^7.4",
         "vimeo/psalm": ">=3"
     },
+    "conflict": {
+        "doctrine/annotations": "<1.3"
+    },
     "suggest": {
         "ext-ctype": "For flexible attribute name handling",
         "hughgrigg/php-business-time": "Finds next working day, helps with delivery estimates",

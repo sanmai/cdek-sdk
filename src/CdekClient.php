@@ -52,6 +52,7 @@ use Psr\Log\LoggerAwareTrait;
  * @method Responses\PvzListResponse<Common\Pvz>        sendPvzListRequest(Requests\PvzListRequest $request)
  * @method Responses\DeliveryResponse                   sendDeliveryRequest(Requests\DeliveryRequest $request)
  * @method Responses\DeliveryResponse                   sendAddDeliveryRequest(Requests\AddDeliveryRequest $request)
+ * @method Responses\UpdateResponse                     sendUpdateRequest(Requests\UpdateRequest $request)
  * @method Responses\CallCourierResponse                sendCallCourierRequest(Requests\CallCourierRequest $request)
  * @method Responses\ScheduleResponse                   sendScheduleRequest(Requests\ScheduleRequest $request)
  * @method Responses\PreAlertResponse                   sendPreAlertRequest(Requests\PreAlertRequest $request)

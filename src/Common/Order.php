@@ -477,6 +477,9 @@ final class Order implements HasErrorCode
      */
     protected $Passport;
 
+    /**
+     * @return Order
+     */
     public function callCourier(CallCourier $call)
     {
         $this->courierCalls[] = $call;
@@ -484,6 +487,9 @@ final class Order implements HasErrorCode
         return $this;
     }
 
+    /**
+     * @return Order
+     */
     public function addDeliveryRecipientCostAdv(DeliveryRecipientCostAdv $surcharge)
     {
         $this->DeliveryRecipientCostAdv = $surcharge;
@@ -491,6 +497,9 @@ final class Order implements HasErrorCode
         return $this;
     }
 
+    /**
+     * @return Order
+     */
     public function addService(AdditionalService $service)
     {
         $this->additionalServices[] = $service;
@@ -498,6 +507,9 @@ final class Order implements HasErrorCode
         return $this;
     }
 
+    /**
+     * @return Order
+     */
     public function addScheduleAttempt(Attempt $attempt)
     {
         $this->scheduleAttempts[] = $attempt;
@@ -505,6 +517,9 @@ final class Order implements HasErrorCode
         return $this;
     }
 
+    /**
+     * @return Order
+     */
     public function setAddress(Address $address)
     {
         $this->Address = $address;
@@ -512,6 +527,9 @@ final class Order implements HasErrorCode
         return $this;
     }
 
+    /**
+     * @return Order
+     */
     public function setSender(Sender $sender)
     {
         $this->Sender = $sender;
@@ -519,6 +537,9 @@ final class Order implements HasErrorCode
         return $this;
     }
 
+    /**
+     * @return Order
+     */
     public function addPackage(Package $package)
     {
         $this->packages[] = $package;

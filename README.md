@@ -20,7 +20,7 @@
   - [x] [получение квитанции в PDF](#%D0%9F%D0%B5%D1%87%D0%B0%D1%82%D1%8C-%D0%BA%D0%B2%D0%B8%D1%82%D0%B0%D0%BD%D1%86%D0%B8%D0%B8-%D0%BA-%D0%B7%D0%B0%D0%BA%D0%B0%D0%B7%D1%83)
   - [x] [получение почтовых этикеток в PDF](#%D0%9F%D0%B5%D1%87%D0%B0%D1%82%D1%8C-%D0%A8%D0%9A-%D0%BC%D0%B5%D1%81%D1%82)
   - [x] [удаление заказов](#%D0%A3%D0%B4%D0%B0%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5-%D0%B7%D0%B0%D0%BA%D0%B0%D0%B7%D0%B0)
-  - [ ] изменение заказов
+  - [x] изменение заказов
   - [x] [получение информации по заказам (отчёт «Информация по заказам»)](#%D0%9E%D1%82%D1%87%D0%B5%D1%82-%D0%98%D0%BD%D1%84%D0%BE%D1%80%D0%BC%D0%B0%D1%86%D0%B8%D1%8F-%D0%BF%D0%BE-%D0%B7%D0%B0%D0%BA%D0%B0%D0%B7%D0%B0%D0%BC)
   - [x] [трекинг заказов (отчёт «Статусы заказов»)](#%D0%A2%D1%80%D0%B5%D0%BA%D0%B8%D0%BD%D0%B3)
   - [x] [прозвон получателя](#%D0%A0%D0%B5%D0%B3%D0%B8%D1%81%D1%82%D1%80%D0%B0%D1%86%D0%B8%D1%8F-%D0%B8%D0%BD%D1%84%D0%BE%D1%80%D0%BC%D0%B0%D1%86%D0%B8%D0%B8-%D0%BE-%D1%80%D0%B5%D0%B7%D1%83%D0%BB%D1%8C%D1%82%D0%B0%D1%82%D0%B5-%D0%BF%D1%80%D0%BE%D0%B7%D0%B2%D0%BE%D0%BD%D0%B0)
@@ -455,6 +455,30 @@ if ($response->hasErrors()) {
 
 foreach ($response->getOrders() as $order) {
     // проверяем номера удалённых заказов
+    $order->getNumber(); // должно быть 'TEST-123456'
+}
+```
+
+### Изменение заказа
+
+```php
+use CdekSDK\Common;
+use CdekSDK\Requests;
+
+$request = Requests\UpdateRequest::create([
+    'Number' => 'TESTING123',
+])->addOrder(new Common\Order([
+    'Number' => 'TEST-123456',
+]));
+
+$response = $client->sendUpdateRequest($request);
+
+if ($response->hasErrors()) {
+    // обработка ошибок
+}
+
+foreach ($response->getOrders() as $order) {
+    // проверяем номера изменённых заказов
     $order->getNumber(); // должно быть 'TEST-123456'
 }
 ```

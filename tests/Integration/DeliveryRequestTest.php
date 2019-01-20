@@ -45,11 +45,13 @@ use CdekSDK\Requests\InfoReportRequest;
 use CdekSDK\Requests\PrintLabelsRequest;
 use CdekSDK\Requests\PrintReceiptsRequest;
 use CdekSDK\Requests\StatusReportRequest;
+use CdekSDK\Requests\UpdateRequest;
 use CdekSDK\Responses\CallCourierResponse;
 use CdekSDK\Responses\DeleteResponse;
 use CdekSDK\Responses\FileResponse;
 use CdekSDK\Responses\InfoReportResponse;
 use CdekSDK\Responses\StatusReportResponse;
+use CdekSDK\Responses\UpdateResponse;
 
 /**
  * @covers \CdekSDK\Requests\DeliveryRequest
@@ -159,7 +161,14 @@ class DeliveryRequestTest extends TestCase
             }
         }
 
-        $this->assertTrue($response->hasErrors());
+        // В разных версиях API этот запрос может сработать и нет. Если всё-таки да, используем это для тестирования.
+        foreach ($response->getOrders() as $order) {
+            $this->assertNotEmpty($order->getDispatchNumber());
+
+            return $order->getDispatchNumber();
+        }
+
+        $this->assertTrue($response->hasErrors(), 'No errors found');
         $this->assertCount(2, $response->getMessages());
 
         foreach ($response->getMessages() as $message) {
@@ -233,6 +242,12 @@ class DeliveryRequestTest extends TestCase
         $this->skipIfKnownAPIErrorCode($response);
 
         foreach ($response->getMessages() as $message) {
+            if ($message->getErrorCode() === 'ERROR_VALIDATE_SENDER_CONTRAGENT_DELETED') {
+                $this->markTestSkipped($message->getMessage());
+            }
+        }
+
+        foreach ($response->getMessages() as $message) {
             $this->assertEmpty($message->getErrorCode(), $message->getMessage());
         }
 
@@ -244,6 +259,61 @@ class DeliveryRequestTest extends TestCase
         }
 
         return $order->getDispatchNumber();
+    }
+
+    /**
+     * @depends test_failing_request_with_demo_keys
+     */
+    public function test_update_request(string $dispatchNumber)
+    {
+        $request = UpdateRequest::create([
+            'Number' => self::TEST_NUMBER,
+        ])->addOrder(Order::create([
+            'DispatchNumber' => $dispatchNumber,
+            'Number'         => 'TEST-123456',
+        ])->addPackage(Package::create([
+            'Number'  => 'TEST-123456',
+            'BarCode' => 'TEST-123456',
+            'Weight'  => 600, // Общий вес (в граммах)
+            'SizeA'   => 10, // Длина (в сантиметрах), в пределах от 1 до 1500
+            'SizeB'   => 10,
+            'SizeC'   => 10,
+        ])->addItem(new Item([
+            'WareKey' => 'NN0001', // Идентификатор/артикул товара/вложения
+            'Cost'    => 500, // Объявленная стоимость товара (за единицу товара)
+            'Payment' => 0, // Оплата за товар при получении (за единицу товара)
+            'Weight'  => 120, // Вес (за единицу товара, в граммах)
+            'Amount'  => 2, // Количество единиц одноименного товара (в штуках)
+            'Comment' => 'Test item',
+        ]))));
+
+        $response = $this->getClient()->sendUpdateRequest($request);
+
+        $this->assertInstanceOf(UpdateResponse::class, $response);
+
+        $this->skipIfKnownAPIErrorCode($response);
+
+        foreach ($response->getMessages() as $message) {
+            if ($message->getErrorCode() === 'ERR_INVALID_TARIFF_WITH_CLIENT') {
+                $this->markTestSkipped($message->getMessage());
+            }
+
+            // Случай когда БД СДЭК отстаёт
+            if ($message->getErrorCode() === 'ERR_ORDER_NOTFIND') {
+                $this->markTestSkipped($message->getMessage());
+            }
+        }
+
+        foreach ($response->getMessages() as $message) {
+            $this->assertEmpty($message->getErrorCode(), $message->getMessage());
+        }
+
+        $this->assertFalse($response->hasErrors());
+
+        foreach ($response->getOrders() as $order) {
+            $this->assertSame('TEST-123456', $order->getNumber());
+            $this->assertNotEmpty($order->getDispatchNumber());
+        }
     }
 
     /**

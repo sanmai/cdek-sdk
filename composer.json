@@ -1,45 +1,40 @@
 {
     "name": "sanmai/cdek-sdk",
-    "keywords": ["CDEK", "sdk", "delivery", "СДЭК", "служба доставки"],
-    "homepage": "https://github.com/sanmai/cdek-sdk",
-    "description": "СДЭК PHP SDK, библиотека для работы с API СДЭК",
     "type": "library",
+    "description": "СДЭК PHP SDK, библиотека для работы с API СДЭК",
+    "keywords": [
+        "CDEK",
+        "sdk",
+        "delivery",
+        "СДЭК",
+        "служба доставки"
+    ],
+    "homepage": "https://github.com/sanmai/cdek-sdk",
     "license": "MIT",
     "authors": [
         {
             "name": "Roman Sokharev",
-            "role": "Creator",
-            "homepage": "https://github.com/greabock"
+            "homepage": "https://github.com/greabock",
+            "role": "Creator"
         },
         {
             "name": "JhaoDa",
-            "role": "Developer",
-            "homepage": "https://github.com/jhaoda"
+            "homepage": "https://github.com/jhaoda",
+            "role": "Developer"
         },
         {
             "name": "Alexey Kopytko",
-            "role": "Developer",
             "email": "alexey@kopytko.com",
-            "homepage": "https://www.alexeykopytko.com"
+            "homepage": "https://www.alexeykopytko.com",
+            "role": "Developer"
         }
     ],
-    "support": {
-        "chat": "https://t.me/phpcdeksdk",
-        "issues": "https://github.com/sanmai/cdek-sdk/issues",
-        "docs": "https://github.com/sanmai/cdek-sdk/blob/master/README.md"
-    },
     "require": {
         "php": "^7.0",
         "guzzlehttp/guzzle": "^6.3",
         "jms/serializer": "^1.11",
         "psr/log": "^1.0",
-        "sanmai/pipeline": "^0.3.2|^2.0|^3.0.1"
-    },
-    "suggest": {
-        "ext-ctype": "For flexible attribute name handling",
-        "monolog/monolog": "For advanced logging and debugging",
-        "sanmai/pindx": "For postal code validation",
-        "hughgrigg/php-business-time": "Finds next working day, helps with delivery estimates"
+        "sanmai/pipeline": "^0.3.2 || ^2.0 || ^3.0.1"
     },
     "require-dev": {
         "friendsofphp/php-cs-fixer": "^2.14",
@@ -50,8 +45,22 @@
         "phan/phan": "^1.1",
         "php-coveralls/php-coveralls": "^2.1",
         "phpstan/phpstan": ">=0.10",
-        "phpunit/phpunit": "^6.5|^7.4",
-        "vimeo/psalm": ">=1.1"
+        "phpunit/phpunit": "^6.5 || ^7.4",
+        "vimeo/psalm": ">=3"
+    },
+    "suggest": {
+        "ext-ctype": "For flexible attribute name handling",
+        "hughgrigg/php-business-time": "Finds next working day, helps with delivery estimates",
+        "monolog/monolog": "For advanced logging and debugging",
+        "sanmai/pindx": "For postal code validation"
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "v0.6.x-dev"
+        }
     },
     "autoload": {
         "psr-4": {
@@ -63,12 +72,9 @@
             "Tests\\CdekSDK\\": "tests/"
         }
     },
-    "config": {
-        "sort-packages": true
-    },
-    "extra": {
-        "branch-alias": {
-            "dev-master": "v0.6.x-dev"
-        }
+    "support": {
+        "issues": "https://github.com/sanmai/cdek-sdk/issues",
+        "chat": "https://t.me/phpcdeksdk",
+        "docs": "https://github.com/sanmai/cdek-sdk/blob/master/README.md"
     }
 }

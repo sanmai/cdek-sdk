@@ -157,6 +157,22 @@ final class Order implements HasErrorCode
     protected $DeliveryRecipientCost;
 
     /**
+     * @JMS\XmlAttribute
+     * @JMS\Type("string")
+     *
+     * @var string
+     */
+    protected $DeliveryRecipientVATRate;
+
+    /**
+     * @JMS\XmlAttribute
+     * @JMS\Type("float")
+     *
+     * @var float
+     */
+    protected $DeliveryRecipientVATSum;
+
+    /**
      * @JMS\Type("CdekSDK\Common\DeliveryRecipientCostAdv")
      *
      * @var DeliveryRecipientCostAdv

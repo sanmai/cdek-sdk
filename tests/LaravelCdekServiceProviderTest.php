@@ -69,7 +69,7 @@ class LaravelCdekServiceProviderTest extends TestCase
     {
         $this->provider->boot();
 
-        $this->assertIsCallable(\Closure::bind(function () {
+        $this->assertEquals('class_exists', \Closure::bind(function () {
             return end(AnnotationRegistry::$loaders);
         }, null, AnnotationRegistry::class)());
     }

@@ -49,7 +49,7 @@
         "vimeo/psalm": ">=3"
     },
     "conflict": {
-        "doctrine/annotations": "<1.3"
+        "yiisoft/yii": "<=1.1.20"
     },
     "suggest": {
         "ext-ctype": "For flexible attribute name handling",

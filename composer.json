@@ -36,6 +36,7 @@
         "psr/log": "^1.0",
         "sanmai/pipeline": "^0.3.2 || ^2.0 || ^3.0.1"
     },
+    "conflict": {},
     "require-dev": {
         "friendsofphp/php-cs-fixer": "^2.14",
         "gamez/psr-testlogger": "^3.0",
@@ -47,9 +48,6 @@
         "phpstan/phpstan": ">=0.10",
         "phpunit/phpunit": "^6.5 || ^7.4",
         "vimeo/psalm": ">=3"
-    },
-    "conflict": {
-        "doctrine/annotations": "<1.3"
     },
     "suggest": {
         "ext-ctype": "For flexible attribute name handling",

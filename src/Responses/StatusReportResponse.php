@@ -36,6 +36,8 @@ use JMS\Serializer\Annotation as JMS;
 
 /**
  * Class StatusReportResponse.
+ *
+ * @template-implements IteratorAggregate<Common\Order>
  */
 final class StatusReportResponse implements Response, HasErrorCode, \IteratorAggregate
 {
@@ -98,6 +100,8 @@ final class StatusReportResponse implements Response, HasErrorCode, \IteratorAgg
     }
 
     /**
+     * @phan-suppress PhanUnextractableAnnotationSuffix
+     *
      * @return \ArrayIterator<array-key, Order>
      */
     public function getIterator()

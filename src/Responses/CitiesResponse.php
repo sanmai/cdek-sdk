@@ -34,6 +34,8 @@ use JMS\Serializer\Annotation as JMS;
 
 /**
  * Class CitiesResponse.
+ *
+ * @template-implements IteratorAggregate<Location>
  */
 final class CitiesResponse implements \IteratorAggregate, Response
 {
@@ -54,6 +56,8 @@ final class CitiesResponse implements \IteratorAggregate, Response
     }
 
     /**
+     * @phan-suppress PhanUnextractableAnnotationSuffix
+     *
      * @return \ArrayIterator<array-key, Location>
      */
     public function getIterator()

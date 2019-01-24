@@ -92,6 +92,7 @@ final class Serializer implements SerializerInterface
         // Ignore Phan/Psalm issue-suppressing annotations
         AnnotationReader::addGlobalIgnoredName('phan');
         AnnotationReader::addGlobalIgnoredName('psalm');
+        AnnotationReader::addGlobalIgnoredName('template');
 
         if (self::$configureAnnotationRegistry) {
             self::configureAnnotationRegistry();

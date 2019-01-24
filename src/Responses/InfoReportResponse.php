@@ -36,6 +36,8 @@ use JMS\Serializer\Annotation as JMS;
 
 /**
  * Class InfoReportResponse.
+ *
+ * @template-implements IteratorAggregate<Common\Order>
  */
 final class InfoReportResponse implements Response, \IteratorAggregate
 {
@@ -58,6 +60,8 @@ final class InfoReportResponse implements Response, \IteratorAggregate
     }
 
     /**
+     * @phan-suppress PhanUnextractableAnnotationSuffix
+     *
      * @return \ArrayIterator<array-key, Order>
      */
     public function getIterator()

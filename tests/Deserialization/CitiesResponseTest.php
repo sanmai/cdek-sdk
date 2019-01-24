@@ -92,7 +92,7 @@ class CitiesResponseTest extends TestCase
         $this->assertFalse($response->hasErrors());
 
         foreach ($response as $item) {
-            $this->assertIsFloat($item->getPaymentLimit());
+            $this->assertTrue(is_float($item->getPaymentLimit()));
         }
     }
 

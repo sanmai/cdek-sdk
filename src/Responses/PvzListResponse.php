@@ -54,7 +54,7 @@ final class PvzListResponse implements Response, \IteratorAggregate
     }
 
     /**
-     * @return \Traversable|Pvz[]
+     * @return \ArrayIterator<array-key, Pvz>
      */
     public function getIterator()
     {

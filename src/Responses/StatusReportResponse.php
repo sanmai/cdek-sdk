@@ -98,7 +98,7 @@ final class StatusReportResponse implements Response, HasErrorCode, \IteratorAgg
     }
 
     /**
-     * @return \Traversable|Order[]
+     * @return \ArrayIterator<array-key, Order>
      */
     public function getIterator()
     {

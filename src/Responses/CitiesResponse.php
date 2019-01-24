@@ -54,7 +54,7 @@ final class CitiesResponse implements \IteratorAggregate, Response
     }
 
     /**
-     * @return \Traversable|Location[]
+     * @return \ArrayIterator<array-key, Location>
      */
     public function getIterator()
     {

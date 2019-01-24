@@ -58,7 +58,7 @@ final class InfoReportResponse implements Response, \IteratorAggregate
     }
 
     /**
-     * @return \Traversable|Order[]
+     * @return \ArrayIterator<array-key, Order>
      */
     public function getIterator()
     {

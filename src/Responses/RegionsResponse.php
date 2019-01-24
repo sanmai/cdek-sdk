@@ -54,7 +54,7 @@ final class RegionsResponse implements \IteratorAggregate, Response
     }
 
     /**
-     * @return \Traversable|Region[]
+     * @return \ArrayIterator<array-key, Region>
      */
     public function getIterator()
     {

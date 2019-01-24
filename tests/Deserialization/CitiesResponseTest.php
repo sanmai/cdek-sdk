@@ -85,6 +85,17 @@ class CitiesResponseTest extends TestCase
         $this->assertSame($location, $item);
     }
 
+    public function test_it_works_around_missing_payment_limit()
+    {
+        $response = $this->getSerializer()->deserialize(FixtureLoader::load('CitiesResponseNoPaymentLimit.xml'), CitiesResponse::class, 'xml');
+
+        $this->assertFalse($response->hasErrors());
+
+        foreach ($response as $item) {
+            $this->assertIsFloat($item->getPaymentLimit());
+        }
+    }
+
     public function test_it_serializes_to_empty_json()
     {
         $response = new CitiesResponse();

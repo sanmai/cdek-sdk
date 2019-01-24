@@ -142,7 +142,7 @@ final class Location
      *
      * @var float
      */
-    private $paymentLimit;
+    private $paymentLimit = 0.0;
 
     public function getName(): string
     {

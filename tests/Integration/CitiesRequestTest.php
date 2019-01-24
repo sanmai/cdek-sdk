@@ -75,4 +75,21 @@ class CitiesRequestTest extends TestCase
         $this->assertFalse($response->hasErrors());
         $this->assertCount(0, $response->getItems());
     }
+
+    public function test_with_null_payment_limit()
+    {
+        $request = new CitiesRequest();
+        $request->setRegionCode(9);
+
+        /** @var $response CitiesResponse */
+        $response = $this->getClient()->sendCitiesRequest($request);
+
+        $this->skipIfKnownAPIErrorCode($response);
+
+        $this->assertFalse($response->hasErrors());
+
+        foreach ($response as $item) {
+            $this->assertIsFloat($item->getPaymentLimit());
+        }
+    }
 }

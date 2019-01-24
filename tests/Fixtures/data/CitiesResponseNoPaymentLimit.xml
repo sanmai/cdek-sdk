@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Locations>
+  <Location cityName="Морщихино" cityCode="59137" cityUuid="b418ca0d-f872-45b9-8279-626ee804dd53" country="Russia" countryCode="1" region="Московская" regionCode="9" regionCodeExt="50" subRegion="Химки" latitude="55.938" longitude="37.2998" kladr="5000003000800" fiasGuid="a04ab018-10c0-4eee-a263-a8ad29c978d1"/>
+  <Location cityName="Вашутино" cityCode="59109" cityUuid="417e2059-825e-4eaa-a07b-53638cc7ef9d" country="Russia" countryCode="1" region="Московская" regionCode="9" regionCodeExt="50" subRegion="Химки" latitude="55.9264" longitude="37.4313" kladr="5000003000300" fiasGuid="eb189db1-2ef9-43f8-af19-a529fca6428e"/>
+</Locations>

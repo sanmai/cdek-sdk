@@ -1,3 +1,5 @@
 parameters:
 	excludes_analyse:
 		- %currentWorkingDirectory%/tests/Common/MagicSettersTest.php
+	ignoreErrors:
+		- '#@return has invalid value.*ArrayIterator<array-key,#'

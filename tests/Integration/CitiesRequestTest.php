@@ -81,7 +81,6 @@ class CitiesRequestTest extends TestCase
         $request = new CitiesRequest();
         $request->setRegionCode(9);
 
-        /** @var CitiesResponse $response */
         $response = $this->getClient()->sendCitiesRequest($request);
 
         $this->skipIfKnownAPIErrorCode($response);

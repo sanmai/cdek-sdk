@@ -54,6 +54,7 @@ class PvzTest extends TestCase
 
         /** @var $pvz Pvz */
         $this->assertSame('+79125252100', $pvz->Phone);
+        $this->assertSame('640018', $pvz->PostalCode);
 
         $this->assertCount(3, $pvz->OfficeImages);
 

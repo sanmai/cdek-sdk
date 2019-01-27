@@ -83,6 +83,14 @@ final class Pvz
      *
      * @var string
      */
+    public $PostalCode;
+
+    /**
+     * @JMS\XmlAttribute
+     * @JMS\Type("string")
+     *
+     * @var string
+     */
     public $Phone;
 
     /**

@@ -58,7 +58,7 @@ final class RegionsResponse implements \IteratorAggregate, Response
     /**
      * @phan-suppress PhanUnextractableAnnotationSuffix
      *
-     * @return \ArrayIterator<array-key, Region>
+     * @return \ArrayIterator<array-key, Region>|Region[]
      */
     public function getIterator()
     {

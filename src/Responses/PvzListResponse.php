@@ -58,7 +58,7 @@ final class PvzListResponse implements Response, \IteratorAggregate
     /**
      * @phan-suppress PhanUnextractableAnnotationSuffix
      *
-     * @return \ArrayIterator<array-key, Pvz>
+     * @return \ArrayIterator<array-key, Pvz>|Pvz[]
      */
     public function getIterator()
     {

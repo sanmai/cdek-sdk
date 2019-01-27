@@ -58,7 +58,7 @@ final class CitiesResponse implements \IteratorAggregate, Response
     /**
      * @phan-suppress PhanUnextractableAnnotationSuffix
      *
-     * @return \ArrayIterator<array-key, Location>
+     * @return \ArrayIterator<array-key, Location>|Location[]
      */
     public function getIterator()
     {

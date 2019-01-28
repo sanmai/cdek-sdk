@@ -62,7 +62,7 @@ final class InfoReportResponse implements Response, \IteratorAggregate
     /**
      * @phan-suppress PhanUnextractableAnnotationSuffix
      *
-     * @return \ArrayIterator<array-key, Order>|Order[]
+     * @return Order[]|\ArrayIterator<array-key, Order>
      */
     public function getIterator()
     {

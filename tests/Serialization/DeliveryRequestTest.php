@@ -234,7 +234,7 @@ class DeliveryRequestTest extends TestCase
             'Amount'                   => 2,
             'CommentEx'                => 'Winter Shoes, Natural Leather. Size 37.',
             'Comment'                  => 'Зимние ботинки, 37 раз. Кожаные',
-            'Link' => 'https://www.example.com/winter-shoes',
+            'Link'                     => 'https://www.example.com/winter-shoes',
         ]));
 
         $package->addItem(new Item([

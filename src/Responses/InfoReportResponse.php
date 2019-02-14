@@ -37,7 +37,7 @@ use JMS\Serializer\Annotation as JMS;
 /**
  * Class InfoReportResponse.
  *
- * @template-implements IteratorAggregate<Common\Order>
+ * @template-implements IteratorAggregate<Order>
  */
 final class InfoReportResponse implements Response, \IteratorAggregate
 {

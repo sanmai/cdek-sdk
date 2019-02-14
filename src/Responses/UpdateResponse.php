@@ -61,7 +61,7 @@ final class UpdateResponse implements Response
     private $completeOrders;
 
     /**
-     * @return \Traversable|Order[]
+     * @return Order[]|\Traversable<Order>
      */
     public function getOrders()
     {
@@ -75,7 +75,6 @@ final class UpdateResponse implements Response
      */
     private function filterOrders()
     {
-        /** @var \Pipeline\Standard<Order> $this->completeOrders */
         $this->completeOrders = fromArray($this->orders)->filter(function (Order $order) {
             return (bool) $order->getDispatchNumber();
         });

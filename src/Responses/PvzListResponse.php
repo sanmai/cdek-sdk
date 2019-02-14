@@ -35,7 +35,7 @@ use JMS\Serializer\Annotation as JMS;
 /**
  * Class PvzListResponse.
  *
- * @template-implements IteratorAggregate<Common\Pvz>
+ * @template-implements IteratorAggregate<Pvz>
  */
 final class PvzListResponse implements Response, \IteratorAggregate
 {
@@ -57,8 +57,9 @@ final class PvzListResponse implements Response, \IteratorAggregate
 
     /**
      * @phan-suppress PhanUnextractableAnnotationSuffix
+     * @psalm-suppress InvalidReturnStatement
      *
-     * @return Pvz[]|\ArrayIterator<array-key, Pvz>
+     * @return Pvz[]|\Traversable<Pvz>
      */
     public function getIterator()
     {

@@ -47,5 +47,6 @@
         <UnresolvableInclude errorLevel="info" />
 
         <RawObjectIteration errorLevel="info" />
+        <ImplementedReturnTypeMismatch errorLevel="info" />
     </issueHandlers>
 </psalm>

@@ -70,7 +70,7 @@ final class DeleteResponse implements Response
     }
 
     /**
-     * @return \Traversable|Order[]
+     * @return Order[]|\Traversable<Order>
      */
     public function getOrders()
     {

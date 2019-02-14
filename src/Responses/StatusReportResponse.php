@@ -37,7 +37,7 @@ use JMS\Serializer\Annotation as JMS;
 /**
  * Class StatusReportResponse.
  *
- * @template-implements IteratorAggregate<Common\Order>
+ * @template-implements IteratorAggregate<Order>
  */
 final class StatusReportResponse implements Response, HasErrorCode, \IteratorAggregate
 {
@@ -102,7 +102,7 @@ final class StatusReportResponse implements Response, HasErrorCode, \IteratorAgg
     /**
      * @phan-suppress PhanUnextractableAnnotationSuffix
      *
-     * @return Order[]|\ArrayIterator<array-key, Order>
+     * @return Order[]|\Traversable<Order>
      */
     public function getIterator()
     {

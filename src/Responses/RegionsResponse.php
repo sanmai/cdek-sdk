@@ -35,7 +35,7 @@ use JMS\Serializer\Annotation as JMS;
 /**
  * Class RegionsResponse.
  *
- * @template-implements IteratorAggregate<Common\Region>
+ * @template-implements IteratorAggregate<Region>
  */
 final class RegionsResponse implements \IteratorAggregate, Response
 {
@@ -57,8 +57,9 @@ final class RegionsResponse implements \IteratorAggregate, Response
 
     /**
      * @phan-suppress PhanUnextractableAnnotationSuffix
+     * @psalm-suppress InvalidReturnStatement
      *
-     * @return Region[]|\ArrayIterator<array-key, Region>
+     * @return Region[]|\Traversable<Region>
      */
     public function getIterator()
     {

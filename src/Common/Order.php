@@ -478,6 +478,14 @@ final class Order implements HasErrorCode
     protected $Passport;
 
     /**
+     * @JMS\XmlAttribute
+     * @JMS\Type("string")
+     *
+     * @var string
+     */
+    protected $RecipientINN;
+
+    /**
      * @return Order
      */
     public function callCourier(CallCourier $call)

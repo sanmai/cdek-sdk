@@ -209,9 +209,13 @@ class DeliveryRequestTest extends TestCase
     {
         $order = new Order([
             'DateInvoice'  => new \DateTimeImmutable('2010-10-10'),
+            'RecipientINN' => '6449013711',
             'Passport'     => Passport::create([
-                'Series' => '5004',
-                'Number' => '123456',
+                'Series'    => '5004',
+                'Number'    => '123456',
+                'IssueDate' => new \DateTimeImmutable('1999-07-27'),
+                'IssuedBy'  => 'УФМС 770001',
+                'DateBirth' => new \DateTimeImmutable('1979-07-13'),
             ]),
             'PassportNumber' => '5004 123457',
             'Comment'        => 'Test order',
@@ -230,6 +234,7 @@ class DeliveryRequestTest extends TestCase
             'Amount'                   => 2,
             'CommentEx'                => 'Winter Shoes, Natural Leather. Size 37.',
             'Comment'                  => 'Зимние ботинки, 37 раз. Кожаные',
+            'Link' => 'https://www.example.com/winter-shoes',
         ]));
 
         $package->addItem(new Item([
@@ -254,12 +259,12 @@ class DeliveryRequestTest extends TestCase
 
         $this->assertSameAsXML('<?xml version="1.0" encoding="UTF-8"?>
 <DeliveryRequest OrderCount="1" Number="12345" ForeignDelivery="true" Currency="USD">
-  <Order DateInvoice="2010-10-10" Comment="Test order" PassportNumber="5004 123457">
+  <Order DateInvoice="2010-10-10" Comment="Test order" PassportNumber="5004 123457" RecipientINN="6449013711">
     <Package Number="TEST-123456">
-      <Item WareKey="123123123" CostEx="11" Cost="330" Weight="1500" WeightBrutto="1650" Amount="2" Comment="Зимние ботинки, 37 раз. Кожаные" CommentEx="Winter Shoes, Natural Leather. Size 37."/>
+      <Item WareKey="123123123" CostEx="11" Cost="330" Weight="1500" WeightBrutto="1650" Amount="2" Comment="Зимние ботинки, 37 раз. Кожаные" CommentEx="Winter Shoes, Natural Leather. Size 37." Link="https://www.example.com/winter-shoes"/>
       <Item WareKey="345345345" CostEx="12" Cost="430" Weight="1501" WeightBrutto="1651" Amount="1" Comment="Зимние ботинки, 36 раз. Кожаные" CommentEx="Winter Shoes, Natural Leather. Size 36."/>
     </Package>
-    <Passport Series="5004" Number="123456"/>
+    <Passport Series="5004" Number="123456" IssueDate="1999-07-27" IssuedBy="УФМС 770001" DateBirth="1979-07-13"/>
   </Order>
 </DeliveryRequest>
 ', $request);

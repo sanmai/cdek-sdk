@@ -54,4 +54,28 @@ final class Passport
      * @var string
      */
     private $Number;
+
+    /**
+     * @JMS\XmlAttribute
+     * @JMS\Type("DateTimeImmutable<'Y-m-d'>")
+     *
+     * @var \DateTimeInterface
+     */
+    private $IssueDate;
+
+    /**
+     * @JMS\XmlAttribute
+     * @JMS\Type("string")
+     *
+     * @var string
+     */
+    private $IssuedBy;
+
+    /**
+     * @JMS\XmlAttribute
+     * @JMS\Type("DateTimeImmutable<'Y-m-d'>")
+     *
+     * @var \DateTimeInterface
+     */
+    private $DateBirth;
 }

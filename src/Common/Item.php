@@ -143,6 +143,8 @@ final class Item
     protected $Weight;
 
     /**
+     * Вес брутто (за единицу товара, в граммах).
+     *
      * @JMS\XmlAttribute
      * @JMS\Type("float")
      *
@@ -179,6 +181,16 @@ final class Item
      * @var string
      */
     protected $CommentEx;
+
+    /**
+     * Ссылка на сайт интернет-магазина с описанием товара.
+     *
+     * @JMS\XmlAttribute
+     * @JMS\Type("string")
+     *
+     * @var string
+     */
+    protected $Link;
 
     /**
      * @JMS\XmlAttribute

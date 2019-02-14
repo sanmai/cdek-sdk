@@ -51,6 +51,7 @@ trait Fillable
 
     /**
      * @param array<string, mixed> $data
+     * @phan-suppress PhanTypeInstantiateTrait
      *
      * @return static
      */

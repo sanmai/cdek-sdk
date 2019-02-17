@@ -47,7 +47,7 @@
         "php-coveralls/php-coveralls": "^2.1",
         "phpstan/phpstan": ">=0.10",
         "phpunit/phpunit": "^6.5 || ^7.4",
-        "vimeo/psalm": ">=3"
+        "vimeo/psalm": ">=3.0.16"
     },
     "suggest": {
         "ext-ctype": "For flexible attribute name handling",

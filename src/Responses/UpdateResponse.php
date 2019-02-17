@@ -61,7 +61,7 @@ final class UpdateResponse implements Response
     private $completeOrders;
 
     /**
-     * @return Order[]|\Traversable<Order>
+     * @return \Traversable|Order[]
      */
     public function getOrders()
     {

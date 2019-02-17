@@ -74,12 +74,12 @@ final class DeliveryResponse implements Response
     /**
      * @JMS\Exclude
      *
-     * @var \Traversable<Order>
+     * @var \Traversable|Order[]
      */
     private $completeOrders;
 
     /**
-     * @return \Traversable|Order[]|\Traversable<Order>
+     * @return \Traversable|Order[]
      */
     public function getOrders()
     {

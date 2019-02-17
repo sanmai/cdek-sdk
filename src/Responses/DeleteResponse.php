@@ -60,7 +60,7 @@ final class DeleteResponse implements Response
     private $orders = [];
 
     /**
-     * @return \Traversable|Order[]
+     * @return \Pipeline\Standard|Order[]
      */
     private function getOrdersFromRequests()
     {
@@ -70,7 +70,7 @@ final class DeleteResponse implements Response
     }
 
     /**
-     * @return Order[]|\Traversable<Order>
+     * @return \Pipeline\Standard|Order[]
      */
     public function getOrders()
     {

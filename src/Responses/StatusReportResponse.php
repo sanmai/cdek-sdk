@@ -102,7 +102,7 @@ final class StatusReportResponse implements Response, HasErrorCode, \IteratorAgg
     /**
      * @phan-suppress PhanUnextractableAnnotationSuffix
      *
-     * @return Order[]|\Traversable<Order>
+     * @return \Traversable|Order[]
      */
     public function getIterator()
     {

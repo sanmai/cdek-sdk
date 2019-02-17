@@ -57,7 +57,7 @@ final class CallCourierResponse implements Response
     private $successful = [];
 
     /**
-     * @return string[]|\Traversable|\Traversable<string>
+     * @return \Traversable|string[]
      */
     public function getNumbers()
     {

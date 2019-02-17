@@ -59,7 +59,7 @@ final class PvzListResponse implements Response, \IteratorAggregate
      * @phan-suppress PhanUnextractableAnnotationSuffix
      * @psalm-suppress InvalidReturnStatement
      *
-     * @return Pvz[]|\Traversable<Pvz>
+     * @return \Traversable|Pvz[]
      */
     public function getIterator()
     {

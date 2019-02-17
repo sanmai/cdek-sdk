@@ -59,7 +59,7 @@ final class RegionsResponse implements \IteratorAggregate, Response
      * @phan-suppress PhanUnextractableAnnotationSuffix
      * @psalm-suppress InvalidReturnStatement
      *
-     * @return Region[]|\Traversable<Region>
+     * @return \Traversable|Region[]
      */
     public function getIterator()
     {

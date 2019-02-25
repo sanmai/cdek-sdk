@@ -174,6 +174,8 @@ final class Serializer implements SerializerInterface
             AnnotationRegistry::registerLoader('class_exists');
         }
 
+        // @codeCoverageIgnoreStart
         self::$annotationRegistryReady = true;
+        // @codeCoverageIgnoreEnd
     }
 }

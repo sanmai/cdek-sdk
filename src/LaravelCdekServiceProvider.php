@@ -45,7 +45,10 @@ class LaravelCdekServiceProvider extends ServiceProvider
     {
         /** @phan-suppress-next-line PhanDeprecatedFunction */
         AnnotationRegistry::registerLoader('class_exists');
+
+        // @codeCoverageIgnoreStart
         Serializer::doNotConfigureAnnotationRegistry();
+        // @codeCoverageIgnoreEnd
     }
 
     /**

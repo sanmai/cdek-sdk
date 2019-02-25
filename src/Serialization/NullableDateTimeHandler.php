@@ -70,6 +70,19 @@ final class NullableDateTimeHandler extends DateHandler
         }
     }
 
+    /**
+     * @param mixed $data
+     * @param array $type
+     *
+     * @throws RuntimeException
+     *
+     * @return \DateTimeImmutable
+     *
+     * @psalm-suppress MixedAssignment
+     * @psalm-suppress PossiblyUndefinedArrayOffset
+     * @psalm-suppress MixedArrayAccess
+     * @psalm-suppress MixedArgument
+     */
     private function parseDateTimeFallback($data, array $type)
     {
         $timezone = !empty($type['params'][1]) ? $type['params'][1] : 'UTC';

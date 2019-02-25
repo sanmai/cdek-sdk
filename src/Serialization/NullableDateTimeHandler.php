@@ -29,6 +29,7 @@ declare(strict_types=1);
 namespace CdekSDK\Serialization;
 
 use JMS\Serializer\Context;
+use JMS\Serializer\Exception\RuntimeException;
 use JMS\Serializer\GraphNavigator;
 use JMS\Serializer\Handler\DateHandler;
 use JMS\Serializer\VisitorInterface;
@@ -56,7 +57,40 @@ final class NullableDateTimeHandler extends DateHandler
             return null;
         }
 
-        return parent::deserializeDateTimeImmutableFromXml($visitor, $data, $type);
+        try {
+            return parent::deserializeDateTimeImmutableFromXml($visitor, $data, $type);
+        } catch (RuntimeException $e) {
+            if (!isset($type['params'][3])) {
+                // Fallback date format; specify like so:
+                // @JMS\Type("DateTimeImmutable<'Y-m-d\TH:i:sP', '', 'Y-m-d\TH:i:sP', 'Y-m-d'>")
+                throw $e;
+            }
+
+            return $this->parseDateTimeFallback($data, $type);
+        }
+    }
+
+    private function parseDateTimeFallback($data, array $type)
+    {
+        $timezone = !empty($type['params'][1]) ? $type['params'][1] : 'UTC';
+        $format = $type['params'][3];
+
+        /** @var \DateTimeImmutable|false $datetime */
+        $datetime = \DateTimeImmutable::createFromFormat($format, (string) $data, new \DateTimeZone($timezone));
+
+        if (!$datetime instanceof \DateTimeImmutable) {
+            throw new RuntimeException(sprintf('Invalid datetime "%s", expected format %s.', $data, $format));
+        }
+
+        if ($format === 'Y-m-d') {
+            $datetime = $datetime->setTime(0, 0, 0);
+        }
+
+        if ($format === 'U') {
+            $datetime = $datetime->setTimezone($timezone);
+        }
+
+        return $datetime;
     }
 
     public function serializeDateTimeInterface(VisitorInterface $visitor, \DateTimeInterface $date, array $type, Context $context)

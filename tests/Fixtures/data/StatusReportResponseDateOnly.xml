@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StatusReport DateFirst="2000-12-31T17:00:00+00:00" DateLast="2018-08-10T08:55:52+00:00" >
+    <Order ActNumber="" Number="2080965069" DispatchNumber="1000028000"  DeliveryDate="2018-04-06T13:33:27+03:00" RecipientName="Руслан Альбертович" >
+        <Status Date="2018-04-06T10:33:42+00:00" Code="4" Description="Вручен" CityCode="1081" CityName="Нальчик">
+            <State Date="2018-03-21T14:54:13+00:00" Code="1" Description="Создан" CityCode="44" CityName="Москва" />
+            <State Date="2018-04-06T10:33:42+00:00" Code="4" Description="Вручен" CityCode="1081" CityName="Нальчик" />
+        </Status>
+    </Order>
+    <Order ActNumber="" Number="2066479243" DispatchNumber="1000356200"  DeliveryDate="2011-04-07" RecipientName="Аркадий Якубович" >
+        <Status Date="2011-04-07T12:29:39+00:00" Code="4" Description="Вручен" CityCode="44" CityName="Москва">
+            <State Date="2011-04-01T14:15:20+00:00" Code="1" Description="Создан" CityCode="44" CityName="Москва" />
+            <State Date="2011-04-07T06:14:36+00:00" Code="11" Description="Выдан на доставку" CityCode="44" CityName="Москва" />
+            <State Date="2011-04-07T12:29:39+00:00" Code="4" Description="Вручен" CityCode="44" CityName="Москва" />
+        </Status>
+    </Order>
+</StatusReport>

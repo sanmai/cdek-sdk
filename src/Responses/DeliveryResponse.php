@@ -87,6 +87,21 @@ final class DeliveryResponse implements Response
     }
 
     /**
+     * @JMS\Exclude
+     *
+     * @var \Traversable|Order[]
+     */
+    private $failedOrders;
+
+    /**
+     * @return \Traversable|Order[]
+     */
+    public function getErrors()
+    {
+        return $this->failedOrders;
+    }
+
+    /**
      * @return DeliveryRequest[]
      */
     public function getRequests()
@@ -113,6 +128,10 @@ final class DeliveryResponse implements Response
     {
         $this->completeOrders = fromArray($this->orders)->filter(function (Order $order) {
             return (bool) $order->getDispatchNumber();
+        });
+
+        $this->failedOrders = fromArray($this->orders)->filter(function (Order $order) {
+            return $order->getNumber() && !$order->getDispatchNumber();
         });
     }
 

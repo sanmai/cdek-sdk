@@ -33,7 +33,7 @@ interface Response extends \JsonSerializable
     public function hasErrors(): bool;
 
     /**
-     * @return \Traversable|HasErrorCode[]|\Traversable<HasErrorCode>
+     * @return \Traversable|HasErrorCode[]
      */
     public function getMessages();
 }

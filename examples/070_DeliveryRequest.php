@@ -79,6 +79,13 @@ $response = $client->sendDeliveryRequest($request);
 
 if ($response->hasErrors()) {
     // обработка ошибок
+
+    foreach ($response->getErrors() as $order) {
+        // заказы с ошибками
+        $order->getMessage();
+        $order->getErrorCode();
+        $order->getNumber();
+    }
 }
 
 foreach ($response->getOrders() as $order) {

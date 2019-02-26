@@ -67,6 +67,44 @@ class DeliveryResponseTest extends TestCase
         }
     }
 
+    public function test_failed_orders()
+    {
+        $response = $this->getSerializer()->deserialize(FixtureLoader::load('DeliveryRequestErrors.xml'), DeliveryResponse::class, 'xml');
+
+        /** @var $response DeliveryResponse */
+        $this->assertInstanceOf(DeliveryResponse::class, $response);
+
+        $this->assertCount(3, $response->getMessages());
+
+        foreach ($response->getMessages() as $message) {
+            $this->assertTrue($message->isError());
+            break;
+        }
+
+        $this->assertCount(2, $response->getErrors());
+
+        foreach ($response->getErrors() as $order) {
+            $this->assertSame('Отсутствие обязательного атрибута: PVZCODE', $order->getMessage());
+            $this->assertSame('ERR_NEED_ATTRIBUTE', $order->getErrorCode());
+            $this->assertSame('123456', $order->getNumber());
+            break;
+        }
+
+        $order = iterator_to_array($response->getErrors(), false)[1];
+
+        $this->assertSame('Почтовый индекс города получателя отсутствует в базе СДЭК: RecCityPostCode=999999', $order->getMessage());
+        $this->assertSame('ERR_RECCITYPOSTCODE', $order->getErrorCode());
+        $this->assertSame('234567', $order->getNumber());
+
+        $this->assertCount(1, $response->getOrders());
+
+        foreach ($response->getOrders() as $order) {
+            $this->assertSame('TEST-123456', $order->getNumber());
+            $this->assertSame('100001234', $order->getDispatchNumber());
+            break;
+        }
+    }
+
     public function test_failing_request_with_failed_auth()
     {
         $response = $this->getSerializer()->deserialize(FixtureLoader::load('DeliveryRequestFailedAuth.xml'), DeliveryResponse::class, 'xml');

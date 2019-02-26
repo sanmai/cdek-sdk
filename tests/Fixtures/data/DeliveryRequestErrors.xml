@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<response>
+    <Order Number="123456" ErrorCode="ERR_NEED_ATTRIBUTE" Msg="Отсутствие обязательного атрибута: PVZCODE"/>
+    <Order Number="234567" ErrorCode="ERR_RECCITYPOSTCODE" Msg="Почтовый индекс города получателя отсутствует в базе СДЭК: RecCityPostCode=999999"/>
+    <Order Number="TEST-123456" DispatchNumber="100001234" />
+    <Order Msg="Добавлено заказов 1"/>
+</response>

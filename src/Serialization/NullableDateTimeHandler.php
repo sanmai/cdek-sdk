@@ -67,7 +67,7 @@ final class NullableDateTimeHandler extends DateHandler
     }
 
     /**
-     * Fallback date format handler; specify like so:.
+     * Fallback date format handler; for usage see below.
      *
      * @JMS\Type("DateTimeImmutable<'Y-m-d\TH:i:sP', '', 'Y-m-d\TH:i:sP', 'Y-m-d'>")
      *

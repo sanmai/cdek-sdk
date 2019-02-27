@@ -57,11 +57,16 @@ class CallCourierRequestTest extends TestCase
             'Street' => 'Тестовая',
             'House'  => '8',
             'Flat'   => '32',
+        ]))->setSendAddress(Address::create([
+            'Street' => 'Проверочная',
+            'House'  => '10',
+            'Flat'   => '22',
         ])));
 
         $this->assertSameAsXML('<?xml version="1.0" encoding="UTF-8"?>
 <CallCourier CallCount="1">
   <Call Date="2017-03-14" TimeBeg="10:00" TimeEnd="17:00" LunchBeg="14:00" LunchEnd="14:30" SendCityCode="44" SendPhone="+79138739944" SenderName="Testing" Weight="20" Comment="foo" DispatchNumber="1039547805" IgnoreTime="true">
+    <SendAddress Street="Проверочная" House="10" Flat="22"/>
     <Address Street="Тестовая" House="8" Flat="32"/>
   </Call>
 </CallCourier>

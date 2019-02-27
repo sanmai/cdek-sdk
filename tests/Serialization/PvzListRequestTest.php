@@ -74,5 +74,20 @@ class PvzListRequestTest extends TestCase
             'allowedcod'     => true,
             'isdressingroom' => false,
         ], $request->getParams());
+
+        $request = (new PvzListRequest())
+            ->setCityPostCode('800900');
+
+        $this->assertEquals([
+            'type'           => PvzListRequest::TYPE_PVZ,
+            'cityid'         => null,
+            'regionid'       => null,
+            'countryid'      => null,
+            'citypostcode'   => '800900',
+            'havecashles'    => null,
+            'weightmax'      => null,
+            'allowedcod'     => null,
+            'isdressingroom' => null,
+        ], $request->getParams());
     }
 }

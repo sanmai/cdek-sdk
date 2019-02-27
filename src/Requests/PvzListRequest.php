@@ -109,6 +109,11 @@ final class PvzListRequest implements ParamRequest
         return $this;
     }
 
+    public function setCityPostCode(string $code)
+    {
+        return $this->setPostCode($code);
+    }
+
     public function setCashless(bool $cashless)
     {
         $this->cashless = $cashless;

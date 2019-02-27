@@ -28,7 +28,9 @@ declare(strict_types=1);
 
 namespace Tests\CdekSDK\Deserialization;
 
+use CdekSDK\Common\Order;
 use CdekSDK\Responses\StatusReportResponse;
+use JMS\Serializer\Exception\RuntimeException;
 use Tests\CdekSDK\Fixtures\FixtureLoader;
 
 /**
@@ -43,5 +45,39 @@ class NullableDateTimeHandlerTest extends TestCase
         /** @var $result StatusReportResponse */
         $this->assertInstanceOf(StatusReportResponse::class, $result);
         $this->assertNull($result->getOrders()[0]->getDate());
+    }
+
+    public function test_it_reads_response_with_delivery_date_without_time()
+    {
+        $response = $this->getSerializer()->deserialize(FixtureLoader::load('StatusReportResponseDateOnly.xml'), StatusReportResponse::class, 'xml');
+
+        /** @var $response StatusReportResponse */
+        $this->assertInstanceOf(StatusReportResponse::class, $response);
+
+        $this->assertCount(2, $response->getOrders());
+
+        $order = $response->getOrders()[0];
+        $this->assertInstanceOf(Order::class, $order);
+
+        $this->assertSame('2018-04-06 13:33:27', $order->getDeliveryDate()->format('Y-m-d H:i:s'));
+
+        $order = $response->getOrders()[1];
+        $this->assertInstanceOf(Order::class, $order);
+
+        $this->assertSame('2011-04-07 00:00:00', $order->getDeliveryDate()->format('Y-m-d H:i:s'));
+    }
+
+    public function test_fails_on_invalid_date()
+    {
+        $this->expectException(RuntimeException::class);
+
+        $this->getSerializer()->deserialize('<Order DeliveryDate="00:00:00" />', Order::class, 'xml');
+    }
+
+    public function test_fails_on_unexpected_date_format()
+    {
+        $this->expectException(RuntimeException::class);
+
+        $this->getSerializer()->deserialize('<Order Date="2000-01-01 00:00:00" />', Order::class, 'xml');
     }
 }

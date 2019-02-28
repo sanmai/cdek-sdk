@@ -37,6 +37,8 @@ use JMS\Serializer\XmlDeserializationVisitor;
 
 final class NullableDateTimeHandler extends DateHandler
 {
+    const PLAIN_DATE_FORMAT = 'Y-m-d';
+
     public static function getSubscribingMethods()
     {
         $methods = parent::getSubscribingMethods();
@@ -60,47 +62,39 @@ final class NullableDateTimeHandler extends DateHandler
         try {
             return parent::deserializeDateTimeImmutableFromXml($visitor, $data, $type);
         } catch (RuntimeException $e) {
-            if (!isset($type['params'][3])) {
-                // Fallback date format; specify like so:
-                // @JMS\Type("DateTimeImmutable<'Y-m-d\TH:i:sP', '', 'Y-m-d\TH:i:sP', 'Y-m-d'>")
-                throw $e;
-            }
-
-            return $this->parseDateTimeFallback($data, $type);
+            return $this->parseDateTimeFallback($visitor, $data, $type, $e);
         }
     }
 
     /**
-     * @param mixed $data
-     * @param array $type
+     * Fallback date format handler; for usage see below.
      *
-     * @throws RuntimeException
+     * @JMS\Type("DateTimeImmutable<'Y-m-d\TH:i:sP', '', 'Y-m-d\TH:i:sP', 'Y-m-d'>")
      *
-     * @return \DateTimeImmutable
+     * @param XmlDeserializationVisitor $visitor
+     * @param mixed                     $data
+     *
+     * @return \DateTimeInterface|null
      *
      * @psalm-suppress MixedAssignment
-     * @psalm-suppress PossiblyUndefinedArrayOffset
+     * @psalm-suppress MixedInferredReturnType
      * @psalm-suppress MixedArrayAccess
+     * @psalm-suppress MixedArrayAssignment
      * @psalm-suppress MixedArgument
+     * @psalm-suppress MixedReturnStatement
      */
-    private function parseDateTimeFallback($data, array $type)
+    private function parseDateTimeFallback(XmlDeserializationVisitor $visitor, $data, array $type, \Throwable $e)
     {
-        $timezone = !empty($type['params'][1]) ? $type['params'][1] : 'UTC';
-        $format = $type['params'][3];
-
-        /** @var \DateTimeImmutable|false $datetime */
-        $datetime = \DateTimeImmutable::createFromFormat($format, (string) $data, new \DateTimeZone($timezone));
-
-        if (!$datetime instanceof \DateTimeImmutable) {
-            throw new RuntimeException(sprintf('Invalid datetime "%s", expected format %s.', $data, $format));
+        if (!array_key_exists(3, $type['params'])) {
+            throw $e;
         }
 
-        if ($format === 'Y-m-d') {
+        $format = $type['params'][2] = $type['params'][3];
+
+        $datetime = parent::deserializeDateTimeImmutableFromXml($visitor, $data, $type);
+
+        if ($datetime instanceof \DateTimeImmutable && self::PLAIN_DATE_FORMAT === $format) {
             $datetime = $datetime->setTime(0, 0, 0);
-        }
-
-        if ($format === 'U') {
-            $datetime = $datetime->setTimezone($timezone);
         }
 
         return $datetime;

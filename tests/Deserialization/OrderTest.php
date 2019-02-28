@@ -33,7 +33,6 @@ use CdekSDK\Common\Reason;
 use CdekSDK\Common\State;
 use CdekSDK\Common\Status;
 use CdekSDK\Responses\StatusReportResponse;
-use JMS\Serializer\Exception\RuntimeException;
 use Tests\CdekSDK\Fixtures\FixtureLoader;
 
 /**
@@ -167,12 +166,5 @@ class OrderTest extends TestCase
         $order = $this->getSerializer()->deserialize('<Order PvzCode="ABC123" />', Order::class, 'xml');
         /** @var $order Order */
         $this->assertSame('ABC123', $order->getPvzCode());
-    }
-
-    public function test_fails_on_invalid_date()
-    {
-        $this->expectException(RuntimeException::class);
-
-        $this->getSerializer()->deserialize('<Order DeliveryDate="00:00:00" />', Order::class, 'xml');
     }
 }

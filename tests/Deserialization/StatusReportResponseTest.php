@@ -210,26 +210,6 @@ class StatusReportResponseTest extends TestCase
         $this->assertSame(12, $order->getReturnOrder()->getStatus()->getCode());
     }
 
-    public function test_it_reads_response_with_delivery_date_without_time()
-    {
-        $response = $this->getSerializer()->deserialize(FixtureLoader::load('StatusReportResponseDateOnly.xml'), StatusReportResponse::class, 'xml');
-
-        /** @var $response StatusReportResponse */
-        $this->assertInstanceOf(StatusReportResponse::class, $response);
-
-        $this->assertCount(2, $response->getOrders());
-
-        $order = $response->getOrders()[0];
-        $this->assertInstanceOf(Order::class, $order);
-
-        $this->assertSame('2018-04-06 13:33:27', $order->getDeliveryDate()->format('Y-m-d H:i:s'));
-
-        $order = $response->getOrders()[1];
-        $this->assertInstanceOf(Order::class, $order);
-
-        $this->assertSame('2011-04-07 00:00:00', $order->getDeliveryDate()->format('Y-m-d H:i:s'));
-    }
-
     public function test_it_serializes_to_empty_json()
     {
         $response = new StatusReportResponse();

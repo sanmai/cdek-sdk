@@ -30,7 +30,10 @@ namespace Tests\CdekSDK\Deserialization;
 
 use CdekSDK\Common\Order;
 use CdekSDK\Responses\StatusReportResponse;
+use CdekSDK\Serialization\NullableDateTimeHandler;
 use JMS\Serializer\Exception\RuntimeException;
+use JMS\Serializer\Naming\IdenticalPropertyNamingStrategy;
+use JMS\Serializer\XmlDeserializationVisitor;
 use Tests\CdekSDK\Fixtures\FixtureLoader;
 
 /**
@@ -79,5 +82,28 @@ class NullableDateTimeHandlerTest extends TestCase
         $this->expectException(RuntimeException::class);
 
         $this->getSerializer()->deserialize('<Order Date="2000-01-01 00:00:00" />', Order::class, 'xml');
+    }
+
+    public function test_do_not_resets_time_if_not_needed()
+    {
+        $handler = new NullableDateTimeHandler();
+        $visitor = new XmlDeserializationVisitor(new IdenticalPropertyNamingStrategy());
+        $sxe = new \SimpleXMLElement('<date>2000-01-01_</date>');
+
+        if (date('H:i:s') === '00:00:00') {
+            sleep(1);
+        }
+
+        $date = $handler->deserializeDateTimeImmutableFromXml($visitor, $sxe, [
+            'name'   => \DateTimeImmutable::class,
+            'params' => [
+                0 => 'Y-m-d\\TH:i:sP',
+                1 => '',
+                //2 => 'Y-m-d\\TH:i:sP',
+                3 => 'Y-m-d_',
+            ],
+        ]);
+
+        $this->assertNotSame('2000-01-01 00:00:00', $date->format('Y-m-d H:i:s'));
     }
 }

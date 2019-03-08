@@ -123,6 +123,7 @@ final class DeliveryResponse implements Response
      * @JMS\PostDeserialize
      *
      * @psalm-suppress InvalidPropertyAssignmentValue
+     * @psalm-suppress MixedTypeCoercion
      */
     private function filterOrders()
     {

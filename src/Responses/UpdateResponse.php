@@ -72,6 +72,7 @@ final class UpdateResponse implements Response
      * @JMS\PostDeserialize
      *
      * @psalm-suppress InvalidPropertyAssignmentValue
+     * @psalm-suppress MixedTypeCoercion
      */
     private function filterOrders()
     {

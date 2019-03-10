@@ -34,7 +34,6 @@ use CdekSDK\Responses\Concerns\HasErrors;
 use CdekSDK\Responses\Types\Message;
 use CdekSDK\Responses\Types\PrintError;
 use JMS\Serializer\Annotation as JMS;
-use function Pipeline\map;
 
 /**
  * Class PrintErrorResponse.
@@ -59,11 +58,7 @@ final class PrintErrorResponse implements Response
      */
     public function getMessages()
     {
-        return map(function () {
-            yield from $this->errors;
-        })->map(function (PrintError $error) {
-            return new Message($error->getMessage(), $error->getErrorCode());
-        });
+        return Message::from($this->errors);
     }
 
     public function jsonSerialize()

@@ -32,6 +32,10 @@ use JMS\Serializer\Annotation as JMS;
 
 final class Location
 {
+    const COUNTRY_CODE_LOOKUP = [
+        'RU' => 1,
+    ];
+
     /**
      * @JMS\XmlAttribute
      * @JMS\Type("string")
@@ -98,9 +102,9 @@ final class Location
 
     /**
      * @JMS\XmlAttribute
-     * @JMS\Type("int")
+     * @JMS\Type("string")
      *
-     * @var int
+     * @var string
      */
     private $countryCode;
 
@@ -171,7 +175,15 @@ final class Location
 
     public function getCountryCode(): int
     {
-        return $this->countryCode;
+        if (is_numeric($this->countryCode)) {
+            return (int) $this->countryCode;
+        }
+
+        if (array_key_exists($this->countryCode, self::COUNTRY_CODE_LOOKUP)) {
+            return self::COUNTRY_CODE_LOOKUP[$this->countryCode];
+        }
+
+        return 0; // TODO
     }
 
     public function getRegion(): string

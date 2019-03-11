@@ -96,6 +96,18 @@ class CitiesResponseTest extends TestCase
         }
     }
 
+    public function test_it_works_around_literal_contry_code()
+    {
+        $response = $this->getSerializer()->deserialize(FixtureLoader::load('CitiesResponseWithLiteralCountryCode.xml'), CitiesResponse::class, 'xml');
+
+        $this->assertFalse($response->hasErrors());
+        $this->assertCount(1, $response);
+
+        foreach ($response as $item) {
+            $this->assertSame(1, $item->getCountryCode());
+        }
+    }
+
     public function test_it_serializes_to_empty_json()
     {
         $response = new CitiesResponse();

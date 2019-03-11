@@ -48,16 +48,13 @@ class InvalidXMLTest extends TestCase
 
     public function test_error_contains_invalid_xml()
     {
-        $this->assertTrue(true);
-
-        return;
-
         try {
             $this->getSerializer()->deserialize('foo<bar>', Item::class, 'xml');
         } catch (XmlErrorException $e) {
             $this->assertStringContainsString('foo<bar>', $e->getMessage());
             $this->assertInstanceOf(\LibXMLError::class, $e->getXmlError());
             $this->assertSame(1, $e->getXmlError()->line);
+            $this->assertInstanceOf(\JMS\Serializer\Exception\XmlErrorException::class, $e->getPrevious());
         }
     }
 

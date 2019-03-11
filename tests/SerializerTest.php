@@ -29,6 +29,7 @@ declare(strict_types=1);
 namespace Tests\CdekSDK;
 
 use CdekSDK\Requests\StatusReportRequest;
+use CdekSDK\Responses\CitiesResponse;
 use CdekSDK\Responses\StatusReportResponse;
 use CdekSDK\Serialization\Serializer;
 use Doctrine\Common\Annotations\AnnotationRegistry;
@@ -85,6 +86,12 @@ class SerializerTest extends TestCase
         $this->assertInstanceOf(StatusReportResponse::class, $response);
         $this->assertSame('1000028000', $response->getOrders()[0]->getDispatchNumber());
         $this->assertNull($response->getOrders()[0]->getDelayReason()->getDate());
+
+        $response = $serializer->deserialize(FixtureLoader::load('CitiesResponse.xml'), CitiesResponse::class, 'xml');
+        assert($response instanceof CitiesResponse); // PHPStan hint
+
+        $this->assertInstanceOf(CitiesResponse::class, $response);
+        $this->assertCount(5, $response->getItems());
     }
 
     public function test_it_can_serialize()

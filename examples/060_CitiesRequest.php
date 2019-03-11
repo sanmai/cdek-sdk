@@ -45,7 +45,7 @@ foreach ($response as $location) {
     $location->getCityCode();
     $location->getCityUuid();
     $location->getCountry();
-    $location->getCountryCode();
+    $location->getCountryCodeISO();
     $location->getRegion();
     $location->getRegionCode();
     $location->getRegionCodeExt();

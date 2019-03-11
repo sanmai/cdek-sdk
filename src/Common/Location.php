@@ -32,6 +32,9 @@ use JMS\Serializer\Annotation as JMS;
 
 final class Location
 {
+    /**
+     * @var array<string, int>
+     */
     const COUNTRY_CODE_LOOKUP = [
         'RU' => 1,
     ];
@@ -173,6 +176,12 @@ final class Location
         return $this->country;
     }
 
+    /**
+     * @deprecated СДЭК перешли на использование буквенных кодов стран в начале 2019 года
+     * @see Location::getCountryCodeISO()
+     *
+     * @return int
+     */
     public function getCountryCode(): int
     {
         if (is_numeric($this->countryCode)) {
@@ -183,7 +192,22 @@ final class Location
             return self::COUNTRY_CODE_LOOKUP[$this->countryCode];
         }
 
-        return 0; // TODO
+        return 0;
+    }
+
+    public function getCountryCodeISO(): string
+    {
+        if (!is_numeric($this->countryCode)) {
+            return $this->countryCode;
+        }
+
+        $isoCountryCode = array_search($this->countryCode, self::COUNTRY_CODE_LOOKUP);
+
+        if ($isoCountryCode !== false) {
+            return $isoCountryCode;
+        }
+
+        return '';
     }
 
     public function getRegion(): string

@@ -35,7 +35,6 @@ use CdekSDK\Common\Call;
  * @covers \CdekSDK\Common\CallGood
  * @covers \CdekSDK\Common\CallFail
  * @covers \CdekSDK\Common\CallDelay
- * @covers \CdekSDK\Common\CallDelay
  */
 class CallTest extends TestCase
 {
@@ -54,7 +53,7 @@ class CallTest extends TestCase
 <Delay Date="2018-04-03T16:56:41+00:00" DateNext="2018-04-06T16:56:41+00:00" />
 </CallDelay>
 <CallDelay>
-<Delay Date="2018-04-03T16:56:41+00:00" DateNext="2018-04-06" />
+<Delay Date="2019-03-11T11:50:23+00:00" DateNext="2019-03-12" />
 </CallDelay>
 </Call>', Call::class, 'xml');
 
@@ -73,7 +72,7 @@ class CallTest extends TestCase
         $this->assertSame('2018-04-03', $call->getCallDelay()[0]->getDate()->format('Y-m-d'));
         $this->assertSame('2018-04-06', $call->getCallDelay()[0]->getDateNext()->format('Y-m-d'));
 
-        $this->assertSame('2018-04-03', $call->getCallDelay()[1]->getDate()->format('Y-m-d'));
-        $this->assertSame('2018-04-06', $call->getCallDelay()[1]->getDateNext()->format('Y-m-d'));
+        $this->assertSame('2019-03-11', $call->getCallDelay()[1]->getDate()->format('Y-m-d'));
+        $this->assertSame('2019-03-12', $call->getCallDelay()[1]->getDateNext()->format('Y-m-d'));
     }
 }

@@ -56,6 +56,8 @@ final class Serializer implements SerializerInterface
         self::$configureAnnotationRegistry = false;
     }
 
+    private static $addGlobalIgnoredAnnotations = true;
+
     /** @var SerializerInterface */
     private $serializer;
 
@@ -91,10 +93,14 @@ final class Serializer implements SerializerInterface
         // Can be disabled in certain environments (customized PHP build?)
         $this->ctypeEnabled = function_exists('\ctype_upper');
 
-        // Ignore Phan/Psalm issue-suppressing annotations
-        AnnotationReader::addGlobalIgnoredName('phan');
-        AnnotationReader::addGlobalIgnoredName('psalm');
-        AnnotationReader::addGlobalIgnoredName('template');
+        if (self::$addGlobalIgnoredAnnotations) {
+            // Ignore Phan/Psalm issue-suppressing annotations
+            AnnotationReader::addGlobalIgnoredName('phan');
+            AnnotationReader::addGlobalIgnoredName('psalm');
+            AnnotationReader::addGlobalIgnoredName('template');
+            // But do that just once
+            self::$addGlobalIgnoredAnnotations = false;
+        }
 
         if (self::$configureAnnotationRegistry) {
             self::configureAnnotationRegistry();

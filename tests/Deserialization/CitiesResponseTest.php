@@ -66,6 +66,7 @@ class CitiesResponseTest extends TestCase
         $this->assertSame('1ef4f958-43c9-4a80-9fd6-e414231c3e55', $location->getCityUuid());
         $this->assertSame('РОССИЯ', $location->getCountry());
         $this->assertSame(1, $location->getCountryCode());
+        $this->assertSame('RU', $location->getCountryCodeISO());
         $this->assertSame('Новосибирская', $location->getRegion());
         $this->assertSame(23, $location->getRegionCode());
         $this->assertSame(54, $location->getRegionCodeExt());
@@ -94,6 +95,45 @@ class CitiesResponseTest extends TestCase
         foreach ($response as $item) {
             $this->assertTrue(is_float($item->getPaymentLimit()));
         }
+    }
+
+    public function test_it_works_around_literal_contry_code()
+    {
+        $response = $this->getSerializer()->deserialize(FixtureLoader::load('CitiesResponseWithLiteralCountryCode.xml'), CitiesResponse::class, 'xml');
+
+        $this->assertFalse($response->hasErrors());
+        $this->assertCount(1, $response);
+
+        $location = $response->getItems()[0];
+        /** @var $location Location */
+        $this->assertSame(1, $location->getCountryCode());
+        $this->assertSame('RU', $location->getCountryCodeISO());
+    }
+
+    public function test_it_handles_known_country_codes()
+    {
+        $location = $this->getSerializer()->deserialize('<Location countryCode="RU" />', Location::class, 'xml');
+
+        $this->assertSame(1, $location->getCountryCode());
+        $this->assertSame('RU', $location->getCountryCodeISO());
+
+        $location = $this->getSerializer()->deserialize('<Location countryCode="1" />', Location::class, 'xml');
+
+        $this->assertSame(1, $location->getCountryCode());
+        $this->assertSame('RU', $location->getCountryCodeISO());
+    }
+
+    public function test_it_handles_unrecognized_country_code()
+    {
+        $location = $this->getSerializer()->deserialize('<Location countryCode="20" />', Location::class, 'xml');
+
+        $this->assertSame(20, $location->getCountryCode());
+        $this->assertSame('', $location->getCountryCodeISO());
+
+        $location = $this->getSerializer()->deserialize('<Location countryCode="AA" />', Location::class, 'xml');
+
+        $this->assertSame(0, $location->getCountryCode());
+        $this->assertSame('AA', $location->getCountryCodeISO());
     }
 
     public function test_it_serializes_to_empty_json()

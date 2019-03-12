@@ -81,23 +81,37 @@ ci-cs: prerequisites
 # Development Workflow                                       #
 ##############################################################
 
+.PHONY: test
 test: phpunit analyze composer-validate
 
 .PHONY: composer-validate
 composer-validate: test-prerequisites
 	$(SILENT) $(COMPOSER) validate --strict
 
+.PHONY: test-prerequisites
 test-prerequisites: prerequisites composer.lock
 
+.PHONY: phpunit
 phpunit: cs
 	$(SILENT) $(PHP) $(PHPUNIT) $(PHPUNIT_ARGS) --verbose
 	$(SILENT) $(PHP) $(INFECTION) $(INFECTION_ARGS)
 
-analyze: cs
+.PHONY: analyze
+analyze: phan phpstan psalm
+
+.PHONY: phan
+phan: cs
 	$(SILENT) $(PHP) $(PHAN) $(PHAN_ARGS) --color
+
+.PHONY: phpstan
+phpstan: cs
 	$(SILENT) $(PHP) $(PHPSTAN) $(PHPSTAN_ARGS)
+
+.PHONY: psalm
+psalm: cs
 	$(SILENT) $(PHP) $(PSALM) $(PSALM_ARGS)
 
+.PHONY: cs
 cs: test-prerequisites
 	$(SILENT) $(PHP) $(PHP_CS_FIXER) $(PHP_CS_FIXER_ARGS) --diff fix
 

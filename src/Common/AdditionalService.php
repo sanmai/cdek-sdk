@@ -62,6 +62,16 @@ final class AdditionalService
      */
     protected $Sum;
 
+    /**
+     * Объявленная стоимость отправления (заказа). Используется и является обязательным только для дополнительной услуги "Страхование".
+     *
+     * @JMS\XmlAttribute
+     * @JMS\Type("float")
+     *
+     * @var float
+     */
+    protected $Cost;
+
     public function getServiceCode(): int
     {
         return (int) $this->ServiceCode;

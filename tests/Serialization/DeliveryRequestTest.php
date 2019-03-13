@@ -301,4 +301,30 @@ class DeliveryRequestTest extends TestCase
 </DeliveryRequest>
 ', $request);
     }
+
+    public function test_with_insurance()
+    {
+        $order = new Order([
+            'Number'     => 'TEST-123456',
+        ]);
+
+        $order->addService(AdditionalService::create([
+            'ServiceCode' => AdditionalService::SERVICE_INSURANCE,
+            'Cost'        => 500,
+        ]));
+
+        $request = AddDeliveryRequest::create([
+            'Number'      => 'foo',
+        ]);
+
+        $request->addOrder($order);
+
+        $this->assertSameAsXML('<?xml version="1.0" encoding="UTF-8"?>
+<DeliveryRequest OrderCount="1" Number="foo">
+  <Order Number="TEST-123456">
+    <AddService ServiceCode="2" Cost="500"/>
+  </Order>
+</DeliveryRequest>
+', $request);
+    }
 }

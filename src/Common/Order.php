@@ -827,6 +827,11 @@ final class Order implements HasErrorCode
         return $this->Call;
     }
 
+    /**
+     * @throws \TypeError
+     *
+     * @return Order
+     */
     public function getReturnOrder(): Order
     {
         return $this->ReturnOrder;

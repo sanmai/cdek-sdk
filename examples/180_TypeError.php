@@ -32,8 +32,16 @@ $order = new Order();
 /** @var Order $order */
 try {
     $returnOrder = $order->getReturnOrder();
-    $returnOrder->getNumber();
+
     // Показываем номер возвратного заказа
+    $returnOrder->getNumber();
+    // ...
 } catch (\TypeError $e) {
     // Возвратного заказа нет, показываем прочерк
+    // ...
+}
+
+if ($status = $order->getStatus()) {
+    // Статус заказа есть, можно обратиться к его методам
+    $status->getDescription();
 }

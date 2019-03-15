@@ -72,6 +72,13 @@ final class State
      */
     private $CityCode;
 
+    /**
+     * @JMS\Type("bool")
+     *
+     * @var bool
+     */
+    private $finel = false;
+
     public function getDate(): \DateTimeImmutable
     {
         return $this->Date;
@@ -95,5 +102,25 @@ final class State
     public function getCityCode(): int
     {
         return $this->CityCode;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isFinel(): bool
+    {
+        return $this->finel;
+    }
+
+    /**
+     * @param bool $finel
+     */
+    public function setFinel()
+    {
+        if ($this->Code) {
+            if ($this->Code == 4 || $this->Code == 5) {
+                $this->finel = true;
+            }
+        }
     }
 }

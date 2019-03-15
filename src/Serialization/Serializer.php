@@ -28,13 +28,16 @@ declare(strict_types=1);
 
 namespace CdekSDK\Serialization;
 
+use CdekSDK\Common\State;
 use CdekSDK\Serialization\Exception\LibXMLError;
 use CdekSDK\Serialization\Exception\XmlErrorException;
 use Doctrine\Common\Annotations\AnnotationReader;
 use Doctrine\Common\Annotations\AnnotationRegistry;
+use JMS\Serializer\Annotation\PostDeserialize;
 use JMS\Serializer\DeserializationContext;
 use JMS\Serializer\EventDispatcher\EventDispatcher;
 use JMS\Serializer\EventDispatcher\Events;
+use JMS\Serializer\EventDispatcher\ObjectEvent;
 use JMS\Serializer\EventDispatcher\PreDeserializeEvent;
 use JMS\Serializer\Handler\HandlerRegistryInterface;
 use JMS\Serializer\Naming\IdenticalPropertyNamingStrategy;
@@ -83,6 +86,17 @@ final class Serializer implements SerializerInterface
                 $data = $event->getData();
                 if ($data instanceof \SimpleXMLElement) {
                     $event->setData($this->updateAttributesCase($data));
+                }
+            }, null, 'xml');
+
+
+            $dispatcher->addListener(Events::POST_DESERIALIZE, function (ObjectEvent $event) {
+                /** @var State $data */
+                $data = $event->getObject();
+
+                if ($data instanceof State) {
+                    $data->setFinel();
+                    // print_r($data); exit;
                 }
             }, null, 'xml');
         });

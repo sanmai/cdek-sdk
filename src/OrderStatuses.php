@@ -30,6 +30,7 @@ namespace CdekSDK;
 
 class OrderStatuses
 {
+    /** @var array */
     public static $status_list = [
         1  => 'Создан', // Заказ зарегистрирован в базе данных СДЭК
         2  => 'Удален', // Заказ отменен ИМ после регистрации в системе до прихода груза на склад СДЭК в городе-отправителе
@@ -89,6 +90,10 @@ class OrderStatuses
             throw new \InvalidArgumentException('Передан не существующий код статуса заказа СДЭК: '.$code);
         }
 
-        return (string) self::$status_list[(int) $code];
+        if (is_array(self::$status_list)) {
+            return (string)self::$status_list[(int)$code];
+        }
+
+        return '';
     }
 }

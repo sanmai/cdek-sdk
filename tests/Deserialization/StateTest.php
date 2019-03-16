@@ -29,6 +29,7 @@ declare(strict_types=1);
 namespace Tests\CdekSDK\Deserialization;
 
 use CdekSDK\Common\State;
+use CdekSDK\OrderStatuses;
 
 /**
  * @covers \CdekSDK\Common\State
@@ -43,8 +44,10 @@ class StateTest extends TestCase
         $this->assertSame(1, $state->getCode());
         $this->assertSame('2018-03-21', $state->getDate()->format('Y-m-d'));
         $this->assertSame('Создан', $state->getDescription());
+        $this->assertSame('Создан', OrderStatuses::getStatusByCode($state->getCode()));
 
         $this->assertSame(44, $state->getCityCode());
         $this->assertSame('Москва', $state->getCityName());
+        $this->assertSame(false, $state->isFinel());
     }
 }

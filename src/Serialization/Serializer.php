@@ -33,7 +33,6 @@ use CdekSDK\Serialization\Exception\LibXMLError;
 use CdekSDK\Serialization\Exception\XmlErrorException;
 use Doctrine\Common\Annotations\AnnotationReader;
 use Doctrine\Common\Annotations\AnnotationRegistry;
-use JMS\Serializer\Annotation\PostDeserialize;
 use JMS\Serializer\DeserializationContext;
 use JMS\Serializer\EventDispatcher\EventDispatcher;
 use JMS\Serializer\EventDispatcher\Events;
@@ -89,14 +88,12 @@ final class Serializer implements SerializerInterface
                 }
             }, null, 'xml');
 
-
             $dispatcher->addListener(Events::POST_DESERIALIZE, function (ObjectEvent $event) {
                 /** @var State $data */
                 $data = $event->getObject();
 
                 if ($data instanceof State) {
                     $data->setFinel();
-                    // print_r($data); exit;
                 }
             }, null, 'xml');
         });

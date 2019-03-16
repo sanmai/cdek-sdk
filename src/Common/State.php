@@ -28,6 +28,7 @@ declare(strict_types=1);
 
 namespace CdekSDK\Common;
 
+use CdekSDK\OrderStatuses;
 use JMS\Serializer\Annotation as JMS;
 
 final class State
@@ -117,10 +118,8 @@ final class State
      */
     public function setFinel()
     {
-        if ($this->Code) {
-            if ($this->Code == 4 || $this->Code == 5) {
-                $this->finel = true;
-            }
+        if ($this->Code && !empty($this->CityCode)) {
+            $this->finel = OrderStatuses::checkFinel($this->Code);
         }
     }
 }

@@ -89,6 +89,6 @@ class OrderStatuses
             throw new \InvalidArgumentException('Передан не существующий код статуса заказа СДЭК: '.$code);
         }
 
-        return (string) self::$status_list[$code];
+        return (string) self::$status_list[(int) $code];
     }
 }

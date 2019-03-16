@@ -91,7 +91,7 @@ class OrderStatuses
         }
 
         if (is_array(self::$status_list)) {
-            return (string)self::$status_list[(int)$code];
+            return (string) self::$status_list[$code];
         }
 
         return '';

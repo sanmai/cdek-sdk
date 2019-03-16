@@ -113,9 +113,6 @@ final class State
         return $this->finel;
     }
 
-    /**
-     * @param bool $finel
-     */
     public function setFinel()
     {
         if ($this->Code && !empty($this->CityCode)) {

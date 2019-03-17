@@ -78,7 +78,8 @@ final class State
      *
      * @var bool
      */
-    private $finel = false;
+    const STATUS_DELIVERED = 4; // Успешно доставлен и вручен адресату (конечный статус)
+    const STATUS_NOT_DELIVERED = 5; // Не вручен; Покупатель отказался от покупки, возврат в ИМ (конечный статус)
 
     public function getDate(): \DateTimeImmutable
     {

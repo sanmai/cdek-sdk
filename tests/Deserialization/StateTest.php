@@ -46,5 +46,6 @@ class StateTest extends TestCase
 
         $this->assertSame(44, $state->getCityCode());
         $this->assertSame('Москва', $state->getCityName());
+        $this->assertSame(false, $state->isFinal());
     }
 }

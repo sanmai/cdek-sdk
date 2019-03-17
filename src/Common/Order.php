@@ -802,6 +802,11 @@ final class Order implements HasErrorCode
         return (string) $this->DeliveryVariant;
     }
 
+    /**
+     * @throws \TypeError
+     *
+     * @return City
+     */
     public function getSenderCity(): City
     {
         return $this->SendCity;

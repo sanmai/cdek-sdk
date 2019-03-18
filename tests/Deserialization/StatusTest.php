@@ -26,25 +26,29 @@
 
 declare(strict_types=1);
 
-namespace CdekSDK\Common;
+namespace Tests\CdekSDK\Deserialization;
+
+use CdekSDK\Common\State;
+use CdekSDK\Common\Status;
 
 /**
- * Заглушка для удалённого объекта State.
- *
- * До версии 0.6.19 был одноимённый объект, у которого были ещё некоторые методы.
- * Из этого интерфейса они были удалены, проблемы обратной совместимости это не
- * представляет в текущих версиях PHP, так как даже если у нас есть объект какого-то
- * интерфейса, PHP даёт вызывать на нём даже методы, которые не объявлены в интерфейсе.
- *
- * @deprecated заглушка должна будет быть удалена в следующей мажорной версии
- * @see Status
- * @see DelayReasonState
+ * @covers \CdekSDK\Common\Status
  */
-interface State
+class StatusTest extends TestCase
 {
-    public function getDate(): \DateTimeImmutable;
+    public function test_plain_State()
+    {
+        /** @var Status $state */
+        $state = $this->getSerializer()->deserialize('<State Date="2018-03-21T14:54:13+00:00" Code="1" Description="Создан" CityCode="44" CityName="Москва" />', Status::class, 'xml');
 
-    public function getCode(): int;
+        $this->assertInstanceOf(State::class, $state);
 
-    public function getDescription(): string;
+        $this->assertSame(1, $state->getCode());
+        $this->assertSame('2018-03-21', $state->getDate()->format('Y-m-d'));
+        $this->assertSame('Создан', $state->getDescription());
+
+        $this->assertSame(44, $state->getCityCode());
+        $this->assertSame('Москва', $state->getCityName());
+        $this->assertSame(false, $state->isFinal());
+    }
 }

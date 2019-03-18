@@ -33,7 +33,7 @@ use CdekSDK\Common\State;
 
 /**
  * @covers \CdekSDK\Common\Reason
- * @covers \CdekSDK\Common\State
+ * @covers \CdekSDK\Common\DelayReasonState
  */
 class ReasonTest extends TestCase
 {

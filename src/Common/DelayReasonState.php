@@ -56,22 +56,6 @@ final class DelayReasonState implements State
      */
     private $Description;
 
-    /**
-     * @JMS\XmlAttribute
-     * @JMS\Type("string")
-     *
-     * @var string
-     */
-    private $CityName;
-
-    /**
-     * @JMS\XmlAttribute
-     * @JMS\Type("int")
-     *
-     * @var int
-     */
-    private $CityCode;
-
     public function getDate(): \DateTimeImmutable
     {
         return $this->Date;

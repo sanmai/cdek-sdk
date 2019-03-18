@@ -47,6 +47,7 @@ if ($response->hasErrors()) {
 }
 
 foreach ($response as $order) {
+    /** @var \CdekSDK\Common\Order $order */
     $order->getActNumber();
     $order->getNumber();
     $order->getDispatchNumber();
@@ -59,6 +60,15 @@ foreach ($response as $order) {
         $status->getCode();
         $status->getCityCode();
         $status->getCityName();
+
+        foreach ($status->getStates() as $state) {
+            $state->getDescription();
+            $state->getDate();
+            $state->getCode();
+            $state->getCityCode();
+            $state->getCityName();
+            $state->isFinal();
+        }
     }
 
     $order->getReason()->getCode();

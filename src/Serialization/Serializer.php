@@ -93,6 +93,7 @@ final class Serializer implements SerializerInterface
         // Can be disabled in certain environments (customized PHP build?)
         $this->ctypeEnabled = function_exists('\ctype_upper');
 
+        // @codeCoverageIgnoreStart
         if (self::$addGlobalIgnoredAnnotations) {
             // Ignore Phan/Psalm issue-suppressing annotations
             AnnotationReader::addGlobalIgnoredName('phan');
@@ -101,6 +102,7 @@ final class Serializer implements SerializerInterface
             // But do that just once
             self::$addGlobalIgnoredAnnotations = false;
         }
+        // @codeCoverageIgnoreEnd
 
         if (self::$configureAnnotationRegistry) {
             self::configureAnnotationRegistry();

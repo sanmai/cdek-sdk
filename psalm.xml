@@ -48,5 +48,8 @@
 
         <RawObjectIteration errorLevel="info" />
         <ImplementedReturnTypeMismatch errorLevel="info" />
+
+        <PossiblyInvalidMethodCall errorLevel="info" />
+        <PossiblyInvalidArgument errorLevel="info" />
     </issueHandlers>
 </psalm>

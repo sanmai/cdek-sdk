@@ -74,6 +74,8 @@ class OrderTest extends TestCase
         $this->assertSame('Нальчик', $status->getCityName());
 
         $states = $status->getStates();
+
+        /** @var Status $firstState */
         $firstState = reset($states);
 
         $this->assertInstanceOf(State::class, $firstState);
@@ -83,7 +85,9 @@ class OrderTest extends TestCase
         $this->assertSame('Создан', $firstState->getDescription());
         $this->assertSame('Москва', $firstState->getCityName());
         $this->assertSame(44, $firstState->getCityCode());
+        $this->assertFalse($firstState->isFinal());
 
+        /** @var Status $lastState */
         $lastState = end($states);
 
         $this->assertInstanceOf(State::class, $lastState);
@@ -93,6 +97,7 @@ class OrderTest extends TestCase
         $this->assertSame('Вручен', $lastState->getDescription());
         $this->assertSame('Нальчик', $lastState->getCityName());
         $this->assertSame(1081, $lastState->getCityCode());
+        $this->assertTrue($lastState->isFinal());
     }
 
     public function test_it_reads_yet_another_order()

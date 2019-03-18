@@ -32,6 +32,9 @@ use JMS\Serializer\Annotation as JMS;
 
 final class State
 {
+    const STATUS_DELIVERED = 4;
+    const STATUS_NOT_DELIVERED = 5;
+
     /**
      * @JMS\XmlAttribute
      * @JMS\Type("DateTimeImmutable<'Y-m-d\TH:i:sP'>")
@@ -95,5 +98,14 @@ final class State
     public function getCityCode(): int
     {
         return $this->CityCode;
+    }
+
+    public function isFinal(): bool
+    {
+        if (!empty($this->CityCode)) {
+            return $this->getCode() === self::STATUS_DELIVERED || $this->getCode() === self::STATUS_NOT_DELIVERED;
+        }
+
+        return false;
     }
 }

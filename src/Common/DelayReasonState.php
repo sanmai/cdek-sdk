@@ -26,26 +26,64 @@
 
 declare(strict_types=1);
 
-namespace Tests\CdekSDK\Deserialization;
+namespace CdekSDK\Common;
 
-use CdekSDK\Common\State;
+use JMS\Serializer\Annotation as JMS;
 
-/**
- * @covers \CdekSDK\Common\State
- */
-class StateTest extends TestCase
+final class DelayReasonState implements State
 {
-    public function test_plain_State()
+    /**
+     * @JMS\XmlAttribute
+     * @JMS\Type("DateTimeImmutable<'Y-m-d\TH:i:sP'>")
+     *
+     * @var \DateTimeImmutable
+     */
+    private $Date;
+
+    /**
+     * @JMS\XmlAttribute
+     * @JMS\Type("int")
+     *
+     * @var int
+     */
+    private $Code;
+
+    /**
+     * @JMS\XmlAttribute
+     * @JMS\Type("string")
+     *
+     * @var string
+     */
+    private $Description;
+
+    /**
+     * @JMS\XmlAttribute
+     * @JMS\Type("string")
+     *
+     * @var string
+     */
+    private $CityName;
+
+    /**
+     * @JMS\XmlAttribute
+     * @JMS\Type("int")
+     *
+     * @var int
+     */
+    private $CityCode;
+
+    public function getDate(): \DateTimeImmutable
     {
-        $state = $this->getSerializer()->deserialize('<State Date="2018-03-21T14:54:13+00:00" Code="1" Description="Создан" CityCode="44" CityName="Москва" />', State::class, 'xml');
+        return $this->Date;
+    }
 
-        /** @var $state State */
-        $this->assertSame(1, $state->getCode());
-        $this->assertSame('2018-03-21', $state->getDate()->format('Y-m-d'));
-        $this->assertSame('Создан', $state->getDescription());
+    public function getCode(): int
+    {
+        return (int) $this->Code;
+    }
 
-        $this->assertSame(44, $state->getCityCode());
-        $this->assertSame('Москва', $state->getCityName());
-        $this->assertSame(false, $state->isFinal());
+    public function getDescription(): string
+    {
+        return $this->Description;
     }
 }

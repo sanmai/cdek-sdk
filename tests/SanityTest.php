@@ -39,6 +39,7 @@ use CdekSDK\Common\CallFail;
 use CdekSDK\Common\CallGood;
 use CdekSDK\Common\ChangePeriod;
 use CdekSDK\Common\City;
+use CdekSDK\Common\DelayReasonState;
 use CdekSDK\Common\Item;
 use CdekSDK\Common\OfficeImage;
 use CdekSDK\Common\Order;
@@ -94,6 +95,7 @@ class SanityTest extends TestCase
         Package::class,
         Pvz::class,
         Reason::class,
+        DelayReasonState::class,
         State::class,
         Status::class,
         WeightLimit::class,
@@ -133,7 +135,7 @@ class SanityTest extends TestCase
      */
     public function test_class_exist($className)
     {
-        $this->assertTrue(class_exists($className));
+        $this->assertTrue(class_exists($className) || interface_exists($className));
     }
 
     private $legacyMaps = [

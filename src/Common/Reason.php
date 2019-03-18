@@ -66,9 +66,9 @@ final class Reason
 
     /**
      * @JMS\XmlList(entry="State", inline=true)
-     * @JMS\Type("array<CdekSDK\Common\State>")
+     * @JMS\Type("array<CdekSDK\Common\DelayReasonState>")
      *
-     * @var State[]
+     * @var DelayReasonState[]
      */
     private $states = [];
 
@@ -91,7 +91,7 @@ final class Reason
     }
 
     /**
-     * @return State[]
+     * @return DelayReasonState[]
      */
     public function getStates()
     {

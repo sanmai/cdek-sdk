@@ -30,9 +30,12 @@ namespace CdekSDK\Common;
 
 use JMS\Serializer\Annotation as JMS;
 
-final class Status
+final class Status implements State
 {
     use Fillable;
+
+    const STATUS_DELIVERED = 4;
+    const STATUS_NOT_DELIVERED = 5;
 
     /**
      * @JMS\XmlAttribute
@@ -76,9 +79,9 @@ final class Status
 
     /**
      * @JMS\XmlList(entry="State", inline=true)
-     * @JMS\Type("array<CdekSDK\Common\State>")
+     * @JMS\Type("array<CdekSDK\Common\Status>")
      *
-     * @var State[]
+     * @var Status[]
      */
     protected $states = [];
 
@@ -108,10 +111,15 @@ final class Status
     }
 
     /**
-     * @return State[]
+     * @return Status[]
      */
     public function getStates(): array
     {
         return $this->states;
+    }
+
+    public function isFinal(): bool
+    {
+        return $this->getCode() === self::STATUS_DELIVERED || $this->getCode() === self::STATUS_NOT_DELIVERED;
     }
 }

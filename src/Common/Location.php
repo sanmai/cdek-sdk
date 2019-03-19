@@ -34,6 +34,9 @@ final class Location
 {
     /**
      * @var array<string, int>
+     *
+     * @see Region::getCountryCode()
+     * @see Location::getCountryCode()
      */
     const COUNTRY_CODE_LOOKUP = [
         'RU' => 1,

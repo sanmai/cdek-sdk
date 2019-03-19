@@ -34,8 +34,13 @@ use GuzzleHttp\Client as GuzzleClient;
 
 abstract class TestCase extends \PHPUnit\Framework\TestCase
 {
+    const TEST_HOST = 'integration.edu.cdek.ru';
+
     /** @var \CdekSDK\CdekClient */
     private $client;
+
+    /** @var bool */
+    private $isTesting = false;
 
     /**
      * @psalm-suppress PossiblyFalseArgument
@@ -51,10 +56,18 @@ abstract class TestCase extends \PHPUnit\Framework\TestCase
             $this->markTestSkipped('Integration testing disabled (CDEK_PASSWORD missing).');
         }
 
-        $http = false === getenv('CDEK_BASE_URL') ? null : new GuzzleClient([
-            'base_uri' => getenv('CDEK_BASE_URL'),
-            'verify'   => !getenv('CI'), // Igonore SSL errors on the likes of Travis CI
-        ]);
+        if (false === getenv('CDEK_BASE_URL')) {
+            $http = null;
+        } else {
+            if (strpos(getenv('CDEK_BASE_URL'), self::TEST_HOST)) {
+                $this->isTesting = true;
+            }
+
+            $http = new GuzzleClient([
+                'base_uri' => getenv('CDEK_BASE_URL'),
+                'verify'   => !getenv('CI'), // Igonore SSL errors on the likes of Travis CI
+            ]);
+        }
 
         $this->client = new CdekClient(getenv('CDEK_ACCOUNT'), getenv('CDEK_PASSWORD'), $http);
 
@@ -63,22 +76,38 @@ abstract class TestCase extends \PHPUnit\Framework\TestCase
         }
     }
 
-    protected function getClient(): CdekClient
+    final protected function getClient(): CdekClient
     {
         return $this->client;
     }
 
-    protected function skipIfKnownAPIErrorCode(Response $response)
+    final protected function skipIfKnownAPIErrorCode(Response $response, array $transientErrorCodes = [])
     {
-        if ($response->hasErrors()) {
-            foreach ($response->getMessages() as $message) {
-                if ($message->getErrorCode() === '502') {
-                    $this->markTestSkipped("CDEK responded with an HTTP error code: {$message->getMessage()}");
-                }
-                if ($message->getErrorCode() === 'ERROR_INTERNAL') {
-                    $this->markTestSkipped("CDEK failed with an internal error: {$message->getMessage()}");
-                }
+        if (!$response->hasErrors()) {
+            return;
+        }
+
+        $transientErrorCodes[] = 'ERROR_INTERNAL';
+
+        foreach ($response->getMessages() as $message) {
+            if ($message->getErrorCode() === '502') {
+                $this->markTestSkipped("CDEK responded with an HTTP error code: {$message->getMessage()}");
             }
+            if (in_array($message->getErrorCode(), $transientErrorCodes)) {
+                $this->markTestSkipped("CDEK failed with a known transient error code {$message->getErrorCode()}: {$message->getMessage()}");
+            }
+        }
+    }
+
+    final protected function isTestEndpointUsed(): bool
+    {
+        return $this->isTesting;
+    }
+
+    final protected function skipIfTestEndpointIsUsed(string $message = '')
+    {
+        if ($this->isTestEndpointUsed()) {
+            $this->markTestSkipped($message);
         }
     }
 }

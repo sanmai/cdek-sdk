@@ -47,6 +47,6 @@ foreach ($response as $region) {
     $region->getCodeExt();
     $region->getFiasGuid();
     $region->getCountryName();
-    $region->getCountryCode();
+    $region->getCountryCodeISO();
     $region->getCountryCodeExt();
 }

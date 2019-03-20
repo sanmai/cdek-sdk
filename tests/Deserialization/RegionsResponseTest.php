@@ -38,7 +38,7 @@ use Tests\CdekSDK\Fixtures\FixtureLoader;
  */
 class RegionsResponseTest extends TestCase
 {
-    public function test_it_deserializes()
+    public function test_it_deserializes_old_style_response()
     {
         $response = $this->getSerializer()->deserialize(FixtureLoader::load('Regions.xml'), RegionsResponse::class, 'xml');
 
@@ -67,6 +67,45 @@ class RegionsResponseTest extends TestCase
         $this->assertSame('РОССИЯ', $region->getCountryName());
         $this->assertSame(1, $region->getCountryCode());
         $this->assertSame(643, $region->getCountryCodeExt());
+
+        foreach ($response as $item) {
+            break;
+        }
+
+        assert(isset($item));
+        $this->assertSame($region, $item);
+    }
+
+    public function test_it_deserializes()
+    {
+        $response = $this->getSerializer()->deserialize(FixtureLoader::load('RegionsISO.xml'), RegionsResponse::class, 'xml');
+
+        /** @var $response RegionsResponse */
+        $this->assertFalse($response->hasErrors());
+
+        $this->assertInstanceOf(RegionsResponse::class, $response);
+
+        $this->assertNotEmpty($response->getItems());
+
+        $this->assertCount(1, $response->getItems());
+        $this->assertCount(1, $response);
+
+        foreach ($response->getItems() as $region) {
+            $this->assertInstanceOf(Region::class, $region);
+        }
+
+        $region = $response->getItems()[0];
+        /** @var $region Region */
+        $this->assertSame('0c4563e7-3465-4325-a6d8-be0e06a1ab48', $region->getUuid(), sprintf('Received unexpected region: %s', var_export($region, true)));
+        $this->assertSame('Хабаровский', $region->getName());
+        $this->assertSame('край', $region->getPrefix());
+        $this->assertSame(14, $region->getCode());
+        $this->assertSame(27, $region->getCodeExt());
+        $this->assertSame('7d468b39-1afa-41ec-8c4f-97a8603cb3d4', $region->getFiasGuid());
+        $this->assertSame('Russia', $region->getCountryName());
+        $this->assertSame(643, $region->getCountryCodeExt());
+        $this->assertSame(1, $region->getCountryCode());
+        $this->assertSame('RU', $region->getCountryCodeISO());
 
         foreach ($response as $item) {
             break;

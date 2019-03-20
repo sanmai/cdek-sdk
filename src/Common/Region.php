@@ -90,9 +90,9 @@ final class Region
 
     /**
      * @JMS\XmlAttribute
-     * @JMS\Type("int")
+     * @JMS\Type("string")
      *
-     * @var int
+     * @var string
      */
     private $countryCode;
 
@@ -139,7 +139,24 @@ final class Region
         return $this->countryName;
     }
 
+    /**
+     * @deprecated СДЭК отказались от числовых кодов на 19.03.2019
+     * @see Region::getCountryCodeISO()
+     */
     public function getCountryCode(): int
+    {
+        if (is_numeric($this->countryCode)) {
+            return (int) $this->countryCode;
+        }
+
+        if (array_key_exists($this->countryCode, Location::COUNTRY_CODE_LOOKUP)) {
+            return Location::COUNTRY_CODE_LOOKUP[$this->countryCode];
+        }
+
+        return 0;
+    }
+
+    public function getCountryCodeISO(): string
     {
         return $this->countryCode;
     }

@@ -79,6 +79,11 @@ class CalculationRequest implements JsonRequest
     protected $receiverCityId;
     protected $receiverCityPostCode;
 
+    /**
+     * @deprecated
+     *
+     * @return CalculationAuthorizedRequest
+     */
     public static function withAuthorization(): CalculationAuthorizedRequest
     {
         return new CalculationAuthorizedRequest();

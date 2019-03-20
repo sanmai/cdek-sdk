@@ -29,11 +29,11 @@ use CdekSDK\Requests;
 
 $client = new \CdekSDK\CdekClient('account', 'password');
 
-// для выполнения авторизованного запроса используется
-// $request = Requests\CalculationRequest::withAuthorization();
+// для выполнения запроса без авторизации используется
+// $request = new Requests\CalculationRequest();
 // $request->set...() и так далее
 
-$request = new Requests\CalculationRequest();
+$request = new Requests\CalculationAuthorizedRequest();
 $request->setSenderCityPostCode('295000')
     ->setReceiverCityPostCode('652632')
     ->setTariffId(1)

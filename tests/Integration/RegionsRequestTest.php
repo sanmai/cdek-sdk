@@ -42,7 +42,7 @@ class RegionsRequestTest extends TestCase
     public function test_example()
     {
         $request = new RegionsRequest();
-        $request->setCountryCode(1);
+        $request->setCountryCode('RU');
         $request->setPage(0)->setSize(1);
 
         $response = $this->getClient()->sendRegionsRequest($request);
@@ -53,6 +53,11 @@ class RegionsRequestTest extends TestCase
         $this->assertCount(1, $response->getItems());
 
         $region = $response->getItems()[0];
+
+        if ($region->getCountryCode() === 0) {
+            $this->markTestSkipped("Unknown country: {$region->getCountryName()}");
+        }
+
         $this->assertSame('18aff43f-58b8-4608-ade7-92fdab7fc39f', $region->getUuid());
         $this->assertSame('Тверская', $region->getName());
         $this->assertSame('обл', $region->getPrefix());

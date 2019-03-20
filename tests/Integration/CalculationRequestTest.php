@@ -38,6 +38,8 @@ use CdekSDK\Requests\CalculationRequest;
  */
 class CalculationRequestTest extends TestCase
 {
+    const UNAUTHORIZED_ERROR = 2;
+
     public function test_success()
     {
         $request = new CalculationRequest();
@@ -81,6 +83,10 @@ class CalculationRequestTest extends TestCase
         $response = $this->getClient()->sendCalculationRequest($request);
 
         foreach ($response->getErrors() as $error) {
+            if ((int) $error->getErrorCode() === self::UNAUTHORIZED_ERROR) {
+                $this->skipIfTestEndpointIsUsed();
+            }
+
             $this->fail("{$error->getErrorCode()}: {$error->getMessage()}");
         }
 

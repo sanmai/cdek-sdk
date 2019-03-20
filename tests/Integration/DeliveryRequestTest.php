@@ -104,7 +104,7 @@ class DeliveryRequestTest extends TestCase
     /**
      * @depends test_delete_success
      */
-    public function test_failing_request_with_demo_keys()
+    public function test_successful_request_for_shop(): string
     {
         $order = new Order([
             'Number'   => 'TEST-123456',
@@ -174,15 +174,24 @@ class DeliveryRequestTest extends TestCase
         foreach ($response->getMessages() as $message) {
             $this->assertNotEmpty($message->getErrorCode(), $message->getMessage());
             $this->assertSame('ERR_INVALID_TARIFF_WITH_CLIENT', $message->getErrorCode());
-            break;
+
+            // "Для выбранного тарифа клиент-плательщик должен быть задан и иметь ИМ-договор"
+            // Это означает что с нашими реквизитами нельзя создать заказ для ИМ
+            return '';
         }
+
+        $this->fail();
+
+        return '';
     }
 
     /**
-     * @depends test_delete_success
+     * @depends test_successful_request_for_shop
      */
-    public function test_successful_request()
+    public function test_successful_request_for_delivery(string $dispatchNumber): string
     {
+        // Попробуем создать заказ на доставку
+
         $order = new Order([
             'ClientSide' => Order::CLIENT_SIDE_SENDER,
             'Number'     => 'TEST-123456',
@@ -262,16 +271,37 @@ class DeliveryRequestTest extends TestCase
     }
 
     /**
-     * @depends test_failing_request_with_demo_keys
+     * @depends test_successful_request_for_shop
+     * @depends test_successful_request_for_delivery
+     */
+    public function test_successful_request_any(string $dispatchNumberShop, string $dispatchNumberDelivery)
+    {
+        $dispatchNumber = $dispatchNumberShop !== '' ? $dispatchNumberShop : $dispatchNumberDelivery;
+
+        $this->assertNotEmpty($dispatchNumber);
+
+        return $dispatchNumber;
+    }
+
+    /**
+     * @depends test_successful_request_any
      */
     public function test_update_request(string $dispatchNumber)
     {
+        if ($dispatchNumber === '') {
+            $this->markTestSkipped('Используются реквизиты для доставки');
+        }
+
         $request = UpdateRequest::create([
             'Number' => self::TEST_NUMBER,
         ])->addOrder(Order::create([
             'DispatchNumber' => $dispatchNumber,
             'Number'         => 'TEST-123456',
-        ])->addPackage(Package::create([
+        ])->setAddress(Address::create([
+            'Street' => 'Морозильная улица',
+            'House'  => '2',
+            'Flat'   => '101',
+        ]))->addPackage(Package::create([
             'Number'  => 'TEST-123456',
             'BarCode' => 'TEST-123456',
             'Weight'  => 600, // Общий вес (в граммах)
@@ -291,18 +321,9 @@ class DeliveryRequestTest extends TestCase
 
         $this->assertInstanceOf(UpdateResponse::class, $response);
 
-        $this->skipIfKnownAPIErrorCode($response);
-
-        foreach ($response->getMessages() as $message) {
-            if ($message->getErrorCode() === 'ERR_INVALID_TARIFF_WITH_CLIENT') {
-                $this->markTestSkipped($message->getMessage());
-            }
-
-            // Случай когда БД СДЭК отстаёт
-            if ($message->getErrorCode() === 'ERR_ORDER_NOTFIND') {
-                $this->markTestSkipped($message->getMessage());
-            }
-        }
+        $this->skipIfKnownAPIErrorCode($response, [
+            'ERR_ORDER_NOTFIND', // Случай когда БД СДЭК отстаёт
+        ]);
 
         foreach ($response->getMessages() as $message) {
             $this->assertEmpty($message->getErrorCode(), $message->getMessage());
@@ -317,7 +338,7 @@ class DeliveryRequestTest extends TestCase
     }
 
     /**
-     * @depends test_successful_request
+     * @depends test_successful_request_any
      */
     public function test_print_receipts_request(string $dispatchNumber)
     {
@@ -326,12 +347,12 @@ class DeliveryRequestTest extends TestCase
 
         $response = $this->getClient()->sendPrintReceiptsRequest($request);
 
+        $this->skipIfKnownAPIErrorCode($response, [
+            'ERR_API',
+        ]);
+
         if ($response->hasErrors()) {
             foreach ($response->getMessages() as $message) {
-                if ($message->getErrorCode() === 'ERR_API') {
-                    $this->markTestSkipped($message->getMessage());
-                }
-
                 // Новые заказы попадают в БД СДЭК с задержкой, потому квитанцию не всегда получается сразу получить
                 if ($message->getErrorCode() === 'ERR_INVALID_DISPATCHNUMBER') {
                     $this->assertContains($dispatchNumber, $message->getMessage());
@@ -351,7 +372,7 @@ class DeliveryRequestTest extends TestCase
     }
 
     /**
-     * @depends test_successful_request
+     * @depends test_successful_request_any
      * @psalm-suppress PossiblyNullReference
      */
     public function test_status_report(string $dispatchNumber)
@@ -378,8 +399,17 @@ class DeliveryRequestTest extends TestCase
         $order = $response->getOrders()[0];
 
         $this->assertInstanceOf(Order::class, $order);
-        $this->assertSame('TESTING123', $order->getActNumber());
+        $this->assertSame($dispatchNumber, $order->getDispatchNumber());
         $this->assertSame('Создан', $order->getStatus()->getDescription());
+
+        if ($order->getActNumber() !== '' && !$this->isTestEndpointUsed()) {
+            $this->assertSame('TESTING123', $order->getActNumber());
+        }
+
+        if ($order->getNumber() === 'null' && $this->isTestEndpointUsed()) {
+            // Тестовое API иногда возвращает такое - тестирование продолжаем как можно
+            return Order::withDispatchNumber($order->getDispatchNumber());
+        }
 
         return Order::withNumberAndDate($order->getNumber(), $order->getStatus()->getDate());
     }
@@ -436,7 +466,7 @@ class DeliveryRequestTest extends TestCase
     }
 
     /**
-     * @depends test_successful_request
+     * @depends test_successful_request_any
      */
     public function test_call_courier(string $dispatchNumber)
     {

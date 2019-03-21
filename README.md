@@ -98,6 +98,8 @@ $client = new \CdekSDK\CdekClient('account', 'password');
 | [Печать квитанции к заказу](#%D0%9F%D0%B5%D1%87%D0%B0%D1%82%D1%8C-%D0%BA%D0%B2%D0%B8%D1%82%D0%B0%D0%BD%D1%86%D0%B8%D0%B8-%D0%BA-%D0%B7%D0%B0%D0%BA%D0%B0%D0%B7%D1%83) | `sendPrintReceiptsRequest` | `PrintReceiptsRequest` |
 | [Печать ШК-мест](#%D0%9F%D0%B5%D1%87%D0%B0%D1%82%D1%8C-%D0%A8%D0%9A-%D0%BC%D0%B5%D1%81%D1%82) | `sendPrintLabelsRequest` | `PrintLabelsRequest` |
 
+Подробное описание параметров каждого метода [смотрите в документации СДЭК](https://www.cdek.ru/clients/integrator.html). Также обратите внимание на список [часто задаваемых вопросов по интеграции](https://www.cdek.ru/faq_integrator.html).
+
 ### Обработка ошибок
 
 Все возвращаемые ответы содержат методы для проверки на ошибку, также для получения списка сообщений включая сообщения об ошибках.

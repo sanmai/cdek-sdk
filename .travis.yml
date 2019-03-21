@@ -27,12 +27,16 @@ jobs:
   include:
     - stage: integration
       php: 7.0
-      env: GROUP=integration TYPE=shop
-      secure: "gtOzOUYqUk1ucFKg0DtVdqzxov1nR/MiMS8vwsTc/ARSW0O4g38zYvAn61ZW1W81L41R2uqLChbaHls6SI/G3zEhPBgrfPTTr/bRCKZ+lfDfmtwRWUK0WB81/OUx7SGwIVULAaaZ3d8ti0RzsHz5NclaqlOM25XQjVzWfhPezTTfYX/DjCx5eNGMqDka74CsVj+pFk42DAW3wTH1GTTUWYTCk+U4qPEo+T29KAMmDS781YB283s9AmekUNIIo7Xf1j2GzyVdx1X7MlbBeWN+5Q+9g6wH458PmsM3LY+IzcNNcTiAS32H2WdKSMjokqjrZbSfBpXzQaX5SQRO+8RO3MgsKboGGODinxJX8PC3FUOZKOWUBtGLnqjoBjdsBJlvP2/CHqzHXWhPOQAmc0H3y/BpUnVd3mEowrQrEHG6SJtu7AVDri9j3elX5qEQjCt0HkvLAWfT5VqS1VF5VVIOSzgT6AwRAaa7+VQwZpFDP2DXnNLPmP3Ic9cyT+2IgwARNqSfEcroYRETKbNIyVasYTPR1RqazukA8iCw+QM04kJydL0A52TCGEV6x09DqQZLLsevD9oaR/LcHjKSnVXXAmtp3SMded4/CyMNHgMA2JAsTg2IHT0ZdO4A76mJYAtCbI3RdDc6Bbh8QsOwY0FCMCxc7Z6TomHHvJF4uXh9jPA="
+      env:
+        - GROUP=integration
+        - CDEK_ACCOUNT=7JM7K5twfzEV1ssCRklthcIPbbVZrZrZ
+        - CDEK_PASSWORD=t8XBoL1rUofIK9dKoXVB3Tji2F2hPHSk
     - stage: integration
       php: 7.0
-      env: GROUP=integration TYPE=delivery
-      secure: "Ph/Uj8bLsl0LrDmC77leACtwveVHacK959zQSCRJIDovUauX0t24eijAfF5qd0ki+g1qQjcgUa2vkak/A35bbMgnSLOdLUx+aZmC8rt3wi7pJoQa6Uc/beoUzrNvLF1Z7AHcJWhauPyM9cm/OGRl67Td2zNb10/CURjqWhsM2HDclkY2aIVMcWlj54euim6SEBCyDM5RIyiAsrATi++t2HvXzmPhfxanZ/girowL3ThlRc9fJGy2n9I1ItGzgkFUPFAdYu/UHcriQEaYTZYaqIsZL6WlVbgd989NPGt72eKObJLJX/CWVvm9pkc8nNC6EkyGjPaCUMuKX+XEnvRhJhYyDKgQY8c7EPANf7JE7TV5meFChvGiW21EKPw3bcrYCUJMGFRnUlU5jaN7nOzACgIKBrVvGobKHf+fV/H7p7nqkOT12+AI2mCSovcIbNY28TE1wtDWBAc3IazQzxcqGP+T0fbBiXGz/4KnyJzanLntVDrvH4aFK5nIxzXimd30HtKLmJRTHXdwSqdDBorRcWVfr+wdASXDUl+pTvYGpsiKyeY2TewLRcQ4gTACmSK8oSlZsCv2EpCDTIYyKewVm2VrYgNCIa85IzNhAM1LtgyY8UfFeswOCj720m/Zfy6qA20L+NQIMoE39k483GlWPRBni9FtyudKezhtxYxVbII="
+      env:
+        - GROUP=integration
+        - CDEK_ACCOUNT=z9GRRu7FxmO53CQ9cFfI6qiy32wpfTkd
+        - CDEK_PASSWORD=w24JTCv4MnAcuRTx0oHjHLDtyt3I6IBq
     - stage: analyze
       php: 7.2
       install:

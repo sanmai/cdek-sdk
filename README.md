@@ -1,3 +1,5 @@
+[![](https://www.cdek.ru/website/edostavka/template/images/logo.png)](https://www.cdek.ru/)
+
 # PHP SDK для API СДЭК
 
 [![Latest Stable Version](https://poser.pugx.org/sanmai/cdek-sdk/v/stable)](https://packagist.org/packages/sanmai/cdek-sdk)

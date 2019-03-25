@@ -53,6 +53,7 @@
         "ext-ctype": "For flexible attribute name handling",
         "hughgrigg/php-business-time": "Finds next working day, helps with delivery estimates",
         "monolog/monolog": "For advanced logging and debugging",
+        "sanmai/cdek-info": "For related constant enumerations and references",
         "sanmai/pindx": "For postal code validation"
     },
     "config": {

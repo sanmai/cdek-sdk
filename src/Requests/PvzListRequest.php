@@ -31,6 +31,7 @@ namespace CdekSDK\Requests;
 use CdekSDK\Contracts\ParamRequest;
 use CdekSDK\Requests\Concerns\RequestCore;
 use CdekSDK\Responses\PvzListResponse;
+use function Pipeline\map;
 
 /**
  * Class PvzListRequest.
@@ -42,6 +43,10 @@ final class PvzListRequest implements ParamRequest
     const TYPE_PVZ = 'PVZ';
     const TYPE_ALL = 'ALL';
     const TYPE_POSTOMAT = 'POSTOMAT';
+
+    const LANGUAGE_RUSSIAN = 'rus';
+    const LANGUAGE_ENGLISH = 'eng';
+    const LANGUAGE_CHINESE = 'zho';
 
     const METHOD = 'GET';
     const ADDRESS = '/pvzlist/v1/xml';
@@ -63,16 +68,22 @@ final class PvzListRequest implements ParamRequest
     protected $cityPostCode;
 
     /** @var bool */
-    protected $cashless;
+    protected $haveCashless;
 
     /** @var bool */
-    protected $dressingRoom;
+    protected $isDressingRoom;
 
     /** @var bool */
-    protected $codAllowed;
+    protected $allowedCod;
 
     /** @var int */
-    protected $maxWeight;
+    protected $weightMax;
+
+    /** @var string */
+    protected $lang;
+
+    /** @var bool */
+    protected $takeOnly;
 
     public function setType(string $type)
     {
@@ -116,44 +127,60 @@ final class PvzListRequest implements ParamRequest
 
     public function setCashless(bool $cashless)
     {
-        $this->cashless = $cashless;
+        $this->haveCashless = $cashless;
 
         return $this;
     }
 
     public function setDressingRoom(bool $haveDressingRoom)
     {
-        $this->dressingRoom = $haveDressingRoom;
+        $this->isDressingRoom = $haveDressingRoom;
 
         return $this;
     }
 
-    public function setCodAllowed(bool $codAllowed)
+    public function setCodAllowed(bool $allowedCod)
     {
-        $this->codAllowed = $codAllowed;
+        $this->allowedCod = $allowedCod;
 
         return $this;
     }
 
-    public function setMaxWeight(int $maxWeight)
+    public function setMaxWeight(int $weightMax)
     {
-        $this->maxWeight = $maxWeight;
+        $this->weightMax = $weightMax;
 
         return $this;
     }
 
+    public function setLanguage(string $lang = self::LANGUAGE_RUSSIAN)
+    {
+        $this->lang = $lang;
+
+        return $this;
+    }
+
+    public function setPickupOnly(bool $takeonly)
+    {
+        $this->takeOnly = $takeonly;
+
+        return $this;
+    }
+
+    /**
+     * @psalm-suppress MixedAssignment
+     * @psalm-suppress MixedTypeCoercion
+     */
     public function getParams(): array
     {
-        return [
-            'type'           => $this->type,
-            'cityid'         => $this->cityId,
-            'regionid'       => $this->regionId,
-            'countryid'      => $this->countryId,
-            'citypostcode'   => $this->cityPostCode,
-            'havecashles'    => $this->cashless,
-            'weightmax'      => $this->maxWeight,
-            'allowedcod'     => $this->codAllowed,
-            'isdressingroom' => $this->dressingRoom,
-        ];
+        return iterator_to_array(map(function () {
+            foreach (get_object_vars($this) as $key => $value) {
+                if (is_null($value)) {
+                    continue;
+                }
+
+                yield strtolower($key) => $value;
+            }
+        }), true);
     }
 }

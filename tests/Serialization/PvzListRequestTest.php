@@ -50,10 +50,6 @@ class PvzListRequestTest extends TestCase
             'regionid'       => 2,
             'countryid'      => 3,
             'citypostcode'   => '123456',
-            'havecashles'    => null,
-            'weightmax'      => null,
-            'allowedcod'     => null,
-            'isdressingroom' => null,
         ], $request->getParams());
 
         $request = (new PvzListRequest())
@@ -65,29 +61,22 @@ class PvzListRequestTest extends TestCase
 
         $this->assertEquals([
             'type'           => PvzListRequest::TYPE_POSTOMAT,
-            'cityid'         => null,
-            'regionid'       => null,
-            'countryid'      => null,
-            'citypostcode'   => null,
-            'havecashles'    => true,
             'weightmax'      => 100,
             'allowedcod'     => true,
             'isdressingroom' => false,
+            'havecashless'   => true,
         ], $request->getParams());
 
         $request = (new PvzListRequest())
-            ->setCityPostCode('800900');
+            ->setCityPostCode('800900')
+            ->setPickupOnly(true)
+            ->setLanguage(PvzListRequest::LANGUAGE_CHINESE);
 
         $this->assertEquals([
             'type'           => PvzListRequest::TYPE_PVZ,
-            'cityid'         => null,
-            'regionid'       => null,
-            'countryid'      => null,
             'citypostcode'   => '800900',
-            'havecashles'    => null,
-            'weightmax'      => null,
-            'allowedcod'     => null,
-            'isdressingroom' => null,
+            'lang'           => 'zho',
+            'takeonly'       => true,
         ], $request->getParams());
     }
 }

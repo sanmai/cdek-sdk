@@ -30,5 +30,6 @@ namespace CdekSDK\Contracts;
 
 interface JsonRequest extends Request
 {
+    /** @deprecated */
     public function getBody(): array;
 }

@@ -38,7 +38,7 @@ use CdekSDK\Responses\CalculationResponse;
  *
  * @final
  */
-class CalculationRequest implements JsonRequest
+class CalculationRequest implements JsonRequest, \JsonSerializable
 {
     use RequestCore;
 
@@ -184,7 +184,14 @@ class CalculationRequest implements JsonRequest
         return $this;
     }
 
+    /** @deprecated */
     public function getBody(): array
+    {
+        return $this->jsonSerialize();
+    }
+
+    /** @return array */
+    public function jsonSerialize()
     {
         return array_filter([
             'version'              => self::VERSION,

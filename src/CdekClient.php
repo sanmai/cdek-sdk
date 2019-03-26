@@ -288,7 +288,7 @@ final class CdekClient implements Contracts\Client, LoggerAwareInterface
 
         if ($request instanceof JsonRequest) {
             return [
-                'body'    => json_encode($request->getBody()),
+                'body'    => json_encode($request),
                 'headers' => [
                     'Content-Type' => 'application/json',
                 ],

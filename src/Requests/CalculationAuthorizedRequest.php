@@ -41,9 +41,9 @@ final class CalculationAuthorizedRequest extends CalculationRequest implements S
     /**
      * @phan-suppress PhanDeprecatedProperty
      */
-    public function getBody(): array
+    public function jsonSerialize()
     {
-        return array_merge(parent::getBody(), [
+        return array_merge(parent::jsonSerialize(), [
             'secure'      => $this->secure,
             'authLogin'   => $this->account,
             'dateExecute' => $this->date->format('Y-m-d'),

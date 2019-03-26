@@ -327,4 +327,16 @@ class DeliveryRequestTest extends TestCase
 </DeliveryRequest>
 ', $request);
     }
+
+    public function test_with_developer_key()
+    {
+        $request = DeliveryRequest::create([
+            'DeveloperKey' => 'abcdefd4621d373cade4e832627b123',
+            'Number'       => '888',
+        ]);
+
+        $this->assertSameAsXML('<?xml version="1.0" encoding="UTF-8"?>
+<DeliveryRequest OrderCount="0" DeveloperKey="abcdefd4621d373cade4e832627b123" Number="888"/>
+', $request);
+    }
 }

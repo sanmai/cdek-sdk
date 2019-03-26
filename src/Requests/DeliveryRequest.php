@@ -63,6 +63,14 @@ class DeliveryRequest implements XmlRequest, ShouldAuthorize
      *
      * @var string
      */
+    protected $DeveloperKey;
+
+    /**
+     * @JMS\XmlAttribute
+     * @JMS\Type("string")
+     *
+     * @var string
+     */
     protected $Number;
 
     /**

@@ -31,39 +31,29 @@ namespace CdekSDK\Common;
 use JMS\Serializer\Annotation as JMS;
 
 /**
- * Фото для ПВЗ.
+ * Номер телефона для ПВЗ.
  *
  * Пример данных:
  *
- * <OfficeImage number="1" url="https://pvzimage.cdek.ru/images/test.jpg"/>
+ * <PhoneDetail number="+78793317575"/>
  */
-final class OfficeImage
+final class PhoneDetail
 {
-    use Fillable;
-
-    /**
-     * @JMS\XmlAttribute
-     * @JMS\Type("int")
-     *
-     * @var int
-     */
-    public $number;
-
     /**
      * @JMS\XmlAttribute
      * @JMS\Type("string")
      *
      * @var string
      */
-    private $url;
+    private $number;
 
-    public function getUrl()
+    public function getNumber(): string
     {
-        return $this->url;
+        return $this->number;
     }
 
     public function __toString()
     {
-        return (string) $this->url;
+        return (string) $this->number;
     }
 }

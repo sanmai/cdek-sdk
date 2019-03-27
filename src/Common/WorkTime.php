@@ -31,23 +31,21 @@ namespace CdekSDK\Common;
 use JMS\Serializer\Annotation as JMS;
 
 /**
- * Фото для ПВЗ.
+ * График работы на неделю.
  *
  * Пример данных:
  *
- * <OfficeImage number="1" url="https://pvzimage.cdek.ru/images/test.jpg"/>
+ * <WorkTimeY day="1" periods="10:00/19:00"/>
  */
-final class OfficeImage
+final class WorkTime
 {
-    use Fillable;
-
     /**
      * @JMS\XmlAttribute
      * @JMS\Type("int")
      *
      * @var int
      */
-    public $number;
+    private $day;
 
     /**
      * @JMS\XmlAttribute
@@ -55,15 +53,25 @@ final class OfficeImage
      *
      * @var string
      */
-    private $url;
+    private $periods;
 
-    public function getUrl()
+    /**
+     * Порядковый номер дня начиная с единицы. Понедельник = 1, воскресенье = 7.
+     *
+     * @return int
+     */
+    public function getDay(): int
     {
-        return $this->url;
+        return $this->day;
     }
 
-    public function __toString()
+    /**
+     * Период работы в этот день.
+     *
+     * @return string
+     */
+    public function getPeriods(): string
     {
-        return (string) $this->url;
+        return $this->periods;
     }
 }

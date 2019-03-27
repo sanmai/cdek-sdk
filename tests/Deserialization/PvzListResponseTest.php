@@ -82,14 +82,70 @@ class PvzListResponseTest extends TestCase
 
         /** @var $response PvzListResponse */
         $this->assertInstanceOf(PvzListResponse::class, $response);
-        /** @var $response PvzListResponse */
-        $this->assertInstanceOf(PvzListResponse::class, $response);
+
         $this->assertNotEmpty($response->getItems());
         $this->assertCount(1, $response->getItems());
         $this->assertCount(1, $response);
 
         $item = $response->getItems()[0];
         $this->assertInstanceOf(Pvz::class, $item);
+
+        $this->assertAttributeInternalType('boolean', 'HaveCashless', $item);
+        $this->assertTrue($item->HaveCashless);
+    }
+
+    public function test_it_reads_chinese_list()
+    {
+        $response = $this->getSerializer()->deserialize(FixtureLoader::load('PvzListCN.xml'), PvzListResponse::class, 'xml');
+
+        /** @var $response PvzListResponse */
+        $this->assertInstanceOf(PvzListResponse::class, $response);
+        $this->assertNotEmpty($response->getItems());
+        $this->assertCount(6, $response->getItems());
+        $this->assertCount(6, $response);
+
+        $item = $response->getItems()[0];
+        $this->assertInstanceOf(Pvz::class, $item);
+
+        $this->assertSame('SHAN4', $item->Code);
+
+        $this->assertSame('SHAN4', $item->Code);
+        $this->assertSame('200001', $item->PostalCode);
+        $this->assertSame('黄浦', $item->Name);
+        $this->assertSame(138, $item->CountryCode);
+        $this->assertSame('中国', $item->CountryName);
+        $this->assertSame(906, $item->RegionCode);
+        $this->assertSame('上海', $item->RegionName);
+        $this->assertSame(12683, $item->CityCode);
+        $this->assertSame('上海市', $item->City);
+        $this->assertSame('周一至周五 09:00-17:30', $item->WorkTime);
+        $this->assertSame('青浦区北青公路3688号H', $item->Address);
+        $this->assertSame('中国上海上海市青浦区北青公路3688号H', $item->FullAddress);
+        $this->assertSame('', $item->AddressComment);
+        $this->assertSame('+8613661716712', $item->Phone);
+        $this->assertSame('Shuchen@cdek.ru', $item->Email);
+        $this->assertSame('testing@qq', $item->qqId);
+        $this->assertSame('', $item->Note);
+        $this->assertSame(121.479642, $item->coordX);
+        $this->assertSame(31.245725, $item->coordY);
+        $this->assertSame('PVZ', $item->Type);
+        $this->assertSame('cdek', $item->ownerCode);
+        $this->assertTrue($item->IsDressingRoom);
+        $this->assertTrue($item->HaveCashless);
+        $this->assertTrue($item->AllowedCod);
+        $this->assertSame('', $item->NearestStation);
+        $this->assertSame('', $item->MetroStation);
+        $this->assertSame('', $item->Site);
+
+        $this->assertSame('+8613661716712', $item->phoneDetails[0]->getNumber());
+        $this->assertSame('+8613661716712', (string) $item->phoneDetails[0]);
+
+        $this->assertSame(5, $item->OfficeImages[4]->number);
+        $this->assertSame('http://172.16.100.4:8008/images/2074/2008_5_SHAN4', $item->OfficeImages[4]->getUrl());
+        $this->assertSame('http://172.16.100.4:8008/images/2074/2008_5_SHAN4', (string) $item->OfficeImages[4]);
+
+        $this->assertSame(5, $item->workTimes[4]->getDay());
+        $this->assertSame('09:00/17:30', $item->workTimes[4]->getPeriods());
 
         $this->assertAttributeInternalType('boolean', 'HaveCashless', $item);
         $this->assertTrue($item->HaveCashless);

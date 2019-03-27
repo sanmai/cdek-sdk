@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<PvzList>
+  <Pvz Code="SHAN4" PostalCode="200001" Name="黄浦" CountryCode="138" CountryName="中国" RegionCode="906" RegionName="上海" CityCode="12683" City="上海市" WorkTime="周一至周五 09:00-17:30" Address="青浦区北青公路3688号H" FullAddress="中国上海上海市青浦区北青公路3688号H" AddressComment="" Phone="+8613661716712" Email="Shuchen@cdek.ru" qqId="testing@qq" Note="" coordX="121.479642" coordY="31.245725" Type="PVZ" ownerCode="cdek" IsDressingRoom="true" HaveCashless="true" AllowedCod="true" NearestStation="" MetroStation="" Site="">
+    <PhoneDetail number="+8613661716712"/>
+    <OfficeImage number="1" url="http://172.16.100.4:8008/images/2074/2004_1_SHAN4"/>
+    <OfficeImage number="2" url="http://172.16.100.4:8008/images/2074/2005_2_SHAN4"/>
+    <OfficeImage number="3" url="http://172.16.100.4:8008/images/2074/2006_3_SHAN4"/>
+    <OfficeImage number="4" url="http://172.16.100.4:8008/images/2074/2007_4_SHAN4"/>
+    <OfficeImage number="5" url="http://172.16.100.4:8008/images/2074/2008_5_SHAN4"/>
+    <WorkTimeY day="1" periods="09:00/17:30"/>
+    <WorkTimeY day="2" periods="09:00/17:30"/>
+    <WorkTimeY day="3" periods="09:00/17:30"/>
+    <WorkTimeY day="4" periods="09:00/17:30"/>
+    <WorkTimeY day="5" periods="09:00/17:30"/>
+  </Pvz>
+  <Pvz Code="ZHEN13" PostalCode="518129" Name="吉华" CountryCode="138" CountryName="中国" RegionCode="974" RegionName="广东省" CityCode="7157" City="深圳市" WorkTime="周一至周日 09:00-18:00" Address="龙岗区吉华路409号楼B102室" FullAddress="中国广东省深圳市龙岗区吉华路409号楼B102室" AddressComment="" Phone="+8613826047651" Email="2881681232@qq.com" qqId="" Note="" coordX="114.087264" coordY="22.647792" Type="PVZ" ownerCode="cdek" IsDressingRoom="false" HaveCashless="true" AllowedCod="false" NearestStation="" MetroStation="" Site="">
+    <PhoneDetail number="+8613826047651"/>
+    <WorkTimeY day="1" periods="09:00/18:00"/>
+    <WorkTimeY day="2" periods="09:00/18:00"/>
+    <WorkTimeY day="3" periods="09:00/18:00"/>
+    <WorkTimeY day="4" periods="09:00/18:00"/>
+    <WorkTimeY day="5" periods="09:00/18:00"/>
+    <WorkTimeY day="6" periods="09:00/18:00"/>
+    <WorkTimeY day="7" periods="09:00/18:00"/>
+  </Pvz>
+  <Pvz Code="DUN1" PostalCode="518000" Name="松山" CountryCode="138" CountryName="中国" RegionCode="974" RegionName="广东省" CityCode="31524" City="东莞市" WorkTime="周一至周六 09:00-22:00" Address="松山区莱鑫德智谷产业园1楼B" FullAddress="中国广东省东莞市松山区莱鑫德智谷产业园1楼B" AddressComment="" Phone="+8613868977420" Email="GuoXiaoJun@cdek.ru" qqId="" Note="" coordX="113.906252" coordY="22.985047" Type="PVZ" ownerCode="cdek" IsDressingRoom="false" HaveCashless="true" AllowedCod="false" NearestStation="" MetroStation="" Site="">
+    <PhoneDetail number="+8613868977420"/>
+    <WorkTimeY day="1" periods="09:00/22:00"/>
+    <WorkTimeY day="2" periods="09:00/22:00"/>
+    <WorkTimeY day="3" periods="09:00/22:00"/>
+    <WorkTimeY day="4" periods="09:00/22:00"/>
+    <WorkTimeY day="5" periods="09:00/22:00"/>
+    <WorkTimeY day="6" periods="09:00/22:00"/>
+  </Pvz>
+  <Pvz Code="SUJ2" Name="会晤路" CountryCode="138" CountryName="中国" RegionCode="884" RegionName="黑龙江省" CityCode="16769" City="绥芬河市" WorkTime="周一至周五 08:00-17:00, 周六 08:00-13:00" Address="会晤路93号" FullAddress="中国黑龙江省绥芬河市会晤路93号" AddressComment="" Phone="+8615946301091" Email="" qqId="" Note="" coordX="131.155666" coordY="44.394387" Type="PVZ" ownerCode="cdek" IsDressingRoom="true" HaveCashless="true" AllowedCod="true" NearestStation="" MetroStation="" Site="">
+    <PhoneDetail number="+8615946301091"/>
+    <WorkTimeY day="1" periods="08:00/17:00"/>
+    <WorkTimeY day="2" periods="08:00/17:00"/>
+    <WorkTimeY day="3" periods="08:00/17:00"/>
+    <WorkTimeY day="4" periods="08:00/17:00"/>
+    <WorkTimeY day="5" periods="08:00/17:00"/>
+    <WorkTimeY day="6" periods="08:00/13:00"/>
+  </Pvz>
+  <Pvz Code="IUU5" PostalCode="323000" Name="西站大道" CountryCode="138" CountryName="中国" RegionCode="899" RegionName="浙江省" CityCode="16770" City="义乌市" WorkTime="周一至周六 09:00-18:00" Address="西站大道875号" FullAddress="中国浙江省义乌市西站大道875号" AddressComment="" Phone="+8613373826778" Email="w.zhou@cdek.ru" qqId="" Note="" coordX="120.08539" coordY="29.304377" Type="PVZ" ownerCode="cdek" IsDressingRoom="false" HaveCashless="true" AllowedCod="false" NearestStation="" MetroStation="" Site="">
+    <PhoneDetail number="+8613373826778"/>
+    <OfficeImage number="1" url="http://172.16.100.4:8008/images/2129/2116_1_IUU5"/>
+    <WorkTimeY day="1" periods="09:00/18:00"/>
+    <WorkTimeY day="2" periods="09:00/18:00"/>
+    <WorkTimeY day="3" periods="09:00/18:00"/>
+    <WorkTimeY day="4" periods="09:00/18:00"/>
+    <WorkTimeY day="5" periods="09:00/18:00"/>
+    <WorkTimeY day="6" periods="09:00/18:00"/>
+  </Pvz>
+  <Pvz Code="GUA14" PostalCode="510000" Name="兴隆路" CountryCode="138" CountryName="中国" RegionCode="974" RegionName="广东省" CityCode="6684" City="广州市" WorkTime="周一至周五 10:00-22:00" Address="白云区石井镇庆隆中路188号大管家仓储园" FullAddress="中国广东省广州市白云区石井镇庆隆中路188号大管家仓储园" AddressComment="" Phone="+8613501244333" Email="A.verenin@cdek.ru" qqId="" Note="" coordX="113.213173" coordY="23.208238" Type="PVZ" ownerCode="cdek" IsDressingRoom="false" HaveCashless="true" AllowedCod="false" NearestStation="" MetroStation="" Site="">
+    <PhoneDetail number="+8613501244333"/>
+    <WorkTimeY day="1" periods="10:00/22:00"/>
+    <WorkTimeY day="2" periods="10:00/22:00"/>
+    <WorkTimeY day="3" periods="10:00/22:00"/>
+    <WorkTimeY day="4" periods="10:00/22:00"/>
+    <WorkTimeY day="5" periods="10:00/22:00"/>
+  </Pvz>
+</PvzList>

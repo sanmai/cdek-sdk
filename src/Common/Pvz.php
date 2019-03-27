@@ -107,6 +107,14 @@ final class Pvz
      *
      * @var string
      */
+    public $qqId;
+
+    /**
+     * @JMS\XmlAttribute
+     * @JMS\Type("string")
+     *
+     * @var string
+     */
     public $Note;
 
     /**
@@ -172,6 +180,14 @@ final class Pvz
      * @var string
      */
     public $City;
+
+    /**
+     * @JMS\XmlAttribute
+     * @JMS\Type("string")
+     *
+     * @var string
+     */
+    public $ownerCode;
 
     /**
      * @JMS\XmlAttribute
@@ -251,6 +267,22 @@ final class Pvz
      * @var OfficeImage[]
      */
     public $OfficeImages = [];
+
+    /**
+     * @JMS\XmlList(entry="WorkTimeY", inline=true)
+     * @JMS\Type("array<CdekSDK\Common\WorkTime>")
+     *
+     * @var WorkTime[]
+     */
+    public $workTimes;
+
+    /**
+     * @JMS\XmlList(entry="PhoneDetail", inline=true)
+     * @JMS\Type("array<CdekSDK\Common\PhoneDetail>")
+     *
+     * @var PhoneDetail[]
+     */
+    public $phoneDetails;
 
     /**
      * @JMS\PostDeserialize

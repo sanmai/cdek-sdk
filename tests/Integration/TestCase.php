@@ -110,4 +110,37 @@ abstract class TestCase extends \PHPUnit\Framework\TestCase
             $this->markTestSkipped($message);
         }
     }
+
+    /**
+     * @var string|null
+     */
+    private static $testNumber;
+
+    private static function getTestNumber(): string
+    {
+        if (self::$testNumber !== null) {
+            return self::$testNumber;
+        }
+
+        foreach ([
+            'LOCAL_BUILD_ID',
+            'TRAVIS_BUILD_ID',
+        ] as $envVarName) {
+            /** @var string|bool $value */
+            $value = env($envVarName);
+
+            if ($value === false) {
+                continue;
+            }
+
+            return self::$testNumber = (string) $value;
+        }
+
+        return self::$testNumber = (string) time();
+    }
+
+    final protected function formatTestNumber(string $format): string
+    {
+        return sprintf($format, self::getTestNumber());
+    }
 }

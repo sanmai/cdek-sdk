@@ -80,14 +80,14 @@ use CdekSDK\Responses\UpdateResponse;
  */
 class DeliveryRequestTest extends TestCase
 {
-    const TEST_NUMBER = 'TESTING123';
+    const TEST_NUMBER = 'TESTING%s';
 
     public function test_delete_success()
     {
         $response = $this->getClient()->sendDeleteRequest(DeleteRequest::create([
-            'Number' => self::TEST_NUMBER,
+            'Number' => self::formatTestNumber(self::TEST_NUMBER),
         ])->addOrder(new Order([
-            'Number' => 'TEST-123456',
+            'Number' => self::formatTestNumber('TEST-%s'),
         ])));
 
         $this->assertInstanceOf(DeleteResponse::class, $response);
@@ -97,7 +97,7 @@ class DeliveryRequestTest extends TestCase
         }
 
         foreach ($response->getOrders() as $order) {
-            $this->assertSame('TEST-123456', $order->getNumber());
+            $this->assertSame(self::formatTestNumber('TEST-%s'), $order->getNumber());
         }
     }
 
@@ -107,7 +107,7 @@ class DeliveryRequestTest extends TestCase
     public function test_successful_request_for_shop(): string
     {
         $order = new Order([
-            'Number'   => 'TEST-123456',
+            'Number'   => self::formatTestNumber('TEST-%s'),
             'SendCity' => City::create([
                 'Code' => 44, // Москва
             ]),
@@ -147,7 +147,7 @@ class DeliveryRequestTest extends TestCase
         $order->addPackage($package);
 
         $request = new DeliveryRequest([
-            'Number' => self::TEST_NUMBER,
+            'Number' => self::formatTestNumber(self::TEST_NUMBER),
         ]);
         $request->addOrder($order);
 
@@ -198,7 +198,7 @@ class DeliveryRequestTest extends TestCase
 
         $order = new Order([
             'ClientSide' => Order::CLIENT_SIDE_SENDER,
-            'Number'     => 'TEST-123456',
+            'Number'     => self::formatTestNumber('TEST-%s'),
             'SendCity'   => City::create([
                 'Code' => 44, // Москва
             ]),
@@ -244,7 +244,7 @@ class DeliveryRequestTest extends TestCase
         $order->addService(AdditionalService::create(AdditionalService::SERVICE_DANGEROUS_GOODS));
 
         $request = new AddDeliveryRequest([
-            'Number'          => self::TEST_NUMBER,
+            'Number'          => self::formatTestNumber(self::TEST_NUMBER),
             'ForeignDelivery' => false,
             'Currency'        => 'RUB',
         ]);
@@ -267,7 +267,7 @@ class DeliveryRequestTest extends TestCase
         $this->assertFalse($response->hasErrors());
 
         foreach ($response->getOrders() as $order) {
-            $this->assertSame('TEST-123456', $order->getNumber());
+            $this->assertSame(self::formatTestNumber('TEST-%s'), $order->getNumber());
             $this->assertNotEmpty($order->getDispatchNumber());
         }
 
@@ -297,10 +297,10 @@ class DeliveryRequestTest extends TestCase
         }
 
         $request = UpdateRequest::create([
-            'Number' => self::TEST_NUMBER,
+            'Number' => self::formatTestNumber(self::TEST_NUMBER),
         ])->addOrder(Order::create([
             'DispatchNumber' => $dispatchNumber,
-            'Number'         => 'TEST-123456',
+            'Number'         => self::formatTestNumber('TEST-%s'),
         ])->setAddress(Address::create([
             'Street' => 'Морозильная улица',
             'House'  => '2',
@@ -336,7 +336,7 @@ class DeliveryRequestTest extends TestCase
         $this->assertFalse($response->hasErrors());
 
         foreach ($response->getOrders() as $order) {
-            $this->assertSame('TEST-123456', $order->getNumber());
+            $this->assertSame(self::formatTestNumber('TEST-%s'), $order->getNumber());
             $this->assertNotEmpty($order->getDispatchNumber());
         }
     }
@@ -407,7 +407,7 @@ class DeliveryRequestTest extends TestCase
         $this->assertSame('Создан', $order->getStatus()->getDescription());
 
         if ($order->getActNumber() !== '' && !$this->isTestEndpointUsed()) {
-            $this->assertSame('TESTING123', $order->getActNumber());
+            $this->assertSame(self::formatTestNumber(self::TEST_NUMBER), $order->getActNumber());
         }
 
         if ($order->getNumber() === 'null' && $this->isTestEndpointUsed()) {

@@ -82,7 +82,7 @@ ci-cs: prerequisites
 ##############################################################
 
 .PHONY: test
-test: phpunit analyze composer-validate
+test: analyze phpunit composer-validate
 
 .PHONY: composer-validate
 composer-validate: test-prerequisites

@@ -410,7 +410,7 @@ class DeliveryRequestTest extends TestCase
             $this->assertSame(self::formatTestNumber(self::TEST_NUMBER), $order->getActNumber());
         }
 
-        if ($order->getNumber() === 'null' && $this->isTestEndpointUsed()) {
+        if ($order->getNumber() === '' && $this->isTestEndpointUsed()) {
             // Тестовое API иногда возвращает такое - тестирование продолжаем как можно
             return Order::withDispatchNumber($order->getDispatchNumber());
         }

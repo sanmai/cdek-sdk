@@ -51,6 +51,7 @@ class InvalidXMLTest extends TestCase
         try {
             $this->getSerializer()->deserialize('foo<bar>', Item::class, 'xml');
         } catch (XmlErrorException $e) {
+            $this->assertStringStartsWith('Expected valid XML', $e->getMessage());
             $this->assertContains('foo<bar>', $e->getMessage());
             $this->assertInstanceOf(\LibXMLError::class, $e->getXmlError());
             $this->assertSame(1, $e->getXmlError()->line);

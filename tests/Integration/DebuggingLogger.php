@@ -48,7 +48,32 @@ final class DebuggingLogger implements LoggerInterface
             $message = strtr($message, iterator_to_array(self::context2replacements($context), true));
         }
 
+        /*
+         * Если нужна запись в файл, то нужно скопировать этот файл себе в проект и заменить строку выше строкой ниже.
+         * Лог будет записан в cdek-requests.log в корне проекта.
+         */
+
         fwrite(\STDERR, "\n{$message}\n\n");
+        //fwrite($this->getLogFileHandle(), "\n{$message}\n\n");
+    }
+
+    /**
+     * Возвращает указатель на открытый файл cdek-requests.log в корне проекта.
+     *
+     * @return resource
+     */
+    private static function getLogFileHandle()
+    {
+        static $fh;
+
+        if (!$fh) {
+            $reflection = new \ReflectionClass(\Composer\Autoload\ClassLoader::class);
+            $fh = fopen(dirname((string) $reflection->getFileName(), 3).DIRECTORY_SEPARATOR.'cdek-requests.log', 'a');
+        }
+
+        assert(is_resource($fh));
+
+        return $fh;
     }
 
     /**

@@ -772,13 +772,15 @@ $client = new \CdekSDK\CdekClient($account, $password, new \GuzzleHttp\Client([
 
 ### Отладка получаемых ответов
 
-Посмотреть, что конкретно отвечает СДЭК на наши запросы и какие запросы мы посылаем сами можно используя [стандартный PSR-3 логгер](https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-3-logger-interface.md), так, как, например, [Monolog](https://github.com/Seldaek/monolog).
+Посмотреть, что конкретно отвечает СДЭК на наши запросы и какие запросы мы посылаем сами можно используя [стандартный PSR-3 логгер](https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-3-logger-interface.md), такой, как, например, [Monolog](https://github.com/Seldaek/monolog).
 
 ```php
 $client->setLogger($monolog);
 ```
 
 Текстовые запросы и ответы в исходном виде идут с уровнем `DEBUG`.
+
+Пример класса, [реализующего минимальный интерфейс](tests/Integration/DebuggingLogger.php#L51-L57).
 
 ## Замечания
 

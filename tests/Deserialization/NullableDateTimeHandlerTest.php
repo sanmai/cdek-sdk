@@ -73,6 +73,7 @@ class NullableDateTimeHandlerTest extends TestCase
     public function test_fails_on_invalid_date()
     {
         $this->expectException(RuntimeException::class);
+        $this->expectException(\JMS\Serializer\Exception\RuntimeException::class);
 
         $this->getSerializer()->deserialize('<Order DeliveryDate="00:00:00" />', Order::class, 'xml');
     }
@@ -80,6 +81,8 @@ class NullableDateTimeHandlerTest extends TestCase
     public function test_fails_on_unexpected_date_format()
     {
         $this->expectException(RuntimeException::class);
+        $this->expectException(\JMS\Serializer\Exception\RuntimeException::class);
+        $this->expectExceptionMessageRegExp('/^Deserialization error: .* expected format/');
 
         $this->getSerializer()->deserialize('<Order Date="2000-01-01 00:00:00" />', Order::class, 'xml');
     }

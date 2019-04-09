@@ -28,6 +28,7 @@ declare(strict_types=1);
 
 namespace CdekSDK\Serialization;
 
+use CdekSDK\Serialization\Exception\DeserializationException;
 use CdekSDK\Serialization\Exception\LibXMLError;
 use CdekSDK\Serialization\Exception\XmlErrorException;
 use Doctrine\Common\Annotations\AnnotationReader;
@@ -163,6 +164,8 @@ final class Serializer implements SerializerInterface
              * @psalm-suppress MixedArgument
              */
             throw new XmlErrorException(LibXMLError::fromLibXMLError($e->getXmlError(), $data), $e->getCode(), $e);
+        } catch (\JMS\Serializer\Exception\RuntimeException $e) {
+            throw DeserializationException::fromRuntimeException($e);
         }
     }
 

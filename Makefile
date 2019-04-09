@@ -94,7 +94,7 @@ test-prerequisites: prerequisites composer.lock
 .PHONY: phpunit
 phpunit: cs
 	$(SILENT) $(PHP) $(PHPUNIT) $(PHPUNIT_ARGS) --verbose
-	$(SILENT) $(PHP) $(INFECTION) $(INFECTION_ARGS)
+	CI=true $(SILENT) $(PHP) $(INFECTION) $(INFECTION_ARGS)
 
 .PHONY: analyze
 analyze: phan phpstan psalm

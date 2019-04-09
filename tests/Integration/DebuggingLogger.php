@@ -31,7 +31,7 @@ namespace Tests\CdekSDK\Integration;
 use Psr\Log\LoggerInterface;
 use Psr\Log\LoggerTrait;
 
-class DebuggingLogger implements LoggerInterface
+final class DebuggingLogger implements LoggerInterface
 {
     use LoggerTrait;
 

@@ -129,7 +129,7 @@ abstract class TestCase extends \PHPUnit\Framework\TestCase
             /** @var string|bool $value */
             $value = env($envVarName);
 
-            if ($value === false) {
+            if ($value === false || strlen($value) === 0) {
                 continue;
             }
 

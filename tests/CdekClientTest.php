@@ -29,6 +29,7 @@ declare(strict_types=1);
 namespace Tests\CdekSDK;
 
 use CdekSDK\CdekClient;
+use CdekSDK\Contracts\DateAware;
 use CdekSDK\Contracts\ParamRequest;
 use CdekSDK\Contracts\Request;
 use CdekSDK\Contracts\Response;
@@ -423,5 +424,65 @@ class CdekClientTest extends TestCase
         $this->assertSame('2018-10-13', $this->lastRequestOptions['form_params']['date']);
         $this->assertSame('foo', $this->lastRequestOptions['form_params']['account']);
         $this->assertSame('74938bff7e92a0cb141d94fe6da88b6b', $this->lastRequestOptions['form_params']['secure']);
+    }
+
+    public function test_it_loads_date_from_capable_request()
+    {
+        $request = new class() implements ParamRequest, ShouldAuthorize, DateAware {
+            public function getMethod(): string
+            {
+                return 'POST';
+            }
+
+            public function getAddress(): string
+            {
+                return '';
+            }
+
+            public function getResponseClassName(): string
+            {
+                return '';
+            }
+
+            public function getSerializationFormat(): string
+            {
+                return '';
+            }
+
+            private $params = [];
+
+            public function getParams(): array
+            {
+                return $this->params;
+            }
+
+            public function date(\DateTimeInterface $date): ShouldAuthorize
+            {
+                $this->params['date'] = $date->format('Y-m-d');
+
+                return $this;
+            }
+
+            public function credentials(string $account, string $secure): ShouldAuthorize
+            {
+                $this->params['account'] = $account;
+                $this->params['secure'] = $secure;
+
+                return $this;
+            }
+
+            public function getRequestDate(): \DateTimeInterface
+            {
+                return new \DateTimeImmutable('2019-04-08');
+            }
+        };
+
+        $client = new CdekClient('foo', 'bar', $this->getHttpClient('text/plain', 'example'));
+        $client->sendRequest($request);
+
+        $this->assertArrayHasKey('form_params', $this->lastRequestOptions);
+        $this->assertSame('2019-04-08', $this->lastRequestOptions['form_params']['date']);
+        $this->assertSame('foo', $this->lastRequestOptions['form_params']['account']);
+        $this->assertSame('522ce91d76c09e7d888406cfbd18cab1', $this->lastRequestOptions['form_params']['secure']);
     }
 }

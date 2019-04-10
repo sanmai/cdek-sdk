@@ -28,6 +28,7 @@ declare(strict_types=1);
 
 namespace CdekSDK;
 
+use CdekSDK\Contracts\DateAware;
 use CdekSDK\Contracts\JsonRequest;
 use CdekSDK\Contracts\ParamRequest;
 use CdekSDK\Contracts\Request;
@@ -133,11 +134,16 @@ final class CdekClient implements Contracts\Client, LoggerAwareInterface
      * {@inheritdoc}
      *
      * @see \CdekSDK\Contracts\Client::sendRequest()
+     * @deprecated $requestDate is deprecated and will be removed; use DateAware interface instead
      *
      * @return Response
      */
     public function sendRequest(Request $request, \DateTimeInterface $requestDate = null)
     {
+        if ($request instanceof DateAware) {
+            $requestDate = $request->getRequestDate();
+        }
+
         if ($request instanceof ShouldAuthorize) {
             $requestDate = $requestDate ?? new \DateTimeImmutable();
 
@@ -168,6 +174,7 @@ final class CdekClient implements Contracts\Client, LoggerAwareInterface
         return $this->deserialize($request, $response);
     }
 
+    /** @phan-suppress PhanDeprecatedFunction */
     public function __call(string $name, array $arguments)
     {
         if (0 === strpos($name, 'send')) {

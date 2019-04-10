@@ -426,6 +426,7 @@ class DeliveryRequestTest extends TestCase
         $request = new PrintLabelsRequest([
             'PrintFormat' => PrintLabelsRequest::PRINT_FORMAT_A5,
         ]);
+
         $request->addOrder($order);
 
         $response = $this->getClient()->sendPrintLabelsRequest($request);

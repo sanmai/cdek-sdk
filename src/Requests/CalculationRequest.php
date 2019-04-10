@@ -29,6 +29,7 @@ declare(strict_types=1);
 namespace CdekSDK\Requests;
 
 use CdekSDK\Common\AdditionalService;
+use CdekSDK\Contracts\DateAware;
 use CdekSDK\Contracts\JsonRequest;
 use CdekSDK\Requests\Concerns\RequestCore;
 use CdekSDK\Responses\CalculationResponse;
@@ -38,7 +39,7 @@ use CdekSDK\Responses\CalculationResponse;
  *
  * @final
  */
-class CalculationRequest implements JsonRequest, \JsonSerializable
+class CalculationRequest implements JsonRequest, \JsonSerializable, DateAware
 {
     use RequestCore;
 
@@ -65,19 +66,69 @@ class CalculationRequest implements JsonRequest, \JsonSerializable
     const ADDRESS = 'https://api.cdek.ru/calculator/calculate_price_by_json.php';
     const RESPONSE = CalculationResponse::class;
 
+    /**
+     * Код города отправителя из базы СДЭК.
+     */
     protected $senderCityId;
+
+    /**
+     * Индекс города отправителя из базы СДЭКm.
+     */
     protected $senderCityPostCode;
 
     /**
+     * Код города получателя из базы СДЭК.
+     */
+    protected $receiverCityId;
+
+    /**
+     * Индекс города получателя из базы СДЭК.
+     */
+    protected $receiverCityPostCode;
+
+    /**
+     * Габаритные характеристики места.
+     *
      * @var array[]
      */
     protected $goods = [];
+
     protected $modeId;
+
+    /**
+     * Список передаваемых дополнительных услуг.
+     *
+     * @var array[]
+     */
     protected $services;
+
+    /**
+     * Код выбранного тарифа.
+     *
+     * @var int|null
+     */
     protected $tariffId;
+
+    /**
+     * Список тарифов.
+     *
+     * @var array[]
+     */
     protected $tariffList = [];
-    protected $receiverCityId;
-    protected $receiverCityPostCode;
+
+    /**
+     * Валюта, в которой необходимо рассчитать стоимость доставки. По умолчанию - RUB.
+     *
+     * @var string
+     */
+    protected $currency;
+
+    /**
+     * Планируемая дата отправки заказа в формате.
+     *
+     * @var \DateTimeInterface|null
+     */
+    protected $dateExecute;
 
     /**
      * @deprecated
@@ -121,12 +172,16 @@ class CalculationRequest implements JsonRequest, \JsonSerializable
         return $this;
     }
 
-    /** @return self */
+    /**
+     * @param mixed $id
+     *
+     * @return self
+     */
     public function setTariffId($id)
     {
         $this->tariffList = [];
 
-        $this->tariffId = $id;
+        $this->tariffId = (int) $id;
 
         return $this;
     }
@@ -184,6 +239,27 @@ class CalculationRequest implements JsonRequest, \JsonSerializable
         return $this;
     }
 
+    /** @return self */
+    public function setCurrency(string $currencyCode)
+    {
+        $this->currency = $currencyCode;
+
+        return $this;
+    }
+
+    /** @return static */
+    public function setDateExecute(\DateTimeInterface $date)
+    {
+        $this->dateExecute = $date;
+
+        return $this;
+    }
+
+    public function getRequestDate(): \DateTimeInterface
+    {
+        return $this->dateExecute ?? new \DateTimeImmutable();
+    }
+
     /** @deprecated */
     public function getBody(): array
     {
@@ -204,6 +280,7 @@ class CalculationRequest implements JsonRequest, \JsonSerializable
             'services'             => $this->services,
             'receiverCityId'       => $this->receiverCityId,
             'receiverCityPostCode' => $this->receiverCityPostCode,
+            'dateExecute'          => $this->dateExecute instanceof \DateTimeInterface ? $this->dateExecute->format('Y-m-d') : null,
         ]);
     }
 }

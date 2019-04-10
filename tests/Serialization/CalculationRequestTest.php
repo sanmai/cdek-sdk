@@ -29,6 +29,7 @@ declare(strict_types=1);
 namespace Tests\CdekSDK\Serialization;
 
 use CdekSDK\Contracts\ShouldAuthorize;
+use CdekSDK\Requests\CalculationAuthorizedRequest;
 use CdekSDK\Requests\CalculationRequest;
 use PHPUnit\Framework\TestCase;
 
@@ -140,6 +141,23 @@ class CalculationRequestTest extends TestCase
             ],
             'receiverCityId' => 2,
         ], $request->getBody());
+    }
+
+    public function test_with_currency_and_date()
+    {
+        $request = new CalculationAuthorizedRequest();
+
+        $request->credentials('foo', 'bar');
+        $request->setDateExecute(new \DateTime('2019-04-08'))->date($request->getRequestDate());
+
+        $request = $request->setCurrency('EUR');
+
+        $this->assertSame([
+            'version'     => '1.0',
+            'dateExecute' => '2019-04-08',
+            'secure'      => 'bar',
+            'authLogin'   => 'foo',
+        ], $request->jsonSerialize());
     }
 
     public function test_constants_exists()

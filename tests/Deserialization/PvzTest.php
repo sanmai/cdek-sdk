@@ -38,7 +38,7 @@ class PvzTest extends TestCase
 {
     public function test_simple_pvz()
     {
-        $pvz = $this->getSerializer()->deserialize('<Pvz Code="KUR7" PostalCode="640018" Name="На Советской" CountryCode="1" CountryName="Россия" RegionCode="28" RegionName="Курганская обл." CityCode="93" City="Курган" WorkTime="Пн-Пт 10:00-19:00, Сб 10:00-16:00" Address="ул. Советская, 128" FullAddress="Россия, Курганская обл., Курган, ул. Советская, 128" AddressComment="Вход с улицы Пичугина" Phone="+79125252100" Email="d.galko@cdek.ru" qqId="" Note="" coordX="65.354189" coordY="55.438706" Type="PVZ" ownerCode="cdek" IsDressingRoom="true" HaveCashless="true" AllowedCod="true" NearestStation="Центральный рынок" MetroStation="" Site="">
+        $pvz = $this->getSerializer()->deserialize('<Pvz Code="KUR7" PostalCode="640018" Name="На Советской" CountryCode="1" countryCodeIso="RU" CountryName="Россия" RegionCode="28" RegionName="Курганская обл." CityCode="93" City="Курган" WorkTime="Пн-Пт 10:00-19:00, Сб 10:00-16:00" Address="ул. Советская, 128" FullAddress="Россия, Курганская обл., Курган, ул. Советская, 128" AddressComment="Вход с улицы Пичугина" Phone="+79125252100" Email="d.galko@cdek.ru" qqId="" Note="" coordX="65.354189" coordY="55.438706" Type="PVZ" ownerCode="cdek" IsDressingRoom="true" HaveCashless="true" AllowedCod="true" NearestStation="Центральный рынок" MetroStation="" Site="">
     <PhoneDetail number="+79125252100"/>
     <OfficeImage number="1" url="https://pvzimage.cdek.ru/images/1622/1037_1_KUR7"/>
     <OfficeImage number="2" url="https://pvzimage.cdek.ru/images/1622/1038_2_KUR7"/>
@@ -55,6 +55,7 @@ class PvzTest extends TestCase
         /** @var $pvz Pvz */
         $this->assertSame('+79125252100', $pvz->Phone);
         $this->assertSame('640018', $pvz->PostalCode);
+        $this->assertSame('RU', $pvz->CountryCodeISO);
 
         $this->assertCount(3, $pvz->OfficeImages);
 

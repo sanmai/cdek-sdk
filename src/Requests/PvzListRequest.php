@@ -65,6 +65,9 @@ final class PvzListRequest implements ParamRequest
     protected $countryId;
 
     /** @var string */
+    protected $countryIso;
+
+    /** @var string */
     protected $cityPostCode;
 
     /** @var bool */
@@ -109,6 +112,13 @@ final class PvzListRequest implements ParamRequest
     public function setCountryId(int $countryId)
     {
         $this->countryId = $countryId;
+
+        return $this;
+    }
+
+    public function setCountryIso(string $countryCode)
+    {
+        $this->countryIso = $countryCode;
 
         return $this;
     }

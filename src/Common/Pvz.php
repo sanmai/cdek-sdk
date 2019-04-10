@@ -144,6 +144,15 @@ final class Pvz
     /**
      * @JMS\XmlAttribute
      * @JMS\Type("string")
+     * @JMS\SerializedName("countryCodeIso")
+     *
+     * @var string
+     */
+    public $CountryCodeISO;
+
+    /**
+     * @JMS\XmlAttribute
+     * @JMS\Type("string")
      *
      * @var string
      */

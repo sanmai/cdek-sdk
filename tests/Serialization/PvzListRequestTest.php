@@ -51,7 +51,10 @@ class PvzListRequestTest extends TestCase
             'countryid'      => 3,
             'citypostcode'   => '123456',
         ], $request->getParams());
+    }
 
+    public function test_boolean_params()
+    {
         $request = (new PvzListRequest())
             ->setType(PvzListRequest::TYPE_POSTOMAT)
             ->setCashless(true)
@@ -66,7 +69,10 @@ class PvzListRequestTest extends TestCase
             'isdressingroom' => false,
             'havecashless'   => true,
         ], $request->getParams());
+    }
 
+    public function test_language()
+    {
         $request = (new PvzListRequest())
             ->setCityPostCode('800900')
             ->setPickupOnly(true)
@@ -77,6 +83,17 @@ class PvzListRequestTest extends TestCase
             'citypostcode'   => '800900',
             'lang'           => 'zho',
             'takeonly'       => true,
+        ], $request->getParams());
+    }
+
+    public function test_country_code()
+    {
+        $request = (new PvzListRequest())
+            ->setCountryIso('RU');
+
+        $this->assertEquals([
+            'type'         => PvzListRequest::TYPE_PVZ,
+            'countryiso'   => 'RU',
         ], $request->getParams());
     }
 }

@@ -72,6 +72,7 @@ class PvzListResponseTest extends TestCase
         $this->assertSame('EKB8', $item->Code);
 
         $item = $response->getItems()[2];
+        $this->assertSame('RU', $item->CountryCodeISO);
         $this->assertCount(1, $item->OfficeImages);
         $this->assertStringStartsWith('http', $item->OfficeImages[0]->getUrl());
     }

@@ -53,6 +53,7 @@ class PvzListRequestTest extends TestCase
     public function test_success()
     {
         $request = new PvzListRequest();
+        $request->setCountryIso('RU');
         $request->setCityId(250);
         $request->setType(PvzListRequest::TYPE_ALL);
         $request->setCashless(true);

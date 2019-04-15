@@ -84,7 +84,7 @@ class CalculationRequestTest extends TestCase
 
         foreach ($response->getErrors() as $error) {
             if ((int) $error->getErrorCode() === self::UNAUTHORIZED_ERROR) {
-                $this->skipIfTestEndpointIsUsed();
+                $this->skipIfTestEndpointIsUsed("{$error->getErrorCode()}: {$error->getMessage()}");
             }
 
             $this->fail("{$error->getErrorCode()}: {$error->getMessage()}");

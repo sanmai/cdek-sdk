@@ -113,21 +113,34 @@ final class CdekClient implements Contracts\Client, LoggerAwareInterface
 
     /**
      * @codeCoverageIgnore
-     * @psalm-suppress MixedArrayAccess
      */
     private function getDefaultUserAgent(): string
     {
         if (self::$userAgentPostfix === null) {
-            if (self::VERSION_INFO[0] === '$') {
-                self::setUserAgent(self::PACKAGE_NAME, (string) @json_decode((string) file_get_contents(__DIR__.'/../composer.json'), true)['extra']['branch-alias']['dev-master']);
-            } else {
-                self::setUserAgent(self::PACKAGE_NAME, self::VERSION_INFO);
-            }
+            self::setUserAgent(self::PACKAGE_NAME, self::getVersion());
         }
 
         assert(is_string(self::$userAgentPostfix));
 
         return default_user_agent().' '.self::$userAgentPostfix;
+    }
+
+    /**
+     * @codeCoverageIgnore
+     * @psalm-suppress MixedArrayAccess
+     */
+    private static function getVersion(): string
+    {
+        if (self::VERSION_INFO[0] === '1$' && is_dir(__DIR__.'/../.git')) {
+            return (string) exec(sprintf('git --git-dir=%s describe --tags --dirty=-dev --always', escapeshellarg(__DIR__.'/../.git')));
+        }
+
+        /** @var $parts string[] */
+        if (preg_match('/^([0-9a-f]+).*?tag: (v?[\d\.]+)\)(.*)/', self::VERSION_INFO, $parts)) {
+            return "{$parts[2]}-{$parts[1]}{$parts[3]}";
+        }
+
+        return (string) @json_decode((string) file_get_contents(__DIR__.'/../composer.json'), true)['extra']['branch-alias']['dev-master'];
     }
 
     /**

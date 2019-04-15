@@ -127,7 +127,7 @@ abstract class TestCase extends \PHPUnit\Framework\TestCase
             'TRAVIS_BUILD_ID',
         ] as $envVarName) {
             /** @var string|bool $value */
-            $value = env($envVarName);
+            $value = getenv($envVarName);
 
             if ($value === false || strlen($value) === 0) {
                 continue;

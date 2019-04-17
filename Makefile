@@ -159,4 +159,6 @@ test-all: $(PHP_VERSIONS)
 $(PHP_VERSIONS): cs
 	@make --no-print-directory PHP=$@ PHP_CS_FIXER=/bin/true
 
-
+.PHONY: docs
+docs:
+	mkdocs serve

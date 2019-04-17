@@ -1,0 +1,10 @@
+site_name: CdekSDK
+theme: readthedocs
+
+nav:
+    - Введение: index.md
+
+markdown_extensions:
+    - toc:
+        permalink: True
+

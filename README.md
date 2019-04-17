@@ -1,4 +1,4 @@
-![](logo.png)
+![](docs/logo.png)
 
 # PHP SDK для API СДЭК
 

@@ -82,7 +82,7 @@ class NullableDateTimeHandlerTest extends TestCase
     {
         $this->expectException(RuntimeException::class);
         $this->expectException(\JMS\Serializer\Exception\RuntimeException::class);
-        $this->expectExceptionMessageRegExp('/^Deserialization error: .* expected format/');
+        $this->expectExceptionMessageRegExp('/^Failed to deserialize Date="2000-01-01 00:00:00": .* expected format/');
 
         $this->getSerializer()->deserialize('<Order Date="2000-01-01 00:00:00" />', Order::class, 'xml');
     }

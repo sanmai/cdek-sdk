@@ -64,6 +64,14 @@ final class Serializer implements SerializerInterface
 
     private $ctypeEnabled;
 
+    /**
+     * @var PreDeserializeEvent
+     *
+     * @see Serializer::getLastSeenSimpleXMLElement()
+     * @see Serializer::deserialize() - в части обработки исключений
+     */
+    private $lastEvent;
+
     public function __construct()
     {
         /** @var SerializerBuilder $builder */
@@ -82,9 +90,12 @@ final class Serializer implements SerializerInterface
             /** @psalm-suppress MixedAssignment */
             $dispatcher->addListener(Events::PRE_DESERIALIZE, function (PreDeserializeEvent $event) {
                 $data = $event->getData();
+
                 if ($data instanceof \SimpleXMLElement) {
                     $event->setData($this->updateAttributesCase($data));
                 }
+
+                $this->lastEvent = $event;
             }, null, 'xml');
         });
 
@@ -132,6 +143,22 @@ final class Serializer implements SerializerInterface
     }
 
     /**
+     * @return \SimpleXMLElement|null
+     *
+     * @psalm-suppress MixedAssignment
+     */
+    private function getLastSeenSimpleXMLElement()
+    {
+        $element = $this->lastEvent->getData();
+
+        if ($element instanceof \SimpleXMLElement) {
+            return $element;
+        }
+
+        return null;
+    }
+
+    /**
      * @see \JMS\Serializer\SerializerInterface::serialize()
      * @psalm-suppress MoreSpecificImplementedParamType
      *
@@ -165,7 +192,7 @@ final class Serializer implements SerializerInterface
              */
             throw new XmlErrorException(LibXMLError::fromLibXMLError($e->getXmlError(), $data), $e->getCode(), $e);
         } catch (\JMS\Serializer\Exception\RuntimeException $e) {
-            throw DeserializationException::fromRuntimeException($e);
+            throw DeserializationException::fromRuntimeException($e, $this->getLastSeenSimpleXMLElement());
         }
     }
 

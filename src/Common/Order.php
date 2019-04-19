@@ -52,7 +52,7 @@ final class Order implements HasErrorCode
         ]);
     }
 
-    public static function withNumberAndDate(string $Number, \DateTimeInterface $Date): Order
+    public static function withNumberAndDate(string $Number, \DateTimeInterface $Date = null): Order
     {
         return Order::create([
             'Number' => $Number,

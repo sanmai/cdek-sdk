@@ -166,4 +166,15 @@ class OrderTest extends TestCase
 </Order>
 ', $order);
     }
+
+    public function test_order_with_number_only()
+    {
+        $order = Order::withNumberAndDate('ORD-123');
+
+        $this->assertSame('ORD-123', $order->getNumber());
+
+        $this->assertSameAsXML('<?xml version="1.0" encoding="UTF-8"?>
+<Order Number="ORD-123"/>
+', $order);
+    }
 }

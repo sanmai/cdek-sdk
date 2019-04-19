@@ -131,6 +131,27 @@ class InfoReportResponseTest extends TestCase
         }
     }
 
+    public function test_date_last_change_without_timezone()
+    {
+        $response = $this->getSerializer()->deserialize(FixtureLoader::load('InfoReportDateLastChangeYmdHis.xml'), InfoReportResponse::class, 'xml');
+
+        /** @var $response InfoReportResponse */
+        $this->assertInstanceOf(InfoReportResponse::class, $response);
+
+        $this->assertCount(1, $response->getOrders());
+        $this->assertCount(1, $response);
+
+        foreach ($response->getOrders() as $order) {
+            $this->assertSame('ORD-121121', $order->getNumber());
+            break;
+        }
+
+        foreach ($response as $order) {
+            /** @var $order Order */
+            $this->assertSame('2019-04-19 19:33:59', $order->getDateLastChange()->format('Y-m-d H:i:s'));
+        }
+    }
+
     public function test_it_serializes_to_empty_json()
     {
         $response = new InfoReportResponse();

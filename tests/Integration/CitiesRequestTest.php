@@ -65,8 +65,10 @@ class CitiesRequestTest extends TestCase
         $request = new CitiesRequest();
         $request = $request->setRegionCodeExt(1);
         $request = $request->setRegionCode(2);
+        $request = $request->setRegionFiasGuid(3);
         $request = $request->setPage(6);
         $request = $request->setSize(7);
+        $request = $request->setPostcode('111222');
 
         $response = $this->getClient()->sendCitiesRequest($request);
 
@@ -76,9 +78,29 @@ class CitiesRequestTest extends TestCase
         $this->assertCount(0, $response->getItems());
     }
 
+    public function test_found_city_by_name()
+    {
+        $request = new CitiesRequest();
+        $request = $request->setPage(0)->setSize(1);
+        $request = $request->setCountryCode('RU');
+        $request = $request->setCityName('Новосибирск');
+
+        $response = $this->getClient()->sendCitiesRequest($request);
+
+        $this->skipIfKnownAPIErrorCode($response);
+
+        $this->assertFalse($response->hasErrors());
+        $this->assertCount(1, $response->getItems());
+
+        foreach ($response as $item) {
+            $this->assertSame('Новосибирск', $item->getCityName());
+        }
+    }
+
     public function test_with_null_payment_limit()
     {
         $request = new CitiesRequest();
+        $request = $request->setPage(0)->setSize(5);
         $request->setRegionCode(9);
 
         $response = $this->getClient()->sendCitiesRequest($request);

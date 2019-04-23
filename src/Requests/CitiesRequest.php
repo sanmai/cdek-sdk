@@ -38,8 +38,12 @@ use CdekSDK\Responses\CitiesResponse;
 /**
  * @method CitiesRequest setRegionCodeExt(mixed $value)
  * @method CitiesRequest setRegionCode(mixed $value)
+ * @method CitiesRequest setRegionFiasGuid(mixed $value)
  * @method CitiesRequest setPage(mixed $value)
  * @method CitiesRequest setSize(mixed $value)
+ * @method CitiesRequest setCountryCode(mixed $value)
+ * @method CitiesRequest setCityName(mixed $value)
+ * @method CitiesRequest setPostcode(mixed $value)
  */
 final class CitiesRequest implements ParamRequest
 {
@@ -64,6 +68,13 @@ final class CitiesRequest implements ParamRequest
     protected $regionCode;
 
     /**
+     * Код региона из ФИАС, UUID.
+     *
+     * @var string
+     */
+    protected $regionFiasGuid;
+
+    /**
      * Номер страницы выборки результата. По умолчанию 0.
      *
      * @var int
@@ -76,4 +87,25 @@ final class CitiesRequest implements ParamRequest
      * @var int
      */
     protected $size;
+
+    /**
+     * Код страны в формате ISO 3166-1 alpha-2.
+     *
+     * @var string
+     */
+    protected $countryCode;
+
+    /**
+     * Название города.
+     *
+     * @var string
+     */
+    protected $cityName;
+
+    /**
+     * Почтовый индекс.
+     *
+     * @var string
+     */
+    protected $postcode;
 }

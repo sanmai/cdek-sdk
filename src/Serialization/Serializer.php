@@ -75,7 +75,9 @@ final class Serializer implements SerializerInterface
     public function __construct()
     {
         /** @var SerializerBuilder $builder */
-        $builder = SerializerBuilder::create()->configureHandlers(function (HandlerRegistryInterface $registry) {
+        $builder = SerializerBuilder::create();
+
+        $builder->configureHandlers(function (HandlerRegistryInterface $registry) {
             $registry->registerSubscribingHandler(new NullableDateTimeHandler());
         });
 

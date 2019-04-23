@@ -187,8 +187,6 @@ class CalculationRequest implements JsonRequest, \JsonSerializable, DateAware
     }
 
     /**
-     * @phan-suppress PhanUnusedPublicMethodParameter
-     *
      * @param mixed $id
      * @param mixed $priority
      *
@@ -198,7 +196,10 @@ class CalculationRequest implements JsonRequest, \JsonSerializable, DateAware
     {
         $this->tariffId = null;
 
-        $this->tariffList[] = compact('id', 'priority');
+        $this->tariffList[] = [
+            'id'       => $id,
+            'priority' => $priority,
+        ];
 
         return $this;
     }

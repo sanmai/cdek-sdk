@@ -28,25 +28,34 @@ declare(strict_types=1);
 
 namespace CdekSDK\Serialization;
 
-use JMS\Serializer\Context;
 use JMS\Serializer\Exception\RuntimeException;
-use JMS\Serializer\GraphNavigator;
+use JMS\Serializer\GraphNavigatorInterface;
 use JMS\Serializer\Handler\DateHandler;
+use JMS\Serializer\Handler\SubscribingHandlerInterface;
+use JMS\Serializer\SerializationContext;
 use JMS\Serializer\VisitorInterface;
 use JMS\Serializer\XmlDeserializationVisitor;
 
-final class NullableDateTimeHandler extends DateHandler
+final class NullableDateTimeHandler implements SubscribingHandlerInterface
 {
     const PLAIN_DATE_FORMAT = 'Y-m-d';
 
+    /** @var DateHandler */
+    private $dateHandler;
+
+    public function __construct(string $defaultFormat = \DateTime::ATOM, string $defaultTimezone = 'UTC')
+    {
+        $this->dateHandler = new DateHandler($defaultFormat, $defaultTimezone);
+    }
+
     public static function getSubscribingMethods()
     {
-        $methods = parent::getSubscribingMethods();
+        $methods = DateHandler::getSubscribingMethods();
 
         $methods[] = [
             'type'      => \DateTimeImmutable::class,
             'format'    => 'xml',
-            'direction' => GraphNavigator::DIRECTION_SERIALIZATION,
+            'direction' => GraphNavigatorInterface::DIRECTION_SERIALIZATION,
             'method'    => 'serializeDateTimeInterface',
         ];
 
@@ -60,7 +69,7 @@ final class NullableDateTimeHandler extends DateHandler
         }
 
         try {
-            return parent::deserializeDateTimeImmutableFromXml($visitor, $data, $type);
+            return $this->dateHandler->deserializeDateTimeImmutableFromXml($visitor, $data, $type);
         } catch (RuntimeException $e) {
             return $this->parseDateTimeFallback($visitor, $data, $type, $e);
         }
@@ -91,7 +100,7 @@ final class NullableDateTimeHandler extends DateHandler
 
         $format = $type['params'][2] = $type['params'][3];
 
-        $datetime = parent::deserializeDateTimeImmutableFromXml($visitor, $data, $type);
+        $datetime = $this->dateHandler->deserializeDateTimeImmutableFromXml($visitor, $data, $type);
 
         if ($datetime instanceof \DateTimeImmutable && self::PLAIN_DATE_FORMAT === $format) {
             $datetime = $datetime->setTime(0, 0, 0);
@@ -100,7 +109,7 @@ final class NullableDateTimeHandler extends DateHandler
         return $datetime;
     }
 
-    public function serializeDateTimeInterface(VisitorInterface $visitor, \DateTimeInterface $date, array $type, Context $context)
+    public function serializeDateTimeInterface(VisitorInterface $visitor, \DateTimeInterface $date, array $type, SerializationContext $context)
     {
         // DateTimeInterface can't be implemented by user classes, so it's either \DateTime or \DateTimeImmutable
 
@@ -110,6 +119,11 @@ final class NullableDateTimeHandler extends DateHandler
 
         assert($date instanceof \DateTimeImmutable);
 
-        return parent::serializeDateTimeImmutable($visitor, $date, $type, $context);
+        return $this->dateHandler->serializeDateTimeImmutable($visitor, $date, $type, $context);
+    }
+
+    public function __call($func, $args)
+    {
+        return $this->dateHandler->{$func}(...$args);
     }
 }

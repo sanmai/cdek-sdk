@@ -26,35 +26,30 @@
 
 declare(strict_types=1);
 
-namespace CdekSDK\Requests;
+namespace Tests\CdekSDK\Serialization;
 
-use CdekSDK\Common\Fillable;
-use CdekSDK\Requests\Concerns\Authorized;
-use CdekSDK\Requests\Concerns\RequestCore;
-use CdekSDK\Requests\Templates\PrintRequest;
-use JMS\Serializer\Annotation as JMS;
+use CdekSDK\Common\Order;
+use CdekSDK\Requests\PrintLabelsRequest;
 
 /**
- * Class PrintLabelsRequest.
- *
- * @JMS\XmlRoot(name="OrdersPackagesPrint")
+ * @covers \CdekSDK\Requests\PrintLabelRequest
  */
-final class PrintLabelsRequest extends PrintRequest
+class PrintLabelRequestTest extends TestCase
 {
-    use Fillable, Authorized, RequestCore;
+    public function test_can_serialize()
+    {
+        $request = new PrintLabelsRequest([
+            'PrintFormat' => PrintLabelsRequest::PRINT_FORMAT_A5,
+        ]);
 
-    const METHOD = 'POST';
-    const ADDRESS = '/ordersPackagesPrint';
+        $request = $request->addOrder(Order::create([
+            'DispatchNumber' => 'bar',
+        ]));
 
-    const PRINT_FORMAT_A4 = 'A4';
-    const PRINT_FORMAT_A5 = 'A5';
-    const PRINT_FORMAT_A6 = 'A6';
-
-    /**
-     * @JMS\XmlAttribute
-     * @JMS\Type("string")
-     *
-     * @var string
-     */
-    private $PrintFormat = self::PRINT_FORMAT_A4;
+        $this->assertSameAsXML('<?xml version="1.0" encoding="UTF-8"?>
+<OrdersPackagesPrint OrderCount="1" PrintFormat="A5">
+  <Order DispatchNumber="bar"/>
+</OrdersPackagesPrint>
+', $request);
+    }
 }

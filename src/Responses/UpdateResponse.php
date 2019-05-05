@@ -43,7 +43,8 @@ use function Pipeline\fromArray;
  */
 final class UpdateResponse implements Response
 {
-    use HasErrors, WithTraceId;
+    use HasErrors;
+    use WithTraceId;
 
     /**
      * @JMS\XmlList(entry = "Order", inline = true)

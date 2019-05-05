@@ -42,7 +42,9 @@ use JMS\Serializer\Annotation as JMS;
  */
 final class CallCourierRequest implements XmlRequest, ShouldAuthorize
 {
-    use Authorized, RequestCore, Fillable;
+    use Authorized;
+    use RequestCore;
+    use Fillable;
 
     const METHOD = 'POST';
     const ADDRESS = '/call_courier.php';

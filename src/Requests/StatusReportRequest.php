@@ -48,7 +48,8 @@ final class StatusReportRequest implements XmlRequest, ShouldAuthorize
     const ADDRESS = '/status_report_h.php';
     const RESPONSE = StatusReportResponse::class;
 
-    use Authorized, RequestCore;
+    use Authorized;
+    use RequestCore;
 
     /**
      * @JMS\XmlAttribute

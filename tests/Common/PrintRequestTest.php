@@ -44,7 +44,9 @@ class PrintRequestTest extends TestCase
     public function test_it_rejects_order_without_dispatch_number()
     {
         $request = new class() extends PrintRequest {
-            use Fillable, Authorized, RequestCore;
+            use Fillable;
+            use Authorized;
+            use RequestCore;
 
             const ADDRESS = '';
             const METHOD = '';

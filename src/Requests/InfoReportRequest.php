@@ -45,7 +45,9 @@ use JMS\Serializer\Annotation as JMS;
  */
 final class InfoReportRequest implements XmlRequest, ShouldAuthorize
 {
-    use Authorized, OrdersAware, RequestCore;
+    use Authorized;
+    use OrdersAware;
+    use RequestCore;
 
     const METHOD = 'POST';
     const ADDRESS = '/info_report.php';

@@ -46,7 +46,10 @@ use CdekSDK\Responses\RegionsResponse;
  */
 final class RegionsRequest implements ParamRequest
 {
-    use RequestCore, MagicSetters, ParamRequestTrait, Fillable;
+    use RequestCore;
+    use MagicSetters;
+    use ParamRequestTrait;
+    use Fillable;
 
     const METHOD = 'GET';
     const ADDRESS = '/v1/location/regions/xml';

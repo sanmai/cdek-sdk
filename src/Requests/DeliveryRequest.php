@@ -51,7 +51,10 @@ use JMS\Serializer\Annotation as JMS;
  */
 class DeliveryRequest implements XmlRequest, ShouldAuthorize
 {
-    use Authorized, Fillable, OrdersAware, RequestCore;
+    use Authorized;
+    use Fillable;
+    use OrdersAware;
+    use RequestCore;
 
     const METHOD = 'POST';
     const ADDRESS = '/new_orders.php';

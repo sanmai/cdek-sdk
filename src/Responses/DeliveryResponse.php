@@ -45,7 +45,8 @@ use function Pipeline\fromArray;
  */
 final class DeliveryResponse implements Response
 {
-    use HasErrors, WithTraceId;
+    use HasErrors;
+    use WithTraceId;
 
     /**
      * @JMS\XmlList(entry = "DeliveryRequest", inline = true)

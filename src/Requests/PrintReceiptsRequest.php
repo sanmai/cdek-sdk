@@ -41,7 +41,9 @@ use JMS\Serializer\Annotation as JMS;
  */
 final class PrintReceiptsRequest extends PrintRequest
 {
-    use Fillable, Authorized, RequestCore;
+    use Fillable;
+    use Authorized;
+    use RequestCore;
 
     const METHOD = 'POST';
     const ADDRESS = '/orders_print.php';

@@ -32,7 +32,7 @@ use CdekSDK\Common\Order;
 use CdekSDK\Requests\PrintLabelsRequest;
 
 /**
- * @covers \CdekSDK\Requests\PrintLabelRequest
+ * @covers \CdekSDK\Requests\PrintLabelsRequest
  */
 class PrintLabelRequestTest extends TestCase
 {

@@ -30,6 +30,7 @@ namespace Tests\CdekSDK\Deserialization;
 
 use CdekSDK\Common\Order;
 use CdekSDK\Responses\StatusReportResponse;
+use CdekSDK\Serialization\Exception\DeserializationException;
 use CdekSDK\Serialization\NullableDateTimeHandler;
 use JMS\Serializer\Exception\RuntimeException;
 use JMS\Serializer\Naming\IdenticalPropertyNamingStrategy;
@@ -38,6 +39,8 @@ use Tests\CdekSDK\Fixtures\FixtureLoader;
 
 /**
  * @covers \CdekSDK\Serialization\NullableDateTimeHandler
+ * @covers \CdekSDK\Serialization\Exception\DeserializationException
+ * @covers \CdekSDK\Serialization\Serializer
  */
 class NullableDateTimeHandlerTest extends TestCase
 {
@@ -78,13 +81,20 @@ class NullableDateTimeHandlerTest extends TestCase
         $this->getSerializer()->deserialize('<Order DeliveryDate="00:00:00" />', Order::class, 'xml');
     }
 
-    public function test_fails_on_unexpected_date_format()
+    public function test_fails_on_unexpected_date_format_with_serializer_exception()
     {
-        $this->expectException(RuntimeException::class);
         $this->expectException(\JMS\Serializer\Exception\RuntimeException::class);
         $this->expectExceptionMessageRegExp('/^Failed to deserialize Date="2000-01-01 00:00:00": .* expected format/');
 
         $this->getSerializer()->deserialize('<Order Date="2000-01-01 00:00:00" />', Order::class, 'xml');
+    }
+
+    public function test_fails_on_unexpected_date_format_with_our_exception()
+    {
+        $this->expectException(DeserializationException::class);
+        $this->expectExceptionMessageRegExp('/^Failed to deserialize Date="2001-01-01 00:00:01": .* expected format/');
+
+        $this->getSerializer()->deserialize('<Order Date="2001-01-01 00:00:01" />', Order::class, 'xml');
     }
 
     public function test_do_not_resets_time_if_not_needed()
@@ -108,5 +118,11 @@ class NullableDateTimeHandlerTest extends TestCase
         ]);
 
         $this->assertNotSame('2000-01-01 00:00:00', $date->format('Y-m-d H:i:s'));
+    }
+
+    public function test_proxy_calls_the_parent()
+    {
+        $handler = new NullableDateTimeHandler();
+        $this->assertSame('P1D', $handler->format(new \DateInterval('P1D')));
     }
 }

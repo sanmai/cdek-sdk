@@ -36,6 +36,9 @@ use JMS\Serializer\SerializationContext;
 use JMS\Serializer\VisitorInterface;
 use JMS\Serializer\XmlDeserializationVisitor;
 
+/**
+ * @method string format(\DateInterval $dateInterval)
+ */
 final class NullableDateTimeHandler implements SubscribingHandlerInterface
 {
     const PLAIN_DATE_FORMAT = 'Y-m-d';

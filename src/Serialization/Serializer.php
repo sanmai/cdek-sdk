@@ -145,19 +145,12 @@ final class Serializer implements SerializerInterface
     }
 
     /**
-     * @return \SimpleXMLElement|null
-     *
-     * @psalm-suppress MixedAssignment
+     * @psalm-suppress MixedInferredReturnType
+     * @psalm-suppress MixedReturnStatement
      */
-    private function getLastSeenSimpleXMLElement()
+    private function getLastSeenSimpleXMLElement(): \SimpleXMLElement
     {
-        $element = $this->lastEvent->getData();
-
-        if ($element instanceof \SimpleXMLElement) {
-            return $element;
-        }
-
-        return null;
+        return $this->lastEvent->getData();
     }
 
     /**

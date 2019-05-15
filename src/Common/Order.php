@@ -388,6 +388,8 @@ final class Order implements HasErrorCode
      * @JMS\Type("string")
      *
      * @var string
+     *
+     * @deprecated
      */
     protected $SellerName;
 
@@ -396,8 +398,17 @@ final class Order implements HasErrorCode
      * @JMS\Type("string")
      *
      * @var string
+     *
+     * @deprecated
      */
     protected $SellerAddress;
+
+    /**
+     * @JMS\Type("CdekSDK\Common\Seller")
+     *
+     * @var Seller
+     */
+    protected $Seller;
 
     /**
      * @JMS\XmlAttribute
@@ -548,6 +559,16 @@ final class Order implements HasErrorCode
     /**
      * @return Order
      */
+    public function setSeller(Seller $seller)
+    {
+        $this->Seller = $seller;
+
+        return $this;
+    }
+
+    /**
+     * @return Order
+     */
     public function addPackage(Package $package)
     {
         $this->packages[] = $package;
@@ -688,6 +709,13 @@ final class Order implements HasErrorCode
         return (string) $this->Comment;
     }
 
+    /**
+     * @phan-suppress PhanDeprecatedProperty
+     *
+     * @deprecated
+     *
+     * @return string
+     */
     public function getSellerName(): string
     {
         return (string) $this->SellerName;

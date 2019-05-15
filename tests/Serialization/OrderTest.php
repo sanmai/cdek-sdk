@@ -35,6 +35,7 @@ use CdekSDK\Common\CallCourier;
 use CdekSDK\Common\DeliveryRecipientCostAdv;
 use CdekSDK\Common\Order;
 use CdekSDK\Common\Package;
+use CdekSDK\Common\Seller;
 use CdekSDK\Common\Sender;
 
 /**
@@ -175,6 +176,24 @@ class OrderTest extends TestCase
 
         $this->assertSameAsXML('<?xml version="1.0" encoding="UTF-8"?>
 <Order Number="ORD-123"/>
+', $order);
+    }
+
+    public function test_can_serialize_true_seller()
+    {
+        $order = new Order();
+        $order = $order->setSeller(Seller::create([
+            'Address'         => 'с. Красный Яр, ул. Садовая, д. 20',
+            'Name'            => 'ООО "Пример"',
+            'INN'             => '6449013711',
+            'Phone'           => '+74950001122',
+            'OwnershipForm'   => 541,
+        ]));
+
+        $this->assertSameAsXML('<?xml version="1.0" encoding="UTF-8"?>
+<Order>
+  <Seller Address="с. Красный Яр, ул. Садовая, д. 20" Name="ООО &quot;Пример&quot;" INN="6449013711" Phone="+74950001122" OwnershipForm="541"/>
+</Order>
 ', $order);
     }
 }

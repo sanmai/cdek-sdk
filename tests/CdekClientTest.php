@@ -485,4 +485,11 @@ class CdekClientTest extends TestCase
         $this->assertSame('foo', $this->lastRequestOptions['form_params']['account']);
         $this->assertSame('522ce91d76c09e7d888406cfbd18cab1', $this->lastRequestOptions['form_params']['secure']);
     }
+
+    public function test_client_rejects_contract_numbers()
+    {
+        $this->expectException(\RuntimeException::class);
+
+        new CdekClient('ИМ12345', 'bar');
+    }
 }

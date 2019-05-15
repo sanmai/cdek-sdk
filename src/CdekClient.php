@@ -90,6 +90,10 @@ final class CdekClient implements Contracts\Client, LoggerAwareInterface
 
     public function __construct(string $account = '', string $password = '', ClientInterface $http = null)
     {
+        if (mb_strpos($account, 'ИМ') === 0) {
+            throw new \RuntimeException('Учетная запись для интеграции не совпадает с учетной записью доступа в Личный кабинет СДЭК.');
+        }
+
         $this->account = $account;
         $this->password = $password;
 

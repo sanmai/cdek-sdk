@@ -36,6 +36,8 @@ use Tests\CdekSDK\Fixtures\FixtureLoader;
  * @covers \CdekSDK\Responses\PvzListResponse
  * @covers \CdekSDK\Common\Pvz
  * @covers \CdekSDK\Common\OfficeImage
+ * @covers \CdekSDK\Common\PhoneDetail
+ * @covers \CdekSDK\Common\WorkTime
  */
 class PvzListResponseTest extends TestCase
 {

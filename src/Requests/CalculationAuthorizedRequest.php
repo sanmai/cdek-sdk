@@ -28,22 +28,279 @@ declare(strict_types=1);
 
 namespace CdekSDK\Requests;
 
+use CdekSDK\Common\AdditionalService;
+use CdekSDK\Contracts\DateAware;
+use CdekSDK\Contracts\JsonRequest;
 use CdekSDK\Contracts\ShouldAuthorize;
 use CdekSDK\Requests\Concerns\Authorized;
+use CdekSDK\Requests\Concerns\RequestCore;
+use CdekSDK\Responses\CalculationResponse;
 
 /**
  * Class CalculationAuthorizedRequest.
+ *
+ * @final
  */
-final class CalculationAuthorizedRequest extends CalculationRequest implements ShouldAuthorize
+class CalculationAuthorizedRequest implements JsonRequest, \JsonSerializable, DateAware, ShouldAuthorize
 {
+    use RequestCore;
     use Authorized;
+
+    const VERSION = '1.0';
+
+    const SERVICE_INSURANCE = AdditionalService::SERVICE_INSURANCE;  // Страховка
+    const SERVICE_DANGEROUS_GOODS = AdditionalService::SERVICE_DANGEROUS_GOODS;  // Опасный груз
+    const SERVICE_PICKUP = AdditionalService::SERVICE_PICKUP; // Забор в городе отправителе
+    const SERVICE_DELIVERY_TO_DOOR = AdditionalService::SERVICE_DELIVERY_TO_DOOR; // Доставка в городе получателе
+    const SERVICE_PACKAGE_1 = AdditionalService::SERVICE_PACKAGE_1; // Упаковка 1
+    const SERVICE_PACKAGE_2 = AdditionalService::SERVICE_PACKAGE_2; // Упаковка 2
+    const SERVICE_TRY_AT_HOME = AdditionalService::SERVICE_TRY_AT_HOME; // Примерка на дому
+    const SERVICE_PERSONAL_DELIVERY = AdditionalService::SERVICE_PERSONAL_DELIVERY; // Доставка лично в руки
+    const SERVICE_DOCUMENTS_COPY = AdditionalService::SERVICE_DOCUMENTS_COPY; // Скан документов
+    const SERVICE_PARTIAL_DELIVERY = AdditionalService::SERVICE_PARTIAL_DELIVERY; // Частичная доставка
+    const SERVICE_CARGO_CHECK = AdditionalService::SERVICE_CARGO_CHECK; // Осмотр вложения
+
+    const MODE_DOOR_DOOR = 1;
+    const MODE_DOOR_WAREHOUSE = 2;
+    const MODE_WAREHOUSE_DOOR = 3;
+    const MODE_WAREHOUSE_WAREHOUSE = 4;
+
+    const METHOD = 'POST';
+    const ADDRESS = 'https://api.cdek.ru/calculator/calculate_price_by_json.php';
+    const RESPONSE = CalculationResponse::class;
+
+    /**
+     * Код города отправителя из базы СДЭК.
+     */
+    protected $senderCityId;
+
+    /**
+     * Индекс города отправителя из базы СДЭКm.
+     */
+    protected $senderCityPostCode;
+
+    /**
+     * Код города получателя из базы СДЭК.
+     */
+    protected $receiverCityId;
+
+    /**
+     * Индекс города получателя из базы СДЭК.
+     */
+    protected $receiverCityPostCode;
+
+    /**
+     * Габаритные характеристики места.
+     *
+     * @var array[]
+     */
+    protected $goods = [];
+
+    protected $modeId;
+
+    /**
+     * Список передаваемых дополнительных услуг.
+     *
+     * @var array[]
+     */
+    protected $services;
+
+    /**
+     * Код выбранного тарифа.
+     *
+     * @var int|null
+     */
+    protected $tariffId;
+
+    /**
+     * Список тарифов.
+     *
+     * @var array[]
+     */
+    protected $tariffList = [];
+
+    /**
+     * Валюта, в которой необходимо рассчитать стоимость доставки. По умолчанию - RUB.
+     *
+     * @var string
+     */
+    protected $currency;
+
+    /**
+     * Планируемая дата отправки заказа в формате.
+     *
+     * @var \DateTimeInterface|null
+     */
+    protected $dateExecute;
+
+    /**
+     * @deprecated
+     * @phan-suppress PhanDeprecatedClass
+     *
+     * @return CalculationAuthorizedRequest
+     */
+    public static function withAuthorization(): CalculationAuthorizedRequest
+    {
+        return new CalculationAuthorizedRequest();
+    }
+
+    /** @return self */
+    public function setSenderCityId($id)
+    {
+        $this->senderCityId = $id;
+
+        return $this;
+    }
+
+    /** @return self */
+    public function setReceiverCityId($id)
+    {
+        $this->receiverCityId = $id;
+
+        return $this;
+    }
+
+    /** @return self */
+    public function setSenderCityPostCode($code)
+    {
+        $this->senderCityPostCode = $code;
+
+        return $this;
+    }
+
+    /** @return self */
+    public function setReceiverCityPostCode($code)
+    {
+        $this->receiverCityPostCode = $code;
+
+        return $this;
+    }
+
+    /**
+     * @param mixed $id
+     *
+     * @return self
+     */
+    public function setTariffId($id)
+    {
+        $this->tariffList = [];
+
+        $this->tariffId = (int) $id;
+
+        return $this;
+    }
+
+    /**
+     * @param mixed $id
+     * @param mixed $priority
+     * @param mixed $modeId
+     *
+     * @return self
+     */
+    public function addTariffToList($id, $priority, $modeId = null)
+    {
+        $this->tariffId = null;
+
+        $this->tariffList[] = array_filter([
+            'id'       => $id,
+            'priority' => $priority,
+            'modeId'   => $modeId,
+        ], function ($value) {
+            return null !== $value;
+        });
+
+        return $this;
+    }
+
+    /** @return self */
+    public function setModeId($id)
+    {
+        $this->modeId = $id;
+
+        return $this;
+    }
+
+    /**
+     * @param array $good
+     *
+     * @return self
+     */
+    public function addPackage($good)
+    {
+        $this->goods[] = $good;
+
+        return $this;
+    }
+
+    /**
+     * @param int              $serviceId
+     * @param int|float|string $param
+     *
+     * @return self
+     */
+    public function addAdditionalService($serviceId, $param = null)
+    {
+        $this->services[] = [
+            'id'    => (int) $serviceId,
+            'param' => $param,
+        ];
+
+        return $this;
+    }
+
+    /** @return self */
+    public function setCurrency(string $currencyCode)
+    {
+        $this->currency = $currencyCode;
+
+        return $this;
+    }
+
+    /** @return static */
+    public function setDateExecute(\DateTimeInterface $date)
+    {
+        $this->dateExecute = $date;
+
+        return $this;
+    }
+
+    public function getRequestDate(): \DateTimeInterface
+    {
+        return $this->dateExecute ?? new \DateTimeImmutable();
+    }
+
+    /** @deprecated */
+    public function getBody(): array
+    {
+        return $this->jsonSerialize();
+    }
 
     /**
      * @phan-suppress PhanDeprecatedProperty
+     *
+     * @return array
      */
     public function jsonSerialize()
     {
-        return array_merge(parent::jsonSerialize(), [
+        $result = array_filter([
+            'version'              => self::VERSION,
+            'goods'                => $this->goods,
+            'modeId'               => $this->modeId,
+            'tariffId'             => $this->tariffId,
+            'tariffList'           => $this->tariffList,
+            'senderCityId'         => $this->senderCityId,
+            'senderCityPostCode'   => $this->senderCityPostCode,
+            'services'             => $this->services,
+            'receiverCityId'       => $this->receiverCityId,
+            'receiverCityPostCode' => $this->receiverCityPostCode,
+            'dateExecute'          => $this->dateExecute instanceof \DateTimeInterface ? $this->dateExecute->format('Y-m-d') : null,
+        ]);
+
+        if ($this->account === '') {
+            return $result;
+        }
+
+        return array_merge($result, [
             'secure'      => $this->secure,
             'authLogin'   => $this->account,
             'dateExecute' => $this->date->format('Y-m-d'),

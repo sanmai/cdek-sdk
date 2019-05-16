@@ -36,17 +36,34 @@ abstract class TestCase extends \PHPUnit\Framework\TestCase
 {
     const TEST_HOST = 'integration.edu.cdek.ru';
 
-    /** @var \CdekSDK\CdekClient */
-    private $client;
-
     /** @var bool */
     private $isTesting = false;
 
     /**
+     * @return \GuzzleHttp\Client|null
      * @psalm-suppress PossiblyFalseArgument
-     * @psalm-suppress MixedArgument
      */
-    protected function setUp()
+    private function getGuzzleClient()
+    {
+        if (false === getenv('CDEK_BASE_URL')) {
+            return null;
+        }
+
+        if (strpos(getenv('CDEK_BASE_URL'), self::TEST_HOST)) {
+            $this->isTesting = true;
+        }
+
+        return new GuzzleClient([
+            'base_uri' => getenv('CDEK_BASE_URL'),
+            'verify'   => !getenv('CI'), // Igonore SSL errors on the likes of Travis CI
+        ]);
+    }
+
+    /**
+     * @psalm-suppress MixedArgument
+     * @psalm-suppress PossiblyFalseArgument
+     */
+    final protected function getClient(): CdekClient
     {
         if (false === getenv('CDEK_ACCOUNT')) {
             $this->markTestSkipped('Integration testing disabled (CDEK_ACCOUNT missing).');
@@ -56,29 +73,27 @@ abstract class TestCase extends \PHPUnit\Framework\TestCase
             $this->markTestSkipped('Integration testing disabled (CDEK_PASSWORD missing).');
         }
 
-        if (false === getenv('CDEK_BASE_URL')) {
-            $http = null;
-        } else {
-            if (strpos(getenv('CDEK_BASE_URL'), self::TEST_HOST)) {
-                $this->isTesting = true;
-            }
-
-            $http = new GuzzleClient([
-                'base_uri' => getenv('CDEK_BASE_URL'),
-                'verify'   => !getenv('CI'), // Igonore SSL errors on the likes of Travis CI
-            ]);
-        }
-
-        $this->client = new CdekClient(getenv('CDEK_ACCOUNT'), getenv('CDEK_PASSWORD'), $http);
+        $client = new CdekClient(getenv('CDEK_ACCOUNT'), getenv('CDEK_PASSWORD'), $this->getGuzzleClient());
 
         if (in_array('--debug', $_SERVER['argv'])) {
-            $this->client->setLogger(new DebuggingLogger());
+            $client->setLogger(new DebuggingLogger());
         }
+
+        return $client;
     }
 
-    final protected function getClient(): CdekClient
+    /**
+     * @psalm-suppress MixedArgument
+     */
+    final protected function getAnonymousClient(): CdekClient
     {
-        return $this->client;
+        $client = new CdekClient('', '', $this->getGuzzleClient());
+
+        if (in_array('--debug', $_SERVER['argv'])) {
+            $client->setLogger(new DebuggingLogger());
+        }
+
+        return $client;
     }
 
     final protected function skipIfKnownAPIErrorCode(Response $response, array $transientErrorCodes = [])

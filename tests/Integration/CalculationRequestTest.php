@@ -28,6 +28,7 @@ declare(strict_types=1);
 
 namespace Tests\CdekSDK\Integration;
 
+use CdekSDK\Common\AdditionalService;
 use CdekSDK\Requests\CalculationRequest;
 
 /**
@@ -40,7 +41,7 @@ class CalculationRequestTest extends TestCase
 {
     const UNAUTHORIZED_ERROR = 2;
 
-    public function test_success()
+    public function test_success_anonymous()
     {
         $request = new CalculationRequest();
         $request->setSenderCityPostCode('295000')
@@ -53,7 +54,7 @@ class CalculationRequestTest extends TestCase
             'height' => 10,
         ]);
 
-        $response = $this->getClient()->sendCalculationRequest($request);
+        $response = $this->getAnonymousClient()->sendCalculationRequest($request);
 
         foreach ($response->getErrors() as $error) {
             $this->assertEmpty($error->getMessage());
@@ -71,7 +72,7 @@ class CalculationRequestTest extends TestCase
         $request = CalculationRequest::withAuthorization()
         ->setSenderCityPostCode('295000')
         ->setReceiverCityPostCode('652632')
-        ->addAdditionalService(CalculationRequest::SERVICE_INSURANCE, 2000)
+        ->addAdditionalService(AdditionalService::SERVICE_INSURANCE, 2000)
         ->setTariffId(1)
         ->addPackage([
             'weight' => 0.2,

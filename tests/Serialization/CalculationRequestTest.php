@@ -160,6 +160,21 @@ class CalculationRequestTest extends TestCase
         ], $request->jsonSerialize());
     }
 
+    public function test_anonymous_request()
+    {
+        $request = new CalculationRequest();
+
+        $request->credentials('foo', 'bar');
+        $request->setDateExecute(new \DateTime('2019-04-08'))->date($request->getRequestDate());
+
+        $request = $request->setCurrency('EUR');
+
+        $this->assertSame([
+            'version'     => '1.0',
+            'dateExecute' => '2019-04-08',
+        ], $request->jsonSerialize());
+    }
+
     public function test_constants_exists()
     {
         foreach ([

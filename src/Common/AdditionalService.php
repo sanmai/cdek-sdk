@@ -34,17 +34,82 @@ final class AdditionalService
 {
     use Fillable;
 
-    const SERVICE_INSURANCE = 2;  // Страховка
-    const SERVICE_DANGEROUS_GOODS = 7;  // Опасный груз
-    const SERVICE_PICKUP = 16; // Забор в городе отправителе
-    const SERVICE_DELIVERY_TO_DOOR = 17; // Доставка в городе получателе
-    const SERVICE_PACKAGE_1 = 24; // Упаковка 1
-    const SERVICE_PACKAGE_2 = 25; // Упаковка 2
-    const SERVICE_TRY_AT_HOME = 30; // Примерка на дому
-    const SERVICE_PERSONAL_DELIVERY = 31; // Доставка лично в руки
-    const SERVICE_DOCUMENTS_COPY = 32; // Скан документов
-    const SERVICE_PARTIAL_DELIVERY = 36; // Частичная доставка
-    const SERVICE_CARGO_CHECK = 37; // Осмотр вложения
+    /**
+     * Страховка.
+     *
+     * @var int
+     */
+    const SERVICE_INSURANCE = 2;
+
+    /**
+     * Опасный груз.
+     *
+     * @var int
+     */
+    const SERVICE_DANGEROUS_GOODS = 7;
+
+    /**
+     * Забор в городе отправителе.
+     *
+     * @var int
+     */
+    const SERVICE_PICKUP = 16;
+
+    /**
+     * Доставка в городе получателе.
+     *
+     * @var int
+     */
+    const SERVICE_DELIVERY_TO_DOOR = 17;
+
+    /**
+     * Упаковка 1.
+     *
+     * @var int
+     */
+    const SERVICE_PACKAGE_1 = 24;
+
+    /**
+     * Упаковка 2.
+     *
+     * @var int
+     */
+    const SERVICE_PACKAGE_2 = 25;
+
+    /**
+     * Примерка на дому.
+     *
+     * @var int
+     */
+    const SERVICE_TRY_AT_HOME = 30;
+
+    /**
+     * Доставка лично в руки.
+     *
+     * @var int
+     */
+    const SERVICE_PERSONAL_DELIVERY = 31;
+
+    /**
+     * Скан документов.
+     *
+     * @var int
+     */
+    const SERVICE_DOCUMENTS_COPY = 32;
+
+    /**
+     * Частичная доставка.
+     *
+     * @var int
+     */
+    const SERVICE_PARTIAL_DELIVERY = 36;
+
+    /**
+     * Осмотр вложения.
+     *
+     * @var int
+     */
+    const SERVICE_CARGO_CHECK = 37;
 
     /**
      * @JMS\XmlAttribute

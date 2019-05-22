@@ -57,6 +57,16 @@ class OrderTest extends TestCase
         $order->getId();
     }
 
+    public function test_it_returns_all_services()
+    {
+        $order = Order::create([
+            'additionalServices' => [1],
+            'addedServices'      => [2],
+        ]);
+
+        $this->assertSame([1, 2], $order->getAdditionalServices());
+    }
+
     public function test_constants_exists()
     {
         foreach ([

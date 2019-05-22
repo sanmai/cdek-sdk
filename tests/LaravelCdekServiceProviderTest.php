@@ -204,6 +204,10 @@ class LaravelCdekServiceProviderTest extends TestCase
         $this->assertEquals(100000, $this->runOnClient($client, function () {
             return $this->http->getConfig()['timeout'];
         }));
+
+        $this->assertNotEmpty($this->runOnClient($client, function () {
+            return (string) $this->http->getConfig()['base_uri'];
+        }));
     }
 
     public function testProvides()

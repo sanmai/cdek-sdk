@@ -160,6 +160,8 @@ class OrderTest extends TestCase
             'ServiceCode'   => 30,
         ]));
 
+        $this->assertSame(30, $order->getAdditionalServices()[0]->getServiceCode());
+
         $this->assertSameAsXML('<?xml version="1.0" encoding="UTF-8"?>
 <Order DispatchNumber="1234567">
   <DeliveryRecipientCostAdv Threshold="2000" Sum="150" VATRate="vat10" VATSum="45.906"/>

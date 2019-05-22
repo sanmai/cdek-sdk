@@ -369,6 +369,8 @@ class CdekClientTest extends TestCase
 
         /** @var ClientInterface $value */
         $this->assertContains(CdekClient::PACKAGE_NAME, $value->getConfig()['headers']['User-Agent']);
+
+        $this->assertArrayHasKey('base_uri', $value->getConfig());
     }
 
     public function test_it_adds_date_and_secure()

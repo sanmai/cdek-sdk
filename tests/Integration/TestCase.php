@@ -73,7 +73,7 @@ abstract class TestCase extends \PHPUnit\Framework\TestCase
             $this->markTestSkipped('Integration testing disabled (CDEK_PASSWORD missing).');
         }
 
-        $client = new CdekClient(getenv('CDEK_ACCOUNT'), getenv('CDEK_PASSWORD'), $this->getGuzzleClient());
+        $client = new CdekClient(getenv('CDEK_ACCOUNT'), getenv('CDEK_PASSWORD'), null, $this->getGuzzleClient());
 
         if (in_array('--debug', $_SERVER['argv'])) {
             $client->setLogger(new DebuggingLogger());
@@ -87,7 +87,7 @@ abstract class TestCase extends \PHPUnit\Framework\TestCase
      */
     final protected function getAnonymousClient(): CdekClient
     {
-        $client = new CdekClient('', '', $this->getGuzzleClient());
+        $client = new CdekClient('', '', null, $this->getGuzzleClient());
 
         if (in_array('--debug', $_SERVER['argv'])) {
             $client->setLogger(new DebuggingLogger());

@@ -31,7 +31,7 @@ $account = 'account';
 $password = 'password';
 $baseUri = 'http://';
 
-$client = new \CdekSDK\CdekClient($account, $password, new \GuzzleHttp\Client([
+$client = new \CdekSDK\CdekClient($account, $password, null, new \GuzzleHttp\Client([
     'base_uri' => $baseUri,
 ]));
 

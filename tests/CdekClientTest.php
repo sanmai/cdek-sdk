@@ -90,7 +90,7 @@ class CdekClientTest extends TestCase
 
     public function test_client_can_read_plain_text_response()
     {
-        $client = new CdekClient('foo', 'bar', $this->getHttpClient('text/plain', 'testing'));
+        $client = new CdekClient('foo', 'bar', null, $this->getHttpClient('text/plain', 'testing'));
         $response = $client->sendPrintReceiptsRequest(new PrintReceiptsRequest());
 
         $this->assertSame('testing', (string) $response->getBody());
@@ -101,7 +101,7 @@ class CdekClientTest extends TestCase
 
     public function test_client_can_read_xml_response()
     {
-        $client = new CdekClient('foo', 'bar', $this->getHttpClient('text/xml', FixtureLoader::load('StatusReportResponse.xml')));
+        $client = new CdekClient('foo', 'bar', null, $this->getHttpClient('text/xml', FixtureLoader::load('StatusReportResponse.xml')));
         $response = $client->sendStatusReportRequest(new StatusReportRequest());
 
         /** @var $response StatusReportResponse */
@@ -114,7 +114,7 @@ class CdekClientTest extends TestCase
 
     public function test_client_can_read_xml_response_with_alternative_content_type()
     {
-        $client = new CdekClient('foo', 'bar', $this->getHttpClient('application/xml', FixtureLoader::load('StatusReportResponse.xml')));
+        $client = new CdekClient('foo', 'bar', null, $this->getHttpClient('application/xml', FixtureLoader::load('StatusReportResponse.xml')));
         $response = $client->sendStatusReportRequest(new StatusReportRequest());
 
         /** @var $response StatusReportResponse */
@@ -123,7 +123,7 @@ class CdekClientTest extends TestCase
 
     public function test_client_can_read_json_response()
     {
-        $client = new CdekClient('foo', 'bar', $this->getHttpClient('application/json', FixtureLoader::load('CalculationResponseError.json')));
+        $client = new CdekClient('foo', 'bar', null, $this->getHttpClient('application/json', FixtureLoader::load('CalculationResponseError.json')));
         $response = $client->sendCalculationRequest(new CalculationRequest());
 
         /** @var $response CalculationResponse */
@@ -138,7 +138,7 @@ class CdekClientTest extends TestCase
 
     public function test_client_can_handle_param_request()
     {
-        $client = new CdekClient('foo', 'bar', $this->getHttpClient('text/xml', FixtureLoader::load('PvzListEmpty.xml')));
+        $client = new CdekClient('foo', 'bar', null, $this->getHttpClient('text/xml', FixtureLoader::load('PvzListEmpty.xml')));
         $response = $client->sendPvzListRequest(new PvzListRequest());
 
         /** @var $response PvzListResponse */
@@ -150,7 +150,7 @@ class CdekClientTest extends TestCase
 
     public function test_client_can_handle_any_request()
     {
-        $client = new CdekClient('foo', 'bar', $this->getHttpClient('text/plain', 'example'));
+        $client = new CdekClient('foo', 'bar', null, $this->getHttpClient('text/plain', 'example'));
         $response = $client->sendRequest($this->createMock(Request::class));
         $this->assertInstanceOf(ResponseInterface::class, $response);
 
@@ -159,7 +159,7 @@ class CdekClientTest extends TestCase
 
     public function test_client_can_handle_attachments()
     {
-        $client = new CdekClient('foo', 'bar', $this->getHttpClient('application/pdf', '%PDF', [
+        $client = new CdekClient('foo', 'bar', null, $this->getHttpClient('application/pdf', '%PDF', [
             'Content-Disposition' => 'attachment; filename=testing123.pdf',
         ]));
         $response = $client->sendRequest($this->createMock(Request::class));
@@ -173,7 +173,7 @@ class CdekClientTest extends TestCase
 
     public function test_client_can_log_response()
     {
-        $client = new CdekClient('foo', 'bar', $this->getHttpClient('text/xml', FixtureLoader::load('InfoReportFailed.xml')));
+        $client = new CdekClient('foo', 'bar', null, $this->getHttpClient('text/xml', FixtureLoader::load('InfoReportFailed.xml')));
         $client->setLogger($logger = new TestLogger());
 
         $response = $client->sendInfoReportRequest(new InfoReportRequest());
@@ -190,7 +190,7 @@ class CdekClientTest extends TestCase
 
     public function test_client_can_pass_through_common_exceptions()
     {
-        $client = new CdekClient('foo', 'bar', $http = $this->getHttpClient('text/xml', FixtureLoader::load('InfoReportFailed.xml')));
+        $client = new CdekClient('foo', 'bar', null, $http = $this->getHttpClient('text/xml', FixtureLoader::load('InfoReportFailed.xml')));
 
         $http->method('request')->will($this->returnCallback(function () {
             throw new \RuntimeException();
@@ -202,7 +202,7 @@ class CdekClientTest extends TestCase
 
     public function test_client_can_pass_through_exceptions_without_response()
     {
-        $client = new CdekClient('foo', 'bar', $http = $this->getHttpClient('text/xml', FixtureLoader::load('InfoReportFailed.xml')));
+        $client = new CdekClient('foo', 'bar', null, $http = $this->getHttpClient('text/xml', FixtureLoader::load('InfoReportFailed.xml')));
 
         $http->method('request')->will($this->returnCallback(function () {
             throw new ServerException('', $this->createMock(RequestInterface::class));
@@ -214,7 +214,7 @@ class CdekClientTest extends TestCase
 
     public function test_client_can_handle_error_response()
     {
-        $client = new CdekClient('foo', 'bar', $http = $this->getHttpClient('text/xml', FixtureLoader::load('InfoReportFailed.xml')));
+        $client = new CdekClient('foo', 'bar', null, $http = $this->getHttpClient('text/xml', FixtureLoader::load('InfoReportFailed.xml')));
         $client->setLogger($logger = new TestLogger());
 
         $responseMock = $this->createMock(ResponseInterface::class);
@@ -330,7 +330,7 @@ class CdekClientTest extends TestCase
             }
         };
 
-        $client = new CdekClient('', '', $this->getHttpClient('text/plain', 'example'));
+        $client = new CdekClient('', '', null, $this->getHttpClient('text/plain', 'example'));
         $client->sendRequest($request);
 
         $this->assertArrayHasKey('form_params', $this->lastRequestOptions);
@@ -419,7 +419,7 @@ class CdekClientTest extends TestCase
             }
         };
 
-        $client = new CdekClient('foo', 'bar', $this->getHttpClient('text/plain', 'example'));
+        $client = new CdekClient('foo', 'bar', null, $this->getHttpClient('text/plain', 'example'));
         $client->sendRequest($request, new \DateTimeImmutable('2018-10-13'));
 
         $this->assertArrayHasKey('form_params', $this->lastRequestOptions);
@@ -479,7 +479,7 @@ class CdekClientTest extends TestCase
             }
         };
 
-        $client = new CdekClient('foo', 'bar', $this->getHttpClient('text/plain', 'example'));
+        $client = new CdekClient('foo', 'bar', null, $this->getHttpClient('text/plain', 'example'));
         $client->sendRequest($request);
 
         $this->assertArrayHasKey('form_params', $this->lastRequestOptions);

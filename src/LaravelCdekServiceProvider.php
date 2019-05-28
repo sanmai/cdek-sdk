@@ -67,7 +67,7 @@ class LaravelCdekServiceProvider extends ServiceProvider
                 'timeout'  => CdekClient::DEFAULT_TIMEOUT,
             ]) : null;
 
-            return new CdekClient($config['account'], $config['password'], $client);
+            return new CdekClient($config['account'], $config['password'], null, $client);
         });
     }
 

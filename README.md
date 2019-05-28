@@ -73,6 +73,8 @@ composer require sanmai/cdek-sdk
 require_once 'vendor/autoload.php';
 
 $client = new \CdekSDK\CdekClient('account', 'password');
+// Если нужно задать timeout больше 60 секунд
+$client = new \CdekSDK\CdekClient('account', 'password', 120);
 ```
 Реквизиты доступа следует [запросить у СДЭК](https://www.cdek.ru/clients/integrator.html). Обычные логин и пароль не подходят. Если авторизация не нужна, логин и пароль можно указать пустые или пропустить вовсе.
 

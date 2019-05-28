@@ -88,7 +88,7 @@ final class CdekClient implements Contracts\Client, LoggerAwareInterface
     /** @var SerializerInterface */
     private $serializer;
 
-    public function __construct(string $account = '', string $password = '', ClientInterface $http = null)
+    public function __construct(string $account = '', string $password = '', int $timeout = null, ClientInterface $http = null)
     {
         if (strpos($account, 'ИМ') === 0) {
             throw new \RuntimeException('Учетная запись для интеграции не совпадает с учетной записью доступа в Личный кабинет СДЭК.');
@@ -99,7 +99,7 @@ final class CdekClient implements Contracts\Client, LoggerAwareInterface
 
         $this->http = $http ?? new GuzzleClient([
             'base_uri' => self::STANDARD_BASE_URL,
-            'timeout'  => self::DEFAULT_TIMEOUT,
+            'timeout'  => $timeout ?? self::DEFAULT_TIMEOUT,
             'headers'  => [
                 'User-Agent' => $this->getDefaultUserAgent(),
             ],

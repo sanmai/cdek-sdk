@@ -494,4 +494,11 @@ class CdekClientTest extends TestCase
 
         new CdekClient('ИМ12345', 'bar');
     }
+
+    public function test_client_rejects_timeout()
+    {
+        $this->expectException(\TypeError::class);
+
+        new CdekClient('ИМ12345', 'bar', 'ddd');
+    }
 }

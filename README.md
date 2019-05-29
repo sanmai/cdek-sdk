@@ -747,6 +747,15 @@ $client = new \CdekSDK\CdekClient($account, $password, new \GuzzleHttp\Client([
 ]));
 ```
 
+Аналогичным образом можно увеличить таймаут для запросов, или подключить прокси-сервер, поменять [любые другие настройки](http://docs.guzzlephp.org/en/stable/request-options.html) запросов:
+
+```php
+$client = new \CdekSDK\CdekClient($account, $password, new \GuzzleHttp\Client([
+    'base_uri' => \CdekSDK\CdekClient::STANDARD_BASE_URL,
+    'timeout'  => 600,
+]));
+```
+
 ### Сервис-провайдер для Laravel 5.1+
 
 ```php

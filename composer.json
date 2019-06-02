@@ -35,7 +35,7 @@
         "ext-json": "*",
         "ext-libxml": "*",
         "guzzlehttp/guzzle": "^6.3",
-        "jms/serializer": "^1.11",
+        "jms/serializer": "^1.11 || ^3.0",
         "psr/log": "^1.0",
         "sanmai/pipeline": "^0.3.2 || ^2.0 || ^3.0.1"
     },

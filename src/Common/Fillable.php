@@ -40,6 +40,7 @@ trait Fillable
     {
         foreach ($data as $key => $value) {
             if (!\property_exists($this, $key)) {
+                /** @phan-suppress-next-line PhanTypeInstantiateTraitStaticOrSelf */
                 throw new \InvalidArgumentException(\sprintf(
                     'The class "%s" does not have the property "%s"', static::class, $key
                 ));

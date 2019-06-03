@@ -60,6 +60,7 @@ trait Fillable
     {
         \assert(\is_array($data));
 
+        /** @phan-suppress-next-line PhanTypeInstantiateTraitStaticOrSelf */
         return new static($data);
     }
 }

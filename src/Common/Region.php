@@ -145,11 +145,11 @@ final class Region
      */
     public function getCountryCode(): int
     {
-        if (is_numeric($this->countryCode)) {
+        if (\is_numeric($this->countryCode)) {
             return (int) $this->countryCode;
         }
 
-        if (array_key_exists($this->countryCode, Location::COUNTRY_CODE_LOOKUP)) {
+        if (\array_key_exists($this->countryCode, Location::COUNTRY_CODE_LOOKUP)) {
             return Location::COUNTRY_CODE_LOOKUP[$this->countryCode];
         }
 

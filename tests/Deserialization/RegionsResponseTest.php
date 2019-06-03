@@ -72,7 +72,7 @@ class RegionsResponseTest extends TestCase
             break;
         }
 
-        assert(isset($item));
+        \assert(isset($item));
         $this->assertSame($region, $item);
     }
 
@@ -96,7 +96,7 @@ class RegionsResponseTest extends TestCase
 
         $region = $response->getItems()[0];
         /** @var $region Region */
-        $this->assertSame('0c4563e7-3465-4325-a6d8-be0e06a1ab48', $region->getUuid(), sprintf('Received unexpected region: %s', var_export($region, true)));
+        $this->assertSame('0c4563e7-3465-4325-a6d8-be0e06a1ab48', $region->getUuid(), \sprintf('Received unexpected region: %s', \var_export($region, true)));
         $this->assertSame('Хабаровский', $region->getName());
         $this->assertSame('край', $region->getPrefix());
         $this->assertSame(14, $region->getCode());
@@ -111,7 +111,7 @@ class RegionsResponseTest extends TestCase
             break;
         }
 
-        assert(isset($item));
+        \assert(isset($item));
         $this->assertSame($region, $item);
     }
 

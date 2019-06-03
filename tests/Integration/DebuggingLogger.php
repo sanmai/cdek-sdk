@@ -45,7 +45,7 @@ final class DebuggingLogger implements LoggerInterface
     public function log($level, $message, array $context = [])
     {
         if ($context) {
-            $message = strtr($message, iterator_to_array(self::context2replacements($context), true));
+            $message = \strtr($message, \iterator_to_array(self::context2replacements($context), true));
         }
 
         /*
@@ -53,7 +53,7 @@ final class DebuggingLogger implements LoggerInterface
          * Лог будет записан в cdek-requests.log в корне проекта.
          */
 
-        fwrite(\STDERR, "\n{$message}\n\n");
+        \fwrite(\STDERR, "\n{$message}\n\n");
         //fwrite($this->getLogFileHandle(), "\n{$message}\n\n");
     }
 
@@ -68,10 +68,10 @@ final class DebuggingLogger implements LoggerInterface
 
         if (!$fh) {
             $reflection = new \ReflectionClass(\Composer\Autoload\ClassLoader::class);
-            $fh = fopen(dirname((string) $reflection->getFileName(), 3).DIRECTORY_SEPARATOR.'cdek-requests.log', 'a');
+            $fh = \fopen(\dirname((string) $reflection->getFileName(), 3).DIRECTORY_SEPARATOR.'cdek-requests.log', 'a');
         }
 
-        assert(is_resource($fh));
+        \assert(\is_resource($fh));
 
         return $fh;
     }

@@ -100,11 +100,11 @@ final class CalculationResponse implements Response
             throw new \RuntimeException('Calculation request was not successful. Please check for errors before calling any instance methods.');
         }
 
-        if ($this->result && method_exists($this->result, $name)) {
+        if ($this->result && \method_exists($this->result, $name)) {
             return $this->result->{$name}(...$arguments);
         }
 
-        throw new \BadMethodCallException(sprintf('Method [%s] not found in [%s].', $name, __CLASS__));
+        throw new \BadMethodCallException(\sprintf('Method [%s] not found in [%s].', $name, __CLASS__));
     }
 
     public function jsonSerialize()

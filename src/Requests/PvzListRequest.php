@@ -183,13 +183,13 @@ final class PvzListRequest implements ParamRequest
      */
     public function getParams(): array
     {
-        return iterator_to_array(map(function () {
-            foreach (get_object_vars($this) as $key => $value) {
-                if (is_null($value)) {
+        return \iterator_to_array(map(function () {
+            foreach (\get_object_vars($this) as $key => $value) {
+                if (\is_null($value)) {
                     continue;
                 }
 
-                yield strtolower($key) => $value;
+                yield \strtolower($key) => $value;
             }
         }), true);
     }

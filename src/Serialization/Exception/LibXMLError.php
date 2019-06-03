@@ -42,7 +42,7 @@ final class LibXMLError extends \LibXMLError
          * @psalm-suppress MixedArgument
          * @psalm-suppress MixedAssignment
          */
-        foreach (get_object_vars($error) as $key => $value) {
+        foreach (\get_object_vars($error) as $key => $value) {
             $newError->{$key} = $value;
         }
 

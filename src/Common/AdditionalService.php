@@ -176,7 +176,7 @@ final class AdditionalService
      */
     public static function create($codeOrData): self
     {
-        if (is_array($codeOrData)) {
+        if (\is_array($codeOrData)) {
             return new static($codeOrData);
         }
 

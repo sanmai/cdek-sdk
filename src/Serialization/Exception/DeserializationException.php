@@ -36,6 +36,6 @@ final class DeserializationException extends RuntimeException
     {
         // $element->xpath("..")[0]->asXML() to get a parent
 
-        return new static(sprintf('Failed to deserialize %s: %s', trim($element ? (string) $element->asXML() : 'unknown element'), $exception->getMessage()), $exception->getCode(), $exception);
+        return new static(\sprintf('Failed to deserialize %s: %s', \trim($element ? (string) $element->asXML() : 'unknown element'), $exception->getMessage()), $exception->getCode(), $exception);
     }
 }

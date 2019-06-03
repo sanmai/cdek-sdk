@@ -78,6 +78,6 @@ trait RequestCore
             return $this::SERIALIZATION_XML;
         }
 
-        throw new \BadMethodCallException(sprintf('Class [%s] has an unrecognized serialization format.', __CLASS__));
+        throw new \BadMethodCallException(\sprintf('Class [%s] has an unrecognized serialization format.', __CLASS__));
     }
 }

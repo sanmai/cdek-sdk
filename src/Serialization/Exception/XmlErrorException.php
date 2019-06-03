@@ -39,6 +39,6 @@ final class XmlErrorException extends \JMS\Serializer\Exception\XmlErrorExceptio
     public function __construct(LibXMLError $error, $code = null, $previous = null)
     {
         parent::__construct($error);
-        \RuntimeException::__construct(sprintf('Expected valid XML, received: "%s"', $error->xmlWithError), $code, $previous);
+        \RuntimeException::__construct(\sprintf('Expected valid XML, received: "%s"', $error->xmlWithError), $code, $previous);
     }
 }

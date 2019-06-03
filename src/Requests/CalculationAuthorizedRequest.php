@@ -201,7 +201,7 @@ class CalculationAuthorizedRequest implements JsonRequest, \JsonSerializable, Da
     {
         $this->tariffId = null;
 
-        $this->tariffList[] = array_filter([
+        $this->tariffList[] = \array_filter([
             'id'       => $id,
             'priority' => $priority,
             'modeId'   => $modeId,
@@ -282,7 +282,7 @@ class CalculationAuthorizedRequest implements JsonRequest, \JsonSerializable, Da
      */
     public function jsonSerialize()
     {
-        $result = array_filter([
+        $result = \array_filter([
             'version'              => self::VERSION,
             'goods'                => $this->goods,
             'modeId'               => $this->modeId,
@@ -300,7 +300,7 @@ class CalculationAuthorizedRequest implements JsonRequest, \JsonSerializable, Da
             return $result;
         }
 
-        return array_merge($result, [
+        return \array_merge($result, [
             'secure'      => $this->secure,
             'authLogin'   => $this->account,
             'dateExecute' => $this->date->format('Y-m-d'),

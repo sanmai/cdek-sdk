@@ -92,7 +92,7 @@ class StatusReportResponseTest extends TestCase
         $this->assertSame('Нальчик', $status->getCityName());
 
         $states = $status->getStates();
-        $firstState = reset($states);
+        $firstState = \reset($states);
 
         $this->assertInstanceOf(State::class, $firstState);
 
@@ -102,7 +102,7 @@ class StatusReportResponseTest extends TestCase
         $this->assertSame('Москва', $firstState->getCityName());
         $this->assertSame(44, $firstState->getCityCode());
 
-        $lastState = end($states);
+        $lastState = \end($states);
 
         $this->assertInstanceOf(State::class, $lastState);
 
@@ -135,8 +135,8 @@ class StatusReportResponseTest extends TestCase
         /** @var $response StatusReportResponse */
         $this->assertInstanceOf(StatusReportResponse::class, $response);
 
-        $this->assertSame(strtotime('2000-12-31T17:00:00+00:00'), $response->getDateFirst()->getTimestamp());
-        $this->assertSame(strtotime('2018-09-01T00:00:00+00:00'), $response->getDateLast()->getTimestamp());
+        $this->assertSame(\strtotime('2000-12-31T17:00:00+00:00'), $response->getDateFirst()->getTimestamp());
+        $this->assertSame(\strtotime('2018-09-01T00:00:00+00:00'), $response->getDateLast()->getTimestamp());
 
         $this->assertCount(1, $response->getOrders());
 
@@ -150,7 +150,7 @@ class StatusReportResponseTest extends TestCase
         $this->assertNull($order->getDeliveryDate());
         $this->assertSame('', $order->getRecipientName());
 
-        $this->assertSame(strtotime('2018-09-01T02:10:00+00:00'), $order->getStatus()->getDate()->getTimestamp());
+        $this->assertSame(\strtotime('2018-09-01T02:10:00+00:00'), $order->getStatus()->getDate()->getTimestamp());
         $this->assertSame(1, $order->getStatus()->getCode());
 
         $this->assertSame('Создан', $order->getStatus()->getDescription());
@@ -184,7 +184,7 @@ class StatusReportResponseTest extends TestCase
             continue;
         }
 
-        assert(isset($message));
+        \assert(isset($message));
 
         $this->assertSame('Заказ не найден в базе СДЭК: DispatchNumber=123', $message->getMessage());
         $this->assertSame('ERR_INVALID_DISPATCHNUMBER', $message->getErrorCode());

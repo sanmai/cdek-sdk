@@ -162,7 +162,7 @@ class CalculationResponseTest extends TestCase
         $response = $this->getSerializer()->deserialize(FixtureLoader::load('CalculationResponse.json'), CalculationResponse::class, 'json');
 
         $this->expectException(\BadMethodCallException::class);
-        call_user_func([$response, 'foo']);
+        \call_user_func([$response, 'foo']);
     }
 
     public function test_it_errors_on_unknown_method()
@@ -170,7 +170,7 @@ class CalculationResponseTest extends TestCase
         $response = new CalculationResponse();
 
         $this->expectException(\BadMethodCallException::class);
-        call_user_func([$response, 'foo']);
+        \call_user_func([$response, 'foo']);
     }
 
     public function test_it_serializes_to_empty_json()

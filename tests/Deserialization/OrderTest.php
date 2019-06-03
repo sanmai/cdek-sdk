@@ -76,7 +76,7 @@ class OrderTest extends TestCase
         $states = $status->getStates();
 
         /** @var Status $firstState */
-        $firstState = reset($states);
+        $firstState = \reset($states);
 
         $this->assertInstanceOf(State::class, $firstState);
 
@@ -88,7 +88,7 @@ class OrderTest extends TestCase
         $this->assertFalse($firstState->isFinal());
 
         /** @var Status $lastState */
-        $lastState = end($states);
+        $lastState = \end($states);
 
         $this->assertInstanceOf(State::class, $lastState);
 

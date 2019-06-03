@@ -187,11 +187,11 @@ final class Location
      */
     public function getCountryCode(): int
     {
-        if (is_numeric($this->countryCode)) {
+        if (\is_numeric($this->countryCode)) {
             return (int) $this->countryCode;
         }
 
-        if (array_key_exists($this->countryCode, self::COUNTRY_CODE_LOOKUP)) {
+        if (\array_key_exists($this->countryCode, self::COUNTRY_CODE_LOOKUP)) {
             return self::COUNTRY_CODE_LOOKUP[$this->countryCode];
         }
 
@@ -200,11 +200,11 @@ final class Location
 
     public function getCountryCodeISO(): string
     {
-        if (!is_numeric($this->countryCode)) {
+        if (!\is_numeric($this->countryCode)) {
             return $this->countryCode;
         }
 
-        $isoCountryCode = array_search($this->countryCode, self::COUNTRY_CODE_LOOKUP);
+        $isoCountryCode = \array_search($this->countryCode, self::COUNTRY_CODE_LOOKUP);
 
         if ($isoCountryCode !== false) {
             return $isoCountryCode;

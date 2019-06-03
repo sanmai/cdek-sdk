@@ -105,7 +105,7 @@ final class Serializer implements SerializerInterface
         $this->serializer = $builder->build();
 
         // Can be disabled in certain environments (customized PHP build?)
-        $this->ctypeEnabled = function_exists('\ctype_upper');
+        $this->ctypeEnabled = \function_exists('\ctype_upper');
 
         // @codeCoverageIgnoreStart
         if (self::$addGlobalIgnoredAnnotations) {
@@ -131,14 +131,14 @@ final class Serializer implements SerializerInterface
      */
     private function updateAttributesCase(\SimpleXMLElement $data): \SimpleXMLElement
     {
-        assert($data->attributes() !== null);
+        \assert($data->attributes() !== null);
 
         foreach ($data->attributes() as $attrName => $attrValue) {
             if ($this->ctypeEnabled && \ctype_upper($attrName[0])) {
                 continue;
             }
 
-            $data[ucfirst($attrName)] = $attrValue;
+            $data[\ucfirst($attrName)] = $attrValue;
         }
 
         return $data;

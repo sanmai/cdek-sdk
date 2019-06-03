@@ -45,17 +45,17 @@ abstract class TestCase extends \PHPUnit\Framework\TestCase
      */
     private function getGuzzleClient()
     {
-        if (false === getenv('CDEK_BASE_URL')) {
+        if (false === \getenv('CDEK_BASE_URL')) {
             return null;
         }
 
-        if (strpos(getenv('CDEK_BASE_URL'), self::TEST_HOST)) {
+        if (\strpos(\getenv('CDEK_BASE_URL'), self::TEST_HOST)) {
             $this->isTesting = true;
         }
 
         return new GuzzleClient([
-            'base_uri' => getenv('CDEK_BASE_URL'),
-            'verify'   => !getenv('CI'), // Igonore SSL errors on the likes of Travis CI
+            'base_uri' => \getenv('CDEK_BASE_URL'),
+            'verify'   => !\getenv('CI'), // Igonore SSL errors on the likes of Travis CI
         ]);
     }
 
@@ -65,17 +65,17 @@ abstract class TestCase extends \PHPUnit\Framework\TestCase
      */
     final protected function getClient(): CdekClient
     {
-        if (false === getenv('CDEK_ACCOUNT')) {
+        if (false === \getenv('CDEK_ACCOUNT')) {
             $this->markTestSkipped('Integration testing disabled (CDEK_ACCOUNT missing).');
         }
 
-        if (false === getenv('CDEK_PASSWORD')) {
+        if (false === \getenv('CDEK_PASSWORD')) {
             $this->markTestSkipped('Integration testing disabled (CDEK_PASSWORD missing).');
         }
 
-        $client = new CdekClient(getenv('CDEK_ACCOUNT'), getenv('CDEK_PASSWORD'), $this->getGuzzleClient());
+        $client = new CdekClient(\getenv('CDEK_ACCOUNT'), \getenv('CDEK_PASSWORD'), $this->getGuzzleClient());
 
-        if (in_array('--debug', $_SERVER['argv'])) {
+        if (\in_array('--debug', $_SERVER['argv'])) {
             $client->setLogger(new DebuggingLogger());
         }
 
@@ -89,7 +89,7 @@ abstract class TestCase extends \PHPUnit\Framework\TestCase
     {
         $client = new CdekClient('', '', $this->getGuzzleClient());
 
-        if (in_array('--debug', $_SERVER['argv'])) {
+        if (\in_array('--debug', $_SERVER['argv'])) {
             $client->setLogger(new DebuggingLogger());
         }
 
@@ -108,7 +108,7 @@ abstract class TestCase extends \PHPUnit\Framework\TestCase
             if ($message->getErrorCode() === '502') {
                 $this->markTestSkipped("CDEK responded with an HTTP error code: {$message->getMessage()}");
             }
-            if (in_array($message->getErrorCode(), $transientErrorCodes)) {
+            if (\in_array($message->getErrorCode(), $transientErrorCodes)) {
                 $this->markTestSkipped("CDEK failed with a known transient error code {$message->getErrorCode()}: {$message->getMessage()}");
             }
         }
@@ -142,20 +142,20 @@ abstract class TestCase extends \PHPUnit\Framework\TestCase
             'TRAVIS_BUILD_ID',
         ] as $envVarName) {
             /** @var string|bool $value */
-            $value = getenv($envVarName);
+            $value = \getenv($envVarName);
 
-            if ($value === false || strlen($value) === 0) {
+            if ($value === false || \strlen($value) === 0) {
                 continue;
             }
 
             return self::$testNumber = (string) $value;
         }
 
-        return self::$testNumber = (string) time();
+        return self::$testNumber = (string) \time();
     }
 
     final protected function formatTestNumber(string $format): string
     {
-        return sprintf($format, self::getTestNumber());
+        return \sprintf($format, self::getTestNumber());
     }
 }

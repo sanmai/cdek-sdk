@@ -32,6 +32,6 @@ class FixtureLoader
 {
     public static function load($filename): string
     {
-        return file_get_contents(__DIR__.'/data/'.$filename);
+        return \file_get_contents(__DIR__.'/data/'.$filename);
     }
 }

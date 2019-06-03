@@ -34,7 +34,8 @@ trait HasErrors
 {
     public function hasErrors(): bool
     {
-        assert($this instanceof Response);
+        \assert($this instanceof Response);
+
         foreach ($this->getMessages() as $message) {
             if ($message->getErrorCode() !== '') {
                 return true;

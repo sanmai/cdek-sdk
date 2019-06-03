@@ -123,7 +123,7 @@ class SanityTest extends TestCase
 
     public function allClassNames(): array
     {
-        return array_map(function ($className) {
+        return \array_map(function ($className) {
             return [$className];
         }, self::CLASS_NAMES);
     }
@@ -135,7 +135,7 @@ class SanityTest extends TestCase
      */
     public function test_class_exist($className)
     {
-        $this->assertTrue(class_exists($className) || interface_exists($className));
+        $this->assertTrue(\class_exists($className) || \interface_exists($className));
     }
 
     private $legacyMaps = [

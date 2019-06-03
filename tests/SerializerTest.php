@@ -52,7 +52,7 @@ class SerializerTest extends TestCase
     private function isAnnotationRegistryConfigured(): bool
     {
         return 'class_exists' === \Closure::bind(function () {
-            return end(AnnotationRegistry::$loaders);
+            return \end(AnnotationRegistry::$loaders);
         }, null, AnnotationRegistry::class)();
     }
 
@@ -80,7 +80,7 @@ class SerializerTest extends TestCase
         $serializer = new Serializer();
         $response = $serializer->deserialize(FixtureLoader::load('StatusReportResponse.xml'), StatusReportResponse::class, 'xml');
 
-        assert($response instanceof StatusReportResponse); // PHPStan hint
+        \assert($response instanceof StatusReportResponse); // PHPStan hint
 
         /** @var $response StatusReportResponse */
         $this->assertInstanceOf(StatusReportResponse::class, $response);
@@ -88,7 +88,7 @@ class SerializerTest extends TestCase
         $this->assertNull($response->getOrders()[0]->getDelayReason()->getDate());
 
         $response = $serializer->deserialize(FixtureLoader::load('CitiesResponse.xml'), CitiesResponse::class, 'xml');
-        assert($response instanceof CitiesResponse); // PHPStan hint
+        \assert($response instanceof CitiesResponse); // PHPStan hint
 
         $this->assertInstanceOf(CitiesResponse::class, $response);
         $this->assertCount(5, $response->getItems());

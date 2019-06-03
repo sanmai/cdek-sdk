@@ -68,7 +68,7 @@ class CdekClientTest extends TestCase
 
         $response = $this->createMock(ResponseInterface::class);
         $response->method('hasHeader')->will($this->returnCallback(function ($headerName) use ($extraHeaders) {
-            return array_key_exists($headerName, $extraHeaders);
+            return \array_key_exists($headerName, $extraHeaders);
         }));
         $response->method('getHeader')->will($this->returnCallback(function ($headerName) use ($extraHeaders) {
             return [$extraHeaders[$headerName]];
@@ -165,7 +165,7 @@ class CdekClientTest extends TestCase
         $response = $client->sendRequest($this->createMock(Request::class));
         $this->assertInstanceOf(FileResponse::class, $response);
 
-        assert($response instanceof FileResponse);
+        \assert($response instanceof FileResponse);
 
         $this->assertSame('%PDF', (string) $response->getBody());
         $this->assertEmpty($this->lastRequestOptions);
@@ -244,7 +244,7 @@ class CdekClientTest extends TestCase
 
         $this->assertInstanceOf(ResponseInterface::class, $response);
 
-        assert($response instanceof ResponseInterface);
+        \assert($response instanceof ResponseInterface);
         $this->assertSame(500, $response->getStatusCode());
         $this->assertSame('Server error', $response->getReasonPhrase());
     }

@@ -97,7 +97,7 @@ final class NullableDateTimeHandler implements SubscribingHandlerInterface
      */
     private function parseDateTimeFallback(XmlDeserializationVisitor $visitor, $data, array $type, \Throwable $e)
     {
-        if (!array_key_exists(3, $type['params'])) {
+        if (!\array_key_exists(3, $type['params'])) {
             throw $e;
         }
 
@@ -120,7 +120,7 @@ final class NullableDateTimeHandler implements SubscribingHandlerInterface
             $date = \DateTimeImmutable::createFromMutable($date);
         }
 
-        assert($date instanceof \DateTimeImmutable);
+        \assert($date instanceof \DateTimeImmutable);
 
         return $this->dateHandler->serializeDateTimeImmutable($visitor, $date, $type, $context);
     }

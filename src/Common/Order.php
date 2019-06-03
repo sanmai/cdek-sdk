@@ -726,7 +726,7 @@ final class Order implements HasErrorCode
      */
     public function getAdditionalServices()
     {
-        return array_merge($this->additionalServices, $this->addedServices);
+        return \array_merge($this->additionalServices, $this->addedServices);
     }
 
     /**

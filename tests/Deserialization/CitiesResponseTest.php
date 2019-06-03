@@ -82,7 +82,7 @@ class CitiesResponseTest extends TestCase
             break;
         }
 
-        assert(isset($item));
+        \assert(isset($item));
         $this->assertSame($location, $item);
     }
 
@@ -93,7 +93,7 @@ class CitiesResponseTest extends TestCase
         $this->assertFalse($response->hasErrors());
 
         foreach ($response as $item) {
-            $this->assertTrue(is_float($item->getPaymentLimit()));
+            $this->assertTrue(\is_float($item->getPaymentLimit()));
         }
     }
 

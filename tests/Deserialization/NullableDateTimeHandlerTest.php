@@ -103,8 +103,8 @@ class NullableDateTimeHandlerTest extends TestCase
         $visitor = new XmlDeserializationVisitor(new IdenticalPropertyNamingStrategy());
         $sxe = new \SimpleXMLElement('<date>2000-01-01_</date>');
 
-        if (date('H:i:s') === '00:00:00') {
-            sleep(1);
+        if (\date('H:i:s') === '00:00:00') {
+            \sleep(1);
         }
 
         $date = $handler->deserializeDateTimeImmutableFromXml($visitor, $sxe, [

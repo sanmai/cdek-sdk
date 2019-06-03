@@ -39,6 +39,7 @@ class TraitsTest extends TestCase
     public function test_missing_fillable_property()
     {
         $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage('does not have the property');
 
         new class(['foo' => 'bar']) {
             use Fillable;

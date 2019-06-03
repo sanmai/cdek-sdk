@@ -39,13 +39,13 @@ trait Fillable
     public function __construct(array $data = [])
     {
         foreach ($data as $key => $value) {
-            if (property_exists($this, $key)) {
-                $this->{$key} = $value;
-            } else {
+            if (!property_exists($this, $key)) {
                 throw new \InvalidArgumentException(sprintf(
-                    'Property "%s" does not exist in class "%s"', $key, static::class
+                    'The class "%s" does not have the property "%s"', static::class, $key,
                 ));
             }
+
+            $this->{$key} = $value;
         }
     }
 

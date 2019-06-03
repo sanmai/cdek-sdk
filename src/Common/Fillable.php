@@ -41,7 +41,7 @@ trait Fillable
         foreach ($data as $key => $value) {
             if (!\property_exists($this, $key)) {
                 throw new \InvalidArgumentException(\sprintf(
-                    'The class "%s" does not have the property "%s"', static::class, $key,
+                    'The class "%s" does not have the property "%s"', static::class, $key
                 ));
             }
 

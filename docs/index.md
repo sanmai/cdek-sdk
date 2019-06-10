@@ -9,24 +9,24 @@
 
 Перед вами полное SDK для [интеграции с программным комплексом СДЭК](https://www.cdek.ru/clients/integrator.html).
 
-## Установка  {: #install}
+## Установка  {: #install }
 
 ```bash
 composer require sanmai/cdek-sdk
 ```
 Требования — минимальны. Нужен PHP 7.0 или выше. Работа протестирована под PHP 7.0, 7.1, 7.2, 7.3.
 
-### Гарантии обратной совместимости {: #backward-compatibility}
+### Гарантии обратной совместимости {: #backward-compatibility }
 
 При разработке этой библиотеки большое внимание уделяется обратной совместимости API в пределах основной версии. Если вы установили когда-то версию ветки 0.6, например 0.6.7, то после обновления до 0.6.8 или даже до 0.6.12 вы можете рассчитывать что весь ваш код будет работать точно так же как раньше, без необходимости что-то менять, при условии, конечно, что API самих СДЭК не поменялось. Такого же принципа работы с версиями [по умолчанию придерживается Composer](https://getcomposer.org/doc/articles/versions.md#caret-version-range-).
 
-Гарантии обратной совместимости в части возвращаемых типов распостраняются только на имплементируемые ими интерфейсы. Если вы получали объект имплементирующий `Psr\Http\Message\ResponseInterface`, то такой же объёкт вы продолжите получать. Если у возвращенного объёкта был какой-то метод, то такой же метод будет у объекта в следующей неосновной версии. Конкретный тип может быть другим, рассчитывать на это не нужно, проверять принадлежность конкретному типу также не следует. [Как проверять ответы на ошибки.](#%D0%9E%D0%B1%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D0%BA%D0%B0-%D0%BE%D1%88%D0%B8%D0%B1%D0%BE%D0%BA)
+Гарантии обратной совместимости в части возвращаемых типов распостраняются только на имплементируемые ими интерфейсы. Если вы получали объект имплементирующий `Psr\Http\Message\ResponseInterface`, то такой же объёкт вы продолжите получать. Если у возвращенного объёкта был какой-то метод, то такой же метод будет у объекта в следующей неосновной версии. Конкретный тип может быть другим, рассчитывать на это не нужно, проверять принадлежность конкретному типу также не следует. [Как проверять ответы на ошибки.](#hasErrors)
 
 Такие строгие гарантии обратной совместимости API были бы невозможны без идущей рука об руку с ними минимизации точек для расширения API: наследование для большинства классов не только не предусмотрено, но и просто невозможно. Впрочем, для удобства композиции есть необходимые интерфейсы. Мы исходим из того что добавить ещё интерфейсы проблемы не представляет, новые интерфейсы не ломают обратную совместимость.
 
 После выхода версии 1.0 обратная совместимость будет поддерживаться в пределах мажорной версии.
 
-## Инициализация {: #initialize}
+## Инициализация {: #initialize }
 
 ```php
 require_once 'vendor/autoload.php';
@@ -37,9 +37,9 @@ $client = new \CdekSDK\CdekClient('account', 'password');
 
 Далее для всей работы с API используются методы объёкта `$client`, который мы получили выше.
 
-Для подготовки запросов и ответов используются аннотации из Doctrine. Если вы не знаете что это, то ничего не нужно делать. Иначе обратите внимание на [замечания к совместному использованию AnnotationRegistry](#annotationregistry).
+Для подготовки запросов и ответов используются аннотации из Doctrine. Если вы не знаете что это, то ничего не нужно делать. Иначе обратите внимание на [замечания к совместному использованию AnnotationRegistry](#AnnotationRegistry).
 
-### Работа в тестовой среде {: #testing}
+### Работа в тестовой среде {: #testing }
 
 Для работы в тестовой среде нужно указать другой базовый URI. Это делается следующим образом:
 
@@ -51,31 +51,31 @@ $client = new \CdekSDK\CdekClient('Account', 'Secure', new \GuzzleHttp\Client([
 
 Реквизиты тестовых учётных записей можно найти [в документации на протокол](https://confluence.cdek.ru/pages/viewpage.action?pageId=15616129#id-%D0%9F%D1%80%D0%BE%D1%82%D0%BE%D0%BA%D0%BE%D0%BB%D0%BE%D0%B1%D0%BC%D0%B5%D0%BD%D0%B0%D0%B4%D0%B0%D0%BD%D0%BD%D1%8B%D0%BC%D0%B8(v1.5)-1.5.%D0%A2%D0%B5%D1%81%D1%82%D0%BE%D0%B2%D1%8B%D0%B5%D1%83%D1%87%D0%B5%D1%82%D0%BD%D1%8B%D0%B5%D0%B7%D0%B0%D0%BF%D0%B8%D1%81%D0%B8%D0%B8%D0%B8%D1%85%D0%BE%D0%B3%D1%80%D0%B0%D0%BD%D0%B8%D1%87%D0%B5%D0%BD%D0%B8%D1%8F).
 
-## Использование {: #methods}
+## Использование {: #methods }
 
 Перечень основных методов класса `CdekClient` ниже.
 
 | Задача| Метод | Аргумент |
 | ----- | -------------- | ----- |
-| [Удаление заказа](#%D0%A3%D0%B4%D0%B0%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5-%D0%B7%D0%B0%D0%BA%D0%B0%D0%B7%D0%B0) | `sendDeleteRequest` | `DeleteRequest` |
-| [Получение списка ПВЗ](#%D0%9F%D0%BE%D0%BB%D1%83%D1%87%D0%B5%D0%BD%D0%B8%D0%B5-%D1%81%D0%BF%D0%B8%D1%81%D0%BA%D0%B0-%D0%9F%D0%92%D0%97) | `sendPvzListRequest` | `PvzListRequest` |
-| [Список субъектов РФ](#%D0%A1%D0%BF%D0%B8%D1%81%D0%BE%D0%BA-%D1%80%D0%B5%D0%B3%D0%B8%D0%BE%D0%BD%D0%BE%D0%B2%D1%81%D1%83%D0%B1%D1%8A%D0%B5%D0%BA%D1%82%D0%BE%D0%B2-%D0%A0%D0%A4) | `sendRegionsRequest` | `RegionsRequest` |
-| [Список городов](#%D0%A1%D0%BF%D0%B8%D1%81%D0%BE%D0%BA-%D0%B3%D0%BE%D1%80%D0%BE%D0%B4%D0%BE%D0%B2) | `sendCitiesRequest` | `CitiesRequest` |
-| [Регистрация заказа от ИМ](#%D0%A0%D0%B5%D0%B3%D0%B8%D1%81%D1%82%D1%80%D0%B0%D1%86%D0%B8%D1%8F-%D0%B7%D0%B0%D0%BA%D0%B0%D0%B7%D0%B0-%D0%BE%D1%82-%D0%B8%D0%BD%D1%82%D0%B5%D1%80%D0%BD%D0%B5%D1%82-%D0%BC%D0%B0%D0%B3%D0%B0%D0%B7%D0%B8%D0%BD%D0%B0) | `sendDeliveryRequest` | `DeliveryRequest` |
-| [Регистрация заказа на доставку](#%D0%A0%D0%B5%D0%B3%D0%B8%D1%81%D1%82%D1%80%D0%B0%D1%86%D0%B8%D1%8F-%D0%B7%D0%B0%D0%BA%D0%B0%D0%B7%D0%B0-%D0%BD%D0%B0-%D0%B4%D0%BE%D1%81%D1%82%D0%B0%D0%B2%D0%BA%D1%83) | `sendAddDeliveryRequest` | `AddDeliveryRequest` |
-| [Изменение заказа](#%D0%B8%D0%B7%D0%BC%D0%B5%D0%BD%D0%B5%D0%BD%D0%B8%D0%B5-%D0%B7%D0%B0%D0%BA%D0%B0%D0%B7%D0%B0) | `sendUpdateRequest` | `UpdateRequest` |
-| [Регистрация результата прозвона](#%D0%A0%D0%B5%D0%B3%D0%B8%D1%81%D1%82%D1%80%D0%B0%D1%86%D0%B8%D1%8F-%D0%B8%D0%BD%D1%84%D0%BE%D1%80%D0%BC%D0%B0%D1%86%D0%B8%D0%B8-%D0%BE-%D1%80%D0%B5%D0%B7%D1%83%D0%BB%D1%8C%D1%82%D0%B0%D1%82%D0%B5-%D0%BF%D1%80%D0%BE%D0%B7%D0%B2%D0%BE%D0%BD%D0%B0) | `sendScheduleRequest` | `ScheduleRequest` |
-| [Вызов курьера](#%D0%92%D1%8B%D0%B7%D0%BE%D0%B2-%D0%BA%D1%83%D1%80%D1%8C%D0%B5%D1%80%D0%B0) | `sendCallCourierRequest` | `CallCourierRequest` |
-| [Создание преалерта](#%D0%A1%D0%BE%D0%B7%D0%B4%D0%B0%D0%BD%D0%B8%D0%B5-%D0%BF%D1%80%D0%B5%D0%B0%D0%BB%D0%B5%D1%80%D1%82%D0%B0) | `sendPreAlertRequest` | `PreAlertRequest` |
-| [Отчет "Информация по заказам"](#%D0%9E%D1%82%D1%87%D0%B5%D1%82-%D0%98%D0%BD%D1%84%D0%BE%D1%80%D0%BC%D0%B0%D1%86%D0%B8%D1%8F-%D0%BF%D0%BE-%D0%B7%D0%B0%D0%BA%D0%B0%D0%B7%D0%B0%D0%BC) | `sendInfoReportRequest` | `InfoReportRequest` |
-| [Расчёт стоимости доставки](#%D0%A0%D0%B0%D1%81%D1%87%D1%91%D1%82-%D1%81%D1%82%D0%BE%D0%B8%D0%BC%D0%BE%D1%81%D1%82%D0%B8-%D0%B4%D0%BE%D1%81%D1%82%D0%B0%D0%B2%D0%BA%D0%B8) | `sendCalculationRequest` | `CalculationRequest` |
-| [Отчет "Статусы заказов"](#%D0%A2%D1%80%D0%B5%D0%BA%D0%B8%D0%BD%D0%B3) | `sendStatusReportRequest` | `StatusReportRequest` |
-| [Печать квитанции к заказу](#%D0%9F%D0%B5%D1%87%D0%B0%D1%82%D1%8C-%D0%BA%D0%B2%D0%B8%D1%82%D0%B0%D0%BD%D1%86%D0%B8%D0%B8-%D0%BA-%D0%B7%D0%B0%D0%BA%D0%B0%D0%B7%D1%83) | `sendPrintReceiptsRequest` | `PrintReceiptsRequest` |
-| [Печать ШК-мест](#%D0%9F%D0%B5%D1%87%D0%B0%D1%82%D1%8C-%D0%A8%D0%9A-%D0%BC%D0%B5%D1%81%D1%82) | `sendPrintLabelsRequest` | `PrintLabelsRequest` |
+| [Удаление заказа](#DeleteRequest) | `sendDeleteRequest` | `DeleteRequest` |
+| [Получение списка ПВЗ](#PvzListRequest) | `sendPvzListRequest` | `PvzListRequest` |
+| [Список субъектов РФ](#RegionsRequest) | `sendRegionsRequest` | `RegionsRequest` |
+| [Список городов](#CitiesRequest) | `sendCitiesRequest` | `CitiesRequest` |
+| [Регистрация заказа от ИМ](#DeliveryRequest) | `sendDeliveryRequest` | `DeliveryRequest` |
+| [Регистрация заказа на доставку](#AddDeliveryRequest) | `sendAddDeliveryRequest` | `AddDeliveryRequest` |
+| [Изменение заказа](#UpdateRequest) | `sendUpdateRequest` | `UpdateRequest` |
+| [Регистрация результата прозвона](#ScheduleRequest) | `sendScheduleRequest` | `ScheduleRequest` |
+| [Вызов курьера](#CallCourierRequest) | `sendCallCourierRequest` | `CallCourierRequest` |
+| [Создание преалерта](#PreAlertRequest) | `sendPreAlertRequest` | `PreAlertRequest` |
+| [Отчет "Информация по заказам"](#InfoReportRequest) | `sendInfoReportRequest` | `InfoReportRequest` |
+| [Расчёт стоимости доставки](#CalculationRequest) | `sendCalculationRequest` | `CalculationRequest` |
+| [Отчет "Статусы заказов"](#StatusReportRequest) | `sendStatusReportRequest` | `StatusReportRequest` |
+| [Печать квитанции к заказу](#PrintReceiptsRequest) | `sendPrintReceiptsRequest` | `PrintReceiptsRequest` |
+| [Печать ШК-мест](#PrintLabelsRequest) | `sendPrintLabelsRequest` | `PrintLabelsRequest` |
 
 Подробное описание параметров каждого метода [смотрите в документации СДЭК](https://www.cdek.ru/clients/integrator.html). Также обратите внимание на список [часто задаваемых вопросов по интеграции](https://www.cdek.ru/faq_integrator.html).
 
-### Обработка ошибок {: #hasErrors}
+### Обработка ошибок {: #hasErrors }
 
 Все возвращаемые ответы содержат методы для проверки на ошибку, также для получения списка сообщений включая сообщения об ошибках.
 
@@ -95,7 +95,7 @@ if ($response->hasErrors()) {
 ```
 В редких случаях при запросе и при работе с объектами могут возникнуть исключения.
 
-#### TypeError {: #TypeError}
+#### TypeError {: #TypeError }
 
 Кроме обычных ошибок при отправке запросов (например, из-за ошибочного XML, или из-за вышедшего времени ожидания результатов запроса), другим частым исключением является ошибка вида `TypeError`, которая возникает при работе с полученными объектами.
 
@@ -128,9 +128,9 @@ if ($status = $order->getStatus()) {
 }
 ```
 
-Подобное расхождение в обработке отсутствующих значений существует в силу исторических причин, устранить которое невозможно без частичной потери [обратной совместимости](#%D0%B3%D0%B0%D1%80%D0%B0%D0%BD%D1%82%D0%B8%D0%B8-%D0%BE%D0%B1%D1%80%D0%B0%D1%82%D0%BD%D0%BE%D0%B9-%D1%81%D0%BE%D0%B2%D0%BC%D0%B5%D1%81%D1%82%D0%B8%D0%BC%D0%BE%D1%81%D1%82%D0%B8) (замена строгого возвращаемого типа на опциональный нарушает обратную совместимость). Эти различия могут быть частично или полностью устранены в следующей мажорной версии переходом на использование какого-то из двух методов, о чём будет обязательно сообщено.
+Подобное расхождение в обработке отсутствующих значений существует в силу исторических причин, устранить которое невозможно без частичной потери [обратной совместимости](#backward-compatibility) (замена строгого возвращаемого типа на опциональный нарушает обратную совместимость). Эти различия могут быть частично или полностью устранены в следующей мажорной версии переходом на использование какого-то из двух методов, о чём будет обязательно сообщено.
 
-### Получение списка ПВЗ {: #PvzListRequest}
+### Получение списка ПВЗ {: #PvzListRequest }
 
 ```php
 use CdekSDK\Requests;
@@ -162,7 +162,7 @@ foreach ($response as $item) {
 }
 ```
 
-### Расчёт стоимости доставки {: #CalculationRequest}
+### Расчёт стоимости доставки {: #CalculationRequest }
 
 ```php
 use CdekSDK\Requests;
@@ -193,7 +193,7 @@ $response->getPrice();
 // double(1250)
 ```
 
-#### Характерные ошибки при расчёте {: #CalculationRequest-errors}
+#### Характерные ошибки при расчёте {: #CalculationRequest-errors }
 
 > "Невозможно осуществить доставку по этому направлению при заданных условиях"
 
@@ -201,7 +201,7 @@ $response->getPrice();
 
 При прочих равных лучше всегда использовать запрос с авторизацией.
 
-### Список регионов/субъектов РФ {: #RegionsRequest}
+### Список регионов/субъектов РФ {: #RegionsRequest }
 
 ```php
 use CdekSDK\Requests;
@@ -545,7 +545,7 @@ foreach ($response->getNumbers() as $number) {
 }
 ```
 
-### Регистрация информации о результате прозвона {: #ScheduleRequest}
+### Регистрация информации о результате прозвона {: #ScheduleRequest }
 
 ```php
 use CdekSDK\Common;

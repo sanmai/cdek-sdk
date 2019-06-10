@@ -754,7 +754,7 @@ $client->setLogger($monolog);
 
 ## Замечания {: #contribute}
 
-- [Инструкции по доработке и тестированию.](CONTRIBUTING.md)
+- [Инструкции по доработке и тестированию.](https://github.com/sanmai/cdek-sdk/blob/master/CONTRIBUTING.md)
 
 - [Общие инструкции по работе с GitHub.](https://www.alexeykopytko.com/2018/github-contributor-guide/) Если это ваш первый PR, очень рекомендуем ознакомиться.
 

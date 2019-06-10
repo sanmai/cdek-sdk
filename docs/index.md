@@ -9,8 +9,6 @@
 
 Перед вами полное SDK для [интеграции с программным комплексом СДЭК](https://www.cdek.ru/clients/integrator.html).
 
-{{ repo_url }}
-
 ## Установка  {: #install}
 
 ```bash

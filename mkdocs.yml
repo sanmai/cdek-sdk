@@ -8,4 +8,5 @@ nav:
 markdown_extensions:
     - toc:
         permalink: True
+    - attr_list
 

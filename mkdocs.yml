@@ -1,5 +1,6 @@
 site_name: CdekSDK
 theme: readthedocs
+lang: ru
 
 nav:
     - Введение: index.md

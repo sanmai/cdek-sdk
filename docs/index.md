@@ -1,8 +1,6 @@
 # PHP SDK для API СДЭК
 
-[Полная документация.](https://github.com/sanmai/cdek-sdk/blob/master/README.md)
-
-![](docs/logo.png)
+![](logo.png)
 
 [![Latest Stable Version](https://poser.pugx.org/sanmai/cdek-sdk/v/stable)](https://packagist.org/packages/sanmai/cdek-sdk)
 [![Telegram Chat](https://img.shields.io/badge/telegram-chat-blue.svg?logo=telegram)](https://t.me/phpcdeksdk)
@@ -11,52 +9,16 @@
 
 Перед вами полное SDK для [интеграции с программным комплексом СДЭК](https://www.cdek.ru/clients/integrator.html).
 
-Возможности:
+{{ repo_url }}
 
-- [x] расчёт тарифов и обращения к справочникам
-  - [x] [расчёт стоимости доставки по тарифам с приоритетом](#%D0%A0%D0%B0%D1%81%D1%87%D1%91%D1%82-%D1%81%D1%82%D0%BE%D0%B8%D0%BC%D0%BE%D1%81%D1%82%D0%B8-%D0%B4%D0%BE%D1%81%D1%82%D0%B0%D0%B2%D0%BA%D0%B8) :unlock: :closed_lock_with_key:
-  - [ ] расчёт стоимости по тарифам без приоритета :unlock: :closed_lock_with_key:
-  - [x] [получение списка пунктов выдачи заказов (ПВЗ) с фильтрацией](#%D0%9F%D0%BE%D0%BB%D1%83%D1%87%D0%B5%D0%BD%D0%B8%D0%B5-%D1%81%D0%BF%D0%B8%D1%81%D0%BA%D0%B0-%D0%9F%D0%92%D0%97) :unlock:
-  - [x] [получение списка регионов-субъектов РФ](#%D0%A1%D0%BF%D0%B8%D1%81%D0%BE%D0%BA-%D1%80%D0%B5%D0%B3%D0%B8%D0%BE%D0%BD%D0%BE%D0%B2%D1%81%D1%83%D0%B1%D1%8A%D0%B5%D0%BA%D1%82%D0%BE%D0%B2-%D0%A0%D0%A4) :unlock:
-  - [x] [получение списка городов](#%D0%A1%D0%BF%D0%B8%D1%81%D0%BE%D0%BA-%D0%B3%D0%BE%D1%80%D0%BE%D0%B4%D0%BE%D0%B2) :unlock:
-- [x] управление заказами
-  - [x] [формирование новых заказов от ИМ](#%D0%A0%D0%B5%D0%B3%D0%B8%D1%81%D1%82%D1%80%D0%B0%D1%86%D0%B8%D1%8F-%D0%B7%D0%B0%D0%BA%D0%B0%D0%B7%D0%B0-%D0%BE%D1%82-%D0%B8%D0%BD%D1%82%D0%B5%D1%80%D0%BD%D0%B5%D1%82-%D0%BC%D0%B0%D0%B3%D0%B0%D0%B7%D0%B8%D0%BD%D0%B0)
-  - [x] [оформление заказов на доставку](#%D0%A0%D0%B5%D0%B3%D0%B8%D1%81%D1%82%D1%80%D0%B0%D1%86%D0%B8%D1%8F-%D0%B7%D0%B0%D0%BA%D0%B0%D0%B7%D0%B0-%D0%BD%D0%B0-%D0%B4%D0%BE%D1%81%D1%82%D0%B0%D0%B2%D0%BA%D1%83)
-  - [x] [получение квитанции в PDF](#%D0%9F%D0%B5%D1%87%D0%B0%D1%82%D1%8C-%D0%BA%D0%B2%D0%B8%D1%82%D0%B0%D0%BD%D1%86%D0%B8%D0%B8-%D0%BA-%D0%B7%D0%B0%D0%BA%D0%B0%D0%B7%D1%83)
-  - [x] [получение почтовых этикеток в PDF](#%D0%9F%D0%B5%D1%87%D0%B0%D1%82%D1%8C-%D0%A8%D0%9A-%D0%BC%D0%B5%D1%81%D1%82)
-  - [x] [удаление заказов](#%D0%A3%D0%B4%D0%B0%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5-%D0%B7%D0%B0%D0%BA%D0%B0%D0%B7%D0%B0)
-  - [x] [изменение заказов](#%D0%B8%D0%B7%D0%BC%D0%B5%D0%BD%D0%B5%D0%BD%D0%B8%D0%B5-%D0%B7%D0%B0%D0%BA%D0%B0%D0%B7%D0%B0)
-  - [x] [получение информации по заказам (отчёт «Информация по заказам»)](#%D0%9E%D1%82%D1%87%D0%B5%D1%82-%D0%98%D0%BD%D1%84%D0%BE%D1%80%D0%BC%D0%B0%D1%86%D0%B8%D1%8F-%D0%BF%D0%BE-%D0%B7%D0%B0%D0%BA%D0%B0%D0%B7%D0%B0%D0%BC)
-  - [x] [трекинг заказов (отчёт «Статусы заказов»)](#%D0%A2%D1%80%D0%B5%D0%BA%D0%B8%D0%BD%D0%B3)
-  - [x] [прозвон получателя](#%D0%A0%D0%B5%D0%B3%D0%B8%D1%81%D1%82%D1%80%D0%B0%D1%86%D0%B8%D1%8F-%D0%B8%D0%BD%D1%84%D0%BE%D1%80%D0%BC%D0%B0%D1%86%D0%B8%D0%B8-%D0%BE-%D1%80%D0%B5%D0%B7%D1%83%D0%BB%D1%8C%D1%82%D0%B0%D1%82%D0%B5-%D0%BF%D1%80%D0%BE%D0%B7%D0%B2%D0%BE%D0%BD%D0%B0)
-  - [x] [вызов курьера](#%D0%92%D1%8B%D0%B7%D0%BE%D0%B2-%D0%BA%D1%83%D1%80%D1%8C%D0%B5%D1%80%D0%B0)
-  - [x] [создание преалерта](#%D0%A1%D0%BE%D0%B7%D0%B4%D0%B0%D0%BD%D0%B8%D0%B5-%D0%BF%D1%80%D0%B5%D0%B0%D0%BB%D0%B5%D1%80%D1%82%D0%B0)
- - [x] [выбор базового URL интерфейса](#%D0%97%D0%B0%D0%BC%D0%B5%D0%BD%D0%B0-%D0%B1%D0%B0%D0%B7%D0%BE%D0%B2%D0%BE%D0%B3%D0%BE-url-%D0%B8%D0%BD%D1%82%D0%B5%D1%80%D1%84%D0%B5%D0%B9%D1%81%D0%B0)
- - [x] [сервис-провайдер для Laravel 5.1+](#%D0%A1%D0%B5%D1%80%D0%B2%D0%B8%D1%81-%D0%BF%D1%80%D0%BE%D0%B2%D0%B0%D0%B9%D0%B4%D0%B5%D1%80-%D0%B4%D0%BB%D1%8F-laravel-51)
- - [x] [отладка получаемых ответов и посылаемых запросов](#%D0%9E%D1%82%D0%BB%D0%B0%D0%B4%D0%BA%D0%B0-%D0%BF%D0%BE%D0%BB%D1%83%D1%87%D0%B0%D0%B5%D0%BC%D1%8B%D1%85-%D0%BE%D1%82%D0%B2%D0%B5%D1%82%D0%BE%D0%B2)
-- Чего-то нет в списке? [Напишите, сообщите.](https://github.com/sanmai/cdek-sdk/issues/new/choose)
-
-Работа с большинством методов API возможна только при наличии договора со СДЭК. 
-
-<table>
-  <tr>
-    <td>:unlock:</td>
-    <td>Методы, отмеченные значком слева, доступны без договора в ограниченном объеме (рассчитываются только публичные тарифы, без скидок, без тарифов для ИМ).</td>
-  </tr>
-  <tr>
-    <td>:closed_lock_with_key:</td>
-    <td>Методы, отмеченные таким знаком, недоступны с тестовой учетной записью.</td>
-  </tr>
-</table>
-
-## Установка
+## Установка  {: #install}
 
 ```bash
 composer require sanmai/cdek-sdk
 ```
 Требования — минимальны. Нужен PHP 7.0 или выше. Работа протестирована под PHP 7.0, 7.1, 7.2, 7.3.
 
-### Гарантии обратной совместимости
+### Гарантии обратной совместимости {: #backward-compatibility}
 
 При разработке этой библиотеки большое внимание уделяется обратной совместимости API в пределах основной версии. Если вы установили когда-то версию ветки 0.6, например 0.6.7, то после обновления до 0.6.8 или даже до 0.6.12 вы можете рассчитывать что весь ваш код будет работать точно так же как раньше, без необходимости что-то менять, при условии, конечно, что API самих СДЭК не поменялось. Такого же принципа работы с версиями [по умолчанию придерживается Composer](https://getcomposer.org/doc/articles/versions.md#caret-version-range-).
 
@@ -66,7 +28,7 @@ composer require sanmai/cdek-sdk
 
 После выхода версии 1.0 обратная совместимость будет поддерживаться в пределах мажорной версии.
 
-## Инициализация
+## Инициализация {: #initialize}
 
 ```php
 require_once 'vendor/autoload.php';
@@ -79,7 +41,7 @@ $client = new \CdekSDK\CdekClient('account', 'password');
 
 Для подготовки запросов и ответов используются аннотации из Doctrine. Если вы не знаете что это, то ничего не нужно делать. Иначе обратите внимание на [замечания к совместному использованию AnnotationRegistry](#annotationregistry).
 
-### Работа в тестовой среде
+### Работа в тестовой среде {: #testing}
 
 Для работы в тестовой среде нужно указать другой базовый URI. Это делается следующим образом:
 
@@ -91,7 +53,7 @@ $client = new \CdekSDK\CdekClient('Account', 'Secure', new \GuzzleHttp\Client([
 
 Реквизиты тестовых учётных записей можно найти [в документации на протокол](https://confluence.cdek.ru/pages/viewpage.action?pageId=15616129#id-%D0%9F%D1%80%D0%BE%D1%82%D0%BE%D0%BA%D0%BE%D0%BB%D0%BE%D0%B1%D0%BC%D0%B5%D0%BD%D0%B0%D0%B4%D0%B0%D0%BD%D0%BD%D1%8B%D0%BC%D0%B8(v1.5)-1.5.%D0%A2%D0%B5%D1%81%D1%82%D0%BE%D0%B2%D1%8B%D0%B5%D1%83%D1%87%D0%B5%D1%82%D0%BD%D1%8B%D0%B5%D0%B7%D0%B0%D0%BF%D0%B8%D1%81%D0%B8%D0%B8%D0%B8%D1%85%D0%BE%D0%B3%D1%80%D0%B0%D0%BD%D0%B8%D1%87%D0%B5%D0%BD%D0%B8%D1%8F).
 
-## Использование
+## Использование {: #methods}
 
 Перечень основных методов класса `CdekClient` ниже.
 
@@ -115,7 +77,7 @@ $client = new \CdekSDK\CdekClient('Account', 'Secure', new \GuzzleHttp\Client([
 
 Подробное описание параметров каждого метода [смотрите в документации СДЭК](https://www.cdek.ru/clients/integrator.html). Также обратите внимание на список [часто задаваемых вопросов по интеграции](https://www.cdek.ru/faq_integrator.html).
 
-### Обработка ошибок
+### Обработка ошибок {: #hasErrors}
 
 Все возвращаемые ответы содержат методы для проверки на ошибку, также для получения списка сообщений включая сообщения об ошибках.
 
@@ -135,7 +97,7 @@ if ($response->hasErrors()) {
 ```
 В редких случаях при запросе и при работе с объектами могут возникнуть исключения.
 
-#### TypeError
+#### TypeError {: #TypeError}
 
 Кроме обычных ошибок при отправке запросов (например, из-за ошибочного XML, или из-за вышедшего времени ожидания результатов запроса), другим частым исключением является ошибка вида `TypeError`, которая возникает при работе с полученными объектами.
 
@@ -170,7 +132,7 @@ if ($status = $order->getStatus()) {
 
 Подобное расхождение в обработке отсутствующих значений существует в силу исторических причин, устранить которое невозможно без частичной потери [обратной совместимости](#%D0%B3%D0%B0%D1%80%D0%B0%D0%BD%D1%82%D0%B8%D0%B8-%D0%BE%D0%B1%D1%80%D0%B0%D1%82%D0%BD%D0%BE%D0%B9-%D1%81%D0%BE%D0%B2%D0%BC%D0%B5%D1%81%D1%82%D0%B8%D0%BC%D0%BE%D1%81%D1%82%D0%B8) (замена строгого возвращаемого типа на опциональный нарушает обратную совместимость). Эти различия могут быть частично или полностью устранены в следующей мажорной версии переходом на использование какого-то из двух методов, о чём будет обязательно сообщено.
 
-### Получение списка ПВЗ
+### Получение списка ПВЗ {: #PvzListRequest}
 
 ```php
 use CdekSDK\Requests;
@@ -202,7 +164,7 @@ foreach ($response as $item) {
 }
 ```
 
-### Расчёт стоимости доставки
+### Расчёт стоимости доставки {: #CalculationRequest}
 
 ```php
 use CdekSDK\Requests;
@@ -233,7 +195,7 @@ $response->getPrice();
 // double(1250)
 ```
 
-#### Характерные ошибки при расчёте
+#### Характерные ошибки при расчёте {: #CalculationRequest-errors}
 
 > "Невозможно осуществить доставку по этому направлению при заданных условиях"
 
@@ -241,7 +203,7 @@ $response->getPrice();
 
 При прочих равных лучше всегда использовать запрос с авторизацией.
 
-### Список регионов/субъектов РФ
+### Список регионов/субъектов РФ {: #RegionsRequest}
 
 ```php
 use CdekSDK\Requests;
@@ -269,7 +231,7 @@ foreach ($response as $region) {
 }
 ```
 
-### Список городов
+### Список городов {: #CitiesRequest }
 
 ```php
 use CdekSDK\Requests;
@@ -302,7 +264,7 @@ foreach ($response as $location) {
 }
 ```
 
-### Регистрация заказа от интернет-магазина
+### Регистрация заказа от интернет-магазина {: #DeliveryRequest }
 
 Названия полей соответствуют названиям полей [в официальной документации](https://confluence.cdek.ru/x/gUju).
 
@@ -376,7 +338,7 @@ foreach ($response->getOrders() as $order) {
 }
 ```
 
-### Регистрация заказа на доставку
+### Регистрация заказа на доставку {: #AddDeliveryRequest }
 
 Отличается необходимость указывать тип клиента, адрес забора груза. Без необходимости указывать состав посылок, но с указанием описания вложения.
 
@@ -451,7 +413,7 @@ foreach ($response->getOrders() as $order) {
 }
 ```
 
-### Печать квитанции к заказу
+### Печать квитанции к заказу {: #PrintReceiptsRequest }
 
 Для подготовки документов необходимо указывать или номер заказа СДЭК, DispatchNumber, или номер заказа ИМ и дату через объёкт заказа.
 
@@ -482,7 +444,7 @@ $request->addOrder($orderFromAnotherResponse);
 $request->addOrder(Common\Order::withNumberAndDate($number, new \DateTime($dateString)));
 ```
 
-### Печать ШК-мест
+### Печать ШК-мест {: #PrintLabelsRequest }
 
 Печать ШК-мест производится по такому же алгоритму что и печать квитанций.
 
@@ -505,7 +467,7 @@ if ($response->hasErrors()) {
 return (string) $response->getBody();
 ```
 
-### Удаление заказа
+### Удаление заказа {: #DeleteRequest }
 
 ```php
 use CdekSDK\Common;
@@ -529,7 +491,7 @@ foreach ($response->getOrders() as $order) {
 }
 ```
 
-### Изменение заказа
+### Изменение заказа {: #UpdateRequest }
 
 ```php
 use CdekSDK\Common;
@@ -553,7 +515,7 @@ foreach ($response->getOrders() as $order) {
 }
 ```
 
-### Вызов курьера
+### Вызов курьера {: #CallCourierRequest }
 
 ```php
 use CdekSDK\Common;
@@ -585,7 +547,7 @@ foreach ($response->getNumbers() as $number) {
 }
 ```
 
-### Регистрация информации о результате прозвона
+### Регистрация информации о результате прозвона {: #ScheduleRequest}
 
 ```php
 use CdekSDK\Common;
@@ -617,7 +579,7 @@ if ($response->hasErrors()) {
 }
 ```
 
-### Создание преалерта
+### Создание преалерта {: #PreAlertRequest }
 
 ```php
 use CdekSDK\Common;
@@ -637,7 +599,7 @@ if ($response->hasErrors()) {
 }
 ```
 
-### Трекинг
+### Трекинг {: #StatusReportRequest }
 
 Он же отчет "Статусы заказов", используется для получения отчета по статусам заказов, включая историю изменения статусов.
 
@@ -694,7 +656,7 @@ foreach ($response as $order) {
 }
 ```
 
-### Отчет "Информация по заказам"
+### Отчет "Информация по заказам" {: #InfoReportRequest }
 
 Отчет используется для получения детальной информации по заказам.
 
@@ -731,7 +693,7 @@ foreach ($response as $order) {
 }
 ```
 
-### Замена базового URL интерфейса
+### Замена базового URL интерфейса {: #base_uri }
 
 [Перечень возможных URL в документации.](https://confluence.cdek.ru/pages/viewpage.action?pageId=15616129#id-%D0%9F%D1%80%D0%BE%D1%82%D0%BE%D0%BA%D0%BE%D0%BB%D0%BE%D0%B1%D0%BC%D0%B5%D0%BD%D0%B0%D0%B4%D0%B0%D0%BD%D0%BD%D1%8B%D0%BC%D0%B8(v1.5)-3.1.%D0%91%D0%B0%D0%B7%D0%BE%D0%B2%D1%8B%D0%B9URL%D0%B8%D0%BD%D1%82%D0%B5%D1%80%D1%84%D0%B5%D0%B9%D1%81%D0%B0)
 
@@ -755,7 +717,7 @@ $client = new \CdekSDK\CdekClient($account, $password, new \GuzzleHttp\Client([
 ]));
 ```
 
-### Сервис-провайдер для Laravel 5.1+
+### Сервис-провайдер для Laravel 5.1+ {: #Laravel}
 
 ```php
 // config/app.php
@@ -780,7 +742,7 @@ $client = new \CdekSDK\CdekClient($account, $password, new \GuzzleHttp\Client([
     ],
 ```
 
-### Отладка получаемых ответов
+### Отладка получаемых ответов {: #DebuggingLogger }
 
 Посмотреть, что конкретно отвечает СДЭК на наши запросы и какие запросы мы посылаем сами можно используя [стандартный PSR-3 логгер](https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-3-logger-interface.md), такой, как, например, [Monolog](https://github.com/Seldaek/monolog).
 
@@ -792,17 +754,17 @@ $client->setLogger($monolog);
 
 Пример класса, [реализующего минимальный интерфейс](tests/Integration/DebuggingLogger.php#L51-L57).
 
-## Замечания
+## Замечания {: #contribute}
 
 - [Инструкции по доработке и тестированию.](CONTRIBUTING.md)
 
 - [Общие инструкции по работе с GitHub.](https://www.alexeykopytko.com/2018/github-contributor-guide/) Если это ваш первый PR, очень рекомендуем ознакомиться.
 
-### О форматах даты и времени
+### О форматах даты и времени {: #DateTimeImmutable}
 
 Для указания даты и времени в запросах везде можно использовать ровно как `DateTime`, так и `DateTimeImmutable`.
 
-### AnnotationRegistry
+### AnnotationRegistry {: #AnnotationRegistry}
 
 Если вы не используете `AnnotationRegistry` где-то ещё, то никакой дополнительной настройки делать не требуется.
 
@@ -820,14 +782,14 @@ $client->setLogger($monolog);
 
 Обычно ничего этого делать не нужно, всё должно работать и так.
 
-### Авторы и ссылки
+### Авторы и ссылки {: #legacy}
 
 [Эта библиотека](https://github.com/sanmai/cdek-sdk) - хард-форк библиотеки [appwilio/cdek-sdk](https://github.com/appwilio/cdek-sdk) с поддержкой более старых версий PHP и расширенной поддержкой API. Обратная совместимость с исходной библиотекой не гарантируется, но фичи и исправления будут переноситься оттуда сюда по мере возможности. Если что-то пропустили, [дайте знать](https://github.com/sanmai/cdek-sdk/issues/new).
 
 Авторы-создатели исходной библиотеки: [JhaoDa](https://github.com/jhaoda) и [greabock](https://github.com/greabock).
 
-## Лицензия
+## Лицензия {: #license}
 
-Данный SDK распространяется [под лицензией MIT](LICENSE).
+Данный SDK распространяется под лицензией MIT.
 
 This project is licensed under the terms of the MIT license.

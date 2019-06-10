@@ -15,26 +15,26 @@
 Возможности:
 
 - [x] расчёт тарифов и обращения к справочникам
-  - [x] [расчёт стоимости доставки по тарифам с приоритетом](https://cdek-sdk.readthedocs.io/#) :unlock: :closed_lock_with_key:
+  - [x] [расчёт стоимости доставки по тарифам с приоритетом](https://cdek-sdk.readthedocs.io/#CalculationRequest) :unlock: :closed_lock_with_key:
   - [ ] расчёт стоимости по тарифам без приоритета :unlock: :closed_lock_with_key:
-  - [x] [получение списка пунктов выдачи заказов (ПВЗ) с фильтрацией](https://cdek-sdk.readthedocs.io/#) :unlock:
-  - [x] [получение списка регионов-субъектов РФ](https://cdek-sdk.readthedocs.io/#) :unlock:
-  - [x] [получение списка городов](https://cdek-sdk.readthedocs.io/#) :unlock:
+  - [x] [получение списка пунктов выдачи заказов (ПВЗ) с фильтрацией](https://cdek-sdk.readthedocs.io/#PvzListRequest) :unlock:
+  - [x] [получение списка регионов-субъектов РФ](https://cdek-sdk.readthedocs.io/#RegionsRequest) :unlock:
+  - [x] [получение списка городов](https://cdek-sdk.readthedocs.io/#CitiesRequest) :unlock:
 - [x] управление заказами
-  - [x] [формирование новых заказов от ИМ](https://cdek-sdk.readthedocs.io/#)
-  - [x] [оформление заказов на доставку](https://cdek-sdk.readthedocs.io/#)
-  - [x] [получение квитанции в PDF](https://cdek-sdk.readthedocs.io/#)
-  - [x] [получение почтовых этикеток в PDF](https://cdek-sdk.readthedocs.io/#)
-  - [x] [удаление заказов](https://cdek-sdk.readthedocs.io/#)
-  - [x] [изменение заказов](https://cdek-sdk.readthedocs.io/#)
-  - [x] [получение информации по заказам (отчёт «Информация по заказам»)](https://cdek-sdk.readthedocs.io/#)
-  - [x] [трекинг заказов (отчёт «Статусы заказов»)](https://cdek-sdk.readthedocs.io/#)
-  - [x] [прозвон получателя](https://cdek-sdk.readthedocs.io/#)
-  - [x] [вызов курьера](https://cdek-sdk.readthedocs.io/#)
-  - [x] [создание преалерта](https://cdek-sdk.readthedocs.io/#)
- - [x] [выбор базового URL интерфейса](https://cdek-sdk.readthedocs.io/#)
- - [x] [сервис-провайдер для Laravel 5.1+](https://cdek-sdk.readthedocs.io/#)
- - [x] [отладка получаемых ответов и посылаемых запросов](https://cdek-sdk.readthedocs.io/#)
+  - [x] [формирование новых заказов от ИМ](https://cdek-sdk.readthedocs.io/#DeliveryRequest)
+  - [x] [оформление заказов на доставку](https://cdek-sdk.readthedocs.io/#AddDeliveryRequest)
+  - [x] [получение квитанции в PDF](https://cdek-sdk.readthedocs.io/#PrintReceiptsRequest)
+  - [x] [получение почтовых этикеток в PDF](https://cdek-sdk.readthedocs.io/#PrintLabelsRequest)
+  - [x] [удаление заказов](https://cdek-sdk.readthedocs.io/#DeleteRequest)
+  - [x] [изменение заказов](https://cdek-sdk.readthedocs.io/#UpdateRequest)
+  - [x] [получение информации по заказам (отчёт «Информация по заказам»)](https://cdek-sdk.readthedocs.io/#InfoReportRequest)
+  - [x] [трекинг заказов (отчёт «Статусы заказов»)](https://cdek-sdk.readthedocs.io/#StatusReportRequest)
+  - [x] [прозвон получателя](https://cdek-sdk.readthedocs.io/#ScheduleRequest)
+  - [x] [вызов курьера](https://cdek-sdk.readthedocs.io/#CallCourierRequest)
+  - [x] [создание преалерта](https://cdek-sdk.readthedocs.io/#PreAlertRequest)
+ - [x] [выбор базового URL интерфейса](https://cdek-sdk.readthedocs.io/#base_uri)
+ - [x] [сервис-провайдер для Laravel 5.1+](https://cdek-sdk.readthedocs.io/#Laravel)
+ - [x] [отладка получаемых ответов и посылаемых запросов](https://cdek-sdk.readthedocs.io/#DebuggingLogger)
 - Чего-то нет в списке? [Напишите, сообщите.](https://github.com/sanmai/cdek-sdk/issues/new/choose)
 
 Работа с большинством методов API возможна только при наличии договора со СДЭК. 

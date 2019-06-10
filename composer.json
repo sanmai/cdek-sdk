@@ -9,7 +9,7 @@
         "СДЭК",
         "служба доставки"
     ],
-    "homepage": "https://github.com/sanmai/cdek-sdk",
+    "homepage": "https://cdek-sdk.readthedocs.io/",
     "license": "MIT",
     "authors": [
         {
@@ -80,6 +80,6 @@
     "support": {
         "issues": "https://github.com/sanmai/cdek-sdk/issues",
         "chat": "https://t.me/phpcdeksdk",
-        "docs": "https://github.com/sanmai/cdek-sdk/blob/master/README.md"
+        "docs": "https://cdek-sdk.readthedocs.io/"
     }
 }

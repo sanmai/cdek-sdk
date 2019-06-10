@@ -750,7 +750,7 @@ $client->setLogger($monolog);
 
 Текстовые запросы и ответы в исходном виде идут с уровнем `DEBUG`.
 
-Пример класса, [реализующего минимальный интерфейс](tests/Integration/DebuggingLogger.php#L51-L57).
+Пример класса, [реализующего минимальный интерфейс](https://github.com/sanmai/cdek-sdk/blob/master/tests/Integration/DebuggingLogger.php#L51-L57).
 
 ## Замечания {: #contribute}
 
@@ -758,11 +758,11 @@ $client->setLogger($monolog);
 
 - [Общие инструкции по работе с GitHub.](https://www.alexeykopytko.com/2018/github-contributor-guide/) Если это ваш первый PR, очень рекомендуем ознакомиться.
 
-### О форматах даты и времени {: #DateTimeImmutable}
+### О форматах даты и времени {: #DateTimeImmutable }
 
 Для указания даты и времени в запросах везде можно использовать ровно как `DateTime`, так и `DateTimeImmutable`.
 
-### AnnotationRegistry {: #AnnotationRegistry}
+### AnnotationRegistry {: #AnnotationRegistry }
 
 Если вы не используете `AnnotationRegistry` где-то ещё, то никакой дополнительной настройки делать не требуется.
 
@@ -780,13 +780,13 @@ $client->setLogger($monolog);
 
 Обычно ничего этого делать не нужно, всё должно работать и так.
 
-### Авторы и ссылки {: #legacy}
+### Авторы и ссылки {: #legacy }
 
 [Эта библиотека](https://github.com/sanmai/cdek-sdk) - хард-форк библиотеки [appwilio/cdek-sdk](https://github.com/appwilio/cdek-sdk) с поддержкой более старых версий PHP и расширенной поддержкой API. Обратная совместимость с исходной библиотекой не гарантируется, но фичи и исправления будут переноситься оттуда сюда по мере возможности. Если что-то пропустили, [дайте знать](https://github.com/sanmai/cdek-sdk/issues/new).
 
 Авторы-создатели исходной библиотеки: [JhaoDa](https://github.com/jhaoda) и [greabock](https://github.com/greabock).
 
-## Лицензия {: #license}
+## Лицензия {: #license }
 
 Данный SDK распространяется под лицензией MIT.
 

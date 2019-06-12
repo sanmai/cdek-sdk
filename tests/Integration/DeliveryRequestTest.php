@@ -388,10 +388,10 @@ class DeliveryRequestTest extends TestCase
 
         $response = $this->getClient()->sendStatusReportRequest($request);
 
-        // База СДЭК не успевает записать данные?
-        if ($response->getErrorCode() === 'ERR_ORDERS_NOT_FOUND') {
-            $this->markTestSkipped($response->getMessage());
-        }
+        $this->skipIfKnownAPIErrorCode($response, [
+            'ERR_ORDERS_NOT_FOUND', // здесь и ниже - случай когда БД СДЭК отстаёт
+            'ERR_ORDER_NUMBER_NOT_EXIST',
+        ]);
 
         $this->assertFalse($response->hasErrors());
 

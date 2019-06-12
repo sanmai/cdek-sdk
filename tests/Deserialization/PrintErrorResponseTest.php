@@ -54,6 +54,24 @@ class PrintErrorResponseTest extends TestCase
         }
     }
 
+    public function test_another_failing_request()
+    {
+        $response = $this->getSerializer()->deserialize(FixtureLoader::load('OrdersPrintError.xml'), PrintErrorResponse::class, 'xml');
+
+        /** @var $response PrintErrorResponse */
+        $this->assertInstanceOf(PrintErrorResponse::class, $response);
+
+        $this->assertTrue($response->hasErrors());
+        $this->assertCount(1, $response->getMessages());
+
+        foreach ($response->getMessages() as $message) {
+            $this->assertTrue($message->isError());
+            $this->assertSame('ERR_PRINT_ORDER', $message->getErrorCode());
+            $this->assertSame('Не удалось сформировать файл печатной формы.', $message->getText());
+            break;
+        }
+    }
+
     public function test_it_serializes_to_empty_json()
     {
         $response = new PrintErrorResponse();

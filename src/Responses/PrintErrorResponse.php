@@ -48,6 +48,14 @@ final class PrintErrorResponse implements Response
      */
     private $errors = [];
 
+    /**
+     * @JMS\XmlList(entry = "OrdersPrint", inline = true)
+     * @JMS\Type("array<CdekSDK\Responses\Types\PrintError>")
+     *
+     * @var PrintError[]
+     */
+    private $moreErrors = [];
+
     public function hasErrors(): bool
     {
         return true;
@@ -58,7 +66,7 @@ final class PrintErrorResponse implements Response
      */
     public function getMessages()
     {
-        return Message::from($this->errors);
+        return Message::from($this->errors, $this->moreErrors);
     }
 
     public function jsonSerialize()

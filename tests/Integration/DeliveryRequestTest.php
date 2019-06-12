@@ -326,7 +326,8 @@ class DeliveryRequestTest extends TestCase
         $this->assertInstanceOf(UpdateResponse::class, $response);
 
         $this->skipIfKnownAPIErrorCode($response, [
-            'ERR_ORDER_NOTFIND', // Случай когда БД СДЭК отстаёт
+            'ERR_ORDER_NOTFIND', // здесь и ниже - случай когда БД СДЭК отстаёт
+            'ERR_ORDER_NUMBER_NOT_EXIST',
         ]);
 
         foreach ($response->getMessages() as $message) {
@@ -387,12 +388,12 @@ class DeliveryRequestTest extends TestCase
 
         $response = $this->getClient()->sendStatusReportRequest($request);
 
-        $this->assertFalse($response->hasErrors());
-
         // База СДЭК не успевает записать данные?
         if ($response->getErrorCode() === 'ERR_ORDERS_NOT_FOUND') {
             $this->markTestSkipped($response->getMessage());
         }
+
+        $this->assertFalse($response->hasErrors());
 
         $this->assertInstanceOf(StatusReportResponse::class, $response);
         $this->assertTrue($response->getDateFirst() < $response->getDateLast());

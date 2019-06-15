@@ -3,7 +3,7 @@ theme: readthedocs
 lang: ru
 
 nav:
-    - Введение: index.md
+    - PHP SDK для API СДЭК: index.md
 
 markdown_extensions:
     - toc:

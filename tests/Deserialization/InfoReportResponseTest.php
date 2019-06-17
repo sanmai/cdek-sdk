@@ -90,6 +90,7 @@ class InfoReportResponseTest extends TestCase
                 foreach ($package->getItems() as $item) {
                     /** @var $item Item */
                     $this->assertSame('NN0001', $item->getWareKey());
+                    $this->assertSame('Example', $item->getMarking());
                     $this->assertSame(500.0, $item->getCost());
                     $this->assertSame(0.0, $item->getPayment());
                     $this->assertSame(0.12, $item->getWeight());

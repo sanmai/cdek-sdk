@@ -53,6 +53,16 @@ final class Item
     protected $WareKey;
 
     /**
+     * Маркировка товара/вложения.
+     *
+     * @JMS\XmlAttribute
+     * @JMS\Type("string")
+     *
+     * @var string
+     */
+    protected $Marking;
+
+    /**
      * Value of each item in the request's currency. For foreign orders only.
      *
      * @JMS\XmlAttribute
@@ -203,6 +213,11 @@ final class Item
     public function getWareKey(): string
     {
         return $this->WareKey;
+    }
+
+    public function getMarking(): string
+    {
+        return $this->Marking;
     }
 
     public function getCost(): float

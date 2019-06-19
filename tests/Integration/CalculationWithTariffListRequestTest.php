@@ -97,7 +97,6 @@ class CalculationWithTariffListRequestTest extends TestCase
             ->setReceiverCityPostCode('652632')
             ->addAdditionalService(AdditionalService::SERVICE_INSURANCE, 2000)
             ->setTariffId(137)
-            ->setTariffId(233)
             ->addPackage([
                 'weight' => 0.2,
                 'length' => 25,
@@ -118,7 +117,7 @@ class CalculationWithTariffListRequestTest extends TestCase
         $this->assertFalse($response->hasErrors());
 
         /** @var \CdekSDK\Responses\CalculationWithTariffListResponse $response */
-        $this->assertCount(2, $response);
+        $this->assertCount(1, $response);
 
         foreach ($response as $result) {
             /** @var \CdekSDK\Responses\Types\TariffResult $result */

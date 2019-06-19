@@ -28,14 +28,18 @@ declare(strict_types=1);
 
 namespace CdekSDK\Requests;
 
-use CdekSDK\Requests\Concerns\AnonymousJsonRequest;
+use CdekSDK\Responses\CalculationWithTariffListResponse;
 
 /**
- * Class CalculationRequest.
- *
  * @final
  */
-class CalculationRequest extends CalculationAuthorizedRequest
+class CalculationWithTariffListAuthorizedRequest extends CalculationAuthorizedRequest
 {
-    use AnonymousJsonRequest;
+    const ADDRESS = 'https://api.cdek.ru/calculator/calculate_tarifflist.php';
+    const RESPONSE = CalculationWithTariffListResponse::class;
+
+    public function setTariffId($id)
+    {
+        return $this->addTariffToList($id);
+    }
 }

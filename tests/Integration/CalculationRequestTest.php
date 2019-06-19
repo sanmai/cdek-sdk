@@ -33,6 +33,7 @@ use CdekSDK\Requests\CalculationRequest;
 
 /**
  * @covers \CdekSDK\Requests\CalculationRequest
+ * @covers \CdekSDK\Requests\CalculationAuthorizedRequest
  * @covers \CdekSDK\Responses\CalculationResponse
  *
  * @group integration

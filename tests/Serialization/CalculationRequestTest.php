@@ -69,6 +69,44 @@ class CalculationRequestTest extends TestCase
         ], $request->getBody());
     }
 
+    public function test_with_currency()
+    {
+        $request = new CalculationRequest();
+
+        $request->setSenderCityPostCode('295000')
+            ->setReceiverCityPostCode('652632')
+            ->addTariffToList(1)
+            ->addTariffToList(8)
+            ->addPackage([
+                'weight' => 0.2,
+                'length' => 25,
+                'width'  => 15,
+                'height' => 10,
+            ]);
+
+        $this->assertSame([
+            'version' => '1.0',
+            'goods'   => [
+                [
+                    'weight' => 0.2,
+                    'length' => 25,
+                    'width'  => 15,
+                    'height' => 10,
+                ],
+            ],
+            'tariffList' => [
+                [
+                    'id' => 1,
+                ],
+                [
+                    'id' => 8,
+                ],
+            ],
+            'senderCityPostCode'   => '295000',
+            'receiverCityPostCode' => '652632',
+        ], $request->jsonSerialize());
+    }
+
     public function test_with_authorization()
     {
         $request = CalculationRequest::withAuthorization();
@@ -154,6 +192,7 @@ class CalculationRequestTest extends TestCase
 
         $this->assertSame([
             'version'     => '1.0',
+            'currency'    => 'EUR',
             'dateExecute' => '2019-04-08',
             'secure'      => 'bar',
             'authLogin'   => 'foo',
@@ -171,6 +210,7 @@ class CalculationRequestTest extends TestCase
 
         $this->assertSame([
             'version'     => '1.0',
+            'currency'    => 'EUR',
             'dateExecute' => '2019-04-08',
         ], $request->jsonSerialize());
     }

@@ -197,7 +197,7 @@ class CalculationAuthorizedRequest implements JsonRequest, \JsonSerializable, Da
      *
      * @return self
      */
-    public function addTariffToList($id, $priority, $modeId = null)
+    public function addTariffToList($id, $priority = null, $modeId = null)
     {
         $this->tariffId = null;
 
@@ -293,6 +293,7 @@ class CalculationAuthorizedRequest implements JsonRequest, \JsonSerializable, Da
             'services'             => $this->services,
             'receiverCityId'       => $this->receiverCityId,
             'receiverCityPostCode' => $this->receiverCityPostCode,
+            'currency'             => $this->currency,
             'dateExecute'          => $this->dateExecute instanceof \DateTimeInterface ? $this->dateExecute->format('Y-m-d') : null,
         ]);
 

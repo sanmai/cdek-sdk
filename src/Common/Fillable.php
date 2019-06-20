@@ -35,6 +35,8 @@ trait Fillable
      * @psalm-suppress MixedArgument
      *
      * @param array<string, mixed> $data
+     *
+     * @final
      */
     public function __construct(array $data = [])
     {
@@ -55,6 +57,8 @@ trait Fillable
      * @phan-suppress PhanTypeInstantiateTrait
      *
      * @return static
+     *
+     * @final
      */
     public static function create($data = [])
     {

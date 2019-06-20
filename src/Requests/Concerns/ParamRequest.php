@@ -30,6 +30,9 @@ namespace CdekSDK\Requests\Concerns;
 
 trait ParamRequest
 {
+    /**
+     * @final
+     */
     public function getParams(): array
     {
         return \array_filter(\get_object_vars($this), function ($value) {

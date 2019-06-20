@@ -43,6 +43,7 @@ trait WrapsResult
 
     /**
      * @phan-suppress PhanInfiniteRecursion
+     * @final
      */
     public function __call(string $name, array $arguments)
     {

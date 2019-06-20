@@ -32,6 +32,9 @@ use CdekSDK\Contracts\Response;
 
 trait HasErrors
 {
+    /**
+     * @final
+     */
     public function hasErrors(): bool
     {
         \assert($this instanceof Response);

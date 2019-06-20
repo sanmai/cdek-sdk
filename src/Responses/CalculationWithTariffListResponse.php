@@ -63,7 +63,7 @@ final class CalculationWithTariffListResponse implements Response, \IteratorAggr
     }
 
     /**
-     * @return HasErrorCode[]|Error[]
+     * @return Error[]|HasErrorCode[]
      */
     public function getErrors(): array
     {

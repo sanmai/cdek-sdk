@@ -32,6 +32,7 @@ trait AnonymousJsonRequest
 {
     /**
      * @phan-suppress PhanUndeclaredProperty
+     * @phan-suppress PhanTraitParentReference
      *
      * @return array
      */

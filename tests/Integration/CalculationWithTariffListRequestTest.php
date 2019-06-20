@@ -31,6 +31,7 @@ namespace Tests\CdekSDK\Integration;
 use CdekSDK\Common\AdditionalService;
 use CdekSDK\Requests\CalculationWithTariffListAuthorizedRequest;
 use CdekSDK\Requests\CalculationWithTariffListRequest;
+use CdekSDK\Responses\Types\Error;
 
 /**
  * @covers \CdekSDK\Requests\CalculationWithTariffListAuthorizedRequest
@@ -81,7 +82,9 @@ class CalculationWithTariffListRequestTest extends TestCase
         /** @var \CdekSDK\Responses\CalculationWithTariffListResponse $response */
         $this->assertTrue($response->hasErrors());
 
+        /** @var Error $error */
         foreach ($response->getErrors() as $error) {
+            $this->assertInstanceOf(Error::class, $error);
             $this->assertGreaterThan(0, $error->getCode());
             $this->assertNotEmpty($error->getMessage());
         }
@@ -90,6 +93,11 @@ class CalculationWithTariffListRequestTest extends TestCase
         $this->assertCount(0, $response->getResults());
     }
 
+    /**
+     * @psalm-suppress InvalidArgument
+     * @psalm-suppress MixedAssignment
+     * @psalm-suppress MixedMethodCall
+     */
     public function test_authorized_success()
     {
         $request = new CalculationWithTariffListAuthorizedRequest();

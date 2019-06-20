@@ -29,8 +29,10 @@ declare(strict_types=1);
 namespace Tests\CdekSDK\Deserialization;
 
 use CdekSDK\Common\Item;
+use CdekSDK\Responses\CalculationWithTariffListResponse;
 use CdekSDK\Serialization\Exception\LibXMLError;
 use CdekSDK\Serialization\Exception\XmlErrorException;
+use JMS\Serializer\Exception\RuntimeException;
 
 /**
  * @covers \CdekSDK\Serialization\Serializer
@@ -44,6 +46,14 @@ class InvalidXMLTest extends TestCase
         $this->expectException(\JMS\Serializer\Exception\XmlErrorException::class);
 
         $this->getSerializer()->deserialize('', Item::class, 'xml');
+    }
+
+    public function test_passes_through_original_exception_if_not_xml()
+    {
+        $this->expectException(RuntimeException::class);
+        $this->expectExceptionMessage('Invalid data');
+
+        $this->getSerializer()->deserialize(\json_encode(['error' => ['a' => 'b']]), CalculationWithTariffListResponse::class, 'json');
     }
 
     public function test_error_contains_invalid_xml()

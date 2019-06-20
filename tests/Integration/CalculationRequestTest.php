@@ -68,6 +68,9 @@ class CalculationRequestTest extends TestCase
         $this->assertGreaterThan(0, $response->getPrice());
     }
 
+    /**
+     * @psalm-suppress ArgumentTypeCoercion
+     */
     public function test_authorized_success()
     {
         $request = CalculationRequest::withAuthorization()
@@ -99,6 +102,9 @@ class CalculationRequestTest extends TestCase
         $this->assertGreaterThan(0, $response->getPrice());
     }
 
+    /**
+     * @psalm-suppress ArgumentTypeCoercion
+     */
     public function test_failure()
     {
         $request = (new CalculationRequest())

@@ -36,6 +36,7 @@ use PHPUnit\Framework\TestCase;
 /**
  * @covers \CdekSDK\Requests\CalculationRequest
  * @covers \CdekSDK\Requests\CalculationAuthorizedRequest
+ * @covers \CdekSDK\Requests\Templates\CalculationAuthorizedRequest
  */
 class CalculationRequestTest extends TestCase
 {

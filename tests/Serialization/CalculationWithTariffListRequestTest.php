@@ -34,6 +34,7 @@ use PHPUnit\Framework\TestCase;
 /**
  * @covers \CdekSDK\Requests\CalculationWithTariffListAuthorizedRequest
  * @covers \CdekSDK\Requests\CalculationWithTariffListRequest
+ * @covers \CdekSDK\Requests\Templates\CalculationAuthorizedRequest
  */
 class CalculationWithTariffListRequestTest extends TestCase
 {

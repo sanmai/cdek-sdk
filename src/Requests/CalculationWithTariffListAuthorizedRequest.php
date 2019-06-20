@@ -33,7 +33,7 @@ use CdekSDK\Responses\CalculationWithTariffListResponse;
 /**
  * @final
  */
-class CalculationWithTariffListAuthorizedRequest extends CalculationAuthorizedRequest
+class CalculationWithTariffListAuthorizedRequest extends Templates\CalculationAuthorizedRequest
 {
     const ADDRESS = 'https://api.cdek.ru/calculator/calculate_tarifflist.php';
     const RESPONSE = CalculationWithTariffListResponse::class;

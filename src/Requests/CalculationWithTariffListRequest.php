@@ -30,10 +30,7 @@ namespace CdekSDK\Requests;
 
 use CdekSDK\Requests\Concerns\AnonymousJsonRequest;
 
-/**
- * @final
- */
-class CalculationWithTariffListRequest extends CalculationWithTariffListAuthorizedRequest
+final class CalculationWithTariffListRequest extends CalculationWithTariffListAuthorizedRequest
 {
     use AnonymousJsonRequest;
 }

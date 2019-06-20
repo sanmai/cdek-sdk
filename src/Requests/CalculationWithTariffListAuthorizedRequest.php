@@ -38,7 +38,7 @@ class CalculationWithTariffListAuthorizedRequest extends CalculationAuthorizedRe
     const ADDRESS = 'https://api.cdek.ru/calculator/calculate_tarifflist.php';
     const RESPONSE = CalculationWithTariffListResponse::class;
 
-    public function setTariffId($id)
+    final public function setTariffId($id)
     {
         return $this->addTariffToList($id);
     }

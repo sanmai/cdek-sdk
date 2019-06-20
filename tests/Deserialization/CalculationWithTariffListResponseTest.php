@@ -37,6 +37,7 @@ use Tests\CdekSDK\Fixtures\FixtureLoader;
  * @covers \CdekSDK\Responses\Types\Result
  * @covers \CdekSDK\Responses\Types\Error
  * @covers \CdekSDK\Responses\Types\TariffResult
+ * @covers \CdekSDK\Responses\Concerns\WrapsResult
  */
 class CalculationWithTariffListResponseTest extends TestCase
 {

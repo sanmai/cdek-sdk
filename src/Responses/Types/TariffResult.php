@@ -30,6 +30,7 @@ namespace CdekSDK\Responses\Types;
 
 use CdekSDK\Contracts\HasErrorCode;
 use CdekSDK\Contracts\Response;
+use CdekSDK\Responses\Concerns\WrapsResult;
 use JMS\Serializer\Annotation as JMS;
 
 /**
@@ -47,6 +48,8 @@ use JMS\Serializer\Annotation as JMS;
  */
 final class TariffResult implements Response
 {
+    use WrapsResult;
+
     /**
      * @JMS\Type("int")
      *
@@ -60,13 +63,6 @@ final class TariffResult implements Response
      * @var bool
      */
     private $status;
-
-    /**
-     * @JMS\Type("CdekSDK\Responses\Types\Result")
-     *
-     * @var Result
-     */
-    private $result;
 
     /**
      * @return bool
@@ -108,19 +104,6 @@ final class TariffResult implements Response
     public function getResult(): Result
     {
         return $this->result;
-    }
-
-    public function __call(string $name, array $arguments)
-    {
-        if ($this->hasErrors()) {
-            throw new \RuntimeException('Calculation request was not successful. Please check for errors before calling any instance methods.');
-        }
-
-        if ($this->result && \method_exists($this->result, $name)) {
-            return $this->result->{$name}(...$arguments);
-        }
-
-        throw new \BadMethodCallException(\sprintf('Method [%s] not found in [%s].', $name, __CLASS__));
     }
 
     public function jsonSerialize()

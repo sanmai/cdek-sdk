@@ -30,6 +30,7 @@ namespace CdekSDK\Responses;
 
 use CdekSDK\Contracts\HasErrorCode;
 use CdekSDK\Contracts\Response;
+use CdekSDK\Responses\Concerns\WrapsResult;
 use CdekSDK\Responses\Types\AdditionalService;
 use CdekSDK\Responses\Types\Error;
 use CdekSDK\Responses\Types\Result;
@@ -50,12 +51,7 @@ use JMS\Serializer\Annotation as JMS;
  */
 final class CalculationResponse implements Response
 {
-    /**
-     * @JMS\Type("CdekSDK\Responses\Types\Result")
-     *
-     * @var Result
-     */
-    private $result;
+    use WrapsResult;
 
     /**
      * @JMS\SerializedName("error")
@@ -92,19 +88,6 @@ final class CalculationResponse implements Response
     public function getResult(): Result
     {
         return $this->result;
-    }
-
-    public function __call(string $name, array $arguments)
-    {
-        if ($this->hasErrors()) {
-            throw new \RuntimeException('Calculation request was not successful. Please check for errors before calling any instance methods.');
-        }
-
-        if ($this->result && \method_exists($this->result, $name)) {
-            return $this->result->{$name}(...$arguments);
-        }
-
-        throw new \BadMethodCallException(\sprintf('Method [%s] not found in [%s].', $name, __CLASS__));
     }
 
     public function jsonSerialize()

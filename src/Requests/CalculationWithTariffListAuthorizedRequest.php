@@ -28,26 +28,18 @@ declare(strict_types=1);
 
 namespace CdekSDK\Requests;
 
-use CdekSDK\Responses\CalculationResponse;
+use CdekSDK\Responses\CalculationWithTariffListResponse;
 
 /**
- * Class CalculationAuthorizedRequest.
- *
  * @final
  */
-class CalculationAuthorizedRequest extends Templates\CalculationAuthorizedRequest
+class CalculationWithTariffListAuthorizedRequest extends Templates\CalculationAuthorizedRequest
 {
-    const ADDRESS = 'https://api.cdek.ru/calculator/calculate_price_by_json.php';
-    const RESPONSE = CalculationResponse::class;
+    const ADDRESS = 'https://api.cdek.ru/calculator/calculate_tarifflist.php';
+    const RESPONSE = CalculationWithTariffListResponse::class;
 
-    /**
-     * @deprecated
-     * @phan-suppress PhanDeprecatedClass
-     *
-     * @return CalculationAuthorizedRequest
-     */
-    public static function withAuthorization(): CalculationAuthorizedRequest
+    final public function setTariffId($id)
     {
-        return new CalculationAuthorizedRequest();
+        return $this->addTariffToList($id);
     }
 }

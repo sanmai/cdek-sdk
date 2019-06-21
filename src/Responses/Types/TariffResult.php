@@ -26,47 +26,50 @@
 
 declare(strict_types=1);
 
-namespace CdekSDK\Responses;
+namespace CdekSDK\Responses\Types;
 
 use CdekSDK\Contracts\HasErrorCode;
 use CdekSDK\Contracts\Response;
 use CdekSDK\Responses\Concerns\WrapsResult;
-use CdekSDK\Responses\Types\AdditionalService;
-use CdekSDK\Responses\Types\Error;
-use CdekSDK\Responses\Types\Result;
 use JMS\Serializer\Annotation as JMS;
 
 /**
- * Class CalculationResponse.
+ * Class TariffResult.
  *
  * @method float|null              getPrice()
  * @method int|null                getDeliveryPeriodMin()
  * @method int|null                getDeliveryPeriodMax()
- * @method int|null                getTariffId()
  * @method float|null              getPriceByCurrency()
  * @method string|null             getCurrency()
  * @method \DateTimeImmutable|null getDeliveryDateMin()
+ * @method int                     getPercentVAT()
  * @method \DateTimeImmutable|null getDeliveryDateMax()
  * @method AdditionalService[]     getAdditionalServices()
  */
-final class CalculationResponse implements Response
+final class TariffResult implements Response
 {
     use WrapsResult;
 
     /**
-     * @JMS\SerializedName("error")
-     * @JMS\Type("array<CdekSDK\Responses\Types\Error>")
+     * @JMS\Type("int")
      *
-     * @var Error[]
+     * @var int
      */
-    private $errors = [];
+    private $tariffId;
+
+    /**
+     * @JMS\Type("bool")
+     *
+     * @var bool
+     */
+    private $status;
 
     /**
      * @return bool
      */
     public function hasErrors(): bool
     {
-        return !empty($this->errors);
+        return $this->result->hasErrors();
     }
 
     /**
@@ -74,7 +77,7 @@ final class CalculationResponse implements Response
      */
     public function getErrors(): array
     {
-        return $this->errors;
+        return $this->result->getErrors();
     }
 
     /**
@@ -83,6 +86,19 @@ final class CalculationResponse implements Response
     public function getMessages()
     {
         yield from $this->getErrors();
+    }
+
+    /**
+     * @return int|null
+     */
+    public function getTariffId()
+    {
+        return $this->tariffId;
+    }
+
+    public function getStatus(): bool
+    {
+        return $this->status;
     }
 
     public function getResult(): Result

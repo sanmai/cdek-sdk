@@ -26,28 +26,36 @@
 
 declare(strict_types=1);
 
-namespace CdekSDK\Requests;
+namespace CdekSDK\Responses\Concerns;
 
 use CdekSDK\Responses\CalculationResponse;
+use CdekSDK\Responses\Types\Result;
+use CdekSDK\Responses\Types\TariffResult;
 
-/**
- * Class CalculationAuthorizedRequest.
- *
- * @final
- */
-class CalculationAuthorizedRequest extends Templates\CalculationAuthorizedRequest
+trait WrapsResult
 {
-    const ADDRESS = 'https://api.cdek.ru/calculator/calculate_price_by_json.php';
-    const RESPONSE = CalculationResponse::class;
+    /**
+     * @JMS\Type("CdekSDK\Responses\Types\Result")
+     *
+     * @var Result
+     */
+    private $result;
 
     /**
-     * @deprecated
-     * @phan-suppress PhanDeprecatedClass
-     *
-     * @return CalculationAuthorizedRequest
+     * @phan-suppress PhanInfiniteRecursion
+     * @final
      */
-    public static function withAuthorization(): CalculationAuthorizedRequest
+    public function __call(string $name, array $arguments)
     {
-        return new CalculationAuthorizedRequest();
+        /** @var $this CalculationResponse|TariffResult */
+        if ($this->hasErrors()) {
+            throw new \RuntimeException('Calculation request was not successful. Please check for errors before calling any instance methods.');
+        }
+
+        if ($this->result && \method_exists($this->result, $name)) {
+            return $this->result->{$name}(...$arguments);
+        }
+
+        throw new \BadMethodCallException(\sprintf('Method [%s] not found in [%s].', $name, __CLASS__));
     }
 }

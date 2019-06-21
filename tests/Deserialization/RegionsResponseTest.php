@@ -76,6 +76,13 @@ class RegionsResponseTest extends TestCase
         $this->assertSame($region, $item);
     }
 
+    public function test_it_return_zero_for_unknown_country()
+    {
+        $region = $this->getSerializer()->deserialize('<Region countryCode="US"/>', Region::class, 'xml');
+
+        $this->assertSame(0, $region->getCountryCode());
+    }
+
     public function test_it_deserializes()
     {
         $response = $this->getSerializer()->deserialize(FixtureLoader::load('RegionsISO.xml'), RegionsResponse::class, 'xml');

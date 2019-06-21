@@ -28,6 +28,8 @@ declare(strict_types=1);
 
 namespace CdekSDK\Requests;
 
+use CdekSDK\Requests\Concerns\AnonymousJsonRequest;
+
 /**
  * Class CalculationRequest.
  *
@@ -35,15 +37,5 @@ namespace CdekSDK\Requests;
  */
 class CalculationRequest extends CalculationAuthorizedRequest
 {
-    /**
-     * @phan-suppress PhanDeprecatedProperty
-     *
-     * @return array
-     */
-    public function jsonSerialize()
-    {
-        $this->account = '';
-
-        return parent::jsonSerialize();
-    }
+    use AnonymousJsonRequest;
 }

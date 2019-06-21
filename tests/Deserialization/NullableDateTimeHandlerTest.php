@@ -30,6 +30,7 @@ namespace Tests\CdekSDK\Deserialization;
 
 use CdekSDK\Common\Order;
 use CdekSDK\Responses\StatusReportResponse;
+use CdekSDK\Responses\Types\Result;
 use CdekSDK\Serialization\Exception\DeserializationException;
 use CdekSDK\Serialization\NullableDateTimeHandler;
 use JMS\Serializer\Exception\RuntimeException;

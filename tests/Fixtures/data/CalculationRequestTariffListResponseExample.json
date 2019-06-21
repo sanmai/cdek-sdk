@@ -1,0 +1,40 @@
+{
+    "result":
+    [
+        {
+            "tariffId":1,
+            "status":true,
+            "result":
+                {
+                "price":"1077",
+                "deliveryPeriodMin":2,
+                "deliveryPeriodMax":3,
+                "tariffId":1,
+                "priceByCurrency":1077,
+                "currency":"RUB",
+                "percentVAT":20,
+                "services":
+                    [
+                        {
+                            "id":2,
+                            "title":"Страхование",
+                            "price":7.5,
+                            "rate":0.75
+                        }
+                    ]
+                }
+            },
+            {
+                "tariffId":8,
+                "status":false,
+                "result":
+                    {
+                        "errors":
+                        {
+                            "code":3,
+                            "text":"Невозможно осуществить доставку по этому направлению при заданных условиях"
+                        }
+                    }
+            }
+    ]
+}

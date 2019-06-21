@@ -28,9 +28,11 @@ declare(strict_types=1);
 
 namespace CdekSDK\Responses\Types;
 
+use CdekSDK\Contracts\HasErrorCode;
+use CdekSDK\Contracts\Response;
 use JMS\Serializer\Annotation as JMS;
 
-final class Result
+final class Result implements Response
 {
     /**
      * @JMS\Type("float")
@@ -89,11 +91,26 @@ final class Result
     private $currency;
 
     /**
+     * @JMS\Type("int")
+     *
+     * @var int
+     */
+    private $percentVAT;
+
+    /**
      * @JMS\Type("array<CdekSDK\Responses\Types\AdditionalService>")
      *
      * @var AdditionalService[]
      */
     private $services = [];
+
+    /**
+     * @JMS\SerializedName("errors")
+     * @JMS\Type("CdekSDK\Responses\Types\Error")
+     *
+     * @var Error
+     */
+    private $error;
 
     /**
      * @return float|null
@@ -144,6 +161,14 @@ final class Result
     }
 
     /**
+     * @return int|null
+     */
+    public function getPercentVAT()
+    {
+        return $this->percentVAT;
+    }
+
+    /**
      * @return \DateTimeImmutable|null
      */
     public function getDeliveryDateMin()
@@ -165,5 +190,40 @@ final class Result
     public function getAdditionalServices()
     {
         return $this->services;
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasErrors(): bool
+    {
+        return $this->error !== null;
+    }
+
+    /**
+     * @return HasErrorCode[]|Error[]
+     */
+    public function getErrors(): array
+    {
+        if (!$this->hasErrors()) {
+            return [];
+        }
+
+        return [
+            $this->error,
+        ];
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getMessages()
+    {
+        yield from $this->getErrors();
+    }
+
+    public function jsonSerialize()
+    {
+        return [];
     }
 }

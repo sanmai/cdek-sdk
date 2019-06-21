@@ -16,7 +16,7 @@
 
 - [x] расчёт тарифов и обращения к справочникам
   - [x] [расчёт стоимости доставки по тарифам с приоритетом](https://cdek-sdk.readthedocs.io/#CalculationRequest) :unlock: :closed_lock_with_key:
-  - [ ] расчёт стоимости по тарифам без приоритета :unlock: :closed_lock_with_key:
+  - [x] [расчёт стоимости по тарифам без приоритета](https://cdek-sdk.readthedocs.io/#CalculationWithTariffListRequest) :unlock: :closed_lock_with_key:
   - [x] [получение списка пунктов выдачи заказов (ПВЗ) с фильтрацией](https://cdek-sdk.readthedocs.io/#PvzListRequest) :unlock:
   - [x] [получение списка регионов-субъектов РФ](https://cdek-sdk.readthedocs.io/#RegionsRequest) :unlock:
   - [x] [получение списка городов](https://cdek-sdk.readthedocs.io/#CitiesRequest) :unlock:

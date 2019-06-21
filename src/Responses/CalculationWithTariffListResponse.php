@@ -26,28 +26,78 @@
 
 declare(strict_types=1);
 
-namespace CdekSDK\Requests;
+namespace CdekSDK\Responses;
 
-use CdekSDK\Responses\CalculationResponse;
+use CdekSDK\Contracts\HasErrorCode;
+use CdekSDK\Contracts\Response;
+use CdekSDK\Responses\Types\Error;
+use CdekSDK\Responses\Types\TariffResult;
+use JMS\Serializer\Annotation as JMS;
 
 /**
- * Class CalculationAuthorizedRequest.
- *
- * @final
+ * Class CalculationWithTariffListResponse.
  */
-class CalculationAuthorizedRequest extends Templates\CalculationAuthorizedRequest
+final class CalculationWithTariffListResponse implements Response, \IteratorAggregate
 {
-    const ADDRESS = 'https://api.cdek.ru/calculator/calculate_price_by_json.php';
-    const RESPONSE = CalculationResponse::class;
+    /**
+     * @JMS\Type("array<CdekSDK\Responses\Types\TariffResult>")
+     *
+     * @var TariffResult[]
+     */
+    private $result = [];
 
     /**
-     * @deprecated
-     * @phan-suppress PhanDeprecatedClass
+     * @JMS\SerializedName("error")
+     * @JMS\Type("array<CdekSDK\Responses\Types\Error>")
      *
-     * @return CalculationAuthorizedRequest
+     * @var Error[]
      */
-    public static function withAuthorization(): CalculationAuthorizedRequest
+    private $errors = [];
+
+    /**
+     * @return bool
+     */
+    public function hasErrors(): bool
     {
-        return new CalculationAuthorizedRequest();
+        return !empty($this->errors);
+    }
+
+    /**
+     * @return Error[]|HasErrorCode[]
+     */
+    public function getErrors(): array
+    {
+        return $this->errors;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getMessages()
+    {
+        yield from $this->getErrors();
+    }
+
+    /**
+     * @return TariffResult[]
+     */
+    public function getResults()
+    {
+        return $this->result;
+    }
+
+    /**
+     * @phan-suppress PhanUnextractableAnnotationSuffix
+     *
+     * @return \Traversable|TariffResult[]
+     */
+    public function getIterator()
+    {
+        return new \ArrayIterator($this->result);
+    }
+
+    public function jsonSerialize()
+    {
+        return [];
     }
 }

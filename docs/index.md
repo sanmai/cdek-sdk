@@ -66,7 +66,8 @@ $client = new \CdekSDK\CdekClient('Account', 'Secure', new \GuzzleHttp\Client([
 | [Вызов курьера](#CallCourierRequest) | `sendCallCourierRequest` | `CallCourierRequest` |
 | [Создание преалерта](#PreAlertRequest) | `sendPreAlertRequest` | `PreAlertRequest` |
 | [Отчет "Информация по заказам"](#InfoReportRequest) | `sendInfoReportRequest` | `InfoReportRequest` |
-| [Расчёт стоимости доставки](#CalculationRequest) | `sendCalculationRequest` | `CalculationRequest` |
+| [Расчёт стоимости доставки с приоритетом](#CalculationRequest) | `sendCalculationRequest` | `CalculationRequest` |
+| [Расчёт стоимости доставки без приоритета](#CalculationWithTariffListRequest) | `sendCalculationWithTariffListRequest` | `CalculationWithTariffListRequest` |
 | [Отчет "Статусы заказов"](#StatusReportRequest) | `sendStatusReportRequest` | `StatusReportRequest` |
 | [Печать квитанции к заказу](#PrintReceiptsRequest) | `sendPrintReceiptsRequest` | `PrintReceiptsRequest` |
 | [Печать ШК-мест](#PrintLabelsRequest) | `sendPrintLabelsRequest` | `PrintLabelsRequest` |
@@ -160,7 +161,7 @@ foreach ($response as $item) {
 }
 ```
 
-### Расчёт стоимости доставки {: #CalculationRequest }
+### Расчёт стоимости доставки с приоритетом {: #CalculationRequest }
 
 ```php
 use CdekSDK\Requests;
@@ -198,6 +199,61 @@ $response->getPrice();
 Если используется запрос без авторизации при расчёте [по тарифам 136-139](https://confluence.cdek.ru/pages/viewpage.action?pageId=15616129#id-%D0%9F%D1%80%D0%BE%D1%82%D0%BE%D0%BA%D0%BE%D0%BB%D0%BE%D0%B1%D0%BC%D0%B5%D0%BD%D0%B0%D0%B4%D0%B0%D0%BD%D0%BD%D1%8B%D0%BC%D0%B8(v1.5)-%D0%9F%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D0%B51.%D0%A3%D1%81%D0%BB%D1%83%D0%B3%D0%B8(%D1%82%D0%B0%D1%80%D0%B8%D1%84%D1%8B)%D0%B8%D1%80%D0%B5%D0%B6%D0%B8%D0%BC%D1%8B%D0%B4%D0%BE%D1%81%D1%82%D0%B0%D0%B2%D0%BA%D0%B8%D0%A1%D0%94%D0%AD%D0%9A), то следует использовать запрос с авторизацией с реквизитами интернет-магазина. 
 
 При прочих равных лучше всегда использовать запрос с авторизацией.
+
+### Расчет стоимости по тарифам без приоритета {: #CalculationWithTariffListRequest }
+
+Этот способ расчёта подразумевает получение нескольких расчётов стоимости доставки для каждого из запрошенных тарифов.
+
+```
+use CdekSDK\Requests;
+
+// для выполнения запроса без авторизации используется
+// $request = new Requests\CalculationWithTariffListRequest();
+// $request->set...() и так далее
+
+$request = new Requests\CalculationWithTariffListAuthorizedRequest();
+$request->setSenderCityPostCode('295000')
+    ->setReceiverCityPostCode('652632')
+    ->addTariffToList(1)
+    ->addTariffToList(8)
+    ->addPackage([
+        'weight' => 0.2,
+        'length' => 25,
+        'width'  => 15,
+        'height' => 10,
+    ]);
+
+$response = $client->sendCalculationWithTariffListRequest($request);
+
+/** @var \CdekSDK\Responses\CalculationWithTariffListResponse $response */
+if ($response->hasErrors()) {
+    // обработка ошибок
+}
+
+foreach ($response->getResults() as $result) {
+    if ($result->hasErrors()) {
+        // обработка ошибок
+
+        continue;
+    }
+
+    if (!$result->getStatus()) {
+        continue;
+    }
+
+    $result->getTariffId();
+    // int(1)
+
+    $result->getPrice();
+    // double(1570)
+
+    $result->getDeliveryPeriodMin();
+    // int(4)
+
+    $result->getDeliveryPeriodMax();
+    // int(5)
+}
+```
 
 ### Список регионов/субъектов РФ {: #RegionsRequest }
 

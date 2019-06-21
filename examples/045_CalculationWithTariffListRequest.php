@@ -25,29 +25,53 @@
  */
 
 declare(strict_types=1);
+use CdekSDK\Requests;
 
-namespace CdekSDK\Requests;
+$client = new \CdekSDK\CdekClient('account', 'password');
 
-use CdekSDK\Responses\CalculationResponse;
+// для выполнения запроса без авторизации используется
+// $request = new Requests\CalculationWithTariffListRequest();
+// $request->set...() и так далее
 
-/**
- * Class CalculationAuthorizedRequest.
- *
- * @final
- */
-class CalculationAuthorizedRequest extends Templates\CalculationAuthorizedRequest
-{
-    const ADDRESS = 'https://api.cdek.ru/calculator/calculate_price_by_json.php';
-    const RESPONSE = CalculationResponse::class;
+$request = new Requests\CalculationWithTariffListAuthorizedRequest();
+$request->setSenderCityPostCode('295000')
+    ->setReceiverCityPostCode('652632')
+    ->addTariffToList(1)
+    ->addTariffToList(8)
+    ->addPackage([
+        'weight' => 0.2,
+        'length' => 25,
+        'width'  => 15,
+        'height' => 10,
+    ]);
 
-    /**
-     * @deprecated
-     * @phan-suppress PhanDeprecatedClass
-     *
-     * @return CalculationAuthorizedRequest
-     */
-    public static function withAuthorization(): CalculationAuthorizedRequest
-    {
-        return new CalculationAuthorizedRequest();
+$response = $client->sendCalculationWithTariffListRequest($request);
+
+/** @var \CdekSDK\Responses\CalculationWithTariffListResponse $response */
+if ($response->hasErrors()) {
+    // обработка ошибок
+}
+
+foreach ($response->getResults() as $result) {
+    if ($result->hasErrors()) {
+        // обработка ошибок
+
+        continue;
     }
+
+    if (!$result->getStatus()) {
+        continue;
+    }
+
+    $result->getTariffId();
+    // int(1)
+
+    $result->getPrice();
+    // double(1570)
+
+    $result->getDeliveryPeriodMin();
+    // int(4)
+
+    $result->getDeliveryPeriodMax();
+    // int(5)
 }

@@ -26,28 +26,20 @@
 
 declare(strict_types=1);
 
-namespace CdekSDK\Requests;
+namespace CdekSDK\Requests\Concerns;
 
-use CdekSDK\Responses\CalculationResponse;
-
-/**
- * Class CalculationAuthorizedRequest.
- *
- * @final
- */
-class CalculationAuthorizedRequest extends Templates\CalculationAuthorizedRequest
+trait AnonymousJsonRequest
 {
-    const ADDRESS = 'https://api.cdek.ru/calculator/calculate_price_by_json.php';
-    const RESPONSE = CalculationResponse::class;
-
     /**
-     * @deprecated
-     * @phan-suppress PhanDeprecatedClass
+     * @phan-suppress PhanUndeclaredProperty
+     * @phan-suppress PhanTraitParentReference
      *
-     * @return CalculationAuthorizedRequest
+     * @return array
      */
-    public static function withAuthorization(): CalculationAuthorizedRequest
+    final public function jsonSerialize()
     {
-        return new CalculationAuthorizedRequest();
+        $this->account = '';
+
+        return parent::jsonSerialize();
     }
 }

@@ -37,6 +37,7 @@ use Tests\CdekSDK\Fixtures\FixtureLoader;
  * @covers \CdekSDK\Responses\Types\Result
  * @covers \CdekSDK\Responses\Types\Error
  * @covers \CdekSDK\Responses\Types\AdditionalService
+ * @covers \CdekSDK\Responses\Concerns\WrapsResult
  */
 class CalculationResponseTest extends TestCase
 {

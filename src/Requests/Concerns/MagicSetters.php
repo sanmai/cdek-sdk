@@ -30,6 +30,9 @@ namespace CdekSDK\Requests\Concerns;
 
 trait MagicSetters
 {
+    /**
+     * @final
+     */
     public function __call(string $name, array $arguments)
     {
         if (0 === \strpos($name, 'set') && \property_exists($this, $property = \lcfirst(\substr($name, 3)))) {

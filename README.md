@@ -20,6 +20,7 @@
   - [x] [получение списка пунктов выдачи заказов (ПВЗ) с фильтрацией](https://cdek-sdk.readthedocs.io/#PvzListRequest) :unlock:
   - [x] [получение списка регионов-субъектов РФ](https://cdek-sdk.readthedocs.io/#RegionsRequest) :unlock:
   - [x] [получение списка городов](https://cdek-sdk.readthedocs.io/#CitiesRequest) :unlock:
+  - [x] [автодополнение для города](https://cdek-sdk.readthedocs.io/#CityAutocomplete) :unlock:
 - [x] управление заказами
   - [x] [формирование новых заказов от ИМ](https://cdek-sdk.readthedocs.io/#DeliveryRequest)
   - [x] [оформление заказов на доставку](https://cdek-sdk.readthedocs.io/#AddDeliveryRequest)

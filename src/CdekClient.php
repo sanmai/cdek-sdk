@@ -206,6 +206,9 @@ final class CdekClient implements Contracts\Client, LoggerAwareInterface
     /**
      * @psalm-suppress InvalidReturnStatement
      * @psalm-suppress InvalidReturnType
+     * @psalm-suppress LessSpecificReturnStatement
+     * @psalm-suppress ArgumentTypeCoercion
+     * @psalm-suppress MoreSpecificReturnType
      *
      * @param Request           $request
      * @param ResponseInterface $response

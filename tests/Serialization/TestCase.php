@@ -35,6 +35,22 @@ abstract class TestCase extends DeserializationTestCase
 {
     protected function assertSameAsXML(string $xml, $request)
     {
-        $this->assertSame($xml, $this->getSerializer()->serialize($request, Request::SERIALIZATION_XML));
+        $serializedXml = $this->getSerializer()->serialize($request, Request::SERIALIZATION_XML);
+
+        $serializedXml = $this->fixXmlFloats($serializedXml);
+
+        $this->assertSame($xml, $serializedXml);
+    }
+
+    /**
+     * @deprecated remove this method after updating fixtures
+     */
+    private function fixXmlFloats(string $xml): string
+    {
+        if (!\interface_exists('\JMS\Serializer\Naming\AdvancedNamingStrategyInterface')) {
+            return \preg_replace('/([A-Z][a-z]+)="(\d+)\.0"/', '\1="\2"', $xml);
+        }
+
+        return $xml;
     }
 }

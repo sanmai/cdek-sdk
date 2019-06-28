@@ -298,6 +298,7 @@ return [
         'vendor/psr/http-message/src',
         'vendor/doctrine/annotations/lib',
         'vendor/sanmai/pipeline/src/',
+        'vendor/sanmai/cdek-sdk-serializer/src/',
         'vendor/laravel/framework/src/',
         'vendor/psr/',
     ],

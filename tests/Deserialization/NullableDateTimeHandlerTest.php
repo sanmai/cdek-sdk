@@ -31,17 +31,10 @@ namespace Tests\CdekSDK\Deserialization;
 use CdekSDK\Common\Order;
 use CdekSDK\Responses\StatusReportResponse;
 use CdekSDK\Responses\Types\Result;
-use CdekSDK\Serialization\Exception\DeserializationException;
-use CdekSDK\Serialization\NullableDateTimeHandler;
-use JMS\Serializer\Exception\RuntimeException;
-use JMS\Serializer\Naming\IdenticalPropertyNamingStrategy;
-use JMS\Serializer\XmlDeserializationVisitor;
 use Tests\CdekSDK\Fixtures\FixtureLoader;
 
 /**
- * @covers \CdekSDK\Serialization\NullableDateTimeHandler
- * @covers \CdekSDK\Serialization\Exception\DeserializationException
- * @covers \CdekSDK\Serialization\Serializer
+ * @coversNothing
  */
 class NullableDateTimeHandlerTest extends TestCase
 {
@@ -72,58 +65,5 @@ class NullableDateTimeHandlerTest extends TestCase
         $this->assertInstanceOf(Order::class, $order);
 
         $this->assertSame('2011-04-07 00:00:00', $order->getDeliveryDate()->format('Y-m-d H:i:s'));
-    }
-
-    public function test_fails_on_invalid_date()
-    {
-        $this->expectException(RuntimeException::class);
-        $this->expectException(\JMS\Serializer\Exception\RuntimeException::class);
-
-        $this->getSerializer()->deserialize('<Order DeliveryDate="00:00:00" />', Order::class, 'xml');
-    }
-
-    public function test_fails_on_unexpected_date_format_with_serializer_exception()
-    {
-        $this->expectException(\JMS\Serializer\Exception\RuntimeException::class);
-        $this->expectExceptionMessageRegExp('/^Failed to deserialize Date="2000-01-01 00:00:00": .* expected format/');
-
-        $this->getSerializer()->deserialize('<Order Date="2000-01-01 00:00:00" />', Order::class, 'xml');
-    }
-
-    public function test_fails_on_unexpected_date_format_with_our_exception()
-    {
-        $this->expectException(DeserializationException::class);
-        $this->expectExceptionMessageRegExp('/^Failed to deserialize Date="2001-01-01 00:00:01": .* expected format/');
-
-        $this->getSerializer()->deserialize('<Order Date="2001-01-01 00:00:01" />', Order::class, 'xml');
-    }
-
-    public function test_do_not_resets_time_if_not_needed()
-    {
-        $handler = new NullableDateTimeHandler();
-        $visitor = new XmlDeserializationVisitor(new IdenticalPropertyNamingStrategy());
-        $sxe = new \SimpleXMLElement('<date>2000-01-01_</date>');
-
-        if (\date('H:i:s') === '00:00:00') {
-            \sleep(1);
-        }
-
-        $date = $handler->deserializeDateTimeImmutableFromXml($visitor, $sxe, [
-            'name'   => \DateTimeImmutable::class,
-            'params' => [
-                0 => 'Y-m-d\\TH:i:sP',
-                1 => '',
-                //2 => 'Y-m-d\\TH:i:sP',
-                3 => 'Y-m-d_',
-            ],
-        ]);
-
-        $this->assertNotSame('2000-01-01 00:00:00', $date->format('Y-m-d H:i:s'));
-    }
-
-    public function test_proxy_calls_the_parent()
-    {
-        $handler = new NullableDateTimeHandler();
-        $this->assertSame('P1D', $handler->format(new \DateInterval('P1D')));
     }
 }

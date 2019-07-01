@@ -315,6 +315,14 @@ final class Order implements HasErrorCode
 
     /**
      * @JMS\XmlAttribute
+     * @JMS\Type("string")
+     *
+     * @var string
+     */
+    protected $CashOnDelivType;
+
+    /**
+     * @JMS\XmlAttribute
      * @JMS\Type("int")
      *
      * @var int
@@ -813,6 +821,14 @@ final class Order implements HasErrorCode
     public function getCashOnDelivFact(): float
     {
         return (float) $this->CashOnDelivFact;
+    }
+
+    /**
+     * Тип оплаты наложенного платежа. Принимает значения: cash - наличный расчет, cashless - безналичный расчет. Тэг отсутствует, если информация о платеже еще не поступила.
+     */
+    public function getCashOnDelivType(): string
+    {
+        return $this->CashOnDelivType;
     }
 
     public function getDeliveryMode(): int

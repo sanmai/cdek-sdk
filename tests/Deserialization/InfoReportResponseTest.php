@@ -73,6 +73,12 @@ class InfoReportResponseTest extends TestCase
             $this->assertSame('Новосибирск', $order->getRecipientCity()->getName());
             $this->assertNull($order->getDateLastChange());
 
+            $this->assertSame('COURIER', $order->getDeliveryVariant());
+            $this->assertSame(1, $order->getDeliveryMode());
+            $this->assertSame(2231.0, $order->getCashOnDeliv());
+            $this->assertSame(2231.0, $order->getCashOnDelivFact());
+            $this->assertSame('cashless', $order->getCashOnDelivType());
+
             $this->assertCount(1, $order->getPackages());
 
             foreach ($order->getPackages() as $package) {

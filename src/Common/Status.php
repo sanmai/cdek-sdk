@@ -30,6 +30,7 @@ namespace CdekSDK\Common;
 
 use JMS\Serializer\Annotation as JMS;
 
+/** @phan-suppress PhanDeprecatedInterface */
 final class Status implements State
 {
     use Fillable;

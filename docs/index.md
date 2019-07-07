@@ -86,7 +86,9 @@ if ($response->hasErrors()) {
     // Обрабатываем ошибки
     foreach ($response->getMessages() as $message) {
         if ($message->getErrorCode() !== '') {
-            // Это ошибка
+            // Это ошибка; бывают случаи когда сообщение с ошибкой - пустая строка.
+            // Потому нужно смотреть и на код, и на описание ошибки.
+            $message->getErrorCode();
             $message->getMessage();
         }
     }

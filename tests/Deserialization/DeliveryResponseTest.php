@@ -186,6 +186,24 @@ class DeliveryResponseTest extends TestCase
         $this->assertSame('e5341942156970a92', $response->getTraceId());
     }
 
+    public function test_internal_error()
+    {
+        $response = $this->getSerializer()->deserialize(FixtureLoader::load('DeliveryRequestInternalError.xml'), DeliveryResponse::class, 'xml');
+
+        /** @var $response DeliveryResponse */
+        $this->assertInstanceOf(DeliveryResponse::class, $response);
+
+        $this->assertTrue($response->hasErrors());
+        $this->assertCount(1, $response->getMessages());
+
+        foreach ($response->getMessages() as $message) {
+            $this->assertSame('error_internal', $message->getErrorCode());
+            break;
+        }
+
+        $this->assertSame('123456abcdef', $response->getTraceId());
+    }
+
     public function test_it_serializes_to_empty_json()
     {
         $response = new DeliveryResponse();

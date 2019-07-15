@@ -43,6 +43,7 @@ use CdekSDK\Responses\RegionsResponse;
  * @method RegionsRequest setCountryCodeExt(mixed $value)
  * @method RegionsRequest setPage(mixed $value)
  * @method RegionsRequest setSize(mixed $value)
+ * @method RegionsRequest setLang(mixed $value)
  */
 final class RegionsRequest implements ParamRequest
 {
@@ -103,4 +104,11 @@ final class RegionsRequest implements ParamRequest
      * @var int
      */
     protected $size;
+
+    /**
+     * Локализация. По умолчанию "rus".
+     *
+     * @var string
+     */
+    protected $lang;
 }

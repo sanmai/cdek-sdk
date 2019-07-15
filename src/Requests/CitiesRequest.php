@@ -44,6 +44,7 @@ use CdekSDK\Responses\CitiesResponse;
  * @method CitiesRequest setCountryCode(mixed $value)
  * @method CitiesRequest setCityName(mixed $value)
  * @method CitiesRequest setPostcode(mixed $value)
+ * @method CitiesRequest setLang(mixed $value)
  */
 final class CitiesRequest implements ParamRequest
 {
@@ -111,4 +112,11 @@ final class CitiesRequest implements ParamRequest
      * @var string
      */
     protected $postcode;
+
+    /**
+     * Локализация. По умолчанию "rus".
+     *
+     * @var string
+     */
+    protected $lang;
 }

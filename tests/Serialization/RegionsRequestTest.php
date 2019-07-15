@@ -71,6 +71,16 @@ class RegionsRequestTest extends TestCase
         ], $request->getParams());
     }
 
+    public function test_with_language()
+    {
+        $request = new RegionsRequest();
+        $request = $request->setLang('rus');
+
+        $this->assertSame([
+            'lang' => 'rus',
+        ], $request->getParams());
+    }
+
     public function testFillable()
     {
         $request = new RegionsRequest([

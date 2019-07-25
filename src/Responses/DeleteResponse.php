@@ -83,9 +83,6 @@ final class DeleteResponse implements Response
         return $this->getOrdersFromRequests();
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getMessages()
     {
         return Message::from($this->getOrdersFromRequests(), $this->requests, $this->orders);

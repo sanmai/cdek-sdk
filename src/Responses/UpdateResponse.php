@@ -82,9 +82,6 @@ final class UpdateResponse implements Response
         });
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getMessages()
     {
         return Message::from($this->orders);

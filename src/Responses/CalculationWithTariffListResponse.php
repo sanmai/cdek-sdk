@@ -70,9 +70,6 @@ final class CalculationWithTariffListResponse implements Response, \IteratorAggr
         return $this->errors;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getMessages()
     {
         yield from $this->getErrors();

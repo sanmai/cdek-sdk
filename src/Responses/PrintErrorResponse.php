@@ -61,9 +61,6 @@ final class PrintErrorResponse implements Response
         return true;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getMessages()
     {
         return Message::from($this->errors, $this->moreErrors);

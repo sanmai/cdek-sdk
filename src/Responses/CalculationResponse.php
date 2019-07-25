@@ -77,9 +77,6 @@ final class CalculationResponse implements Response
         return $this->errors;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getMessages()
     {
         yield from $this->getErrors();

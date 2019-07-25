@@ -214,9 +214,6 @@ final class Result implements Response
         ];
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getMessages()
     {
         yield from $this->getErrors();

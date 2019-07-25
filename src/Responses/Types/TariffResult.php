@@ -80,9 +80,6 @@ final class TariffResult implements Response
         return $this->result->getErrors();
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getMessages()
     {
         yield from $this->getErrors();

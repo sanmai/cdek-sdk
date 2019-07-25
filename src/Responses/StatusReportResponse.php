@@ -129,9 +129,6 @@ final class StatusReportResponse implements Response, HasErrorCode, \IteratorAgg
         return (bool) $this->ErrorCode;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getMessages()
     {
         return Message::from([$this], $this->orders);

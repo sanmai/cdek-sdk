@@ -76,9 +76,6 @@ final class RegionsResponse implements \IteratorAggregate, Response
         return false;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getMessages()
     {
         return [];

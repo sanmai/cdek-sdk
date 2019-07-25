@@ -50,9 +50,6 @@ final class PreAlertResponse implements Response
      */
     private $orders = [];
 
-    /**
-     * {@inheritdoc}
-     */
     public function getMessages()
     {
         return Message::from($this->orders);

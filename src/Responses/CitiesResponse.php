@@ -75,9 +75,6 @@ final class CitiesResponse implements \IteratorAggregate, Response
         return false;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getMessages()
     {
         return [];

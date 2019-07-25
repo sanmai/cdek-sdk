@@ -53,9 +53,6 @@ final class ErrorResponse implements Response, ResponseInterface
         return true;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getMessages()
     {
         yield new Message($this->response->getReasonPhrase(), (string) $this->response->getStatusCode());
@@ -67,9 +64,10 @@ final class ErrorResponse implements Response, ResponseInterface
     }
 
     /**
-     * {@inheritdoc}
-     *
      * @psalm-suppress MixedArgument
+     *
+     * @param mixed $code
+     * @param mixed $reasonPhrase
      */
     public function withStatus($code, $reasonPhrase = '')
     {
@@ -77,35 +75,29 @@ final class ErrorResponse implements Response, ResponseInterface
     }
 
     /**
-     * {@inheritdoc}
-     *
      * @psalm-suppress MixedArgument
+     *
+     * @param mixed $name
      */
     public function hasHeader($name)
     {
         return $this->response->hasHeader($name);
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getHeaders()
     {
         return $this->response->getHeaders();
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getBody()
     {
         return $this->response->getBody();
     }
 
     /**
-     * {@inheritdoc}
-     *
      * @psalm-suppress MixedArgument
+     *
+     * @param mixed $version
      */
     public function withProtocolVersion($version)
     {
@@ -113,9 +105,9 @@ final class ErrorResponse implements Response, ResponseInterface
     }
 
     /**
-     * {@inheritdoc}
-     *
      * @psalm-suppress MixedArgument
+     *
+     * @param mixed $name
      */
     public function withoutHeader($name)
     {
@@ -123,9 +115,9 @@ final class ErrorResponse implements Response, ResponseInterface
     }
 
     /**
-     * {@inheritdoc}
-     *
      * @psalm-suppress MixedArgument
+     *
+     * @param mixed $name
      */
     public function getHeaderLine($name)
     {
@@ -133,61 +125,51 @@ final class ErrorResponse implements Response, ResponseInterface
     }
 
     /**
-     * {@inheritdoc}
-     *
      * @psalm-suppress MixedArgument
+     *
+     * @param mixed $name
+     * @param mixed $value
      */
     public function withHeader($name, $value)
     {
         return $this->response->withHeader($name, $value);
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function withBody(StreamInterface $body)
     {
         return $this->response->withBody($body);
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getReasonPhrase()
     {
         return $this->response->getReasonPhrase();
     }
 
     /**
-     * {@inheritdoc}
-     *
      * @psalm-suppress MixedArgument
+     *
+     * @param mixed $name
      */
     public function getHeader($name)
     {
         return $this->response->getHeader($name);
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getProtocolVersion()
     {
         return $this->response->getProtocolVersion();
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getStatusCode()
     {
         return $this->response->getStatusCode();
     }
 
     /**
-     * {@inheritdoc}
-     *
      * @psalm-suppress MixedArgument
+     *
+     * @param mixed $name
+     * @param mixed $value
      */
     public function withAddedHeader($name, $value)
     {

@@ -68,9 +68,6 @@ final class CallCourierResponse implements Response
         })->filter();
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getMessages()
     {
         return Message::from($this->failed, $this->successful);

@@ -149,8 +149,6 @@ final class CdekClient implements Contracts\Client, LoggerAwareInterface
     }
 
     /**
-     * {@inheritdoc}
-     *
      * @see \CdekSDK\Contracts\Client::sendRequest()
      * @deprecated $requestDate is deprecated and will be removed; use DateAware interface instead
      *

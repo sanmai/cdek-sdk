@@ -59,9 +59,6 @@ final class ScheduleResponse implements Response
      */
     private $orders = [];
 
-    /**
-     * {@inheritdoc}
-     */
     public function getMessages()
     {
         return Message::from($this->requests, $this->orders);

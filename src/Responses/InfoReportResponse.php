@@ -69,9 +69,6 @@ final class InfoReportResponse implements Response, \IteratorAggregate
         return new \ArrayIterator($this->getOrders());
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getMessages()
     {
         return Message::from($this->orders);

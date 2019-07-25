@@ -137,9 +137,6 @@ final class DeliveryResponse implements Response
         });
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getMessages()
     {
         return Message::from($this->calls, $this->orders, $this->requests);

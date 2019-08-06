@@ -119,12 +119,12 @@ final class Region
         return (string) $this->prefix;
     }
 
-    public function getCode(): int
+    public function getCode(): ?int
     {
         return $this->regionCode;
     }
 
-    public function getCodeExt(): int
+    public function getCodeExt(): ?int
     {
         return $this->regionCodeExt;
     }

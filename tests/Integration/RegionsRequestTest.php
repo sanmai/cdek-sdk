@@ -39,7 +39,7 @@ use CdekSDK\Responses\RegionsResponse;
  */
 class RegionsRequestTest extends TestCase
 {
-    public function test_example()
+    public function test_first_russian_region()
     {
         $request = new RegionsRequest();
         $request->setCountryCode('RU');
@@ -84,5 +84,30 @@ class RegionsRequestTest extends TestCase
 
         $this->assertFalse($response->hasErrors());
         $this->assertCount(0, $response->getItems());
+    }
+
+    public function test_example()
+    {
+        $request = new RegionsRequest();
+        $request->setPage(0)->setSize(10);
+
+        $response = $this->getClient()->sendRegionsRequest($request);
+
+        foreach ($response as $region) {
+            /** @var \CdekSDK\Common\Region $region */
+            $region->getUuid();
+            $region->getName();
+            $region->getPrefix();
+            try {
+                $region->getCode();
+                $region->getCodeExt();
+            } catch (\TypeError $e) {
+                // У региона нет кода
+            }
+            $region->getFiasGuid();
+            $region->getCountryName();
+            $region->getCountryCodeISO();
+            $region->getCountryCodeExt();
+        }
     }
 }

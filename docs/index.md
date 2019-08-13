@@ -264,6 +264,7 @@ use CdekSDK\Requests;
 
 $request = new Requests\RegionsRequest();
 $request->setPage(0)->setSize(10);
+$request->setCountryCode('RU');
 
 $response = $client->sendRegionsRequest($request);
 
@@ -276,8 +277,12 @@ foreach ($response as $region) {
     $region->getUuid();
     $region->getName();
     $region->getPrefix();
-    $region->getCode();
-    $region->getCodeExt();
+    try {
+        $region->getCode();
+        $region->getCodeExt();
+    } catch (\TypeError $e) {
+        // У региона нет кода
+    }
     $region->getFiasGuid();
     $region->getCountryName();
     $region->getCountryCodeISO();

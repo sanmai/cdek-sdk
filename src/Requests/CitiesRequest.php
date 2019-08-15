@@ -43,6 +43,7 @@ use CdekSDK\Responses\CitiesResponse;
  * @method CitiesRequest setSize(mixed $value)
  * @method CitiesRequest setCountryCode(mixed $value)
  * @method CitiesRequest setCityName(mixed $value)
+ * @method CitiesRequest setCityCode(mixed $value)
  * @method CitiesRequest setPostcode(mixed $value)
  * @method CitiesRequest setLang(mixed $value)
  */
@@ -105,6 +106,13 @@ final class CitiesRequest implements ParamRequest
      * @var string
      */
     protected $cityName;
+
+    /**
+     * Код города по базе СДЭК.
+     *
+     * @var int
+     */
+    protected $cityCode;
 
     /**
      * Почтовый индекс.

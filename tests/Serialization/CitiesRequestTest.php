@@ -71,12 +71,14 @@ class CitiesRequestTest extends TestCase
         $request = $request->setRegionFiasGuid('example');
         $request = $request->setCountryCode('RU');
         $request = $request->setCityName('Новосибирск');
+        $request = $request->setCityCode(1);
         $request = $request->setPostcode('111222');
 
         $this->assertSame([
             'regionFiasGuid' => 'example',
             'countryCode'    => 'RU',
             'cityName'       => 'Новосибирск',
+            'cityCode'       => 1,
             'postcode'       => '111222',
         ], $request->getParams());
     }

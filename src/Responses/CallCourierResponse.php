@@ -49,6 +49,14 @@ final class CallCourierResponse implements Response
     private $failed = [];
 
     /**
+     * @JMS\XmlList(entry = "Order", inline = true)
+     * @JMS\Type("array<CdekSDK\Common\CallCourier>")
+     *
+     * @var CallCourier[]
+     */
+    private $failedOrder = [];
+
+    /**
      * @JMS\XmlList(entry = "Call", inline = true)
      * @JMS\Type("array<CdekSDK\Common\CallCourier>")
      *
@@ -70,7 +78,7 @@ final class CallCourierResponse implements Response
 
     public function getMessages()
     {
-        return Message::from($this->failed, $this->successful);
+        return Message::from($this->failed, $this->failedOrder, $this->successful);
     }
 
     public function hasErrors(): bool

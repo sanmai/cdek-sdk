@@ -110,6 +110,17 @@ class CallCourierResponseTest extends TestCase
         }
     }
 
+    public function test_it_deserializes_failed_response_order()
+    {
+        $response = $this->getSerializer()->deserialize(FixtureLoader::load('CallCourierResponseOrderError.xml'), CallCourierResponse::class, 'xml');
+        $this->assertTrue($response->hasErrors());
+        $this->assertCount(1, $response->getErrors());
+
+        foreach ($response->getErrors() as $message) {
+            $this->assertSame('error_internal', $message->getCode());
+        }
+    }
+
     public function test_it_serializes_to_empty_json()
     {
         $response = new CallCourierResponse();

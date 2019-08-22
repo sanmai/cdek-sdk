@@ -39,6 +39,7 @@ use JMS\Serializer\Annotation as JMS;
  * @method float|null              getPrice()
  * @method int|null                getDeliveryPeriodMin()
  * @method int|null                getDeliveryPeriodMax()
+ * @method float|null              getCashOnDelivery()
  * @method float|null              getPriceByCurrency()
  * @method string|null             getCurrency()
  * @method \DateTimeImmutable|null getDeliveryDateMin()

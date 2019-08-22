@@ -29,6 +29,8 @@ declare(strict_types=1);
 namespace Tests\CdekSDK\Integration;
 
 use CdekSDK\Common\AdditionalService;
+use CdekSDK\Contracts\Response;
+use CdekSDK\Requests\CalculationAuthorizedRequest;
 use CdekSDK\Requests\CalculationRequest;
 
 /**
@@ -87,19 +89,15 @@ class CalculationRequestTest extends TestCase
 
         $response = $this->getClient()->sendCalculationRequest($request);
 
-        foreach ($response->getErrors() as $error) {
-            if ((int) $error->getErrorCode() === self::UNAUTHORIZED_ERROR) {
-                $this->skipIfTestEndpointIsUsed("{$error->getErrorCode()}: {$error->getMessage()}");
-            }
-
-            $this->fail("{$error->getErrorCode()}: {$error->getMessage()}");
-        }
+        $this->assertNoErrors($response);
 
         $this->assertFalse($response->hasErrors());
         $this->assertCount(1, $response->getAdditionalServices());
 
         /** @var \CdekSDK\Responses\CalculationResponse $response */
         $this->assertGreaterThan(0, $response->getPrice());
+
+        $this->assertNull($response->getCashOnDelivery());
     }
 
     /**
@@ -125,6 +123,40 @@ class CalculationRequestTest extends TestCase
         foreach ($response->getErrors() as $error) {
             $this->assertGreaterThan(0, (int) $error->getErrorCode());
             $this->assertNotEmpty($error->getMessage());
+        }
+    }
+
+    public function test_authorized_cashOnDelivery()
+    {
+        $request = new CalculationAuthorizedRequest();
+        $request->setSenderCityId(288)
+                ->setReceiverCityId(2766)
+                ->setTariffId(1)
+                ->addPackage([
+                    'weight' => 1,
+                    'length' => 4,
+                    'width'  => 4,
+                    'height' => 4,
+                ]);
+
+        $response = $this->getClient()->sendCalculationRequest($request);
+
+        /** @var \CdekSDK\Responses\CalculationResponse $response */
+        $this->assertNoErrors($response);
+
+        $this->assertFalse($response->hasErrors());
+
+        $this->assertSame(0.0, $response->getCashOnDelivery());
+    }
+
+    private function assertNoErrors(Response $response)
+    {
+        foreach ($response->getErrors() as $error) {
+            if ((int) $error->getErrorCode() === self::UNAUTHORIZED_ERROR) {
+                $this->skipIfTestEndpointIsUsed("{$error->getErrorCode()}: {$error->getMessage()}");
+            }
+
+            $this->fail("{$error->getErrorCode()}: {$error->getMessage()}");
         }
     }
 }

@@ -79,6 +79,13 @@ final class Result implements Response
     /**
      * @JMS\Type("float")
      *
+     * @var float
+     */
+    private $cashOnDelivery;
+
+    /**
+     * @JMS\Type("float")
+     *
      * @var float|null
      */
     private $priceByCurrency;
@@ -142,6 +149,14 @@ final class Result implements Response
     public function getTariffId()
     {
         return $this->tariffId;
+    }
+
+    /**
+     * @return float|null
+     */
+    public function getCashOnDelivery()
+    {
+        return $this->cashOnDelivery;
     }
 
     /**

@@ -72,6 +72,8 @@ final class CalculationResponse implements Response
 
     /**
      * @return HasErrorCode[]|Error[]
+     *
+     * @deprecated use getMessages()
      */
     public function getErrors(): array
     {
@@ -80,7 +82,7 @@ final class CalculationResponse implements Response
 
     public function getMessages()
     {
-        yield from $this->getErrors();
+        yield from $this->errors;
     }
 
     public function getResult(): Result

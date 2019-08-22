@@ -151,7 +151,7 @@ class CalculationRequestTest extends TestCase
 
     private function assertNoErrors(Response $response)
     {
-        foreach ($response->getErrors() as $error) {
+        foreach ($response->getMessages() as $error) {
             if ((int) $error->getErrorCode() === self::UNAUTHORIZED_ERROR) {
                 $this->skipIfTestEndpointIsUsed("{$error->getErrorCode()}: {$error->getMessage()}");
             }

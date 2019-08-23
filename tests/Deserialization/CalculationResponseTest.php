@@ -100,6 +100,7 @@ class CalculationResponseTest extends TestCase
         $this->assertSame(2, $response->getDeliveryPeriodMin());
         $this->assertSame(4, $response->getDeliveryPeriodMax());
         $this->assertSame(1, $response->getTariffId());
+        $this->assertNull($response->getCashOnDelivery());
         $this->assertSame(1250.0, $response->getPriceByCurrency());
         $this->assertSame('RUB', $response->getCurrency());
         $this->assertSame('2018-01-01', $response->getDeliveryDateMin()->format('Y-m-d'));
@@ -156,6 +157,21 @@ class CalculationResponseTest extends TestCase
 
             $this->assertSame(1.8, $service->getRate());
         }
+    }
+
+    public function test_it_sees_cash_on_delivery_limit()
+    {
+        $response = $this->getSerializer()->deserialize(FixtureLoader::load('CalculationResponseCashOnDelivery.json'), CalculationResponse::class, 'json');
+
+        /** @var $response CalculationResponse */
+        $this->assertInstanceOf(CalculationResponse::class, $response);
+
+        $this->assertFalse($response->hasErrors());
+        foreach ($response->getErrors() as $error) {
+            $this->fail($error->getMessage());
+        }
+
+        $this->assertSame(0.0, $response->getCashOnDelivery());
     }
 
     public function test_it_errors_on_unknown_method_within_a_result()

@@ -61,6 +61,66 @@ final class Order implements HasErrorCode
     }
 
     /**
+     * Код города отправителя из базы СДЭК (см. файл «City_XXX_YYYYMMDD.xls»).
+     *
+     * @JMS\XmlAttribute
+     * @JMS\Type("integer")
+     *
+     * @var int
+     */
+    protected $SendCityCode;
+
+    /**
+     * Код города получателя из базы СДЭК (см. файл «City_XXX_YYYYMMDD.xls»).
+     *
+     * @JMS\XmlAttribute
+     * @JMS\Type("integer")
+     *
+     * @var int
+     */
+    protected $RecCityCode;
+
+    /**
+     * Почтовый индекс города отправителя.
+     *
+     * @JMS\XmlAttribute
+     * @JMS\Type("string")
+     *
+     * @var string
+     */
+    protected $SendCityPostCode;
+
+    /**
+     * Почтовый индекс города получателя.
+     *
+     * @JMS\XmlAttribute
+     * @JMS\Type("string")
+     *
+     * @var string
+     */
+    protected $RecCityPostCode;
+
+    /**
+     * Код страны отправителя для идентификации страны в формате ISO_3166-1_alpha-2 (см. “Общероссийский классификатор стран мира”). По умолчанию - RU.
+     *
+     * @JMS\XmlAttribute
+     * @JMS\Type("string")
+     *
+     * @var string;
+     */
+    protected $SendCountryCode;
+
+    /**
+     * Код страны получателя для идентификации страны в формате ISO_3166-1_alpha-2 (см. “Общероссийский классификатор стран мира”). По умолчанию - RU.
+     *
+     * @JMS\XmlAttribute
+     * @JMS\Type("string")
+     *
+     * @var string;
+     */
+    protected $RecCountryCode;
+
+    /**
      * @JMS\XmlAttribute
      * @JMS\Type("string")
      *
@@ -353,6 +413,8 @@ final class Order implements HasErrorCode
     protected $SendCity;
 
     /**
+     * Наименование города отправителя.
+     *
      * @JMS\XmlAttribute
      * @JMS\Type("string")
      *
@@ -368,6 +430,8 @@ final class Order implements HasErrorCode
     protected $RecCity;
 
     /**
+     * Наименование города получателя.
+     *
      * @JMS\XmlAttribute
      * @JMS\Type("string")
      *
@@ -626,11 +690,6 @@ final class Order implements HasErrorCode
     }
 
     /**
-     * @JMS\VirtualProperty
-     * @JMS\XmlAttribute
-     * @JMS\SerializedName("SendCityCode")
-     * @JMS\Type("integer")
-     *
      * @return int|null
      */
     public function getSendCityCode()
@@ -639,11 +698,6 @@ final class Order implements HasErrorCode
     }
 
     /**
-     * @JMS\VirtualProperty
-     * @JMS\XmlAttribute
-     * @JMS\SerializedName("SendCityPostCode")
-     * @JMS\Type("string")
-     *
      * @return string|null
      */
     public function getSendCityPostCode()
@@ -652,11 +706,6 @@ final class Order implements HasErrorCode
     }
 
     /**
-     * @JMS\VirtualProperty
-     * @JMS\XmlAttribute
-     * @JMS\SerializedName("RecCityCode")
-     * @JMS\Type("integer")
-     *
      * @return int|null
      */
     public function getRecCityCode()
@@ -665,11 +714,6 @@ final class Order implements HasErrorCode
     }
 
     /**
-     * @JMS\VirtualProperty
-     * @JMS\XmlAttribute
-     * @JMS\SerializedName("RecCityPostCode")
-     * @JMS\Type("string")
-     *
      * @return string|null
      */
     public function getRecCityPostCode()
@@ -916,8 +960,21 @@ final class Order implements HasErrorCode
      */
     public function preSerialize()
     {
-        // Эти поля есть в ответах, но в запросах их использовать недопустимо
-        $this->SendCity = null;
-        $this->RecCity = null;
+        /*
+         * Эти поля есть в ответах, но в запросах их использовать недопустимо. Убрать их просил СДЭК.
+         * Тем не менее, в примерах эти поля (SendCity и RecCity) использовались, потому, для обратной
+         * совместимости, переносим из них значения в действительно используемые поля.
+         */
+        if ($this->SendCity) {
+            $this->SendCityCode = $this->SendCity->getCode();
+            $this->SendCityPostCode = $this->SendCity->getPostCode();
+            $this->SendCity = null;
+        }
+
+        if ($this->RecCity) {
+            $this->RecCityCode = $this->RecCity->getCode();
+            $this->RecCityPostCode = $this->RecCity->getPostCode();
+            $this->RecCity = null;
+        }
     }
 }

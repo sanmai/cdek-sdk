@@ -125,8 +125,6 @@ class DeliveryRequestTest extends TestCase
     <Package Number="TEST-123456" BarCode="TEST-123456" Weight="500" SizeA="10" SizeB="10" SizeC="10">
       <Item WareKey="NN0001" Cost="500" Payment="0" PaymentVATRate="VATX" PaymentVATSum="5.25" Weight="120" Amount="2" Comment="Test item"/>
     </Package>
-    <SendCity Code="44"/>
-    <RecCity PostCode="630001"/>
   </Order>
 </DeliveryRequest>
 ', $request);
@@ -194,8 +192,6 @@ class DeliveryRequestTest extends TestCase
     <Address Street="Холодильная улица" House="16" Flat="22" PvzCode="TST123"/>
     <AddService ServiceCode="17"/>
     <Package Number="TEST-123456" BarCode="TEST-123456" Weight="500" SizeA="10" SizeB="10" SizeC="10"/>
-    <SendCity Code="44"/>
-    <RecCity PostCode="630001"/>
     <Sender Name="Петр Иванов" Company="ЗАО «Рога и Копыта»">
       <Address Street="Морозильная улица" House="2" Flat="101"/>
       <Phone><![CDATA[+7 (283) 101-11-20]]></Phone>

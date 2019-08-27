@@ -31,14 +31,10 @@ use CdekSDK\Requests;
 $client = new \CdekSDK\CdekClient('account', 'password');
 
 $order = new Common\Order([
-    'ClientSide' => Common\Order::CLIENT_SIDE_SENDER,
-    'Number'     => 'TEST-123456',
-    'SendCity'   => Common\City::create([
-        'Code' => 44, // Москва
-    ]),
-    'RecCity' => Common\City::create([
-        'PostCode' => '630001', // Новосибирск
-    ]),
+    'ClientSide'       => Common\Order::CLIENT_SIDE_SENDER,
+    'Number'           => 'TEST-123456',
+    'SendCityCode'     => 44, // Москва
+    'RecCityPostCode'  => '630001', // Новосибирск
     'RecipientName'    => 'Иван Петров',
     'RecipientEmail'   => 'petrov@test.ru',
     'Phone'            => '+7 (383) 202-22-50',

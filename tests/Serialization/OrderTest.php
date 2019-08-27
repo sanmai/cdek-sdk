@@ -220,12 +220,12 @@ class OrderTest extends TestCase
     public function test_city_code_fallback()
     {
         $order = new Order([
-            'Number'           => 'TEST-12345',
-            'SendCity'         => City::create([
+            'Number'   => 'TEST-12345',
+            'SendCity' => City::create([
                 'Code'     => 44,
                 'PostCode' => '123123',
             ]),
-            'RecCity' => City::create([
+            'RecCity'  => City::create([
                 'Code'     => 11,
                 'PostCode' => '630001',
             ]),

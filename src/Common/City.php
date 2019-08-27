@@ -32,6 +32,9 @@ use JMS\Serializer\Annotation as JMS;
 
 final class City
 {
+    /**
+     * @deprecated
+     */
     use Fillable;
 
     /**

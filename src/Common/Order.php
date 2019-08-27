@@ -66,7 +66,7 @@ final class Order implements HasErrorCode
      * @JMS\XmlAttribute
      * @JMS\Type("integer")
      *
-     * @var int
+     * @var int|null
      */
     protected $SendCityCode;
 
@@ -76,7 +76,7 @@ final class Order implements HasErrorCode
      * @JMS\XmlAttribute
      * @JMS\Type("integer")
      *
-     * @var int
+     * @var int|null
      */
     protected $RecCityCode;
 
@@ -106,7 +106,7 @@ final class Order implements HasErrorCode
      * @JMS\XmlAttribute
      * @JMS\Type("string")
      *
-     * @var string;
+     * @var string
      */
     protected $SendCountryCode;
 
@@ -116,7 +116,7 @@ final class Order implements HasErrorCode
      * @JMS\XmlAttribute
      * @JMS\Type("string")
      *
-     * @var string;
+     * @var string
      */
     protected $RecCountryCode;
 
@@ -408,7 +408,7 @@ final class Order implements HasErrorCode
     /**
      * @JMS\Type("CdekSDK\Common\City")
      *
-     * @var City
+     * @var City|null
      */
     protected $SendCity;
 
@@ -425,7 +425,7 @@ final class Order implements HasErrorCode
     /**
      * @JMS\Type("CdekSDK\Common\City")
      *
-     * @var City
+     * @var City|null
      */
     protected $RecCity;
 
@@ -891,15 +891,22 @@ final class Order implements HasErrorCode
     }
 
     /**
-     * @throws \TypeError
+     * @psalm-suppress InvalidNullableReturnType
+     * @psalm-suppress NullableReturnStatement
      *
-     * @return City
+     * @throws \TypeError
      */
     public function getSenderCity(): City
     {
         return $this->SendCity;
     }
 
+    /**
+     * @psalm-suppress InvalidNullableReturnType
+     * @psalm-suppress NullableReturnStatement
+     *
+     * @throws \TypeError
+     */
     public function getRecipientCity(): City
     {
         return $this->RecCity;
@@ -958,7 +965,7 @@ final class Order implements HasErrorCode
     /**
      * @JMS\PreSerialize
      */
-    public function preSerialize()
+    private function preSerialize()
     {
         /*
          * Эти поля есть в ответах, но в запросах их использовать недопустимо. Убрать их просил СДЭК.

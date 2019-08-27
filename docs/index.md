@@ -343,12 +343,8 @@ use CdekSDK\Requests;
 
 $order = new Common\Order([
     'Number'   => 'TEST-123456',
-    'SendCity' => Common\City::create([
-        'Code' => 44, // Москва
-    ]),
-    'RecCity' => Common\City::create([
-        'PostCode' => '630001', // Новосибирск
-    ]),
+    'SendCityCode'    => 44, // Москва
+    'RecCityPostCode' => '630001', // Новосибирск
     'RecipientName'  => 'Иван Петров',
     'RecipientEmail' => 'petrov@test.ru',
     'Phone'          => '+7 (383) 202-22-50',
@@ -418,12 +414,8 @@ use CdekSDK\Requests;
 $order = new Common\Order([
     'ClientSide' => Common\Order::CLIENT_SIDE_SENDER,
     'Number'     => 'TEST-123456',
-    'SendCity'   => Common\City::create([
-        'Code' => 44, // Москва
-    ]),
-    'RecCity' => Common\City::create([
-        'PostCode' => '630001', // Новосибирск
-    ]),
+    'SendCityCode'    => 44, // Москва
+    'RecCityPostCode' => '630001', // Новосибирск
     'RecipientName'    => 'Иван Петров',
     'RecipientEmail'   => 'petrov@test.ru',
     'Phone'            => '+7 (383) 202-22-50',

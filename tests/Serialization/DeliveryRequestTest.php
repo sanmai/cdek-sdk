@@ -31,7 +31,6 @@ namespace Tests\CdekSDK\Serialization;
 use CdekSDK\Common\AdditionalService;
 use CdekSDK\Common\Address;
 use CdekSDK\Common\CallCourier;
-use CdekSDK\Common\City;
 use CdekSDK\Common\Item;
 use CdekSDK\Common\Order;
 use CdekSDK\Common\Package;
@@ -72,17 +71,13 @@ class DeliveryRequestTest extends TestCase
     public function test_can_serialize_im_request()
     {
         $order = new Order([
-            'Number'   => 'TEST-123456',
-            'SendCity' => City::create([
-                'Code' => 44, // Москва
-            ]),
-            'RecCity' => City::create([
-                'PostCode' => '630001', // Новосибирск
-            ]),
-            'RecipientName'  => 'Иван Петров',
-            'RecipientEmail' => 'petrov@test.ru',
-            'Phone'          => '+7 (383) 202-22-50',
-            'TariffTypeCode' => 139, // Посылка дверь-дверь
+            'Number'          => 'TEST-123456',
+            'SendCityCode'    => 44, // Москва
+            'RecCityPostCode' => '630001', // Новосибирск
+            'RecipientName'   => 'Иван Петров',
+            'RecipientEmail'  => 'petrov@test.ru',
+            'Phone'           => '+7 (383) 202-22-50',
+            'TariffTypeCode'  => 139, // Посылка дверь-дверь
         ]);
 
         $order->setAddress(Address::create([
@@ -120,7 +115,7 @@ class DeliveryRequestTest extends TestCase
 
         $this->assertSameAsXML('<?xml version="1.0" encoding="UTF-8"?>
 <DeliveryRequest OrderCount="1" Number="TESTING123">
-  <Order SendCityCode="44" SendCityPostCode="" RecCityPostCode="630001" Number="TEST-123456" RecipientName="Иван Петров" RecipientEmail="petrov@test.ru" Phone="+7 (383) 202-22-50" TariffTypeCode="139">
+  <Order SendCityCode="44" RecCityPostCode="630001" Number="TEST-123456" RecipientName="Иван Петров" RecipientEmail="petrov@test.ru" Phone="+7 (383) 202-22-50" TariffTypeCode="139">
     <Address Street="Холодильная улица" House="16" Flat="22"/>
     <Package Number="TEST-123456" BarCode="TEST-123456" Weight="500" SizeA="10" SizeB="10" SizeC="10">
       <Item WareKey="NN0001" Cost="500" Payment="0" PaymentVATRate="VATX" PaymentVATSum="5.25" Weight="120" Amount="2" Comment="Test item"/>
@@ -133,14 +128,10 @@ class DeliveryRequestTest extends TestCase
     public function test_can_serialize_regular_request()
     {
         $order = new Order([
-            'ClientSide' => Order::CLIENT_SIDE_SENDER,
-            'Number'     => 'TEST-123456',
-            'SendCity'   => City::create([
-                'Code' => 44, // Москва
-            ]),
-            'RecCity' => City::create([
-                'PostCode' => '630001', // Новосибирск
-            ]),
+            'ClientSide'       => Order::CLIENT_SIDE_SENDER,
+            'Number'           => 'TEST-123456',
+            'SendCityCode'     => 44, // Москва
+            'RecCityPostCode'  => '630001', // Новосибирск
             'RecipientName'    => 'Иван Петров',
             'RecipientEmail'   => 'petrov@test.ru',
             'Phone'            => '+7 (383) 202-22-50',
@@ -188,7 +179,7 @@ class DeliveryRequestTest extends TestCase
 
         $this->assertSameAsXML('<?xml version="1.0" encoding="UTF-8"?>
 <DeliveryRequest OrderCount="1" Number="TESTING123" ForeignDelivery="false" Currency="RUB">
-  <Order SendCityCode="44" SendCityPostCode="" RecCityPostCode="630001" ClientSide="sender" Number="TEST-123456" RecipientCompany="Петров и партнёры, ООО" RecipientName="Иван Петров" RecipientEmail="petrov@test.ru" Phone="+7 (383) 202-22-50" TariffTypeCode="1" Comment="Это тестовый заказ">
+  <Order SendCityCode="44" RecCityPostCode="630001" ClientSide="sender" Number="TEST-123456" RecipientCompany="Петров и партнёры, ООО" RecipientName="Иван Петров" RecipientEmail="petrov@test.ru" Phone="+7 (383) 202-22-50" TariffTypeCode="1" Comment="Это тестовый заказ">
     <Address Street="Холодильная улица" House="16" Flat="22" PvzCode="TST123"/>
     <AddService ServiceCode="17"/>
     <Package Number="TEST-123456" BarCode="TEST-123456" Weight="500" SizeA="10" SizeB="10" SizeC="10"/>

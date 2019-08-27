@@ -258,8 +258,9 @@ class DeliveryRequestTest extends TestCase
         $this->assertFalse($response->hasErrors());
 
         foreach ($response->getOrders() as $order) {
-            $this->assertSame(self::formatTestNumber('TEST-%s'), $order->getNumber());
             $this->assertNotEmpty($order->getDispatchNumber());
+            // Номер заказа не передаётся для заказов доставки
+            //$this->assertSame(self::formatTestNumber('TEST-%s'), $order->getNumber());
         }
 
         return $order->getDispatchNumber();

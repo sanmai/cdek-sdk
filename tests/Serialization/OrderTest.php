@@ -32,6 +32,7 @@ use CdekSDK\Common\AdditionalService;
 use CdekSDK\Common\Address;
 use CdekSDK\Common\Attempt;
 use CdekSDK\Common\CallCourier;
+use CdekSDK\Common\City;
 use CdekSDK\Common\DeliveryRecipientCostAdv;
 use CdekSDK\Common\Order;
 use CdekSDK\Common\Package;
@@ -214,5 +215,36 @@ class OrderTest extends TestCase
         $this->assertSameAsXML('<?xml version="1.0" encoding="UTF-8"?>
 <Order SendCityCode="44" RecCityCode="11" SendCityPostCode="123123" RecCityPostCode="630001" SendCountryCode="RU" RecCountryCode="RU" Number="TEST-123456"/>
 ', $order);
+    }
+
+    public function test_city_code_fallback()
+    {
+        $order = new Order([
+            'Number'           => 'TEST-12345',
+            'SendCity'         => City::create([
+                'Code'     => 44,
+                'PostCode' => '123123',
+            ]),
+            'RecCity' => City::create([
+                'Code'     => 11,
+                'PostCode' => '630001',
+            ]),
+        ]);
+
+        $this->assertSame(44, $order->getSendCityCode());
+        $this->assertSame('123123', $order->getSendCityPostCode());
+
+        $this->assertSame(11, $order->getRecCityCode());
+        $this->assertSame('630001', $order->getRecCityPostCode());
+
+        $this->assertSameAsXML('<?xml version="1.0" encoding="UTF-8"?>
+<Order SendCityCode="44" RecCityCode="11" SendCityPostCode="123123" RecCityPostCode="630001" Number="TEST-12345"/>
+', $order);
+
+        $this->assertSame(44, $order->getSendCityCode());
+        $this->assertSame('123123', $order->getSendCityPostCode());
+
+        $this->assertSame(11, $order->getRecCityCode());
+        $this->assertSame('630001', $order->getRecCityPostCode());
     }
 }

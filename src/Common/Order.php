@@ -694,7 +694,7 @@ final class Order implements HasErrorCode
      */
     public function getSendCityCode()
     {
-        return $this->SendCity ? $this->SendCity->getCode() : null;
+        return $this->SendCity ? $this->SendCity->getCode() : $this->SendCityCode;
     }
 
     /**
@@ -702,7 +702,7 @@ final class Order implements HasErrorCode
      */
     public function getSendCityPostCode()
     {
-        return $this->SendCity ? $this->SendCity->getPostCode() : null;
+        return $this->SendCity ? $this->SendCity->getPostCode() : $this->SendCityPostCode;
     }
 
     /**
@@ -710,7 +710,7 @@ final class Order implements HasErrorCode
      */
     public function getRecCityCode()
     {
-        return $this->RecCity ? $this->RecCity->getCode() : null;
+        return $this->RecCity ? $this->RecCity->getCode() : $this->RecCityCode;
     }
 
     /**
@@ -718,7 +718,7 @@ final class Order implements HasErrorCode
      */
     public function getRecCityPostCode()
     {
-        return $this->RecCity ? $this->RecCity->getPostCode() : null;
+        return $this->RecCity ? $this->RecCity->getPostCode() : $this->RecCityPostCode;
     }
 
     public function getRecipientName(): string

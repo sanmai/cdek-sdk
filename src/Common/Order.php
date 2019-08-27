@@ -910,4 +910,14 @@ final class Order implements HasErrorCode
     {
         return $this->ReturnDispatchNumber;
     }
+
+    /**
+     * @JMS\PreSerialize
+     */
+    public function preSerialize()
+    {
+        // Эти поля есть в ответах, но в запросах их использовать недопустимо
+        $this->SendCity = null;
+        $this->RecCity = null;
+    }
 }

@@ -198,4 +198,21 @@ class OrderTest extends TestCase
 </Order>
 ', $order);
     }
+
+    public function test_can_serialize_city_codes()
+    {
+        $order = new Order([
+            'Number'           => 'TEST-123456',
+            'SendCityCode'     => 44,
+            'RecCityCode'      => 11,
+            'SendCityPostCode' => '123123',
+            'RecCityPostCode'  => '630001',
+            'SendCountryCode'  => 'RU',
+            'RecCountryCode'   => 'RU',
+        ]);
+
+        $this->assertSameAsXML('<?xml version="1.0" encoding="UTF-8"?>
+<Order SendCityCode="44" RecCityCode="11" SendCityPostCode="123123" RecCityPostCode="630001" SendCountryCode="RU" RecCountryCode="RU" Number="TEST-123456"/>
+', $order);
+    }
 }

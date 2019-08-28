@@ -32,7 +32,6 @@ use CdekSDK\Common\AdditionalService;
 use CdekSDK\Common\Address;
 use CdekSDK\Common\CallCourier;
 use CdekSDK\Common\ChangePeriod;
-use CdekSDK\Common\City;
 use CdekSDK\Common\Item;
 use CdekSDK\Common\Order;
 use CdekSDK\Common\Package;
@@ -107,17 +106,13 @@ class DeliveryRequestTest extends TestCase
     public function test_successful_request_for_shop(): string
     {
         $order = new Order([
-            'Number'   => self::formatTestNumber('TEST-%s'),
-            'SendCity' => City::create([
-                'Code' => 44, // Москва
-            ]),
-            'RecCity' => City::create([
-                'PostCode' => '630001', // Новосибирск
-            ]),
-            'RecipientName'  => 'Иван Петров',
-            'RecipientEmail' => 'petrov@test.ru',
-            'Phone'          => '+7 (383) 202-22-50',
-            'TariffTypeCode' => 139, // Посылка дверь-дверь
+            'Number'          => self::formatTestNumber('TEST-%s'),
+            'SendCityCode'    => 44, // Москва
+            'RecCityPostCode' => '630001', // Новосибирск
+            'RecipientName'   => 'Иван Петров',
+            'RecipientEmail'  => 'petrov@test.ru',
+            'Phone'           => '+7 (383) 202-22-50',
+            'TariffTypeCode'  => 139, // Посылка дверь-дверь
         ]);
 
         $order->setAddress(Address::create([
@@ -197,14 +192,10 @@ class DeliveryRequestTest extends TestCase
         // Попробуем создать заказ на доставку
 
         $order = new Order([
-            'ClientSide' => Order::CLIENT_SIDE_SENDER,
-            'Number'     => self::formatTestNumber('TEST-%s'),
-            'SendCity'   => City::create([
-                'Code' => 44, // Москва
-            ]),
-            'RecCity' => City::create([
-                'PostCode' => '630001', // Новосибирск
-            ]),
+            'ClientSide'       => Order::CLIENT_SIDE_SENDER,
+            'Number'           => self::formatTestNumber('TEST-%s'),
+            'SendCityCode'     => 44, // Москва
+            'RecCityPostCode'  => '630001', // Новосибирск
             'RecipientName'    => 'Иван Петров',
             'RecipientEmail'   => 'petrov@test.ru',
             'Phone'            => '+7 (383) 202-22-50',
@@ -267,8 +258,9 @@ class DeliveryRequestTest extends TestCase
         $this->assertFalse($response->hasErrors());
 
         foreach ($response->getOrders() as $order) {
-            $this->assertSame(self::formatTestNumber('TEST-%s'), $order->getNumber());
             $this->assertNotEmpty($order->getDispatchNumber());
+            // Номер заказа не передаётся для заказов доставки
+            //$this->assertSame(self::formatTestNumber('TEST-%s'), $order->getNumber());
         }
 
         return $order->getDispatchNumber();

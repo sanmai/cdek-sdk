@@ -146,7 +146,7 @@ report-php-version:
 # Quick development testing procedure                        #
 ##############################################################
 
-PHP_VERSIONS=php7.0 php7.2
+PHP_VERSIONS=php7.0 php7.3
 
 .PHONY: quick
 quick:

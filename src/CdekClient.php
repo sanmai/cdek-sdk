@@ -254,9 +254,16 @@ final class CdekClient implements Contracts\Client, LoggerAwareInterface
         // @codeCoverageIgnoreEnd
     }
 
+    /**
+     * @see \CdekSDK\Requests\Concerns\Authorized::$date
+     *
+     * @param \DateTimeInterface $date
+     *
+     * @return string
+     */
     private function getSecure(\DateTimeInterface $date): string
     {
-        return \md5($date->format('Y-m-d')."&{$this->password}");
+        return \md5($date->format('Y-m-d\TH:i:sP')."&{$this->password}");
     }
 
     private function hasAttachment(ResponseInterface $response): bool

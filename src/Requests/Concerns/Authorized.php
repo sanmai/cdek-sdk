@@ -34,9 +34,13 @@ use JMS\Serializer\Annotation as JMS;
 trait Authorized
 {
     /**
+     * Дата и время в формате ISO 8601:2004: YYYY-MM-DDThh:mm:ss+hh:mm.
+     *
+     * @see \CdekSDK\CdekClient::getSecure();
+     *
      * @JMS\XmlAttribute
      * @JMS\SerializedName("Date")
-     * @JMS\Type("DateTimeImmutable<'Y-m-d'>")
+     * @JMS\Type("DateTimeImmutable<'Y-m-d\TH:i:sP'>")
      *
      * @var \DateTimeInterface
      *

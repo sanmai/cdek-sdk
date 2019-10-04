@@ -145,6 +145,7 @@ final class CdekClient implements Contracts\Client, LoggerAwareInterface
             return "{$parts[2]}-{$parts[1]}{$parts[3]}";
         }
 
+        /** @phan-suppress-next-line PhanTypeArraySuspiciousNullable */
         return (string) @\json_decode((string) \file_get_contents(__DIR__.'/../composer.json'), true)['extra']['branch-alias']['dev-master'];
     }
 

@@ -20,5 +20,6 @@
   </filter>
   <php>
     <env name="CDEK_BASE_URL" value="http://integration.edu.cdek.ru" />
+    <ini name="date.timezone" value="UTC"/>
   </php>
 </phpunit>

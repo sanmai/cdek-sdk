@@ -327,4 +327,20 @@ class DeliveryRequestTest extends TestCase
 <DeliveryRequest OrderCount="0" DeveloperKey="abcdefd4621d373cade4e832627b123" Number="888"/>
 ', $request);
     }
+
+    public function test_with_full_date()
+    {
+        $request = DeliveryRequest::create([
+            'Number'       => '12345',
+        ]);
+
+        $date = new \DateTime('2012-12-21T11:49:49+0000');
+        $date->setTimezone(new \DateTimeZone('Europe/Moscow'));
+
+        $request->date($date);
+
+        $this->assertSameAsXML('<?xml version="1.0" encoding="UTF-8"?>
+<DeliveryRequest OrderCount="0" Number="12345" Date="2012-12-21T15:49:49+04:00"/>
+', $request);
+    }
 }

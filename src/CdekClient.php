@@ -77,6 +77,13 @@ final class CdekClient implements Contracts\Client, LoggerAwareInterface
     const PACKAGE_NAME = 'Cdek-SDK';
     const VERSION_INFO = '$Format:%h%d by %an +%ae$';
 
+    /**
+     * Формат даты, который используется для создания подписи запроса.
+     *
+     * @var string
+     */
+    const SECURE_DATE_FORMAT = 'Y-m-d\TH:i:sP';
+
     /** @var ClientInterface */
     private $http;
 
@@ -264,7 +271,7 @@ final class CdekClient implements Contracts\Client, LoggerAwareInterface
      */
     private function getSecure(\DateTimeInterface $date): string
     {
-        return \md5($date->format('Y-m-d\TH:i:sP')."&{$this->password}");
+        return \md5($date->format(self::SECURE_DATE_FORMAT)."&{$this->password}");
     }
 
     private function hasAttachment(ResponseInterface $response): bool

@@ -28,6 +28,7 @@ declare(strict_types=1);
 
 namespace CdekSDK\Requests\Templates;
 
+use CdekSDK\CdekClient;
 use CdekSDK\Common\AdditionalService;
 use CdekSDK\Contracts\DateAware;
 use CdekSDK\Contracts\JsonRequest;
@@ -280,7 +281,7 @@ abstract class CalculationAuthorizedRequest implements JsonRequest, \JsonSeriali
             'receiverCityId'       => $this->receiverCityId,
             'receiverCityPostCode' => $this->receiverCityPostCode,
             'currency'             => $this->currency,
-            'dateExecute'          => $this->dateExecute instanceof \DateTimeInterface ? $this->dateExecute->format('Y-m-d') : null,
+            'dateExecute'          => $this->dateExecute instanceof \DateTimeInterface ? $this->dateExecute->format(CdekClient::SECURE_DATE_FORMAT) : null,
         ]);
 
         if ($this->account === '') {
@@ -290,7 +291,7 @@ abstract class CalculationAuthorizedRequest implements JsonRequest, \JsonSeriali
         return \array_merge($result, [
             'secure'      => $this->secure,
             'authLogin'   => $this->account,
-            'dateExecute' => $this->date->format('Y-m-d'),
+            'dateExecute' => $this->date->format(CdekClient::SECURE_DATE_FORMAT),
         ]);
     }
 }

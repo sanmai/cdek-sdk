@@ -136,6 +136,19 @@ class CitiesResponseTest extends TestCase
         $this->assertSame('AA', $location->getCountryCodeISO());
     }
 
+    public function test_it_reads_timezone()
+    {
+        $response = $this->getSerializer()->deserialize(FixtureLoader::load('CitiesResponseWithTimezone.xml'), CitiesResponse::class, 'xml');
+
+        $this->assertFalse($response->hasErrors());
+        $this->assertCount(1, $response);
+
+        $location = $response->getItems()[0];
+        /** @var $location Location */
+        $this->assertSame('Новосибирск', $location->getName());
+        $this->assertSame('Asia/Novosibirsk', $location->getTimezone());
+    }
+
     public function test_it_serializes_to_empty_json()
     {
         $response = new CitiesResponse();

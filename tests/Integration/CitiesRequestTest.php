@@ -94,6 +94,7 @@ class CitiesRequestTest extends TestCase
 
         foreach ($response as $item) {
             $this->assertSame('Новосибирск', $item->getCityName());
+            $this->assertSame('Asia/Novosibirsk', $item->getTimezone());
         }
     }
 

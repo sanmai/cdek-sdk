@@ -154,6 +154,14 @@ final class Location
      */
     private $paymentLimit = 0.0;
 
+    /**
+     * @JMS\XmlAttribute
+     * @JMS\Type("string")
+     *
+     * @var string|null
+     */
+    private $timezone;
+
     public function getName(): string
     {
         return $this->cityName;
@@ -271,5 +279,13 @@ final class Location
     public function getFiasGuid()
     {
         return $this->fiasGuid;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getTimezone()
+    {
+        return $this->timezone;
     }
 }

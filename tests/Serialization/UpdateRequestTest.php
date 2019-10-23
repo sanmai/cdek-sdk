@@ -98,4 +98,19 @@ class UpdateRequestTest extends TestCase
 </UpdateRequest>
 ', $request);
     }
+
+    public function test_can_serialize_RecipientEmail()
+    {
+        $request = UpdateRequest::create([
+            'Number' => 'foo',
+        ])->addOrder(Order::create([
+            'RecipientEmail' => 'test@example.com',
+        ]));
+
+        $this->assertSameAsXML('<?xml version="1.0" encoding="UTF-8"?>
+<UpdateRequest OrderCount="1" Number="foo">
+  <Order RecipientEmail="test@example.com"/>
+</UpdateRequest>
+', $request);
+    }
 }

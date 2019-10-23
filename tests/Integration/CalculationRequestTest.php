@@ -149,6 +149,29 @@ class CalculationRequestTest extends TestCase
         $this->assertSame(0.0, $response->getCashOnDelivery());
     }
 
+    public function test_authorized_international()
+    {
+        $request = new CalculationAuthorizedRequest();
+        $request->setSenderCityId(32150)
+            ->setReceiverCityId(920)
+            ->setTariffId(7)
+            ->addPackage([
+                'weight' => 1,
+                'length' => 4,
+                'width'  => 4,
+                'height' => 4,
+            ]);
+
+        $response = $this->getClient()->sendCalculationRequest($request);
+
+        /** @var \CdekSDK\Responses\CalculationResponse $response */
+        $this->assertNoErrors($response);
+
+        $this->assertFalse($response->hasErrors());
+
+        $this->assertGreaterThan(0.0, $response->getPrice());
+    }
+
     private function assertNoErrors(Response $response)
     {
         foreach ($response->getMessages() as $error) {

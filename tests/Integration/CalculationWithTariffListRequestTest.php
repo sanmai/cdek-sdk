@@ -29,9 +29,9 @@ declare(strict_types=1);
 namespace Tests\CdekSDK\Integration;
 
 use CdekSDK\Common\AdditionalService;
-use CdekSDK\Requests\CalculationWithTariffListAuthorizedRequest;
 use CdekSDK\Requests\CalculationWithTariffListRequest;
 use CdekSDK\Responses\Types\Error;
+use Tests\CdekSDK\Integration\Requests\CalculationWithTariffListAuthorizedRequest;
 
 /**
  * @covers \CdekSDK\Requests\CalculationWithTariffListAuthorizedRequest
@@ -43,6 +43,7 @@ use CdekSDK\Responses\Types\Error;
 class CalculationWithTariffListRequestTest extends TestCase
 {
     const UNAUTHORIZED_ERROR = 2;
+    const UNAVAILABLE_DESTINATION_ERROR = 3;
 
     public function test_success_anonymous()
     {
@@ -114,8 +115,9 @@ class CalculationWithTariffListRequestTest extends TestCase
 
         $response = $this->getClient()->sendCalculationRequest($request);
 
+        /** @var \CdekSDK\Responses\CalculationWithTariffListResponse $response */
         foreach ($response->getErrors() as $error) {
-            if ((int) $error->getErrorCode() === self::UNAUTHORIZED_ERROR) {
+            if ((int) $error->getErrorCode() === self::UNAVAILABLE_DESTINATION_ERROR) {
                 $this->skipIfTestEndpointIsUsed("{$error->getErrorCode()}: {$error->getMessage()}");
             }
 
@@ -124,11 +126,18 @@ class CalculationWithTariffListRequestTest extends TestCase
 
         $this->assertFalse($response->hasErrors());
 
-        /** @var \CdekSDK\Responses\CalculationWithTariffListResponse $response */
         $this->assertCount(1, $response);
 
         foreach ($response as $result) {
             /** @var \CdekSDK\Responses\Types\TariffResult $result */
+            foreach ($result->getErrors() as $error) {
+                if ((int) $error->getErrorCode() === self::UNAVAILABLE_DESTINATION_ERROR) {
+                    continue 2;
+                }
+            }
+
+            $this->assertFalse($result->hasErrors());
+
             $this->assertGreaterThan(0, $result->getPriceByCurrency());
         }
     }

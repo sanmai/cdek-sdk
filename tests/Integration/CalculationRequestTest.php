@@ -30,8 +30,8 @@ namespace Tests\CdekSDK\Integration;
 
 use CdekSDK\Common\AdditionalService;
 use CdekSDK\Contracts\Response;
-use CdekSDK\Requests\CalculationAuthorizedRequest;
 use CdekSDK\Requests\CalculationRequest;
+use Tests\CdekSDK\Integration\Requests\CalculationAuthorizedRequest;
 
 /**
  * @covers \CdekSDK\Requests\CalculationRequest
@@ -43,6 +43,7 @@ use CdekSDK\Requests\CalculationRequest;
 class CalculationRequestTest extends TestCase
 {
     const UNAUTHORIZED_ERROR = 2;
+    const UNAVAILABLE_DESTINATION_ERROR = 3;
 
     public function test_success_anonymous()
     {
@@ -70,13 +71,18 @@ class CalculationRequestTest extends TestCase
         $this->assertGreaterThan(0, $response->getPrice());
     }
 
+    public function test_with_authorisation_returns()
+    {
+        $this->assertInstanceOf(\CdekSDK\Requests\CalculationAuthorizedRequest::class, CalculationRequest::withAuthorization());
+    }
+
     /**
      * @psalm-suppress ArgumentTypeCoercion
      */
     public function test_authorized_success()
     {
-        $request = CalculationRequest::withAuthorization()
-        ->setSenderCityPostCode('295000')
+        $request = new CalculationAuthorizedRequest();
+        $request->setSenderCityPostCode('295000')
         ->setReceiverCityPostCode('652632')
         ->addAdditionalService(AdditionalService::SERVICE_INSURANCE, 2000)
         ->setTariffId(1)
@@ -165,6 +171,12 @@ class CalculationRequestTest extends TestCase
         $response = $this->getClient()->sendCalculationRequest($request);
 
         /** @var \CdekSDK\Responses\CalculationResponse $response */
+        foreach ($response->getMessages() as $error) {
+            if ((int) $error->getErrorCode() === self::UNAVAILABLE_DESTINATION_ERROR) {
+                $this->markTestIncomplete("{$error->getErrorCode()}: {$error->getMessage()}");
+            }
+        }
+
         $this->assertNoErrors($response);
 
         $this->assertFalse($response->hasErrors());
@@ -175,10 +187,6 @@ class CalculationRequestTest extends TestCase
     private function assertNoErrors(Response $response)
     {
         foreach ($response->getMessages() as $error) {
-            if ((int) $error->getErrorCode() === self::UNAUTHORIZED_ERROR) {
-                $this->skipIfTestEndpointIsUsed("{$error->getErrorCode()}: {$error->getMessage()}");
-            }
-
             $this->fail("{$error->getErrorCode()}: {$error->getMessage()}");
         }
     }

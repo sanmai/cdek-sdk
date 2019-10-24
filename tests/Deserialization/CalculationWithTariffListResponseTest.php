@@ -28,6 +28,7 @@ declare(strict_types=1);
 
 namespace Tests\CdekSDK\Deserialization;
 
+use CdekSDK\Contracts\HasErrorCode;
 use CdekSDK\Responses\CalculationWithTariffListResponse;
 use CdekSDK\Responses\Types\TariffResult;
 use Tests\CdekSDK\Fixtures\FixtureLoader;
@@ -146,6 +147,30 @@ class CalculationWithTariffListResponseTest extends TestCase
 
         $this->assertTrue($result->getStatus());
         $this->assertSame(20, $result->getPercentVAT());
+    }
+
+    public function test_it_finds_errors()
+    {
+        $response = $this->getSerializer()->deserialize(FixtureLoader::load('CalculationRequestTariffListResponseError.json'), CalculationWithTariffListResponse::class, 'json');
+
+        /** @var $response CalculationWithTariffListResponse */
+        $this->assertInstanceOf(CalculationWithTariffListResponse::class, $response);
+
+        $this->assertFalse($response->hasErrors());
+
+        $this->assertCount(0, $response->getErrors());
+
+        $this->assertCount(1, $response);
+        $this->assertCount(1, $response->getResults());
+
+        $result = $response->getResults()[0];
+
+        $this->assertFalse($result->getStatus());
+
+        foreach ($response->getMessages() as $message) {
+            /** @var HasErrorCode $message */
+            $this->assertSame('3', $message->getErrorCode());
+        }
     }
 
     public function test_it_errors_on_unknown_method_within_a_result()

@@ -37,6 +37,8 @@ use CdekSDK\Contracts\ShouldAuthorize;
 use CdekSDK\Contracts\XmlRequest;
 use CdekSDK\Responses\ErrorResponse;
 use CdekSDK\Responses\FileResponse;
+use CdekSDK\Responses\JsonErrorResponse;
+use CdekSDK\Serialization\Exception\XmlErrorException;
 use GuzzleHttp\Client as GuzzleClient;
 use GuzzleHttp\ClientInterface;
 use function GuzzleHttp\default_user_agent;
@@ -237,7 +239,26 @@ final class CdekClient implements Contracts\Client, LoggerAwareInterface
             $this->logger->debug($responseBody);
         }
 
-        return $this->serializer->deserialize($responseBody, $request->getResponseClassName(), $request->getSerializationFormat());
+        try {
+            return $this->serializer->deserialize($responseBody, $request->getResponseClassName(), $request->getSerializationFormat());
+        } catch (XmlErrorException $xmlException) {
+            /*
+             * Вместо XML СДЭК может вернуть JSON с описанием ошибки, характерно - с кодом 503.
+             */
+            if (\substr($responseBody, 0, 1) !== '{') {
+                throw $xmlException;
+            }
+
+            try {
+                return $this->serializer->deserialize($responseBody, JsonErrorResponse::class, Request::SERIALIZATION_JSON);
+            } catch (\JMS\Serializer\Exception\RuntimeException $_) {
+                /*
+                 * Если неудалось разобрать JSON, чтобы не вносить путаницу какими-то новыми исключениями,
+                 * кинем предыдущее исключение про ошибку разбора XML.
+                 */
+                throw $xmlException;
+            }
+        }
     }
 
     private function serialize(XmlRequest $request): string

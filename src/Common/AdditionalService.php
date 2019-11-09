@@ -171,8 +171,6 @@ final class AdditionalService
      * @see AdditionalService::SERVICE_DOCUMENTS_COPY
      * @see AdditionalService::SERVICE_PARTIAL_DELIVERY
      * @see AdditionalService::SERVICE_CARGO_CHECK
-     *
-     * @return self
      */
     public static function create($codeOrData): self
     {

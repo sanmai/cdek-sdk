@@ -57,8 +57,6 @@ final class WorkTime
 
     /**
      * Порядковый номер дня начиная с единицы. Понедельник = 1, воскресенье = 7.
-     *
-     * @return int
      */
     public function getDay(): int
     {
@@ -67,8 +65,6 @@ final class WorkTime
 
     /**
      * Период работы в этот день.
-     *
-     * @return string
      */
     public function getPeriods(): string
     {

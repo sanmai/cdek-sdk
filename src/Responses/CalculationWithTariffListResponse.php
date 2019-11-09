@@ -54,9 +54,6 @@ final class CalculationWithTariffListResponse implements Response, \IteratorAggr
      */
     private $errors = [];
 
-    /**
-     * @return bool
-     */
     public function hasErrors(): bool
     {
         return !empty($this->errors);

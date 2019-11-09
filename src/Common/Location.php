@@ -190,8 +190,6 @@ final class Location
     /**
      * @deprecated СДЭК перешли на использование буквенных кодов стран в начале 2019 года
      * @see Location::getCountryCodeISO()
-     *
-     * @return int
      */
     public function getCountryCode(): int
     {

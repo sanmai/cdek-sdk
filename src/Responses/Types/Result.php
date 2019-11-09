@@ -207,9 +207,6 @@ final class Result implements Response
         return $this->services;
     }
 
-    /**
-     * @return bool
-     */
     public function hasErrors(): bool
     {
         return $this->error !== null;

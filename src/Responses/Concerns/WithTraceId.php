@@ -38,9 +38,6 @@ trait WithTraceId
      */
     protected $TraceId = '';
 
-    /**
-     * @return string
-     */
     final public function getTraceId(): string
     {
         return $this->TraceId;

@@ -40,7 +40,6 @@ final class Message implements HasErrorCode
     private $errorCode;
 
     /**
-     * @param string      $text
      * @param string|null $errorCode
      */
     public function __construct(string $text, $errorCode = null)

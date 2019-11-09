@@ -38,7 +38,6 @@ final class DebuggingLogger implements LoggerInterface
     /**
      * @param mixed  $level
      * @param string $message
-     * @param array  $context
      *
      * @psalm-suppress MixedTypeCoercion
      */
@@ -78,8 +77,6 @@ final class DebuggingLogger implements LoggerInterface
 
     /**
      * @param array<string, string> $context
-     *
-     * @return \Generator
      */
     private static function context2replacements($context): \Generator
     {

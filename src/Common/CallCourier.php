@@ -200,8 +200,6 @@ final class CallCourier implements HasErrorCode
 
     /**
      * Устанавливает адрес в целях регистрация заявки на вызов курьера.
-     *
-     * @param Address $address
      */
     public function setAddress(Address $address): self
     {
@@ -212,10 +210,6 @@ final class CallCourier implements HasErrorCode
 
     /**
      * Устанавливает адрес в заявке на вызов курьера при регистрации заказа.
-     *
-     * @param Address $address
-     *
-     * @return self
      */
     public function setSendAddress(Address $address): self
     {

@@ -217,11 +217,6 @@ final class CdekClient implements Contracts\Client, LoggerAwareInterface
      * @psalm-suppress LessSpecificReturnStatement
      * @psalm-suppress ArgumentTypeCoercion
      * @psalm-suppress MoreSpecificReturnType
-     *
-     * @param Request           $request
-     * @param ResponseInterface $response
-     *
-     * @return Response
      */
     private function deserialize(Request $request, ResponseInterface $response): Response
     {
@@ -285,10 +280,6 @@ final class CdekClient implements Contracts\Client, LoggerAwareInterface
 
     /**
      * @see \CdekSDK\Requests\Concerns\Authorized::$date
-     *
-     * @param \DateTimeInterface $date
-     *
-     * @return string
      */
     private function getSecure(\DateTimeInterface $date): string
     {

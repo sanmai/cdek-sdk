@@ -668,8 +668,6 @@ final class Order implements HasErrorCode
 
     /**
      * Возвращает идентификатор заказа для API СДЭК, который состоит либо из DispatchNumber, либо из параметров Number, Date. Запросы по заказам должны включать эти параметры для идентификации заказа.
-     *
-     * @return string
      */
     public function getId(): string
     {
@@ -765,8 +763,6 @@ final class Order implements HasErrorCode
      * @phan-suppress PhanDeprecatedProperty
      *
      * @deprecated
-     *
-     * @return string
      */
     public function getSellerName(): string
     {
@@ -929,8 +925,6 @@ final class Order implements HasErrorCode
 
     /**
      * @throws \TypeError
-     *
-     * @return Order
      */
     public function getReturnOrder(): Order
     {
@@ -954,8 +948,6 @@ final class Order implements HasErrorCode
      * Номер возвратной накладной.
      *
      * @todo возвращать строку, как для других номеров отправлений
-     *
-     * @return int
      */
     public function getReturnDispatchNumber(): int
     {

@@ -65,9 +65,6 @@ final class TariffResult implements Response
      */
     private $status;
 
-    /**
-     * @return bool
-     */
     public function hasErrors(): bool
     {
         return $this->result->hasErrors();

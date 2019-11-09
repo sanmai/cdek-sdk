@@ -43,8 +43,6 @@ class CalculationAuthorizedRequest extends Templates\CalculationAuthorizedReques
     /**
      * @deprecated
      * @phan-suppress PhanDeprecatedClass
-     *
-     * @return CalculationAuthorizedRequest
      */
     public static function withAuthorization(): CalculationAuthorizedRequest
     {

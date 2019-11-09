@@ -62,9 +62,6 @@ final class CalculationResponse implements Response
      */
     private $errors = [];
 
-    /**
-     * @return bool
-     */
     public function hasErrors(): bool
     {
         return !empty($this->errors);

@@ -39,12 +39,15 @@ use CdekSDK\Requests\CalculationRequest;
 use CdekSDK\Requests\InfoReportRequest;
 use CdekSDK\Requests\PrintReceiptsRequest;
 use CdekSDK\Requests\PvzListRequest;
+use CdekSDK\Requests\RegionsRequest;
 use CdekSDK\Requests\StatusReportRequest;
 use CdekSDK\Responses\CalculationResponse;
 use CdekSDK\Responses\FileResponse;
 use CdekSDK\Responses\InfoReportResponse;
+use CdekSDK\Responses\JsonErrorResponse;
 use CdekSDK\Responses\PvzListResponse;
 use CdekSDK\Responses\StatusReportResponse;
+use CdekSDK\Serialization\Exception\XmlErrorException;
 use Gamez\Psr\Log\TestLogger;
 use GuzzleHttp\ClientInterface;
 use GuzzleHttp\Exception\ServerException;
@@ -247,6 +250,35 @@ class CdekClientTest extends TestCase
         \assert($response instanceof ResponseInterface);
         $this->assertSame(500, $response->getStatusCode());
         $this->assertSame('Server error', $response->getReasonPhrase());
+    }
+
+    public function test_client_can_handle_json_instead_of_xml()
+    {
+        $client = new CdekClient('foo', 'bar', $this->getHttpClient('application/json', FixtureLoader::load('ServiceUnavailableResponse.json')));
+
+        $response = $client->sendRegionsRequest(new RegionsRequest());
+
+        $this->assertInstanceOf(JsonErrorResponse::class, $response);
+
+        $this->assertTrue($response->hasErrors());
+    }
+
+    public function test_client_rethrows_xml_error_if_invalid_json()
+    {
+        $client = new CdekClient('foo', 'bar', $this->getHttpClient('application/json', '{'.FixtureLoader::load('ServiceUnavailableResponse.json')));
+
+        $this->expectException(XmlErrorException::class);
+
+        $client->sendRegionsRequest(new RegionsRequest());
+    }
+
+    public function test_client_throws_xml_error_if_not_json()
+    {
+        $client = new CdekClient('foo', 'bar', $this->getHttpClient('application/json', '<'));
+
+        $this->expectException(XmlErrorException::class);
+
+        $client->sendRegionsRequest(new RegionsRequest());
     }
 
     public function test_fails_on_unknown_method()

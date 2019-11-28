@@ -138,7 +138,7 @@ use CdekSDK\Requests;
 
 $request = new Requests\PvzListRequest();
 $request->setCityId(250);
-$request->setType(PvzListRequest::TYPE_ALL);
+$request->setType(Requests\PvzListRequest::TYPE_ALL);
 $request->setCashless(true);
 $request->setCodAllowed(true);
 $request->setDressingRoom(true);

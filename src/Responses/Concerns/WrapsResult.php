@@ -47,7 +47,7 @@ trait WrapsResult
      */
     public function __call(string $name, array $arguments)
     {
-        /** @var $this CalculationResponse|TariffResult */
+        /** @var CalculationResponse|TariffResult $this */
         if ($this->hasErrors()) {
             throw new \RuntimeException('Calculation request was not successful. Please check for errors before calling any instance methods.');
         }

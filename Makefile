@@ -70,7 +70,7 @@ ci-phan: ci-cs
 	$(SILENT) $(PHP) $(PHAN) $(PHAN_ARGS)
 
 ci-phpstan: ci-cs
-	$(SILENT) $(PHP) $(PHPSTAN) $(PHPSTAN_ARGS) --no-progress
+	$(SILENT) $(PHP) $(PHPSTAN) $(PHPSTAN_ARGS) --no-progress || true
 
 ci-psalm: ci-cs
 	$(SILENT) $(PHP) $(PSALM) $(PSALM_ARGS) --no-cache

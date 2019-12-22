@@ -61,6 +61,7 @@ ci-analyze: prerequisites ci-phpunit ci-infection ci-phan ci-phpstan ci-psalm
 
 ci-phpunit: ci-cs
 	$(SILENT) $(PHPDBG) $(PHPUNIT) $(PHPUNIT_ARGS)
+	cp build/logs/junit.xml build/logs/phpunit.junit.xml
 
 ci-infection: ci-phpunit
 	$(SILENT) $(PHP) $(INFECTION) $(INFECTION_ARGS)
@@ -94,6 +95,7 @@ test-prerequisites: prerequisites composer.lock
 .PHONY: phpunit
 phpunit: cs
 	$(SILENT) $(PHP) $(PHPUNIT) $(PHPUNIT_ARGS) --verbose
+	cp build/logs/junit.xml build/logs/phpunit.junit.xml
 	CI=true $(SILENT) $(PHP) $(INFECTION) $(INFECTION_ARGS)
 
 .PHONY: analyze

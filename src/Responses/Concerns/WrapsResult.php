@@ -39,7 +39,7 @@ trait WrapsResult
      *
      * @var Result
      */
-    protected $result;
+    private $result;
 
     /**
      * @phan-suppress PhanInfiniteRecursion

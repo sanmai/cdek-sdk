@@ -1,3 +1,6 @@
 parameters:
 	excludes_analyse:
 		- %currentWorkingDirectory%/tests/Common/MagicSettersTest.php
+	ignoreErrors:
+		- '#tag @var does not match any variable in the foreach loop#'
+		- '#but the class implements:.*IteratorAggregate#'

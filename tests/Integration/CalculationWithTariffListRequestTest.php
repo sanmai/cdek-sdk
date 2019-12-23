@@ -61,9 +61,9 @@ class CalculationWithTariffListRequestTest extends TestCase
             ])
             ->addAdditionalService(2, 1000);
 
+        /** @var \CdekSDK\Responses\CalculationWithTariffListResponse $response */
         $response = $this->getAnonymousClient()->sendCalculationWithTariffListRequest($request);
 
-        /** @var \CdekSDK\Responses\CalculationWithTariffListResponse $response */
         foreach ($response->getErrors() as $error) {
             $this->assertEmpty($error->getMessage());
             $this->fail($error->getErrorCode());
@@ -113,9 +113,9 @@ class CalculationWithTariffListRequestTest extends TestCase
                 'height' => 10,
             ]);
 
+        /** @var \CdekSDK\Responses\CalculationWithTariffListResponse $response */
         $response = $this->getClient()->sendCalculationRequest($request);
 
-        /** @var \CdekSDK\Responses\CalculationWithTariffListResponse $response */
         foreach ($response->getErrors() as $error) {
             if ((int) $error->getErrorCode() === self::UNAVAILABLE_DESTINATION_ERROR) {
                 $this->skipIfTestEndpointIsUsed("{$error->getErrorCode()}: {$error->getMessage()}");

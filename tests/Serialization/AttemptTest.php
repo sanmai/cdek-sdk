@@ -26,36 +26,30 @@
 
 declare(strict_types=1);
 
-namespace CdekSDK\Responses\Concerns;
+namespace Tests\CdekSDK\Serialization;
 
-use CdekSDK\Responses\CalculationResponse;
-use CdekSDK\Responses\Types\Result;
-use CdekSDK\Responses\Types\TariffResult;
+use CdekSDK\Common\Attempt;
 
-trait WrapsResult
+/**
+ * @covers \CdekSDK\Common\Attempt
+ */
+class AttemptTest extends TestCase
 {
-    /**
-     * @JMS\Type("CdekSDK\Responses\Types\Result")
-     *
-     * @var Result
-     */
-    private $result;
-
-    /**
-     * @phan-suppress PhanInfiniteRecursion
-     * @final
-     */
-    public function __call(string $name, array $arguments)
+    public function test_can_serialize()
     {
-        /** @var CalculationResponse|TariffResult $this */
-        if ($this->hasErrors()) {
-            throw new \RuntimeException('Calculation request was not successful. Please check for errors before calling any instance methods.');
-        }
+        $attempt = Attempt::create([
+            'ID'                       => 500,
+            'Date'                     => new \DateTimeImmutable('2018-10-01'),
+            'Comment'                  => 'Testing',
+            'DeliveryRecipientCost'    => 1000,
+            'DeliveryRecipientVATRate' => 'VATX',
+            'DeliveryRecipientVATSum'  => 100,
+            'TimeBeg'                  => new \DateTimeImmutable('10:00'),
+            'TimeEnd'                  => new \DateTimeImmutable('12:00'),
+        ]);
 
-        if ($this->result && \method_exists($this->result, $name)) {
-            return $this->result->{$name}(...$arguments);
-        }
-
-        throw new \BadMethodCallException(\sprintf('Method [%s] not found in [%s].', $name, __CLASS__));
+        $this->assertSameAsXML('<?xml version="1.0" encoding="UTF-8"?>
+<Attempt ID="500" Date="2018-10-01" Comment="Testing" DeliveryRecipientCost="1000" DeliveryRecipientVATRate="VATX" DeliveryRecipientVATSum="100" TimeBeg="10:00:00" TimeEnd="12:00:00"/>
+', $attempt);
     }
 }

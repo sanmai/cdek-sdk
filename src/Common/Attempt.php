@@ -30,6 +30,9 @@ namespace CdekSDK\Common;
 
 use JMS\Serializer\Annotation as JMS;
 
+/**
+ * @JMS\XmlRoot(name="Attempt")
+ */
 final class Attempt
 {
     use Fillable;
@@ -49,6 +52,38 @@ final class Attempt
      * @var \DateTimeImmutable
      */
     protected $Date;
+
+    /**
+     * @JMS\XmlAttribute
+     * @JMS\Type("string")
+     *
+     * @var string
+     */
+    protected $Comment;
+
+    /**
+     * @JMS\XmlAttribute
+     * @JMS\Type("float")
+     *
+     * @var float
+     */
+    protected $DeliveryRecipientCost;
+
+    /**
+     * @JMS\XmlAttribute
+     * @JMS\Type("string")
+     *
+     * @var string
+     */
+    protected $DeliveryRecipientVATRate;
+
+    /**
+     * @JMS\XmlAttribute
+     * @JMS\Type("float")
+     *
+     * @var float
+     */
+    protected $DeliveryRecipientVATSum;
 
     /**
      * @JMS\XmlAttribute

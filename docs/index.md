@@ -5,7 +5,7 @@
 
 <a href="https://www.cdek.ru/"><img align="right" src="https://gist.githubusercontent.com/sanmai/b105b3e2b5af030d5f1a8fb7db965f07/raw/308840dc54c3b1f02153f7318f02f87f30d4c5bd/cdek_logo.png"></a>
 
-Перед вами полное SDK для [интеграции с программным комплексом СДЭК](https://cdek.ru/integration) с открытым [исходным кодом](https://github.com/sanmai/cdek-sdk).
+Перед вами полное SDK для [интеграции с программным комплексом СДЭК](https://cdek.ru/integration) с открытым [исходным кодом](https://github.com/sanmai/cdek-sdk) согласно [документации на API](https://confluence.cdek.ru/x/gUju).
 
 ## Установка  {: #install }
 

@@ -42,6 +42,7 @@ if ($response->hasErrors()) {
     // обработка ошибок
 }
 
+/** @var \CdekSDK\Common\Order $order */
 foreach ($response->getOrders() as $order) {
     // проверяем номера удалённых заказов
     $order->getNumber(); // должно быть 'TEST-123456'

@@ -95,6 +95,7 @@ class DeliveryRequestTest extends TestCase
             $this->assertNotEmpty($message->getMessage());
         }
 
+        /** @var Order $order */
         foreach ($response->getOrders() as $order) {
             $this->assertSame(self::formatTestNumber('TEST-%s'), $order->getNumber());
         }

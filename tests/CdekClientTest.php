@@ -36,6 +36,7 @@ use CdekSDK\Contracts\Response;
 use CdekSDK\Contracts\ShouldAuthorize;
 use CdekSDK\Contracts\XmlRequest;
 use CdekSDK\Requests\CalculationRequest;
+use CdekSDK\Requests\CitiesRequest;
 use CdekSDK\Requests\InfoReportRequest;
 use CdekSDK\Requests\PrintReceiptsRequest;
 use CdekSDK\Requests\PvzListRequest;
@@ -261,6 +262,27 @@ class CdekClientTest extends TestCase
         $this->assertInstanceOf(JsonErrorResponse::class, $response);
 
         $this->assertTrue($response->hasErrors());
+
+        foreach ($response->getMessages() as $message) {
+            $this->assertSame('Service Unavailable', $message->getMessage());
+            $this->assertSame('503', $message->getErrorCode());
+        }
+    }
+
+    public function test_client_can_handle_different_json_instead_of_xml()
+    {
+        $client = new CdekClient('foo', 'bar', $this->getHttpClient('application/json', FixtureLoader::load('CitiesResponseJsonError.json')));
+
+        $response = $client->sendCitiesRequest(new CitiesRequest());
+
+        $this->assertInstanceOf(JsonErrorResponse::class, $response);
+
+        $this->assertTrue($response->hasErrors());
+
+        foreach ($response->getMessages() as $message) {
+            $this->assertSame('danger', $message->getMessage());
+            $this->assertSame('internal_error', $message->getErrorCode());
+        }
     }
 
     public function test_client_rethrows_xml_error_if_invalid_json()

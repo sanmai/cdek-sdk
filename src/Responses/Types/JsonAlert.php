@@ -26,79 +26,34 @@
 
 declare(strict_types=1);
 
-namespace CdekSDK\Responses;
+namespace CdekSDK\Responses\Types;
 
-use CdekSDK\Contracts\Response;
-use CdekSDK\Responses\Types\JsonAlert;
-use CdekSDK\Responses\Types\Message;
+use CdekSDK\Contracts\HasErrorCode;
 use JMS\Serializer\Annotation as JMS;
 
-/**
- * Class JsonErrorResponse.
- */
-final class JsonErrorResponse implements Response
+final class JsonAlert implements HasErrorCode
 {
     /**
-     * @JMS\Type("int")
+     * @JMS\Type("string")
      *
-     * @var int
+     * @var string
      */
-    private $timestamp;
+    private $type;
 
     /**
      * @JMS\Type("string")
      *
      * @var string
      */
-    private $path;
+    private $errorCode;
 
-    /**
-     * @JMS\Type("int")
-     *
-     * @var int
-     */
-    private $status;
-
-    /**
-     * @JMS\Type("string")
-     *
-     * @var string
-     */
-    private $error;
-
-    /**
-     * @JMS\Type("string")
-     *
-     * @var string
-     */
-    private $message;
-
-    /**
-     * @JMS\XmlList(entry = "JsonAlert", inline = true)
-     * @JMS\Type("array<CdekSDK\Responses\Types\JsonAlert>")
-     *
-     * @var JsonAlert[]
-     */
-    private $alerts = [];
-
-    public function hasErrors(): bool
+    public function getErrorCode(): string
     {
-        return true;
+        return $this->errorCode;
     }
 
-    public function getMessages()
+    public function getMessage(): string
     {
-        if ($this->alerts) {
-            yield from Message::from($this->alerts);
-        }
-
-        if ($this->error !== null) {
-            yield new Message($this->error, (string) $this->status);
-        }
-    }
-
-    public function jsonSerialize()
-    {
-        return [];
+        return $this->type;
     }
 }

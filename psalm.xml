@@ -51,5 +51,7 @@
 
         <PossiblyInvalidMethodCall errorLevel="info" />
         <PossiblyInvalidArgument errorLevel="info" />
+
+        <ReservedWord errorLevel="info" />
     </issueHandlers>
 </psalm>

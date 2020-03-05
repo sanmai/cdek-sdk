@@ -35,7 +35,7 @@ use CdekSDK\Contracts\XmlRequest;
 trait RequestCore
 {
     /**
-     * @phan-suppress PhanUndeclaredConstant
+     * @phan-suppress PhanUndeclaredConstantOfClass
      * @psalm-suppress MixedInferredReturnType
      */
     final public function getAddress(): string
@@ -44,7 +44,7 @@ trait RequestCore
     }
 
     /**
-     * @phan-suppress PhanUndeclaredConstant
+     * @phan-suppress PhanUndeclaredConstantOfClass
      * @psalm-suppress MixedInferredReturnType
      */
     final public function getMethod(): string
@@ -53,7 +53,7 @@ trait RequestCore
     }
 
     /**
-     * @phan-suppress PhanUndeclaredConstant
+     * @phan-suppress PhanUndeclaredConstantOfClass
      * @psalm-suppress MixedInferredReturnType
      */
     final public function getResponseClassName(): string

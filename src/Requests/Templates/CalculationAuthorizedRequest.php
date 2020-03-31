@@ -87,6 +87,11 @@ abstract class CalculationAuthorizedRequest implements JsonRequest, \JsonSeriali
      */
     protected $receiverCityPostCode;
 
+    protected $senderCountryCode;
+    protected $senderCity;
+    protected $receiverCountryCode;
+    protected $receiverCity;
+
     /**
      * Габаритные характеристики места.
      *
@@ -175,6 +180,50 @@ abstract class CalculationAuthorizedRequest implements JsonRequest, \JsonSeriali
     public function setReceiverCityPostCode($code)
     {
         $this->receiverCityPostCode = $code;
+
+        return $this;
+    }
+
+    /**
+     * @param $code
+     * @return $this
+     */
+    public function setSenderCountryCode($code)
+    {
+        $this->senderCountryCode = $code;
+
+        return $this;
+    }
+
+    /**
+     * @param $city
+     * @return $this
+     */
+    public function setSenderCity($city)
+    {
+        $this->senderCity = $city;
+
+        return $this;
+    }
+
+     /**
+     * @param $code
+     * @return $this
+     */
+    public function setReceiverCountryCode($code)
+    {
+        $this->receiverCountryCode = $code;
+
+        return $this;
+    }
+
+    /**
+     * @param $city
+     * @return $this
+     */
+    public function setReceiverCity($city)
+    {
+        $this->receiverCity = $city;
 
         return $this;
     }
@@ -293,9 +342,13 @@ abstract class CalculationAuthorizedRequest implements JsonRequest, \JsonSeriali
             'tariffList'           => $this->tariffList,
             'senderCityId'         => $this->senderCityId,
             'senderCityPostCode'   => $this->senderCityPostCode,
+            'senderCountryCode'    => $this->senderCountryCode,
+            'senderCity'           => $this->senderCity,
             'services'             => $this->services,
             'receiverCityId'       => $this->receiverCityId,
             'receiverCityPostCode' => $this->receiverCityPostCode,
+            'receiverCountryCode'  => $this->receiverCountryCode,
+            'receiverCity'         => $this->receiverCity,
             'currency'             => $this->currency,
             'dateExecute'          => $this->dateExecute instanceof \DateTimeInterface ? $this->dateExecute->format(CdekClient::SECURE_DATE_FORMAT) : null,
         ]);

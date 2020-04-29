@@ -43,6 +43,7 @@ use CdekSDK\Requests\PvzListRequest;
 use CdekSDK\Requests\RegionsRequest;
 use CdekSDK\Requests\StatusReportRequest;
 use CdekSDK\Responses\CalculationResponse;
+use CdekSDK\Responses\ErrorResponse;
 use CdekSDK\Responses\FileResponse;
 use CdekSDK\Responses\InfoReportResponse;
 use CdekSDK\Responses\JsonErrorResponse;
@@ -214,6 +215,15 @@ class CdekClientTest extends TestCase
 
         $this->expectException(ServerException::class);
         $response = $client->sendInfoReportRequest(new InfoReportRequest());
+    }
+
+    public function test_client_can_handle_empty_response_without_throw()
+    {
+        $client = new CdekClient('foo', 'bar', $http = $this->getHttpClient('text/xml', ''));
+
+        $response = $client->sendInfoReportRequest(new InfoReportRequest());
+
+        $this->assertInstanceOf(ErrorResponse::class, $response);
     }
 
     public function test_client_can_handle_error_response()

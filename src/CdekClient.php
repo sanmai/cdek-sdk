@@ -238,9 +238,17 @@ final class CdekClient implements Contracts\Client, LoggerAwareInterface
             return $this->serializer->deserialize($responseBody, $request->getResponseClassName(), $request->getSerializationFormat());
         } catch (XmlErrorException $xmlException) {
             /*
+             * Ответ может быть пустой строкой
+             */
+            if ($responseBody === '') {
+                return ErrorResponse::withHTTPResponse($response);
+            }
+
+            /*
              * Вместо XML СДЭК может вернуть JSON с описанием ошибки, характерно - с кодом 503.
              */
             if (\substr($responseBody, 0, 1) !== '{') {
+                // Это не JSON, с которым мы что-то можем сделать: потому кидаем исключение
                 throw $xmlException;
             }
 

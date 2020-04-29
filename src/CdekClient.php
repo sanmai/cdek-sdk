@@ -270,11 +270,6 @@ final class CdekClient implements Contracts\Client, LoggerAwareInterface
             $requestBody = $this->serializer->serialize($request, XmlRequest::SERIALIZATION_XML);
 
             if ($this->logger) {
-                $this->logger->debug('{method} {location}', [
-                    'method'   => $request->getMethod(),
-                    'location' => $request->getAddress(),
-                ]);
-
                 $this->logger->debug($requestBody);
             }
 
@@ -327,6 +322,13 @@ final class CdekClient implements Contracts\Client, LoggerAwareInterface
 
     private function extractOptions(Request $request): array
     {
+        if ($this->logger) {
+            $this->logger->debug('{method} {location}', [
+                'method'   => $request->getMethod(),
+                'location' => $request->getAddress(),
+            ]);
+        }
+
         if ($request instanceof ParamRequest) {
             if ($request->getMethod() === 'GET') {
                 return [
@@ -348,8 +350,14 @@ final class CdekClient implements Contracts\Client, LoggerAwareInterface
         }
 
         if ($request instanceof JsonRequest) {
+            $requestBody = \json_encode($request);
+
+            if ($this->logger) {
+                $this->logger->debug($requestBody);
+            }
+
             return [
-                'body'    => \json_encode($request),
+                'body'    => $requestBody,
                 'headers' => [
                     'Content-Type' => 'application/json',
                 ],

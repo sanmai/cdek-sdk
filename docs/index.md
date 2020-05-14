@@ -393,6 +393,10 @@ if ($response->hasErrors()) {
         $order->getErrorCode();
         $order->getNumber();
     }
+
+    foreach ($response->getMessages() as $message) {
+        // Сообщения об ошибках
+    }
 }
 
 foreach ($response->getOrders() as $order) {

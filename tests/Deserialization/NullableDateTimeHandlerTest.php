@@ -30,7 +30,6 @@ namespace Tests\CdekSDK\Deserialization;
 
 use CdekSDK\Common\Order;
 use CdekSDK\Responses\StatusReportResponse;
-use CdekSDK\Responses\Types\Result;
 use Tests\CdekSDK\Fixtures\FixtureLoader;
 
 /**

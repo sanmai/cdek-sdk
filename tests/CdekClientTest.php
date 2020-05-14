@@ -176,7 +176,7 @@ class CdekClientTest extends TestCase
         $this->assertEmpty($this->lastRequestOptions);
     }
 
-    public function test_client_can_log_response()
+    public function test_client_can_log_xml_response()
     {
         $client = new CdekClient('foo', 'bar', $this->getHttpClient('text/xml', FixtureLoader::load('InfoReportFailed.xml')));
         $client->setLogger($logger = new TestLogger());
@@ -188,6 +188,23 @@ class CdekClientTest extends TestCase
         $this->assertSame(3, $logger->log->countRecordsWithLevel(LogLevel::DEBUG));
         $this->assertTrue($logger->log->hasRecordsWithMessage(FixtureLoader::load('InfoReportFailed.xml')));
         $this->assertTrue($logger->log->hasRecordsWithPartialMessage('<InfoRequest'));
+
+        $this->assertSame(1, $logger->log->countRecordsWithContextKey('method'));
+        $this->assertSame(1, $logger->log->countRecordsWithContextKey('location'));
+    }
+
+    public function test_client_can_log_json_response()
+    {
+        $client = new CdekClient('foo', 'bar', $this->getHttpClient('application/json', FixtureLoader::load('CalculationResponse.json')));
+        $client->setLogger($logger = new TestLogger());
+
+        $response = $client->sendCalculationRequest(new CalculationRequest());
+
+        /** @var $response CalculationResponse */
+        $this->assertInstanceOf(CalculationResponse::class, $response);
+        $this->assertSame(3, $logger->log->countRecordsWithLevel(LogLevel::DEBUG));
+        $this->assertTrue($logger->log->hasRecordsWithMessage(FixtureLoader::load('CalculationResponse.json')));
+        $this->assertTrue($logger->log->hasRecordsWithPartialMessage('deliveryPeriodMin'));
 
         $this->assertSame(1, $logger->log->countRecordsWithContextKey('method'));
         $this->assertSame(1, $logger->log->countRecordsWithContextKey('location'));

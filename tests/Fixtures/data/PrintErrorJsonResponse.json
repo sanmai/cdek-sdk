@@ -1,0 +1,1 @@
+{"alerts":[{"type":"danger","msg":"Cannot send http request to http://production.order.service.cdek.tech:8078/order/get. Reason[class java.net.SocketTimeoutException]: connect timed out. ","errorCode":"internal_error"}]}

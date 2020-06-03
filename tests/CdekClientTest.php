@@ -185,7 +185,9 @@ class CdekClientTest extends TestCase
 
         /** @var $response InfoReportResponse */
         $this->assertInstanceOf(InfoReportResponse::class, $response);
-        $this->assertSame(3, $logger->log->countRecordsWithLevel(LogLevel::DEBUG));
+        $this->assertSame(4, $logger->log->countRecordsWithLevel(LogLevel::DEBUG));
+        $this->assertSame(1, $logger->log->countRecordsWithContextKey('content-type'));
+
         $this->assertTrue($logger->log->hasRecordsWithMessage(FixtureLoader::load('InfoReportFailed.xml')));
         $this->assertTrue($logger->log->hasRecordsWithPartialMessage('<InfoRequest'));
 
@@ -202,7 +204,9 @@ class CdekClientTest extends TestCase
 
         /** @var $response CalculationResponse */
         $this->assertInstanceOf(CalculationResponse::class, $response);
-        $this->assertSame(3, $logger->log->countRecordsWithLevel(LogLevel::DEBUG));
+        $this->assertSame(4, $logger->log->countRecordsWithLevel(LogLevel::DEBUG));
+        $this->assertSame(1, $logger->log->countRecordsWithContextKey('content-type'));
+
         $this->assertTrue($logger->log->hasRecordsWithMessage(FixtureLoader::load('CalculationResponse.json')));
         $this->assertTrue($logger->log->hasRecordsWithPartialMessage('deliveryPeriodMin'));
 

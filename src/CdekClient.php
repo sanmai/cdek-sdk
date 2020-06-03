@@ -231,6 +231,9 @@ final class CdekClient implements Contracts\Client, LoggerAwareInterface
         $responseBody = (string) $response->getBody();
 
         if ($this->logger) {
+            $this->logger->debug('Content-Type: {content-type}', [
+                'content-type' => $this->getContentTypeHeader($response),
+            ]);
             $this->logger->debug($responseBody);
         }
 
@@ -298,11 +301,18 @@ final class CdekClient implements Contracts\Client, LoggerAwareInterface
         return \strpos($response->getHeader('Content-Disposition')[0], 'attachment') === 0;
     }
 
+    private function getContentTypeHeader(ResponseInterface $response): string
+    {
+        if ($response->hasHeader('Content-Type')) {
+            return $response->getHeader('Content-Type')[0];
+        }
+
+        return '';
+    }
+
     private function isTextResponse(ResponseInterface $response): bool
     {
-        $header = $response->hasHeader('Content-Type')
-            ? $response->getHeader('Content-Type')[0]
-            : '';
+        $header = $this->getContentTypeHeader($response);
 
         // Разбиваем условие на части чтобы лучше видеть покрытие тестами
         if (0 === \strpos($header, 'text/xml')) {

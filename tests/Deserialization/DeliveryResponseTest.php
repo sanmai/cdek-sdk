@@ -30,6 +30,7 @@ namespace Tests\CdekSDK\Deserialization;
 
 use CdekSDK\Responses\DeliveryResponse;
 use CdekSDK\Responses\Types\DeliveryRequest;
+use CdekSDK\Responses\Types\Message;
 use Tests\CdekSDK\Fixtures\FixtureLoader;
 
 /**
@@ -48,6 +49,7 @@ class DeliveryResponseTest extends TestCase
         $this->assertCount(2, $response->getMessages());
 
         foreach ($response->getMessages() as $message) {
+            /** @var $message Message */
             $this->assertTrue($message->isError());
         }
     }
@@ -62,6 +64,7 @@ class DeliveryResponseTest extends TestCase
         $this->assertCount(2, $response->getMessages());
 
         foreach ($response->getMessages() as $message) {
+            /** @var $message Message */
             $this->assertTrue($message->isError());
             break;
         }
@@ -77,6 +80,7 @@ class DeliveryResponseTest extends TestCase
         $this->assertCount(3, $response->getMessages());
 
         foreach ($response->getMessages() as $message) {
+            /** @var $message Message */
             $this->assertTrue($message->isError());
             break;
         }

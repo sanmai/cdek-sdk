@@ -220,13 +220,15 @@ final class CdekClient implements Contracts\Client, LoggerAwareInterface
      */
     private function deserialize(Request $request, ResponseInterface $response): Response
     {
+        $contentType = $this->getContentTypeHeader($response);
+
         if ($this->logger) {
             $this->logger->debug('Content-Type: {content-type}', [
-                'content-type' => $this->getContentTypeHeader($response),
+                'content-type' => $contentType,
             ]);
         }
 
-        if (!$this->isTextResponse($response)) {
+        if (!$this->isTextResponse($contentType)) {
             if ($this->hasAttachment($response)) {
                 return new FileResponse($response->getBody());
             }
@@ -313,10 +315,8 @@ final class CdekClient implements Contracts\Client, LoggerAwareInterface
         return '';
     }
 
-    private function isTextResponse(ResponseInterface $response): bool
+    private function isTextResponse(string $header): bool
     {
-        $header = $this->getContentTypeHeader($response);
-
         // Разбиваем условие на части чтобы лучше видеть покрытие тестами
         if (0 === \strpos($header, 'text/xml')) {
             return true;

@@ -5,3 +5,4 @@ parameters:
 		- '#tag @var does not match any variable in the foreach loop#'
 		- '#but the class implements:.*IteratorAggregate#'
 		- '#Access to private property.*result#'
+		- '#Call to an undefined method .*HasErrorCode::.*#'

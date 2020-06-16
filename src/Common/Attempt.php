@@ -118,7 +118,7 @@ final class Attempt
     protected $Phone;
 
     /**
-     * @JMS\Type("CdekSDK\Requests\DeliveryRequest\Address")
+     * @JMS\Type("CdekSDK\Common\Address")
      *
      * @var Address
      */

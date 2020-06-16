@@ -52,4 +52,20 @@ class AttemptTest extends TestCase
 <Attempt ID="500" Date="2018-10-01" Comment="Testing" DeliveryRecipientCost="1000" DeliveryRecipientVATRate="VATX" DeliveryRecipientVATSum="100" TimeBeg="10:00:00" TimeEnd="12:00:00"/>
 ', $attempt);
     }
+
+    public function test_can_serialize_with_address()
+    {
+        $attempt = Attempt::create([
+            'ID'                       => 123,
+            'Address'                  => \CdekSDK\Common\Address::create([
+                'PvzCode' => 'TST123',
+            ]),
+        ]);
+
+        $this->assertSameAsXML('<?xml version="1.0" encoding="UTF-8"?>
+<Attempt ID="123">
+  <Address PvzCode="TST123"/>
+</Attempt>
+', $attempt);
+    }
 }

@@ -65,6 +65,7 @@ final class ErrorResponse implements Response, ResponseInterface
 
     /**
      * @psalm-suppress MixedArgument
+     * @psalm-suppress LessSpecificReturnStatement
      *
      * @param mixed $code
      * @param mixed $reasonPhrase
@@ -96,6 +97,7 @@ final class ErrorResponse implements Response, ResponseInterface
 
     /**
      * @psalm-suppress MixedArgument
+     * @psalm-suppress LessSpecificReturnStatement
      *
      * @param mixed $version
      */
@@ -106,6 +108,7 @@ final class ErrorResponse implements Response, ResponseInterface
 
     /**
      * @psalm-suppress MixedArgument
+     * @psalm-suppress LessSpecificReturnStatement
      *
      * @param mixed $name
      */
@@ -126,6 +129,7 @@ final class ErrorResponse implements Response, ResponseInterface
 
     /**
      * @psalm-suppress MixedArgument
+     * @psalm-suppress LessSpecificReturnStatement
      *
      * @param mixed $name
      * @param mixed $value
@@ -135,6 +139,9 @@ final class ErrorResponse implements Response, ResponseInterface
         return $this->response->withHeader($name, $value);
     }
 
+    /**
+     * @psalm-suppress LessSpecificReturnStatement
+     */
     public function withBody(StreamInterface $body)
     {
         return $this->response->withBody($body);
@@ -167,6 +174,7 @@ final class ErrorResponse implements Response, ResponseInterface
 
     /**
      * @psalm-suppress MixedArgument
+     * @psalm-suppress LessSpecificReturnStatement
      *
      * @param mixed $name
      * @param mixed $value

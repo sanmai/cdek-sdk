@@ -35,6 +35,8 @@ use JMS\Serializer\Annotation as JMS;
  * Создание преалерта. Метод используется для создания сводного реестра (преалерта), содержащего все накладные, товары по которым передаются на доставку.
  *
  * @JMS\XmlRoot(name="PreAlert")
+ *
+ * @psalm-suppress InvalidExtendClass
  */
 final class PreAlertRequest extends DeliveryRequest
 {

@@ -30,6 +30,9 @@ namespace CdekSDK\Requests;
 
 use CdekSDK\Requests\Concerns\AnonymousJsonRequest;
 
+/**
+ * @psalm-suppress InvalidExtendClass
+ */
 final class CalculationWithTariffListRequest extends CalculationWithTariffListAuthorizedRequest
 {
     use AnonymousJsonRequest;

@@ -30,6 +30,9 @@ namespace Tests\CdekSDK\Integration\Requests;
 
 use CdekSDK\Requests;
 
+/**
+ * @psalm-suppress InvalidExtendClass
+ */
 class CalculationAuthorizedRequest extends Requests\CalculationAuthorizedRequest
 {
     const ADDRESS = 'https://api.edu.cdek.ru/calculator/calculate_price_by_json.php';

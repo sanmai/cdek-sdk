@@ -30,6 +30,9 @@ namespace Tests\CdekSDK\Integration\Requests;
 
 use CdekSDK\Requests;
 
+/**
+ * @psalm-suppress InvalidExtendClass
+ */
 class CalculationWithTariffListAuthorizedRequest extends Requests\CalculationWithTariffListAuthorizedRequest
 {
     const ADDRESS = 'https://api.edu.cdek.ru/calculator/calculate_tarifflist.php';

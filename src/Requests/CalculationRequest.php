@@ -34,6 +34,8 @@ use CdekSDK\Requests\Concerns\AnonymousJsonRequest;
  * Class CalculationRequest.
  *
  * @final
+ *
+ * @psalm-suppress InvalidExtendClass
  */
 class CalculationRequest extends CalculationAuthorizedRequest
 {

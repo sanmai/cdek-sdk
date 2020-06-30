@@ -33,6 +33,8 @@ use JMS\Serializer\Annotation as JMS;
 
 /**
  * @JMS\XmlRoot(name="UpdateRequest")
+ *
+ * @psalm-suppress InvalidExtendClass
  */
 final class UpdateRequest extends DeliveryRequest
 {

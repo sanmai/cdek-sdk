@@ -36,6 +36,8 @@ use JMS\Serializer\Annotation as JMS;
  * Регистрация информации о результате прозвона.
  *
  * @JMS\XmlRoot(name="ScheduleRequest")
+ *
+ * @psalm-suppress InvalidExtendClass
  */
 final class ScheduleRequest extends DeliveryRequest implements HasErrorCode
 {

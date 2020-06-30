@@ -35,6 +35,8 @@ use JMS\Serializer\Annotation as JMS;
  * Class DeleteRequest.
  *
  * @JMS\XmlRoot(name="DeleteRequest")
+ *
+ * @psalm-suppress InvalidExtendClass
  */
 final class DeleteRequest extends DeliveryRequest
 {

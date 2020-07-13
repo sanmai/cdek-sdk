@@ -64,6 +64,7 @@ final class Attempt
     /**
      * @JMS\XmlAttribute
      * @JMS\Type("float")
+     * @deprecated
      *
      * @var float
      */
@@ -72,6 +73,7 @@ final class Attempt
     /**
      * @JMS\XmlAttribute
      * @JMS\Type("string")
+     * @deprecated
      *
      * @var string
      */
@@ -80,6 +82,7 @@ final class Attempt
     /**
      * @JMS\XmlAttribute
      * @JMS\Type("float")
+     * @deprecated
      *
      * @var float
      */

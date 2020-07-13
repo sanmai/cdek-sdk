@@ -31,6 +31,7 @@ use CdekSDK\Requests;
 $client = new \CdekSDK\CdekClient('account', 'password');
 
 $order = new Common\Order([
+    'ClientSide'       => Common\Order::CLIENT_SIDE_SENDER,
     'Number'           => 'TEST-123456',
     'SendCityCode'     => 44, // Москва
     'RecCityPostCode'  => '630001', // Новосибирск

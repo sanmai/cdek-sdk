@@ -124,8 +124,6 @@ final class Order implements HasErrorCode
      * @JMS\XmlAttribute
      * @JMS\Type("string")
      *
-     * @deprecated since 2020-07-14
-     *
      * @var string
      */
     protected $ClientSide;

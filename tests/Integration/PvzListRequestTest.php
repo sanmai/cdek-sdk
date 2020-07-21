@@ -78,6 +78,7 @@ class PvzListRequestTest extends TestCase
     {
         $request = new PvzListRequest();
         $request->setCountryIso('RU');
+        $request->setCityId(44);
         $request->setType(PvzListRequest::TYPE_POSTOMAT);
 
         $response = $this->getClient()->sendPvzListRequest($request);
@@ -88,9 +89,11 @@ class PvzListRequestTest extends TestCase
 
         foreach ($response->getItems() as $item) {
             /** @var \CdekSDK\Common\Pvz $item */
-            $this->assertNotEmpty($item->Code);
-            $this->assertNotEmpty($item->Name);
-            $this->assertNotEmpty($item->Address);
+            if ($item->Type !== 'POSTAMAT') {
+                continue;
+            }
+
+            $this->assertNotEmpty($item->Dimensions);
         }
     }
 

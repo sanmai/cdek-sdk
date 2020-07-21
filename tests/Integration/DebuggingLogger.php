@@ -38,6 +38,8 @@ final class DebuggingLogger implements LoggerInterface
     /**
      * Если нужна запись в файл, то нужно скопировать этот файл себе в проект, заменив namespace, и поменять константу ниже на true.
      * Лог будет записан в cdek-requests.log в корне проекта.
+     *
+     * @var bool
      */
     private const WRITE_LOG_TO_FILE = false;
 
@@ -46,6 +48,7 @@ final class DebuggingLogger implements LoggerInterface
      * @param string $message
      *
      * @psalm-suppress MixedTypeCoercion
+     * @psalm-suppress TypeDoesNotContainType
      */
     public function log($level, $message, array $context = [])
     {

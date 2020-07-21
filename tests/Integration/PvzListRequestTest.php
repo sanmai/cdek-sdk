@@ -74,6 +74,26 @@ class PvzListRequestTest extends TestCase
         }
     }
 
+    public function test_success_postomat()
+    {
+        $request = new PvzListRequest();
+        $request->setCountryIso('RU');
+        $request->setType(PvzListRequest::TYPE_POSTOMAT);
+
+        $response = $this->getClient()->sendPvzListRequest($request);
+
+        /** @var \CdekSDK\Responses\PvzListResponse $response */
+        $this->assertFalse($response->hasErrors());
+        $this->assertNotEmpty($response->getItems());
+
+        foreach ($response->getItems() as $item) {
+            /** @var \CdekSDK\Common\Pvz $item */
+            $this->assertNotEmpty($item->Code);
+            $this->assertNotEmpty($item->Name);
+            $this->assertNotEmpty($item->Address);
+        }
+    }
+
     public function test_it_loads_chinese_pvz()
     {
         $request = new PvzListRequest();

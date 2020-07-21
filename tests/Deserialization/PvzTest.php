@@ -33,6 +33,7 @@ use CdekSDK\Common\Pvz;
 /**
  * @covers \CdekSDK\Common\Pvz
  * @covers \CdekSDK\Common\WeightLimit
+ * @covers \CdekSDK\Common\Dimensions
  */
 class PvzTest extends TestCase
 {
@@ -61,6 +62,23 @@ class PvzTest extends TestCase
 
         $this->assertSame(0, $pvz->WeightLimit->getWeightMin());
         $this->assertSame(30, $pvz->WeightLimit->getWeightMax());
+    }
+
+    public function test_postomat()
+    {
+        $pvz = $this->getSerializer()->deserialize('<Pvz PostalCode="119019">
+    <Dimensions depth="580" height="185" width="200"/>
+    <Dimensions depth="580" height="445" width="445"/>
+    </Pvz>', Pvz::class, 'xml');
+
+        /** @var $pvz Pvz */
+        $this->assertSame('119019', $pvz->PostalCode);
+
+        $this->assertCount(2, $pvz->Dimensions);
+
+        $this->assertSame(580.0, $pvz->Dimensions[0]->getDepth());
+        $this->assertSame(185.0, $pvz->Dimensions[0]->getHeight());
+        $this->assertSame(200.0, $pvz->Dimensions[0]->getWidth());
     }
 
     public function test_cyrillic_booleans()

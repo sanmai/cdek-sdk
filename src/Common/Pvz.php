@@ -294,6 +294,14 @@ final class Pvz
     public $phoneDetails;
 
     /**
+     * @JMS\XmlList(entry="Dimensions", inline=true)
+     * @JMS\Type("array<CdekSDK\Common\Dimensions>")
+     *
+     * @var Dimensions[]
+     */
+    public $Dimensions;
+
+    /**
      * @JMS\PostDeserialize
      */
     private function postDeserialize()

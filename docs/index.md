@@ -820,7 +820,7 @@ $client->setLogger($monolog);
 
 Текстовые запросы и ответы в исходном виде идут с уровнем `DEBUG`.
 
-Пример класса, [реализующего минимальный интерфейс](https://github.com/sanmai/cdek-sdk/blob/master/tests/Integration/DebuggingLogger.php#L51-L57).
+Пример класса, [реализующего минимальный интерфейс](https://github.com/sanmai/cdek-sdk/blob/master/tests/Integration/DebuggingLogger.php#L38-L42).
 
 ## Замечания {: #contribute}
 

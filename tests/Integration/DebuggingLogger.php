@@ -36,6 +36,12 @@ final class DebuggingLogger implements LoggerInterface
     use LoggerTrait;
 
     /**
+     * Если нужна запись в файл, то нужно скопировать этот файл себе в проект, заменив namespace, и поменять константу ниже на true.
+     * Лог будет записан в cdek-requests.log в корне проекта.
+     */
+    private const WRITE_LOG_TO_FILE = false;
+
+    /**
      * @param mixed  $level
      * @param string $message
      *
@@ -47,13 +53,12 @@ final class DebuggingLogger implements LoggerInterface
             $message = \strtr($message, \iterator_to_array(self::context2replacements($context), true));
         }
 
-        /*
-         * Если нужна запись в файл, то нужно скопировать этот файл себе в проект и заменить строку выше строкой ниже.
-         * Лог будет записан в cdek-requests.log в корне проекта.
-         */
+        // В целях отладки приведём XML в читаемый вид, разбив по тегам.
+        if (\strpos($message, '><') !== false) {
+            $message = \str_replace('><', ">\n<", $message);
+        }
 
-        \fwrite(\STDERR, "\n{$message}\n\n");
-        //fwrite($this->getLogFileHandle(), "\n{$message}\n\n");
+        \fwrite(self::WRITE_LOG_TO_FILE ? $this->getLogFileHandle() : \STDERR, "\n{$message}\n\n");
     }
 
     /**

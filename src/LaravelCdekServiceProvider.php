@@ -41,13 +41,18 @@ class LaravelCdekServiceProvider extends ServiceProvider
 {
     protected $defer = true;
 
+    const SKIP_SERIALIZER_CONFIGURATION_FUNC = [Serializer::class, 'doNotConfigureAnnotationRegistry'];
+
     public function boot()
     {
-        /** @phan-suppress-next-line PhanDeprecatedFunction */
-        AnnotationRegistry::registerLoader('class_exists');
-
         // @codeCoverageIgnoreStart
-        Serializer::doNotConfigureAnnotationRegistry();
+        /** @phan-suppress-next-line PhanUndeclaredStaticMethodInCallable */
+        if (\is_callable(self::SKIP_SERIALIZER_CONFIGURATION_FUNC)) {
+            /** @phan-suppress-next-line PhanDeprecatedFunction */
+            AnnotationRegistry::registerLoader('class_exists');
+            /** @phan-suppress-next-line PhanUndeclaredStaticMethodInCallable */
+            \call_user_func(self::SKIP_SERIALIZER_CONFIGURATION_FUNC);
+        }
         // @codeCoverageIgnoreEnd
     }
 

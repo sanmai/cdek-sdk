@@ -69,6 +69,10 @@ class LaravelCdekServiceProviderTest extends TestCase
     {
         $this->provider->boot();
 
+        if (!\is_callable(LaravelCdekServiceProvider::SKIP_SERIALIZER_CONFIGURATION_FUNC)) {
+            $this->markTestSkipped('Newer versions of serializer does not require additional configuration');
+        }
+
         $this->assertEquals('class_exists', \Closure::bind(function () {
             return \end(AnnotationRegistry::$loaders);
         }, null, AnnotationRegistry::class)());

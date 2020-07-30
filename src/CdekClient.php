@@ -145,7 +145,7 @@ final class CdekClient implements Contracts\Client, LoggerAwareInterface
      */
     private static function getVersion(): string
     {
-        if (self::VERSION_INFO[0] === '1$' && \is_dir(__DIR__.'/../.git')) {
+        if (self::VERSION_INFO[0] === '$' && \is_dir(__DIR__.'/../.git')) {
             return (string) \exec(\sprintf('git --git-dir=%s describe --tags --dirty=-dev --always', \escapeshellarg(__DIR__.'/../.git')));
         }
 

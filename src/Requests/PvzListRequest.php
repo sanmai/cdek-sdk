@@ -74,6 +74,9 @@ final class PvzListRequest implements ParamRequest
     protected $haveCashless;
 
     /** @var bool */
+    protected $haveCash;
+
+    /** @var bool */
     protected $isDressingRoom;
 
     /** @var bool */
@@ -138,6 +141,13 @@ final class PvzListRequest implements ParamRequest
     public function setCashless(bool $cashless)
     {
         $this->haveCashless = $cashless;
+
+        return $this;
+    }
+
+    public function setCash(bool $cash)
+    {
+        $this->haveCash = $cash;
 
         return $this;
     }

@@ -57,6 +57,7 @@ class PvzListRequestTest extends TestCase
         $request->setCityId(250);
         $request->setType(PvzListRequest::TYPE_ALL);
         $request->setCashless(true);
+        $request->setCash(true);
         $request->setCodAllowed(true);
         $request->setDressingRoom(true);
 

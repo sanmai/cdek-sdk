@@ -70,6 +70,12 @@ class PvzListResponseTest extends TestCase
         $this->assertAttributeInternalType('boolean', 'HaveCashless', $item);
         $this->assertTrue($item->HaveCashless);
 
+        $this->assertAttributeInternalType('boolean', 'HaveCash', $item);
+        $this->assertTrue($item->HaveCash);
+
+        $this->assertAttributeInternalType('boolean', 'TakeOnly', $item);
+        $this->assertFalse($item->TakeOnly);
+
         /** @var $item Pvz */
         $this->assertSame('EKB8', $item->Code);
 
@@ -135,6 +141,7 @@ class PvzListResponseTest extends TestCase
         $this->assertSame('cdek', $item->ownerCode);
         $this->assertTrue($item->IsDressingRoom);
         $this->assertTrue($item->HaveCashless);
+        $this->assertTrue($item->HaveCash);
         $this->assertTrue($item->AllowedCod);
         $this->assertSame('', $item->NearestStation);
         $this->assertSame('', $item->MetroStation);
@@ -152,6 +159,9 @@ class PvzListResponseTest extends TestCase
 
         $this->assertAttributeInternalType('boolean', 'HaveCashless', $item);
         $this->assertTrue($item->HaveCashless);
+
+        $this->assertAttributeInternalType('boolean', 'HaveCash', $item);
+        $this->assertTrue($item->HaveCash);
     }
 
     public function test_it_has_no_errors()

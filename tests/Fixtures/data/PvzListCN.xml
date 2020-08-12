@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <PvzList>
-  <Pvz Code="SHAN4" PostalCode="200001" Name="黄浦" CountryCode="138" CountryName="中国" RegionCode="906" RegionName="上海" CityCode="12683" City="上海市" WorkTime="周一至周五 09:00-17:30" Address="青浦区北青公路3688号H" FullAddress="中国上海上海市青浦区北青公路3688号H" AddressComment="" Phone="+8613661716712" Email="Shuchen@cdek.ru" qqId="testing@qq" Note="" coordX="121.479642" coordY="31.245725" Type="PVZ" ownerCode="cdek" IsDressingRoom="true" HaveCashless="true" AllowedCod="true" NearestStation="" MetroStation="" Site="">
+  <Pvz Code="SHAN4" PostalCode="200001" Name="黄浦" CountryCode="138" CountryName="中国" RegionCode="906" RegionName="上海" CityCode="12683" City="上海市" WorkTime="周一至周五 09:00-17:30" Address="青浦区北青公路3688号H" FullAddress="中国上海上海市青浦区北青公路3688号H" AddressComment="" Phone="+8613661716712" Email="Shuchen@cdek.ru" qqId="testing@qq" Note="" coordX="121.479642" coordY="31.245725" Type="PVZ" ownerCode="cdek" IsDressingRoom="true" HaveCashless="true" HaveCash="true" AllowedCod="true" NearestStation="" MetroStation="" Site="">
     <PhoneDetail number="+8613661716712"/>
     <OfficeImage number="1" url="http://172.16.100.4:8008/images/2074/2004_1_SHAN4"/>
     <OfficeImage number="2" url="http://172.16.100.4:8008/images/2074/2005_2_SHAN4"/>

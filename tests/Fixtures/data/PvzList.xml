@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <PvzList>
-  <Pvz Code="EKB8" Name="На Вайнера" CountryCode="1" countryCodeIso="RU" CountryName="Россия" RegionCode="24" RegionName="Свердловская обл." CityCode="250" City="Екатеринбург" WorkTime="Пн-Пт 10:00-20:00, Сб-Вс 10:00-17:00" Address="ул. Вайнера, 51б, 1-5" FullAddress="Россия, Свердловская обл., Екатеринбург, ул. Вайнера, 51б, 1-5" AddressComment="" Phone="+7000000001" Email="example@test.ru" qqId="" Note="" coordX="60.5982933" coordY="56.8276253" Type="PVZ" ownerCode="cdek" IsDressingRoom="есть" HaveCashless="есть" AllowedCod="есть" NearestStation="" MetroStation="" Site="https://www.cdek.ru/contacts/">
+  <Pvz Code="EKB8" Name="На Вайнера" CountryCode="1" countryCodeIso="RU" CountryName="Россия" RegionCode="24" RegionName="Свердловская обл." CityCode="250" City="Екатеринбург" WorkTime="Пн-Пт 10:00-20:00, Сб-Вс 10:00-17:00" Address="ул. Вайнера, 51б, 1-5" FullAddress="Россия, Свердловская обл., Екатеринбург, ул. Вайнера, 51б, 1-5" AddressComment="" Phone="+7000000001" Email="example@test.ru" qqId="" Note="" coordX="60.5982933" coordY="56.8276253" Type="PVZ" ownerCode="cdek" IsDressingRoom="есть" HaveCashless="есть" HaveCash="true" AllowedCod="есть" TakeOnly="false" NearestStation="" MetroStation="" Site="https://www.cdek.ru/contacts/">
     <PhoneDetail number="+7000000001"/>
     <WorkTimeY day="1" periods="10:00/20:00"/>
     <WorkTimeY day="2" periods="10:00/20:00"/>
@@ -11,7 +11,7 @@
     <WorkTimeY day="7" periods="10:00/17:00"/>
     <WeightLimit WeightMin="0" WeightMax="30"/>
   </Pvz>
-  <Pvz Code="YEKB14" Name="На Шаманова" CountryCode="1" countryCodeIso="RU" CountryName="Россия" RegionCode="24" RegionName="Свердловская обл." CityCode="250" City="Екатеринбург" WorkTime="Пн-Пт 10:00-20:00, Сб 10:00-16:00, Вс 10:00-16:00" Address="ул. Павла Шаманова, 5/1" FullAddress="Россия, Свердловская обл., Екатеринбург, ул. Павла Шаманова, 5/1" AddressComment="" Phone="+7000000002" Email="example@cdek.ru" qqId="" Note="" coordX="60.519965" coordY="56.78538" Type="PVZ" ownerCode="cdek" IsDressingRoom="есть" HaveCashless="есть" AllowedCod="есть" NearestStation="Анатолия Мехренцева" MetroStation="" Site="">
+  <Pvz Code="YEKB14" Name="На Шаманова" CountryCode="1" countryCodeIso="RU" CountryName="Россия" RegionCode="24" RegionName="Свердловская обл." CityCode="250" City="Екатеринбург" WorkTime="Пн-Пт 10:00-20:00, Сб 10:00-16:00, Вс 10:00-16:00" Address="ул. Павла Шаманова, 5/1" FullAddress="Россия, Свердловская обл., Екатеринбург, ул. Павла Шаманова, 5/1" AddressComment="" Phone="+7000000002" Email="example@cdek.ru" qqId="" Note="" coordX="60.519965" coordY="56.78538" Type="PVZ" ownerCode="cdek" IsDressingRoom="есть" HaveCashless="есть" HaveCash="true" AllowedCod="есть" NearestStation="Анатолия Мехренцева" MetroStation="" Site="">
     <PhoneDetail number="+7000000002"/>
     <OfficeImage number="1" url="https://pvzimage.cdek.ru/images/2345/2556_1_YEKB14"/>
     <WorkTimeY day="1" periods="10:00/20:00"/>
@@ -23,7 +23,7 @@
     <WorkTimeY day="7" periods="10:00/16:00"/>
     <WeightLimit WeightMin="0" WeightMax="30"/>
   </Pvz>
-  <Pvz Code="YEKB6" PostalCode="620050" Name="На Технической" CountryCode="1" countryCodeIso="RU" CountryName="Россия" RegionCode="24" RegionName="Свердловская обл." CityCode="250" City="Екатеринбург" WorkTime="Пн-Пт 10:00-20:00, Сб 10:00-16:00, Вс 10:00-16:00" Address="ул. Техническая, 16" FullAddress="Россия, Свердловская обл., Екатеринбург, ул. Техническая, 16" AddressComment="" Phone="+73433022883" Email="y.karev@cdek.ru" qqId="" Note="" coordX="60.544204" coordY="56.862735" Type="PVZ" ownerCode="cdek" IsDressingRoom="true" HaveCashless="true" AllowedCod="true" NearestStation="Переулок Теплоходный" MetroStation="" Site="">
+  <Pvz Code="YEKB6" PostalCode="620050" Name="На Технической" CountryCode="1" countryCodeIso="RU" CountryName="Россия" RegionCode="24" RegionName="Свердловская обл." CityCode="250" City="Екатеринбург" WorkTime="Пн-Пт 10:00-20:00, Сб 10:00-16:00, Вс 10:00-16:00" Address="ул. Техническая, 16" FullAddress="Россия, Свердловская обл., Екатеринбург, ул. Техническая, 16" AddressComment="" Phone="+73433022883" Email="y.karev@cdek.ru" qqId="" Note="" coordX="60.544204" coordY="56.862735" Type="PVZ" ownerCode="cdek" IsDressingRoom="true" HaveCashless="true" HaveCash="true" AllowedCod="true" NearestStation="Переулок Теплоходный" MetroStation="" Site="">
     <PhoneDetail number="+7000000003"/>
     <OfficeImage number="1" url="https://pvzimage.cdek.ru/images/1562/804_1_YEKB6"/>
     <WorkTimeY day="1" periods="10:00/20:00"/>

@@ -140,6 +140,7 @@ $request = new Requests\PvzListRequest();
 $request->setCityId(250);
 $request->setType(Requests\PvzListRequest::TYPE_ALL);
 $request->setCashless(true);
+$request->setCash(true);
 $request->setCodAllowed(true);
 $request->setDressingRoom(true);
 

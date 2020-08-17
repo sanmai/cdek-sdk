@@ -11,18 +11,16 @@ php:
 env:
   - GROUP=default
 
-matrix:
-  fast_finish: true
-  allow_failures:
-    - php: nightly
-    - stage: integration
-
 stages:
   - analyze
   - test
   - integration
 
 jobs:
+  fast_finish: true
+  allow_failures:
+    - php: nightly
+    - stage: integration
   exclude:
     - php: 7.3
   include:

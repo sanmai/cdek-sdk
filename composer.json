@@ -37,7 +37,7 @@
         "guzzlehttp/guzzle": "^6.3 || ^7.0",
         "psr/log": "^1.0",
         "sanmai/cdek-sdk-serializer": "^0.1 || ^0.2",
-        "sanmai/pipeline": "^0.3.2 || ^2.0 || ^3.0.1"
+        "sanmai/pipeline": "^0.3.2 || ^2.0 || ^3.0.1 || ^5.0"
     },
     "conflict": {},
     "require-dev": {

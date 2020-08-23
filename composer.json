@@ -49,7 +49,8 @@
         "phan/phan": "^1 <1.3 || >1.3.0",
         "php-coveralls/php-coveralls": "^2.1",
         "phpstan/phpstan": ">=0.10",
-        "phpunit/phpunit": "^6.5 || ^7.4",
+        "phpunit/phpunit": "^6.5 || ^8.0",
+        "sanmai/phpunit-legacy-adapter": "^6 || ^8",
         "vimeo/psalm": ">=3.0.16"
     },
     "suggest": {
@@ -57,8 +58,8 @@
         "hughgrigg/php-business-time": "Finds next working day, helps with delivery estimates",
         "monolog/monolog": "For advanced logging and debugging",
         "sanmai/cdek-info": "For related constant enumerations and references",
-        "sanmai/pindx": "For postal code validation",
-        "sanmai/hoa-protocol": "If you have trouble with a conflicting resolve()"
+        "sanmai/hoa-protocol": "If you have trouble with a conflicting resolve()",
+        "sanmai/pindx": "For postal code validation"
     },
     "config": {
         "sort-packages": true
@@ -66,6 +67,11 @@
     "extra": {
         "branch-alias": {
             "dev-master": "v0.6.x-dev"
+        },
+        "laravel": {
+            "providers": [
+                "CdekSDK\\LaravelCdekServiceProvider"
+            ]
         }
     },
     "autoload": {

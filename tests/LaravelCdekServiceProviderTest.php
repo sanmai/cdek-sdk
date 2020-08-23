@@ -38,7 +38,7 @@ use PHPUnit\Framework\TestCase;
 /**
  * @covers \CdekSDK\LaravelCdekServiceProvider
  */
-class LaravelCdekServiceProviderTest extends TestCase
+class LaravelCdekServiceProviderTest extends \LegacyPHPUnit\TestCase
 {
     /**
      * @var ApplicationInterface|\PHPUnit\Framework\MockObject\MockObject
@@ -57,9 +57,9 @@ class LaravelCdekServiceProviderTest extends TestCase
     /** @var ClientInterface */
     private $http;
 
-    protected function setUp()
+    protected function legacySetUp()
     {
-        parent::setUp();
+        parent::legacySetUp();
 
         $this->app = $this->createMock(ApplicationInterface::class);
         $this->provider = new LaravelCdekServiceProvider($this->app);

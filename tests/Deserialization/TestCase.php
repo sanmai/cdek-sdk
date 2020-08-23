@@ -30,11 +30,11 @@ namespace Tests\CdekSDK\Deserialization;
 
 use CdekSDK\Serialization;
 
-abstract class TestCase extends \PHPUnit\Framework\TestCase
+abstract class TestCase extends \LegacyPHPUnit\TestCase
 {
     private $serializer;
 
-    protected function setUp()
+    protected function legacySetUp()
     {
         $this->serializer = new Serialization\Serializer();
 

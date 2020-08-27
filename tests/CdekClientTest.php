@@ -439,7 +439,7 @@ class CdekClientTest extends TestCase
         $reflectionProperty->setValue(CdekClient::class, null);
 
         /** @var ClientInterface $value */
-        $this->assertContains('FooBar', $value->getConfig()['headers']['User-Agent']);
+        $this->assertStringContainsString('FooBar', $value->getConfig()['headers']['User-Agent']);
     }
 
     /**
@@ -454,7 +454,7 @@ class CdekClientTest extends TestCase
         $value = $reflectionProperty->getValue(new CdekClient('', ''));
 
         /** @var ClientInterface $value */
-        $this->assertContains(CdekClient::PACKAGE_NAME, $value->getConfig()['headers']['User-Agent']);
+        $this->assertStringContainsString(CdekClient::PACKAGE_NAME, $value->getConfig()['headers']['User-Agent']);
 
         $this->assertArrayHasKey('base_uri', $value->getConfig());
     }

@@ -53,6 +53,7 @@ trait Fillable
     /**
      * @param array<string, mixed> $data
      * @phan-suppress PhanTypeInstantiateTrait
+     * @psalm-suppress MoreSpecificReturnType
      *
      * @return static
      *

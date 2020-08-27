@@ -53,7 +53,6 @@ use CdekSDK\Serialization\Exception\XmlErrorException;
 use Gamez\Psr\Log\TestLogger;
 use GuzzleHttp\ClientInterface;
 use GuzzleHttp\Exception\ServerException;
-use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\StreamInterface;

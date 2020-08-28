@@ -30,7 +30,7 @@ namespace Tests\CdekSDK\Deserialization;
 
 use CdekSDK\Serialization;
 
-abstract class TestCase extends \LegacyPHPUnit\TestCase
+abstract class TestCase extends \Tests\CdekSDK\TestCase
 {
     private $serializer;
 

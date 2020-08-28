@@ -26,44 +26,18 @@
 
 declare(strict_types=1);
 
-namespace CdekSDK\Common;
+namespace Tests\CdekSDK;
 
-trait Fillable
+abstract class TestCase extends \LegacyPHPUnit\TestCase
 {
-    /**
-     * @psalm-suppress MixedAssignment
-     * @psalm-suppress MixedArgument
-     *
-     * @param array<string, mixed> $data
-     *
-     * @final
-     */
-    public function __construct(array $data = [])
+    public function __call($name, $arguments)
     {
-        foreach ($data as $key => $value) {
-            if (!\property_exists($this, $key)) {
-                /** @phan-suppress-next-line PhanTypeInstantiateTraitStaticOrSelf */
-                throw new \InvalidArgumentException(\sprintf('The class "%s" does not have the property "%s"', static::class, $key));
-            }
-
-            $this->{$key} = $value;
+        if ($name === 'assertStringContainsString') {
+            $this->assertContains(...$arguments);
         }
-    }
 
-    /**
-     * @param array<string, mixed> $data
-     * @phan-suppress PhanTypeInstantiateTrait
-     * @psalm-suppress MoreSpecificReturnType
-     *
-     * @return static
-     *
-     * @final
-     */
-    public static function create($data = [])
-    {
-        \assert(\is_array($data));
-
-        /** @phan-suppress-next-line PhanTypeInstantiateTraitStaticOrSelf */
-        return new static($data);
+        if ($name === 'assertIsBool') {
+            $this->assertTrue(\is_bool($arguments[0]));
+        }
     }
 }

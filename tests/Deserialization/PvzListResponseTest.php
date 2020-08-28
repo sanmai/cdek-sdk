@@ -67,13 +67,13 @@ class PvzListResponseTest extends TestCase
         $item = $response->getItems()[0];
         $this->assertInstanceOf(Pvz::class, $item);
 
-        $this->assertAttributeInternalType('boolean', 'HaveCashless', $item);
+        $this->assertIsBool($item->HaveCashless);
         $this->assertTrue($item->HaveCashless);
 
-        $this->assertAttributeInternalType('boolean', 'HaveCash', $item);
+        $this->assertIsBool($item->HaveCash);
         $this->assertTrue($item->HaveCash);
 
-        $this->assertAttributeInternalType('boolean', 'TakeOnly', $item);
+        $this->assertIsBool($item->TakeOnly);
         $this->assertFalse($item->TakeOnly);
 
         /** @var $item Pvz */
@@ -99,7 +99,7 @@ class PvzListResponseTest extends TestCase
         $item = $response->getItems()[0];
         $this->assertInstanceOf(Pvz::class, $item);
 
-        $this->assertAttributeInternalType('boolean', 'HaveCashless', $item);
+        $this->assertIsBool($item->HaveCashless);
         $this->assertTrue($item->HaveCashless);
     }
 
@@ -157,10 +157,10 @@ class PvzListResponseTest extends TestCase
         $this->assertSame(5, $item->workTimes[4]->getDay());
         $this->assertSame('09:00/17:30', $item->workTimes[4]->getPeriods());
 
-        $this->assertAttributeInternalType('boolean', 'HaveCashless', $item);
+        $this->assertIsBool($item->HaveCashless);
         $this->assertTrue($item->HaveCashless);
 
-        $this->assertAttributeInternalType('boolean', 'HaveCash', $item);
+        $this->assertIsBool($item->HaveCash);
         $this->assertTrue($item->HaveCash);
     }
 

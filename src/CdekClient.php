@@ -149,8 +149,8 @@ final class CdekClient implements Contracts\Client, LoggerAwareInterface
             return (string) \exec(\sprintf('git --git-dir=%s describe --tags --dirty=-dev --always', \escapeshellarg(__DIR__.'/../.git')));
         }
 
-        /** @var $parts string[] */
         if (\preg_match('/^([0-9a-f]+).*?tag: (v?[\d\.]+)\)(.*)/', self::VERSION_INFO, $parts)) {
+            /** @var string[] $parts */
             return "{$parts[2]}-{$parts[1]}{$parts[3]}";
         }
 

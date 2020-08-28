@@ -67,6 +67,7 @@ class InvalidRequestsTest extends TestCase
         $response = $this->getClient()->sendPrintReceiptsRequest($request);
 
         $this->assertTrue($response->hasErrors());
+        /** @psalm-suppress TypeDoesNotContainType */
         $this->assertInstanceOf(PrintErrorResponse::class, $response);
 
         foreach ($response->getMessages() as $message) {

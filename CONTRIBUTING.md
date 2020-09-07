@@ -38,8 +38,6 @@ vendor/bin/phpunit --group=integration --debug
 # Бэйджи и прочее
 
 [![Code Coverage](https://scrutinizer-ci.com/g/sanmai/cdek-sdk/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/sanmai/cdek-sdk/?branch=master)
-[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/sanmai/cdek-sdk/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/sanmai/cdek-sdk/?branch=master)
-
 
 (Выше процент для покрытия тестами с учетом устаревшего или неиспользуемого кода.)
 

@@ -44,7 +44,7 @@ class PreAlertResponseTest extends TestCase
         $this->assertFalse($response->hasErrors());
 
         foreach ($response->getMessages() as $message) {
-            $this->assertContains('Преалерт создан.', $message->getMessage());
+            $this->assertStringContainsString('Преалерт создан.', $message->getMessage());
         }
     }
 
@@ -56,13 +56,13 @@ class PreAlertResponseTest extends TestCase
         $this->assertTrue($response->hasErrors());
 
         foreach ($response->getMessages() as $message) {
-            $this->assertContains('Некорректный формат', $message->getMessage());
+            $this->assertStringContainsString('Некорректный формат', $message->getMessage());
             $this->assertSame('INVALID_PARAMETER', $message->getErrorCode());
         }
 
         $this->assertCount(1, $response->getErrors());
         foreach ($response->getErrors() as $error) {
-            $this->assertContains('Некорректный формат', $error->getMessage());
+            $this->assertStringContainsString('Некорректный формат', $error->getMessage());
             $this->assertSame('INVALID_PARAMETER', $error->getErrorCode());
         }
     }

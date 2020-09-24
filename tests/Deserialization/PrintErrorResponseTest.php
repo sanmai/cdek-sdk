@@ -49,7 +49,7 @@ class PrintErrorResponseTest extends TestCase
 
         foreach ($response->getMessages() as $message) {
             $this->assertTrue($message->isError());
-            $this->assertContains('заказ не найден в базе', $message->getText());
+            $this->assertStringContainsString('заказ не найден в базе', $message->getText());
             break;
         }
     }

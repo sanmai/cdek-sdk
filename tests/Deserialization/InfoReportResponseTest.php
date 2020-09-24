@@ -134,7 +134,7 @@ class InfoReportResponseTest extends TestCase
 
         foreach ($response->getMessages() as $message) {
             $this->assertTrue($message->isError());
-            $this->assertContains('Заказ не найден', $message->getText());
+            $this->assertStringContainsString('Заказ не найден', $message->getText());
         }
     }
 

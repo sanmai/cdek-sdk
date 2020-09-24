@@ -53,7 +53,6 @@ use CdekSDK\Serialization\Exception\XmlErrorException;
 use Gamez\Psr\Log\TestLogger;
 use GuzzleHttp\ClientInterface;
 use GuzzleHttp\Exception\ServerException;
-use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\StreamInterface;
@@ -439,7 +438,7 @@ class CdekClientTest extends TestCase
         $reflectionProperty->setValue(CdekClient::class, null);
 
         /** @var ClientInterface $value */
-        $this->assertContains('FooBar', $value->getConfig()['headers']['User-Agent']);
+        $this->assertStringContainsString('FooBar', $value->getConfig()['headers']['User-Agent']);
     }
 
     /**
@@ -454,7 +453,7 @@ class CdekClientTest extends TestCase
         $value = $reflectionProperty->getValue(new CdekClient('', ''));
 
         /** @var ClientInterface $value */
-        $this->assertContains(CdekClient::PACKAGE_NAME, $value->getConfig()['headers']['User-Agent']);
+        $this->assertStringContainsString(CdekClient::PACKAGE_NAME, $value->getConfig()['headers']['User-Agent']);
 
         $this->assertArrayHasKey('base_uri', $value->getConfig());
     }

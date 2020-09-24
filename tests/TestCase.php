@@ -26,26 +26,18 @@
 
 declare(strict_types=1);
 
-namespace Tests\CdekSDK\Deserialization;
+namespace Tests\CdekSDK;
 
-use CdekSDK\Serialization;
-
-abstract class TestCase extends \Tests\CdekSDK\TestCase
+abstract class TestCase extends \LegacyPHPUnit\TestCase
 {
-    private $serializer;
-
-    protected function legacySetUp()
+    public function __call($name, $arguments)
     {
-        $this->serializer = new Serialization\Serializer();
+        if ($name === 'assertStringContainsString') {
+            $this->assertContains(...$arguments);
+        }
 
-        \Doctrine\Common\Annotations\AnnotationReader::addGlobalIgnoredName('phan');
-
-        /** @phan-suppress-next-line PhanDeprecatedFunction */
-        \Doctrine\Common\Annotations\AnnotationRegistry::registerLoader('class_exists');
-    }
-
-    protected function getSerializer(): Serialization\Serializer
-    {
-        return $this->serializer;
+        if ($name === 'assertIsBool') {
+            $this->assertTrue(\is_bool($arguments[0]));
+        }
     }
 }

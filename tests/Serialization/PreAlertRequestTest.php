@@ -33,6 +33,7 @@ use CdekSDK\Requests\PreAlertRequest;
 
 /**
  * @covers \CdekSDK\Requests\PreAlertRequest
+ *
  * @deprecated
  */
 class PreAlertRequestTest extends TestCase

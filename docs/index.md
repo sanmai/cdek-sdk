@@ -64,7 +64,6 @@ $client = new \CdekSDK\CdekClient('Account', 'Secure', new \GuzzleHttp\Client([
 | [Изменение заказа](#UpdateRequest) | `sendUpdateRequest` | `UpdateRequest` |
 | [Регистрация результата прозвона](#ScheduleRequest) | `sendScheduleRequest` | `ScheduleRequest` |
 | [Вызов курьера](#CallCourierRequest) | `sendCallCourierRequest` | `CallCourierRequest` |
-| [Создание преалерта](#PreAlertRequest) | `sendPreAlertRequest` | `PreAlertRequest` |
 | [Отчет "Информация по заказам"](#InfoReportRequest) | `sendInfoReportRequest` | `InfoReportRequest` |
 | [Расчёт стоимости доставки с приоритетом](#CalculationRequest) | `sendCalculationRequest` | `CalculationRequest` |
 | [Расчёт стоимости доставки без приоритета](#CalculationWithTariffListRequest) | `sendCalculationWithTariffListRequest` | `CalculationWithTariffListRequest` |
@@ -638,26 +637,6 @@ $request = $request->addOrder(Common\Order::create([
 ])))));
 
 $response = $client->sendScheduleRequest($request);
-
-if ($response->hasErrors()) {
-    // обработка ошибок
-}
-```
-
-### Создание преалерта {: #PreAlertRequest }
-
-```php
-use CdekSDK\Common;
-use CdekSDK\Requests;
-
-$request = new Requests\PreAlertRequest([
-    'PvzCode'            => 'NSK333',
-    'PlannedMeetingDate' => new \DateTime('2017-10-12'),
-]);
-
-$request->addOrder(Common\Order::withDispatchNumber('12345678'));
-
-$response = $client->sendPreAlertRequest($request);
 
 if ($response->hasErrors()) {
     // обработка ошибок

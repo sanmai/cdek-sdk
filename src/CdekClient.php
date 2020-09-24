@@ -58,7 +58,6 @@ use Psr\Log\LoggerAwareTrait;
  * @method Responses\UpdateResponse                      sendUpdateRequest(Requests\UpdateRequest $request)
  * @method Responses\CallCourierResponse                 sendCallCourierRequest(Requests\CallCourierRequest $request)
  * @method Responses\ScheduleResponse                    sendScheduleRequest(Requests\ScheduleRequest $request)
- * @method Responses\PreAlertResponse                    sendPreAlertRequest(Requests\PreAlertRequest $request)
  * @method Responses\InfoReportResponse|Common\Order[]   sendInfoReportRequest(Requests\InfoReportRequest $request)
  * @method Responses\CalculationResponse                 sendCalculationRequest(Requests\CalculationAuthorizedRequest $request)
  * @method Responses\CalculationWithTariffListResponse   sendCalculationWithTariffListRequest(Requests\CalculationWithTariffListAuthorizedRequest $request)

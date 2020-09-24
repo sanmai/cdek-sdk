@@ -33,6 +33,7 @@ use Tests\CdekSDK\Fixtures\FixtureLoader;
 
 /**
  * @covers \CdekSDK\Responses\PreAlertResponse
+ * @deprecated
  */
 class PreAlertResponseTest extends TestCase
 {

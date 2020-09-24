@@ -37,6 +37,7 @@ use JMS\Serializer\Annotation as JMS;
 
 /**
  * Class PreAlertResponse.
+ * @deprecated
  */
 final class PreAlertResponse implements Response
 {

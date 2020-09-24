@@ -37,6 +37,7 @@ use JMS\Serializer\Annotation as JMS;
  * @JMS\XmlRoot(name="PreAlert")
  *
  * @psalm-suppress InvalidExtendClass
+ * @deprecated
  */
 final class PreAlertRequest extends DeliveryRequest
 {

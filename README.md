@@ -32,7 +32,6 @@
   - [x] [трекинг заказов (отчёт «Статусы заказов»)](https://cdek-sdk.readthedocs.io/#StatusReportRequest)
   - [x] [прозвон получателя](https://cdek-sdk.readthedocs.io/#ScheduleRequest)
   - [x] [вызов курьера](https://cdek-sdk.readthedocs.io/#CallCourierRequest)
-  - [x] [создание преалерта](https://cdek-sdk.readthedocs.io/#PreAlertRequest)
  - [x] [выбор базового URL интерфейса](https://cdek-sdk.readthedocs.io/#base_uri)
  - [x] [сервис-провайдер для Laravel 5.1+](https://cdek-sdk.readthedocs.io/#Laravel)
  - [x] [отладка получаемых ответов и посылаемых запросов](https://cdek-sdk.readthedocs.io/#DebuggingLogger)

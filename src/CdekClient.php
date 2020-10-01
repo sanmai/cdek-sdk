@@ -128,6 +128,7 @@ final class CdekClient implements Contracts\Client, LoggerAwareInterface
      * @codeCoverageIgnore
      *
      * @phan-suppress PhanDeprecatedFunction
+     * @psalm-suppress DeprecatedFunction
      */
     private function getDefaultUserAgent(): string
     {

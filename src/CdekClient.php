@@ -41,6 +41,7 @@ use CdekSDK\Responses\JsonErrorResponse;
 use CdekSDK\Serialization\Exception\XmlErrorException;
 use GuzzleHttp\Client as GuzzleClient;
 use GuzzleHttp\ClientInterface;
+use function GuzzleHttp\default_user_agent;
 use GuzzleHttp\Exception\BadResponseException;
 use JMS\Serializer\SerializerInterface;
 use Psr\Http\Message\ResponseInterface;
@@ -125,6 +126,8 @@ final class CdekClient implements Contracts\Client, LoggerAwareInterface
 
     /**
      * @codeCoverageIgnore
+     *
+     * @phan-suppress PhanDeprecatedFunction
      */
     private function getDefaultUserAgent(): string
     {

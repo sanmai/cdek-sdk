@@ -1,5 +1,3 @@
-sudo: false
-
 language: php
 php:
   - 7.3
@@ -18,8 +16,6 @@ jobs:
   allow_failures:
     - php: nightly
     - stage: integration
-  exclude:
-    - php: 7.3
   include:
     - stage: integration
       php: 7.3

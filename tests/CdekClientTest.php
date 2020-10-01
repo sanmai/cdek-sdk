@@ -230,7 +230,7 @@ class CdekClientTest extends TestCase
         $client = new CdekClient('foo', 'bar', $http = $this->getHttpClient('text/xml', FixtureLoader::load('InfoReportFailed.xml')));
 
         $http->method('request')->will($this->returnCallback(function () {
-            throw new ServerException('', $this->createMock(RequestInterface::class));
+            throw new ServerException('', $this->createMock(RequestInterface::class), $this->createMock(ResponseInterface::class));
         }));
 
         $this->expectException(ServerException::class);

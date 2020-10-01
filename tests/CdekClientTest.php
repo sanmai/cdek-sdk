@@ -52,6 +52,7 @@ use CdekSDK\Responses\StatusReportResponse;
 use CdekSDK\Serialization\Exception\XmlErrorException;
 use Gamez\Psr\Log\TestLogger;
 use GuzzleHttp\ClientInterface;
+use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Exception\ServerException;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
@@ -230,10 +231,10 @@ class CdekClientTest extends TestCase
         $client = new CdekClient('foo', 'bar', $http = $this->getHttpClient('text/xml', FixtureLoader::load('InfoReportFailed.xml')));
 
         $http->method('request')->will($this->returnCallback(function () {
-            throw new ServerException('', $this->createMock(RequestInterface::class), $this->createMock(ResponseInterface::class));
+            throw new RequestException('', $this->createMock(RequestInterface::class));
         }));
 
-        $this->expectException(ServerException::class);
+        $this->expectException(RequestException::class);
         $response = $client->sendInfoReportRequest(new InfoReportRequest());
     }
 

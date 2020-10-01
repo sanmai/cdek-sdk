@@ -2,9 +2,6 @@ sudo: false
 
 language: php
 php:
-  - 7.0
-  - 7.1
-  - 7.2
   - 7.3
   - 7.4
   - nightly
@@ -25,13 +22,13 @@ jobs:
     - php: 7.3
   include:
     - stage: integration
-      php: 7.0
+      php: 7.3
       env:
         - GROUP=integration
         - CDEK_ACCOUNT=7JM7K5twfzEV1ssCRklthcIPbbVZrZrZ
         - CDEK_PASSWORD=t8XBoL1rUofIK9dKoXVB3Tji2F2hPHSk
     - stage: integration
-      php: 7.0
+      php: 7.3
       env:
         - GROUP=integration
         - CDEK_ACCOUNT=z9GRRu7FxmO53CQ9cFfI6qiy32wpfTkd

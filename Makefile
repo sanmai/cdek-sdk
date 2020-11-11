@@ -1,7 +1,7 @@
 .PHONY: ci test prerequisites
 
 # Use any most recent PHP version
-PHP=$(shell which php7.4 || which php)
+PHP=$(shell which php)
 PHPDBG=$(shell which phpdbg && echo -qrr || echo php)
 
 # Default parallelism
@@ -34,7 +34,6 @@ PHPSTAN_ARGS=analyse src tests --level=2 -c .phpstan.neon
 # Psalm
 PSALM=vendor/bin/psalm
 PSALM_ARGS=--show-info=false
-PSALM_PHP_VERSION="PHP 7.3"
 
 # Composer
 COMPOSER=$(PHP) $(shell which composer)
@@ -44,7 +43,6 @@ INFECTION=vendor/bin/infection
 MIN_MSI=96
 MIN_COVERED_MSI=99
 INFECTION_ARGS=--min-msi=$(MIN_MSI) --min-covered-msi=$(MIN_COVERED_MSI) --threads=$(JOBS) --coverage=build/logs --log-verbosity=default --show-mutations --no-interaction
-INFECTION_PHP_VERSION="PHP 7.3"
 
 all: test
 

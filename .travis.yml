@@ -2,6 +2,7 @@ language: php
 php:
   - 7.3
   - 7.4
+  - 8.0snapshot
   - nightly
 env:
   - GROUP=default
@@ -30,7 +31,7 @@ jobs:
         - CDEK_ACCOUNT=z9GRRu7FxmO53CQ9cFfI6qiy32wpfTkd
         - CDEK_PASSWORD=w24JTCv4MnAcuRTx0oHjHLDtyt3I6IBq
     - stage: analyze
-      php: 7.3
+      php: 7.4
       install:
         - pecl install ast
         - phpenv config-rm xdebug.ini

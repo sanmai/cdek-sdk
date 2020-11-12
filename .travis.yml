@@ -55,6 +55,7 @@ install:
   - travis_retry composer install --prefer-dist $COMPOSER_FLAGS
 
 script:
+  - sed -i s/libxml_disable_entity_loader/@libxml_disable_entity_loader/g vendor/jms/serializer/src/XmlDeserializationVisitor.php
   - make ci-test --keep-going PHPUNIT_GROUP=$GROUP
 
 after_success:

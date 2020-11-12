@@ -40,7 +40,7 @@ return [
     // then Phan assumes the PHP version which is closest to the minor version
     // of the php executable used to execute phan.
     // Automatically inferred from composer.json requirement for "php" of ">=7.0"
-    'target_php_version' => '7.0',
+    'target_php_version' => '7.3',
 
     // If enabled, missing properties will be created when
     // they are first seen. If false, we'll report an

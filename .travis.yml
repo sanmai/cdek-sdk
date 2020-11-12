@@ -1,12 +1,8 @@
-sudo: false
-
 language: php
 php:
-  - 7.0
-  - 7.1
-  - 7.2
   - 7.3
   - 7.4
+  - 8.0snapshot
   - nightly
 env:
   - GROUP=default
@@ -21,23 +17,21 @@ jobs:
   allow_failures:
     - php: nightly
     - stage: integration
-  exclude:
-    - php: 7.3
   include:
     - stage: integration
-      php: 7.0
+      php: 7.3
       env:
         - GROUP=integration
         - CDEK_ACCOUNT=7JM7K5twfzEV1ssCRklthcIPbbVZrZrZ
         - CDEK_PASSWORD=t8XBoL1rUofIK9dKoXVB3Tji2F2hPHSk
     - stage: integration
-      php: 7.0
+      php: 7.3
       env:
         - GROUP=integration
         - CDEK_ACCOUNT=z9GRRu7FxmO53CQ9cFfI6qiy32wpfTkd
         - CDEK_PASSWORD=w24JTCv4MnAcuRTx0oHjHLDtyt3I6IBq
     - stage: analyze
-      php: 7.3
+      php: 7.4
       install:
         - pecl install ast
         - phpenv config-rm xdebug.ini
@@ -48,7 +42,7 @@ jobs:
 
 cache:
   directories:
-    - $HOME/.composer/cache
+    - $HOME/.composer
     - $HOME/.cache
     - build/cache
 
@@ -57,10 +51,13 @@ install:
   - composer remove --no-update --dev
       phan/phan phpstan/phpstan vimeo/psalm
       infection/infection friendsofphp/php-cs-fixer
-  - if [[ $TRAVIS_PHP_VERSION = nightly ]]; then export COMPOSER_FLAGS="--ignore-platform-reqs"; fi
-  - travis_retry composer update --prefer-dist $COMPOSER_FLAGS
+  - if [[ $TRAVIS_PHP_VERSION = nightly ]]; then export COMPOSER_FLAGS="--ignore-platform-req=php"; fi
+  - if [[ $TRAVIS_PHP_VERSION = 8.0snapshot ]]; then export COMPOSER_FLAGS="--ignore-platform-req=php"; fi
+  - travis_retry composer install --prefer-dist $COMPOSER_FLAGS
 
 script:
+  - sed -i s/libxml_disable_entity_loader/@libxml_disable_entity_loader/g vendor/jms/serializer/src/XmlDeserializationVisitor.php
+  - sed -i 's/count.*nodes/count($nodes??[]/' vendor/jms/serializer/src/XmlDeserializationVisitor.php
   - make ci-test --keep-going PHPUNIT_GROUP=$GROUP
 
 after_success:

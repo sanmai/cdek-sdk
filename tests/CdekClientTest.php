@@ -247,6 +247,11 @@ class CdekClientTest extends TestCase
         $this->assertInstanceOf(ErrorResponse::class, $response);
     }
 
+    /**
+     * @requires PHP < 8.0
+     *
+     * @throws ServerException
+     */
     public function test_client_can_handle_error_response()
     {
         $client = new CdekClient('foo', 'bar', $http = $this->getHttpClient('text/xml', FixtureLoader::load('InfoReportFailed.xml')));

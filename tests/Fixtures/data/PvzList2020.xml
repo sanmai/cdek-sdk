@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<PvzList>
+<Pvz Code="YEKB34" Status="ACTIVE" PostalCode="620014" Name="На Хомякова" CountryCode="1" countryCodeIso="RU" CountryName="Россия" RegionCode="24" RegionName="Свердловская обл." CityCode="250" City="Екатеринбург" WorkTime="Пн-Пт 10:00-20:00, Сб-Вс 10:00-18:00" Address="ул. Хомякова, 20" FullAddress="Россия, Свердловская обл., Екатеринбург, ул. Хомякова, 20" AddressComment="За Парком «XXII Партсъезда» Вход —  крыльцо на перекрестке ул. Хомякова, ул. Юмашева, ул. Крылова" Phone="+73432716963" Email="v.zapuskalov@cdek.ru" Note="За Парком «XXII Партсъезда» Вход —  крыльцо на перекрестке ул. Хомякова, ул. Юмашева, ул. Крылова" coordX="60.574109" coordY="56.84197" Type="PVZ" ownerCode="cdek" IsDressingRoom="true" HaveCashless="true" HaveCash="true" AllowedCod="true" TakeOnly="false" IsHandout="true" NearestStation="Остановка Крылова" MetroStation="ЕМУП Метрополитен" Site="" Fulfillment="false">
+<PhoneDetail number="+73432716963"/>
+<OfficeImage url="https://pvzimage.cdek.ru/images/3521/4383_handled_IMG_2785_1920_1080_80.jpg"/>
+<OfficeImage url="https://pvzimage.cdek.ru/images/3521/4387_1920x1080x80_20190331_165117.jpg"/>
+<OfficeImage url="https://pvzimage.cdek.ru/images/3521/4389_handled_45f451296ccf05ad90480a63c7e61683_1920_1080_80.jpg"/>
+<WorkTimeY day="1" periods="10:00/20:00"/>
+<WorkTimeY day="2" periods="10:00/20:00"/>
+<WorkTimeY day="3" periods="10:00/20:00"/>
+<WorkTimeY day="4" periods="10:00/20:00"/>
+<WorkTimeY day="5" periods="10:00/20:00"/>
+<WorkTimeY day="6" periods="10:00/18:00"/>
+<WorkTimeY day="7" periods="10:00/18:00"/>
+<WeightLimit WeightMin="0" WeightMax="150"/>
+</Pvz>
+</PvzList>

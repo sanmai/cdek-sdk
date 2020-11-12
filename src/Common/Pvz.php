@@ -35,7 +35,14 @@ use JMS\Serializer\Annotation as JMS;
  */
 final class Pvz
 {
-    const BOOLEAN_FIELDS = ['IsDressingRoom', 'AllowedCod', 'HaveCashless', 'HaveCash', 'TakeOnly'];
+    const BOOLEAN_FIELDS = [
+        'IsDressingRoom',
+        'AllowedCod',
+        'HaveCashless',
+        'HaveCash',
+        'TakeOnly',
+        'IsHandout',
+    ];
 
     /**
      * @JMS\XmlAttribute
@@ -237,6 +244,14 @@ final class Pvz
      * @var bool
      */
     public $TakeOnly;
+
+    /**
+     * @JMS\XmlAttribute
+     * @JMS\Type("string")
+     *
+     * @var bool
+     */
+    public $IsHandout;
 
     /**
      * @JMS\XmlAttribute

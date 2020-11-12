@@ -164,6 +164,25 @@ class PvzListResponseTest extends TestCase
         $this->assertTrue($item->HaveCash);
     }
 
+    public function test_it_reads_version_circa_2020_11()
+    {
+        $response = $this->getSerializer()->deserialize(FixtureLoader::load('PvzList2020.xml'), PvzListResponse::class, 'xml');
+
+        /** @var $response PvzListResponse */
+        $this->assertInstanceOf(PvzListResponse::class, $response);
+        $this->assertNotEmpty($response->getItems());
+        $this->assertCount(1, $response->getItems());
+        $this->assertCount(1, $response);
+
+        $item = $response->getItems()[0];
+        $this->assertInstanceOf(Pvz::class, $item);
+
+        $this->assertSame('YEKB34', $item->Code);
+
+        $this->assertIsBool($item->IsHandout);
+        $this->assertTrue($item->IsHandout);
+    }
+
     public function test_it_has_no_errors()
     {
         $response = new PvzListResponse();

@@ -51,7 +51,8 @@ install:
   - composer remove --no-update --dev
       phan/phan phpstan/phpstan vimeo/psalm
       infection/infection friendsofphp/php-cs-fixer
-  - if [[ $TRAVIS_PHP_VERSION = nightly ]]; then export COMPOSER_FLAGS="--ignore-platform-reqs"; fi
+  - if [[ $TRAVIS_PHP_VERSION = nightly ]]; then export COMPOSER_FLAGS="--ignore-platform-req=php"; fi
+  - if [[ $TRAVIS_PHP_VERSION = 8.0snapshot ]]; then export COMPOSER_FLAGS="--ignore-platform-req=php"; fi
   - travis_retry composer install --prefer-dist $COMPOSER_FLAGS
 
 script:

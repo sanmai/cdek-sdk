@@ -184,6 +184,53 @@ class CalculationRequestTest extends TestCase
         $this->assertGreaterThan(0.0, $response->getPrice());
     }
 
+    /**
+     * Проверяем отправку в Германию из России без кодов городов.
+     */
+    public function test_authorized_international_cityname()
+    {
+        $request = new CalculationAuthorizedRequest();
+        $request->setSenderCity('Moscow')
+        ->setSenderCountryCode('ru')
+        ->setReceiverCity('Dresden')
+        ->setReceiverCountryCode('de')
+        ->setTariffId(8)
+            ->addPackage([
+                'weight' => 1,
+                'length' => 10,
+                'width'  => 10,
+                'height' => 10,
+            ]);
+
+        $response = $this->getClient()->sendCalculationRequest($request);
+
+        $this->assertNoErrors($response);
+
+        $this->assertFalse($response->hasErrors());
+        \fwrite(STDERR, \print_r($response, true));
+
+        $this->assertGreaterThan(0.0, $response->getPrice());
+
+        // make the same request with CDEK city ids to make sure the results are the same
+        $request = new CalculationAuthorizedRequest();
+        $request->setSenderCityId(44)
+        ->setReceiverCityId(7002)
+        ->setTariffId(8)
+            ->addPackage([
+                'weight' => 1,
+                'length' => 10,
+                'width'  => 10,
+                'height' => 10,
+            ]);
+
+        $response2 = $this->getClient()->sendCalculationRequest($request);
+        $this->assertNoErrors($response2);
+        $this->assertFalse($response2->hasErrors());
+        $this->assertEquals($response->getPrice(), $response2->getPrice());
+        $this->assertEquals($response->getDeliveryPeriodMin(), $response2->getDeliveryPeriodMin());
+        $this->assertEquals($response->getDeliveryPeriodMax(), $response2->getDeliveryPeriodMax());
+    }
+
     private function assertNoErrors(Response $response)
     {
         foreach ($response->getMessages() as $error) {

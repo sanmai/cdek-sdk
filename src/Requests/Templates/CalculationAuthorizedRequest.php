@@ -78,6 +78,16 @@ abstract class CalculationAuthorizedRequest implements JsonRequest, \JsonSeriali
     protected $senderCityPostCode;
 
     /**
+     * Код страны отправителя в формате ISO_3166-1_alpha-2 (см. “Общероссийский классификатор стран мира”).
+     */
+    protected $senderCountryCode;
+
+    /**
+     * Наименование города отправителя.
+     */
+    protected $senderCity;
+
+    /**
      * Код города получателя из базы СДЭК.
      */
     protected $receiverCityId;
@@ -87,9 +97,14 @@ abstract class CalculationAuthorizedRequest implements JsonRequest, \JsonSeriali
      */
     protected $receiverCityPostCode;
 
-    protected $senderCountryCode;
-    protected $senderCity;
+    /**
+     * Код страны получателя в формате ISO_3166-1_alpha-2 (см. “Общероссийский классификатор стран мира”).
+     */
     protected $receiverCountryCode;
+
+    /**
+     * Наименование города получателя.
+     */
     protected $receiverCity;
 
     /**
@@ -185,7 +200,8 @@ abstract class CalculationAuthorizedRequest implements JsonRequest, \JsonSeriali
     }
 
     /**
-     * @param $code
+     * @param string $code two-character country code according to ISO_3166-1_alpha-2
+     *
      * @return $this
      */
     public function setSenderCountryCode($code)
@@ -196,7 +212,8 @@ abstract class CalculationAuthorizedRequest implements JsonRequest, \JsonSeriali
     }
 
     /**
-     * @param $city
+     * @param string $city city name
+     *
      * @return $this
      */
     public function setSenderCity($city)
@@ -206,8 +223,9 @@ abstract class CalculationAuthorizedRequest implements JsonRequest, \JsonSeriali
         return $this;
     }
 
-     /**
-     * @param $code
+    /**
+     * @param string $code two-character country code according to ISO_3166-1_alpha-2
+     *
      * @return $this
      */
     public function setReceiverCountryCode($code)
@@ -218,7 +236,8 @@ abstract class CalculationAuthorizedRequest implements JsonRequest, \JsonSeriali
     }
 
     /**
-     * @param $city
+     * @param string $city city name
+     *
      * @return $this
      */
     public function setReceiverCity($city)

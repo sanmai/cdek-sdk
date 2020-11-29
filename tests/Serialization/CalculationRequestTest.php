@@ -182,6 +182,45 @@ class CalculationRequestTest extends TestCase
         ], $request->getBody());
     }
 
+    public function test_with_city_name()
+    {
+        $request = new CalculationRequest();
+
+        $request = $request->setSenderCity('Москва')
+            ->setSenderCountryCode('ru')
+            ->setReceiverCity('Berlin')
+            ->setReceiverCountryCode('de')
+            ->setModeId(3)
+            ->addAdditionalService(4)
+            ->addAdditionalService(5, 6)
+            ->addTariffToList(7, 8);
+
+        $this->assertSame([
+            'version'    => '1.0',
+            'modeId'     => 3,
+            'tariffList' => [
+                0 => [
+                    'id'       => 7,
+                    'priority' => 8,
+                ],
+            ],
+            'senderCountryCode' => 'ru',
+            'senderCity'        => 'Москва',
+            'services'          => [
+                0 => [
+                    'id'    => 4,
+                    'param' => null,
+                ],
+                1 => [
+                    'id'    => 5,
+                    'param' => 6,
+                ],
+            ],
+            'receiverCountryCode' => 'de',
+            'receiverCity'        => 'Berlin',
+        ], $request->getBody());
+    }
+
     public function test_with_currency_and_date()
     {
         $request = new CalculationAuthorizedRequest();

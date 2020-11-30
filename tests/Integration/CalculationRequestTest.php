@@ -207,7 +207,6 @@ class CalculationRequestTest extends TestCase
         $this->assertNoErrors($response);
 
         $this->assertFalse($response->hasErrors());
-        \fwrite(STDERR, \print_r($response, true));
 
         $this->assertGreaterThan(0.0, $response->getPrice());
 

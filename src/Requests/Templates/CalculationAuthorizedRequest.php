@@ -78,6 +78,16 @@ abstract class CalculationAuthorizedRequest implements JsonRequest, \JsonSeriali
     protected $senderCityPostCode;
 
     /**
+     * Код страны отправителя в формате ISO_3166-1_alpha-2 (см. “Общероссийский классификатор стран мира”).
+     */
+    protected $senderCountryCode;
+
+    /**
+     * Наименование города отправителя.
+     */
+    protected $senderCity;
+
+    /**
      * Код города получателя из базы СДЭК.
      */
     protected $receiverCityId;
@@ -86,6 +96,16 @@ abstract class CalculationAuthorizedRequest implements JsonRequest, \JsonSeriali
      * Индекс города получателя из базы СДЭК.
      */
     protected $receiverCityPostCode;
+
+    /**
+     * Код страны получателя в формате ISO_3166-1_alpha-2 (см. “Общероссийский классификатор стран мира”).
+     */
+    protected $receiverCountryCode;
+
+    /**
+     * Наименование города получателя.
+     */
+    protected $receiverCity;
 
     /**
      * Габаритные характеристики места.
@@ -175,6 +195,54 @@ abstract class CalculationAuthorizedRequest implements JsonRequest, \JsonSeriali
     public function setReceiverCityPostCode($code)
     {
         $this->receiverCityPostCode = $code;
+
+        return $this;
+    }
+
+    /**
+     * @param string $code two-character country code according to ISO_3166-1_alpha-2
+     *
+     * @return $this
+     */
+    public function setSenderCountryCode($code)
+    {
+        $this->senderCountryCode = $code;
+
+        return $this;
+    }
+
+    /**
+     * @param string $city city name
+     *
+     * @return $this
+     */
+    public function setSenderCity($city)
+    {
+        $this->senderCity = $city;
+
+        return $this;
+    }
+
+    /**
+     * @param string $code two-character country code according to ISO_3166-1_alpha-2
+     *
+     * @return $this
+     */
+    public function setReceiverCountryCode($code)
+    {
+        $this->receiverCountryCode = $code;
+
+        return $this;
+    }
+
+    /**
+     * @param string $city city name
+     *
+     * @return $this
+     */
+    public function setReceiverCity($city)
+    {
+        $this->receiverCity = $city;
 
         return $this;
     }
@@ -293,9 +361,13 @@ abstract class CalculationAuthorizedRequest implements JsonRequest, \JsonSeriali
             'tariffList'           => $this->tariffList,
             'senderCityId'         => $this->senderCityId,
             'senderCityPostCode'   => $this->senderCityPostCode,
+            'senderCountryCode'    => $this->senderCountryCode,
+            'senderCity'           => $this->senderCity,
             'services'             => $this->services,
             'receiverCityId'       => $this->receiverCityId,
             'receiverCityPostCode' => $this->receiverCityPostCode,
+            'receiverCountryCode'  => $this->receiverCountryCode,
+            'receiverCity'         => $this->receiverCity,
             'currency'             => $this->currency,
             'dateExecute'          => $this->dateExecute instanceof \DateTimeInterface ? $this->dateExecute->format(CdekClient::SECURE_DATE_FORMAT) : null,
         ]);

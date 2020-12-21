@@ -42,6 +42,7 @@ final class Pvz
         'HaveCash',
         'TakeOnly',
         'IsHandout',
+        'IsReception',
     ];
 
     /**
@@ -252,6 +253,14 @@ final class Pvz
      * @var bool
      */
     public $IsHandout;
+
+    /**
+     * @JMS\XmlAttribute
+     * @JMS\Type("string")
+     *
+     * @var bool
+     */
+    public $IsReception;
 
     /**
      * @JMS\XmlAttribute

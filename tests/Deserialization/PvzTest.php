@@ -81,6 +81,16 @@ class PvzTest extends TestCase
         $this->assertSame(200.0, $pvz->Dimensions[0]->getWidth());
     }
 
+    public function test_boolean_fields()
+    {
+        $pvz = $this->getSerializer()->deserialize('<Pvz TakeOnly="true" IsHandout="false" IsReception="true" />', Pvz::class, 'xml');
+
+        /** @var $pvz Pvz */
+        $this->assertTrue($pvz->TakeOnly);
+        $this->assertFalse($pvz->IsHandout);
+        $this->assertTrue($pvz->IsReception);
+    }
+
     public function test_cyrillic_booleans()
     {
         $pvz = $this->getSerializer()->deserialize('<Pvz HaveCashless="есть" AllowedCod="нет" />', Pvz::class, 'xml');

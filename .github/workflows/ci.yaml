@@ -18,11 +18,10 @@ jobs:
       matrix:
         operating-system: [ubuntu-latest]
         php-version: [7.3, 7.4]
-        dependencies: ['']
         include:
-          - { operating-system: 'ubuntu-latest', php-version: '8.0', dependencies: '--ignore-platform-req=php' }
+          - { operating-system: 'ubuntu-latest', php-version: '8.0', composer-flags: '--ignore-platform-req=php' }
 
-    name: CI on ${{ matrix.operating-system }} with PHP ${{ matrix.php-version }} ${{ matrix.dependencies }}
+    name: CI on ${{ matrix.operating-system }} with PHP ${{ matrix.php-version }}
 
     steps:
       - name: Checkout code
@@ -43,7 +42,7 @@ jobs:
         uses: actions/cache@v2
         with:
           path: ${{ steps.composer-cache.outputs.dir }}
-          key: composer-${{ runner.os }}-${{ matrix.php-version }}-${{ hashFiles('composer.*') }}-${{ matrix.dependencies }}
+          key: composer-${{ runner.os }}-${{ matrix.php-version }}-${{ hashFiles('composer.*') }}-${{ matrix.composer-flags }}
           restore-keys: |
             composer-${{ runner.os }}-${{ matrix.php-version }}-${{ hashFiles('composer.*') }}-
             composer-${{ runner.os }}-${{ matrix.php-version }}-
@@ -52,7 +51,7 @@ jobs:
 
       - name: Install dependencies
         run: |
-          composer update --no-interaction --prefer-dist --no-progress ${{ matrix.dependencies }}
+          composer update --no-interaction --prefer-dist --no-progress ${{ matrix.composer-flags }}
 
       - name: Run tests
         run: |

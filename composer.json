@@ -41,7 +41,7 @@
     },
     "conflict": {},
     "require-dev": {
-        "ergebnis/composer-normalize": "^2.9 <2.10",
+        "ergebnis/composer-normalize": "^2.9 <2.10 || ^2.0",
         "friendsofphp/php-cs-fixer": "^2.14",
         "gamez/psr-testlogger": "^3.0",
         "illuminate/support": ">=5.2",

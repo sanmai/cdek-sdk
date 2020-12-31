@@ -35,7 +35,7 @@ use CdekSDK\Common\Attempt;
  */
 class AttemptTest extends TestCase
 {
-    public function test_plain_Attempt()
+    public function test_plain_attempt()
     {
         $attempt = $this->getSerializer()->deserialize('<Attempt ScheduleCode="100" ScheduleDescription="Проверка"/>', Attempt::class, 'xml');
 

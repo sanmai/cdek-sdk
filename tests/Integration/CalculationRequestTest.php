@@ -132,7 +132,7 @@ class CalculationRequestTest extends TestCase
         }
     }
 
-    public function test_authorized_cashOnDelivery()
+    public function test_authorized_cash_on_delivery()
     {
         $request = new CalculationAuthorizedRequest();
         $request->setSenderCityId(288)

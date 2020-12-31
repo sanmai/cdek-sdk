@@ -99,7 +99,7 @@ class UpdateRequestTest extends TestCase
 ', $request);
     }
 
-    public function test_can_serialize_RecipientEmail()
+    public function test_can_serialize_recipient_email()
     {
         $request = UpdateRequest::create([
             'Number' => 'foo',

@@ -65,7 +65,7 @@ class LaravelCdekServiceProviderTest extends \LegacyPHPUnit\TestCase
         $this->provider = new LaravelCdekServiceProvider($this->app);
     }
 
-    public function testBoot()
+    public function test_boot()
     {
         $this->provider->boot();
 
@@ -114,7 +114,7 @@ class LaravelCdekServiceProviderTest extends \LegacyPHPUnit\TestCase
         return \Closure::bind($callback, $client, CdekClient::class)();
     }
 
-    public function testRegister()
+    public function test_register()
     {
         $savedCallback = null;
 
@@ -132,9 +132,9 @@ class LaravelCdekServiceProviderTest extends \LegacyPHPUnit\TestCase
     }
 
     /**
-     * @depends testRegister
+     * @depends test_register
      */
-    public function testWithMinimalConfig(callable $savedCallback)
+    public function test_with_minimal_config(callable $savedCallback)
     {
         $client = $savedCallback($this->applicationWithConfig([
             'services.cdek' => [
@@ -155,9 +155,9 @@ class LaravelCdekServiceProviderTest extends \LegacyPHPUnit\TestCase
     }
 
     /**
-     * @depends testRegister
+     * @depends test_register
      */
-    public function testWithCustomBaseUrl(callable $savedCallback)
+    public function test_with_custom_base_url(callable $savedCallback)
     {
         $client = $savedCallback($this->applicationWithConfig([
             'services.cdek' => [
@@ -189,9 +189,9 @@ class LaravelCdekServiceProviderTest extends \LegacyPHPUnit\TestCase
     }
 
     /**
-     * @depends testRegister
+     * @depends test_register
      */
-    public function testWithCustomTimeout(callable $savedCallback)
+    public function test_with_custom_timeout(callable $savedCallback)
     {
         $client = $savedCallback($this->applicationWithConfig([
             'services.cdek' => [
@@ -214,7 +214,7 @@ class LaravelCdekServiceProviderTest extends \LegacyPHPUnit\TestCase
         }));
     }
 
-    public function testProvides()
+    public function test_provides()
     {
         $this->assertSame([CdekClient::class], $this->provider->provides());
     }

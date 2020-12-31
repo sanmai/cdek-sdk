@@ -81,7 +81,7 @@ class RegionsRequestTest extends TestCase
         ], $request->getParams());
     }
 
-    public function testFillable()
+    public function test_fillable()
     {
         $request = new RegionsRequest([
             'regionCodeExt'  => 1,

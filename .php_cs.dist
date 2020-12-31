@@ -27,6 +27,9 @@ return PhpCsFixer\Config::create()
         'yoda_style' => null,
         'phpdoc_to_comment' => false,
         'binary_operator_spaces' => ['operators' => ['=>' => BinaryOperatorSpacesFixer::ALIGN]],
+        'php_unit_method_casing' => [
+            'case' => 'snake_case',
+        ],
         'strict_comparison' => true,
         'native_function_invocation' => true,
     ])

@@ -55,6 +55,4 @@ jobs:
 
       - name: Run tests
         run: |
-          sed -i 's/count.*nodes/count($nodes??[]/' vendor/jms/serializer/src/XmlDeserializationVisitor.php
-          sed -i s/libxml_disable_entity_loader/@libxml_disable_entity_loader/g vendor/jms/serializer/src/XmlDeserializationVisitor.php
           vendor/bin/phpunit

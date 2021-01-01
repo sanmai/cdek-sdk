@@ -50,16 +50,27 @@ abstract class CalculationAuthorizedRequest implements JsonRequest, \JsonSeriali
 
     const VERSION = '1.0';
 
+    /** @deprecated */
     const SERVICE_INSURANCE = AdditionalService::SERVICE_INSURANCE;  // Страховка
+    /** @deprecated */
     const SERVICE_DANGEROUS_GOODS = AdditionalService::SERVICE_DANGEROUS_GOODS;  // Опасный груз
+    /** @deprecated */
     const SERVICE_PICKUP = AdditionalService::SERVICE_PICKUP; // Забор в городе отправителе
+    /** @deprecated */
     const SERVICE_DELIVERY_TO_DOOR = AdditionalService::SERVICE_DELIVERY_TO_DOOR; // Доставка в городе получателе
+    /** @deprecated */
     const SERVICE_PACKAGE_1 = AdditionalService::SERVICE_PACKAGE_1; // Упаковка 1
+    /** @deprecated */
     const SERVICE_PACKAGE_2 = AdditionalService::SERVICE_PACKAGE_2; // Упаковка 2
+    /** @deprecated */
     const SERVICE_TRY_AT_HOME = AdditionalService::SERVICE_TRY_AT_HOME; // Примерка на дому
+    /** @deprecated */
     const SERVICE_PERSONAL_DELIVERY = AdditionalService::SERVICE_PERSONAL_DELIVERY; // Доставка лично в руки
+    /** @deprecated */
     const SERVICE_DOCUMENTS_COPY = AdditionalService::SERVICE_DOCUMENTS_COPY; // Скан документов
+    /** @deprecated */
     const SERVICE_PARTIAL_DELIVERY = AdditionalService::SERVICE_PARTIAL_DELIVERY; // Частичная доставка
+    /** @deprecated */
     const SERVICE_CARGO_CHECK = AdditionalService::SERVICE_CARGO_CHECK; // Осмотр вложения
 
     const MODE_DOOR_DOOR = 1;

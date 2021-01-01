@@ -60,7 +60,7 @@ final class Region
      * @JMS\XmlAttribute
      * @JMS\Type("int")
      *
-     * @var int
+     * @var int|null
      */
     private $regionCode;
 
@@ -68,7 +68,7 @@ final class Region
      * @JMS\XmlAttribute
      * @JMS\Type("int")
      *
-     * @var int
+     * @var int|null
      */
     private $regionCodeExt;
 
@@ -119,12 +119,12 @@ final class Region
         return (string) $this->prefix;
     }
 
-    public function getCode(): int
+    public function getCode(): ?int
     {
         return $this->regionCode;
     }
 
-    public function getCodeExt(): int
+    public function getCodeExt(): ?int
     {
         return $this->regionCodeExt;
     }

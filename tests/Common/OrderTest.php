@@ -78,11 +78,9 @@ class OrderTest extends TestCase
         }
     }
 
-    public function test_it_fails_with_type_error()
+    public function test_it_does_not_fail_with_type_error()
     {
-        $this->expectException(\TypeError::class);
-
         $order = new Order();
-        $order->getReturnOrder();
+        $this->assertNull($order->getReturnOrder());
     }
 }

@@ -888,24 +888,12 @@ final class Order implements HasErrorCode
         return (string) $this->DeliveryVariant;
     }
 
-    /**
-     * @psalm-suppress InvalidNullableReturnType
-     * @psalm-suppress NullableReturnStatement
-     *
-     * @throws \TypeError
-     */
-    public function getSenderCity(): City
+    public function getSenderCity(): ?City
     {
         return $this->SendCity;
     }
 
-    /**
-     * @psalm-suppress InvalidNullableReturnType
-     * @psalm-suppress NullableReturnStatement
-     *
-     * @throws \TypeError
-     */
-    public function getRecipientCity(): City
+    public function getRecipientCity(): ?City
     {
         return $this->RecCity;
     }
@@ -925,10 +913,7 @@ final class Order implements HasErrorCode
         return $this->Call;
     }
 
-    /**
-     * @throws \TypeError
-     */
-    public function getReturnOrder(): Order
+    public function getReturnOrder(): ?Order
     {
         return $this->ReturnOrder;
     }

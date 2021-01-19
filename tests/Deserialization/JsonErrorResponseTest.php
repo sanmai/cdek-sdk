@@ -53,6 +53,22 @@ class JsonErrorResponseTest extends TestCase
         }
     }
 
+    public function test_it_deserializes_another()
+    {
+        $response = $this->getSerializer()->deserialize(FixtureLoader::load('JSON_NotFound.json'), JsonErrorResponse::class, Request::SERIALIZATION_JSON);
+
+        /** @var $response JsonErrorResponse */
+        $this->assertInstanceOf(JsonErrorResponse::class, $response);
+
+        $this->assertTrue($response->hasErrors());
+
+        $this->assertCount(1, $response->getMessages());
+        foreach ($response->getMessages() as $error) {
+            $this->assertSame('Not Found', $error->getMessage());
+            $this->assertSame('404', $error->getErrorCode());
+        }
+    }
+
     public function test_it_serializes_to_empty_json()
     {
         $response = new JsonErrorResponse();

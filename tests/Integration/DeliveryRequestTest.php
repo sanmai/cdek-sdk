@@ -51,6 +51,7 @@ use CdekSDK\Responses\FileResponse;
 use CdekSDK\Responses\InfoReportResponse;
 use CdekSDK\Responses\StatusReportResponse;
 use CdekSDK\Responses\UpdateResponse;
+use CdekSDK\Responses\JsonErrorResponse;
 
 /**
  * @covers \CdekSDK\Requests\DeliveryRequest
@@ -155,6 +156,10 @@ class DeliveryRequestTest extends TestCase
             if ($message->getErrorCode() === 'ERR_AUTH') {
                 $this->fail(\preg_replace('/[a-f0-9]{16,}/', '[secure]', "Access keys require an update; received {$message->getErrorCode()}: {$message->getMessage()}"));
             }
+        }
+
+        if ($response instanceof JsonErrorResponse) {
+            $this->markTestIncomplete('Unexpected response');
         }
 
         // В разных версиях API этот запрос может сработать и нет. Если всё-таки да, используем это для тестирования.

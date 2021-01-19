@@ -143,7 +143,7 @@ class CalculationRequestTest extends TestCase
             'receiverCityPostCode' => '652632',
             'secure'               => 'bar',
             'authLogin'            => 'foo',
-            'dateExecute'          => '2018-01-01T00:00:00+00:00',
+            'dateExecute'          => '2018-01-01T00:00:00',
         ], $request->getBody());
     }
 
@@ -233,7 +233,7 @@ class CalculationRequestTest extends TestCase
         $this->assertSame([
             'version'     => '1.0',
             'currency'    => 'EUR',
-            'dateExecute' => '2019-04-08T00:00:00+00:00',
+            'dateExecute' => '2019-04-08T00:00:00',
             'secure'      => 'bar',
             'authLogin'   => 'foo',
         ], $request->jsonSerialize());
@@ -251,7 +251,7 @@ class CalculationRequestTest extends TestCase
         $this->assertSame([
             'version'     => '1.0',
             'currency'    => 'EUR',
-            'dateExecute' => '2019-04-08T00:00:00+00:00',
+            'dateExecute' => '2019-04-08T00:00:00',
         ], $request->jsonSerialize());
     }
 

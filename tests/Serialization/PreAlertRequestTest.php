@@ -55,7 +55,7 @@ class PreAlertRequestTest extends TestCase
         ]));
 
         $this->assertSameAsXML('<?xml version="1.0" encoding="UTF-8"?>
-<PreAlert OrderCount="2" Date="2017-09-29T00:00:00+00:00" Account="123" Secure="456" PvzCode="NSK333" PlannedMeetingDate="2017-10-12">
+<PreAlert OrderCount="2" Date="2017-09-29T00:00:00" Account="123" Secure="456" PvzCode="NSK333" PlannedMeetingDate="2017-10-12">
   <Order DispatchNumber="bar"/>
   <Order Number="foo"/>
 </PreAlert>

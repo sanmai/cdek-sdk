@@ -340,6 +340,7 @@ foreach ($response as $location) {
 ```php
 use CdekSDK\Common;
 use CdekSDK\Requests;
+use CdekSDK\Responses\DeliveryResponse;
 
 $order = new Common\Order([
     'Number'   => 'TEST-123456',
@@ -384,8 +385,12 @@ $request->addOrder($order);
 
 $response = $client->sendDeliveryRequest($request);
 
+if ($response->hasErrors() && !$response instanceof DeliveryResponse) {
+    // обработка ошибок в общем случае
+}
+
 if ($response->hasErrors()) {
-    // обработка ошибок
+    // обработка ошибок отдельных заказов
 
     foreach ($response->getErrors() as $order) {
         // заказы с ошибками

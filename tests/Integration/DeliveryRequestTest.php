@@ -49,9 +49,9 @@ use CdekSDK\Responses\CallCourierResponse;
 use CdekSDK\Responses\DeleteResponse;
 use CdekSDK\Responses\FileResponse;
 use CdekSDK\Responses\InfoReportResponse;
+use CdekSDK\Responses\JsonErrorResponse;
 use CdekSDK\Responses\StatusReportResponse;
 use CdekSDK\Responses\UpdateResponse;
-use CdekSDK\Responses\JsonErrorResponse;
 
 /**
  * @covers \CdekSDK\Requests\DeliveryRequest

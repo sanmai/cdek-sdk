@@ -40,7 +40,7 @@ trait Authorized
      *
      * @JMS\XmlAttribute
      * @JMS\SerializedName("Date")
-     * @JMS\Type("DateTimeImmutable<'Y-m-d\TH:i:sP'>")
+     * @JMS\Type("DateTimeImmutable<'Y-m-d\TH:i:s'>")
      *
      * @var \DateTimeInterface
      *

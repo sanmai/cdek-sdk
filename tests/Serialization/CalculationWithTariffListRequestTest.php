@@ -57,7 +57,7 @@ class CalculationWithTariffListRequestTest extends TestCase
 
         $this->assertEquals(\json_decode('{
             "version":"1.0",
-            "dateExecute":"2019-04-01T00:00:00+00:00",
+            "dateExecute":"2019-04-01T00:00:00",
             "senderCityId":"44",
             "receiverCityId":"269",
             "currency":"RUB",

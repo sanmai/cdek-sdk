@@ -83,7 +83,7 @@ final class CdekClient implements Contracts\Client, LoggerAwareInterface
      *
      * @var string
      */
-    const SECURE_DATE_FORMAT = 'Y-m-d\TH:i:sP';
+    const SECURE_DATE_FORMAT = 'Y-m-d\TH:i:s';
 
     /** @var ClientInterface */
     private $http;

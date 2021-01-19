@@ -340,7 +340,7 @@ class DeliveryRequestTest extends TestCase
         $request->date($date);
 
         $this->assertSameAsXML('<?xml version="1.0" encoding="UTF-8"?>
-<DeliveryRequest OrderCount="0" Number="12345" Date="2012-12-21T15:49:49+04:00"/>
+<DeliveryRequest OrderCount="0" Number="12345" Date="2012-12-21T15:49:49"/>
 ', $request);
     }
 }

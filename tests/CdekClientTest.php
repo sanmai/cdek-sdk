@@ -386,7 +386,7 @@ class CdekClientTest extends TestCase
             $client = new CdekClient('f62dcb094cc91617def72d9c260b4483', '6bd3937dcebd15beb25278bc0657014c');
             $client->sendRequest($request, new \DateTime('2016-10-31'));
         } catch (\LogicException $e) {
-            $this->assertSame('4368247f1ff152d273a29fac6993a94a', $e->getMessage());
+            $this->assertSame('2273d0a645b29189d7317a15ca6e66c1', $e->getMessage());
         }
     }
 
@@ -516,7 +516,7 @@ class CdekClientTest extends TestCase
         $this->assertArrayHasKey('form_params', $this->lastRequestOptions);
         $this->assertSame('2018-10-13', $this->lastRequestOptions['form_params']['date']);
         $this->assertSame('foo', $this->lastRequestOptions['form_params']['account']);
-        $this->assertSame('d7fe9d0ad9901440c4cba573cfc0c86e', $this->lastRequestOptions['form_params']['secure']);
+        $this->assertSame('a88e4c93c328cc3b8cf5835667571ded', $this->lastRequestOptions['form_params']['secure']);
     }
 
     public function test_it_loads_date_from_capable_request()
@@ -576,7 +576,7 @@ class CdekClientTest extends TestCase
         $this->assertArrayHasKey('form_params', $this->lastRequestOptions);
         $this->assertSame('2019-04-08', $this->lastRequestOptions['form_params']['date']);
         $this->assertSame('foo', $this->lastRequestOptions['form_params']['account']);
-        $this->assertSame('161313c50e420e3ba9231ec75fbac139', $this->lastRequestOptions['form_params']['secure']);
+        $this->assertSame('f25265c80e76501eb4b78c872bf30ae4', $this->lastRequestOptions['form_params']['secure']);
     }
 
     public function test_client_rejects_contract_numbers()

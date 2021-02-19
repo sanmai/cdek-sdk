@@ -117,9 +117,18 @@ class CdekClientTest extends TestCase
         $this->assertArrayHasKey('xml_request', $this->lastRequestOptions['form_params']);
     }
 
-    public function test_client_can_read_xml_response_with_alternative_content_type()
+    public function test_client_can_read_xml_response_with_yet_alternative_content_type()
     {
         $client = new CdekClient('foo', 'bar', $this->getHttpClient('application/xml', FixtureLoader::load('StatusReportResponse.xml')));
+        $response = $client->sendStatusReportRequest(new StatusReportRequest());
+
+        /** @var $response StatusReportResponse */
+        $this->assertInstanceOf(StatusReportResponse::class, $response);
+    }
+
+    public function test_client_can_read_xml_response_with_alternative_content_type()
+    {
+        $client = new CdekClient('foo', 'bar', $this->getHttpClient('application/atom+xml', FixtureLoader::load('StatusReportResponse.xml')));
         $response = $client->sendStatusReportRequest(new StatusReportRequest());
 
         /** @var $response StatusReportResponse */

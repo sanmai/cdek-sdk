@@ -328,6 +328,10 @@ final class CdekClient implements Contracts\Client, LoggerAwareInterface
             return true;
         }
 
+        if (0 === \strpos($header, 'application/atom+xml')) {
+            return true;
+        }
+
         if (0 === \strpos($header, 'application/json')) {
             return true;
         }

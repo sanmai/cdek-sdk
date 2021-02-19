@@ -124,6 +124,7 @@ final class Region
         return $this->regionCode;
     }
 
+    /** @deprecated */
     public function getCodeExt(): ?int
     {
         return $this->regionCodeExt;

@@ -62,7 +62,6 @@ class RegionsRequestTest extends TestCase
         $this->assertSame('Хабаровский', $region->getName());
         $this->assertSame('край', $region->getPrefix());
         $this->assertSame(14, $region->getCode());
-        $this->assertSame(27, $region->getCodeExt());
         $this->assertSame('7d468b39-1afa-41ec-8c4f-97a8603cb3d4', $region->getFiasGuid());
         $this->assertContains($region->getCountryName(), ['Россия', 'Russia']);
         $this->assertSame(643, $region->getCountryCodeExt());
@@ -100,7 +99,6 @@ class RegionsRequestTest extends TestCase
             $region->getPrefix();
             try {
                 $region->getCode();
-                $region->getCodeExt();
             } catch (\TypeError $e) {
                 // У региона нет кода
             }

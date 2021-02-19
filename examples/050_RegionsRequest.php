@@ -46,7 +46,6 @@ foreach ($response as $region) {
     $region->getPrefix();
     try {
         $region->getCode();
-        $region->getCodeExt();
     } catch (\TypeError $e) {
         // У региона нет кода
     }

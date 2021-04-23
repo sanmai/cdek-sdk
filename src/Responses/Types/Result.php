@@ -58,12 +58,16 @@ final class Result implements Response
     /**
      * @JMS\Type("DateTimeImmutable<'Y-m-d'>")
      *
+     * @deprecated
+     *
      * @var \DateTimeImmutable|null
      */
     private $deliveryDateMin;
 
     /**
      * @JMS\Type("DateTimeImmutable<'Y-m-d'>")
+     *
+     * @deprecated
      *
      * @var \DateTimeImmutable|null
      */
@@ -184,6 +188,9 @@ final class Result implements Response
     }
 
     /**
+     * @deprecated
+     * @phan-suppress PhanDeprecatedProperty
+     *
      * @return \DateTimeImmutable|null
      */
     public function getDeliveryDateMin()
@@ -192,6 +199,9 @@ final class Result implements Response
     }
 
     /**
+     * @deprecated
+     * @phan-suppress PhanDeprecatedProperty
+     *
      * @return \DateTimeImmutable|null
      */
     public function getDeliveryDateMax()

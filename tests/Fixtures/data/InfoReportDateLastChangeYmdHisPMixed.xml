@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<InfoReport>
+    <Order Number="ORD-121121" Date="2020-03-04" DispatchNumber="111222333" TariffTypeCode="136" Weight="1.5" DeliverySum="265" DateLastChange="2020-03-05 04:30:00" CashOnDeliv="3792" CashOnDelivFact="3792" CashOnDelivType="cashless" deliveryMode="4" pvzCode="ENG1" deliveryVariant="PVZCDEK">
+        <SendCity Code="415" PostCode="610000" Name="Киров"/>
+        <RecCity Code="214" PostCode="413100" Name="Энгельс"/>
+        <Package Number="_" BarCode="1" Weight="1.5" VolumeWeight="1.3" SizeA="65" SizeB="10" SizeC="10">
+            <Item WareKey="00123" Comment="Item name" Cost="3500" Payment="3500" VATRate="VATX" VATSum="0" Weight="1" Amount="1" DelivAmount="1"/>
+        </Package>
+        <AddedService ServiceCode="2" Sum="12.34"/>
+        <AddedService ServiceCode="42" Sum="567.89"/>
+    </Order>
+    <Order Number="ORD-121122" Date="2020-03-04" DispatchNumber="111222334" TariffTypeCode="136" Weight="1.5" DeliverySum="265" DateLastChange="2020-03-06 05:30:00+03:00" CashOnDeliv="3792" CashOnDelivFact="3792" CashOnDelivType="cashless" deliveryMode="4" pvzCode="ENG1" deliveryVariant="PVZCDEK">
+        <SendCity Code="415" PostCode="610000" Name="Киров"/>
+        <RecCity Code="214" PostCode="413100" Name="Энгельс"/>
+        <Package Number="_" BarCode="1" Weight="1.5" VolumeWeight="1.3" SizeA="65" SizeB="10" SizeC="10">
+            <Item WareKey="00123" Comment="Item name" Cost="3500" Payment="3500" VATRate="VATX" VATSum="0" Weight="1" Amount="1" DelivAmount="1"/>
+        </Package>
+        <AddedService ServiceCode="2" Sum="12.34"/>
+        <AddedService ServiceCode="42" Sum="567.89"/>
+    </Order>
+    <Order Number="ORD-121123" Date="2020-03-05" DispatchNumber="111222335" TariffTypeCode="136" Weight="1.5" DeliverySum="265" DateLastChange="2020-03-07 06:30:00+05:00" CashOnDeliv="3792" CashOnDelivFact="3792" CashOnDelivType="cashless" deliveryMode="4" pvzCode="ENG1" deliveryVariant="PVZCDEK">
+        <SendCity Code="415" PostCode="610000" Name="Киров"/>
+        <RecCity Code="214" PostCode="413100" Name="Энгельс"/>
+        <Package Number="_" BarCode="1" Weight="1.5" VolumeWeight="1.3" SizeA="65" SizeB="10" SizeC="10">
+            <Item WareKey="00123" Comment="Item name" Cost="3500" Payment="3500" VATRate="VATX" VATSum="0" Weight="1" Amount="1" DelivAmount="1"/>
+        </Package>
+        <AddedService ServiceCode="2" Sum="12.34"/>
+        <AddedService ServiceCode="42" Sum="567.89"/>
+    </Order>
+</InfoReport>

@@ -164,4 +164,27 @@ class InfoReportResponseTest extends TestCase
         $response = new InfoReportResponse();
         $this->assertSame([], $response->jsonSerialize());
     }
+
+    public function test_date_last_change_with_mixed_datetime_format()
+    {
+        $response = $this->getSerializer()->deserialize(FixtureLoader::load('InfoReportDateLastChangeYmdHisPMixed.xml'), InfoReportResponse::class, 'xml');
+
+        /** @var $response InfoReportResponse */
+        $this->assertInstanceOf(InfoReportResponse::class, $response);
+
+        $this->assertCount(3, $response->getOrders());
+        $this->assertCount(3, $response);
+
+        $order = $response->getOrders()[0];
+        $this->assertSame('ORD-121121', $order->getNumber());
+        $this->assertSame('2020-03-05 04:30:00', $order->getDateLastChange()->format('Y-m-d H:i:s'));
+
+        $order = $response->getOrders()[1];
+        $this->assertSame('ORD-121122', $order->getNumber());
+        $this->assertSame('2020-03-06 05:30:00', $order->getDateLastChange()->format('Y-m-d H:i:s'));
+
+        $order = $response->getOrders()[2];
+        $this->assertSame('ORD-121123', $order->getNumber());
+        $this->assertSame('2020-03-07 06:30:00+05:00', $order->getDateLastChange()->format('Y-m-d H:i:sP'));
+    }
 }

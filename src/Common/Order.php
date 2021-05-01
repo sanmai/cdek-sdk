@@ -353,7 +353,7 @@ final class Order implements HasErrorCode
 
     /**
      * @JMS\XmlAttribute
-     * @JMS\Type("DateTimeImmutable<'Y-m-d\TH:i:sP', '', 'Y-m-d\TH:i:sP', ['Y-m-d H:i:s', 'Y-m-d H:i:sP']>")
+     * @JMS\Type("DateTimeImmutable<'Y-m-d\TH:i:sP', '', ['Y-m-d H:i:s', 'Y-m-d H:i:sP']>")
      *
      * @var \DateTimeImmutable|null
      */

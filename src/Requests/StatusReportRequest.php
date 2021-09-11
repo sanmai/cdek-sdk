@@ -38,6 +38,8 @@ use CdekSDK\Responses\StatusReportResponse;
 use JMS\Serializer\Annotation as JMS;
 
 /**
+ * @deprecated https://github.com/cdek-it/sdk2.0
+ *
  * Class StatusReportRequest.
  *
  * @JMS\XmlRoot(name="StatusReport")

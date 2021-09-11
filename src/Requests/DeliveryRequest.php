@@ -41,8 +41,9 @@ use CdekSDK\Responses\DeliveryResponse;
 use JMS\Serializer\Annotation as JMS;
 
 /**
- * Class DeliveryRequest.
+ * @deprecated https://github.com/cdek-it/sdk2.0
  *
+ * Class DeliveryRequest.
  * @see DeleteRequest
  *
  * @JMS\XmlRoot(name="DeliveryRequest")

@@ -35,6 +35,8 @@ use CdekSDK\Requests\Templates\PrintRequest;
 use JMS\Serializer\Annotation as JMS;
 
 /**
+ * @deprecated https://github.com/cdek-it/sdk2.0
+ *
  * Class PrintReceiptRequest.
  *
  * @JMS\XmlRoot(name="OrdersPrint")

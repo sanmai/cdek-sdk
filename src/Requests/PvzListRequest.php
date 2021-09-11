@@ -34,6 +34,8 @@ use CdekSDK\Responses\PvzListResponse;
 use function Pipeline\map;
 
 /**
+ * @deprecated https://github.com/cdek-it/sdk2.0
+ *
  * Class PvzListRequest.
  */
 final class PvzListRequest implements ParamRequest

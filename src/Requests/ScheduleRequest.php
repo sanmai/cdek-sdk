@@ -33,6 +33,8 @@ use CdekSDK\Responses\ScheduleResponse;
 use JMS\Serializer\Annotation as JMS;
 
 /**
+ * @deprecated https://github.com/cdek-it/sdk2.0
+ *
  * Регистрация информации о результате прозвона.
  *
  * @JMS\XmlRoot(name="ScheduleRequest")

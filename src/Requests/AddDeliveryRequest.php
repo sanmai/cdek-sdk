@@ -31,6 +31,8 @@ namespace CdekSDK\Requests;
 use JMS\Serializer\Annotation as JMS;
 
 /**
+ * @deprecated https://github.com/cdek-it/sdk2.0
+ *
  * @JMS\XmlRoot(name="DeliveryRequest")
  *
  * @psalm-suppress InvalidExtendClass

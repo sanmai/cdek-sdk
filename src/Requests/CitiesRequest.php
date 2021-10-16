@@ -36,6 +36,8 @@ use CdekSDK\Requests\Concerns\RequestCore;
 use CdekSDK\Responses\CitiesResponse;
 
 /**
+ * @deprecated https://github.com/cdek-it/sdk2.0
+ *
  * @method CitiesRequest setRegionCodeExt(mixed $value)
  * @method CitiesRequest setRegionCode(mixed $value)
  * @method CitiesRequest setRegionFiasGuid(mixed $value)

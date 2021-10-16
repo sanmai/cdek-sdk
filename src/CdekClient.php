@@ -51,6 +51,8 @@ use Psr\Log\LoggerAwareTrait;
 /**
  * Class CdekClient.
  *
+ * @deprecated https://github.com/cdek-it/sdk2.0
+ *
  * @method Responses\DeleteResponse                      sendDeleteRequest(Requests\DeleteRequest $request)
  * @method Responses\PvzListResponse|Common\Pvz[]        sendPvzListRequest(Requests\PvzListRequest $request)
  * @method Responses\DeliveryResponse                    sendDeliveryRequest(Requests\DeliveryRequest $request)

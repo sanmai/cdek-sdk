@@ -28,6 +28,9 @@ declare(strict_types=1);
 
 namespace CdekSDK\Contracts;
 
+/**
+ * @deprecated https://github.com/cdek-it/sdk2.0
+ */
 interface Client
 {
     public function sendRequest(Request $request);

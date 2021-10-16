@@ -35,6 +35,8 @@ use Illuminate\Foundation\Application;
 use Illuminate\Support\ServiceProvider;
 
 /**
+ * @deprecated https://github.com/cdek-it/sdk2.0
+ *
  * @final
  */
 class LaravelCdekServiceProvider extends ServiceProvider

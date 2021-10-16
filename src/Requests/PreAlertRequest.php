@@ -32,6 +32,8 @@ use CdekSDK\Responses\PreAlertResponse;
 use JMS\Serializer\Annotation as JMS;
 
 /**
+ * @deprecated https://github.com/cdek-it/sdk2.0
+ *
  * Создание преалерта. Метод используется для создания сводного реестра (преалерта), содержащего все накладные, товары по которым передаются на доставку.
  *
  * @JMS\XmlRoot(name="PreAlert")

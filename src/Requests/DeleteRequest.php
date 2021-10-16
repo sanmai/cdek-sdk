@@ -32,6 +32,8 @@ use CdekSDK\Responses\DeleteResponse;
 use JMS\Serializer\Annotation as JMS;
 
 /**
+ * @deprecated https://github.com/cdek-it/sdk2.0
+ *
  * Class DeleteRequest.
  *
  * @JMS\XmlRoot(name="DeleteRequest")

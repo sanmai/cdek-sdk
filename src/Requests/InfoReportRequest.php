@@ -39,6 +39,8 @@ use CdekSDK\Responses\InfoReportResponse;
 use JMS\Serializer\Annotation as JMS;
 
 /**
+ * @deprecated https://github.com/cdek-it/sdk2.0
+ *
  * Class InfoReportRequest.
  *
  * @JMS\XmlRoot(name="InfoRequest")

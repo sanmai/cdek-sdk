@@ -52,7 +52,10 @@
 
 ## Версия API
 
-Этот SDK предназначен для работы с первой версии API. [Существует SDK для второй версии API.](https://github.com/cdek-it/sdk2.0)
+Этот SDK предназначен для работы с первой версии API. 
+Существуют SDK для второй версии API:
+- [antistress-store/cdek-sdk-v2](https://github.com/AntistressStore/cdek-sdk-v2)
+- [cdek-it/sdk2.0](https://github.com/cdek-it/sdk2.0)
 
 ## Установка
 

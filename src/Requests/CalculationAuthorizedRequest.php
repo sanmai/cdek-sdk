@@ -31,6 +31,8 @@ namespace CdekSDK\Requests;
 use CdekSDK\Responses\CalculationResponse;
 
 /**
+ * @deprecated https://github.com/cdek-it/sdk2.0
+ *
  * Class CalculationAuthorizedRequest.
  *
  * @final

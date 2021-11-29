@@ -31,6 +31,8 @@ namespace CdekSDK\Requests;
 use CdekSDK\Requests\Concerns\AnonymousJsonRequest;
 
 /**
+ * @deprecated https://github.com/cdek-it/sdk2.0
+ *
  * Class CalculationRequest.
  *
  * @final

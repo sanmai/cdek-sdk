@@ -31,6 +31,8 @@ namespace CdekSDK\Requests;
 use CdekSDK\Responses\CalculationWithTariffListResponse;
 
 /**
+ * @deprecated https://github.com/cdek-it/sdk2.0
+ *
  * @final
  */
 class CalculationWithTariffListAuthorizedRequest extends Templates\CalculationAuthorizedRequest

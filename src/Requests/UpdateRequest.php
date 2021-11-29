@@ -32,6 +32,8 @@ use CdekSDK\Responses\UpdateResponse;
 use JMS\Serializer\Annotation as JMS;
 
 /**
+ * @deprecated https://github.com/cdek-it/sdk2.0
+ *
  * @JMS\XmlRoot(name="UpdateRequest")
  *
  * @psalm-suppress InvalidExtendClass

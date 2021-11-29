@@ -38,6 +38,8 @@ use CdekSDK\Responses\CallCourierResponse;
 use JMS\Serializer\Annotation as JMS;
 
 /**
+ * @deprecated https://github.com/cdek-it/sdk2.0
+ *
  * @JMS\XmlRoot(name="CallCourier")
  */
 final class CallCourierRequest implements XmlRequest, ShouldAuthorize

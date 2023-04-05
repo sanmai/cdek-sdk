@@ -35,7 +35,7 @@
         "ext-json": "*",
         "ext-libxml": "*",
         "guzzlehttp/guzzle": "^6.3 || ^7.0",
-        "psr/log": "^1.0",
+        "psr/log": "^1.0 || ^2.0 || ^3.0",
         "sanmai/cdek-sdk-serializer": "^0.2.6",
         "sanmai/pipeline": "^5.0"
     },

@@ -64,7 +64,8 @@
         "sanmai/pindx": "For postal code validation"
     },
     "config": {
-        "sort-packages": true
+        "sort-packages": true,
+        "allow-plugins": true
     },
     "extra": {
         "branch-alias": {

@@ -58,6 +58,7 @@
 Существуют SDK для второй версии API:
 - [antistress-store/cdek-sdk-v2](https://github.com/AntistressStore/cdek-sdk-v2)
 - [ttatpuot/cdek-sdk2.0](https://github.com/ttatpuot/cdek-sdk2.0)
+- [cdek-it/sdk2.0](https://github.com/cdek-it/sdk2.0)
 
 ## Установка
 

@@ -16,10 +16,10 @@ jobs:
 
     strategy:
       matrix:
-        operating-system: [ubuntu-latest]
+        operating-system: ['ubuntu-latest']
         php-version: ['7.4']
         include:
-          - { operating-system: 'ubuntu-latest', php-version: '8.0', composer-flags: '' }
+          - { operating-system: 'ubuntu-latest', php-version: '8.0', composer-flags: '--ignore-platform-req=php' }
 
     name: CI on ${{ matrix.operating-system }} with PHP ${{ matrix.php-version }}
 

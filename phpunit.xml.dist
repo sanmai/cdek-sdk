@@ -6,6 +6,7 @@
   resolveDependencies="true"
   bootstrap="vendor/autoload.php"
   colors="true"
+  failOnWarning="false"
 >
   <coverage>
     <include>

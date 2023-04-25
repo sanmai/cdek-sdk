@@ -41,6 +41,7 @@ final class Passport
 
     /**
      * @JMS\XmlAttribute
+     *
      * @JMS\Type("string")
      *
      * @var string
@@ -49,6 +50,7 @@ final class Passport
 
     /**
      * @JMS\XmlAttribute
+     *
      * @JMS\Type("string")
      *
      * @var string
@@ -57,6 +59,7 @@ final class Passport
 
     /**
      * @JMS\XmlAttribute
+     *
      * @JMS\Type("DateTimeImmutable<'Y-m-d'>")
      *
      * @var \DateTimeInterface
@@ -65,6 +68,7 @@ final class Passport
 
     /**
      * @JMS\XmlAttribute
+     *
      * @JMS\Type("string")
      *
      * @var string
@@ -73,6 +77,7 @@ final class Passport
 
     /**
      * @JMS\XmlAttribute
+     *
      * @JMS\Type("DateTimeImmutable<'Y-m-d'>")
      *
      * @var \DateTimeInterface

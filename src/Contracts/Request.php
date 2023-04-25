@@ -30,8 +30,8 @@ namespace CdekSDK\Contracts;
 
 interface Request
 {
-    const SERIALIZATION_JSON = 'json';
-    const SERIALIZATION_XML = 'xml';
+    public const SERIALIZATION_JSON = 'json';
+    public const SERIALIZATION_XML = 'xml';
 
     public function getMethod(): string;
 

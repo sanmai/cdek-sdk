@@ -36,6 +36,7 @@ final class Sender
 
     /**
      * @JMS\XmlAttribute
+     *
      * @JMS\Type("string")
      *
      * @var string
@@ -44,6 +45,7 @@ final class Sender
 
     /**
      * @JMS\XmlAttribute
+     *
      * @JMS\Type("string")
      *
      * @var string

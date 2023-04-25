@@ -34,6 +34,7 @@ use CdekSDK\Responses\Concerns\HasErrors;
 use CdekSDK\Responses\Types\DeleteRequest;
 use CdekSDK\Responses\Types\Message;
 use JMS\Serializer\Annotation as JMS;
+
 use function Pipeline\fromArray;
 
 /**
@@ -45,6 +46,7 @@ final class DeleteResponse implements Response
 
     /**
      * @JMS\XmlList(entry = "DeleteRequest", inline = true)
+     *
      * @JMS\Type("array<CdekSDK\Responses\Types\DeleteRequest>")
      *
      * @var DeleteRequest[]
@@ -53,6 +55,7 @@ final class DeleteResponse implements Response
 
     /**
      * @JMS\XmlList(entry = "Order", inline = true)
+     *
      * @JMS\Type("array<CdekSDK\Common\Order>")
      *
      * @var Order[]

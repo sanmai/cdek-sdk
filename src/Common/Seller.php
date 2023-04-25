@@ -39,6 +39,7 @@ final class Seller
 
     /**
      * @JMS\XmlAttribute
+     *
      * @JMS\Type("string")
      *
      * @var string
@@ -47,6 +48,7 @@ final class Seller
 
     /**
      * @JMS\XmlAttribute
+     *
      * @JMS\Type("string")
      *
      * @var string
@@ -55,6 +57,7 @@ final class Seller
 
     /**
      * @JMS\XmlAttribute
+     *
      * @JMS\Type("string")
      *
      * @var string
@@ -63,6 +66,7 @@ final class Seller
 
     /**
      * @JMS\XmlAttribute
+     *
      * @JMS\Type("string")
      *
      * @var string
@@ -71,6 +75,7 @@ final class Seller
 
     /**
      * @JMS\XmlAttribute
+     *
      * @JMS\Type("int")
      *
      * @var int

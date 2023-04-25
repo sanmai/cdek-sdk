@@ -55,7 +55,7 @@ class CalculationWithTariffListRequestTest extends TestCase
             ])
             ->addAdditionalService(2, 1000);
 
-        $this->assertEquals(\json_decode('{
+        $this->assertEquals(json_decode('{
             "version":"1.0",
             "dateExecute":"2019-04-01T00:00:00",
             "senderCityId":"44",

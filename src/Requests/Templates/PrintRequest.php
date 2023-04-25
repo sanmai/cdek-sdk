@@ -39,10 +39,11 @@ abstract class PrintRequest implements XmlRequest, ShouldAuthorize
 {
     use OrdersAware;
 
-    const RESPONSE = PrintErrorResponse::class;
+    public const RESPONSE = PrintErrorResponse::class;
 
     /**
      * @JMS\XmlAttribute
+     *
      * @JMS\Type("int")
      *
      * @var string
@@ -51,8 +52,11 @@ abstract class PrintRequest implements XmlRequest, ShouldAuthorize
 
     /**
      * @JMS\XmlAttribute
+     *
      * @JMS\SerializedName("OrderCount")
+     *
      * @JMS\Type("int")
+     *
      * @JMS\VirtualProperty()
      */
     final public function getOrderCount()

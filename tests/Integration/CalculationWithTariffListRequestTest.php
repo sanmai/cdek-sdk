@@ -42,8 +42,8 @@ use Tests\CdekSDK\Integration\Requests\CalculationWithTariffListAuthorizedReques
  */
 class CalculationWithTariffListRequestTest extends TestCase
 {
-    const UNAUTHORIZED_ERROR = 2;
-    const UNAVAILABLE_DESTINATION_ERROR = 3;
+    public const UNAUTHORIZED_ERROR = 2;
+    public const UNAVAILABLE_DESTINATION_ERROR = 3;
 
     public function test_success_anonymous()
     {

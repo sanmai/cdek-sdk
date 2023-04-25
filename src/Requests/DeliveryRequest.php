@@ -57,12 +57,13 @@ class DeliveryRequest implements XmlRequest, ShouldAuthorize
     use OrdersAware;
     use RequestCore;
 
-    const METHOD = 'POST';
-    const ADDRESS = '/new_orders.php';
-    const RESPONSE = DeliveryResponse::class;
+    public const METHOD = 'POST';
+    public const ADDRESS = '/new_orders.php';
+    public const RESPONSE = DeliveryResponse::class;
 
     /**
      * @JMS\XmlAttribute
+     *
      * @JMS\Type("string")
      *
      * @var string
@@ -71,6 +72,7 @@ class DeliveryRequest implements XmlRequest, ShouldAuthorize
 
     /**
      * @JMS\XmlAttribute
+     *
      * @JMS\Type("string")
      *
      * @var string
@@ -79,6 +81,7 @@ class DeliveryRequest implements XmlRequest, ShouldAuthorize
 
     /**
      * @JMS\XmlAttribute
+     *
      * @JMS\Type("bool")
      *
      * @var bool
@@ -87,6 +90,7 @@ class DeliveryRequest implements XmlRequest, ShouldAuthorize
 
     /**
      * @JMS\XmlAttribute
+     *
      * @JMS\Type("string")
      *
      * @var string
@@ -102,8 +106,11 @@ class DeliveryRequest implements XmlRequest, ShouldAuthorize
 
     /**
      * @JMS\XmlAttribute
+     *
      * @JMS\SerializedName("OrderCount")
+     *
      * @JMS\Type("int")
+     *
      * @JMS\VirtualProperty()
      */
     public function getOrderCount()

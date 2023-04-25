@@ -38,7 +38,7 @@ use CdekSDK\Requests\UpdateRequest;
  */
 class UpdateRequestTest extends TestCase
 {
-    const TEST_NUMBER = 'TESTING123';
+    public const TEST_NUMBER = 'TESTING123';
 
     public function test_can_serialize()
     {

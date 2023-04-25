@@ -29,6 +29,7 @@ declare(strict_types=1);
 namespace CdekSDK\Responses\Types;
 
 use CdekSDK\Contracts\HasErrorCode;
+
 use function Pipeline\fromArray;
 
 final class Message implements HasErrorCode
@@ -50,6 +51,7 @@ final class Message implements HasErrorCode
 
     /**
      * @deprecated use getMessage()
+     *
      * @codeCoverageIgnore
      */
     public function getText(): string
@@ -59,6 +61,7 @@ final class Message implements HasErrorCode
 
     /**
      * @deprecated use getErrorCode()
+     *
      * @codeCoverageIgnore
      */
     public function getCode(): string
@@ -68,6 +71,7 @@ final class Message implements HasErrorCode
 
     /**
      * @deprecated use getErrorCode() !== ''
+     *
      * @codeCoverageIgnore
      */
     public function isError(): bool

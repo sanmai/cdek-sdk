@@ -47,15 +47,16 @@ final class PrintLabelsRequest extends PrintRequest
     use Authorized;
     use RequestCore;
 
-    const METHOD = 'POST';
-    const ADDRESS = '/ordersPackagesPrint';
+    public const METHOD = 'POST';
+    public const ADDRESS = '/ordersPackagesPrint';
 
-    const PRINT_FORMAT_A4 = 'A4';
-    const PRINT_FORMAT_A5 = 'A5';
-    const PRINT_FORMAT_A6 = 'A6';
+    public const PRINT_FORMAT_A4 = 'A4';
+    public const PRINT_FORMAT_A5 = 'A5';
+    public const PRINT_FORMAT_A6 = 'A6';
 
     /**
      * @JMS\XmlAttribute
+     *
      * @JMS\Type("string")
      *
      * @var string

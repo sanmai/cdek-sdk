@@ -36,6 +36,7 @@ use CdekSDK\Responses\Concerns\WithTraceId;
 use CdekSDK\Responses\Types\DeliveryRequest;
 use CdekSDK\Responses\Types\Message;
 use JMS\Serializer\Annotation as JMS;
+
 use function Pipeline\fromArray;
 
 /**
@@ -50,6 +51,7 @@ final class DeliveryResponse implements Response
 
     /**
      * @JMS\XmlList(entry = "DeliveryRequest", inline = true)
+     *
      * @JMS\Type("array<CdekSDK\Responses\Types\DeliveryRequest>")
      *
      * @var DeliveryRequest[]
@@ -58,6 +60,7 @@ final class DeliveryResponse implements Response
 
     /**
      * @JMS\XmlList(entry = "Order", inline = true)
+     *
      * @JMS\Type("array<CdekSDK\Common\Order>")
      *
      * @var Order[]
@@ -66,6 +69,7 @@ final class DeliveryResponse implements Response
 
     /**
      * @JMS\XmlList(entry = "Call", inline = true)
+     *
      * @JMS\Type("array<CdekSDK\Common\CallCourier>")
      *
      * @var CallCourier[]

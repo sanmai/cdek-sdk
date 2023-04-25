@@ -46,6 +46,7 @@ final class Item
      * Идентификатор/артикул товара/вложения (Уникален в пределах упаковки Package).
      *
      * @JMS\XmlAttribute
+     *
      * @JMS\Type("string")
      *
      * @var string
@@ -56,6 +57,7 @@ final class Item
      * Маркировка товара/вложения.
      *
      * @JMS\XmlAttribute
+     *
      * @JMS\Type("string")
      *
      * @var string
@@ -66,6 +68,7 @@ final class Item
      * Value of each item in the request's currency. For foreign orders only.
      *
      * @JMS\XmlAttribute
+     *
      * @JMS\Type("float")
      *
      * @var float
@@ -76,6 +79,7 @@ final class Item
      * Объявленная стоимость товара (за единицу товара в указанной валюте, значение >=0). С данного значения рассчитывается страховка.
      *
      * @JMS\XmlAttribute
+     *
      * @JMS\Type("float")
      *
      * @var float
@@ -86,6 +90,7 @@ final class Item
      * The payment for each item in the request's currency. For foreign orders only.
      *
      * @JMS\XmlAttribute
+     *
      * @JMS\Type("float")
      *
      * @var float
@@ -96,6 +101,7 @@ final class Item
      * Оплата за товар при получении (за единицу товара в указанной валюте, значение >=0) — наложенный платеж, в случае предоплаты значение = 0.
      *
      * @JMS\XmlAttribute
+     *
      * @JMS\Type("float")
      *
      * @var float
@@ -106,6 +112,7 @@ final class Item
      * Ставка НДС включеная в стоимость (payment) товара.
      *
      * @JMS\XmlAttribute
+     *
      * @JMS\Type("string")
      *
      * @var string
@@ -116,6 +123,7 @@ final class Item
      * Сумма НДС, включенного в стоимость (payment) товара.
      *
      * @JMS\XmlAttribute
+     *
      * @JMS\Type("float")
      *
      * @var float
@@ -126,6 +134,7 @@ final class Item
      * Ставка НДС включенная в стоимость товара.
      *
      * @JMS\XmlAttribute
+     *
      * @JMS\Type("string")
      *
      * @var string
@@ -136,6 +145,7 @@ final class Item
      * Сумма НДС, включенного в стоимость товара.
      *
      * @JMS\XmlAttribute
+     *
      * @JMS\Type("float")
      *
      * @var float
@@ -146,6 +156,7 @@ final class Item
      * Вес (за единицу товара, в граммах).
      *
      * @JMS\XmlAttribute
+     *
      * @JMS\Type("float")
      *
      * @var float
@@ -156,6 +167,7 @@ final class Item
      * Вес брутто (за единицу товара, в граммах).
      *
      * @JMS\XmlAttribute
+     *
      * @JMS\Type("float")
      *
      * @var float
@@ -166,6 +178,7 @@ final class Item
      * Количество единиц одноименного товара (в штуках).
      *
      * @JMS\XmlAttribute
+     *
      * @JMS\Type("int")
      *
      * @var int
@@ -176,6 +189,7 @@ final class Item
      * Description of the item in Russian.
      *
      * @JMS\XmlAttribute
+     *
      * @JMS\Type("string")
      *
      * @var string
@@ -186,6 +200,7 @@ final class Item
      * Description of the item in English.
      *
      * @JMS\XmlAttribute
+     *
      * @JMS\Type("string")
      *
      * @var string
@@ -196,6 +211,7 @@ final class Item
      * Ссылка на сайт интернет-магазина с описанием товара.
      *
      * @JMS\XmlAttribute
+     *
      * @JMS\Type("string")
      *
      * @var string
@@ -204,6 +220,7 @@ final class Item
 
     /**
      * @JMS\XmlAttribute
+     *
      * @JMS\Type("float")
      *
      * @var float

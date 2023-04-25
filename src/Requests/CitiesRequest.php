@@ -56,9 +56,9 @@ final class CitiesRequest implements ParamRequest
     use ParamRequestTrait;
     use Fillable;
 
-    const METHOD = 'GET';
-    const ADDRESS = '/v1/location/cities/xml';
-    const RESPONSE = CitiesResponse::class;
+    public const METHOD = 'GET';
+    public const ADDRESS = '/v1/location/cities/xml';
+    public const RESPONSE = CitiesResponse::class;
 
     /**
      * Код субъекта РФ.

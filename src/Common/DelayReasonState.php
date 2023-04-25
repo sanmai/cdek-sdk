@@ -35,6 +35,7 @@ final class DelayReasonState implements State
 {
     /**
      * @JMS\XmlAttribute
+     *
      * @JMS\Type("DateTimeImmutable<'Y-m-d\TH:i:sP'>")
      *
      * @var \DateTimeImmutable
@@ -43,6 +44,7 @@ final class DelayReasonState implements State
 
     /**
      * @JMS\XmlAttribute
+     *
      * @JMS\Type("int")
      *
      * @var int
@@ -51,6 +53,7 @@ final class DelayReasonState implements State
 
     /**
      * @JMS\XmlAttribute
+     *
      * @JMS\Type("string")
      *
      * @var string

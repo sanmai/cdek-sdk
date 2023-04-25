@@ -33,6 +33,7 @@ use CdekSDK\Contracts\HasErrorCode;
 use CdekSDK\Contracts\Response;
 use CdekSDK\Responses\Types\Message;
 use JMS\Serializer\Annotation as JMS;
+
 use function Pipeline\map;
 
 /**
@@ -42,6 +43,7 @@ final class CallCourierResponse implements Response
 {
     /**
      * @JMS\XmlList(entry = "CallCourier", inline = true)
+     *
      * @JMS\Type("array<CdekSDK\Common\CallCourier>")
      *
      * @var CallCourier[]
@@ -50,6 +52,7 @@ final class CallCourierResponse implements Response
 
     /**
      * @JMS\XmlList(entry = "Order", inline = true)
+     *
      * @JMS\Type("array<CdekSDK\Common\CallCourier>")
      *
      * @var CallCourier[]
@@ -58,6 +61,7 @@ final class CallCourierResponse implements Response
 
     /**
      * @JMS\XmlList(entry = "Call", inline = true)
+     *
      * @JMS\Type("array<CdekSDK\Common\CallCourier>")
      *
      * @var CallCourier[]

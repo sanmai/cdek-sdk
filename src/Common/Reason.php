@@ -42,6 +42,7 @@ final class Reason
 {
     /**
      * @JMS\XmlAttribute
+     *
      * @JMS\Type("DateTimeImmutable<'Y-m-d\TH:i:sP'>")
      *
      * @var \DateTimeImmutable|null
@@ -50,6 +51,7 @@ final class Reason
 
     /**
      * @JMS\XmlAttribute
+     *
      * @JMS\Type("int")
      *
      * @var int
@@ -58,6 +60,7 @@ final class Reason
 
     /**
      * @JMS\XmlAttribute
+     *
      * @JMS\Type("string")
      *
      * @var string
@@ -66,6 +69,7 @@ final class Reason
 
     /**
      * @JMS\XmlList(entry="State", inline=true)
+     *
      * @JMS\Type("array<CdekSDK\Common\DelayReasonState>")
      *
      * @var DelayReasonState[]

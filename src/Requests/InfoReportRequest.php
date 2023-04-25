@@ -51,9 +51,9 @@ final class InfoReportRequest implements XmlRequest, ShouldAuthorize
     use OrdersAware;
     use RequestCore;
 
-    const METHOD = 'POST';
-    const ADDRESS = '/info_report.php';
-    const RESPONSE = InfoReportResponse::class;
+    public const METHOD = 'POST';
+    public const ADDRESS = '/info_report.php';
+    public const RESPONSE = InfoReportResponse::class;
 
     /**
      * @var ChangePeriod|null

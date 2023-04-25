@@ -35,7 +35,7 @@ use JMS\Serializer\Annotation as JMS;
  */
 final class Pvz
 {
-    const BOOLEAN_FIELDS = [
+    public const BOOLEAN_FIELDS = [
         'IsDressingRoom',
         'AllowedCod',
         'HaveCashless',
@@ -47,6 +47,7 @@ final class Pvz
 
     /**
      * @JMS\XmlAttribute
+     *
      * @JMS\Type("string")
      *
      * @var string
@@ -55,6 +56,7 @@ final class Pvz
 
     /**
      * @JMS\XmlAttribute
+     *
      * @JMS\Type("string")
      *
      * @var string
@@ -63,6 +65,7 @@ final class Pvz
 
     /**
      * @JMS\XmlAttribute
+     *
      * @JMS\Type("string")
      *
      * @var string
@@ -71,6 +74,7 @@ final class Pvz
 
     /**
      * @JMS\XmlAttribute
+     *
      * @JMS\Type("string")
      *
      * @var string
@@ -79,6 +83,7 @@ final class Pvz
 
     /**
      * @JMS\XmlAttribute
+     *
      * @JMS\Type("string")
      *
      * @var string
@@ -87,6 +92,7 @@ final class Pvz
 
     /**
      * @JMS\XmlAttribute
+     *
      * @JMS\Type("string")
      *
      * @var string
@@ -95,6 +101,7 @@ final class Pvz
 
     /**
      * @JMS\XmlAttribute
+     *
      * @JMS\Type("string")
      *
      * @var string
@@ -103,6 +110,7 @@ final class Pvz
 
     /**
      * @JMS\XmlAttribute
+     *
      * @JMS\Type("string")
      *
      * @var string
@@ -111,6 +119,7 @@ final class Pvz
 
     /**
      * @JMS\XmlAttribute
+     *
      * @JMS\Type("string")
      *
      * @var string
@@ -119,6 +128,7 @@ final class Pvz
 
     /**
      * @JMS\XmlAttribute
+     *
      * @JMS\Type("string")
      *
      * @var string
@@ -127,6 +137,7 @@ final class Pvz
 
     /**
      * @JMS\XmlAttribute
+     *
      * @JMS\Type("float")
      *
      * @var float
@@ -135,6 +146,7 @@ final class Pvz
 
     /**
      * @JMS\XmlAttribute
+     *
      * @JMS\Type("float")
      *
      * @var float
@@ -143,6 +155,7 @@ final class Pvz
 
     /**
      * @JMS\XmlAttribute
+     *
      * @JMS\Type("int")
      *
      * @var int
@@ -151,7 +164,9 @@ final class Pvz
 
     /**
      * @JMS\XmlAttribute
+     *
      * @JMS\Type("string")
+     *
      * @JMS\SerializedName("countryCodeIso")
      *
      * @var string
@@ -160,6 +175,7 @@ final class Pvz
 
     /**
      * @JMS\XmlAttribute
+     *
      * @JMS\Type("string")
      *
      * @var string
@@ -168,6 +184,7 @@ final class Pvz
 
     /**
      * @JMS\XmlAttribute
+     *
      * @JMS\Type("int")
      *
      * @var int
@@ -176,6 +193,7 @@ final class Pvz
 
     /**
      * @JMS\XmlAttribute
+     *
      * @JMS\Type("string")
      *
      * @var string
@@ -184,6 +202,7 @@ final class Pvz
 
     /**
      * @JMS\XmlAttribute
+     *
      * @JMS\Type("int")
      *
      * @var int
@@ -192,6 +211,7 @@ final class Pvz
 
     /**
      * @JMS\XmlAttribute
+     *
      * @JMS\Type("string")
      *
      * @var string
@@ -200,6 +220,7 @@ final class Pvz
 
     /**
      * @JMS\XmlAttribute
+     *
      * @JMS\Type("string")
      *
      * @var string
@@ -208,6 +229,7 @@ final class Pvz
 
     /**
      * @JMS\XmlAttribute
+     *
      * @JMS\Type("string")
      *
      * @var bool
@@ -216,6 +238,7 @@ final class Pvz
 
     /**
      * @JMS\XmlAttribute
+     *
      * @JMS\Type("string")
      *
      * @var bool
@@ -224,6 +247,7 @@ final class Pvz
 
     /**
      * @JMS\XmlAttribute
+     *
      * @JMS\Type("string")
      *
      * @var bool
@@ -232,6 +256,7 @@ final class Pvz
 
     /**
      * @JMS\XmlAttribute
+     *
      * @JMS\Type("string")
      *
      * @var bool
@@ -240,6 +265,7 @@ final class Pvz
 
     /**
      * @JMS\XmlAttribute
+     *
      * @JMS\Type("string")
      *
      * @var bool
@@ -248,6 +274,7 @@ final class Pvz
 
     /**
      * @JMS\XmlAttribute
+     *
      * @JMS\Type("string")
      *
      * @var bool
@@ -256,6 +283,7 @@ final class Pvz
 
     /**
      * @JMS\XmlAttribute
+     *
      * @JMS\Type("string")
      *
      * @var bool
@@ -264,6 +292,7 @@ final class Pvz
 
     /**
      * @JMS\XmlAttribute
+     *
      * @JMS\Type("string")
      *
      * @var string
@@ -272,6 +301,7 @@ final class Pvz
 
     /**
      * @JMS\XmlAttribute
+     *
      * @JMS\Type("string")
      *
      * @var string
@@ -280,6 +310,7 @@ final class Pvz
 
     /**
      * @JMS\XmlAttribute
+     *
      * @JMS\Type("string")
      *
      * @var string
@@ -288,6 +319,7 @@ final class Pvz
 
     /**
      * @JMS\XmlAttribute
+     *
      * @JMS\Type("string")
      *
      * @var string
@@ -296,6 +328,7 @@ final class Pvz
 
     /**
      * @JMS\XmlAttribute
+     *
      * @JMS\Type("string")
      *
      * @var string
@@ -311,6 +344,7 @@ final class Pvz
 
     /**
      * @JMS\XmlList(entry="OfficeImage", inline=true)
+     *
      * @JMS\Type("array<CdekSDK\Common\OfficeImage>")
      *
      * @var OfficeImage[]
@@ -319,6 +353,7 @@ final class Pvz
 
     /**
      * @JMS\XmlList(entry="WorkTimeY", inline=true)
+     *
      * @JMS\Type("array<CdekSDK\Common\WorkTime>")
      *
      * @var WorkTime[]
@@ -327,6 +362,7 @@ final class Pvz
 
     /**
      * @JMS\XmlList(entry="PhoneDetail", inline=true)
+     *
      * @JMS\Type("array<CdekSDK\Common\PhoneDetail>")
      *
      * @var PhoneDetail[]
@@ -335,6 +371,7 @@ final class Pvz
 
     /**
      * @JMS\XmlList(entry="Dimensions", inline=true)
+     *
      * @JMS\Type("array<CdekSDK\Common\Dimensions>")
      *
      * @var Dimensions[]

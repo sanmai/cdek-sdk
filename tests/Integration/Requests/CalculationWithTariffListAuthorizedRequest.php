@@ -35,5 +35,5 @@ use CdekSDK\Requests;
  */
 class CalculationWithTariffListAuthorizedRequest extends Requests\CalculationWithTariffListAuthorizedRequest
 {
-    const ADDRESS = 'https://api.edu.cdek.ru/calculator/calculate_tarifflist.php';
+    public const ADDRESS = 'https://api.edu.cdek.ru/calculator/calculate_tarifflist.php';
 }

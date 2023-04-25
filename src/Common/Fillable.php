@@ -41,9 +41,9 @@ trait Fillable
     public function __construct(array $data = [])
     {
         foreach ($data as $key => $value) {
-            if (!\property_exists($this, $key)) {
+            if (!property_exists($this, $key)) {
                 /** @phan-suppress-next-line PhanTypeInstantiateTraitStaticOrSelf */
-                throw new \InvalidArgumentException(\sprintf('The class "%s" does not have the property "%s"', static::class, $key));
+                throw new \InvalidArgumentException(sprintf('The class "%s" does not have the property "%s"', static::class, $key));
             }
 
             $this->{$key} = $value;
@@ -52,7 +52,9 @@ trait Fillable
 
     /**
      * @param array<string, mixed> $data
+     *
      * @phan-suppress PhanTypeInstantiateTrait
+     *
      * @psalm-suppress MoreSpecificReturnType
      *
      * @return static

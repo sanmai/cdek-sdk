@@ -54,9 +54,9 @@ final class RegionsRequest implements ParamRequest
     use ParamRequestTrait;
     use Fillable;
 
-    const METHOD = 'GET';
-    const ADDRESS = '/v1/location/regions/xml';
-    const RESPONSE = RegionsResponse::class;
+    public const METHOD = 'GET';
+    public const ADDRESS = '/v1/location/regions/xml';
+    public const RESPONSE = RegionsResponse::class;
 
     /**
      * Код субъекта РФ.

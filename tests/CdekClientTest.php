@@ -274,7 +274,7 @@ class CdekClientTest extends TestCase
             throw new ServerException('', $this->createMock(RequestInterface::class), $responseMock);
         }));
 
-        //$this->expectException(\RuntimeException::class);
+        // $this->expectException(\RuntimeException::class);
         $response = $client->sendInfoReportRequest(new InfoReportRequest());
         $this->assertSame(4, $logger->log->countRecordsWithLevel(LogLevel::DEBUG));
         $this->assertSame(1, $logger->log->countRecordsWithContextKey('content-type'));

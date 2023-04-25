@@ -41,6 +41,7 @@ final class RegionsResponse implements \IteratorAggregate, Response
 {
     /**
      * @JMS\XmlList(entry = "Region", inline = true)
+     *
      * @JMS\Type("array<CdekSDK\Common\Region>")
      *
      * @var Region[]
@@ -57,6 +58,7 @@ final class RegionsResponse implements \IteratorAggregate, Response
 
     /**
      * @phan-suppress PhanUnextractableAnnotationSuffix
+     *
      * @psalm-suppress InvalidReturnStatement
      *
      * @return \Traversable|Region[]

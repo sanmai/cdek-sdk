@@ -38,12 +38,13 @@ final class Location
      * @see Region::getCountryCode()
      * @see Location::getCountryCode()
      */
-    const COUNTRY_CODE_LOOKUP = [
+    public const COUNTRY_CODE_LOOKUP = [
         'RU' => 1,
     ];
 
     /**
      * @JMS\XmlAttribute
+     *
      * @JMS\Type("string")
      *
      * @var string
@@ -52,6 +53,7 @@ final class Location
 
     /**
      * @JMS\XmlAttribute
+     *
      * @JMS\Type("string")
      *
      * @var string
@@ -60,6 +62,7 @@ final class Location
 
     /**
      * @JMS\XmlAttribute
+     *
      * @JMS\Type("int")
      *
      * @var int
@@ -68,6 +71,7 @@ final class Location
 
     /**
      * @JMS\XmlAttribute
+     *
      * @JMS\Type("string")
      *
      * @var string
@@ -76,6 +80,7 @@ final class Location
 
     /**
      * @JMS\XmlAttribute
+     *
      * @JMS\Type("int")
      *
      * @var int
@@ -84,6 +89,7 @@ final class Location
 
     /**
      * @JMS\XmlAttribute
+     *
      * @JMS\Type("int")
      *
      * @var int
@@ -92,6 +98,7 @@ final class Location
 
     /**
      * @JMS\XmlAttribute
+     *
      * @JMS\Type("string")
      *
      * @var string|null
@@ -100,6 +107,7 @@ final class Location
 
     /**
      * @JMS\XmlAttribute
+     *
      * @JMS\Type("string")
      *
      * @var string
@@ -108,6 +116,7 @@ final class Location
 
     /**
      * @JMS\XmlAttribute
+     *
      * @JMS\Type("string")
      *
      * @var string
@@ -116,6 +125,7 @@ final class Location
 
     /**
      * @JMS\XmlAttribute
+     *
      * @JMS\Type("float")
      *
      * @var float|null
@@ -124,6 +134,7 @@ final class Location
 
     /**
      * @JMS\XmlAttribute
+     *
      * @JMS\Type("float")
      *
      * @var float|null
@@ -132,6 +143,7 @@ final class Location
 
     /**
      * @JMS\XmlAttribute
+     *
      * @JMS\Type("string")
      *
      * @var string|null
@@ -140,6 +152,7 @@ final class Location
 
     /**
      * @JMS\XmlAttribute
+     *
      * @JMS\Type("string")
      *
      * @var string|null
@@ -148,6 +161,7 @@ final class Location
 
     /**
      * @JMS\XmlAttribute
+     *
      * @JMS\Type("float")
      *
      * @var float
@@ -156,6 +170,7 @@ final class Location
 
     /**
      * @JMS\XmlAttribute
+     *
      * @JMS\Type("string")
      *
      * @var string|null
@@ -193,7 +208,7 @@ final class Location
      */
     public function getCountryCode(): int
     {
-        if (\is_numeric($this->countryCode)) {
+        if (is_numeric($this->countryCode)) {
             return (int) $this->countryCode;
         }
 
@@ -206,11 +221,11 @@ final class Location
 
     public function getCountryCodeISO(): string
     {
-        if (!\is_numeric($this->countryCode)) {
+        if (!is_numeric($this->countryCode)) {
             return $this->countryCode;
         }
 
-        $isoCountryCode = \array_search($this->countryCode, self::COUNTRY_CODE_LOOKUP);
+        $isoCountryCode = array_search($this->countryCode, self::COUNTRY_CODE_LOOKUP);
 
         if ($isoCountryCode !== false) {
             return $isoCountryCode;

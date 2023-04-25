@@ -41,6 +41,7 @@ final class WorkTime
 {
     /**
      * @JMS\XmlAttribute
+     *
      * @JMS\Type("int")
      *
      * @var int
@@ -49,6 +50,7 @@ final class WorkTime
 
     /**
      * @JMS\XmlAttribute
+     *
      * @JMS\Type("string")
      *
      * @var string

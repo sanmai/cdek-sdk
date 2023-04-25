@@ -34,6 +34,7 @@ final class Region
 {
     /**
      * @JMS\XmlAttribute
+     *
      * @JMS\Type("string")
      *
      * @var string
@@ -42,6 +43,7 @@ final class Region
 
     /**
      * @JMS\XmlAttribute
+     *
      * @JMS\Type("string")
      *
      * @var string
@@ -50,6 +52,7 @@ final class Region
 
     /**
      * @JMS\XmlAttribute
+     *
      * @JMS\Type("string")
      *
      * @var string|null
@@ -58,6 +61,7 @@ final class Region
 
     /**
      * @JMS\XmlAttribute
+     *
      * @JMS\Type("int")
      *
      * @var int|null
@@ -66,6 +70,7 @@ final class Region
 
     /**
      * @JMS\XmlAttribute
+     *
      * @JMS\Type("int")
      *
      * @var int|null
@@ -74,6 +79,7 @@ final class Region
 
     /**
      * @JMS\XmlAttribute
+     *
      * @JMS\Type("string")
      *
      * @var string|null
@@ -82,6 +88,7 @@ final class Region
 
     /**
      * @JMS\XmlAttribute
+     *
      * @JMS\Type("string")
      *
      * @var string
@@ -90,6 +97,7 @@ final class Region
 
     /**
      * @JMS\XmlAttribute
+     *
      * @JMS\Type("string")
      *
      * @var string
@@ -98,6 +106,7 @@ final class Region
 
     /**
      * @JMS\XmlAttribute
+     *
      * @JMS\Type("int")
      *
      * @var int
@@ -146,7 +155,7 @@ final class Region
      */
     public function getCountryCode(): int
     {
-        if (\is_numeric($this->countryCode)) {
+        if (is_numeric($this->countryCode)) {
             return (int) $this->countryCode;
         }
 

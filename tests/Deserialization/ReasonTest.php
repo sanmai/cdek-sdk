@@ -45,7 +45,7 @@ class ReasonTest extends TestCase
         $this->assertSame(20, $reason->getCode());
         $this->assertSame('2018-04-07', $reason->getDate()->format('Y-m-d'));
         $this->assertSame('Частичная доставка', $reason->getDescription());
-        //$this->assertSame([], $reason->getStates());
+        // $this->assertSame([], $reason->getStates());
     }
 
     public function test_delay_reason()

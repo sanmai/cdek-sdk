@@ -34,6 +34,7 @@ use CdekSDK\Responses\Concerns\HasErrors;
 use CdekSDK\Responses\Concerns\WithTraceId;
 use CdekSDK\Responses\Types\Message;
 use JMS\Serializer\Annotation as JMS;
+
 use function Pipeline\fromArray;
 
 /**
@@ -48,6 +49,7 @@ final class UpdateResponse implements Response
 
     /**
      * @JMS\XmlList(entry = "Order", inline = true)
+     *
      * @JMS\Type("array<CdekSDK\Common\Order>")
      *
      * @var Order[]

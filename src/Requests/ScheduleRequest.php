@@ -43,11 +43,12 @@ use JMS\Serializer\Annotation as JMS;
  */
 final class ScheduleRequest extends DeliveryRequest implements HasErrorCode
 {
-    const ADDRESS = '/new_schedule.php';
-    const RESPONSE = ScheduleResponse::class;
+    public const ADDRESS = '/new_schedule.php';
+    public const RESPONSE = ScheduleResponse::class;
 
     /**
      * @JMS\XmlAttribute
+     *
      * @JMS\Type("string")
      *
      * @var string
@@ -56,6 +57,7 @@ final class ScheduleRequest extends DeliveryRequest implements HasErrorCode
 
     /**
      * @JMS\XmlAttribute
+     *
      * @JMS\Type("string")
      *
      * @var string

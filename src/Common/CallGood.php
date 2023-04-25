@@ -37,6 +37,7 @@ final class CallGood
 {
     /**
      * @JMS\XmlAttribute
+     *
      * @JMS\Type("DateTimeImmutable<'Y-m-d\TH:i:sP'>")
      *
      * @var \DateTimeImmutable
@@ -45,6 +46,7 @@ final class CallGood
 
     /**
      * @JMS\XmlAttribute
+     *
      * @JMS\Type("DateTimeImmutable<'Y-m-d'>")
      *
      * @var \DateTimeImmutable

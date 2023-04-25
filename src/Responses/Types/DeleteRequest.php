@@ -46,6 +46,7 @@ final class DeleteRequest implements HasErrorCode
 
     /**
      * @JMS\XmlAttribute
+     *
      * @JMS\Type("string")
      *
      * @var string
@@ -54,6 +55,7 @@ final class DeleteRequest implements HasErrorCode
 
     /**
      * @JMS\XmlAttribute
+     *
      * @JMS\Type("string")
      *
      * @var string

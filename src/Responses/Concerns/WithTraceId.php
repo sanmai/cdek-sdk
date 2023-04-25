@@ -32,6 +32,7 @@ trait WithTraceId
 {
     /**
      * @JMS\XmlElement
+     *
      * @JMS\Type("string")
      *
      * @var string

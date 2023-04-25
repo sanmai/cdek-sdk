@@ -45,6 +45,7 @@ final class ScheduleResponse implements Response
 
     /**
      * @JMS\XmlList(entry = "ScheduleRequest", inline = true)
+     *
      * @JMS\Type("array<CdekSDK\Requests\ScheduleRequest>")
      *
      * @var ScheduleRequest[]
@@ -53,6 +54,7 @@ final class ScheduleResponse implements Response
 
     /**
      * @JMS\XmlList(entry = "Order", inline = true)
+     *
      * @JMS\Type("array<CdekSDK\Common\Order>")
      *
      * @var Order[]

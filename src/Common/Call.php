@@ -39,6 +39,7 @@ final class Call
 
     /**
      * @JMS\XmlList(entry="Good")
+     *
      * @JMS\Type("array<CdekSDK\Common\CallGood>")
      *
      * @var CallGood[]
@@ -47,6 +48,7 @@ final class Call
 
     /**
      * @JMS\XmlList(entry="Fail")
+     *
      * @JMS\Type("array<CdekSDK\Common\CallFail>")
      *
      * @var CallFail[]
@@ -55,6 +57,7 @@ final class Call
 
     /**
      * @JMS\XmlList(entry="Delay")
+     *
      * @JMS\Type("array<CdekSDK\Common\CallDelay>")
      *
      * @var CallDelay[]

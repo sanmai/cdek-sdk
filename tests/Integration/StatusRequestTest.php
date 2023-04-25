@@ -43,6 +43,7 @@ use CdekSDK\Responses\StatusReportResponse;
  * export CDEK_DISPATCH_NUMBER_2=1033333332
  *
  * @coversNothing
+ *
  * @group integration
  */
 class StatusRequestTest extends TestCase
@@ -55,15 +56,16 @@ class StatusRequestTest extends TestCase
     public static function knownDispatchNumbers(): \Generator
     {
         /** @var array<string, mixed> $_SERVER */
-        foreach (\array_filter(\array_keys($_SERVER), function (string $key) {
-            return \strpos($key, 'CDEK_DISPATCH_NUMBER') === 0;
+        foreach (array_filter(array_keys($_SERVER), function (string $key) {
+            return strpos($key, 'CDEK_DISPATCH_NUMBER') === 0;
         }) as $envVar) {
-            yield $envVar => [\getenv($envVar)];
+            yield $envVar => [getenv($envVar)];
         }
     }
 
     /**
      * @dataProvider knownDispatchNumbers
+     *
      * @psalm-suppress PossiblyNullReference
      */
     public function test_status_report(string $dispatchNumber)

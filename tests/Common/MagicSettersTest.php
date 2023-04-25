@@ -53,7 +53,7 @@ class MagicSettersTest extends TestCase
             'foo'         => 'foo',
             'bar'         => 'bar',
             'justTesting' => 123,
-        ], \get_object_vars($example));
+        ], get_object_vars($example));
     }
 
     public function test_missing_setter()

@@ -44,11 +44,12 @@ use JMS\Serializer\Annotation as JMS;
  */
 final class PreAlertRequest extends DeliveryRequest
 {
-    const ADDRESS = '/addPreAlert';
-    const RESPONSE = PreAlertResponse::class;
+    public const ADDRESS = '/addPreAlert';
+    public const RESPONSE = PreAlertResponse::class;
 
     /**
      * @JMS\XmlAttribute
+     *
      * @JMS\Type("string")
      *
      * @var string
@@ -59,6 +60,7 @@ final class PreAlertRequest extends DeliveryRequest
      * Дата планируемой передачи. В формате YYYY-MM-DD.
      *
      * @JMS\XmlAttribute
+     *
      * @JMS\Type("DateTimeImmutable<'Y-m-d'>")
      *
      * @var \DateTimeImmutable

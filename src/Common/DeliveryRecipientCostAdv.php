@@ -41,6 +41,7 @@ final class DeliveryRecipientCostAdv
      * Порог стоимости товара (действует по условию меньше или равно), в целых единицах валюты.
      *
      * @JMS\XmlAttribute
+     *
      * @JMS\Type("int")
      *
      * @var int
@@ -51,6 +52,7 @@ final class DeliveryRecipientCostAdv
      * Доп. сбор за доставку товаров, общая стоимость которых попадает в интервал.
      *
      * @JMS\XmlAttribute
+     *
      * @JMS\Type("float")
      *
      * @var float
@@ -61,6 +63,7 @@ final class DeliveryRecipientCostAdv
      * Ставка НДС включенная в доп. сбор за доставку (подробнее см. приложение 4). Если значение не передано, то берется значение по умолчанию "Без НДС".
      *
      * @JMS\XmlAttribute
+     *
      * @JMS\Type("string")
      *
      * @var string
@@ -71,6 +74,7 @@ final class DeliveryRecipientCostAdv
      * Сумма НДС включанная в доп. сбор за доставку.
      *
      * @JMS\XmlAttribute
+     *
      * @JMS\Type("float")
      *
      * @var float

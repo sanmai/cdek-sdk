@@ -41,6 +41,7 @@ final class PvzListResponse implements Response, \IteratorAggregate
 {
     /**
      * @JMS\XmlList(entry="Pvz", inline=true)
+     *
      * @JMS\Type("array<CdekSDK\Common\Pvz>")
      *
      * @var Pvz[]
@@ -57,6 +58,7 @@ final class PvzListResponse implements Response, \IteratorAggregate
 
     /**
      * @phan-suppress PhanUnextractableAnnotationSuffix
+     *
      * @psalm-suppress InvalidReturnStatement
      *
      * @return \Traversable|Pvz[]

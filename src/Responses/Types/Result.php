@@ -117,6 +117,7 @@ final class Result implements Response
 
     /**
      * @JMS\SerializedName("errors")
+     *
      * @JMS\Type("CdekSDK\Responses\Types\Error")
      *
      * @var Error
@@ -189,6 +190,7 @@ final class Result implements Response
 
     /**
      * @deprecated
+     *
      * @phan-suppress PhanDeprecatedProperty
      *
      * @return \DateTimeImmutable|null
@@ -200,6 +202,7 @@ final class Result implements Response
 
     /**
      * @deprecated
+     *
      * @phan-suppress PhanDeprecatedProperty
      *
      * @return \DateTimeImmutable|null

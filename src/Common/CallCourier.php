@@ -42,6 +42,7 @@ final class CallCourier implements HasErrorCode
 
     /**
      * @JMS\XmlAttribute
+     *
      * @JMS\Type("DateTimeImmutable<'Y-m-d'>")
      *
      * @var \DateTimeImmutable
@@ -50,6 +51,7 @@ final class CallCourier implements HasErrorCode
 
     /**
      * @JMS\XmlAttribute
+     *
      * @JMS\Type("DateTimeImmutable<'H:i'>")
      *
      * @var \DateTimeImmutable
@@ -58,6 +60,7 @@ final class CallCourier implements HasErrorCode
 
     /**
      * @JMS\XmlAttribute
+     *
      * @JMS\Type("DateTimeImmutable<'H:i'>")
      *
      * @var \DateTimeImmutable
@@ -66,6 +69,7 @@ final class CallCourier implements HasErrorCode
 
     /**
      * @JMS\XmlAttribute
+     *
      * @JMS\Type("DateTimeImmutable<'H:i'>")
      *
      * @var \DateTimeImmutable
@@ -74,6 +78,7 @@ final class CallCourier implements HasErrorCode
 
     /**
      * @JMS\XmlAttribute
+     *
      * @JMS\Type("DateTimeImmutable<'H:i'>")
      *
      * @var \DateTimeImmutable
@@ -82,6 +87,7 @@ final class CallCourier implements HasErrorCode
 
     /**
      * @JMS\XmlAttribute
+     *
      * @JMS\Type("integer")
      *
      * @var int
@@ -90,6 +96,7 @@ final class CallCourier implements HasErrorCode
 
     /**
      * @JMS\XmlAttribute
+     *
      * @JMS\Type("string")
      *
      * @var string
@@ -98,6 +105,7 @@ final class CallCourier implements HasErrorCode
 
     /**
      * @JMS\XmlAttribute
+     *
      * @JMS\Type("string")
      *
      * @var string
@@ -106,6 +114,7 @@ final class CallCourier implements HasErrorCode
 
     /**
      * @JMS\XmlAttribute
+     *
      * @JMS\Type("string")
      *
      * @var string
@@ -114,6 +123,7 @@ final class CallCourier implements HasErrorCode
 
     /**
      * @JMS\XmlAttribute
+     *
      * @JMS\Type("string")
      *
      * @var string
@@ -122,6 +132,7 @@ final class CallCourier implements HasErrorCode
 
     /**
      * @JMS\XmlAttribute
+     *
      * @JMS\Type("string")
      *
      * @var string
@@ -130,6 +141,7 @@ final class CallCourier implements HasErrorCode
 
     /**
      * @JMS\XmlAttribute
+     *
      * @JMS\Type("float")
      *
      * @var float
@@ -138,6 +150,7 @@ final class CallCourier implements HasErrorCode
 
     /**
      * @JMS\XmlAttribute
+     *
      * @JMS\Type("string")
      *
      * @var string
@@ -146,6 +159,7 @@ final class CallCourier implements HasErrorCode
 
     /**
      * @JMS\XmlAttribute
+     *
      * @JMS\Type("string")
      *
      * @var string
@@ -154,6 +168,7 @@ final class CallCourier implements HasErrorCode
 
     /**
      * @JMS\XmlAttribute
+     *
      * @JMS\Type("bool")
      *
      * @var bool
@@ -162,6 +177,7 @@ final class CallCourier implements HasErrorCode
 
     /**
      * @JMS\XmlAttribute
+     *
      * @JMS\Type("string")
      *
      * @var string
@@ -170,6 +186,7 @@ final class CallCourier implements HasErrorCode
 
     /**
      * @JMS\XmlAttribute
+     *
      * @JMS\Type("string")
      *
      * @var string
@@ -178,6 +195,7 @@ final class CallCourier implements HasErrorCode
 
     /**
      * @JMS\XmlAttribute
+     *
      * @JMS\Type("string")
      *
      * @var string

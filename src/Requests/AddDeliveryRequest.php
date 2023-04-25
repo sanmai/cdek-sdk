@@ -39,5 +39,5 @@ use JMS\Serializer\Annotation as JMS;
  */
 final class AddDeliveryRequest extends DeliveryRequest
 {
-    const ADDRESS = '/addDelivery';
+    public const ADDRESS = '/addDelivery';
 }

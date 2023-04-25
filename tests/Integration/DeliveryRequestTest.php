@@ -57,22 +57,17 @@ use CdekSDK\Responses\UpdateResponse;
  * @covers \CdekSDK\Requests\DeliveryRequest
  * @covers \CdekSDK\Responses\DeliveryResponse
  * @covers \CdekSDK\Responses\Types\DeliveryRequest
- *
  * @covers \CdekSDK\Requests\DeleteRequest
  * @covers \CdekSDK\Responses\DeleteResponse
- *
  * @covers \CdekSDK\Requests\Templates\PrintRequest
  * @covers \CdekSDK\Requests\PrintReceiptsRequest
  * @covers \CdekSDK\Requests\PrintLabelsRequest
  * @covers \CdekSDK\Responses\PrintErrorResponse
  * @covers \CdekSDK\Responses\FileResponse
- *
  * @covers \CdekSDK\Requests\StatusReportRequest
  * @covers \CdekSDK\Responses\StatusReportResponse
- *
  * @covers \CdekSDK\Requests\InfoReportRequest
  * @covers \CdekSDK\Responses\InfoReportResponse
- *
  * @covers \CdekSDK\Requests\CallCourierRequest
  * @covers \CdekSDK\Responses\CallCourierResponse
  *
@@ -80,7 +75,7 @@ use CdekSDK\Responses\UpdateResponse;
  */
 class DeliveryRequestTest extends TestCase
 {
-    const TEST_NUMBER = 'TESTING%s';
+    public const TEST_NUMBER = 'TESTING%s';
 
     public function test_delete_success()
     {
@@ -154,7 +149,7 @@ class DeliveryRequestTest extends TestCase
 
         foreach ($response->getMessages() as $message) {
             if ($message->getErrorCode() === 'ERR_AUTH') {
-                $this->fail(\preg_replace('/[a-f0-9]{16,}/', '[secure]', "Access keys require an update; received {$message->getErrorCode()}: {$message->getMessage()}"));
+                $this->fail(preg_replace('/[a-f0-9]{16,}/', '[secure]', "Access keys require an update; received {$message->getErrorCode()}: {$message->getMessage()}"));
             }
         }
 
@@ -266,7 +261,7 @@ class DeliveryRequestTest extends TestCase
         foreach ($response->getOrders() as $order) {
             $this->assertNotEmpty($order->getDispatchNumber());
             // Номер заказа не передаётся для заказов доставки
-            //$this->assertSame(self::formatTestNumber('TEST-%s'), $order->getNumber());
+            // $this->assertSame(self::formatTestNumber('TEST-%s'), $order->getNumber());
         }
 
         return $order->getDispatchNumber();
@@ -376,6 +371,7 @@ class DeliveryRequestTest extends TestCase
 
     /**
      * @depends test_successful_request_any
+     *
      * @psalm-suppress PossiblyNullReference
      */
     public function test_status_report(string $dispatchNumber)

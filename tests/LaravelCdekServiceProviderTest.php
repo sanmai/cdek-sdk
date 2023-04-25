@@ -74,7 +74,7 @@ class LaravelCdekServiceProviderTest extends \LegacyPHPUnit\TestCase
         }
 
         $this->assertEquals('class_exists', \Closure::bind(function () {
-            return \end(AnnotationRegistry::$loaders);
+            return end(AnnotationRegistry::$loaders);
         }, null, AnnotationRegistry::class)());
     }
 
@@ -96,6 +96,7 @@ class LaravelCdekServiceProviderTest extends \LegacyPHPUnit\TestCase
                 $this->config = $config;
             }
 
+            #[\ReturnTypeWillChange]
             public function offsetGet($key)
             {
                 TestCase::assertSame('config', $key);
@@ -114,6 +115,7 @@ class LaravelCdekServiceProviderTest extends \LegacyPHPUnit\TestCase
         return \Closure::bind($callback, $client, CdekClient::class)();
     }
 
+    /** @requires PHP < 8.1 */
     public function test_register()
     {
         $savedCallback = null;

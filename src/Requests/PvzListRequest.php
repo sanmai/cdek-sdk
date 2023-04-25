@@ -31,6 +31,7 @@ namespace CdekSDK\Requests;
 use CdekSDK\Contracts\ParamRequest;
 use CdekSDK\Requests\Concerns\RequestCore;
 use CdekSDK\Responses\PvzListResponse;
+
 use function Pipeline\map;
 
 /**
@@ -42,17 +43,17 @@ final class PvzListRequest implements ParamRequest
 {
     use RequestCore;
 
-    const TYPE_PVZ = 'PVZ';
-    const TYPE_ALL = 'ALL';
-    const TYPE_POSTOMAT = 'POSTOMAT';
+    public const TYPE_PVZ = 'PVZ';
+    public const TYPE_ALL = 'ALL';
+    public const TYPE_POSTOMAT = 'POSTOMAT';
 
-    const LANGUAGE_RUSSIAN = 'rus';
-    const LANGUAGE_ENGLISH = 'eng';
-    const LANGUAGE_CHINESE = 'zho';
+    public const LANGUAGE_RUSSIAN = 'rus';
+    public const LANGUAGE_ENGLISH = 'eng';
+    public const LANGUAGE_CHINESE = 'zho';
 
-    const METHOD = 'GET';
-    const ADDRESS = '/pvzlist/v1/xml';
-    const RESPONSE = PvzListResponse::class;
+    public const METHOD = 'GET';
+    public const ADDRESS = '/pvzlist/v1/xml';
+    public const RESPONSE = PvzListResponse::class;
 
     /** @var string */
     protected $type = self::TYPE_PVZ;
@@ -195,13 +196,13 @@ final class PvzListRequest implements ParamRequest
      */
     public function getParams(): array
     {
-        return \iterator_to_array(map(function () {
-            foreach (\get_object_vars($this) as $key => $value) {
+        return iterator_to_array(map(function () {
+            foreach (get_object_vars($this) as $key => $value) {
                 if (\is_null($value)) {
                     continue;
                 }
 
-                yield \strtolower($key) => $value;
+                yield strtolower($key) => $value;
             }
         }), true);
     }

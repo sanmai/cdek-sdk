@@ -39,11 +39,11 @@ final class Order implements HasErrorCode
     use Fillable;
 
     /** Тип Клиента: отправитель. */
-    const CLIENT_SIDE_SENDER = 'sender';
+    public const CLIENT_SIDE_SENDER = 'sender';
     /** Тип Клиента: получатель. */
-    const CLIENT_SIDE_RECEIVED = 'receiver';
+    public const CLIENT_SIDE_RECEIVED = 'receiver';
     /** Тип Клиента: третье лицо. */
-    const CLIENT_SIDE_OTHER = 'other';
+    public const CLIENT_SIDE_OTHER = 'other';
 
     public static function withDispatchNumber(string $DispatchNumber): Order
     {
@@ -64,6 +64,7 @@ final class Order implements HasErrorCode
      * Код города отправителя из базы СДЭК (см. файл «City_XXX_YYYYMMDD.xls»).
      *
      * @JMS\XmlAttribute
+     *
      * @JMS\Type("integer")
      *
      * @var int|null
@@ -74,6 +75,7 @@ final class Order implements HasErrorCode
      * Код города получателя из базы СДЭК (см. файл «City_XXX_YYYYMMDD.xls»).
      *
      * @JMS\XmlAttribute
+     *
      * @JMS\Type("integer")
      *
      * @var int|null
@@ -84,6 +86,7 @@ final class Order implements HasErrorCode
      * Почтовый индекс города отправителя.
      *
      * @JMS\XmlAttribute
+     *
      * @JMS\Type("string")
      *
      * @var string
@@ -94,6 +97,7 @@ final class Order implements HasErrorCode
      * Почтовый индекс города получателя.
      *
      * @JMS\XmlAttribute
+     *
      * @JMS\Type("string")
      *
      * @var string
@@ -104,6 +108,7 @@ final class Order implements HasErrorCode
      * Код страны отправителя для идентификации страны в формате ISO_3166-1_alpha-2 (см. “Общероссийский классификатор стран мира”). По умолчанию - RU.
      *
      * @JMS\XmlAttribute
+     *
      * @JMS\Type("string")
      *
      * @var string
@@ -114,6 +119,7 @@ final class Order implements HasErrorCode
      * Код страны получателя для идентификации страны в формате ISO_3166-1_alpha-2 (см. “Общероссийский классификатор стран мира”). По умолчанию - RU.
      *
      * @JMS\XmlAttribute
+     *
      * @JMS\Type("string")
      *
      * @var string
@@ -122,6 +128,7 @@ final class Order implements HasErrorCode
 
     /**
      * @JMS\XmlAttribute
+     *
      * @JMS\Type("string")
      *
      * @deprecated since 2020-07-14
@@ -132,6 +139,7 @@ final class Order implements HasErrorCode
 
     /**
      * @JMS\XmlAttribute
+     *
      * @JMS\Type("DateTimeImmutable<'Y-m-d'>")
      *
      * @var \DateTimeInterface
@@ -140,6 +148,7 @@ final class Order implements HasErrorCode
 
     /**
      * @JMS\XmlAttribute
+     *
      * @JMS\Type("DateTimeImmutable<'Y-m-d'>")
      *
      * @var \DateTimeInterface
@@ -148,6 +157,7 @@ final class Order implements HasErrorCode
 
     /**
      * @JMS\XmlAttribute
+     *
      * @JMS\Type("string")
      *
      * @var string
@@ -156,6 +166,7 @@ final class Order implements HasErrorCode
 
     /**
      * @JMS\XmlAttribute
+     *
      * @JMS\Type("string")
      *
      * @var string
@@ -164,6 +175,7 @@ final class Order implements HasErrorCode
 
     /**
      * @JMS\XmlAttribute
+     *
      * @JMS\Type("string")
      *
      * @var string
@@ -172,6 +184,7 @@ final class Order implements HasErrorCode
 
     /**
      * @JMS\XmlAttribute
+     *
      * @JMS\Type("string")
      *
      * @var string
@@ -180,6 +193,7 @@ final class Order implements HasErrorCode
 
     /**
      * @JMS\XmlAttribute
+     *
      * @JMS\Type("string")
      *
      * @var string
@@ -188,6 +202,7 @@ final class Order implements HasErrorCode
 
     /**
      * @JMS\XmlAttribute
+     *
      * @JMS\Type("string")
      *
      * @var string
@@ -196,6 +211,7 @@ final class Order implements HasErrorCode
 
     /**
      * @JMS\XmlAttribute
+     *
      * @JMS\Type("string")
      *
      * @var string
@@ -204,6 +220,7 @@ final class Order implements HasErrorCode
 
     /**
      * @JMS\XmlAttribute
+     *
      * @JMS\Type("integer")
      *
      * @var int
@@ -212,6 +229,7 @@ final class Order implements HasErrorCode
 
     /**
      * @JMS\XmlAttribute
+     *
      * @JMS\Type("float")
      *
      * @var float
@@ -220,6 +238,7 @@ final class Order implements HasErrorCode
 
     /**
      * @JMS\XmlAttribute
+     *
      * @JMS\Type("string")
      *
      * @var string
@@ -228,6 +247,7 @@ final class Order implements HasErrorCode
 
     /**
      * @JMS\XmlAttribute
+     *
      * @JMS\Type("float")
      *
      * @var float
@@ -243,6 +263,7 @@ final class Order implements HasErrorCode
 
     /**
      * @JMS\XmlAttribute
+     *
      * @JMS\Type("string")
      *
      * @var string
@@ -251,6 +272,7 @@ final class Order implements HasErrorCode
 
     /**
      * @JMS\XmlAttribute
+     *
      * @JMS\Type("string")
      *
      * @var string
@@ -287,6 +309,7 @@ final class Order implements HasErrorCode
 
     /**
      * @JMS\XmlList(entry="Attempt", inline=true)
+     *
      * @JMS\Type("array<CdekSDK\Common\Attempt>")
      *
      * @var Attempt[]
@@ -295,6 +318,7 @@ final class Order implements HasErrorCode
 
     /**
      * @JMS\XmlList(entry="AddedService", inline=true)
+     *
      * @JMS\Type("array<CdekSDK\Common\AdditionalService>")
      *
      * @var AdditionalService[]
@@ -303,6 +327,7 @@ final class Order implements HasErrorCode
 
     /**
      * @JMS\XmlList(entry="AddService", inline=true)
+     *
      * @JMS\Type("array<CdekSDK\Common\AdditionalService>")
      *
      * @var AdditionalService[]
@@ -311,7 +336,9 @@ final class Order implements HasErrorCode
 
     /**
      * @JMS\SerializedName("Schedule")
+     *
      * @JMS\XmlList(entry="Attempt")
+     *
      * @JMS\Type("array<CdekSDK\Common\Attempt>")\
      *
      * @var Attempt[]
@@ -320,6 +347,7 @@ final class Order implements HasErrorCode
 
     /**
      * @JMS\XmlList(entry="Package", inline=true)
+     *
      * @JMS\Type("array<CdekSDK\Common\Package>")
      *
      * @var Package[]
@@ -328,7 +356,9 @@ final class Order implements HasErrorCode
 
     /**
      * @JMS\SerializedName("CallCourier")
+     *
      * @JMS\XmlList(entry="Call")
+     *
      * @JMS\Type("array<CdekSDK\Common\CallCourier>")
      *
      * @var CallCourier[]
@@ -337,6 +367,7 @@ final class Order implements HasErrorCode
 
     /**
      * @JMS\XmlAttribute
+     *
      * @JMS\Type("float")
      *
      * @var float
@@ -345,6 +376,7 @@ final class Order implements HasErrorCode
 
     /**
      * @JMS\XmlAttribute
+     *
      * @JMS\Type("float")
      *
      * @var float
@@ -353,6 +385,7 @@ final class Order implements HasErrorCode
 
     /**
      * @JMS\XmlAttribute
+     *
      * @JMS\Type("DateTimeImmutable<'Y-m-d\TH:i:sP', '', 'Y-m-d\TH:i:sP', ['Y-m-d H:i:s', 'Y-m-d H:i:sP', 'Y-m-d']>")
      *
      * @var \DateTimeImmutable|null
@@ -361,6 +394,7 @@ final class Order implements HasErrorCode
 
     /**
      * @JMS\XmlAttribute
+     *
      * @JMS\Type("float")
      *
      * @var float
@@ -369,6 +403,7 @@ final class Order implements HasErrorCode
 
     /**
      * @JMS\XmlAttribute
+     *
      * @JMS\Type("float")
      *
      * @var float
@@ -377,6 +412,7 @@ final class Order implements HasErrorCode
 
     /**
      * @JMS\XmlAttribute
+     *
      * @JMS\Type("string")
      *
      * @var string
@@ -385,6 +421,7 @@ final class Order implements HasErrorCode
 
     /**
      * @JMS\XmlAttribute
+     *
      * @JMS\Type("int")
      *
      * @var int
@@ -393,6 +430,7 @@ final class Order implements HasErrorCode
 
     /**
      * @JMS\XmlAttribute
+     *
      * @JMS\Type("string")
      *
      * @var string
@@ -401,6 +439,7 @@ final class Order implements HasErrorCode
 
     /**
      * @JMS\XmlAttribute
+     *
      * @JMS\Type("string")
      *
      * @var string
@@ -418,6 +457,7 @@ final class Order implements HasErrorCode
      * Наименование города отправителя.
      *
      * @JMS\XmlAttribute
+     *
      * @JMS\Type("string")
      *
      * @var string
@@ -435,6 +475,7 @@ final class Order implements HasErrorCode
      * Наименование города получателя.
      *
      * @JMS\XmlAttribute
+     *
      * @JMS\Type("string")
      *
      * @var string
@@ -443,6 +484,7 @@ final class Order implements HasErrorCode
 
     /**
      * @JMS\XmlAttribute
+     *
      * @JMS\Type("string")
      *
      * @var string
@@ -451,6 +493,7 @@ final class Order implements HasErrorCode
 
     /**
      * @JMS\XmlAttribute
+     *
      * @JMS\Type("string")
      *
      * @var string
@@ -459,6 +502,7 @@ final class Order implements HasErrorCode
 
     /**
      * @JMS\XmlAttribute
+     *
      * @JMS\Type("string")
      *
      * @var string
@@ -469,6 +513,7 @@ final class Order implements HasErrorCode
 
     /**
      * @JMS\XmlAttribute
+     *
      * @JMS\Type("string")
      *
      * @var string
@@ -486,6 +531,7 @@ final class Order implements HasErrorCode
 
     /**
      * @JMS\XmlAttribute
+     *
      * @JMS\Type("string")
      *
      * @var string
@@ -494,6 +540,7 @@ final class Order implements HasErrorCode
 
     /**
      * @JMS\XmlAttribute
+     *
      * @JMS\Type("string")
      *
      * @var string
@@ -525,6 +572,7 @@ final class Order implements HasErrorCode
      * Номер акта приема-передачи.
      *
      * @JMS\XmlAttribute
+     *
      * @JMS\Type("string")
      *
      * @var string
@@ -533,6 +581,7 @@ final class Order implements HasErrorCode
 
     /**
      * @JMS\XmlAttribute
+     *
      * @JMS\Type("DateTimeImmutable<'Y-m-d\TH:i:sP', '', 'Y-m-d\TH:i:sP', 'Y-m-d'>")
      *
      * @var \DateTimeImmutable|null
@@ -541,6 +590,7 @@ final class Order implements HasErrorCode
 
     /**
      * @JMS\XmlAttribute
+     *
      * @JMS\Type("int")
      *
      * @var int
@@ -549,6 +599,7 @@ final class Order implements HasErrorCode
 
     /**
      * @JMS\XmlAttribute
+     *
      * @JMS\Type("string")
      *
      * @var string
@@ -564,6 +615,7 @@ final class Order implements HasErrorCode
 
     /**
      * @JMS\XmlAttribute
+     *
      * @JMS\Type("string")
      *
      * @var string
@@ -776,7 +828,7 @@ final class Order implements HasErrorCode
      */
     public function getAdditionalServices()
     {
-        return \array_merge($this->additionalServices, $this->addedServices);
+        return array_merge($this->additionalServices, $this->addedServices);
     }
 
     /**

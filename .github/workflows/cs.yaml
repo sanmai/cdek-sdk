@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
-      PHP_CS_FIXER_VERSION: v2.16.4
+      PHP_CS_FIXER_VERSION: v3.14.2
 
     steps:
       - name: Checkout
@@ -22,7 +22,7 @@ jobs:
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: 7.4
+          php-version: '8.0'
           coverage: none
           tools: php-cs-fixer:${{ env.PHP_CS_FIXER_VERSION }}
 

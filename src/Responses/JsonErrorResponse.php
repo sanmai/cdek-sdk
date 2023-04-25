@@ -75,6 +75,7 @@ final class JsonErrorResponse implements Response
 
     /**
      * @JMS\XmlList(entry = "JsonAlert", inline = true)
+     *
      * @JMS\Type("array<CdekSDK\Responses\Types\JsonAlert>")
      *
      * @var JsonAlert[]

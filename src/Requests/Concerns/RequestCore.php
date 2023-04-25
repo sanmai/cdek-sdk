@@ -36,6 +36,7 @@ trait RequestCore
 {
     /**
      * @phan-suppress PhanUndeclaredConstantOfClass
+     *
      * @psalm-suppress MixedInferredReturnType
      */
     final public function getAddress(): string
@@ -45,6 +46,7 @@ trait RequestCore
 
     /**
      * @phan-suppress PhanUndeclaredConstantOfClass
+     *
      * @psalm-suppress MixedInferredReturnType
      */
     final public function getMethod(): string
@@ -54,6 +56,7 @@ trait RequestCore
 
     /**
      * @phan-suppress PhanUndeclaredConstantOfClass
+     *
      * @psalm-suppress MixedInferredReturnType
      */
     final public function getResponseClassName(): string
@@ -78,6 +81,6 @@ trait RequestCore
             return $this::SERIALIZATION_XML;
         }
 
-        throw new \BadMethodCallException(\sprintf('Class [%s] has an unrecognized serialization format.', __CLASS__));
+        throw new \BadMethodCallException(sprintf('Class [%s] has an unrecognized serialization format.', __CLASS__));
     }
 }

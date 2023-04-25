@@ -47,8 +47,8 @@ abstract class TestCase extends DeserializationTestCase
      */
     private function fixXmlFloats(string $xml): string
     {
-        if (!\interface_exists('\JMS\Serializer\Naming\AdvancedNamingStrategyInterface')) {
-            return \preg_replace('/([A-Z][a-z]+)="(\d+)\.0"/', '\1="\2"', $xml);
+        if (!interface_exists('\JMS\Serializer\Naming\AdvancedNamingStrategyInterface')) {
+            return preg_replace('/([A-Z][a-z]+)="(\d+)\.0"/', '\1="\2"', $xml);
         }
 
         return $xml;

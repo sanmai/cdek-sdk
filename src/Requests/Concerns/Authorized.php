@@ -39,7 +39,9 @@ trait Authorized
      * @see \CdekSDK\CdekClient::getSecure();
      *
      * @JMS\XmlAttribute
+     *
      * @JMS\SerializedName("Date")
+     *
      * @JMS\Type("DateTimeImmutable<'Y-m-d\TH:i:s'>")
      *
      * @var \DateTimeInterface
@@ -50,7 +52,9 @@ trait Authorized
 
     /**
      * @JMS\XmlAttribute
+     *
      * @JMS\SerializedName("Account")
+     *
      * @JMS\Type("string")
      *
      * @var string
@@ -61,7 +65,9 @@ trait Authorized
 
     /**
      * @JMS\XmlAttribute
+     *
      * @JMS\SerializedName("Secure")
+     *
      * @JMS\Type("string")
      *
      * @var string

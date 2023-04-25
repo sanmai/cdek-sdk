@@ -41,6 +41,7 @@ final class CitiesResponse implements \IteratorAggregate, Response
 {
     /**
      * @JMS\XmlList(entry = "Location", inline = true)
+     *
      * @JMS\Type("array<CdekSDK\Common\Location>")
      *
      * @var Location[]

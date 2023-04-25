@@ -41,7 +41,9 @@ use CdekSDK\Responses\JsonErrorResponse;
 use CdekSDK\Serialization\Exception\XmlErrorException;
 use GuzzleHttp\Client as GuzzleClient;
 use GuzzleHttp\ClientInterface;
+
 use function GuzzleHttp\default_user_agent;
+
 use GuzzleHttp\Exception\BadResponseException;
 use JMS\Serializer\SerializerInterface;
 use Psr\Http\Message\ResponseInterface;
@@ -73,19 +75,19 @@ final class CdekClient implements Contracts\Client, LoggerAwareInterface
 {
     use LoggerAwareTrait;
 
-    const STANDARD_BASE_URL = 'https://integration.cdek.ru';
+    public const STANDARD_BASE_URL = 'https://integration.cdek.ru';
 
-    const DEFAULT_TIMEOUT = 60;
+    public const DEFAULT_TIMEOUT = 60;
 
-    const PACKAGE_NAME = 'Cdek-SDK';
-    const VERSION_INFO = '$Format:%h%d by %an +%ae$';
+    public const PACKAGE_NAME = 'Cdek-SDK';
+    public const VERSION_INFO = '$Format:%h%d by %an +%ae$';
 
     /**
      * Формат даты, который используется для создания подписи запроса.
      *
      * @var string
      */
-    const SECURE_DATE_FORMAT = 'Y-m-d\TH:i:s';
+    public const SECURE_DATE_FORMAT = 'Y-m-d\TH:i:s';
 
     /** @var ClientInterface */
     private $http;
@@ -101,7 +103,7 @@ final class CdekClient implements Contracts\Client, LoggerAwareInterface
 
     public function __construct(string $account = '', string $password = '', ClientInterface $http = null)
     {
-        if (\strpos($account, 'ИМ') === 0) {
+        if (strpos($account, 'ИМ') === 0) {
             throw new \RuntimeException('Учетная запись для интеграции не совпадает с учетной записью доступа в Личный кабинет СДЭК.');
         }
 
@@ -123,13 +125,14 @@ final class CdekClient implements Contracts\Client, LoggerAwareInterface
 
     public static function setUserAgent(string $product, string $versionDetails)
     {
-        self::$userAgentPostfix = \sprintf('%s/%s', $product, $versionDetails);
+        self::$userAgentPostfix = sprintf('%s/%s', $product, $versionDetails);
     }
 
     /**
      * @codeCoverageIgnore
      *
      * @phan-suppress PhanDeprecatedFunction
+     *
      * @psalm-suppress DeprecatedFunction
      */
     private function getDefaultUserAgent(): string
@@ -145,21 +148,22 @@ final class CdekClient implements Contracts\Client, LoggerAwareInterface
 
     /**
      * @codeCoverageIgnore
+     *
      * @psalm-suppress MixedArrayAccess
      */
     private static function getVersion(): string
     {
-        if (self::VERSION_INFO[0] === '$' && \is_dir(__DIR__.'/../.git')) {
-            return (string) \exec(\sprintf('git --git-dir=%s describe --tags --dirty=-dev --always', \escapeshellarg(__DIR__.'/../.git')));
+        if (self::VERSION_INFO[0] === '$' && is_dir(__DIR__.'/../.git')) {
+            return (string) exec(sprintf('git --git-dir=%s describe --tags --dirty=-dev --always', escapeshellarg(__DIR__.'/../.git')));
         }
 
-        if (\preg_match('/^([0-9a-f]+).*?tag: (v?[\d\.]+)\)(.*)/', self::VERSION_INFO, $parts)) {
+        if (preg_match('/^([0-9a-f]+).*?tag: (v?[\d\.]+)\)(.*)/', self::VERSION_INFO, $parts)) {
             /** @var string[] $parts */
             return "{$parts[2]}-{$parts[1]}{$parts[3]}";
         }
 
         /** @phan-suppress-next-line PhanTypeArraySuspiciousNullable */
-        return (string) @\json_decode((string) \file_get_contents(__DIR__.'/../composer.json'), true)['extra']['branch-alias']['dev-master'];
+        return (string) @json_decode((string) file_get_contents(__DIR__.'/../composer.json'), true)['extra']['branch-alias']['dev-master'];
     }
 
     /**
@@ -207,12 +211,12 @@ final class CdekClient implements Contracts\Client, LoggerAwareInterface
     /** @phan-suppress PhanDeprecatedFunction */
     public function __call(string $name, array $arguments)
     {
-        if (0 === \strpos($name, 'send')) {
+        if (0 === strpos($name, 'send')) {
             /** @psalm-suppress MixedArgument */
             return $this->sendRequest(...$arguments);
         }
 
-        throw new \BadMethodCallException(\sprintf('Method [%s] not found in [%s].', $name, __CLASS__));
+        throw new \BadMethodCallException(sprintf('Method [%s] not found in [%s].', $name, __CLASS__));
     }
 
     /**
@@ -259,7 +263,7 @@ final class CdekClient implements Contracts\Client, LoggerAwareInterface
             /*
              * Вместо XML СДЭК может вернуть JSON с описанием ошибки, характерно - с кодом 503.
              */
-            if (\substr($responseBody, 0, 1) !== '{') {
+            if (substr($responseBody, 0, 1) !== '{') {
                 // Это не JSON, с которым мы что-то можем сделать: потому кидаем исключение
                 throw $xmlException;
             }
@@ -298,7 +302,7 @@ final class CdekClient implements Contracts\Client, LoggerAwareInterface
      */
     private function getSecure(\DateTimeInterface $date): string
     {
-        return \md5($date->format(self::SECURE_DATE_FORMAT)."&{$this->password}");
+        return md5($date->format(self::SECURE_DATE_FORMAT)."&{$this->password}");
     }
 
     private function hasAttachment(ResponseInterface $response): bool
@@ -307,7 +311,7 @@ final class CdekClient implements Contracts\Client, LoggerAwareInterface
             return false;
         }
 
-        return \strpos($response->getHeader('Content-Disposition')[0], 'attachment') === 0;
+        return strpos($response->getHeader('Content-Disposition')[0], 'attachment') === 0;
     }
 
     private function getContentTypeHeader(ResponseInterface $response): string
@@ -322,19 +326,19 @@ final class CdekClient implements Contracts\Client, LoggerAwareInterface
     private function isTextResponse(string $header): bool
     {
         // Разбиваем условие на части чтобы лучше видеть покрытие тестами
-        if (0 === \strpos($header, 'text/xml')) {
+        if (0 === strpos($header, 'text/xml')) {
             return true;
         }
 
-        if (0 === \strpos($header, 'application/xml')) {
+        if (0 === strpos($header, 'application/xml')) {
             return true;
         }
 
-        if (0 === \strpos($header, 'application/atom+xml')) {
+        if (0 === strpos($header, 'application/atom+xml')) {
             return true;
         }
 
-        if (0 === \strpos($header, 'application/json')) {
+        if (0 === strpos($header, 'application/json')) {
             return true;
         }
 
@@ -371,7 +375,7 @@ final class CdekClient implements Contracts\Client, LoggerAwareInterface
         }
 
         if ($request instanceof JsonRequest) {
-            $requestBody = \json_encode($request);
+            $requestBody = json_encode($request);
 
             if ($this->logger) {
                 $this->logger->debug($requestBody);

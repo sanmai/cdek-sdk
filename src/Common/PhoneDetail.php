@@ -41,6 +41,7 @@ final class PhoneDetail
 {
     /**
      * @JMS\XmlAttribute
+     *
      * @JMS\Type("string")
      *
      * @var string

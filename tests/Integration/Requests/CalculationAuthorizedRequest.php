@@ -35,5 +35,5 @@ use CdekSDK\Requests;
  */
 class CalculationAuthorizedRequest extends Requests\CalculationAuthorizedRequest
 {
-    const ADDRESS = 'https://api.edu.cdek.ru/calculator/calculate_price_by_json.php';
+    public const ADDRESS = 'https://api.edu.cdek.ru/calculator/calculate_price_by_json.php';
 }

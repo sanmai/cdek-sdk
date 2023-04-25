@@ -48,12 +48,13 @@ final class CallCourierRequest implements XmlRequest, ShouldAuthorize
     use RequestCore;
     use Fillable;
 
-    const METHOD = 'POST';
-    const ADDRESS = '/call_courier.php';
-    const RESPONSE = CallCourierResponse::class;
+    public const METHOD = 'POST';
+    public const ADDRESS = '/call_courier.php';
+    public const RESPONSE = CallCourierResponse::class;
 
     /**
      * @JMS\XmlList(entry = "Call", inline = true)
+     *
      * @JMS\Type("array<CdekSDK\Common\CallCourier>")
      *
      * @var CallCourier[]
@@ -62,8 +63,11 @@ final class CallCourierRequest implements XmlRequest, ShouldAuthorize
 
     /**
      * @JMS\XmlAttribute
+     *
      * @JMS\SerializedName("CallCount")
+     *
      * @JMS\Type("int")
+     *
      * @JMS\VirtualProperty()
      */
     public function getCallCount()

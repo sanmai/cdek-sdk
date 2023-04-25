@@ -56,6 +56,7 @@ final class CalculationResponse implements Response
 
     /**
      * @JMS\SerializedName("error")
+     *
      * @JMS\Type("array<CdekSDK\Responses\Types\Error>")
      *
      * @var Error[]

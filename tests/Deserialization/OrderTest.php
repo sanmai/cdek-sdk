@@ -76,7 +76,7 @@ class OrderTest extends TestCase
         $states = $status->getStates();
 
         /** @var Status $firstState */
-        $firstState = \reset($states);
+        $firstState = reset($states);
 
         $this->assertInstanceOf(State::class, $firstState);
 
@@ -88,7 +88,7 @@ class OrderTest extends TestCase
         $this->assertFalse($firstState->isFinal());
 
         /** @var Status $lastState */
-        $lastState = \end($states);
+        $lastState = end($states);
 
         $this->assertInstanceOf(State::class, $lastState);
 
@@ -122,7 +122,7 @@ class OrderTest extends TestCase
         $this->assertSame('', $order->getItemsCurrency());
         $this->assertSame('', $order->getComment());
         $this->assertSame('', $order->getSellerName());
-        //$this->assertSame(1, $order->getAddress());
+        // $this->assertSame(1, $order->getAddress());
         $this->assertCount(0, $order->getAdditionalServices());
         $this->assertCount(0, $order->getScheduleAttempts());
         $this->assertCount(1, $order->getPackages());
@@ -134,21 +134,21 @@ class OrderTest extends TestCase
         $this->assertCount(0, $order->getAttempts());
         $this->assertSame(0.0, $order->getWeight());
         $this->assertSame(0.0, $order->getDeliverySum());
-        //$this->assertSame(1, $order->getDateLastChange());
+        // $this->assertSame(1, $order->getDateLastChange());
         $this->assertSame(0.0, $order->getCashOnDeliv());
         $this->assertSame(0.0, $order->getCashOnDelivFact());
         $this->assertSame(0, $order->getDeliveryMode());
         $this->assertSame('', $order->getPvzCode());
         $this->assertSame('', $order->getDeliveryVariant());
-        //$this->assertSame(1, $order->getSenderCity());
-        //$this->assertSame(1, $order->getRecipientCity());
+        // $this->assertSame(1, $order->getSenderCity());
+        // $this->assertSame(1, $order->getRecipientCity());
         $this->assertSame('', $order->getErrorCode());
         $this->assertSame('', $order->getMessage());
         $this->assertCount(2, $order->getCall()->getCallGood());
-        //$this->assertSame(1, $order->getReturnOrder());
+        // $this->assertSame(1, $order->getReturnOrder());
         $this->assertSame('', $order->getActNumber());
         $this->assertSame('2018-04-07 15:29:32', $order->getDeliveryDate()->format('Y-m-d H:i:s'));
-        //$this->assertSame(1, $order->getReturnDispatchNumber());
+        // $this->assertSame(1, $order->getReturnDispatchNumber());
 
         $package = $order->getPackages()[0];
         /** @var $package Package */

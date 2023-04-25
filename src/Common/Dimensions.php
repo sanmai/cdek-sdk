@@ -41,6 +41,7 @@ final class Dimensions
 {
     /**
      * @JMS\XmlAttribute
+     *
      * @JMS\Type("float")
      *
      * @var float
@@ -49,6 +50,7 @@ final class Dimensions
 
     /**
      * @JMS\XmlAttribute
+     *
      * @JMS\Type("float")
      *
      * @var float
@@ -57,6 +59,7 @@ final class Dimensions
 
     /**
      * @JMS\XmlAttribute
+     *
      * @JMS\Type("float")
      *
      * @var float

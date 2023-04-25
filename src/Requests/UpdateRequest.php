@@ -40,6 +40,6 @@ use JMS\Serializer\Annotation as JMS;
  */
 final class UpdateRequest extends DeliveryRequest
 {
-    const ADDRESS = '/update';
-    const RESPONSE = UpdateResponse::class;
+    public const ADDRESS = '/update';
+    public const RESPONSE = UpdateResponse::class;
 }

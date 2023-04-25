@@ -48,6 +48,7 @@ final class CalculationWithTariffListResponse implements Response, \IteratorAggr
 
     /**
      * @JMS\SerializedName("error")
+     *
      * @JMS\Type("array<CdekSDK\Responses\Types\Error>")
      *
      * @var Error[]

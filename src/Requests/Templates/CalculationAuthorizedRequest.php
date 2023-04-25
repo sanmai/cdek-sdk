@@ -44,39 +44,39 @@ abstract class CalculationAuthorizedRequest implements JsonRequest, \JsonSeriali
     use RequestCore;
     use Authorized;
 
-    const METHOD = 'POST';
-    const ADDRESS = '';
-    const RESPONSE = '';
+    public const METHOD = 'POST';
+    public const ADDRESS = '';
+    public const RESPONSE = '';
 
-    const VERSION = '1.0';
+    public const VERSION = '1.0';
 
     /** @deprecated */
-    const SERVICE_INSURANCE = AdditionalService::SERVICE_INSURANCE;  // Страховка
+    public const SERVICE_INSURANCE = AdditionalService::SERVICE_INSURANCE;  // Страховка
     /** @deprecated */
-    const SERVICE_DANGEROUS_GOODS = AdditionalService::SERVICE_DANGEROUS_GOODS;  // Опасный груз
+    public const SERVICE_DANGEROUS_GOODS = AdditionalService::SERVICE_DANGEROUS_GOODS;  // Опасный груз
     /** @deprecated */
-    const SERVICE_PICKUP = AdditionalService::SERVICE_PICKUP; // Забор в городе отправителе
+    public const SERVICE_PICKUP = AdditionalService::SERVICE_PICKUP; // Забор в городе отправителе
     /** @deprecated */
-    const SERVICE_DELIVERY_TO_DOOR = AdditionalService::SERVICE_DELIVERY_TO_DOOR; // Доставка в городе получателе
+    public const SERVICE_DELIVERY_TO_DOOR = AdditionalService::SERVICE_DELIVERY_TO_DOOR; // Доставка в городе получателе
     /** @deprecated */
-    const SERVICE_PACKAGE_1 = AdditionalService::SERVICE_PACKAGE_1; // Упаковка 1
+    public const SERVICE_PACKAGE_1 = AdditionalService::SERVICE_PACKAGE_1; // Упаковка 1
     /** @deprecated */
-    const SERVICE_PACKAGE_2 = AdditionalService::SERVICE_PACKAGE_2; // Упаковка 2
+    public const SERVICE_PACKAGE_2 = AdditionalService::SERVICE_PACKAGE_2; // Упаковка 2
     /** @deprecated */
-    const SERVICE_TRY_AT_HOME = AdditionalService::SERVICE_TRY_AT_HOME; // Примерка на дому
+    public const SERVICE_TRY_AT_HOME = AdditionalService::SERVICE_TRY_AT_HOME; // Примерка на дому
     /** @deprecated */
-    const SERVICE_PERSONAL_DELIVERY = AdditionalService::SERVICE_PERSONAL_DELIVERY; // Доставка лично в руки
+    public const SERVICE_PERSONAL_DELIVERY = AdditionalService::SERVICE_PERSONAL_DELIVERY; // Доставка лично в руки
     /** @deprecated */
-    const SERVICE_DOCUMENTS_COPY = AdditionalService::SERVICE_DOCUMENTS_COPY; // Скан документов
+    public const SERVICE_DOCUMENTS_COPY = AdditionalService::SERVICE_DOCUMENTS_COPY; // Скан документов
     /** @deprecated */
-    const SERVICE_PARTIAL_DELIVERY = AdditionalService::SERVICE_PARTIAL_DELIVERY; // Частичная доставка
+    public const SERVICE_PARTIAL_DELIVERY = AdditionalService::SERVICE_PARTIAL_DELIVERY; // Частичная доставка
     /** @deprecated */
-    const SERVICE_CARGO_CHECK = AdditionalService::SERVICE_CARGO_CHECK; // Осмотр вложения
+    public const SERVICE_CARGO_CHECK = AdditionalService::SERVICE_CARGO_CHECK; // Осмотр вложения
 
-    const MODE_DOOR_DOOR = 1;
-    const MODE_DOOR_WAREHOUSE = 2;
-    const MODE_WAREHOUSE_DOOR = 3;
-    const MODE_WAREHOUSE_WAREHOUSE = 4;
+    public const MODE_DOOR_DOOR = 1;
+    public const MODE_DOOR_WAREHOUSE = 2;
+    public const MODE_WAREHOUSE_DOOR = 3;
+    public const MODE_WAREHOUSE_WAREHOUSE = 4;
 
     /**
      * Код города отправителя из базы СДЭК.
@@ -283,7 +283,7 @@ abstract class CalculationAuthorizedRequest implements JsonRequest, \JsonSeriali
     {
         $this->tariffId = null;
 
-        $this->tariffList[] = \array_filter([
+        $this->tariffList[] = array_filter([
             'id'       => $id,
             'priority' => $priority,
             'modeId'   => $modeId,
@@ -364,7 +364,7 @@ abstract class CalculationAuthorizedRequest implements JsonRequest, \JsonSeriali
      */
     public function jsonSerialize()
     {
-        $result = \array_filter([
+        $result = array_filter([
             'version'              => self::VERSION,
             'goods'                => $this->goods,
             'modeId'               => $this->modeId,
@@ -387,7 +387,7 @@ abstract class CalculationAuthorizedRequest implements JsonRequest, \JsonSeriali
             return $result;
         }
 
-        return \array_merge($result, [
+        return array_merge($result, [
             'secure'      => $this->secure,
             'authLogin'   => $this->account,
             'dateExecute' => $this->date->format(CdekClient::SECURE_DATE_FORMAT),

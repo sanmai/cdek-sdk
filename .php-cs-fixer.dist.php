@@ -4,7 +4,8 @@ $header = trim('This code is licensed under the MIT License.'.substr(file_get_co
 
 use PhpCsFixer\Fixer\Operator\BinaryOperatorSpacesFixer;
 
-return PhpCsFixer\Config::create()
+$config = new PhpCsFixer\Config();
+$config
     ->setRiskyAllowed(true)
     ->setRules([
         '@Symfony' => true,
@@ -24,7 +25,7 @@ return PhpCsFixer\Config::create()
         'visibility_required' => true,
         'header_comment' => ['header' => $header, 'separate' => 'bottom', 'location' => 'after_open', 'comment_type' => 'PHPDoc'],
         'ternary_to_null_coalescing' => true,
-        'yoda_style' => null,
+        'yoda_style' => false,
         'phpdoc_to_comment' => false,
         'binary_operator_spaces' => ['operators' => ['=>' => BinaryOperatorSpacesFixer::ALIGN]],
         'php_unit_method_casing' => [
@@ -38,3 +39,5 @@ return PhpCsFixer\Config::create()
         ->in(__DIR__)
     )
 ;
+
+return $config;

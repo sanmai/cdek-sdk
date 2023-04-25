@@ -39,6 +39,7 @@ final class Attempt
 
     /**
      * @JMS\XmlAttribute
+     *
      * @JMS\Type("string")
      *
      * @var string
@@ -47,6 +48,7 @@ final class Attempt
 
     /**
      * @JMS\XmlAttribute
+     *
      * @JMS\Type("DateTimeImmutable<'Y-m-d'>")
      *
      * @var \DateTimeImmutable
@@ -55,6 +57,7 @@ final class Attempt
 
     /**
      * @JMS\XmlAttribute
+     *
      * @JMS\Type("string")
      *
      * @var string
@@ -63,6 +66,7 @@ final class Attempt
 
     /**
      * @JMS\XmlAttribute
+     *
      * @JMS\Type("float")
      *
      * @deprecated
@@ -73,6 +77,7 @@ final class Attempt
 
     /**
      * @JMS\XmlAttribute
+     *
      * @JMS\Type("string")
      *
      * @deprecated
@@ -83,6 +88,7 @@ final class Attempt
 
     /**
      * @JMS\XmlAttribute
+     *
      * @JMS\Type("float")
      *
      * @deprecated
@@ -93,6 +99,7 @@ final class Attempt
 
     /**
      * @JMS\XmlAttribute
+     *
      * @JMS\Type("DateTimeImmutable<'H:i:s'>")
      *
      * @var \DateTimeImmutable
@@ -101,6 +108,7 @@ final class Attempt
 
     /**
      * @JMS\XmlAttribute
+     *
      * @JMS\Type("DateTimeImmutable<'H:i:s'>")
      *
      * @var \DateTimeImmutable
@@ -109,6 +117,7 @@ final class Attempt
 
     /**
      * @JMS\XmlAttribute
+     *
      * @JMS\Type("string")
      *
      * @var string
@@ -117,6 +126,7 @@ final class Attempt
 
     /**
      * @JMS\XmlAttribute
+     *
      * @JMS\Type("string")
      *
      * @var string
@@ -132,6 +142,7 @@ final class Attempt
 
     /**
      * @JMS\XmlList(entry = "Package", inline = true)
+     *
      * @JMS\Type("array<CdekSDK\Common\Package>")
      *
      * @var Package[]
@@ -140,6 +151,7 @@ final class Attempt
 
     /**
      * @JMS\XmlAttribute
+     *
      * @JMS\Type("int")
      *
      * @var int
@@ -148,6 +160,7 @@ final class Attempt
 
     /**
      * @JMS\XmlAttribute
+     *
      * @JMS\Type("string")
      *
      * @var string

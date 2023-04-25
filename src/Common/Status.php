@@ -35,11 +35,12 @@ final class Status implements State
 {
     use Fillable;
 
-    const STATUS_DELIVERED = 4;
-    const STATUS_NOT_DELIVERED = 5;
+    public const STATUS_DELIVERED = 4;
+    public const STATUS_NOT_DELIVERED = 5;
 
     /**
      * @JMS\XmlAttribute
+     *
      * @JMS\Type("DateTimeImmutable<'Y-m-d\TH:i:sP'>")
      *
      * @var \DateTimeImmutable
@@ -48,6 +49,7 @@ final class Status implements State
 
     /**
      * @JMS\XmlAttribute
+     *
      * @JMS\Type("integer")
      *
      * @var int
@@ -56,6 +58,7 @@ final class Status implements State
 
     /**
      * @JMS\XmlAttribute
+     *
      * @JMS\Type("string")
      *
      * @var string
@@ -64,6 +67,7 @@ final class Status implements State
 
     /**
      * @JMS\XmlAttribute
+     *
      * @JMS\Type("integer")
      *
      * @var int
@@ -72,6 +76,7 @@ final class Status implements State
 
     /**
      * @JMS\XmlAttribute
+     *
      * @JMS\Type("string")
      *
      * @var string
@@ -80,6 +85,7 @@ final class Status implements State
 
     /**
      * @JMS\XmlList(entry="State", inline=true)
+     *
      * @JMS\Type("array<CdekSDK\Common\Status>")
      *
      * @var Status[]

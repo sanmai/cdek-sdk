@@ -43,9 +43,9 @@ class RequestCoreTest extends TestCase
     public function test_getters()
     {
         $instance = new class() {
-            const ADDRESS = 'address';
-            const METHOD = 'HEAD';
-            const RESPONSE = RequestCoreTest::class;
+            public const ADDRESS = 'address';
+            public const METHOD = 'HEAD';
+            public const RESPONSE = RequestCoreTest::class;
 
             use RequestCore;
         };
@@ -58,9 +58,9 @@ class RequestCoreTest extends TestCase
     public function test_unrecognized_serialization_format()
     {
         $instance = new class() {
-            const ADDRESS = 'address';
-            const METHOD = 'HEAD';
-            const RESPONSE = RequestCoreTest::class;
+            public const ADDRESS = 'address';
+            public const METHOD = 'HEAD';
+            public const RESPONSE = RequestCoreTest::class;
 
             use RequestCore;
         };
@@ -72,9 +72,9 @@ class RequestCoreTest extends TestCase
     public function test_serialization_xml()
     {
         $instance = new class() implements XmlRequest {
-            const ADDRESS = 'address';
-            const METHOD = 'HEAD';
-            const RESPONSE = RequestCoreTest::class;
+            public const ADDRESS = 'address';
+            public const METHOD = 'HEAD';
+            public const RESPONSE = RequestCoreTest::class;
 
             use RequestCore;
         };
@@ -82,9 +82,9 @@ class RequestCoreTest extends TestCase
         $this->assertSame(Request::SERIALIZATION_XML, $instance->getSerializationFormat());
 
         $instance = new class() implements ParamRequest {
-            const ADDRESS = 'address';
-            const METHOD = 'HEAD';
-            const RESPONSE = RequestCoreTest::class;
+            public const ADDRESS = 'address';
+            public const METHOD = 'HEAD';
+            public const RESPONSE = RequestCoreTest::class;
 
             use RequestCore;
 
@@ -100,9 +100,9 @@ class RequestCoreTest extends TestCase
     public function test_serialization_json()
     {
         $instance = new class() implements JsonRequest {
-            const ADDRESS = 'address';
-            const METHOD = 'HEAD';
-            const RESPONSE = RequestCoreTest::class;
+            public const ADDRESS = 'address';
+            public const METHOD = 'HEAD';
+            public const RESPONSE = RequestCoreTest::class;
 
             use RequestCore;
 

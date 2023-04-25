@@ -30,7 +30,6 @@ namespace CdekSDK\Responses;
 
 use CdekSDK\Common\Order;
 use CdekSDK\Contracts\Response;
-use CdekSDK\Responses\Concerns\HasErrors;
 use CdekSDK\Responses\Types\Message;
 use CdekSDK\Responses\Types\PrintError;
 use JMS\Serializer\Annotation as JMS;
@@ -42,6 +41,7 @@ final class PrintErrorResponse implements Response
 {
     /**
      * @JMS\XmlList(entry = "Order", inline = true)
+     *
      * @JMS\Type("array<CdekSDK\Responses\Types\PrintError>")
      *
      * @var PrintError[]
@@ -50,6 +50,7 @@ final class PrintErrorResponse implements Response
 
     /**
      * @JMS\XmlList(entry = "OrdersPrint", inline = true)
+     *
      * @JMS\Type("array<CdekSDK\Responses\Types\PrintError>")
      *
      * @var PrintError[]

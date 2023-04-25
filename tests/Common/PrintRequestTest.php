@@ -48,8 +48,8 @@ class PrintRequestTest extends TestCase
             use Authorized;
             use RequestCore;
 
-            const ADDRESS = '';
-            const METHOD = '';
+            public const ADDRESS = '';
+            public const METHOD = '';
         };
 
         $request = $request->addOrder(Order::create([

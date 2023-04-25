@@ -34,6 +34,7 @@ final class WeightLimit
 {
     /**
      * @JMS\XmlAttribute
+     *
      * @JMS\Type("int")
      *
      * @var int
@@ -42,6 +43,7 @@ final class WeightLimit
 
     /**
      * @JMS\XmlAttribute
+     *
      * @JMS\Type("int")
      *
      * @var int

@@ -43,6 +43,7 @@ final class StatusReportResponse implements Response, HasErrorCode, \IteratorAgg
 {
     /**
      * @JMS\XmlAttribute
+     *
      * @JMS\Type("DateTimeImmutable<'Y-m-d\TH:i:sP'>")
      *
      * @var \DateTimeImmutable
@@ -51,6 +52,7 @@ final class StatusReportResponse implements Response, HasErrorCode, \IteratorAgg
 
     /**
      * @JMS\XmlAttribute
+     *
      * @JMS\Type("DateTimeImmutable<'Y-m-d\TH:i:sP'>")
      *
      * @var \DateTimeImmutable
@@ -59,6 +61,7 @@ final class StatusReportResponse implements Response, HasErrorCode, \IteratorAgg
 
     /**
      * @JMS\XmlList(inline = true, entry = "Order")
+     *
      * @JMS\Type("array<CdekSDK\Common\Order>")
      *
      * @var Order[]
@@ -67,6 +70,7 @@ final class StatusReportResponse implements Response, HasErrorCode, \IteratorAgg
 
     /**
      * @JMS\XmlAttribute
+     *
      * @JMS\Type("string")
      *
      * @var string
@@ -75,6 +79,7 @@ final class StatusReportResponse implements Response, HasErrorCode, \IteratorAgg
 
     /**
      * @JMS\XmlAttribute
+     *
      * @JMS\Type("string")
      *
      * @var string

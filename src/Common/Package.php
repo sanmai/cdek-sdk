@@ -37,10 +37,11 @@ final class Package
 {
     use Fillable;
 
-    const VOLUMETRIC_WEIGHT_DIVIDER = 5000;
+    public const VOLUMETRIC_WEIGHT_DIVIDER = 5000;
 
     /**
      * @JMS\XmlAttribute
+     *
      * @JMS\Type("string")
      *
      * @var string
@@ -49,6 +50,7 @@ final class Package
 
     /**
      * @JMS\XmlAttribute
+     *
      * @JMS\Type("string")
      *
      * @var string
@@ -57,6 +59,7 @@ final class Package
 
     /**
      * @JMS\XmlAttribute
+     *
      * @JMS\Type("float")
      *
      * @var float
@@ -65,6 +68,7 @@ final class Package
 
     /**
      * @JMS\XmlAttribute
+     *
      * @JMS\Type("int")
      *
      * @var int
@@ -73,6 +77,7 @@ final class Package
 
     /**
      * @JMS\XmlAttribute
+     *
      * @JMS\Type("int")
      *
      * @var int
@@ -81,6 +86,7 @@ final class Package
 
     /**
      * @JMS\XmlAttribute
+     *
      * @JMS\Type("int")
      *
      * @var int
@@ -89,6 +95,7 @@ final class Package
 
     /**
      * @JMS\XmlAttribute
+     *
      * @JMS\Type("float")
      *
      * @var float
@@ -99,6 +106,7 @@ final class Package
      * Если это поле необходимо и не заполнено, будет ошибка ERROR_VALIDATE_PACKAGE_NULL_DESCRIPTION.
      *
      * @JMS\XmlAttribute
+     *
      * @JMS\Type("string")
      *
      * @var string
@@ -107,6 +115,7 @@ final class Package
 
     /**
      * @JMS\XmlList(entry="Item", inline=true)
+     *
      * @JMS\Type("array<CdekSDK\Common\Item>")
      *
      * @var Item[]

@@ -39,11 +39,12 @@ use CdekSDK\Responses\CalculationResponse;
  */
 class CalculationAuthorizedRequest extends Templates\CalculationAuthorizedRequest
 {
-    const ADDRESS = 'https://api.cdek.ru/calculator/calculate_price_by_json.php';
-    const RESPONSE = CalculationResponse::class;
+    public const ADDRESS = 'https://api.cdek.ru/calculator/calculate_price_by_json.php';
+    public const RESPONSE = CalculationResponse::class;
 
     /**
      * @deprecated
+     *
      * @phan-suppress PhanDeprecatedClass
      */
     public static function withAuthorization(): CalculationAuthorizedRequest

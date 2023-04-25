@@ -37,7 +37,6 @@ use CdekSDK\Responses\PrintErrorResponse;
  * @covers \CdekSDK\Requests\DeliveryRequest
  * @covers \CdekSDK\Responses\DeliveryResponse
  * @covers \CdekSDK\Responses\Types\DeliveryRequest
- *
  * @covers \CdekSDK\Requests\Templates\PrintRequest
  * @covers \CdekSDK\Requests\PrintReceiptsRequest
  * @covers \CdekSDK\Responses\PrintErrorResponse

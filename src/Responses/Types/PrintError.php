@@ -35,6 +35,7 @@ final class PrintError implements HasErrorCode
 {
     /**
      * @JMS\XmlAttribute
+     *
      * @JMS\Type("string")
      *
      * @var string
@@ -43,6 +44,7 @@ final class PrintError implements HasErrorCode
 
     /**
      * @JMS\XmlAttribute
+     *
      * @JMS\Type("string")
      *
      * @var string

@@ -46,15 +46,16 @@ use JMS\Serializer\Annotation as JMS;
  */
 final class StatusReportRequest implements XmlRequest, ShouldAuthorize
 {
-    const METHOD = 'POST';
-    const ADDRESS = '/status_report_h.php';
-    const RESPONSE = StatusReportResponse::class;
+    public const METHOD = 'POST';
+    public const ADDRESS = '/status_report_h.php';
+    public const RESPONSE = StatusReportResponse::class;
 
     use Authorized;
     use RequestCore;
 
     /**
      * @JMS\XmlAttribute
+     *
      * @JMS\Type("int")
      *
      * @var int
@@ -63,6 +64,7 @@ final class StatusReportRequest implements XmlRequest, ShouldAuthorize
 
     /**
      * @JMS\XmlAttribute
+     *
      * @JMS\Type("int")
      *
      * @var int
@@ -71,6 +73,7 @@ final class StatusReportRequest implements XmlRequest, ShouldAuthorize
 
     /**
      * @JMS\XmlAttribute
+     *
      * @JMS\Type("int")
      *
      * @var int
@@ -79,6 +82,7 @@ final class StatusReportRequest implements XmlRequest, ShouldAuthorize
 
     /**
      * @JMS\XmlList(inline = true, entry = "Order")
+     *
      * @JMS\Type("array<CdekSDK\Common\Order>")
      *
      * @var Order[]

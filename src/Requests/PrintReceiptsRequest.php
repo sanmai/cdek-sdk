@@ -47,6 +47,6 @@ final class PrintReceiptsRequest extends PrintRequest
     use Authorized;
     use RequestCore;
 
-    const METHOD = 'POST';
-    const ADDRESS = '/orders_print.php';
+    public const METHOD = 'POST';
+    public const ADDRESS = '/orders_print.php';
 }

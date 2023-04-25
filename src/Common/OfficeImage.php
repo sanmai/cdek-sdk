@@ -43,6 +43,7 @@ final class OfficeImage
 
     /**
      * @JMS\XmlAttribute
+     *
      * @JMS\Type("int")
      *
      * @var int
@@ -51,6 +52,7 @@ final class OfficeImage
 
     /**
      * @JMS\XmlAttribute
+     *
      * @JMS\Type("string")
      *
      * @var string

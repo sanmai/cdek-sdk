@@ -39,80 +39,81 @@ final class AdditionalService
      *
      * @var int
      */
-    const SERVICE_INSURANCE = 2;
+    public const SERVICE_INSURANCE = 2;
 
     /**
      * Опасный груз.
      *
      * @var int
      */
-    const SERVICE_DANGEROUS_GOODS = 7;
+    public const SERVICE_DANGEROUS_GOODS = 7;
 
     /**
      * Забор в городе отправителе.
      *
      * @var int
      */
-    const SERVICE_PICKUP = 16;
+    public const SERVICE_PICKUP = 16;
 
     /**
      * Доставка в городе получателе.
      *
      * @var int
      */
-    const SERVICE_DELIVERY_TO_DOOR = 17;
+    public const SERVICE_DELIVERY_TO_DOOR = 17;
 
     /**
      * Упаковка 1.
      *
      * @var int
      */
-    const SERVICE_PACKAGE_1 = 24;
+    public const SERVICE_PACKAGE_1 = 24;
 
     /**
      * Упаковка 2.
      *
      * @var int
      */
-    const SERVICE_PACKAGE_2 = 25;
+    public const SERVICE_PACKAGE_2 = 25;
 
     /**
      * Примерка на дому.
      *
      * @var int
      */
-    const SERVICE_TRY_AT_HOME = 30;
+    public const SERVICE_TRY_AT_HOME = 30;
 
     /**
      * Доставка лично в руки.
      *
      * @var int
      */
-    const SERVICE_PERSONAL_DELIVERY = 31;
+    public const SERVICE_PERSONAL_DELIVERY = 31;
 
     /**
      * Скан документов.
      *
      * @var int
      */
-    const SERVICE_DOCUMENTS_COPY = 32;
+    public const SERVICE_DOCUMENTS_COPY = 32;
 
     /**
      * Частичная доставка.
      *
      * @var int
      */
-    const SERVICE_PARTIAL_DELIVERY = 36;
+    public const SERVICE_PARTIAL_DELIVERY = 36;
 
     /**
      * Осмотр вложения.
      *
      * @var int
      */
-    const SERVICE_CARGO_CHECK = 37;
+    public const SERVICE_CARGO_CHECK = 37;
 
     /**
      * @JMS\XmlAttribute
+     *
      * @JMS\Type("int")
      *
      * @var int
@@ -121,6 +122,7 @@ final class AdditionalService
 
     /**
      * @JMS\XmlAttribute
+     *
      * @JMS\Type("float")
      *
      * @var float
@@ -131,6 +133,7 @@ final class AdditionalService
      * Количество упаковок. Используется и является обязательным только для дополнительной услуги "Упаковка 1".
      *
      * @JMS\XmlAttribute
+     *
      * @JMS\Type("int")
      *
      * @var int
@@ -141,6 +144,7 @@ final class AdditionalService
      * Объявленная стоимость отправления (заказа). Используется и является обязательным только для дополнительной услуги "Страхование".
      *
      * @JMS\XmlAttribute
+     *
      * @JMS\Type("float")
      *
      * @var float

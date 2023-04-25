@@ -43,7 +43,7 @@ class LaravelCdekServiceProvider extends ServiceProvider
 {
     protected $defer = true;
 
-    const SKIP_SERIALIZER_CONFIGURATION_FUNC = [Serializer::class, 'doNotConfigureAnnotationRegistry'];
+    public const SKIP_SERIALIZER_CONFIGURATION_FUNC = [Serializer::class, 'doNotConfigureAnnotationRegistry'];
 
     public function boot()
     {

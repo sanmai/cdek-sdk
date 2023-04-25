@@ -94,7 +94,7 @@ class DeliveryResponseTest extends TestCase
             break;
         }
 
-        $order = \iterator_to_array($response->getErrors(), false)[1];
+        $order = iterator_to_array($response->getErrors(), false)[1];
 
         $this->assertSame('Почтовый индекс города получателя отсутствует в базе СДЭК: RecCityPostCode=999999', $order->getMessage());
         $this->assertSame('ERR_RECCITYPOSTCODE', $order->getErrorCode());

@@ -82,6 +82,13 @@ final class CitiesRequest implements ParamRequest
     protected $regionFiasGuid;
 
     /**
+     * Код города из ФИАС, UUID.
+     *
+     * @var string
+     */
+    protected $fiasGuid;
+
+    /**
      * Номер страницы выборки результата. По умолчанию 0.
      *
      * @var int

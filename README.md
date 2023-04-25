@@ -59,6 +59,8 @@
 - [ttatpuot/cdek-sdk2.0](https://github.com/ttatpuot/cdek-sdk2.0)
 - [cdek-it/sdk2.0](https://github.com/cdek-it/sdk2.0)
 
+И другие. Ищите и обрящете!
+
 ## Установка
 
 ```bash

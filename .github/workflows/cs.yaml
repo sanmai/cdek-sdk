@@ -35,4 +35,4 @@ jobs:
 
       - name: Run PHP-CS-Fixer, version ${{ env.PHP_CS_FIXER_VERSION }}
         run: |
-          php-cs-fixer fix --diff --diff-format=udiff --dry-run --verbose
+          php-cs-fixer fix --diff --dry-run --verbose

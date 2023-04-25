@@ -1,4 +1,4 @@
-Компания СДЭК собирается [отключить поддержку протокола 1.5 до конца 2021 года](https://t.me/phpcdeksdk/6338). Просим или [переходить на версию 2](https://github.com/cdek-it/sdk2.0), или обращайтесь к своему менеджеру за разъяснениями. 
+Компания СДЭК собирается [отключить поддержку протокола 1.5 до конца 2021 года](https://t.me/phpcdeksdk/6338). Просим или [переходить на версию 2](#версия-api), или обращайтесь к своему менеджеру за разъяснениями. 
 
 ![](docs/logo.png)
 
@@ -57,6 +57,7 @@
 Этот SDK предназначен для работы с первой версии API. 
 Существуют SDK для второй версии API:
 - [antistress-store/cdek-sdk-v2](https://github.com/AntistressStore/cdek-sdk-v2)
+- [ttatpuot/cdek-sdk2.0](https://github.com/ttatpuot/cdek-sdk2.0)
 - [cdek-it/sdk2.0](https://github.com/cdek-it/sdk2.0)
 
 ## Установка

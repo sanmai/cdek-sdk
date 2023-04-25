@@ -53,5 +53,5 @@ if ($response->hasErrors()) {
 
 // Получаем номера заявок
 foreach ($response->getNumbers() as $number) {
-    $number; // ...
+    // ...
 }

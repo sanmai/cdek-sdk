@@ -5,7 +5,6 @@
 # PHP SDK для API СДЭК
 
 [![Latest Stable Version](https://poser.pugx.org/sanmai/cdek-sdk/v/stable)](https://packagist.org/packages/sanmai/cdek-sdk)
-[![Build Status](https://travis-ci.org/sanmai/cdek-sdk.svg?branch=master)](https://travis-ci.org/sanmai/cdek-sdk)
 [![Coverage Status](https://coveralls.io/repos/github/sanmai/cdek-sdk/badge.svg?branch=master)](https://coveralls.io/github/sanmai/cdek-sdk?branch=master)
 [![Documentation Status](https://readthedocs.org/projects/cdek-sdk/badge/?version=latest)](https://cdek-sdk.readthedocs.io/?badge=latest)
 [![Telegram Chat](https://img.shields.io/badge/telegram-chat-blue.svg?logo=telegram)](https://t.me/phpcdeksdk)

@@ -167,6 +167,7 @@ final class ErrorResponse implements Response, ResponseInterface
         return $this->response->getProtocolVersion();
     }
 
+    #[\ReturnTypeWillChange]
     public function getStatusCode()
     {
         return $this->response->getStatusCode();
